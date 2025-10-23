@@ -223,7 +223,7 @@ function renderMenu(data){
       
       if(item.image){
         const img = document.createElement("img");
-        img.src = "Images/"+item.image;
+        img.src = item.image;
         img.alt = item.name;
         img.classList.add("menu-img");
         img.onclick = ()=> openImageModal(item.image);
@@ -283,7 +283,7 @@ function openModal(item){
   document.getElementById("item-modal").classList.add("show");
 }
 function closeModal(){ document.getElementById("item-modal").classList.remove("show"); }
-function openImageModal(img){ document.getElementById("zoomed-image").src="Images/"+img; document.getElementById("image-modal").classList.add("show"); }
+function openImageModal(img){ document.getElementById("zoomed-image").src=img; document.getElementById("image-modal").classList.add("show"); }
 function closeImageModal(){ document.getElementById("image-modal").classList.remove("show"); }
 </script>
 
