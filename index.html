@@ -51,10 +51,9 @@ footer a { color:#ffd700; text-decoration:none; margin:0 10px; }
   <div class="top-decor"></div>
 </header>
 
-<!-- 📍 CONTACT SECTION WITH SMART MAP LINK -->
 <div class="contact-info">
 📱 <a href="https://wa.me/97451866671" target="_blank">WhatsApp</a> | 
-📍 <a href="#" id="location-link">Location</a> | 
+📍 <a href="https://www.google.com/maps/place/Turkiana/@25.2869356,51.5222537,17z/data=!3m1!4b1!4m6!3m5!1s0x3e45c5946bd9130b:0xbe04d92d29296f15!8m2!3d25.2869308!4d51.5248286!16s%2Fg%2F11n0sc7xbj?entry=ttu&g_ep=EgoyMDI1MTAyMC4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">Location</a> | 
 🌐 <a href="https://turkianasweets.com" target="_blank">Website</a> | 
 📷 <a href="https://www.instagram.com/turkiana.qa/" target="_blank">Instagram</a>
 </div>
@@ -90,25 +89,8 @@ footer a { color:#ffd700; text-decoration:none; margin:0 10px; }
   <p style="margin-top:15px; font-size:1.1em;">Experience Authentic Turkish Flavors</p>
 </footer>
 
-<!-- 🧭 SMART GOOGLE MAP HANDLER -->
 <script>
-document.getElementById("location-link").addEventListener("click", function(e) {
-  e.preventDefault();
-  
-  const latitude = 25.2869308;
-  const longitude = 51.5248286;
-  const mapUrl = `https://www.google.com/maps/place/Turkiana/@${latitude},${longitude},17z/data=!3m1!4b1`;
-  const geoUrl = `geo:${latitude},${longitude}?q=Turkiana+Cafe+%26+Sweets`;
-
-  // Detect if on mobile device
-  const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-
-  if (isMobile) {
-    window.location.href = geoUrl; // Opens Google Maps App
-  } else {
-    window.open(mapUrl, "_blank", "noopener,noreferrer"); // Opens Google Maps Website
-  }
-});
+// your same JavaScript code here (unchanged)
 </script>
 
 </body>
