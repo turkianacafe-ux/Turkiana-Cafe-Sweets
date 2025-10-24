@@ -51,9 +51,10 @@ footer a { color:#ffd700; text-decoration:none; margin:0 10px; }
   <div class="top-decor"></div>
 </header>
 
+<!-- 📍 CONTACT SECTION WITH SMART MAP LINK -->
 <div class="contact-info">
 📱 <a href="https://wa.me/97451866671" target="_blank">WhatsApp</a> | 
-📍 <a href="#" target="_blank">Location</a> | 
+📍 <a href="#" id="location-link">Location</a> | 
 🌐 <a href="https://turkianasweets.com" target="_blank">Website</a> | 
 📷 <a href="https://www.instagram.com/turkiana.qa/" target="_blank">Instagram</a>
 </div>
@@ -89,202 +90,25 @@ footer a { color:#ffd700; text-decoration:none; margin:0 10px; }
   <p style="margin-top:15px; font-size:1.1em;">Experience Authentic Turkish Flavors</p>
 </footer>
 
+<!-- 🧭 SMART GOOGLE MAP HANDLER -->
 <script>
-const allergens = { nuts:"🥜", dairy:"🥛", gluten:"🌾" };
+document.getElementById("location-link").addEventListener("click", function(e) {
+  e.preventDefault();
+  
+  const latitude = 25.2869308;
+  const longitude = 51.5248286;
+  const mapUrl = `https://www.google.com/maps/place/Turkiana/@${latitude},${longitude},17z/data=!3m1!4b1`;
+  const geoUrl = `geo:${latitude},${longitude}?q=Turkiana+Cafe+%26+Sweets`;
 
-// Full menu data with only provided images
-const menuData = {
-  "Breakfast Specialties":[
-    {name:"Turkish Classic Breakfast", price:"45 QR", description:"Traditional Turkish breakfast spread with cheese, olives, tomatoes, cucumbers, honey, and fresh bread", image:"Breakfast.jpg", allergens:["dairy","gluten"]},
-    {name:"Turkish Menemen", price:"35 QR", description:"Turkish-style scrambled eggs with tomatoes, peppers, and spices", image:"Menemen.jpg", allergens:["dairy"]},
-    {name:"Plain Omelette", price:"25 QR", description:"Classic fluffy omelette", image:"Omellet.jpg", allergens:["dairy"]}
-  ],
-  "Croissants كرواسون":[
-    {name:"Croissant Beef Ribs", price:"38 QR", description:"Beef Ribs, Cheddar Cheese, Kasfar Cheese, Pesto Sauce (Side: Tomatoes, Cucumbers, Green Olives)", image:"Ribs.jpg", allergens:["dairy","gluten","nuts"]},
-    {name:"Avocado Croissant", price:"38 QR", description:"Scrambled Eggs, Avocado, Olive Paste (with Tomatoes and Cucumber as Sides)", image:"Avocado.jpg", allergens:["dairy","gluten"]},
-    {name:"Smoked Beef Croissant", price:"38 QR", description:"Scrambled Eggs with Thyme and Smoked Beef (Side: Tomato, Cucumber, Olives, Jam, and White Cheese)", image:"5.jpg", allergens:["dairy","gluten"]},
-    {name:"Butter & Jam Croissant", price:"38 QR", description:"Butter, Cherry Jam, Grilled Olives, Feta Cheese, Tomato, Cucumber, Praline", image:"4.jpg", allergens:["dairy","gluten","nuts"]},
-    {name:"Croissant Scrambled Eggs", price:"38 QR", description:"Scrambled Eggs, Red Pepper, Thyme, Arugula, Tomatoes, Cucumbers, Grilled Olives", image:"1.jpg", allergens:["dairy","gluten"]}
-  ],
-  "Main Dishes":[
-    {name:"Fried Potatoes", price:"20 QR", description:"Crispy golden french fries", image:"Patatas.jpg", allergens:[]},
-    {name:"Caesar Salad", price:"35 QR", description:"Fresh romaine lettuce with Caesar dressing, croutons, and parmesan", image:"Caesar.jpg", allergens:["dairy","gluten"]},
-    {name:"Turkiana Special Beef Burger", price:"50 QR", description:"Premium beef burger with special toppings and fries", image:"Burger.jpg", allergens:["gluten","dairy"]}
-  ],
-  "Sweets & Desserts":[
-    {name:"Turkish Mix Baklava", price:"45 QR", description:"Assorted traditional Turkish baklava", image:"Mix.jpg", allergens:["nuts","gluten"]},
-    {name:"Turkish Plain Baklava", price:"40 QR", description:"Classic plain baklava", image:"Slice.jpg", allergens:["nuts","gluten"]},
-    {name:"San Sebastian", price:"35 QR", description:"Basque burnt cheesecake", image:"Sebastian.jpg", allergens:["dairy","gluten"]},
-    {name:"Chocolate Cake", price:"32 QR", description:"Rich chocolate molten cake", image:"Chocolate.jpg", allergens:["dairy","gluten"]},
-    {name:"Full Pistachio Cake", price:"35 QR", description:"Delicate pistachio flavored cake", image:"Full.jpg", allergens:["nuts","dairy","gluten"]},
-    {name:"Lemon Cake", price:"35 QR", description:"Fresh lemon sponge cake", image:"Lemon.jpg", allergens:["dairy","gluten"]},
-    {name:"Tiramisu", price:"35 QR", description:"Classic Italian tiramisu", image:"Tiramisu.jpg", allergens:["dairy","gluten","nuts"]},
-    {name:"Almond Chocolate Cake", price:"35 QR", description:"Almond chocolate cake", image:"Almond.jpg", allergens:["nuts","dairy","gluten"]},
-    {name:"Lemon Sponge Cake", price:"35 QR", description:"Light lemon sponge cake", image:"Lemoncake.jpg", allergens:["dairy","gluten"]},
-    {name:"Cherry Cheesecake", price:"35 QR", description:"Cherry cheesecake", image:"Cherry.jpg", allergens:["dairy","gluten"]},
-    {name:"Mulberry Cheesecake", price:"35 QR", description:"Mulberry cheesecake", image:"Mulberry.jpg", allergens:["dairy","gluten"]},
-    {name:"Chocolate Pistachio Cake", price:"35 QR", description:"Chocolate pistachio cake", image:"Chocolate_pistachio.jpg", allergens:["dairy","nuts","gluten"]},
-    {name:"Strawberry Cake", price:"35 QR", description:"Strawberry cake", image:"Strawberry.jpg", allergens:["dairy","gluten"]},
-    {name:"White Almond Cake", price:"35 QR", description:"White almond cake", image:"White.jpg", allergens:["nuts","dairy","gluten"]},
-    {name:"Trileche With Milk", price:"35 QR", description:"Turkish tres leches cake", image:"Trileche.jpg", allergens:["dairy","gluten"]},
-    {name:"San Sebastian Cheesecake", price:"35 QR", description:"San Sebastian cheesecake", image:"Sebastian.jpg", allergens:["dairy","gluten"]}
-  ],
-  "Arabic Coffee":[
-    {name:"Arabic Coffee in a Full Dalla", price:"90 QR", description:"Arabic Coffee in a Full Dalla", allergens:["dairy"]},
-    {name:"Arabic Coffee in a Half Dalla", price:"50 QR", description:"Arabic Coffee in a Half Dalla", allergens:["dairy"]},
-    {name:"Arabic Coffee in a Cup", price:"30 QR", description:"Arabic Coffee in a Cup", allergens:["dairy"]}
-  ],
-  "Hot Tea":[
-    {name:"Turkish Tea", price:"15 QR", description:"Classic Turkish tea", allergens:[]},
-    {name:"Cup Of Tea", price:"18 QR", description:"Hot cup of tea", allergens:[]},
-    {name:"Apple Tea", price:"25 QR", description:"Apple tea", allergens:[]},
-    {name:"Mulberry Tea", price:"25 QR", description:"Mulberry tea", allergens:[]},
-    {name:"Lemon Mint", price:"25 QR", description:"Lemon mint tea", allergens:[]},
-    {name:"Pomegranate Tea", price:"25 QR", description:"Pomegranate tea", allergens:[]}
-  ],
-  "Ice Tea":[
-    {name:"Ice Apple Tea", price:"28 QR", description:"Cold apple tea", allergens:[]},
-    {name:"Ice Mulberry Tea", price:"28 QR", description:"Cold mulberry tea", allergens:[]},
-    {name:"Ice Mint Lemon", price:"28 QR", description:"Cold mint lemon tea", allergens:[]},
-    {name:"Ice Pomegranate Tea", price:"28 QR", description:"Cold pomegranate tea", allergens:[]},
-    {name:"Hibiscus", price:"28 QR", description:"Cold hibiscus tea", allergens:[]}
-  ],
-  "Turkish Coffee":[
-    {name:"Classic Turkish Coffee", price:"28 QR", description:"Classic Turkish Coffee", allergens:[]},
-    {name:"Turkish Coffee with Cardamon", price:"28 QR", description:"Turkish Coffee with Cardamon", allergens:[]},
-    {name:"Double Turkish Coffee", price:"40 QR", description:"Double Turkish Coffee", allergens:[]},
-    {name:"Ottoman Coffee", price:"28 QR", description:"Ottoman Coffee", allergens:[]},
-    {name:"Ottoman Coffee with Mastic", price:"28 QR", description:"Ottoman Coffee with Mastic", allergens:[]},
-    {name:"Ottoman Coffee with Hazelnuts", price:"28 QR", description:"Ottoman Coffee with Hazelnuts", allergens:["nuts"]},
-    {name:"Sahlep", price:"28 QR", description:"Hot sahlep", allergens:["dairy"]}
-  ],
-  "Special Herbal Teas":[
-    {name:"Sage", price:"28 QR", description:"Sage tea", allergens:[]},
-    {name:"Mix Winter Tea", price:"28 QR", description:"Winter herbal tea mix", allergens:[]},
-    {name:"Green Tea", price:"28 QR", description:"Green tea", allergens:[]},
-    {name:"Chamomile", price:"28 QR", description:"Chamomile tea", allergens:[]},
-    {name:"Hibiscus", price:"28 QR", description:"Hibiscus tea", allergens:[]}
-  ],
-  "Hot & Ice Coffee":[
-    {name:"Hot Chocolate (Hot/Ice)", price:"36 QR", description:"Hot chocolate", allergens:["dairy"]},
-    {name:"Latte (Hot/Ice)", price:"29 QR", description:"Latte coffee", allergens:["dairy"]},
-    {name:"Spanish Latte (Hot/Ice)", price:"32 QR", description:"Spanish Latte", allergens:["dairy"]},
-    {name:"Salted Caramel Latte (Hot/Ice)", price:"32 QR", description:"Salted Caramel Latte", allergens:["dairy"]},
-    {name:"Hazelnut Latte (Hot/Ice)", price:"32 QR", description:"Hazelnut Latte", allergens:["dairy","nuts"]},
-    {name:"Vanilla Latte (Hot/Ice)", price:"32 QR", description:"Vanilla Latte", allergens:["dairy"]},
-    {name:"Cappuccino (Hot/Ice)", price:"29 QR", description:"Cappuccino", allergens:["dairy"]},
-    {name:"White Mocha (Hot/Ice)", price:"32 QR", description:"White Mocha", allergens:["dairy"]},
-    {name:"Flat White (Hot/Ice)", price:"32 QR", description:"Flat White coffee", allergens:["dairy"]},
-    {name:"Cortado (Hot/Ice)", price:"24 QR", description:"Cortado coffee", allergens:["dairy"]},
-    {name:"Espresso (Hot/Ice)", price:"21 QR", description:"Espresso coffee", allergens:[]},
-    {name:"Double Espresso (Hot/Ice)", price:"23 QR", description:"Double Espresso coffee", allergens:[]},
-    {name:"Macchiato (Hot/Ice)", price:"24 QR", description:"Macchiato coffee", allergens:["dairy"]},
-    {name:"Americano (Hot/Ice)", price:"21 QR", description:"Americano coffee", allergens:[]},
-    {name:"Mocha (Hot/Ice)", price:"32 QR", description:"Mocha coffee", allergens:["dairy"]}
-  ],
-  "Special Coffee":[
-    {name:"V60 (Hot & Ice)", price:"33 QR", description:"V60 pour-over coffee", allergens:[]},
-    {name:"Ice Drip", price:"36 QR", description:"Ice Drip coffee", allergens:[]},
-    {name:"Cold Brew", price:"38 QR", description:"Cold Brew coffee", allergens:[]}
-  ],
-  "Froozen":[
-    {name:"Mango Froozen", price:"38 QR", description:"Mango froozen drink", allergens:[]},
-    {name:"Şeftali Froozen", price:"38 QR", description:"Peach froozen drink", allergens:[]},
-    {name:"Çilekli Froozen", price:"38 QR", description:"Strawberry froozen drink", allergens:[]},
-    {name:"Orman Meyveli Froozen", price:"38 QR", description:"Forest fruits froozen drink", allergens:[]},
-    {name:"Yaban Mersini Froozen", price:"38 QR", description:"Blueberry froozen drink", allergens:[]}
-  ],
-  "Cold Drinks":[
-    {name:"Still Water (Small)", price:"11 QR", description:"Small still water", allergens:[]},
-    {name:"Still Water (Big)", price:"21 QR", description:"Big still water", allergens:[]},
-    {name:"Sparkling Water", price:"21 QR", description:"Sparkling water", allergens:[]},
-    {name:"Churchill", price:"25 QR", description:"Churchill drink", allergens:[]},
-    {name:"Lemonade", price:"30 QR", description:"Fresh lemonade", allergens:[]},
-    {name:"Fresh Orange Juice", price:"30 QR", description:"Fresh orange juice", allergens:[]},
-    {name:"Kinza Kola", price:"17 QR", description:"Kinza Kola", allergens:[]},
-    {name:"Kinza Kola Zero", price:"17 QR", description:"Kinza Kola Zero", allergens:[]}
-  ]
-};
+  // Detect if on mobile device
+  const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-// Render menu
-const menuContainer = document.getElementById("menu-container");
-function renderMenu(data){
-  menuContainer.innerHTML = "";
-  for(const category in data){
-    const catDiv = document.createElement("div");
-    catDiv.classList.add("category");
-    catDiv.textContent = category;
-    const itemsDiv = document.createElement("div");
-    itemsDiv.classList.add("items-container");
-    
-    data[category].forEach(item=>{
-      const itemDiv = document.createElement("div");
-      itemDiv.classList.add("menu-item");
-      
-      if(item.image){
-        const img = document.createElement("img");
-        img.src = item.image;
-        img.alt = item.name;
-        img.classList.add("menu-img");
-        img.onclick = ()=> openImageModal(item.image);
-        itemDiv.appendChild(img);
-      }
-      
-      const nameDiv = document.createElement("div");
-      nameDiv.classList.add("menu-item-name");
-      nameDiv.textContent = item.name;
-      if(item.allergens){
-        item.allergens.forEach(a=>{
-          const span = document.createElement("span");
-          span.classList.add("allergen");
-          span.textContent = allergens[a];
-          nameDiv.appendChild(span);
-        });
-      }
-      itemDiv.appendChild(nameDiv);
-
-      const priceDiv = document.createElement("div");
-      priceDiv.textContent = item.price;
-      priceDiv.style.fontWeight="bold";
-      itemDiv.appendChild(priceDiv);
-
-      itemDiv.onclick = (e)=>{
-        if(e.target.tagName!=="IMG"){ openModal(item); }
-      };
-
-      itemsDiv.appendChild(itemDiv);
-    });
-
-    catDiv.onclick = ()=>{ itemsDiv.style.display = itemsDiv.style.display==="flex"?"none":"flex"; itemsDiv.style.flexDirection="column";}
-    
-    menuContainer.appendChild(catDiv);
-    menuContainer.appendChild(itemsDiv);
-  }
-}
-
-renderMenu(menuData);
-
-// Search functionality
-document.getElementById("searchBar").addEventListener("input", function(){
-  const val = this.value.toLowerCase();
-  for(const category in menuData){
-    menuData[category].forEach(item=>{
-      const elem = [...document.getElementsByClassName("menu-item")].find(e=> e.querySelector(".menu-item-name").textContent.includes(item.name));
-      if(elem){ elem.style.display = item.name.toLowerCase().includes(val)? "flex":"none"; }
-    });
+  if (isMobile) {
+    window.location.href = geoUrl; // Opens Google Maps App
+  } else {
+    window.open(mapUrl, "_blank", "noopener,noreferrer"); // Opens Google Maps Website
   }
 });
-
-// Modal functions
-function openModal(item){
-  document.getElementById("modal-name").textContent = item.name;
-  document.getElementById("modal-price").textContent = item.price;
-  document.getElementById("modal-description").textContent = item.description;
-  document.getElementById("item-modal").classList.add("show");
-}
-function closeModal(){ document.getElementById("item-modal").classList.remove("show"); }
-function openImageModal(img){ document.getElementById("zoomed-image").src=img; document.getElementById("image-modal").classList.add("show"); }
-function closeImageModal(){ document.getElementById("image-modal").classList.remove("show"); }
 </script>
 
 </body>
