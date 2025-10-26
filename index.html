@@ -408,6 +408,10 @@
         }
         
         .search-bar { 
+            position: sticky;
+            top: 10px;
+            z-index: 10;
+            background: var(--paper);
             width:100%; 
             max-width:400px; 
             margin:10px auto 20px auto; 
@@ -568,9 +572,11 @@
             transition: transform 0.4s ease, box-shadow 0.4s ease; 
         }
         
-        img.menu-img:hover { 
-            transform: scale(1.2) rotate(2deg);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        .menu-item:hover img.menu-img { 
+            transform: scale(1.3);
+            z-index: 5;
+            position: relative;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
         }
         
         .modal { 
@@ -761,6 +767,32 @@
             img.menu-img { 
                 max-width:60px;
             }
+
+            #hover-preview { 
+                display: none !important; 
+            }
+        }
+
+        /* Floating image preview */
+        #hover-preview {
+            position: fixed;
+            pointer-events: none;
+            display: none;
+            max-width: 200px;
+            max-height: 200px;
+            border-radius: 12px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+            z-index: 9999;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+            opacity: 0;
+        }
+
+        /* Mobile full-screen image modal */
+        #mobile-image-modal img {
+            max-width: 100vw;
+            max-height: 100vh;
+            border-radius: 12px;
+            object-fit: contain;
         }
     </style>
 </head>
@@ -829,6 +861,10 @@
 
         <div class="modal" id="image-modal" onclick="closeImageModal()">
             <img id="zoomed-image" src="" alt="Menu item">
+        </div>
+
+        <div id="mobile-image-modal" class="modal" onclick="closeMobileImageModal()">
+            <img id="mobile-zoomed-image" src="" alt="Menu Item">
         </div>
 
         <a href="https://wa.me/97451866671" target="_blank" class="whatsapp-float" title="Order on WhatsApp">📱</a>
@@ -1008,7 +1044,16 @@
                         img.src = item.image;
                         img.alt = item.name;
                         img.classList.add("menu-img");
-                        img.onclick = ()=> openImageModal(item.image);
+                        
+                        // Check if mobile device
+                        const isMobile = window.matchMedia("(max-width: 768px)").matches;
+                        
+                        if(isMobile) {
+                            img.onclick = ()=> openMobileImageModal(item.image);
+                        } else {
+                            img.onclick = ()=> openImageModal(item.image);
+                        }
+                        
                         itemDiv.appendChild(img);
                     }
 
@@ -1054,32 +1099,74 @@
 
         renderMenu(menuData);
 
-        document.getElementById("searchBar").addEventListener("input", function() {
-            const val = this.value.toLowerCase();
-            const categories = document.querySelectorAll(".category");
-            
-            categories.forEach((cat) => {
-                const itemsDiv = cat.nextElementSibling;
-                let visibleCount = 0;
-                const items = itemsDiv.querySelectorAll(".menu-item");
-                items.forEach(item => {
-                    const name = item.querySelector(".menu-item-name").textContent.toLowerCase();
-                    if(name.includes(val)) {
-                        item.style.display = "flex";
-                        visibleCount++;
-                    } else {
-                        item.style.display = "none";
-                    }
+        // Create hover preview element
+        let hoverPreview = document.createElement("img");
+        hoverPreview.id = "hover-preview";
+        hoverPreview.style.position = "fixed";
+        hoverPreview.style.pointerEvents = "none";
+        hoverPreview.style.display = "none";
+        hoverPreview.style.maxWidth = "200px";
+        hoverPreview.style.maxHeight = "200px";
+        hoverPreview.style.borderRadius = "12px";
+        hoverPreview.style.boxShadow = "0 12px 40px rgba(0,0,0,0.5)";
+        hoverPreview.style.zIndex = "9999";
+        hoverPreview.style.transition = "transform 0.2s ease, opacity 0.2s ease";
+        hoverPreview.style.opacity = 0;
+        document.body.appendChild(hoverPreview);
+
+        // Function to attach hover preview to all menu images
+        function attachHoverPreview() {
+            document.querySelectorAll(".menu-item img.menu-img").forEach(img => {
+                img.addEventListener("mousemove", e => {
+                    hoverPreview.src = img.src;
+                    hoverPreview.style.display = "block";
+                    hoverPreview.style.opacity = 1;
+                    hoverPreview.style.top = (e.clientY + 15) + "px";
+                    hoverPreview.style.left = (e.clientX + 15) + "px";
                 });
-                if(visibleCount > 0) {
-                    cat.style.display = "block";
-                    itemsDiv.style.display = "flex";
-                    itemsDiv.style.flexDirection = "column";
-                } else {
-                    cat.style.display = "none";
-                    itemsDiv.style.display = "none";
-                }
+
+                img.addEventListener("mouseleave", () => {
+                    hoverPreview.style.opacity = 0;
+                    setTimeout(() => hoverPreview.style.display = "none", 200);
+                });
             });
+        }
+
+        // Initial attach
+        attachHoverPreview();
+
+        // Re-attach after search or re-render
+        document.getElementById("searchBar").addEventListener("input", function(){
+            const val = this.value.toLowerCase();
+
+            // Auto-expand categories that have matches, hide categories with no matches
+            const categories = document.querySelectorAll(".category");
+            categories.forEach(cat => {
+                const itemsDiv = cat.nextElementSibling;
+                let hasMatch = false;
+
+                const categoryName = cat.textContent.trim();
+                if(menuData[categoryName]) {
+                    menuData[categoryName].forEach(item => {
+                        const itemElem = [...itemsDiv.children].find(e => 
+                            e.querySelector(".menu-item-name").textContent.includes(item.name)
+                        );
+                        if(itemElem){
+                            const isMatch = item.name.toLowerCase().includes(val);
+                            itemElem.style.display = isMatch ? "flex" : "none";
+                            if(isMatch) hasMatch = true;
+                        }
+                    });
+                }
+
+                // Show category only if at least one match
+                cat.style.display = hasMatch ? "block" : "none";
+                itemsDiv.style.display = hasMatch ? "flex" : "none";
+                itemsDiv.style.flexDirection = "column";
+            });
+
+            // Reattach hover preview to visible items
+            attachHoverPreview();
         });
 
         function openModal(item){
@@ -1088,9 +1175,28 @@
             document.getElementById("modal-description").textContent = item.description;
             document.getElementById("item-modal").classList.add("show");
         }
-        function closeModal(){ document.getElementById("item-modal").classList.remove("show"); }
-        function openImageModal(img){ document.getElementById("zoomed-image").src=img; document.getElementById("image-modal").classList.add("show"); }
-        function closeImageModal(){ document.getElementById("image-modal").classList.remove("show"); }
+        
+        function closeModal(){ 
+            document.getElementById("item-modal").classList.remove("show"); 
+        }
+        
+        function openImageModal(img){ 
+            document.getElementById("zoomed-image").src=img; 
+            document.getElementById("image-modal").classList.add("show"); 
+        }
+        
+        function closeImageModal(){ 
+            document.getElementById("image-modal").classList.remove("show"); 
+        }
+
+        function openMobileImageModal(img){
+            document.getElementById("mobile-zoomed-image").src = img;
+            document.getElementById("mobile-image-modal").classList.add("show");
+        }
+
+        function closeMobileImageModal(){
+            document.getElementById("mobile-image-modal").classList.remove("show");
+        }
 
         window.addEventListener('keydown', function(e){
             if(e.key === 'Escape'){
