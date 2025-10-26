@@ -1054,14 +1054,32 @@
 
         renderMenu(menuData);
 
-        document.getElementById("searchBar").addEventListener("input", function(){
+        document.getElementById("searchBar").addEventListener("input", function() {
             const val = this.value.toLowerCase();
-            for(const category in menuData){
-                menuData[category].forEach(item=>{
-                    const elem = [...document.getElementsByClassName("menu-item")].find(e=> e.querySelector(".menu-item-name").textContent.includes(item.name));
-                    if(elem){ elem.style.display = item.name.toLowerCase().includes(val)? "flex":"none"; }
+            const categories = document.querySelectorAll(".category");
+            
+            categories.forEach((cat) => {
+                const itemsDiv = cat.nextElementSibling;
+                let visibleCount = 0;
+                const items = itemsDiv.querySelectorAll(".menu-item");
+                items.forEach(item => {
+                    const name = item.querySelector(".menu-item-name").textContent.toLowerCase();
+                    if(name.includes(val)) {
+                        item.style.display = "flex";
+                        visibleCount++;
+                    } else {
+                        item.style.display = "none";
+                    }
                 });
-            }
+                if(visibleCount > 0) {
+                    cat.style.display = "block";
+                    itemsDiv.style.display = "flex";
+                    itemsDiv.style.flexDirection = "column";
+                } else {
+                    cat.style.display = "none";
+                    itemsDiv.style.display = "none";
+                }
+            });
         });
 
         function openModal(item){
