@@ -405,6 +405,7 @@
             background: var(--paper); 
             color: #2b1a0f; 
             font-family: 'Scheherazade New', serif;
+            min-height: 100vh;
         }
         
         .search-bar { 
@@ -572,13 +573,6 @@
             transition: transform 0.4s ease, box-shadow 0.4s ease; 
         }
         
-        .menu-item:hover img.menu-img { 
-            transform: scale(1.3);
-            z-index: 5;
-            position: relative;
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
-        }
-        
         .modal { 
             display:none; 
             position:fixed; 
@@ -651,9 +645,11 @@
         }
         
         #image-modal img { 
-            max-width:90%; 
-            max-height:80vh; 
-            border-radius:15px;
+            max-width: 100vw;
+            max-height: 100vh;
+            width: auto;
+            height: auto;
+            border-radius: 10px;
             animation: zoomIn 0.4s ease-out;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
         }
@@ -667,6 +663,16 @@
                 opacity: 1;
                 transform: scale(1);
             }
+        }
+
+        /* Mobile full-screen image modal */
+        #mobile-image-modal img {
+            max-width: 95vw;
+            max-height: 90vh;
+            border-radius: 12px;
+            object-fit: contain;
+            animation: zoomIn 0.4s ease-out;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
         }
         
         .whatsapp-float { 
@@ -723,29 +729,44 @@
             to {opacity:1;} 
         }
 
+        /* Floating image preview for desktop */
+        #hover-preview {
+            position: fixed;
+            pointer-events: none;
+            display: none;
+            max-width: 250px;
+            max-height: 250px;
+            border-radius: 12px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+            z-index: 9999;
+            transition: opacity 0.2s ease;
+            opacity: 0;
+        }
+
+        /* Mobile responsive styles */
         @media(max-width:768px){ 
             .logo {
-                font-size: 3rem;
+                font-size: 2.5rem;
                 letter-spacing: 0.2rem;
             }
             
             .subtitle {
-                font-size: 1.2rem;
-                letter-spacing: 0.3rem;
+                font-size: 1rem;
+                letter-spacing: 0.2rem;
             }
             
             .tagline {
-                font-size: 1rem;
+                font-size: 0.9rem;
             }
             
             .menu-button {
-                padding: 1rem 2rem;
-                font-size: 1.1rem;
+                padding: 0.9rem 1.8rem;
+                font-size: 1rem;
             }
             
             .corner-accent {
-                width: 80px;
-                height: 80px;
+                width: 60px;
+                height: 60px;
             }
 
             .menu-section { 
@@ -753,7 +774,13 @@
             }
             
             header { 
-                font-size:1.5em; 
+                font-size:1.3em;
+                padding: 20px 10px;
+            }
+
+            .contact-info {
+                font-size: 0.9em;
+                padding: 10px 5px;
             }
             
             .whatsapp-float { 
@@ -768,31 +795,51 @@
                 max-width:60px;
             }
 
+            .category {
+                font-size: 1.1em;
+                padding: 15px;
+            }
+
+            .menu-item {
+                padding: 12px 15px;
+                gap: 10px;
+                flex-wrap: wrap;
+            }
+
+            .menu-item-name {
+                font-size: 1em;
+            }
+
+            .search-bar {
+                max-width: 100%;
+                font-size: 0.95em;
+            }
+
+            /* Hide desktop hover preview on mobile */
             #hover-preview { 
                 display: none !important; 
             }
+
+            /* Optimize mobile modal */
+            #mobile-image-modal img {
+                max-width: 100vw;
+                max-height: 95vh;
+            }
         }
 
-        /* Floating image preview */
-        #hover-preview {
-            position: fixed;
-            pointer-events: none;
-            display: none;
-            max-width: 200px;
-            max-height: 200px;
-            border-radius: 12px;
-            box-shadow: 0 12px 40px rgba(0,0,0,0.5);
-            z-index: 9999;
-            transition: transform 0.2s ease, opacity 0.2s ease;
-            opacity: 0;
-        }
+        /* Tablet responsive */
+        @media(min-width:769px) and (max-width:1024px) {
+            .logo {
+                font-size: 4rem;
+            }
 
-        /* Mobile full-screen image modal */
-        #mobile-image-modal img {
-            max-width: 100vw;
-            max-height: 100vh;
-            border-radius: 12px;
-            object-fit: contain;
+            .subtitle {
+                font-size: 1.5rem;
+            }
+
+            .menu-section {
+                padding: 15px;
+            }
         }
     </style>
 </head>
@@ -1025,43 +1072,48 @@
             ]
         };
 
-        const menuContainer = document.getElementById("menu-container");
-        function renderMenu(data){
+        // Detect touch devices
+        const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+        function renderMenu(menuData){
+            const menuContainer = document.getElementById("menu-container");
             menuContainer.innerHTML = "";
-            for(const category in data){
+            for(const category in menuData){
                 const catDiv = document.createElement("div");
                 catDiv.classList.add("category");
                 catDiv.textContent = category;
                 const itemsDiv = document.createElement("div");
                 itemsDiv.classList.add("items-container");
-
-                data[category].forEach(item=>{
+                
+                menuData[category].forEach(item => {
                     const itemDiv = document.createElement("div");
                     itemDiv.classList.add("menu-item");
-
+                    
                     if(item.image){
                         const img = document.createElement("img");
                         img.src = item.image;
                         img.alt = item.name;
                         img.classList.add("menu-img");
                         
-                        // Check if mobile device
-                        const isMobile = window.matchMedia("(max-width: 768px)").matches;
-                        
-                        if(isMobile) {
-                            img.onclick = ()=> openMobileImageModal(item.image);
+                        if(isTouch){
+                            // Mobile tap - open full screen modal
+                            img.onclick = () => openMobileImageModal(item.image);
                         } else {
-                            img.onclick = ()=> openImageModal(item.image);
+                            // Desktop hover - show floating preview
+                            img.addEventListener('mousemove', (e) => showHoverPreview(e, item.image));
+                            img.addEventListener('mouseleave', hideHoverPreview);
+                            // Desktop click - open full screen modal
+                            img.onclick = () => openImageModal(item.image);
                         }
                         
                         itemDiv.appendChild(img);
                     }
-
+                    
                     const nameDiv = document.createElement("div");
                     nameDiv.classList.add("menu-item-name");
                     nameDiv.textContent = item.name;
                     if(item.allergens){
-                        item.allergens.forEach(a=>{
+                        item.allergens.forEach(a => {
                             const span = document.createElement("span");
                             span.classList.add("allergen");
                             span.textContent = allergens[a] || a;
@@ -1069,29 +1121,30 @@
                         });
                     }
                     itemDiv.appendChild(nameDiv);
-
+                    
                     const priceDiv = document.createElement("div");
                     priceDiv.textContent = item.price;
-                    priceDiv.style.fontWeight="bold";
+                    priceDiv.style.fontWeight = "bold";
                     itemDiv.appendChild(priceDiv);
-
-                    itemDiv.onclick = (e)=>{
-                        if(e.target.tagName!=="IMG"){ openModal(item); }
+                    
+                    itemDiv.onclick = (e) => {
+                        if(e.target.tagName !== "IMG") openModal(item);
                     };
-
+                    
                     itemsDiv.appendChild(itemDiv);
                 });
-
-                catDiv.onclick = ()=>{ 
-                    const isVisible = itemsDiv.style.display === "flex";
-                    itemsDiv.style.display = isVisible ? "none" : "flex"; 
+                
+                // Toggle items visibility
+                catDiv.onclick = () => {
+                    const visible = itemsDiv.style.display === "flex";
+                    itemsDiv.style.display = visible ? "none" : "flex";
                     itemsDiv.style.flexDirection = "column";
-                    if (!isVisible) {
+                    if(!visible) {
                         itemsDiv.classList.add('opening');
                         setTimeout(() => itemsDiv.classList.remove('opening'), 400);
                     }
-                }
-
+                };
+                
                 menuContainer.appendChild(catDiv);
                 menuContainer.appendChild(itemsDiv);
             }
@@ -1099,74 +1152,48 @@
 
         renderMenu(menuData);
 
-        // Create hover preview element
+        // Create hover preview element for desktop
         let hoverPreview = document.createElement("img");
         hoverPreview.id = "hover-preview";
-        hoverPreview.style.position = "fixed";
-        hoverPreview.style.pointerEvents = "none";
-        hoverPreview.style.display = "none";
-        hoverPreview.style.maxWidth = "200px";
-        hoverPreview.style.maxHeight = "200px";
-        hoverPreview.style.borderRadius = "12px";
-        hoverPreview.style.boxShadow = "0 12px 40px rgba(0,0,0,0.5)";
-        hoverPreview.style.zIndex = "9999";
-        hoverPreview.style.transition = "transform 0.2s ease, opacity 0.2s ease";
-        hoverPreview.style.opacity = 0;
         document.body.appendChild(hoverPreview);
 
-        // Function to attach hover preview to all menu images
-        function attachHoverPreview() {
-            document.querySelectorAll(".menu-item img.menu-img").forEach(img => {
-                img.addEventListener("mousemove", e => {
-                    hoverPreview.src = img.src;
-                    hoverPreview.style.display = "block";
-                    hoverPreview.style.opacity = 1;
-                    hoverPreview.style.top = (e.clientY + 15) + "px";
-                    hoverPreview.style.left = (e.clientX + 15) + "px";
-                });
-
-                img.addEventListener("mouseleave", () => {
-                    hoverPreview.style.opacity = 0;
-                    setTimeout(() => hoverPreview.style.display = "none", 200);
-                });
-            });
+        function showHoverPreview(e, imgSrc) {
+            if(!isTouch) {
+                hoverPreview.src = imgSrc;
+                hoverPreview.style.display = "block";
+                hoverPreview.style.opacity = 1;
+                hoverPreview.style.top = (e.clientY + 15) + "px";
+                hoverPreview.style.left = (e.clientX + 15) + "px";
+            }
         }
 
-        // Initial attach
-        attachHoverPreview();
+        function hideHoverPreview() {
+            hoverPreview.style.opacity = 0;
+            setTimeout(() => hoverPreview.style.display = "none", 200);
+        }
 
-        // Re-attach after search or re-render
+        // Sticky search with category auto-hide
         document.getElementById("searchBar").addEventListener("input", function(){
             const val = this.value.toLowerCase();
-
-            // Auto-expand categories that have matches, hide categories with no matches
-            const categories = document.querySelectorAll(".category");
-            categories.forEach(cat => {
-                const itemsDiv = cat.nextElementSibling;
+            const categories = document.getElementsByClassName("category");
+            const items = document.getElementsByClassName("items-container");
+            
+            Array.from(categories).forEach((catDiv, i) => {
+                const itemDivs = items[i].children;
                 let hasMatch = false;
-
-                const categoryName = cat.textContent.trim();
-                if(menuData[categoryName]) {
-                    menuData[categoryName].forEach(item => {
-                        const itemElem = [...itemsDiv.children].find(e => 
-                            e.querySelector(".menu-item-name").textContent.includes(item.name)
-                        );
-                        if(itemElem){
-                            const isMatch = item.name.toLowerCase().includes(val);
-                            itemElem.style.display = isMatch ? "flex" : "none";
-                            if(isMatch) hasMatch = true;
-                        }
-                    });
-                }
-
-                // Show category only if at least one match
-                cat.style.display = hasMatch ? "block" : "none";
-                itemsDiv.style.display = hasMatch ? "flex" : "none";
-                itemsDiv.style.flexDirection = "column";
+                
+                Array.from(itemDivs).forEach(item => {
+                    const name = item.querySelector(".menu-item-name").textContent.toLowerCase();
+                    const match = name.includes(val);
+                    item.style.display = match ? "flex" : "none";
+                    if(match) hasMatch = true;
+                });
+                
+                // Hide category if no matches
+                catDiv.style.display = hasMatch ? "block" : "none";
+                items[i].style.display = hasMatch ? "flex" : "none";
+                items[i].style.flexDirection = "column";
             });
-
-            // Reattach hover preview to visible items
-            attachHoverPreview();
         });
 
         function openModal(item){
@@ -1181,7 +1208,7 @@
         }
         
         function openImageModal(img){ 
-            document.getElementById("zoomed-image").src=img; 
+            document.getElementById("zoomed-image").src = img; 
             document.getElementById("image-modal").classList.add("show"); 
         }
         
@@ -1200,9 +1227,9 @@
 
         window.addEventListener('keydown', function(e){
             if(e.key === 'Escape'){
-                closeModal(); closeImageModal();
+                closeModal(); 
+                closeImageModal();
+                closeMobileImageModal();
             }
         });
     </script>
-</body>
-</html>
