@@ -11,6 +11,8 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
 ```
@@ -20,6 +22,7 @@
         background: #0a0a0a;
     }
 
+    /* Landing Section - iOS Style */
     .landing-section {
         position: relative;
         width: 100%;
@@ -74,6 +77,7 @@
             rgba(10, 10, 10, 0.85) 0%, 
             rgba(61, 20, 20, 0.75) 50%, 
             rgba(10, 10, 10, 0.85) 100%);
+        backdrop-filter: blur(40px) saturate(180%);
         z-index: 1;
     }
 
@@ -90,7 +94,7 @@
 
     .logo-section {
         text-align: center;
-        animation: fadeInDown 1.5s ease-out;
+        animation: fadeInDown 1.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .logo {
@@ -147,21 +151,25 @@
         color: #0a0a0a;
         background: linear-gradient(135deg, #d4af37, #f5e6d3);
         border: 2px solid #d4af37;
-        border-radius: 50px;
+        border-radius: 980px;
         cursor: pointer;
         text-transform: uppercase;
         letter-spacing: 0.2rem;
         font-weight: 600;
-        transition: all 0.4s ease;
-        box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
-        animation: fadeInUp 1.5s ease-out 0.5s both;
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        box-shadow: 0 8px 32px rgba(212, 175, 55, 0.3);
+        animation: fadeInUp 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
     }
 
     .menu-button:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 40px rgba(212, 175, 55, 0.5);
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 16px 48px rgba(212, 175, 55, 0.5);
         background: linear-gradient(135deg, #f5e6d3, #d4af37);
         letter-spacing: 0.3rem;
+    }
+
+    .menu-button:active {
+        transform: translateY(-2px) scale(0.98);
     }
 
     .decorative-elements {
@@ -294,7 +302,7 @@
 
     .menu-content.show {
         display: block;
-        animation: fadeInMenu 0.8s ease forwards;
+        animation: fadeInMenu 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
     @keyframes fadeInMenu {
@@ -332,66 +340,19 @@
         z-index: -1;
     }
 
-    /* Floating Image Marquee */
-    .floating-marquee {
-        position: sticky;
-        top: 0;
-        width: 100%;
-        height: 120px;
-        overflow: hidden;
-        background: linear-gradient(90deg, rgba(10,10,10,0.95), rgba(61,20,20,0.9), rgba(10,10,10,0.95));
-        border-bottom: 3px solid #d4af37;
-        z-index: 50;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-    }
-
-    .marquee-track {
-        display: flex;
-        align-items: center;
-        height: 100%;
-        animation: scroll-left 40s linear infinite;
-        gap: 20px;
-        padding: 10px 0;
-    }
-
-    @keyframes scroll-left {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(-50%); }
-    }
-
-    .marquee-item {
-        flex-shrink: 0;
-        width: 150px;
-        height: 100px;
-        border-radius: 15px;
-        overflow: hidden;
-        border: 3px solid #d4af37;
-        box-shadow: 0 5px 15px rgba(212,175,55,0.3);
-        transition: transform 0.3s ease;
-        cursor: pointer;
-    }
-
-    .marquee-item:hover {
-        transform: scale(1.1) translateY(-5px);
-        border-color: #ffd700;
-        box-shadow: 0 8px 25px rgba(212,175,55,0.6);
-    }
-
-    .marquee-item img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
+    /* iOS Glass Header */
     header { 
-        background: linear-gradient(90deg, var(--accent-deep), #4b000f); 
+        background: rgba(128, 0, 32, 0.72);
+        backdrop-filter: blur(40px) saturate(180%);
+        -webkit-backdrop-filter: blur(40px) saturate(180%);
+        border-bottom: 0.5px solid rgba(255, 215, 0, 0.2);
         color: #ffd700; 
         padding: 25px 10px; 
         text-align:center; 
         font-size:2em; 
         font-weight:bold; 
         position: relative;
-        animation: slideInDown 0.6s ease-out;
+        animation: slideInDown 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     @keyframes slideInDown {
@@ -414,13 +375,17 @@
         background: repeating-linear-gradient(45deg, #ffd700, #ffd700 5px, var(--accent-deep) 5px, var(--accent-deep) 10px); 
     }
     
+    /* iOS Glass Contact Info */
     .contact-info { 
-        background:#ffd700; 
+        background: rgba(255, 215, 0, 0.72);
+        backdrop-filter: blur(40px) saturate(180%);
+        -webkit-backdrop-filter: blur(40px) saturate(180%);
+        border-bottom: 0.5px solid rgba(128, 0, 32, 0.2);
         color:var(--accent-deep); 
         text-align:center; 
         padding:12px 0; 
         font-weight:bold;
-        animation: slideInDown 0.7s ease-out;
+        animation: slideInDown 0.7s cubic-bezier(0.16, 1, 0.3, 1);
     }
     
     .contact-info a { 
@@ -428,8 +393,68 @@
         text-decoration:none; 
         font-weight:bold; 
         margin:0 5px; 
+        transition: opacity 0.3s ease;
+    }
+
+    .contact-info a:hover {
+        opacity: 0.7;
     }
     
+    /* iOS Glass Floating Marquee */
+    .floating-marquee {
+        position: sticky;
+        top: 0;
+        width: 100%;
+        height: 120px;
+        overflow: hidden;
+        background: rgba(61, 20, 20, 0.72);
+        backdrop-filter: blur(40px) saturate(180%);
+        -webkit-backdrop-filter: blur(40px) saturate(180%);
+        border-bottom: 0.5px solid rgba(212, 175, 55, 0.3);
+        z-index: 50;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    }
+
+    .marquee-track {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        animation: scroll-left 40s linear infinite;
+        gap: 20px;
+        padding: 10px 0;
+    }
+
+    @keyframes scroll-left {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
+
+    .marquee-item {
+        flex-shrink: 0;
+        width: 150px;
+        height: 100px;
+        border-radius: 20px;
+        overflow: hidden;
+        border: 1px solid rgba(212, 175, 55, 0.3);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        cursor: pointer;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+    }
+
+    .marquee-item:hover {
+        transform: scale(1.1) translateY(-5px);
+        border-color: #ffd700;
+        box-shadow: 0 12px 40px rgba(212, 175, 55, 0.4);
+    }
+
+    .marquee-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
     .menu-section { 
         max-width:1000px; 
         margin:auto; 
@@ -440,34 +465,39 @@
         min-height: 100vh;
     }
     
+    /* iOS Glass Search Bar */
     .search-bar { 
         position: sticky;
         top: 130px;
         z-index: 10;
-        background: var(--paper);
+        background: rgba(255, 250, 245, 0.72);
+        backdrop-filter: blur(40px) saturate(180%);
+        -webkit-backdrop-filter: blur(40px) saturate(180%);
+        border: 0.5px solid rgba(128, 0, 32, 0.2);
         width:100%; 
         max-width:400px; 
         margin:10px auto 20px auto; 
         display:block; 
-        padding:10px 15px; 
+        padding:12px 18px; 
         font-size:1em; 
-        border-radius:12px; 
-        border:2px solid var(--accent-deep); 
+        border-radius:980px;
         outline:none;
-        animation: fadeInScale 0.8s ease-out;
-        transition: all 0.3s ease;
+        animation: fadeInScale 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
     }
 
     .search-bar:focus {
         transform: scale(1.02);
-        box-shadow: 0 0 20px rgba(128, 0, 32, 0.3);
-        border-color: #ffd700;
+        box-shadow: 0 8px 32px rgba(212, 175, 55, 0.2);
+        border-color: #caa84a;
+        background: rgba(255, 250, 245, 0.85);
     }
 
     @keyframes fadeInScale {
         from {
             opacity: 0;
-            transform: scale(0.9);
+            transform: scale(0.95);
         }
         to {
             opacity: 1;
@@ -475,12 +505,16 @@
         }
     }
     
+    /* iOS Glass Category Cards */
     .category { 
-        background: #fff3e6; 
-        border-left:6px solid var(--accent-deep); 
+        background: rgba(255, 243, 230, 0.72);
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        border: 0.5px solid rgba(128, 0, 32, 0.15);
+        border-left: 6px solid var(--accent-deep);
         margin:20px 0; 
         padding:20px; 
-        border-radius:15px; 
+        border-radius:20px;
         font-size:1.3em; 
         font-weight:bold; 
         color:var(--accent-deep); 
@@ -488,9 +522,10 @@
         cursor:pointer; 
         position: relative; 
         overflow: hidden; 
-        transition: all 0.4s ease;
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         opacity: 0;
-        animation: slideInLeft 0.6s ease-out forwards;
+        animation: slideInLeft 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
     }
 
     .category:nth-child(2) { animation-delay: 0.1s; }
@@ -516,9 +551,13 @@
     }
     
     .category:hover { 
-        background: linear-gradient(90deg, #fff3e6, #f5e6d9); 
+        background: rgba(255, 243, 230, 0.9);
         transform: translateX(10px) translateY(-2px);
-        box-shadow: 0 8px 20px rgba(128, 0, 32, 0.2);
+        box-shadow: 0 12px 32px rgba(128, 0, 32, 0.15);
+    }
+
+    .category:active {
+        transform: translateX(8px) scale(0.98);
     }
     
     .category::before { 
@@ -535,12 +574,12 @@
         display:none; 
         margin-top:10px; 
         padding:10px; 
-        border-radius:10px; 
+        border-radius:16px;
         background: linear-gradient(180deg, rgba(255,250,245,0.9), rgba(255,250,245,0.7));
     }
 
     .items-container.opening {
-        animation: expandDown 0.4s ease-out;
+        animation: expandDown 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     @keyframes expandDown {
@@ -554,19 +593,24 @@
         }
     }
     
+    /* iOS Glass Menu Items */
     .menu-item { 
-        background:#fff3e6; 
+        background: rgba(255, 243, 230, 0.72);
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        border: 0.5px solid rgba(128, 0, 32, 0.1);
         border-left:4px solid var(--accent-deep); 
         margin:10px 0 10px 20px; 
         padding:15px 20px; 
-        border-radius:12px; 
+        border-radius:16px;
         cursor:pointer; 
-        transition: all 0.4s ease; 
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); 
         display:flex; 
         align-items:center; 
         gap:15px;
         opacity: 0;
-        animation: fadeInUp 0.4s ease-out forwards;
+        animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
     }
 
     .menu-item:nth-child(1) { animation-delay: 0.05s; }
@@ -576,10 +620,14 @@
     .menu-item:nth-child(5) { animation-delay: 0.25s; }
     
     .menu-item:hover { 
-        background: #fff0e6; 
-        box-shadow: 0 0 20px rgba(128,0,32,0.4);
+        background: rgba(255, 240, 230, 0.85);
+        box-shadow: 0 8px 24px rgba(128,0,32,0.15);
         transform: translateX(10px);
         border-left-width: 8px;
+    }
+
+    .menu-item:active {
+        transform: translateX(8px) scale(0.98);
     }
     
     .menu-item-name { 
@@ -599,12 +647,20 @@
     }
     
     img.menu-img { 
-        max-width:80px; 
-        border-radius:8px; 
+        max-width:80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius:12px;
         cursor:pointer; 
-        transition: transform 0.4s ease, box-shadow 0.4s ease; 
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); 
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    }
+
+    .menu-item:hover img.menu-img {
+        transform: scale(1.05);
     }
     
+    /* iOS Glass Modal */
     .modal { 
         display:none; 
         position:fixed; 
@@ -613,12 +669,13 @@
         top:0; 
         width:100%; 
         height:100%; 
-        background:rgba(0,0,0,0.85); 
+        background:rgba(0,0,0,0.7); 
+        backdrop-filter: blur(40px);
+        -webkit-backdrop-filter: blur(40px);
         justify-content:center; 
         align-items:center; 
         padding:20px; 
-        animation: fadeInModal 0.3s; 
-        backdrop-filter: blur(5px);
+        animation: fadeInModal 0.3s ease;
     }
     
     .modal.show { 
@@ -626,27 +683,30 @@
     }
     
     .modal-content { 
-        background:#fffaf5; 
+        background: rgba(255, 250, 245, 0.95);
+        backdrop-filter: blur(40px) saturate(180%);
+        -webkit-backdrop-filter: blur(40px) saturate(180%);
+        border: 0.5px solid rgba(128, 0, 32, 0.2);
         padding:30px; 
-        border-radius:20px; 
+        border-radius:32px;
         max-width:500px; 
         width:100%; 
         text-align:center; 
         position:relative; 
         font-size:1em; 
         color:#2b1a0f; 
-        border:3px solid var(--accent-deep);
-        animation: popIn 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        animation: popIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
     }
 
     @keyframes popIn {
         from {
             opacity: 0;
-            transform: scale(0.7) translateY(-50px);
+            transform: scale(0.85);
         }
         to {
             opacity: 1;
-            transform: scale(1) translateY(0);
+            transform: scale(1);
         }
     }
     
@@ -662,18 +722,29 @@
     
     .close-btn { 
         position:absolute; 
-        top:10px; 
-        right:15px; 
+        top:15px; 
+        right:15px;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(128, 0, 32, 0.1);
+        border-radius: 50%;
         cursor:pointer; 
-        font-size:1.7em; 
+        font-size:1.5em; 
         font-weight:bold; 
         color:var(--accent-deep);
-        transition: all 0.3s ease;
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .close-btn:hover {
-        color: #ffd700;
-        transform: rotate(90deg) scale(1.2);
+        background: rgba(128, 0, 32, 0.2);
+        transform: rotate(90deg) scale(1.1);
+    }
+
+    .close-btn:active {
+        transform: rotate(90deg) scale(0.95);
     }
     
     #image-modal img { 
@@ -681,15 +752,15 @@
         max-height: 100vh;
         width: auto;
         height: auto;
-        border-radius: 10px;
-        animation: zoomIn 0.4s ease-out;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        border-radius: 24px;
+        animation: zoomIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
     }
 
     @keyframes zoomIn {
         from {
             opacity: 0;
-            transform: scale(0.5);
+            transform: scale(0.8);
         }
         to {
             opacity: 1;
@@ -700,49 +771,58 @@
     #mobile-image-modal img {
         max-width: 95vw;
         max-height: 90vh;
-        border-radius: 12px;
+        border-radius: 24px;
         object-fit: contain;
-        animation: zoomIn 0.4s ease-out;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        animation: zoomIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
     }
     
+    /* iOS WhatsApp Button */
     .whatsapp-float { 
         position:fixed; 
         bottom:30px; 
         right:30px; 
-        background:#25D366; 
+        background: linear-gradient(135deg, #25D366, #20BA5A);
         color:white; 
-        width:60px; 
-        height:60px; 
+        width:64px; 
+        height:64px; 
         border-radius:50%; 
         display:flex; 
         align-items:center; 
         justify-content:center; 
         font-size:2em; 
-        box-shadow:0 4px 12px rgba(0,0,0,0.3); 
+        box-shadow:0 12px 40px rgba(37, 211, 102, 0.4); 
         cursor:pointer; 
         z-index:1000; 
-        transition:transform 0.3s ease; 
+        transition:all 0.3s cubic-bezier(0.16, 1, 0.3, 1); 
         text-decoration:none;
-        animation: pulse 2s infinite, fadeInScale 1s ease-out;
+        animation: pulse 2s ease-in-out infinite;
     }
     
     .whatsapp-float:hover { 
-        transform:scale(1.15) rotate(5deg);
-        box-shadow:0 8px 25px rgba(37, 211, 102, 0.5);
+        transform:scale(1.1) translateY(-4px);
+        box-shadow:0 16px 56px rgba(37, 211, 102, 0.5);
+    }
+
+    .whatsapp-float:active {
+        transform:scale(1.05) translateY(-2px);
     }
 
     @keyframes pulse {
         0%, 100% {
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3), 0 0 0 0 rgba(37, 211, 102, 0.7);
+            box-shadow: 0 12px 40px rgba(37, 211, 102, 0.4), 0 0 0 0 rgba(37, 211, 102, 0.7);
         }
         50% {
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3), 0 0 0 15px rgba(37, 211, 102, 0);
+            box-shadow: 0 12px 40px rgba(37, 211, 102, 0.4), 0 0 0 20px rgba(37, 211, 102, 0);
         }
     }
     
+    /* iOS Glass Footer */
     footer { 
-        background:var(--accent-deep); 
+        background: rgba(128, 0, 32, 0.72);
+        backdrop-filter: blur(40px) saturate(180%);
+        -webkit-backdrop-filter: blur(40px) saturate(180%);
+        border-top: 0.5px solid rgba(255, 215, 0, 0.2);
         color:#ffd700; 
         text-align:center; 
         padding:30px 20px; 
@@ -752,7 +832,12 @@
     footer a { 
         color:#ffd700; 
         text-decoration:none; 
-        margin:0 10px; 
+        margin:0 10px;
+        transition: opacity 0.3s ease;
+    }
+
+    footer a:hover {
+        opacity: 0.7;
     }
     
     @keyframes fadeInModal { 
@@ -800,6 +885,7 @@
 
         .floating-marquee {
             height: 80px;
+            top: 0;
         }
 
         .marquee-item {
@@ -828,13 +914,14 @@
         .whatsapp-float { 
             bottom:20px; 
             right:20px; 
-            width:50px; 
-            height:50px; 
+            width:56px; 
+            height:56px; 
             font-size:1.5em; 
         }
         
         img.menu-img { 
             max-width:60px;
+            height: 60px;
         }
 
         .category {
@@ -887,7 +974,7 @@
 <body>
     <div class="landing-section" id="landing">
         <div class="video-background" id="videoContainer">
-            <video id="bgVideo" autoplay muted loop playsinline preload="auto" style="display:none;">
+            <video id="bgVideo" autoplay muted loop playsinline preload="auto">
                 <source src="./Video.mp4" type="video/mp4">
             </video>
         </div>
@@ -917,7 +1004,6 @@
 </div>
 
 <div class="menu-content" id="menuContent">
-    <!-- Floating Image Marquee -->
     <div class="floating-marquee">
         <div class="marquee-track" id="marqueeTrack"></div>
     </div>
@@ -1089,7 +1175,6 @@
         ]
     };
 
-    // Collect all images for marquee
     function initMarquee() {
         const allImages = [];
         for(const category in menuData) {
@@ -1100,7 +1185,6 @@
             });
         }
 
-        // Shuffle array randomly
         function shuffle(array) {
             for (let i = array.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
@@ -1111,8 +1195,7 @@
 
         const shuffledImages = shuffle([...allImages]);
         const marqueeTrack = document.getElementById('marqueeTrack');
-        
-        // Create two sets for seamless loop
+        marqueeTrack.innerHTML = '';
         const imagesToShow = [...shuffledImages, ...shuffledImages];
         
         imagesToShow.forEach(imgSrc => {
@@ -1129,71 +1212,83 @@
     function renderMenu(menuData){
         const menuContainer = document.getElementById("menu-container");
         menuContainer.innerHTML = "";
+        
         for(const category in menuData){
             const catDiv = document.createElement("div");
             catDiv.classList.add("category");
             catDiv.textContent = category;
+            
             const itemsDiv = document.createElement("div");
             itemsDiv.classList.add("items-container");
             
             menuData[category].forEach(item => {
                 const itemDiv = document.createElement("div");
                 itemDiv.classList.add("menu-item");
-                
-                if(item.image){
-                    const img = document.createElement("img");
+
+                let allergenIcons = "";
+                if(item.allergens && item.allergens.length > 0){
+                    allergenIcons = item.allergens.map(a => allergens[a] || "").join(" ");
+                }
+
+                if(item.image) {
+                    const img = document.createElement('img');
                     img.src = item.image;
                     img.alt = item.name;
-                    img.classList.add("menu-img");
+                    img.className = 'menu-img';
                     
                     if(isTouch){
-                        img.onclick = () => openMobileImageModal(item.image);
+                        img.onclick = (e) => {
+                            e.stopPropagation();
+                            openMobileImageModal(item.image);
+                        };
                     } else {
                         img.addEventListener('mousemove', (e) => showHoverPreview(e, item.image));
                         img.addEventListener('mouseleave', hideHoverPreview);
-                        img.onclick = () => openImageModal(item.image);
+                        img.onclick = (e) => {
+                            e.stopPropagation();
+                            openImageModal(item.image);
+                        };
                     }
-                    
                     itemDiv.appendChild(img);
                 }
-                
-                const nameDiv = document.createElement("div");
-                nameDiv.classList.add("menu-item-name");
-                nameDiv.textContent = item.name;
-                if(item.allergens){
-                    item.allergens.forEach(a => {
-                        const span = document.createElement("span");
-                        span.classList.add("allergen");
-                        span.textContent = allergens[a] || a;
-                        nameDiv.appendChild(span);
-                    });
+
+                const nameDiv = document.createElement('div');
+                nameDiv.className = 'menu-item-name';
+                nameDiv.textContent = item.name + ' ';
+                if(allergenIcons) {
+                    const allergenSpan = document.createElement('span');
+                    allergenSpan.className = 'allergen';
+                    allergenSpan.textContent = allergenIcons;
+                    nameDiv.appendChild(allergenSpan);
                 }
                 itemDiv.appendChild(nameDiv);
-                
-                const priceDiv = document.createElement("div");
+
+                const priceDiv = document.createElement('div');
+                priceDiv.style.fontWeight = 'bold';
                 priceDiv.textContent = item.price;
-                priceDiv.style.fontWeight = "bold";
                 itemDiv.appendChild(priceDiv);
-                
-                itemDiv.onclick = (e) => {
-                    if(e.target.tagName !== "IMG") openModal(item);
-                };
-                
+
+                itemDiv.onclick = () => openItemModal(item);
                 itemsDiv.appendChild(itemDiv);
             });
-            
-            catDiv.onclick = () => {
-                const visible = itemsDiv.style.display === "flex";
-                itemsDiv.style.display = visible ? "none" : "flex";
-                itemsDiv.style.flexDirection = "column";
-                if(!visible) {
-                    itemsDiv.classList.add('opening');
-                    setTimeout(() => itemsDiv.classList.remove('opening'), 400);
-                }
-            };
+
+            catDiv.onclick = () => toggleCategory(itemsDiv);
             
             menuContainer.appendChild(catDiv);
             menuContainer.appendChild(itemsDiv);
+        }
+    }
+
+    function toggleCategory(itemsDiv){
+        const isOpen = itemsDiv.style.display === "flex";
+        if(isOpen) {
+            itemsDiv.style.display = "none";
+            itemsDiv.classList.remove('opening');
+        } else {
+            itemsDiv.style.display = "flex";
+            itemsDiv.style.flexDirection = "column";
+            itemsDiv.classList.add('opening');
+            setTimeout(() => itemsDiv.classList.remove('opening'), 400);
         }
     }
 
@@ -1219,28 +1314,32 @@
     }
 
     document.getElementById("searchBar").addEventListener("input", function(){
-        const val = this.value.toLowerCase();
-        const categories = document.getElementsByClassName("category");
-        const items = document.getElementsByClassName("items-container");
+        const searchTerm = this.value.toLowerCase();
+        const categories = document.querySelectorAll(".category");
         
-        Array.from(categories).forEach((catDiv, i) => {
-            const itemDivs = items[i].children;
-            let hasMatch = false;
-            
-            Array.from(itemDivs).forEach(item => {
-                const name = item.querySelector(".menu-item-name").textContent.toLowerCase();
-                const match = name.includes(val);
-                item.style.display = match ? "flex" : "none";
-                if(match) hasMatch = true;
-            });
-            
-            catDiv.style.display = hasMatch ? "block" : "none";
-            items[i].style.display = hasMatch ? "flex" : "none";
-            items[i].style.flexDirection = "column";
+        categories.forEach(cat => {
+            const nextElement = cat.nextElementSibling;
+            if(nextElement && nextElement.classList.contains("items-container")) {
+                let hasMatch = false;
+                Array.from(nextElement.children).forEach(itemDiv => {
+                    const name = itemDiv.querySelector(".menu-item-name").textContent.toLowerCase();
+                    if(name.includes(searchTerm)){
+                        itemDiv.style.display = "flex";
+                        hasMatch = true;
+                    } else {
+                        itemDiv.style.display = "none";
+                    }
+                });
+                cat.style.display = hasMatch || searchTerm === "" ? "block" : "none";
+                if(searchTerm !== "" && hasMatch) {
+                    nextElement.style.display = "flex";
+                    nextElement.style.flexDirection = "column";
+                }
+            }
         });
     });
 
-    function openModal(item){
+    function openItemModal(item){
         document.getElementById("modal-name").textContent = item.name;
         document.getElementById("modal-price").textContent = item.price;
         document.getElementById("modal-description").textContent = item.description;
@@ -1276,6 +1375,10 @@
             closeMobileImageModal();
         }
     });
+
+    window.onload = () => {
+        renderMenu(menuData);
+    };
 </script>
 ```
 
