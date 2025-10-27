@@ -332,6 +332,57 @@
         z-index: -1;
     }
 
+    /* Floating Image Marquee */
+    .floating-marquee {
+        position: sticky;
+        top: 0;
+        width: 100%;
+        height: 120px;
+        overflow: hidden;
+        background: linear-gradient(90deg, rgba(10,10,10,0.95), rgba(61,20,20,0.9), rgba(10,10,10,0.95));
+        border-bottom: 3px solid #d4af37;
+        z-index: 50;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    }
+
+    .marquee-track {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        animation: scroll-left 40s linear infinite;
+        gap: 20px;
+        padding: 10px 0;
+    }
+
+    @keyframes scroll-left {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
+
+    .marquee-item {
+        flex-shrink: 0;
+        width: 150px;
+        height: 100px;
+        border-radius: 15px;
+        overflow: hidden;
+        border: 3px solid #d4af37;
+        box-shadow: 0 5px 15px rgba(212,175,55,0.3);
+        transition: transform 0.3s ease;
+        cursor: pointer;
+    }
+
+    .marquee-item:hover {
+        transform: scale(1.1) translateY(-5px);
+        border-color: #ffd700;
+        box-shadow: 0 8px 25px rgba(212,175,55,0.6);
+    }
+
+    .marquee-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
     header { 
         background: linear-gradient(90deg, var(--accent-deep), #4b000f); 
         color: #ffd700; 
@@ -391,7 +442,7 @@
     
     .search-bar { 
         position: sticky;
-        top: 10px;
+        top: 130px;
         z-index: 10;
         background: var(--paper);
         width:100%; 
@@ -747,6 +798,19 @@
             height: 60px;
         }
 
+        .floating-marquee {
+            height: 80px;
+        }
+
+        .marquee-item {
+            width: 100px;
+            height: 60px;
+        }
+
+        .search-bar {
+            top: 90px;
+        }
+
         .menu-section { 
             padding:10px; 
         }
@@ -853,6 +917,11 @@
 </div>
 
 <div class="menu-content" id="menuContent">
+    <!-- Floating Image Marquee -->
+    <div class="floating-marquee">
+        <div class="marquee-track" id="marqueeTrack"></div>
+    </div>
+
     <header>
         TURKIANA CAFE & SWEETS
         <div class="top-decor"></div>
@@ -902,6 +971,7 @@
         document.getElementById('landing').style.display = 'none';
         document.getElementById('menuContent').classList.add('show');
         window.scrollTo(0, 0);
+        initMarquee();
     }
 
     const allergens = { nuts:"🥜", dairy:"🥛", gluten:"🌾" };
@@ -1018,6 +1088,41 @@
             {name:"Kinza Kola Zero", price:"17 QR", description:"Kinza Kola Zero", allergens:[]}
         ]
     };
+
+    // Collect all images for marquee
+    function initMarquee() {
+        const allImages = [];
+        for(const category in menuData) {
+            menuData[category].forEach(item => {
+                if(item.image) {
+                    allImages.push(item.image);
+                }
+            });
+        }
+
+        // Shuffle array randomly
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        const shuffledImages = shuffle([...allImages]);
+        const marqueeTrack = document.getElementById('marqueeTrack');
+        
+        // Create two sets for seamless loop
+        const imagesToShow = [...shuffledImages, ...shuffledImages];
+        
+        imagesToShow.forEach(imgSrc => {
+            const item = document.createElement('div');
+            item.className = 'marquee-item';
+            item.innerHTML = `<img src="${imgSrc}" alt="Menu Item">`;
+            item.onclick = () => openImageModal(imgSrc);
+            marqueeTrack.appendChild(item);
+        });
+    }
 
     const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
