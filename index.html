@@ -43,6 +43,11 @@
         height: 100%;
         object-fit: cover;
         opacity: 0.4;
+        display: none;
+    }
+
+    .video-background video.loaded {
+        display: block;
     }
 
     .video-background::before {
@@ -939,7 +944,7 @@
     <div class="landing-section" id="landing">
         <div class="video-background" id="videoContainer">
             <video id="bgVideo" autoplay muted loop playsinline preload="auto">
-                <source src="./Video.mp4" type="video/mp4">
+                <source src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Video.mp4" type="video/mp4">
             </video>
         </div>
 
@@ -1341,6 +1346,17 @@
 
     window.onload = () => {
         renderMenu(menuData);
+        
+        const video = document.getElementById('bgVideo');
+        if (video) {
+            video.addEventListener('loadeddata', function() {
+                video.classList.add('loaded');
+            });
+            
+            video.addEventListener('error', function() {
+                console.log('Video not found - using gradient background instead');
+            });
+        }
     };
 </script>
 
