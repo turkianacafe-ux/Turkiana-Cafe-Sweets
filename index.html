@@ -63,41 +63,21 @@
             overflow: hidden;
         }
 
-        .video-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 0;
-        }
+         .video-background { position: absolute; inset: 0; z-index: 0; overflow: hidden; background: #000; }
+        .video-background video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.45; display: block; will-change: opacity, transform; background:#000; }
+        .video-background video.loaded { transition: opacity .6s ease; opacity: 0.75; }
+        @media (max-width:420px){ .video-background{display:none} }
 
-        .video-background video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.4;
-            display: none;
-        }
+        .overlay { position: absolute; top:0; left:0; width:100%; height:100%; background: linear-gradient(135deg, rgba(10,10,10,.85) 0%, rgba(61,20,20,.75) 50%, rgba(10,10,10,.85) 100%); backdrop-filter: blur(40px) saturate(180%); z-index:1; }
+        .container { position: relative; z-index:2; min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:2rem; }
 
-        .video-background video.loaded {
-            display: block;
-        }
+        .logo { font-family:'Playfair Display', serif; font-size:5rem; font-weight:900; color:#d4af37; text-transform:uppercase; letter-spacing:.3rem; margin-bottom:.5rem; text-shadow:2px 2px 4px rgba(0,0,0,.5); }
+        body.rtl .logo { font-family:'Amiri', serif; text-transform:none; letter-spacing:.1rem; }
 
-        .video-background::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, #0a0a0a, #3d1414, #1a0a0a, #2d1515);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
-            opacity: 1;
-            transition: opacity 0.5s;
-        }
+        .subtitle { font-size:1.8rem; color:#f5e6d3; letter-spacing:.5rem; font-weight:300; margin-bottom:1rem; opacity:.9; }
+        .tagline { font-size:1.3rem; color:#c9a961; font-style:italic; margin-top:1rem; opacity:.8; }
+
+        .divider { width:200px; height:2px; background: linear-gradient(90deg, transparent, #d4af37, #8b0000, #d4af37, transparent); margin:2rem auto; animation: glow 2s ease-in-out infinite; }
 
         @keyframes gradientShift {
             0% { background-position: 0% 50%; }
@@ -1777,4 +1757,5 @@
     </script>
 </body>
 </html>
+
 
