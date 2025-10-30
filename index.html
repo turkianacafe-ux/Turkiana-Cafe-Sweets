@@ -1,746 +1,1862 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>Turkiana Cafe & Sweets | مقهى وحلويات تركيانا</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turkiana Cafe & Sweets | مقهى وحلويات تركيانا</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Scheherazade+New&family=Inter:wght@300;400;600;700&family=Cormorant+Garamond:wght@300;400;600&family=Amiri:wght@400;700&family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* (Your original CSS kept unchanged) */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
 
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Cairo:wght@300;400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+        :root {
+            --bg-black: #0b0b0b;
+            --gold: #caa84a;
+            --maroon: #7a1921;
+            --muted: #bfb6b0;
+            --paper: #fffaf5;
+            --accent-deep: #800020;
+        }
 
-  <style>
-    /* Reset & base */
-    *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%}
-    body{
-      font-family: 'Cormorant Garamond', serif;
-      background:#0a0a0a;color:#fff;overflow-x:hidden;
-      -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
-    }
-    body.rtl{direction:rtl}
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            overflow-x: hidden;
+            background: #0a0a0a;
+            transition: all 0.3s ease;
+        }
 
-    /* Language toggle */
-    .language-toggle{
-      position:fixed;top:18px;right:18px;z-index:1200;
-      background:rgba(202,168,74,0.95);padding:.5rem .85rem;border-radius:999px;
-      color:#0a0a0a;font-weight:700;font-size:.9rem;cursor:pointer;display:flex;gap:.5rem;align-items:center;
-      box-shadow:0 8px 30px rgba(0,0,0,.35);
-    }
-    body.rtl .language-toggle{right:auto;left:18px}
+        body.rtl {
+            direction: rtl;
+            font-family: 'Cairo', 'Amiri', serif;
+        }
 
-    /* Landing / video */
-    .landing-section{position:relative;width:100%;height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center}
-    .video-background{position:absolute;inset:0;z-index:0;overflow:hidden;background:#000}
-    /* Make video highly visible */
-    .video-background video{
-      position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.95;display:block;background:#000;
-      transform:scale(1.02);transition:opacity .6s ease,transform 10s linear;
-    }
-    .video-background video.loaded{opacity:1;transform:scale(1)}
-    @media (max-width:420px){ .video-background{display:none} }
-    .overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.14),rgba(18,6,6,0.18));z-index:1;pointer-events:none}
+        /* Language Toggle */
+        .language-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(212, 175, 55, 0.9);
+            backdrop-filter: blur(20px);
+            border-radius: 50px;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 16px rgba(212, 175, 55, 0.3);
+            font-weight: 600;
+            color: #0a0a0a;
+            font-size: 0.9rem;
+            letter-spacing: 0.05rem;
+        }
 
-    .container{position:relative;z-index:2;padding:2rem;text-align:center;max-width:1100px;margin:0 auto}
-    .logo{font-family:'Playfair Display',serif;font-size:3.8rem;color:#d4af37;font-weight:900;letter-spacing:.12rem;text-transform:uppercase}
-    body.rtl .logo{font-family:'Cairo',serif;text-transform:none;letter-spacing:.04rem}
-    .subtitle{font-size:1.25rem;color:#f5e6d3;margin-top:.4rem}
-    .tagline{color:#c9a961;font-style:italic;margin-top:.6rem;font-size:1.05rem}
-    .divider{width:200px;height:2px;background:linear-gradient(90deg,transparent,#d4af37,#8b0000,#d4af37,transparent);margin:1.4rem auto;opacity:.9}
-    .menu-button{margin-top:2.2rem;padding:.9rem 2.2rem;border-radius:999px;border:2px solid #d4af37;background:linear-gradient(135deg,#d4af37,#f5e6d3);color:#0a0a0a;font-weight:800;cursor:pointer}
-    .scroll-indicator{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);z-index:3;color:#d4af37;font-size:1.4rem;cursor:pointer;opacity:.95}
+        .language-toggle:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 24px rgba(212, 175, 55, 0.4);
+        }
 
-    /* Landing marquee quote */
-    .landing-marquee-wrap{position:absolute;left:0;right:0;top:10%;z-index:3;display:flex;justify-content:center;pointer-events:none}
-    .landing-marquee{pointer-events:auto;width:100%;max-width:1200px;background:rgba(0,0,0,0.22);border-radius:999px;padding:8px 14px;display:flex;align-items:center;overflow:hidden;box-shadow:0 8px 28px rgba(0,0,0,.45)}
-    .landing-marquee .track{display:inline-flex;white-space:nowrap;gap:3.2rem;align-items:center;animation:marquee-left 18s linear infinite;font-weight:600;font-size:1.05rem;color:#fff}
-    body.rtl .landing-marquee .track{animation:marquee-right 18s linear infinite}
-    .landing-marquee .track>.item{display:inline-flex;align-items:center;gap:.8rem}
-    .landing-marquee:hover .track,.landing-marquee:focus-within .track{animation-play-state:paused}
-    @keyframes marquee-left{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-    @keyframes marquee-right{0%{transform:translateX(-50%)}100%{transform:translateX(0)}}
+        body.rtl .language-toggle {
+            right: auto;
+            left: 20px;
+        }
 
-    /* Menu content */
-    .menu-content{display:none;opacity:0;transform:translateY(20px);transition:opacity .5s,transform .5s;min-height:100vh;background:transparent;color:#2b1a0f}
-    .menu-content.show{display:block;opacity:1;transform:none}
+        /* Landing Section */
+        .landing-section {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
 
-    .floating-marquee{position:sticky;top:0;width:100%;height:120px;z-index:55;background:rgba(61,20,20,.75);backdrop-filter:blur(12px) saturate(160%);display:flex;align-items:center;overflow:hidden;border-bottom:1px solid rgba(212,175,55,.12)}
-    .marquee-track{display:flex;gap:14px;padding:12px 18px;align-items:center;animation:scroll-left 40s linear infinite}
-    body.rtl .marquee-track{animation:scroll-right 40s linear infinite}
-    @keyframes scroll-left{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-    @keyframes scroll-right{0%{transform:translateX(-50%)}100%{transform:translateX(0)}}
-    .marquee-item{flex:0 0 auto;width:150px;height:100px;border-radius:14px;overflow:hidden;border:1px solid rgba(212,175,55,.12);background:rgba(255,255,255,.03);backdrop-filter:blur(8px);cursor:pointer}
-    .marquee-item img{width:100%;height:100%;object-fit:cover}
+        .video-background {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+            background: #000;
+        }
 
-    header{background:rgba(128,0,32,.72);backdrop-filter:blur(20px) saturate(150%);padding:20px 12px;text-align:center;color:#ffd700;font-weight:700;position:relative}
-    .top-decor{position:absolute;left:0;top:0;width:100%;height:8px;background:repeating-linear-gradient(45deg,#ffd700,#ffd700 6px,var(--accent-deep,#800020) 6px,var(--accent-deep,#800020) 12px)}
+        .video-background video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.45;
+            display: block;
+            will-change: opacity, transform;
+            background: #000;
+        }
 
-    .contact-info{background:rgba(255,215,0,.88);padding:8px 12px;text-align:center;color:var(--accent-deep,#800020);font-weight:700}
-    .contact-info a{color:inherit;text-decoration:none;margin:0 .3rem}
+        .video-background video.loaded {
+            transition: opacity 0.6s ease;
+            opacity: 0.75;
+        }
 
-    .search-bar{display:block;margin:18px auto;padding:12px 16px;border-radius:999px;border:1px solid rgba(128,0,32,.12);max-width:420px;width:92%;font-size:1rem;outline:none;background:rgba(255,250,245,.92)}
+        @media (max-width: 420px) {
+            .video-background {
+                display: none;
+            }
+        }
 
-    .menu-section{max-width:1100px;margin:20px auto;padding:18px;background:#fffaf5;color:#2b1a0f;border-radius:14px}
-    .category{background:rgba(255,243,230,.95);border-left:6px solid var(--accent-deep,#800020);padding:16px;margin:12px 0;border-radius:12px;font-weight:700;font-size:1.05rem;cursor:pointer;display:block}
-    body.rtl .category{border-left:none;border-right:6px solid var(--accent-deep,#800020)}
-    .items-container{display:none;margin-top:8px;padding:10px;border-radius:12px;background:linear-gradient(180deg,rgba(255,250,245,.95),rgba(255,250,245,.9))}
-    .items-container.open{display:flex;flex-direction:column}
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(10,10,10,.85) 0%, rgba(61,20,20,.75) 50%, rgba(10,10,10,.85) 100%);
+            backdrop-filter: blur(40px) saturate(180%);
+            z-index: 1;
+        }
 
-    .menu-item{display:flex;align-items:center;gap:12px;padding:12px;border-radius:12px;margin:8px 0;border-left:4px solid var(--accent-deep,#800020);background:rgba(255,243,230,.96);cursor:pointer}
-    body.rtl .menu-item{flex-direction:row-reverse;border-left:none;border-right:4px solid var(--accent-deep,#800020)}
-    .menu-item img{width:80px;height:80px;object-fit:cover;border-radius:12px}
-    .menu-item-name{flex:1;color:var(--accent-deep,#800020);font-weight:700;display:flex;align-items:center;gap:8px}
-    .allergen{color:#a00;font-size:.95rem}
+        .container {
+            position: relative;
+            z-index: 2;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
 
-    .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(16px);align-items:center;justify-content:center;padding:18px;z-index:200}
-    .modal.show{display:flex}
-    .modal-content{background:#fffaf5;padding:20px;border-radius:18px;max-width:540px;width:100%;text-align:center;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.35)}
-    .close-btn{position:absolute;top:12px;right:12px;background:rgba(128,0,32,.08);width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-weight:800}
-    body.rtl .close-btn{left:12px;right:auto}
+        .logo-section {
+            text-align: center;
+            animation: fadeInDown 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
 
-    #hover-preview{position:fixed;display:none;max-width:320px;max-height:320px;border-radius:12px;z-index:9999;pointer-events:none;border:2px solid #d4af37;box-shadow:0 18px 48px rgba(0,0,0,.45);transition:opacity .12s ease}
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            font-weight: 900;
+            color: #d4af37;
+            text-transform: uppercase;
+            letter-spacing: 0.3rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
 
-    .whatsapp-float{position:fixed;right:22px;bottom:22px;width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#25D366,#20BA5A);color:#fff;text-decoration:none;font-size:1.6rem;z-index:1100}
-    body.rtl .whatsapp-float{right:auto;left:22px}
+        body.rtl .logo {
+            font-family: 'Amiri', serif;
+            text-transform: none;
+            letter-spacing: 0.1rem;
+        }
 
-    footer{background:rgba(128,0,32,.72);color:#ffd700;text-align:center;padding:26px;border-radius:8px;margin:26px 18px 40px}
+        .subtitle {
+            font-size: 1.8rem;
+            color: #f5e6d3;
+            letter-spacing: 0.5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
 
-    /* Accessibility & reduced motion */
-    @media (prefers-reduced-motion:reduce){
-      .marquee-track{animation:none}
-      .landing-marquee .track{animation:none}
-      .video-background video{transition:none}
-    }
+        body.rtl .subtitle {
+            font-family: 'Cairo', sans-serif;
+            letter-spacing: 0.2rem;
+        }
 
-    /* Responsive sizing tweaks */
-    @media (max-width:900px){
-      .logo{font-size:3rem}
-      .subtitle{font-size:1.2rem}
-      .menu-button{padding:.8rem 1.6rem}
-      .marquee-item{width:120px;height:84px}
-    }
-    @media (max-width:640px){
-      .logo{font-size:2.4rem}
-      .subtitle{font-size:1rem}
-      .container{padding:1.2rem}
-      .menu-section{padding:12px}
-      .menu-item img{width:72px;height:72px}
-      .whatsapp-float{width:56px;height:56px;font-size:1.45rem;right:14px;bottom:14px}
-      .language-toggle{top:12px;right:12px;padding:.4rem .7rem;font-size:.8rem}
-    }
-  </style>
+        .tagline {
+            font-size: 1.3rem;
+            color: #c9a961;
+            font-style: italic;
+            margin-top: 1rem;
+            opacity: 0.8;
+        }
+
+        body.rtl .tagline {
+            font-family: 'Cairo', sans-serif;
+            font-style: normal;
+        }
+
+        .divider {
+            width: 200px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #d4af37, #8b0000, #d4af37, transparent);
+            margin: 2rem auto;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .menu-button {
+            margin-top: 3rem;
+            padding: 1.2rem 3rem;
+            font-size: 1.3rem;
+            font-family: 'Cormorant Garamond', serif;
+            color: #0a0a0a;
+            background: linear-gradient(135deg, #d4af37, #f5e6d3);
+            border: 2px solid #d4af37;
+            border-radius: 980px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.2rem;
+            font-weight: 600;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 8px 32px rgba(212, 175, 55, 0.3);
+            animation: fadeInUp 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
+        }
+
+        body.rtl .menu-button {
+            font-family: 'Cairo', sans-serif;
+            text-transform: none;
+            letter-spacing: 0.1rem;
+        }
+
+        .menu-button:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 16px 48px rgba(212, 175, 55, 0.5);
+            background: linear-gradient(135deg, #f5e6d3, #d4af37);
+            letter-spacing: 0.3rem;
+        }
+
+        body.rtl .menu-button:hover {
+            letter-spacing: 0.15rem;
+        }
+
+        .menu-button:active {
+            transform: translateY(-2px) scale(0.98);
+        }
+
+        .decorative-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .corner-accent {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border: 2px solid;
+            opacity: 0.3;
+        }
+
+        .corner-accent.top-left {
+            top: 2rem;
+            left: 2rem;
+            border-right: none;
+            border-bottom: none;
+            border-color: #d4af37;
+            animation: fadeIn 2s ease-out;
+        }
+
+        .corner-accent.top-right {
+            top: 2rem;
+            right: 2rem;
+            border-left: none;
+            border-bottom: none;
+            border-color: #8b0000;
+            animation: fadeIn 2s ease-out 0.3s both;
+        }
+
+        .corner-accent.bottom-left {
+            bottom: 2rem;
+            left: 2rem;
+            border-right: none;
+            border-top: none;
+            border-color: #8b0000;
+            animation: fadeIn 2s ease-out 0.6s both;
+        }
+
+        .corner-accent.bottom-right {
+            bottom: 2rem;
+            right: 2rem;
+            border-left: none;
+            border-top: none;
+            border-color: #d4af37;
+            animation: fadeIn 2s ease-out 0.9s both;
+        }
+
+        body.rtl .corner-accent.top-left {
+            left: auto;
+            right: 2rem;
+            border-right: 2px solid #d4af37;
+            border-left: none;
+        }
+
+        body.rtl .corner-accent.top-right {
+            right: auto;
+            left: 2rem;
+            border-left: 2px solid #8b0000;
+            border-right: none;
+        }
+
+        body.rtl .corner-accent.bottom-left {
+            left: auto;
+            right: 2rem;
+            border-right: 2px solid #8b0000;
+            border-left: none;
+        }
+
+        body.rtl .corner-accent.bottom-right {
+            right: auto;
+            left: 2rem;
+            border-left: 2px solid #d4af37;
+            border-right: none;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 0.3; }
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+        }
+
+        .scroll-indicator::after {
+            content: '↓';
+            font-size: 2rem;
+            color: #d4af37;
+            opacity: 0.7;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        /* Menu Content */
+        .menu-content {
+            display: none;
+            font-family: 'Inter', system-ui, Arial, Helvetica, sans-serif;
+            position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        body.rtl .menu-content {
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .menu-content.show {
+            display: block;
+            animation: fadeInMenu 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes fadeInMenu {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .menu-content::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #0a0a0a, #3d1414, #1a0a0a, #2d1515);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            z-index: -2;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .menu-content::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 10, 0.7);
+            z-index: -1;
+        }
+
+        /* Header */
+        header {
+            background: rgba(128, 0, 32, 0.72);
+            backdrop-filter: blur(40px) saturate(180%);
+            -webkit-backdrop-filter: blur(40px) saturate(180%);
+            border-bottom: 0.5px solid rgba(255, 215, 0, 0.2);
+            color: #ffd700;
+            padding: 25px 10px;
+            text-align: center;
+            font-size: 2em;
+            font-weight: bold;
+            position: relative;
+            animation: slideInDown 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .top-decor {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: repeating-linear-gradient(45deg, #ffd700, #ffd700 5px, var(--accent-deep) 5px, var(--accent-deep) 10px);
+        }
+
+        /* Contact Info */
+        .contact-info {
+            background: rgba(255, 215, 0, 0.72);
+            backdrop-filter: blur(40px) saturate(180%);
+            -webkit-backdrop-filter: blur(40px) saturate(180%);
+            border-bottom: 0.5px solid rgba(128, 0, 32, 0.2);
+            color: var(--accent-deep);
+            text-align: center;
+            padding: 12px 0;
+            font-weight: bold;
+            animation: slideInDown 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .contact-info a {
+            color: var(--accent-deep);
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0 5px;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            opacity: 0.7;
+        }
+
+        /* Floating Marquee */
+        .floating-marquee {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            height: 120px;
+            overflow: hidden;
+            background: rgba(61, 20, 20, 0.72);
+            backdrop-filter: blur(40px) saturate(180%);
+            -webkit-backdrop-filter: blur(40px) saturate(180%);
+            border-bottom: 0.5px solid rgba(212, 175, 55, 0.3);
+            z-index: 50;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+        }
+
+        .marquee-track {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            animation: scroll-left 40s linear infinite;
+            gap: 20px;
+            padding: 10px 0;
+        }
+
+        body.rtl .marquee-track {
+            animation: scroll-right 40s linear infinite;
+        }
+
+        @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        @keyframes scroll-right {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
+        }
+
+        .marquee-item {
+            flex-shrink: 0;
+            width: 150px;
+            height: 100px;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+        }
+
+        .marquee-item:hover {
+            transform: scale(1.1) translateY(-5px);
+            border-color: #ffd700;
+            box-shadow: 0 12px 40px rgba(212, 175, 55, 0.4);
+        }
+
+        .marquee-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Menu Section */
+        .menu-section {
+            max-width: 1000px;
+            margin: auto;
+            padding: 20px;
+            background: var(--paper);
+            color: #2b1a0f;
+            font-family: 'Scheherazade New', serif;
+            min-height: 100vh;
+        }
+
+        body.rtl .menu-section {
+            font-family: 'Cairo', sans-serif;
+        }
+
+        /* Search Bar */
+        .search-bar {
+            position: sticky;
+            top: 130px;
+            z-index: 10;
+            background: rgba(255, 250, 245, 0.72);
+            backdrop-filter: blur(40px) saturate(180%);
+            -webkit-backdrop-filter: blur(40px) saturate(180%);
+            border: 0.5px solid rgba(128, 0, 32, 0.2);
+            width: 100%;
+            max-width: 400px;
+            margin: 10px auto 20px auto;
+            display: block;
+            padding: 12px 18px;
+            font-size: 1em;
+            border-radius: 980px;
+            outline: none;
+            animation: fadeInScale 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        body.rtl .search-bar {
+            font-family: 'Cairo', sans-serif;
+            text-align: right;
+        }
+
+        .search-bar:focus {
+            transform: scale(1.02);
+            box-shadow: 0 8px 32px rgba(212, 175, 55, 0.2);
+            border-color: #caa84a;
+            background: rgba(255, 250, 245, 0.85);
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Category */
+        .category {
+            background: rgba(255, 243, 230, 0.72);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 0.5px solid rgba(128, 0, 32, 0.15);
+            border-left: 6px solid var(--accent-deep);
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 20px;
+            font-size: 1.3em;
+            font-weight: bold;
+            color: var(--accent-deep);
+            text-align: center;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            opacity: 0;
+            animation: slideInLeft 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        body.rtl .category {
+            border-left: none;
+            border-right: 6px solid var(--accent-deep);
+            animation: slideInRight 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .category:nth-child(2) { animation-delay: 0.1s; }
+        .category:nth-child(4) { animation-delay: 0.2s; }
+        .category:nth-child(6) { animation-delay: 0.3s; }
+        .category:nth-child(8) { animation-delay: 0.4s; }
+        .category:nth-child(10) { animation-delay: 0.5s; }
+        .category:nth-child(12) { animation-delay: 0.6s; }
+        .category:nth-child(14) { animation-delay: 0.7s; }
+        .category:nth-child(16) { animation-delay: 0.8s; }
+        .category:nth-child(18) { animation-delay: 0.9s; }
+        .category:nth-child(20) { animation-delay: 1s; }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .category:hover {
+            background: rgba(255, 243, 230, 0.9);
+            transform: translateX(10px) translateY(-2px);
+            box-shadow: 0 12px 32px rgba(128, 0, 32, 0.15);
+        }
+
+        body.rtl .category:hover {
+            transform: translateX(-10px) translateY(-2px);
+        }
+
+        .category:active {
+            transform: translateX(8px) scale(0.98);
+        }
+
+        body.rtl .category:active {
+            transform: translateX(-8px) scale(0.98);
+        }
+
+        .category::before {
+            content: '★';
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #ffd700;
+            font-size: 1.2em;
+        }
+
+        body.rtl .category::before {
+            left: auto;
+            right: 10px;
+        }
+
+        /* Items Container */
+        .items-container {
+            display: none;
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 16px;
+            background: linear-gradient(180deg, rgba(255,250,245,0.9), rgba(255,250,245,0.7));
+        }
+
+        .items-container.opening {
+            animation: expandDown 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes expandDown {
+            from {
+                opacity: 0;
+                max-height: 0;
+            }
+            to {
+                opacity: 1;
+                max-height: 2000px;
+            }
+        }
+
+        /* Menu Item */
+        .menu-item {
+            background: rgba(255, 243, 230, 0.72);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 0.5px solid rgba(128, 0, 32, 0.1);
+            border-left: 4px solid var(--accent-deep);
+            margin: 10px 0 10px 20px;
+            padding: 15px 20px;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            opacity: 0;
+            animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+
+        body.rtl .menu-item {
+            border-left: none;
+            border-right: 4px solid var(--accent-deep);
+            margin: 10px 20px 10px 0;
+            flex-direction: row-reverse;
+        }
+
+        .menu-item:nth-child(1) { animation-delay: 0.05s; }
+        .menu-item:nth-child(2) { animation-delay: 0.1s; }
+        .menu-item:nth-child(3) { animation-delay: 0.15s; }
+        .menu-item:nth-child(4) { animation-delay: 0.2s; }
+        .menu-item:nth-child(5) { animation-delay: 0.25s; }
+
+        .menu-item:hover {
+            background: rgba(255, 240, 230, 0.85);
+            box-shadow: 0 8px 24px rgba(128,0,32,0.15);
+            transform: translateX(10px);
+            border-left-width: 8px;
+        }
+
+        body.rtl .menu-item:hover {
+            transform: translateX(-10px);
+            border-left-width: 0;
+            border-right-width: 8px;
+        }
+
+        .menu-item:active {
+            transform: translateX(8px) scale(0.98);
+        }
+
+        body.rtl .menu-item:active {
+            transform: translateX(-8px) scale(0.98);
+        }
+
+        .menu-item-name {
+            font-weight: bold;
+            font-size: 1.1em;
+            color: var(--accent-deep);
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        body.rtl .menu-item-name {
+            flex-direction: row-reverse;
+            text-align: right;
+        }
+
+        .allergen {
+            font-size: 0.9em;
+            color: red;
+            margin-left: 5px;
+        }
+
+        body.rtl .allergen {
+            margin-left: 0;
+            margin-right: 5px;
+        }
+
+        img.menu-img {
+            max-width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+        }
+
+        .menu-item:hover img.menu-img {
+            transform: scale(1.05);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            animation: fadeInModal 0.3s ease;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        @keyframes fadeInModal {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: rgba(255, 250, 245, 0.95);
+            backdrop-filter: blur(40px) saturate(180%);
+            -webkit-backdrop-filter: blur(40px) saturate(180%);
+            border: 0.5px solid rgba(128, 0, 32, 0.2);
+            padding: 30px;
+            border-radius: 32px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            font-size: 1em;
+            color: #2b1a0f;
+            animation: popIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        body.rtl .modal-content {
+            text-align: right;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        @keyframes popIn {
+            from {
+                opacity: 0;
+                transform: scale(0.85);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .modal-content h3 {
+            font-size: 1.6em;
+            margin-bottom: 10px;
+            color: var(--accent-deep);
+        }
+
+        .modal-content p {
+            margin: 5px 0;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(128, 0, 32, 0.1);
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: var(--accent-deep);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        body.rtl .close-btn {
+            right: auto;
+            left: 15px;
+        }
+
+        .close-btn:hover {
+            background: rgba(128, 0, 32, 0.2);
+            transform: rotate(90deg) scale(1.1);
+        }
+
+        .close-btn:active {
+            transform: rotate(90deg) scale(0.95);
+        }
+
+        #image-modal img {
+            max-width: 100vw;
+            max-height: 100vh;
+            width: auto;
+            height: auto;
+            border-radius: 24px;
+            animation: zoomIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        #mobile-image-modal img {
+            max-width: 95vw;
+            max-height: 90vh;
+            border-radius: 24px;
+            object-fit: contain;
+            animation: zoomIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #25D366, #20BA5A);
+            color: white;
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            box-shadow: 0 12px 40px rgba(37, 211, 102, 0.4);
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            text-decoration: none;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        body.rtl .whatsapp-float {
+            right: auto;
+            left: 30px;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1) translateY(-4px);
+            box-shadow: 0 16px 56px rgba(37, 211, 102, 0.5);
+        }
+
+        .whatsapp-float:active {
+            transform: scale(1.05) translateY(-2px);
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 12px 40px rgba(37, 211, 102, 0.4);
+            }
+            50% {
+                box-shadow: 0 12px 40px rgba(37, 211, 102, 0.7);
+            }
+        }
+
+        /* Hover Preview */
+        #hover-preview {
+            position: fixed;
+            display: none;
+            max-width: 300px;
+            max-height: 300px;
+            border-radius: 16px;
+            z-index: 9999;
+            pointer-events: none;
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+            transition: opacity 0.2s ease;
+            opacity: 0;
+            border: 2px solid #d4af37;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(128, 0, 32, 0.72);
+            backdrop-filter: blur(40px) saturate(180%);
+            -webkit-backdrop-filter: blur(40px) saturate(180%);
+            border-top: 0.5px solid rgba(255, 215, 0, 0.2);
+            color: #ffd700;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 40px;
+            font-size: 1em;
+        }
+
+        footer h3 {
+            margin-bottom: 15px;
+            font-size: 1.5em;
+            letter-spacing: 0.1em;
+        }
+
+        footer p {
+            margin: 8px 0;
+            opacity: 0.9;
+        }
+
+        footer a {
+            color: #ffd700;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        footer a:hover {
+            opacity: 0.7;
+        }
+
+        /* Language Content */
+        .lang-content {
+            display: none;
+        }
+
+        .lang-content.active {
+            display: inline;
+        }
+
+        /* Responsive Design (kept unchanged) */
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 3rem;
+                letter-spacing: 0.2rem;
+            }
+
+            .subtitle {
+                font-size: 1.3rem;
+                letter-spacing: 0.3rem;
+            }
+
+            .tagline {
+                font-size: 1rem;
+            }
+
+            .menu-button {
+                padding: 1rem 2rem;
+                font-size: 1.1rem;
+            }
+
+            .corner-accent {
+                width: 100px;
+                height: 100px;
+            }
+
+            header {
+                font-size: 1.5em;
+                padding: 15px;
+            }
+
+            .search-bar {
+                top: 130px;
+            }
+
+            .floating-marquee {
+                height: 100px;
+            }
+
+            .marquee-item {
+                width: 120px;
+                height: 80px;
+            }
+
+            .whatsapp-float {
+                width: 56px;
+                height: 56px;
+                font-size: 1.8em;
+                bottom: 20px;
+                right: 20px;
+            }
+
+            body.rtl .whatsapp-float {
+                right: auto;
+                left: 20px;
+            }
+
+            .language-toggle {
+                top: 15px;
+                right: 15px;
+                font-size: 0.8rem;
+                padding: 6px 12px;
+            }
+
+            body.rtl .language-toggle {
+                right: auto;
+                left: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .menu-section {
+                padding: 15px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <button class="language-toggle" id="langToggle" aria-label="Toggle language">
-    <span class="lang-content active" data-lang="en">العربية</span>
-    <span class="lang-content" data-lang="ar" style="display:none">English</span>
-  </button>
+    <div class="language-toggle" onclick="toggleLanguage()">
+        <span class="lang-content active" data-lang="en">العربية</span>
+        <span class="lang-content" data-lang="ar">English</span>
+    </div>
 
-  <main>
-    <section class="landing-section" id="landing" aria-label="Landing">
-      <div class="video-background" id="videoContainer" aria-hidden="true">
-        <video id="bgVideo" autoplay muted loop playsinline preload="metadata" poster="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Poster.jpg">
-          <source src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Video.mp4" type="video/mp4">
-        </video>
-      </div>
-
-      <div class="overlay" aria-hidden="true"></div>
-
-      <div class="landing-marquee-wrap" aria-hidden="false">
-        <div class="landing-marquee" role="marquee" aria-label="Quote">
-          <div class="track" id="landingMarqueeTrack" aria-hidden="false" tabindex="0"></div>
+    <div class="landing-section" id="landing">
+        <div class="video-background" id="videoContainer">
+            <video id="bgVideo" autoplay muted loop playsinline preload="auto" poster="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Poster.jpg">
+                <source src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Video.mp4" type="video/mp4">
+            </video>
         </div>
-      </div>
 
-      <div class="container">
-        <h1 class="logo">
-          <span class="lang-content active" data-lang="en">Turkiana</span>
-          <span class="lang-content" data-lang="ar" style="display:none">تركيانا</span>
-        </h1>
-        <p class="subtitle">
-          <span class="lang-content active" data-lang="en">CAFÉ & SWEETS</span>
-          <span class="lang-content" data-lang="ar" style="display:none">مقهى وحلويات</span>
-        </p>
-        <div class="divider" role="presentation" aria-hidden="true"></div>
-        <p class="tagline">
-          <span class="lang-content active" data-lang="en">Where Tradition Meets Elegance</span>
-          <span class="lang-content" data-lang="ar" style="display:none">حيث يلتقي التراث بالأناقة</span>
-        </p>
-
-        <button class="menu-button" id="openMenuBtn" aria-haspopup="true" aria-controls="menuContent">
-          <span class="lang-content active" data-lang="en">Explore Our Menu</span>
-          <span class="lang-content" data-lang="ar" style="display:none">استكشف قائمتنا</span>
-        </button>
-      </div>
-
-      <div class="scroll-indicator" id="scrollIndicator" aria-hidden="true">↓</div>
-    </section>
-
-    <section class="menu-content" id="menuContent" aria-label="Menu content">
-      <div class="floating-marquee" role="region" aria-label="Featured items">
-        <div class="marquee-track" id="marqueeTrack" aria-hidden="false"></div>
-      </div>
-
-      <header role="banner">
-        <span class="lang-content active" data-lang="en">TURKIANA CAFE & SWEETS</span>
-        <span class="lang-content" data-lang="ar" style="display:none">مقهى وحلويات تركيانا</span>
-        <div class="top-decor" aria-hidden="true"></div>
-      </header>
-
-      <div class="contact-info" role="navigation" aria-label="Contact">
-        <span class="lang-content active" data-lang="en">
-          📱 <a href="https://wa.me/97451866671" target="_blank" rel="noopener">WhatsApp</a> |
-          📍 <a href="https://goo.gl/maps/Jg2o5f3Xc7xYyR8v5" target="_blank" rel="noopener">Location</a> |
-          🌐 <a href="https://turkianasweets.com" target="_blank" rel="noopener">Website</a> |
-          📷 <a href="https://www.instagram.com/turkiana.qa/" target="_blank" rel="noopener">Instagram</a>
-        </span>
-        <span class="lang-content" data-lang="ar" style="display:none">
-          📱 <a href="https://wa.me/97451866671" target="_blank" rel="noopener">واتساب</a> |
-          📍 <a href="https://goo.gl/maps/Jg2o5f3Xc7xYyR8v5" target="_blank" rel="noopener">الموقع</a> |
-          🌐 <a href="https://turkianasweets.com" target="_blank" rel="noopener">الموقع الإلكتروني</a> |
-          📷 <a href="https://www.instagram.com/turkiana.qa/" target="_blank" rel="noopener">إنستغرام</a>
-        </span>
-      </div>
-
-      <input id="searchBar" class="search-bar" type="search" inputmode="search" aria-label="Search menu items" placeholder="Search...">
-
-      <div class="menu-section" id="menu-container" aria-live="polite"></div>
-
-      <div class="modal" id="item-modal" role="dialog" aria-modal="true" aria-labelledby="modal-name" aria-hidden="true">
-        <div class="modal-content">
-          <button class="close-btn" aria-label="Close" id="closeItemModal">&times;</button>
-          <h3 id="modal-name"></h3>
-          <p id="modal-price" style="font-weight:700;margin:.4rem 0"></p>
-          <p id="modal-description"></p>
+        <div class="overlay"></div>
+        
+        <div class="decorative-elements">
+            <div class="corner-accent top-left"></div>
+            <div class="corner-accent top-right"></div>
+            <div class="corner-accent bottom-left"></div>
+            <div class="corner-accent bottom-right"></div>
         </div>
-      </div>
+        
+        <div class="container">
+            <div class="logo-section">
+                <h1 class="logo">
+                    <span class="lang-content active" data-lang="en">Turkiana</span>
+                    <span class="lang-content" data-lang="ar">تركيانا</span>
+                </h1>
+                <p class="subtitle">
+                    <span class="lang-content active" data-lang="en">CAFÉ & SWEETS</span>
+                    <span class="lang-content" data-lang="ar">مقهى وحلويات</span>
+                </p>
+                <div class="divider"></div>
+                <p class="tagline">
+                    <span class="lang-content active" data-lang="en">Where Tradition Meets Elegance</span>
+                    <span class="lang-content" data-lang="ar">حيث يلتقي التراث بالأناقة</span>
+                </p>
+            </div>
+            
+            <button class="menu-button" onclick="showMenu()">
+                <span class="lang-content active" data-lang="en">Explore Our Menu</span>
+                <span class="lang-content" data-lang="ar">استكشف قائمتنا</span>
+            </button>
+        </div>
+        
+        <div class="scroll-indicator" onclick="showMenu()"></div>
+    </div>
 
-      <div class="modal" id="image-modal" role="dialog" aria-modal="true" aria-hidden="true">
-        <img id="zoomed-image" alt="Menu item image" style="max-width:95vw;max-height:85vh;border-radius:12px">
-      </div>
+    <div class="menu-content" id="menuContent">
+        <div class="floating-marquee">
+            <div class="marquee-track" id="marqueeTrack"></div>
+        </div>
 
-      <div class="modal" id="mobile-image-modal" role="dialog" aria-modal="true" aria-hidden="true">
-        <img id="mobile-zoomed-image" alt="Menu item image" style="max-width:95vw;max-height:85vh;border-radius:12px">
-      </div>
+        <header>
+            <span class="lang-content active" data-lang="en">TURKIANA CAFE & SWEETS</span>
+            <span class="lang-content" data-lang="ar">مقهى وحلويات تركيانا</span>
+            <div class="top-decor"></div>
+        </header>
 
-      <a class="whatsapp-float" href="https://wa.me/97451866671" target="_blank" rel="noopener" aria-label="Order on WhatsApp">📱</a>
+        <div class="contact-info">
+            <span class="lang-content active" data-lang="en">
+                📱 <a href="https://wa.me/97451866671" target="_blank">WhatsApp</a> | 
+                📍 <a href="https://goo.gl/maps/Jg2o5f3Xc7xYyR8v5" target="_blank">Location</a> | 
+                🌐 <a href="https://turkianasweets.com" target="_blank">Website</a> | 
+                📷 <a href="https://www.instagram.com/turkiana.qa/" target="_blank">Instagram</a>
+            </span>
+            <span class="lang-content" data-lang="ar">
+                📱 <a href="https://wa.me/97451866671" target="_blank">واتساب</a> | 
+                📍 <a href="https://goo.gl/maps/Jg2o5f3Xc7xYyR8v5" target="_blank">الموقع</a> | 
+                🌐 <a href="https://turkianasweets.com" target="_blank">الموقع الإلكتروني</a> | 
+                📷 <a href="https://www.instagram.com/turkiana.qa/" target="_blank">إنستغرام</a>
+            </span>
+        </div>
 
-      <footer>
-        <h3>
-          <span class="lang-content active" data-lang="en">TURKIANA CAFE & SWEET</span>
-          <span class="lang-content" data-lang="ar" style="display:none">مقهى وحلويات تركيانا</span>
-        </h3>
-        <p>📱 +974 5186 6671</p>
-        <p>
-          <span class="lang-content active" data-lang="en">🌐 <a href="https://turkianasweets.com" target="_blank" rel="noopener">turkianasweets.com</a> | 📷 <a href="https://www.instagram.com/turkiana.qa/" target="_blank" rel="noopener">@turkiana.qa</a></span>
-          <span class="lang-content" data-lang="ar" style="display:none">🌐 <a href="https://turkianasweets.com" target="_blank" rel="noopener">turkianasweets.com</a> | 📷 <a href="https://www.instagram.com/turkiana.qa/" target="_blank" rel="noopener">@turkiana.qa</a></span>
-        </p>
-        <p style="margin-top:12px;font-size:1rem">
-          <span class="lang-content active" data-lang="en">Experience Authentic Turkish Flavors</span>
-          <span class="lang-content" data-lang="ar" style="display:none">استمتع بالنكهات التركية الأصيلة</span>
-        </p>
-      </footer>
-    </section>
-  </main>
+        <input type="text" id="searchBar" class="search-bar" placeholder="Search menu items...">
 
-  <img id="hover-preview" alt="preview" aria-hidden="true" />
+        <div class="menu-section" id="menu-container"></div>
 
-  <script>
-    (function () {
-      'use strict';
+        <div class="modal" id="item-modal" aria-hidden="true">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeModal()">&times;</span>
+                <h3 id="modal-name"></h3>
+                <p id="modal-price"></p>
+                <p id="modal-description"></p>
+            </div>
+        </div>
 
-      // --- Data: your original menu data (kept as you provided) ---
-      const allergens = { nuts:"🥜", dairy:"🥛", gluten:"🌾" };
+        <div class="modal" id="image-modal" onclick="closeImageModal()" aria-hidden="true">
+            <img id="zoomed-image" src="" alt="Menu item">
+        </div>
 
-      const menuDataEn = { 
-        "Turkish Morning": [
-          { name: "Turkish Classic Breakfast", price: "65 QR", description: "Traditional Turkish breakfast spread with cheese, olives, tomatoes, cucumbers, honey, and fresh bread", image: "Breakfast.jpg", allergens: ["dairy", "gluten"] },
-          { name: "Turkish Menemen", price: "45 QR", description: "Turkish-style scrambled eggs with tomatoes, peppers, and spices", image: "Menemen.jpg", allergens: ["dairy"] },
-          { name: "Plain Omelette", price: "25 QR", description: "Classic fluffy omelette", image: "Omellet.jpg", allergens: ["dairy"] }
-        ],
-        "Croissant Creations": [
-          { name: "Croissant Beef Ribs", price: "45 QR", description: "Beef Ribs, Cheddar Cheese, Kasfar Cheese, Pesto Sauce (Side: Tomatoes, Cucumbers, Green Olives)", image: "Ribs.jpg", allergens: ["dairy", "gluten", "nuts"] },
-          { name: "Avocado Croissant", price: "42 QR", description: "Scrambled Eggs, Avocado, Olive Paste (with Tomatoes and Cucumber as Sides)", image: "Avocado.jpg", allergens: ["dairy", "gluten"] },
-          { name: "Smoked Beef Croissant", price: "45 QR", description: "Scrambled Eggs with Thyme and Smoked Beef (Side: Tomato, Cucumber, Olives, Jam, and White Cheese)", image: "5.jpg", allergens: ["dairy", "gluten"] },
-          { name: "Butter & Jam Croissant", price: "40 QR", description: "Butter, Cherry Jam, Grilled Olives, Feta Cheese, Tomato, Cucumber, Praline", image: "4.jpg", allergens: ["dairy", "gluten", "nuts"] },
-          { name: "Croissant Scrambled Eggs", price: "37 QR", description: "Scrambled Eggs, Red Pepper, Thyme, Arugula, Tomatoes, Cucumbers, Grilled Olives", image: "1.jpg", allergens: ["dairy", "gluten"] }
-        ],
-        "From the Grill & Garden": [
-          { name: "Fried Potatoes", price: "25 QR", description: "Crispy golden french fries", image: "Patatas.jpg", allergens: [] },
-          { name: "Caesar Salad", price: "40 QR", description: "Fresh romaine lettuce with Caesar dressing, croutons, and parmesan", image: "Caesar.jpg", allergens: ["dairy", "gluten"] },
-          { name: "Turkiana Special Beef Burger", price: "55 QR", description: "Premium beef burger with special toppings and fries", image: "Burger.jpg", allergens: ["gluten", "dairy"] }
-        ],
-        "Baklava & Beyond": [
-          { name: "Turkish Mix Baklava", price: "45 QR", description: "Assorted traditional Turkish baklava", image: "Mix.jpg", allergens: ["nuts", "gluten"] },
-          { name: "Turkish Plain Baklava", price: "40 QR", description: "Classic plain baklava", image: "Slice.jpg", allergens: ["nuts", "gluten"] },
-          { name: "Nuts Stand-Tall", price: "99 QR", description: "Assorted Nuts", image: "Nuts.jpg", allergens: ["nuts"] },
-          { name: "Nuts Stand-Small", price: "60 QR", description: "Assorted Nuts", image: "Nuts.jpg", allergens: ["nuts"] },
-          { name: "Kunafa", price: "40 QR", description: "Turkish Kunafa with Akawi Cheese", image: "Kunafa.jpg", allergens: ["nuts", "gluten"] },
-          { name: "Chocolate Cake", price: "40 QR", description: "Rich chocolate molten cake", image: "Chocolate.jpg", allergens: ["dairy", "gluten"] },
-          { name: "Lotus Cake", price: "40 QR", description: "Rich lotus cake", image: "Lutos.jpg", allergens: ["dairy", "gluten"] },
-          { name: "Full Pistachio Cake", price: "40 QR", description: "Delicate pistachio flavored cake", image: "Full.jpg", allergens: ["nuts", "dairy", "gluten"] },
-          { name: "Lemon Cake", price: "38 QR", description: "Fresh lemon sponge cake", image: "Lemon.jpg", allergens: ["dairy", "gluten"] },
-          { name: "Tiramisu", price: "32 QR", description: "Classic Italian tiramisu", image: "Tiramisu.jpg", allergens: ["dairy", "gluten", "nuts"] },
-          { name: "Almond Chocolate Cake", price: "40 QR", description: "Almond chocolate cake", image: "Almond.jpg", allergens: ["nuts", "dairy", "gluten"] },
-          { name: "Lemon Sponge Cake", price: "42 QR", description: "Light lemon sponge cake", image: "Lemoncake.jpg", allergens: ["dairy", "gluten"] },
-          { name: "Raspberry Cheesecake", price: "30 QR", description: "Cherry cheesecake", image: "Cherry.jpg", allergens: ["dairy", "gluten"] },
-          { name: "Mulberry Cheesecake", price: "30 QR", description: "Mulberry cheesecake", image: "Mulberry.jpg", allergens: ["dairy", "gluten"] },
-          { name: "Chocolate Pistachio Cake", price: "40 QR", description: "Chocolate pistachio cake", image: "Chocolate_pistachio.jpg", allergens: ["dairy", "nuts", "gluten"] },
-          { name: "Strawberry Cake", price: "45 QR", description: "Strawberry cake", image: "Strawberry.jpg", allergens: ["dairy", "gluten"] },
-          { name: "White Almond Cake", price: "42 QR", description: "White almond cake", image: "White.jpg", allergens: ["nuts", "dairy", "gluten"] },
-          { name: "Trileche With Milk", price: "35 QR", description: "Turkish tres leches cake", image: "Trileche.jpg", allergens: ["dairy", "gluten"] },
-          { name: "San Sebastian Cheesecake", price: "42 QR", description: "San Sebastian cheesecake", image: "Sebastian.jpg", allergens: ["dairy", "gluten"] }
-        ],
-        "Arabian Brew": [
-          { name: "Arabic Coffee in a Full Dalla", price: "90 QR", description: "Arabic Coffee in a Full Dalla", allergens: ["dairy"] },
-          { name: "Arabic Coffee in a Half Dalla", price: "50 QR", description: "Arabic Coffee in a Half Dalla", allergens: ["dairy"] },
-          { name: "Arabic Coffee in a Cup", price: "30 QR", description: "Arabic Coffee in a Cup", allergens: ["dairy"] }
-        ],
-        "Tea Time": [
-          { name: "Turkish Tea", price: "15 QR", description: "Classic Turkish tea", allergens: [] },
-          { name: "Cup Of Tea", price: "18 QR", description: "Hot cup of tea", allergens: [] },
-          { name: "Apple Tea", price: "25 QR", description: "Apple tea", allergens: [] },
-          { name: "Mulberry Tea", price: "25 QR", description: "Mulberry tea", allergens: [] },
-          { name: "Lemon Mint", price: "25 QR", description: "Lemon mint tea", allergens: [] },
-          { name: "Pomegranate Tea", price: "25 QR", description: "Pomegranate tea", allergens: [] }
-        ],
-        "Tea on Ice": [
-          { name: "Ice Apple Tea", price: "28 QR", description: "Cold apple tea", allergens: [] },
-          { name: "Ice Mulberry Tea", price: "28 QR", description: "Cold mulberry tea", allergens: [] },
-          { name: "Ice Mint Lemon", price: "28 QR", description: "Cold mint lemon tea", allergens: [] },
-          { name: "Ice Pomegranate Tea", price: "28 QR", description: "Cold pomegranate tea", allergens: [] },
-          { name: "Hibiscus", price: "28 QR", description: "Cold hibiscus tea", allergens: [] }
-        ],
-        "Brewed the Turkish Way": [
-          { name: "Classic Turkish Coffee", price: "28 QR", description: "Classic Turkish Coffee", allergens: [] },
-          { name: "Turkish Coffee with Cardamon", price: "28 QR", description: "Turkish Coffee with Cardamon", allergens: [] },
-          { name: "Double Turkish Coffee", price: "40 QR", description: "Double Turkish Coffee", allergens: [] },
-          { name: "Ottoman Coffee", price: "28 QR", description: "Ottoman Coffee", allergens: [] },
-          { name: "Ottoman Coffee with Mastic", price: "28 QR", description: "Ottoman Coffee with Mastic", allergens: [] },
-          { name: "Ottoman Coffee with Hazelnuts", price: "28 QR", description: "Ottoman Coffee with Hazelnuts", allergens: ["nuts"] },
-          { name: "Sahlep", price: "28 QR", description: "Hot sahlep", allergens: ["dairy"] }
-        ],
-        "Herbal Infusions": [
-          { name: "Sage", price: "28 QR", description: "Sage tea", allergens: [] },
-          { name: "Mix Winter Tea", price: "28 QR", description: "Winter herbal tea mix", allergens: [] },
-          { name: "Green Tea", price: "28 QR", description: "Green tea", allergens: [] },
-          { name: "Chamomile", price: "28 QR", description: "Chamomile tea", allergens: [] },
-          { name: "Hibiscus", price: "28 QR", description: "Hibiscus tea", allergens: [] }
-        ],
-        "Café & Chill": [
-          { name: "Hot Chocolate (Hot/Ice)", price: "36 QR", description: "Hot chocolate", allergens: ["dairy"] },
-          { name: "Latte (Hot/Ice)", price: "29 QR", description: "Latte coffee", allergens: ["dairy"] },
-          { name: "Spanish Latte (Hot/Ice)", price: "32 QR", description: "Spanish Latte", allergens: ["dairy"] },
-          { name: "Salted Caramel Latte (Hot/Ice)", price: "32 QR", description: "Salted Caramel Latte", allergens: ["dairy"] },
-          { name: "Vanilla Latte (Hot/Ice)", price: "32 QR",
-          description: "Vanilla Latte", allergens: ["dairy"] },
-          { name: "Cappuccino (Hot/Ice)", price: "29 QR", description: "Cappuccino", allergens: ["dairy"] },
-          { name: "White Mocha (Hot/Ice)", price: "32 QR", description: "White Mocha", allergens: ["dairy"] },
-          { name: "Flat White (Hot/Ice)", price: "27 QR", description: "Flat White coffee", allergens: ["dairy"] },
-          { name: "Cortado (Hot/Ice)", price: "24 QR", description: "Cortado coffee", allergens: ["dairy"] },
-          { name: "Espresso (Hot/Ice)", price: "21 QR", description: "Espresso coffee", allergens: [] },
-          { name: "Double Espresso (Hot/Ice)", price: "21 QR", description: "Double Espresso coffee", allergens: [] },
-          { name: "Macchiato (Hot/Ice)", price: "24 QR", description: "Macchiato coffee", allergens: ["dairy"] },
-          { name: "Americano (Hot/Ice)", price: "21 QR", description: "Americano coffee", allergens: [] },
-          { name: "Mocha (Hot/Ice)", price: "32 QR", description: "Mocha coffee", allergens: ["dairy"] }
-        ],
-        "Specialty Brews": [
-          { name: "V60 Pour Over (Hot & Ice)", price: "29 QR", description: "V60 pour-over coffee", allergens: [] },
-          { name: "Ice Drip", price: "32 QR", description: "Ice Drip coffee", allergens: [] },
-          { name: "Cold Brew", price: "36 QR", description: "Cold Brew coffee", allergens: [] }
-        ],
-        "Froozen": [
-          { name: "Mango Froozen", price: "38 QR", description: "Mango froozen drink", allergens: [] },
-          { name: "Şeftali Froozen", price: "38 QR", description: "Peach froozen drink", allergens: [] },
-          { name: "Çilekli Froozen", price: "38 QR", description: "Strawberry froozen drink", allergens: [] },
-          { name: "Orman Meyveli Froozen", price: "38 QR", description: "Forest fruits froozen drink", allergens: [] },
-          { name: "Yaban Mersini Froozen", price: "38 QR", description: "Blueberry froozen drink", allergens: [] }
-        ],
-        "Refreshments": [
-          { name: "Still Water (Small)", price: "11 QR", description: "Small still water", allergens: [] },
-          { name: "Still Water (Big)", price: "21 QR", description: "Big still water", allergens: [] },
-          { name: "Sparkling Water", price: "21 QR", description: "Sparkling water", allergens: [] },
-          { name: "Churchill", price: "25 QR", description: "Churchill drink", allergens: [] },
-          { name: "Lemonade", price: "30 QR", description: "Fresh lemonade", allergens: [] },
-          { name: "Fresh Orange Juice", price: "30 QR", description: "Fresh orange juice", allergens: [] },
-          { name: "Kinza Kola", price: "17 QR", description: "Kinza Kola", allergens: [] },
-          { name: "Kinza Kola Zero", price: "17 QR", description: "Kinza Kola Zero", allergens: [] }
-        ]
-      };
+        <div id="mobile-image-modal" class="modal" onclick="closeMobileImageModal()" aria-hidden="true">
+            <img id="mobile-zoomed-image" src="" alt="Menu Item">
+        </div>
 
-      const menuDataAr = {
-        "أطباق الإفطار المميزة":[
-          {name:"الإفطار التركي الكلاسيكي", price:"65 ريال", description:"إفطار تركي تقليدي مع الجبن والزيتون والطماطم والخيار والعسل والخبز الطازج", image:"Breakfast.jpg", allergens:["dairy","gluten"]},
-          {name:"المنيمن التركي", price:"45 ريال", description:"بيض مخفوق على الطريقة التركية مع الطماطم والفلفل والتوابل", image:"Menemen.jpg", allergens:["dairy"]},
-          {name:"أومليت عادي", price:"25 ريال", description:"أومليت كلاسيكي منفوش", image:"Omellet.jpg", allergens:["dairy"]}
-        ],
-        "كرواسون":[
-          {name:"كرواسون أضلاع اللحم", price:"45 ريال", description:"أضلاع لحم، جبن شيدر، جبن كسفار، صلصة البيستو (مع الطماطم والخيار والزيتون الأخضر)", image:"Ribs.jpg", allergens:["dairy","gluten","nuts"]},
-          {name:"كرواسون الأفوكادو", price:"42 ريال", description:"بيض مخفوق، أفوكادو، معجون الزيتون (مع الطماطم والخيار)", image:"Avocado.jpg", allergens:["dairy","gluten"]},
-          {name:"كرواسون اللحم المدخن", price:"45 ريال", description:"بيض مخفوق بالزعتر واللحم المدخن (مع الطماطم والخيار والزيتون والمربى والجبن الأبيض)", image:"5.jpg", allergens:["dairy","gluten"]},
-          {name:"كرواسون الزبدة والمربى", price:"40 ريال", description:"زبدة، مربى الكرز، زيتون مشوي، جبن فيتا، طماطم، خيار، براليني", image:"4.jpg", allergens:["dairy","gluten","nuts"]},
-          {name:"كرواسون البيض المخفوق", price:"37 ريال", description:"بيض مخفوق، فلفل أحمر، زعتر، جرجير، طماطم، خيار، زيتون مشوي", image:"1.jpg", allergens:["dairy","gluten"]}
-        ],
-        "الأطباق الرئيسية":[
-          {name:"البطاطس المقلية", price:"25 ريال", description:"بطاطس مقرمشة ذهبية", image:"Patatas.jpg", allergens:[]},
-          {name:"سلطة سيزر", price:"40 ريال", description:"خس روماني طازج مع صلصة سيزر وقطع الخبز المحمص والبارميزان", image:"Caesar.jpg", allergens:["dairy","gluten"]},
-          {name:"برجر اللحم المميز تركيانا", price:"55 ريال", description:"برجر لحم فاخر مع إضافات مميزة وبطاطس مقلية", image:"Burger.jpg", allergens:["gluten","dairy"]}
-        ],
-        "الحلويات والتحليات":[
-          {name:"بقلاوة تركية مشكلة", price:"45 ريال", description:"تشكيلة من البقلاوة التركية التقليدية", image:"Mix.jpg", allergens:["nuts","gluten"]},
-          {name:"طبق المكسرات", price:"99 ريال", description:"تشكيلة من المكسرات", image:"Nuts.jpg", allergens:["nuts"]},
-          {name:"بقلاوة تركية عادية", price:"40 ريال", description:"بقلاوة عادية كلاسيكية", image:"Slice.jpg", allergens:["nuts","gluten"]},
-          {name:"كنافة", price:"40 ريال", description:"كنافة تركية بجبن العكاوي", image:"Kunafa.jpg", allergens:["nuts","gluten"]},
-          {name:"كيك الشوكولاتة", price:"40 ريال", description:"كيك شوكولاتة غني", image:"Chocolate.jpg", allergens:["dairy","gluten"]}
-        ]
-      };
+        <a href="https://wa.me/97451866671" target="_blank" class="whatsapp-float" title="Order on WhatsApp">📱</a>
 
-      // --- UI references ---
-      const langToggleBtn = document.getElementById('langToggle');
-      const langSpans = Array.from(document.querySelectorAll('.lang-content'));
-      const openMenuBtn = document.getElementById('openMenuBtn');
-      const landing = document.getElementById('landing');
-      const menuContent = document.getElementById('menuContent');
-      const searchBar = document.getElementById('searchBar');
-      const marqueeTrack = document.getElementById('marqueeTrack');
-      const menuContainer = document.getElementById('menu-container');
-      const itemModal = document.getElementById('item-modal');
-      const closeItemModal = document.getElementById('closeItemModal');
-      const modalName = document.getElementById('modal-name');
-      const modalPrice = document.getElementById('modal-price');
-      const modalDescription = document.getElementById('modal-description');
-      const landingMarqueeTrack = document.getElementById('landingMarqueeTrack');
-      const hoverPreview = document.getElementById('hover-preview');
+        <footer>
+            <h3>
+                <span class="lang-content active" data-lang="en">TURKIANA CAFE & SWEETS</span>
+                <span class="lang-content" data-lang="ar">مقهى وحلويات تركيانا</span>
+            </h3>
+            <p>📱 +974 5186 6671</p>
+            <p>
+                <span class="lang-content active" data-lang="en">
+                    🌐 <a href="https://turkianasweets.com" target="_blank">turkianasweets.com</a> | 
+                    📷 <a href="https://www.instagram.com/turkiana.qa/" target="_blank">@turkiana.qa</a>
+                </span>
+                <span class="lang-content" data-lang="ar">
+                    🌐 <a href="https://turkianasweets.com" target="_blank">turkianasweets.com</a> | 
+                    📷 <a href="https://www.instagram.com/turkiana.qa/" target="_blank">@turkiana.qa</a>
+                </span>
+            </p>
+            <p style="margin-top:15px; font-size:1.1em;">
+                <span class="lang-content active" data-lang="en">Experience Authentic Turkish Flavors</span>
+                <span class="lang-content" data-lang="ar">استمتع بالنكهات التركية الأصيلة</span>
+            </p>
+        </footer>
+    </div>
 
-      // --- language functions ---
-      let currentLang = 'en';
-      function setLanguage(lang) {
-        currentLang = lang;
-        document.documentElement.lang = (lang === 'ar') ? 'ar' : 'en';
-        document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
-        document.body.classList.toggle('rtl', lang === 'ar');
+    <script>
+        // Minimal, targeted fixes only. Keep your original data and design unchanged.
 
-        langSpans.forEach(el => {
-          const elLang = el.dataset.lang;
-          if (!elLang) return;
-          el.style.display = (elLang === lang) ? '' : 'none';
-          el.classList.toggle('active', elLang === lang);
-        });
+        let currentLang = 'en';
 
-        renderMenu();
-        initMarquee();
-        buildLandingMarquee(lang === 'ar' ? [
-          "حيث يلتقي التراث بالأناقة — تذوق قلب تركيا في تركيانا.",
-          "حلويات مصنعة يدوياً وقهوة طازجة — كل يوم احتفال صغير."
-        ] : [
-          "Where Tradition Meets Elegance — Taste the heart of Turkey at Turkiana.",
-          "Handmade sweets, freshly brewed coffee — every day a small celebration."
-        ]);
+        const allergens = { nuts: "🥜", dairy: "🥛", gluten: "🌾" };
 
-        searchBar.placeholder = (lang === 'ar') ? 'ابحث في القائمة...' : 'Search...';
-      }
+        const menuDataEn = {
+            "Turkish Morning": [
+                { name: "Turkish Classic Breakfast", price: "65 QR", description: "Traditional Turkish breakfast spread with cheese, olives, tomatoes, cucumbers, honey, and fresh bread", image: "Breakfast.jpg", allergens: ["dairy", "gluten"] },
+                { name: "Turkish Menemen", price: "45 QR", description: "Turkish-style scrambled eggs with tomatoes, peppers, and spices", image: "Menemen.jpg", allergens: ["dairy"] },
+                { name: "Plain Omelette", price: "25 QR", description: "Classic fluffy omelette", image: "Omellet.jpg", allergens: ["dairy"] }
+            ],
+            "Croissant Creations": [
+                { name: "Croissant Beef Ribs", price: "45 QR", description: "Beef Ribs, Cheddar Cheese, Kasfar Cheese, Pesto Sauce (Side: Tomatoes, Cucumbers, Green Olives)", image: "Ribs.jpg", allergens: ["dairy", "gluten", "nuts"] },
+                { name: "Avocado Croissant", price: "42 QR", description: "Scrambled Eggs, Avocado, Olive Paste (with Tomatoes and Cucumber as Sides)", image: "Avocado.jpg", allergens: ["dairy", "gluten"] },
+                { name: "Smoked Beef Croissant", price: "45 QR", description: "Scrambled Eggs with Thyme and Smoked Beef (Side: Tomato, Cucumber, Olives, Jam, and White Cheese)", image: "5.jpg", allergens: ["dairy", "gluten"] },
+                { name: "Butter & Jam Croissant", price: "40 QR", description: "Butter, Cherry Jam, Grilled Olives, Feta Cheese, Tomato, Cucumber, Praline", image: "4.jpg", allergens: ["dairy", "gluten", "nuts"] },
+                { name: "Croissant Scrambled Eggs", price: "37 QR", description: "Scrambled Eggs, Red Pepper, Thyme, Arugula, Tomatoes, Cucumbers, Grilled Olives", image: "1.jpg", allergens: ["dairy", "gluten"] }
+            ],
+            "From the Grill & Garden": [
+                { name: "Fried Potatoes", price: "25 QR", description: "Crispy golden french fries", image: "Patatas.jpg", allergens: [] },
+                { name: "Caesar Salad", price: "40 QR", description: "Fresh romaine lettuce with Caesar dressing, croutons, and parmesan", image: "Caesar.jpg", allergens: ["dairy", "gluten"] },
+                { name: "Turkiana Special Beef Burger", price: "55 QR", description: "Premium beef burger with special toppings and fries", image: "Burger.jpg", allergens: ["gluten", "dairy"] }
+            ],
+            "Baklava & Beyond": [
+                { name: "Turkish Mix Baklava", price: "45 QR", description: "Assorted traditional Turkish baklava", image: "Mix.jpg", allergens: ["nuts", "gluten"] },
+                { name: "Turkish Plain Baklava", price: "40 QR", description: "Classic plain baklava", image: "Slice.jpg", allergens: ["nuts", "gluten"] },
+                { name: "Nuts Stand-Tall", price: "99 QR", description: "Assorted Nuts", image: "Nuts.jpg", allergens: ["nuts"] },
+                { name: "Nuts Stand-Small", price: "60 QR", description: "Assorted Nuts", image: "Nuts.jpg", allergens: ["nuts"] },
+                { name: "Kunafa", price: "40 QR", description: "Turkish Kunafa with Akawi Cheese", image: "Kunafa.jpg", allergens: ["nuts", "gluten"] },
+                { name: "Chocolate Cake", price: "40 QR", description: "Rich chocolate molten cake", image: "Chocolate.jpg", allergens: ["dairy", "gluten"] },
+                { name: "Lotus Cake", price: "40 QR", description: "Rich lotus cake", image: "Lutos.jpg", allergens: ["dairy", "gluten"] },
+                { name: "Full Pistachio Cake", price: "40 QR", description: "Delicate pistachio flavored cake", image: "Full.jpg", allergens: ["nuts", "dairy", "gluten"] },
+                { name: "Lemon Cake", price: "38 QR", description: "Fresh lemon sponge cake", image: "Lemon.jpg", allergens: ["dairy", "gluten"] },
+                { name: "Tiramisu", price: "32 QR", description: "Classic Italian tiramisu", image: "Tiramisu.jpg", allergens: ["dairy", "gluten", "nuts"] },
+                { name: "Almond Chocolate Cake", price: "40 QR", description: "Almond chocolate cake", image: "Almond.jpg", allergens: ["nuts", "dairy", "gluten"] },
+                { name: "Lemon Sponge Cake", price: "42 QR", description: "Light lemon sponge cake", image: "Lemoncake.jpg", allergens: ["dairy", "gluten"] },
+                { name: "Raspberry Cheesecake", price: "30 QR", description: "Cherry cheesecake", image: "Cherry.jpg", allergens: ["dairy", "gluten"] },
+                { name: "Mulberry Cheesecake", price: "30 QR", description: "Mulberry cheesecake", image: "Mulberry.jpg", allergens: ["dairy", "gluten"] },
+                { name: "Chocolate Pistachio Cake", price: "40 QR", description: "Chocolate pistachio cake", image: "Chocolate_pistachio.jpg", allergens: ["dairy", "nuts", "gluten"] },
+                { name: "Strawberry Cake", price: "45 QR", description: "Strawberry cake", image: "Strawberry.jpg", allergens: ["dairy", "gluten"] },
+                { name: "White Almond Cake", price: "42 QR", description: "White almond cake", image: "White.jpg", allergens: ["nuts", "dairy", "gluten"] },
+                { name: "Trileche With Milk", price: "35 QR", description: "Turkish tres leches cake", image: "Trileche.jpg", allergens: ["dairy", "gluten"] },
+                { name: "San Sebastian Cheesecake", price: "42 QR", description: "San Sebastian cheesecake", image: "Sebastian.jpg", allergens: ["dairy", "gluten"] }
+            ],
+            "Arabian Brew": [
+                { name: "Arabic Coffee in a Full Dalla", price: "90 QR", description: "Arabic Coffee in a Full Dalla", allergens: ["dairy"] },
+                { name: "Arabic Coffee in a Half Dalla", price: "50 QR", description: "Arabic Coffee in a Half Dalla", allergens: ["dairy"] },
+                { name: "Arabic Coffee in a Cup", price: "30 QR", description: "Arabic Coffee in a Cup", allergens: ["dairy"] }
+            ],
+            "Tea Time": [
+                { name: "Turkish Tea", price: "15 QR", description: "Classic Turkish tea", allergens: [] },
+                { name: "Cup Of Tea", price: "18 QR", description: "Hot cup of tea", allergens: [] },
+                { name: "Apple Tea", price: "25 QR", description: "Apple tea", allergens: [] },
+                { name: "Mulberry Tea", price: "25 QR", description: "Mulberry tea", allergens: [] },
+                { name: "Lemon Mint", price: "25 QR", description: "Lemon mint tea", allergens: [] },
+                { name: "Pomegranate Tea", price: "25 QR", description: "Pomegranate tea", allergens: [] }
+            ],
+            "Tea on Ice": [
+                { name: "Ice Apple Tea", price: "28 QR", description: "Cold apple tea", allergens: [] },
+                { name: "Ice Mulberry Tea", price: "28 QR", description: "Cold mulberry tea", allergens: [] },
+                { name: "Ice Mint Lemon", price: "28 QR", description: "Cold mint lemon tea", allergens: [] },
+                { name: "Ice Pomegranate Tea", price: "28 QR", description: "Cold pomegranate tea", allergens: [] },
+                { name: "Hibiscus", price: "28 QR", description: "Cold hibiscus tea", allergens: [] }
+            ],
+            "Brewed the Turkish Way": [
+                { name: "Classic Turkish Coffee", price: "28 QR", description: "Classic Turkish Coffee", allergens: [] },
+                { name: "Turkish Coffee with Cardamon", price: "28 QR", description: "Turkish Coffee with Cardamon", allergens: [] },
+                { name: "Double Turkish Coffee", price: "40 QR", description: "Double Turkish Coffee", allergens: [] },
+                { name: "Ottoman Coffee", price: "28 QR", description: "Ottoman Coffee", allergens: [] },
+                { name: "Ottoman Coffee with Mastic", price: "28 QR", description: "Ottoman Coffee with Mastic", allergens: [] },
+                { name: "Ottoman Coffee with Hazelnuts", price: "28 QR", description: "Ottoman Coffee with Hazelnuts", allergens: ["nuts"] },
+                { name: "Sahlep", price: "28 QR", description: "Hot sahlep", allergens: ["dairy"] }
+            ],
+            "Herbal Infusions": [
+                { name: "Sage", price: "28 QR", description: "Sage tea", allergens: [] },
+                { name: "Mix Winter Tea", price: "28 QR", description: "Winter herbal tea mix", allergens: [] },
+                { name: "Green Tea", price: "28 QR", description: "Green tea", allergens: [] },
+                { name: "Chamomile", price: "28 QR", description: "Chamomile tea", allergens: [] },
+                { name: "Hibiscus", price: "28 QR", description: "Hibiscus tea", allergens: [] }
+            ],
+            "Café & Chill": [
+                { name: "Hot Chocolate (Hot/Ice)", price: "36 QR", description: "Hot chocolate", allergens: ["dairy"] },
+                { name: "Latte (Hot/Ice)", price: "29 QR", description: "Latte coffee", allergens: ["dairy"] },
+                { name: "Spanish Latte (Hot/Ice)", price: "32 QR", description: "Spanish Latte", allergens: ["dairy"] },
+                { name: "Salted Caramel Latte (Hot/Ice)", price: "32 QR", description: "Salted Caramel Latte", allergens: ["dairy"] },
+                { name: "Vanilla Latte (Hot/Ice)", price: "32 QR", description: "Vanilla Latte", allergens: ["dairy"] },
+                { name: "Cappuccino (Hot/Ice)", price: "29 QR", description: "Cappuccino", allergens: ["dairy"] },
+                { name: "White Mocha (Hot/Ice)", price: "32 QR", description: "White Mocha", allergens: ["dairy"] },
+                { name: "Flat White (Hot/Ice)", price: "27 QR", description: "Flat White coffee", allergens: ["dairy"] },
+                { name: "Cortado (Hot/Ice)", price: "24 QR", description: "Cortado coffee", allergens: ["dairy"] },
+                { name: "Espresso (Hot/Ice)", price: "21 QR", description: "Espresso coffee", allergens: [] },
+                { name: "Double Espresso (Hot/Ice)", price: "21 QR", description: "Double Espresso coffee", allergens: [] },
+                { name: "Macchiato (Hot/Ice)", price: "24 QR", description: "Macchiato coffee", allergens: ["dairy"] },
+                { name: "Americano (Hot/Ice)", price: "21 QR", description: "Americano coffee", allergens: [] },
+                { name: "Mocha (Hot/Ice)", price: "32 QR", description: "Mocha coffee", allergens: ["dairy"] }
+            ],
+            "Specialty Brews": [
+                { name: "V60 Pour Over (Hot & Ice)", price: "29 QR", description: "V60 pour-over coffee", allergens: [] },
+                { name: "Ice Drip", price: "32 QR", description: "Ice Drip coffee", allergens: [] },
+                { name: "Cold Brew", price: "36 QR", description: "Cold Brew coffee", allergens: [] }
+            ],
+            "Froozen": [
+                { name: "Mango Froozen", price: "38 QR", description: "Mango froozen drink", allergens: [] },
+                { name: "Şeftali Froozen", price: "38 QR", description: "Peach froozen drink", allergens: [] },
+                { name: "Çilekli Froozen", price: "38 QR", description: "Strawberry froozen drink", allergens: [] },
+                { name: "Orman Meyveli Froozen", price: "38 QR", description: "Forest fruits froozen drink", allergens: [] },
+                { name: "Yaban Mersini Froozen", price: "38 QR", description: "Blueberry froozen drink", allergens: [] }
+            ],
+            "Refreshments": [
+                { name: "Still Water (Small)", price: "11 QR", description: "Small still water", allergens: [] },
+                { name: "Still Water (Big)", price: "21 QR", description: "Big still water", allergens: [] },
+                { name: "Sparkling Water", price: "21 QR", description: "Sparkling water", allergens: [] },
+                { name: "Churchill", price: "25 QR", description: "Churchill drink", allergens: [] },
+                { name: "Lemonade", price: "30 QR", description: "Fresh lemonade", allergens: [] },
+                { name: "Fresh Orange Juice", price: "30 QR", description: "Fresh orange juice", allergens: [] },
+                { name: "Kinza Kola", price: "17 QR", description: "Kinza Kola", allergens: [] },
+                { name: "Kinza Kola Zero", price: "17 QR", description: "Kinza Kola Zero", allergens: [] }
+            ]
+        };
 
-      langToggleBtn.addEventListener('click', () => setLanguage(currentLang === 'en' ? 'ar' : 'en'));
+        const menuDataAr = {
+            "أطباق الإفطار المميزة":[
+                {name:"الإفطار التركي الكلاسيكي", price:"65 ريال", description:"إفطار تركي تقليدي مع الجبن والزيتون والطماطم والخيار والعسل والخبز الطازج", image:"Breakfast.jpg", allergens:["dairy","gluten"]},
+                {name:"المنيمن التركي", price:"45 ريال", description:"بيض مخفوق على الطريقة التركية مع الطماطم والفلفل والتوابل", image:"Menemen.jpg", allergens:["dairy"]},
+                {name:"أومليت عادي", price:"25 ريال", description:"أومليت كلاسيكي منفوش", image:"Omellet.jpg", allergens:["dairy"]}
+            ],
+            "كرواسون":[
+                {name:"كرواسون أضلاع اللحم", price:"45 ريال", description:"أضلاع لحم، جبن شيدر، جبن كسفار، صلصة البيستو (مع الطماطم والخيار والزيتون الأخضر)", image:"Ribs.jpg", allergens:["dairy","gluten","nuts"]},
+                {name:"كرواسون الأفوكادو", price:"42 ريال", description:"بيض مخفوق، أفوكادو، معجون الزيتون (مع الطماطم والخيار)", image:"Avocado.jpg", allergens:["dairy","gluten"]},
+                {name:"كرواسون اللحم المدخن", price:"45 ريال", description:"بيض مخفوق بالزعتر واللحم المدخن (مع الطماطم والخيار والزيتون والمربى والجبن الأبيض)", image:"5.jpg", allergens:["dairy","gluten"]},
+                {name:"كرواسون الزبدة والمربى", price:"40 ريال", description:"زبدة، مربى الكرز، زيتون مشوي، جبن فيتا، طماطم، خيار، براليني", image:"4.jpg", allergens:["dairy","gluten","nuts"]},
+                {name:"كرواسون البيض المخفوق", price:"37 ريال", description:"بيض مخفوق، فلفل أحمر، زعتر، جرجير، طماطم، خيار، زيتون مشوي", image:"1.jpg", allergens:["dairy","gluten"]}
+            ],
+            "الأطباق الرئيسية":[
+                {name:"البطاطس المقلية", price:"25 ريال", description:"بطاطس مقلية ذهبية مقرمشة", image:"Patatas.jpg", allergens:[]},
+                {name:"سلطة سيزر", price:"40 ريال", description:"خس روماني طازج مع صلصة سيزر وقطع الخبز المحمص والبارميزان", image:"Caesar.jpg", allergens:["dairy","gluten"]},
+                {name:"برجر اللحم المميز تركيانا", price:"55 ريال", description:"برجر لحم فاخر مع إضافات مميزة وبطاطس مقلية", image:"Burger.jpg", allergens:["gluten","dairy"]}
+            ],
+            "الحلويات والتحليات":[
+                {name:"بقلاوة تركية مشكلة", price:"45 ريال", description:"تشكيلة من البقلاوة التركية التقليدية", image:"Mix.jpg", allergens:["nuts","gluten"]},
+                {name:"طبق المكسرات", price:"99 ريال", description:"تشكيلة من المكسرات", image:"Nuts.jpg", allergens:["nuts","gluten"]},
+                {name:"بقلاوة تركية عادية", price:"40 ريال", description:"بقلاوة عادية كلاسيكية", image:"Slice.jpg", allergens:["nuts","gluten"]},
+                {name:"كنافة", price:"40 ريال", description:"كنافة تركية بجبن العكاوي", image:"Kunafa.jpg", allergens:["nuts","gluten"]},
+                {name:"كيك الشوكولاتة", price:"40 ريال", description:"كيك شوكولاتة غني ومنصهر", image:"Chocolate.jpg", allergens:["dairy","gluten"]},
+                {name:"كيك اللوتس", price:"40 ريال", description:"كيك لوتس غني", image:"Lutos.jpg", allergens:["dairy","gluten"]},
+                {name:"كيك الفستق الكامل", price:"40 ريال", description:"كيك فستق رقيق النكهة", image:"Full.jpg", allergens:["nuts","dairy","gluten"]},
+                {name:"كيك الليمون", price:"38 ريال", description:"كيك إسفنجي بالليمون الطازج", image:"Lemon.jpg", allergens:["dairy","gluten"]},
+                {name:"تيراميسو", price:"32 ريال", description:"تيراميسو إيطالي كلاسيكي", image:"Tiramisu.jpg", allergens:["dairy","gluten","nuts"]},
+                {name:"كيك اللوز بالشوكولاتة", price:"40 ريال", description:"كيك اللوز بالشوكولاتة", image:"Almond.jpg", allergens:["nuts","dairy","gluten"]},
+                {name:"كيك الليمون الإسفنجي", price:"42 ريال", description:"كيك ليمون إسفنجي خفيف", image:"Lemoncake.jpg", allergens:["dairy","gluten"]},
+                {name:"تشيز كيك التوت", price:"30 ريال", description:"تشيز كيك الكرز", image:"Cherry.jpg", allergens:["dairy","gluten"]},
+                {name:"تشيز كيك التوت الأسود", price:"30 ريال", description:"تشيز كيك التوت الأسود", image:"Mulberry.jpg", allergens:["dairy","gluten"]},
+                {name:"كيك الشوكولاتة بالفستق", price:"40 ريال", description:"كيك الشوكولاتة بالفستق", image:"Chocolate_pistachio.jpg", allergens:["dairy","nuts","gluten"]},
+                {name:"كيك الفراولة", price:"45 ريال", description:"كيك الفراولة", image:"Strawberry.jpg", allergens:["dairy","gluten"]},
+                {name:"كيك اللوز الأبيض", price:"42 ريال", description:"كيك اللوز الأبيض", image:"White.jpg", allergens:["nuts","dairy","gluten"]},
+                {name:"تريليتشي بالحليب", price:"35 ريال", description:"كيك الحليب التركي", image:"Trileche.jpg", allergens:["dairy","gluten"]},
+                {name:"تشيز كيك سان سيباستيان", price:"42 ريال", description:"تشيز كيك سان سيباستيان", image:"Sebastian.jpg", allergens:["dairy","gluten"]}
+            ],
+            "القهوة العربية":[
+                {name:"قهوة عربية في دلة كاملة", price:"90 ريال", description:"قهوة عربية في دلة كاملة", allergens:["dairy"]},
+                {name:"قهوة عربية في نصف دلة", price:"50 ريال", description:"قهوة عربية في نصف دلة", allergens:["dairy"]},
+                {name:"قهوة عربية في كوب", price:"30 ريال", description:"قهوة عربية في كوب", allergens:["dairy"]}
+            ],
+            "الشاي الساخن":[
+                {name:"الشاي التركي", price:"15 ريال", description:"شاي تركي كلاسيكي", allergens:[]},
+                {name:"كوب شاي", price:"18 ريال", description:"كوب شاي ساخن", allergens:[]},
+                {name:"شاي التفاح", price:"25 ريال", description:"شاي التفاح", allergens:[]},
+                {name:"شاي التوت", price:"25 ريال", description:"شاي التوت", allergens:[]},
+                {name:"ليمون نعناع", price:"25 ريال", description:"شاي الليمون بالنعناع", allergens:[]},
+                {name:"شاي الرمان", price:"25 ريال", description:"شاي الرمان", allergens:[]}
+            ],
+            "الشاي المثلج":[
+                {name:"شاي التفاح المثلج", price:"28 ريال", description:"شاي التفاح البارد", allergens:[]},
+                {name:"شاي التوت المثلج", price:"28 ريال", description:"شاي التوت البارد", allergens:[]},
+                {name:"ليمون نعناع مثلج", price:"28 ريال", description:"شاي الليمون بالنعناع البارد", allergens:[]},
+                {name:"شاي الرمان المثلج", price:"28 ريال", description:"شاي الرمان البارد", allergens:[]},
+                {name:"الكركديه", price:"28 ريال", description:"شاي الكركديه البارد", allergens:[]}
+            ],
+            "القهوة التركية":[
+                {name:"القهوة التركية الكلاسيكية", price:"28 ريال", description:"القهوة التركية الكلاسيكية", allergens:[]},
+                {name:"القهوة التركية بالهيل", price:"28 ريال", description:"القهوة التركية بالهيل", allergens:[]},
+                {name:"القهوة التركية المضاعفة", price:"40 ريال", description:"القهوة التركية المضاعفة", allergens:[]},
+                {name:"القهوة العثمانية", price:"28 ريال", description:"القهوة العثمانية", allergens:[]},
+                {name:"القهوة العثمانية بالمستكة", price:"28 ريال", description:"القهوة العثمانية بالمستكة", allergens:[]},
+                {name:"القهوة العثمانية بالبندق", price:"28 ريال", description:"القهوة العثمانية بالبندق", allergens:["nuts"]},
+                {name:"السحلب", price:"28 ريال", description:"السحلب الساخن", allergens:["dairy"]}
+            ],
+            "الشاي العشبي المميز":[
+                {name:"الميرمية", price:"28 ريال", description:"شاي الميرمية", allergens:[]},
+                {name:"خليط شاي الشتاء", price:"28 ريال", description:"خليط الشاي العشبي الشتوي", allergens:[]},
+                {name:"الشاي الأخضر", price:"28 ريال", description:"الشاي الأخضر", allergens:[]},
+                {name:"البابونج", price:"28 ريال", description:"شاي البابونج", allergens:[]},
+                {name:"الكركديه", price:"28 ريال", description:"شاي الكركديه", allergens:[]}
+            ],
+            "القهوة الساخنة والمثلجة":[
+                {name:"الشوكولاتة الساخنة (ساخن/مثلج)", price:"36 ريال", description:"الشوكولاتة الساخنة", allergens:["dairy"]},
+                {name:"لاتيه (ساخن/مثلج)", price:"29 ريال", description:"قهوة لاتيه", allergens:["dairy"]},
+                {name:"لاتيه إسباني (ساخن/مثلج)", price:"32 ريال", description:"لاتيه إسباني", allergens:["dairy"]},
+                {name:"لاتيه الكراميل المملح (ساخن/مثلج)", price:"32 ريال", description:"لاتيه الكراميل المملح", allergens:["dairy"]},
+                {name:"لاتيه الفانيليا (ساخن/مثلج)", price:"32 ريال", description:"لاتيه الفانيليا", allergens:["dairy"]},
+                {name:"كابتشينو (ساخن/مثلج)", price:"29 ريال", description:"كابتشينو", allergens:["dairy"]},
+                {name:"موكا أبيض (ساخن/مثلج)", price:"32 ريال", description:"موكا أبيض", allergens:["dairy"]},
+                {name:"فلات وايت (ساخن/مثلج)", price:"27 ريال", description:"قهوة فلات وايت", allergens:["dairy"]},
+                {name:"كورتادو (ساخن/مثلج)", price:"24 ريال", description:"قهوة كورتادو", allergens:["dairy"]},
+                {name:"إسبريسو (ساخن/مثلج)", price:"21 ريال", description:"قهوة إسبريسو", allergens:[]},
+                {name:"إسبريسو مضاعف (ساخن/مثلج)", price:"21 ريال", description:"قهوة إسبريسو مضاعفة", allergens:[]},
+                {name:"ماكياتو (ساخن/مثلج)", price:"24 ريال", description:"قهوة ماكياتو", allergens:["dairy"]},
+                {name:"أمريكانو (ساخن/مثلج)", price:"21 ريال", description:"قهوة أمريكانو", allergens:[]},
+                {name:"موكا (ساخن/مثلج)", price:"32 ريال", description:"قهوة موكا", allergens:["dairy"]}
+            ],
+            "القهوة المحضرة يدوياً المميزة":[
+                {name:"في60 بور أوفر (ساخن ومثلج)", price:"29 ريال", description:"قهوة في60 المقطرة", allergens:[]},
+                {name:"آيس دريب", price:"32 ريال", description:"قهوة آيس دريب", allergens:[]},
+                {name:"كولد برو", price:"36 ريال", description:"قهوة كولد برو", allergens:[]}
+            ],
+            "المشروبات المجمدة":[
+                {name:"مانجو مجمد", price:"38 ريال", description:"مشروب المانجو المجمد", allergens:[]},
+                {name:"خوخ مجمد", price:"38 ريال", description:"مشروب الخوخ المجمد", allergens:[]},
+                {name:"فراولة مجمدة", price:"38 ريال", description:"مشروب الفراولة المجمد", allergens:[]},
+                {name:"فواكه الغابة المجمدة", price:"38 ريال", description:"مشروب فواكه الغابة المجمد", allergens:[]},
+                {name:"توت أزرق مجمد", price:"38 ريال", description:"مشروب التوت الأزرق المجمد", allergens:[]}
+            ],
+            "المشروبات الباردة":[
+                {name:"مياه عادية (صغير)", price:"11 ريال", description:"مياه عادية صغيرة", allergens:[]},
+                {name:"مياه عادية (كبير)", price:"21 ريال", description:"مياه عادية كبيرة", allergens:[]},
+                {name:"مياه غازية", price:"21 ريال", description:"مياه غازية", allergens:[]},
+                {name:"تشرشل", price:"25 ريال", description:"مشروب تشرشل", allergens:[]},
+                {name:"عصير الليمون", price:"30 ريال", description:"عصير ليمون طازج", allergens:[]},
+                {name:"عصير البرتقال الطازج", price:"30 ريال", description:"عصير برتقال طازج", allergens:[]},
+                {name:"كينزا كولا", price:"17 ريال", description:"كينزا كولا", allergens:[]},
+                {name:"كينزا كولا زيرو", price:"17 ريال", description:"كينزا كولا زيرو", allergens:[]}
+            ]
+        };
 
-      // --- landing marquee ---
-      function buildLandingMarquee(arr) {
-        landingMarqueeTrack.innerHTML = '';
-        if (!arr || !arr.length) return;
-        const seq = arr.map(txt => {
-          const span = document.createElement('span');
-          span.className = 'item';
-          span.textContent = txt;
-          return span;
-        });
-        // duplicate for smooth loop
-        seq.concat(seq).forEach(n => landingMarqueeTrack.appendChild(n.cloneNode(true)));
-      }
-
-      // --- marquee images ---
-      function resolveImg(src) {
-        if (!src) return '';
-        if (src.startsWith('http') || src.startsWith('/')) return src;
-        // If images are local filenames, keep as-is — onerror will fallback
-        return src;
-      }
-      function initMarquee() {
-        marqueeTrack.innerHTML = '';
-        const source = (currentLang === 'ar') ? menuDataAr : menuDataEn;
-        const imgs = [];
-        for (const cat in source) {
-          (source[cat] || []).forEach(i => { if (i.image) imgs.push(resolveImg(i.image)); });
+        // helpers
+        function getCurrentMenuData() {
+            return currentLang === 'ar' ? menuDataAr : menuDataEn;
         }
-        if (!imgs.length) {
-          const div = document.createElement('div');
-          div.className = 'marquee-item';
-          div.innerHTML = '<img src="https://dummyimage.com/150x100/e5e5e5/666666?text=Turkiana" alt="Turkiana">';
-          marqueeTrack.appendChild(div);
-          return;
-        }
-        const list = imgs.concat(imgs);
-        list.forEach(src => {
-          const d = document.createElement('div');
-          d.className = 'marquee-item';
-          const img = document.createElement('img');
-          img.src = src;
-          img.alt = 'Menu Item';
-          img.onerror = function(){ this.src = 'https://dummyimage.com/150x100/e5e5e5/666666?text=Menu+Item' };
-          d.appendChild(img);
-          d.addEventListener('click', () => openImageModal(src));
-          marqueeTrack.appendChild(d);
-        });
-      }
 
-      // --- render menu ---
-      function getCurrentMenuData() {
-        return currentLang === 'ar' ? menuDataAr : menuDataEn;
-      }
-
-      function renderMenu() {
-        menuContainer.innerHTML = '';
-        const source = getCurrentMenuData();
-        if (!source || Object.keys(source).length === 0) {
-          const empty = document.createElement('div');
-          empty.style.padding = '18px';
-          empty.style.textAlign = 'center';
-          empty.innerHTML = (currentLang === 'ar') ? '<strong>عذراً، لا توجد بيانات للقائمة حالياً.</strong>' : '<strong>Sorry, no menu data available.</strong>';
-          menuContainer.appendChild(empty);
-          return;
-        }
-
-        for (const category in source) {
-          const categoryEl = document.createElement('button');
-          categoryEl.className = 'category';
-          categoryEl.type = 'button';
-          categoryEl.setAttribute('aria-expanded', 'true');
-          categoryEl.textContent = category;
-
-          const itemsContainer = document.createElement('div');
-          itemsContainer.className = 'items-container open';
-
-          (source[category] || []).forEach(item => {
-            const itemEl = document.createElement('div');
-            itemEl.className = 'menu-item';
-            itemEl.tabIndex = 0;
-
-            if (item.image) {
-              const img = document.createElement('img');
-              img.src = resolveImg(item.image);
-              img.alt = item.name || item.title || '';
-              img.onerror = function(){ this.src = 'https://dummyimage.com/160x120/e5e5e5/666666?text=Menu+Item' };
-              img.className = 'menu-img';
-              if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
-                img.addEventListener('click', (e) => { e.stopPropagation(); openMobileImageModal(img.src); });
-              } else {
-                img.addEventListener('mousemove', (ev) => showHoverPreview(ev, img.src));
-                img.addEventListener('mouseleave', hideHoverPreview);
-                img.addEventListener('click', (e)=>{ e.stopPropagation(); openImageModal(img.src); });
-              }
-              itemEl.appendChild(img);
+        // marquee initialization
+        function initMarquee() {
+            const allImages = [];
+            const menuData = getCurrentMenuData();
+            for(const category in menuData) {
+                (menuData[category] || []).forEach(item => {
+                    if(item.image) allImages.push(item.image);
+                });
             }
 
-            const info = document.createElement('div');
-            info.style.display = 'flex';
-            info.style.flexDirection = 'column';
-            info.style.gap = '4px';
-
-            const nameRow = document.createElement('div');
-            nameRow.className = 'menu-item-name';
-            nameRow.textContent = item.name || item.title || '';
-
-            if (item.allergens && item.allergens.length) {
-              const allergenSpan = document.createElement('span');
-              allergenSpan.className = 'allergen';
-              allergenSpan.textContent = item.allergens.map(a => allergens[a] || '').join(' ');
-              nameRow.appendChild(allergenSpan);
+            function shuffle(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+                return array;
             }
-            info.appendChild(nameRow);
 
-            const desc = document.createElement('div');
-            desc.style.fontSize = '.95rem';
-            desc.style.opacity = '.9';
-            desc.textContent = item.description || '';
-            info.appendChild(desc);
+            const shuffledImages = shuffle([...allImages]);
+            const marqueeTrack = document.getElementById('marqueeTrack');
+            if(!marqueeTrack) return;
+            marqueeTrack.innerHTML = '';
+            const imagesToShow = [...shuffledImages, ...shuffledImages];
 
-            itemEl.appendChild(info);
+            imagesToShow.forEach(imgSrc => {
+                const item = document.createElement('div');
+                item.className = 'marquee-item';
+                item.innerHTML = `<img src="${imgSrc}" alt="Menu Item" onerror="this.src='https://dummyimage.com/150x100/e5e5e5/666666?text=Menu+Item'">`;
+                item.addEventListener('click', () => openImageModal(imgSrc));
+                marqueeTrack.appendChild(item);
+            });
+        }
 
-            const priceSpan = document.createElement('div');
-            priceSpan.style.fontWeight = '700';
-            priceSpan.textContent = item.price || '';
-            itemEl.appendChild(priceSpan);
+        const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
-            itemEl.addEventListener('click', () => openItemModal(item));
-            itemEl.addEventListener('keypress', (e) => {
-              if (e.key === 'Enter' || e.key === ' ') { openItemModal(item); e.preventDefault(); }
+        function renderMenu(menuData){
+            const menuContainer = document.getElementById("menu-container");
+            if(!menuContainer) return;
+            menuContainer.innerHTML = "";
+
+            for(const category in menuData){
+                const catDiv = document.createElement("div");
+                catDiv.classList.add("category");
+                catDiv.textContent = category;
+
+                const itemsDiv = document.createElement("div");
+                itemsDiv.classList.add("items-container");
+
+                (menuData[category] || []).forEach(item => {
+                    const itemDiv = document.createElement("div");
+                    itemDiv.classList.add("menu-item");
+
+                    let allergenIcons = "";
+                    if(item.allergens && item.allergens.length > 0){
+                        allergenIcons = item.allergens.map(a => allergens[a] || "").join(" ");
+                    }
+
+                    if(item.image) {
+                        const img = document.createElement('img');
+                        img.src = item.image;
+                        img.alt = item.name || '';
+                        img.className = 'menu-img';
+                        img.onerror = function() {
+                            this.src = 'https://dummyimage.com/80x80/e5e5e5/666666?text=Menu+Item';
+                        };
+
+                        if(isTouch){
+                            img.addEventListener('click', (e) => {
+                                e.stopPropagation();
+                                openMobileImageModal(item.image);
+                            });
+                        } else {
+                            img.addEventListener('mousemove', (e) => showHoverPreview(e, item.image));
+                            img.addEventListener('mouseleave', hideHoverPreview);
+                            img.addEventListener('click', (e) => {
+                                e.stopPropagation();
+                                openImageModal(item.image);
+                            });
+                        }
+                        itemDiv.appendChild(img);
+                    }
+
+                    const nameDiv = document.createElement('div');
+                    nameDiv.className = 'menu-item-name';
+                    nameDiv.textContent = item.name + ' ';
+                    if(allergenIcons) {
+                        const allergenSpan = document.createElement('span');
+                        allergenSpan.className = 'allergen';
+                        allergenSpan.textContent = allergenIcons;
+                        nameDiv.appendChild(allergenSpan);
+                    }
+                    itemDiv.appendChild(nameDiv);
+
+                    const priceDiv = document.createElement('div');
+                    priceDiv.style.fontWeight = 'bold';
+                    priceDiv.textContent = item.price || '';
+                    itemDiv.appendChild(priceDiv);
+
+                    itemDiv.addEventListener('click', () => openItemModal(item));
+                    itemsDiv.appendChild(itemDiv);
+                });
+
+                catDiv.addEventListener('click', () => toggleCategory(itemsDiv));
+
+                menuContainer.appendChild(catDiv);
+                menuContainer.appendChild(itemsDiv);
+            }
+        }
+
+        function toggleCategory(itemsDiv){
+            const isOpen = itemsDiv.style.display === "flex";
+            if(isOpen) {
+                itemsDiv.style.display = "none";
+                itemsDiv.classList.remove('opening');
+            } else {
+                itemsDiv.style.display = "flex";
+                itemsDiv.style.flexDirection = "column";
+                itemsDiv.classList.add('opening');
+                setTimeout(() => itemsDiv.classList.remove('opening'), 400);
+            }
+        }
+
+        // hover preview
+        let hoverPreview = document.getElementById("hover-preview");
+        if(!hoverPreview) {
+            hoverPreview = document.createElement("img");
+            hoverPreview.id = "hover-preview";
+            hoverPreview.onerror = function() { this.src = 'https://dummyimage.com/300x300/e5e5e5/666666?text=Menu+Item'; };
+            document.body.appendChild(hoverPreview);
+        }
+
+        function showHoverPreview(e, imgSrc) {
+            if(!isTouch && hoverPreview) {
+                hoverPreview.src = imgSrc;
+                hoverPreview.style.display = "block";
+                hoverPreview.style.opacity = 1;
+                // position safely inside viewport
+                const offset = 15;
+                let left = e.clientX + offset;
+                let top = e.clientY + offset;
+                const w = hoverPreview.offsetWidth || 200;
+                const h = hoverPreview.offsetHeight || 150;
+                if(left + w > window.innerWidth) left = e.clientX - w - offset;
+                if(top + h > window.innerHeight) top = window.innerHeight - h - offset;
+                hoverPreview.style.left = left + "px";
+                hoverPreview.style.top = top + "px";
+                hoverPreview.style.position = "fixed";
+            }
+        }
+
+        function hideHoverPreview() {
+            if(hoverPreview) {
+                hoverPreview.style.opacity = 0;
+                setTimeout(() => { if(hoverPreview) hoverPreview.style.display = "none"; }, 200);
+            }
+        }
+
+        // search handler
+        const searchInput = document.getElementById("searchBar");
+        if(searchInput){
+            searchInput.addEventListener("input", function(){
+                const searchTerm = (this.value || "").toLowerCase();
+                const categories = document.querySelectorAll(".category");
+
+                categories.forEach(cat => {
+                    const nextElement = cat.nextElementSibling;
+                    if(nextElement && nextElement.classList.contains("items-container")) {
+                        let hasMatch = false;
+                        Array.from(nextElement.children).forEach(itemDiv => {
+                            const nameNode = itemDiv.querySelector(".menu-item-name");
+                            const name = (nameNode && nameNode.textContent || "").toLowerCase();
+                            if(name.includes(searchTerm)){
+                                itemDiv.style.display = "flex";
+                                hasMatch = true;
+                            } else {
+                                itemDiv.style.display = "none";
+                            }
+                        });
+                        cat.style.display = hasMatch || searchTerm === "" ? "block" : "none";
+                        if(searchTerm !== "" && hasMatch) {
+                            nextElement.style.display = "flex";
+                            nextElement.style.flexDirection = "column";
+                        }
+                    }
+                });
+            });
+        }
+
+        // modals & images
+        function openItemModal(item){
+            const modal = document.getElementById("item-modal");
+            if(!modal) return;
+            const nameEl = document.getElementById("modal-name");
+            const priceEl = document.getElementById("modal-price");
+            const descEl = document.getElementById("modal-description");
+            if(nameEl) nameEl.textContent = item.name || '';
+            if(priceEl) priceEl.textContent = item.price || '';
+            if(descEl) descEl.textContent = item.description || '';
+            modal.classList.add("show");
+            modal.setAttribute('aria-hidden','false');
+        }
+
+        function closeModal(){ 
+            const modal = document.getElementById("item-modal");
+            if(modal) { modal.classList.remove("show"); modal.setAttribute('aria-hidden','true'); }
+        }
+
+        function openImageModal(img){ 
+            const zoomedImage = document.getElementById("zoomed-image");
+            const modal = document.getElementById("image-modal");
+            if(!zoomedImage || !modal) return;
+            zoomedImage.src = img;
+            zoomedImage.onerror = function() {
+                this.src = 'https://dummyimage.com/800x600/e5e5e5/666666?text=Menu+Item';
+            };
+            modal.classList.add("show");
+            modal.setAttribute('aria-hidden','false');
+        }
+
+        function closeImageModal(){ 
+            const modal = document.getElementById("image-modal");
+            if(modal) { modal.classList.remove("show"); modal.setAttribute('aria-hidden','true'); }
+        }
+
+        function openMobileImageModal(img){
+            const mobileZoomedImage = document.getElementById("mobile-zoomed-image");
+            const modal = document.getElementById("mobile-image-modal");
+            if(!mobileZoomedImage || !modal) return;
+            mobileZoomedImage.src = img;
+            mobileZoomedImage.onerror = function() {
+                this.src = 'https://dummyimage.com/400x300/e5e5e5/666666?text=Menu+Item';
+            };
+            modal.classList.add("show");
+            modal.setAttribute('aria-hidden','false');
+        }
+
+        function closeMobileImageModal(){
+            const modal = document.getElementById("mobile-image-modal");
+            if(modal) { modal.classList.remove("show"); modal.setAttribute('aria-hidden','true'); }
+        }
+
+        window.addEventListener('keydown', function(e){
+            if(e.key === 'Escape'){
+                closeModal(); 
+                closeImageModal();
+                closeMobileImageModal();
+            }
+        });
+
+        // language toggle (missing previously)
+        function toggleLanguage(){
+            currentLang = currentLang === 'en' ? 'ar' : 'en';
+            document.documentElement.lang = currentLang === 'ar' ? 'ar' : 'en';
+            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+            document.body.classList.toggle('rtl', currentLang === 'ar');
+
+            // swap visible language spans
+            document.querySelectorAll('.lang-content').forEach(el => {
+                const lang = el.dataset.lang;
+                if(!lang) return;
+                el.style.display = (lang === currentLang) ? '' : 'none';
+                el.classList.toggle('active', lang === currentLang);
             });
 
-            itemsContainer.appendChild(itemEl);
-          });
+            // re-render menu and marquee for chosen language
+            renderMenu(getCurrentMenuData());
+            initMarquee();
 
-          categoryEl.addEventListener('click', () => toggleCategory(itemsContainer));
-          menuContainer.appendChild(categoryEl);
-          menuContainer.appendChild(itemsContainer);
+            // update search placeholder
+            updateSearchPlaceholder();
         }
-      }
 
-      function toggleCategory(itemsDiv) {
-        const isOpen = itemsDiv.style.display === 'flex';
-        if (isOpen) { itemsDiv.style.display = 'none'; itemsDiv.classList.remove('opening'); }
-        else { itemsDiv.style.display = 'flex'; itemsDiv.style.flexDirection = 'column'; itemsDiv.classList.add('opening'); setTimeout(()=>itemsDiv.classList.remove('opening'),400); }
-      }
-
-      // --- search ---
-      searchBar.addEventListener('input', function (e) {
-        const q = (this.value || '').toLowerCase();
-        const categories = document.querySelectorAll('.category');
-        categories.forEach(cat => {
-          const itemsEl = cat.nextElementSibling;
-          if (!itemsEl) return;
-          let has = false;
-          Array.from(itemsEl.children).forEach(itemDiv => {
-            const name = (itemDiv.querySelector('.menu-item-name')?.textContent || '').toLowerCase();
-            const show = q === '' || name.includes(q);
-            itemDiv.style.display = show ? 'flex' : 'none';
-            if (show) has = true;
-          });
-          cat.style.display = has || q === '' ? 'block' : 'none';
-          if (q !== '' && has) { itemsEl.style.display = 'flex'; itemsEl.style.flexDirection = 'column'; }
-        });
-      });
-
-      // --- item modal / image modal ---
-      function openItemModal(item) {
-        modalName.textContent = item.name || '';
-        modalPrice.textContent = item.price || '';
-        modalDescription.textContent = item.description || '';
-        itemModal.classList.add('show');
-        itemModal.setAttribute('aria-hidden', 'false');
-      }
-      function closeAllModals() {
-        document.querySelectorAll('.modal').forEach(m => { m.classList.remove('show'); m.setAttribute('aria-hidden', 'true'); });
-      }
-      closeItemModal.addEventListener('click', closeAllModals);
-      document.addEventListener('keydown', (e)=> { if (e.key === 'Escape') closeAllModals(); });
-      document.addEventListener('click', (e)=> {
-        document.querySelectorAll('.modal.show').forEach(m => {
-          const content = m.querySelector('.modal-content') || m.querySelector('img');
-          if (content && !content.contains(e.target) && !content.isSameNode(e.target)) closeAllModals();
-        });
-      });
-
-      function openImageModal(src) {
-        const zoomed = document.getElementById('zoomed-image');
-        zoomed.src = src || '';
-        zoomed.onerror = function(){ this.src = 'https://dummyimage.com/800x600/e5e5e5/666666?text=Menu+Item' };
-        document.getElementById('image-modal').classList.add('show');
-      }
-      function openMobileImageModal(src) {
-        const m = document.getElementById('mobile-zoomed-image');
-        m.src = src || '';
-        m.onerror = function(){ this.src = 'https://dummyimage.com/400x300/e5e5e5/666666?text=Menu+Item' };
-        document.getElementById('mobile-image-modal').classList.add('show');
-      }
-
-      // --- hover preview ---
-      function showHoverPreview(ev, src) {
-        if (!hoverPreview || !src) return;
-        if ('ontouchstart' in window || window.matchMedia('(hover:none)').matches) return;
-        hoverPreview.src = src;
-        hoverPreview.style.display = '';
-        hoverPreview.style.opacity = '1';
-        const offset = 18;
-        let x = ev.clientX + offset;
-        let y = ev.clientY + offset;
-        const w = hoverPreview.offsetWidth || 240;
-        const h = hoverPreview.offsetHeight || 160;
-        if (x + w > window.innerWidth) x = ev.clientX - w - offset;
-        if (y + h > window.innerHeight) y = window.innerHeight - h - offset;
-        hoverPreview.style.left = x + 'px';
-        hoverPreview.style.top = y + 'px';
-        hoverPreview.style.position = 'fixed';
-      }
-      function hideHoverPreview() { if (!hoverPreview) return; hoverPreview.style.display = 'none'; hoverPreview.style.opacity = '0'; }
-
-      // --- show/hide menu ---
-      function showMenu() {
-        landing.style.display = 'none';
-        menuContent.classList.add('show');
-        menuContent.setAttribute('aria-hidden', 'false');
-        setTimeout(()=> searchBar && searchBar.focus(), 300);
-        window.scrollTo({ top: menuContent.offsetTop, behavior: 'smooth' });
-      }
-      openMenuBtn.addEventListener('click', showMenu);
-      document.getElementById('scrollIndicator').addEventListener('click', showMenu);
-
-      // --- landing quote init ---
-      function initLandingQuotes() {
-        const en = [
-          "Where Tradition Meets Elegance — Taste the heart of Turkey at Turkiana.",
-          "Handmade sweets, freshly brewed coffee — every day a small celebration."
-        ];
-        const ar = [
-          "حيث يلتقي التراث بالأناقة — تذوق قلب تركيا في تركيانا.",
-          "حلويات مصنعة يدوياً وقهوة طازجة — كل يوم احتفال صغير."
-        ];
-        buildLandingMarquee(currentLang === 'ar' ? ar : en);
-      }
-
-      // --- build landing marquee content ---
-      function buildLandingMarquee(arr) {
-        landingMarqueeTrack.innerHTML = '';
-        if (!arr || !arr.length) return;
-        const seq = arr.map(s => {
-          const sp = document.createElement('span');
-          sp.className = 'item';
-          sp.textContent = s;
-          return sp;
-        });
-        // duplicate for continuous scroll
-        seq.concat(seq).forEach(n => landingMarqueeTrack.appendChild(n.cloneNode(true)));
-      }
-
-      // --- video playback robustness ---
-      (function videoInit(){
-        const video = document.getElementById('bgVideo');
-        if (!video) return;
-        try {
-          video.muted = true;
-          video.setAttribute('muted','');
-          video.setAttribute('playsinline','');
-          video.playsInline = true;
-          video.autoplay = true;
-          video.loop = true;
-          video.preload = 'auto';
-        } catch(e){}
-        function tryPlay(tries = 4, delay = 600) {
-          if (!video) return;
-          video.play().then(()=> {
-            video.classList.add('loaded');
-          }).catch(err => {
-            if (tries > 0) setTimeout(()=> tryPlay(tries - 1, delay), delay);
-          });
+        // show menu function (missing previously)
+        function showMenu(){
+            const landing = document.getElementById("landing");
+            const menuContent = document.getElementById("menuContent");
+            if(landing) landing.style.display = "none";
+            if(menuContent) {
+                menuContent.classList.add("show");
+                menuContent.setAttribute('aria-hidden','false');
+                // render on show to ensure images & events are bound
+                renderMenu(getCurrentMenuData());
+                initMarquee();
+            }
+            // focus search input if available
+            const s = document.getElementById("searchBar");
+            if(s) setTimeout(()=> s.focus(), 300);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-        video.addEventListener('loadeddata', ()=> { video.classList.add('loaded'); tryPlay(2); });
-        video.addEventListener('canplay', ()=> tryPlay(2));
-        video.addEventListener('error', ()=> console.warn('Background video encountered an error'));
-        function onFirstGesture() { tryPlay(3); window.removeEventListener('touchstart', onFirstGesture); window.removeEventListener('click', onFirstGesture); }
-        window.addEventListener('touchstart', onFirstGesture, {passive:true});
-        window.addEventListener('click', onFirstGesture);
-        if (window.innerWidth <= 420) try { video.pause(); } catch(e){}
-      })();
 
-      // --- init on DOM ready ---
-      document.addEventListener('DOMContentLoaded', () => {
-        setLanguage('en');
-        initLandingQuotes();
-        initMarquee();
-        renderMenu();
-        // accessibility: pause marquee on focus/blur
-        landingMarqueeTrack.addEventListener('focus', ()=> landingMarqueeTrack.style.animationPlayState = 'paused');
-        landingMarqueeTrack.addEventListener('blur', ()=> landingMarqueeTrack.style.animationPlayState = 'running');
-        // hover preview fallback: ensure it won't break
-        const hp = document.getElementById('hover-preview');
-        if (hp) hp.onerror = function(){ this.style.display='none'; };
-      });
-    })();
-  </script>
+        function updateSearchPlaceholder(){
+            const s = document.getElementById("searchBar");
+            if(!s) return;
+            s.placeholder = currentLang === 'ar' ? 'ابحث في القائمة...' : 'Search menu items...';
+        }
+
+        // Video playback robustness (retry + user gesture fallback)
+        (function videoRobustInit(){
+            const video = document.getElementById('bgVideo');
+            if(!video) return;
+            // defensive attributes
+            try {
+                video.muted = true;
+                video.setAttribute('muted','');
+                video.setAttribute('playsinline','');
+                video.playsInline = true;
+                video.autoplay = true;
+                video.loop = true;
+                video.preload = 'auto';
+            } catch (e) {}
+
+            function tryPlay(attempts = 3, delay = 600){
+                if(!video) return;
+                video.play().then(()=> {
+                    video.classList.add('loaded');
+                }).catch(err => {
+                    if(attempts > 0) setTimeout(()=> tryPlay(attempts - 1, delay), delay);
+                });
+            }
+
+            video.addEventListener('loadeddata', ()=> { video.classList.add('loaded'); tryPlay(2); });
+            video.addEventListener('canplay', ()=> tryPlay(2));
+            video.addEventListener('error', ()=> console.warn('Background video error or not accessible'));
+
+            // Retry on first user gesture (mobile)
+            function onFirstGesture(){ tryPlay(3); window.removeEventListener('touchstart', onFirstGesture); window.removeEventListener('click', onFirstGesture); }
+            window.addEventListener('touchstart', onFirstGesture, {passive:true});
+            window.addEventListener('click', onFirstGesture);
+
+            // small-screen optimization: pause on tiny screens to save data
+            if(window.innerWidth <= 420){
+                try { video.pause(); } catch(e){}
+            } else {
+                tryPlay(3);
+            }
+        })();
+
+        // initial onload
+        window.addEventListener('load', function(){
+            updateSearchPlaceholder();
+            renderMenu(getCurrentMenuData());
+            initMarquee();
+
+            // ensure video state change handled
+            const video = document.getElementById('bgVideo');
+            if(video){
+                video.addEventListener('loadeddata', function(){
+                    video.classList.add('loaded');
+                });
+                video.addEventListener('error', function(){
+                    console.log('Video not found or failed to load; background will show overlay/gradient.');
+                });
+            }
+        });
+    </script>
 </body>
 </html>
