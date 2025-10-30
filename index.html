@@ -2,137 +2,170 @@
 <html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>Turkiana Cafe & Sweets | مقهى وحلويات تركيانا</title>
+
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Cairo:wght@300;400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
   <style>
-    /* Reset & variables */
-    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-    :root {
-      --bg-black: #0b0b0b;
-      --gold: #caa84a;
-      --accent-deep: #800020;
-      --paper: #fffaf5;
+    /* Reset & base */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family: 'Cormorant Garamond', serif;
+      background:#0a0a0a;color:#fff;overflow-x:hidden;
+      -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
     }
-    html,body { height:100%; }
-    body { font-family: 'Cormorant Garamond', serif; background: var(--bg-black); color:#fff; overflow-x:hidden; }
+    body.rtl{direction:rtl}
 
     /* Language toggle */
-    .language-toggle {
-      position: fixed; top: 18px; right: 18px; z-index:1200;
-      background: rgba(202,168,74,0.94); color:#0b0b0b; padding:.45rem .85rem; border-radius:999px; cursor:pointer; font-weight:700;
+    .language-toggle{
+      position:fixed;top:18px;right:18px;z-index:1200;
+      background:rgba(202,168,74,0.95);padding:.5rem .85rem;border-radius:999px;
+      color:#0a0a0a;font-weight:700;font-size:.9rem;cursor:pointer;display:flex;gap:.5rem;align-items:center;
       box-shadow:0 8px 30px rgba(0,0,0,.35);
     }
-    body.rtl .language-toggle { right:auto; left:18px; }
+    body.rtl .language-toggle{right:auto;left:18px}
 
-    /* Landing & video */
-    .landing-section { position:relative; width:100%; height:100vh; overflow:hidden; display:flex; align-items:center; justify-content:center; }
-    .video-background { position:absolute; inset:0; z-index:0; background:#000; overflow:hidden; }
-    /* Very visible video: high default opacity and subtle scale animation */
-    .video-background video {
-      position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
-      opacity:0.95; transform:scale(1.02); transition: opacity .6s ease, transform 10s linear;
-      display:block; background:#000;
+    /* Landing / video */
+    .landing-section{position:relative;width:100%;height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center}
+    .video-background{position:absolute;inset:0;z-index:0;overflow:hidden;background:#000}
+    /* Make video highly visible */
+    .video-background video{
+      position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.95;display:block;background:#000;
+      transform:scale(1.02);transition:opacity .6s ease,transform 10s linear;
     }
-    .video-background video.loaded { opacity:1; transform:scale(1); }
-    /* Hide the heavy video on very small screens to save bandwidth (poster remains) */
-    @media (max-width:420px) { .video-background { display:none; } }
+    .video-background video.loaded{opacity:1;transform:scale(1)}
+    @media (max-width:420px){ .video-background{display:none} }
+    .overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.14),rgba(18,6,6,0.18));z-index:1;pointer-events:none}
 
-    .overlay {
-      position:absolute; inset:0; z-index:1;
-      background: linear-gradient(180deg, rgba(0,0,0,0.14), rgba(18,6,6,0.18));
-      pointer-events:none;
+    .container{position:relative;z-index:2;padding:2rem;text-align:center;max-width:1100px;margin:0 auto}
+    .logo{font-family:'Playfair Display',serif;font-size:3.8rem;color:#d4af37;font-weight:900;letter-spacing:.12rem;text-transform:uppercase}
+    body.rtl .logo{font-family:'Cairo',serif;text-transform:none;letter-spacing:.04rem}
+    .subtitle{font-size:1.25rem;color:#f5e6d3;margin-top:.4rem}
+    .tagline{color:#c9a961;font-style:italic;margin-top:.6rem;font-size:1.05rem}
+    .divider{width:200px;height:2px;background:linear-gradient(90deg,transparent,#d4af37,#8b0000,#d4af37,transparent);margin:1.4rem auto;opacity:.9}
+    .menu-button{margin-top:2.2rem;padding:.9rem 2.2rem;border-radius:999px;border:2px solid #d4af37;background:linear-gradient(135deg,#d4af37,#f5e6d3);color:#0a0a0a;font-weight:800;cursor:pointer}
+    .scroll-indicator{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);z-index:3;color:#d4af37;font-size:1.4rem;cursor:pointer;opacity:.95}
+
+    /* Landing marquee quote */
+    .landing-marquee-wrap{position:absolute;left:0;right:0;top:10%;z-index:3;display:flex;justify-content:center;pointer-events:none}
+    .landing-marquee{pointer-events:auto;width:100%;max-width:1200px;background:rgba(0,0,0,0.22);border-radius:999px;padding:8px 14px;display:flex;align-items:center;overflow:hidden;box-shadow:0 8px 28px rgba(0,0,0,.45)}
+    .landing-marquee .track{display:inline-flex;white-space:nowrap;gap:3.2rem;align-items:center;animation:marquee-left 18s linear infinite;font-weight:600;font-size:1.05rem;color:#fff}
+    body.rtl .landing-marquee .track{animation:marquee-right 18s linear infinite}
+    .landing-marquee .track>.item{display:inline-flex;align-items:center;gap:.8rem}
+    .landing-marquee:hover .track,.landing-marquee:focus-within .track{animation-play-state:paused}
+    @keyframes marquee-left{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+    @keyframes marquee-right{0%{transform:translateX(-50%)}100%{transform:translateX(0)}}
+
+    /* Menu content */
+    .menu-content{display:none;opacity:0;transform:translateY(20px);transition:opacity .5s,transform .5s;min-height:100vh;background:transparent;color:#2b1a0f}
+    .menu-content.show{display:block;opacity:1;transform:none}
+
+    .floating-marquee{position:sticky;top:0;width:100%;height:120px;z-index:55;background:rgba(61,20,20,.75);backdrop-filter:blur(12px) saturate(160%);display:flex;align-items:center;overflow:hidden;border-bottom:1px solid rgba(212,175,55,.12)}
+    .marquee-track{display:flex;gap:14px;padding:12px 18px;align-items:center;animation:scroll-left 40s linear infinite}
+    body.rtl .marquee-track{animation:scroll-right 40s linear infinite}
+    @keyframes scroll-left{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+    @keyframes scroll-right{0%{transform:translateX(-50%)}100%{transform:translateX(0)}}
+    .marquee-item{flex:0 0 auto;width:150px;height:100px;border-radius:14px;overflow:hidden;border:1px solid rgba(212,175,55,.12);background:rgba(255,255,255,.03);backdrop-filter:blur(8px);cursor:pointer}
+    .marquee-item img{width:100%;height:100%;object-fit:cover}
+
+    header{background:rgba(128,0,32,.72);backdrop-filter:blur(20px) saturate(150%);padding:20px 12px;text-align:center;color:#ffd700;font-weight:700;position:relative}
+    .top-decor{position:absolute;left:0;top:0;width:100%;height:8px;background:repeating-linear-gradient(45deg,#ffd700,#ffd700 6px,var(--accent-deep,#800020) 6px,var(--accent-deep,#800020) 12px)}
+
+    .contact-info{background:rgba(255,215,0,.88);padding:8px 12px;text-align:center;color:var(--accent-deep,#800020);font-weight:700}
+    .contact-info a{color:inherit;text-decoration:none;margin:0 .3rem}
+
+    .search-bar{display:block;margin:18px auto;padding:12px 16px;border-radius:999px;border:1px solid rgba(128,0,32,.12);max-width:420px;width:92%;font-size:1rem;outline:none;background:rgba(255,250,245,.92)}
+
+    .menu-section{max-width:1100px;margin:20px auto;padding:18px;background:#fffaf5;color:#2b1a0f;border-radius:14px}
+    .category{background:rgba(255,243,230,.95);border-left:6px solid var(--accent-deep,#800020);padding:16px;margin:12px 0;border-radius:12px;font-weight:700;font-size:1.05rem;cursor:pointer;display:block}
+    body.rtl .category{border-left:none;border-right:6px solid var(--accent-deep,#800020)}
+    .items-container{display:none;margin-top:8px;padding:10px;border-radius:12px;background:linear-gradient(180deg,rgba(255,250,245,.95),rgba(255,250,245,.9))}
+    .items-container.open{display:flex;flex-direction:column}
+
+    .menu-item{display:flex;align-items:center;gap:12px;padding:12px;border-radius:12px;margin:8px 0;border-left:4px solid var(--accent-deep,#800020);background:rgba(255,243,230,.96);cursor:pointer}
+    body.rtl .menu-item{flex-direction:row-reverse;border-left:none;border-right:4px solid var(--accent-deep,#800020)}
+    .menu-item img{width:80px;height:80px;object-fit:cover;border-radius:12px}
+    .menu-item-name{flex:1;color:var(--accent-deep,#800020);font-weight:700;display:flex;align-items:center;gap:8px}
+    .allergen{color:#a00;font-size:.95rem}
+
+    .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(16px);align-items:center;justify-content:center;padding:18px;z-index:200}
+    .modal.show{display:flex}
+    .modal-content{background:#fffaf5;padding:20px;border-radius:18px;max-width:540px;width:100%;text-align:center;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+    .close-btn{position:absolute;top:12px;right:12px;background:rgba(128,0,32,.08);width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-weight:800}
+    body.rtl .close-btn{left:12px;right:auto}
+
+    #hover-preview{position:fixed;display:none;max-width:320px;max-height:320px;border-radius:12px;z-index:9999;pointer-events:none;border:2px solid #d4af37;box-shadow:0 18px 48px rgba(0,0,0,.45);transition:opacity .12s ease}
+
+    .whatsapp-float{position:fixed;right:22px;bottom:22px;width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#25D366,#20BA5A);color:#fff;text-decoration:none;font-size:1.6rem;z-index:1100}
+    body.rtl .whatsapp-float{right:auto;left:22px}
+
+    footer{background:rgba(128,0,32,.72);color:#ffd700;text-align:center;padding:26px;border-radius:8px;margin:26px 18px 40px}
+
+    /* Accessibility & reduced motion */
+    @media (prefers-reduced-motion:reduce){
+      .marquee-track{animation:none}
+      .landing-marquee .track{animation:none}
+      .video-background video{transition:none}
     }
 
-    .container { position:relative; z-index:2; text-align:center; padding:2rem; max-width:1100px; margin:0 auto; }
-
-    .logo { font-family:'Playfair Display', serif; font-size:4rem; color:var(--gold); font-weight:900; letter-spacing:.12rem; text-transform:uppercase; text-shadow:0 6px 18px rgba(0,0,0,.55); }
-    body.rtl .logo { font-family:'Cairo', serif; text-transform:none; letter-spacing:.05rem; }
-
-    .subtitle { margin-top:.4rem; color:#f5e6d3; font-size:1.1rem; }
-    .tagline { margin-top:.6rem; color:#e6cf8a; font-style:italic; }
-
-    .divider { width:200px; height:3px; margin:1.2rem auto; background: linear-gradient(90deg, transparent, var(--gold), #8b0000, var(--gold), transparent); }
-
-    .menu-button { margin-top:1.8rem; padding:.9rem 2.2rem; border-radius:999px; background:linear-gradient(135deg,var(--gold),#fff1c4); color:#111; font-weight:800; border:2px solid var(--gold); cursor:pointer; box-shadow:0 12px 40px rgba(0,0,0,.35); }
-
-    .scroll-indicator { position:absolute; bottom:22px; left:50%; transform:translateX(-50%); z-index:3; color:var(--gold); font-size:1.6rem; opacity:.92; cursor:pointer; }
-
-    /* small marquee quote on landing */
-    .landing-marquee-wrap { position:absolute; left:0; right:0; top:10%; z-index:3; display:flex; justify-content:center; pointer-events:none; }
-    .landing-marquee { pointer-events:auto; width:100%; max-width:1200px; background: rgba(0,0,0,0.22); border-radius:999px; padding:8px 14px; display:flex; overflow:hidden; align-items:center; box-shadow:0 8px 28px rgba(0,0,0,.45); }
-    .landing-marquee .track { display:inline-flex; white-space:nowrap; gap:3rem; align-items:center; animation:marquee-left 18s linear infinite; color:#fff; font-weight:600; font-size:1.05rem; }
-    body.rtl .landing-marquee .track { animation:marquee-right 18s linear infinite; }
-    .landing-marquee:hover .track, .landing-marquee:focus-within .track { animation-play-state:paused; }
-    @keyframes marquee-left { 0% { transform:translateX(0) } 100% { transform:translateX(-50%) } }
-    @keyframes marquee-right { 0% { transform:translateX(-50%) } 100% { transform:translateX(0) } }
-
-    /* Menu content / marquee images */
-    .menu-content { display:none; padding:18px; z-index:2; color:#2b1a0f; min-height:60vh; background:transparent; }
-    .menu-content.show { display:block; }
-
-    .floating-marquee { position:sticky; top:0; width:100%; height:120px; z-index:55; background:rgba(61,20,20,.72); display:flex; align-items:center; overflow:hidden; }
-    .marquee-track { display:flex; gap:14px; padding:12px 18px; align-items:center; animation:scroll-left 40s linear infinite; }
-    body.rtl .marquee-track { animation:scroll-right 40s linear infinite; }
-    @keyframes scroll-left { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
-    @keyframes scroll-right { 0%{transform:translateX(-50%)} 100%{transform:translateX(0)} }
-    .marquee-item { flex:0 0 auto; width:150px; height:100px; border-radius:14px; overflow:hidden; border:1px solid rgba(212,175,55,.12); background:rgba(255,255,255,.03); cursor:pointer; }
-    .marquee-item img { width:100%; height:100%; object-fit:cover; display:block; }
-
-    /* minimal modal and hover preview styles (kept from original) */
-    .modal { display:none; position:fixed; inset:0; background:rgba(0,0,0,.7); justify-content:center; align-items:center; z-index:1200; }
-    .modal.show { display:flex; }
-    .modal-content { background:var(--paper); padding:20px; border-radius:18px; max-width:540px; width:100%; text-align:center; color:#2b1a0f; }
-    .close-btn { position:absolute; top:12px; right:12px; width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; }
-
-    #hover-preview { position:fixed; display:none; max-width:300px; max-height:300px; border-radius:12px; z-index:9999; pointer-events:none; box-shadow:0 18px 48px rgba(0,0,0,.45); transition:opacity .12s; border:2px solid var(--gold); }
-
-    /* responsive tweaks */
-    @media (max-width:900px) { .logo { font-size:2.6rem; } .landing-marquee .track { font-size:1rem; } }
-    @media (max-width:480px) { .logo { font-size:2rem; } .landing-marquee { top:6%; } }
-    @media (prefers-reduced-motion:reduce) { .landing-marquee .track, .marquee-track { animation:none; } .video-background video { transition:none; } }
+    /* Responsive sizing tweaks */
+    @media (max-width:900px){
+      .logo{font-size:3rem}
+      .subtitle{font-size:1.2rem}
+      .menu-button{padding:.8rem 1.6rem}
+      .marquee-item{width:120px;height:84px}
+    }
+    @media (max-width:640px){
+      .logo{font-size:2.4rem}
+      .subtitle{font-size:1rem}
+      .container{padding:1.2rem}
+      .menu-section{padding:12px}
+      .menu-item img{width:72px;height:72px}
+      .whatsapp-float{width:56px;height:56px;font-size:1.45rem;right:14px;bottom:14px}
+      .language-toggle{top:12px;right:12px;padding:.4rem .7rem;font-size:.8rem}
+    }
   </style>
 </head>
 <body>
-  <button class="language-toggle" id="langToggle" aria-label="Toggle language">العربية</button>
+  <button class="language-toggle" id="langToggle" aria-label="Toggle language">
+    <span class="lang-content active" data-lang="en">العربية</span>
+    <span class="lang-content" data-lang="ar" style="display:none">English</span>
+  </button>
 
   <main>
-    <section class="landing-section" id="landing">
-      <!-- Video background -->
+    <section class="landing-section" id="landing" aria-label="Landing">
       <div class="video-background" id="videoContainer" aria-hidden="true">
-        <video id="bgVideo" autoplay muted loop playsinline preload="auto" poster="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Poster.jpg">
+        <video id="bgVideo" autoplay muted loop playsinline preload="metadata" poster="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Poster.jpg">
           <source src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Video.mp4" type="video/mp4">
-          <!-- optional extra sources (webm) can be added for compatibility -->
         </video>
       </div>
 
       <div class="overlay" aria-hidden="true"></div>
 
-      <!-- Landing marquee (quote) -->
       <div class="landing-marquee-wrap" aria-hidden="false">
-        <div class="landing-marquee" role="marquee" aria-label="Quote marquee">
-          <div class="track" id="landingMarqueeTrack" tabindex="0"></div>
+        <div class="landing-marquee" role="marquee" aria-label="Quote">
+          <div class="track" id="landingMarqueeTrack" aria-hidden="false" tabindex="0"></div>
         </div>
       </div>
 
-      <div class="container" role="banner">
-        <div class="logo-section">
-          <h1 class="logo">
-            <span class="lang-content active" data-lang="en">Turkiana</span>
-            <span class="lang-content" data-lang="ar" style="display:none">تركيانا</span>
-          </h1>
-          <p class="subtitle">
-            <span class="lang-content active" data-lang="en">CAFÉ & SWEETS</span>
-            <span class="lang-content" data-lang="ar" style="display:none">مقهى وحلويات</span>
-          </p>
-          <div class="divider" aria-hidden="true"></div>
-          <p class="tagline">
-            <span class="lang-content active" data-lang="en">Where Tradition Meets Elegance</span>
-            <span class="lang-content" data-lang="ar" style="display:none">حيث يلتقي التراث بالأناقة</span>
-          </p>
-        </div>
+      <div class="container">
+        <h1 class="logo">
+          <span class="lang-content active" data-lang="en">Turkiana</span>
+          <span class="lang-content" data-lang="ar" style="display:none">تركيانا</span>
+        </h1>
+        <p class="subtitle">
+          <span class="lang-content active" data-lang="en">CAFÉ & SWEETS</span>
+          <span class="lang-content" data-lang="ar" style="display:none">مقهى وحلويات</span>
+        </p>
+        <div class="divider" role="presentation" aria-hidden="true"></div>
+        <p class="tagline">
+          <span class="lang-content active" data-lang="en">Where Tradition Meets Elegance</span>
+          <span class="lang-content" data-lang="ar" style="display:none">حيث يلتقي التراث بالأناقة</span>
+        </p>
 
-        <button class="menu-button" id="openMenuBtn" aria-controls="menuContent">
+        <button class="menu-button" id="openMenuBtn" aria-haspopup="true" aria-controls="menuContent">
           <span class="lang-content active" data-lang="en">Explore Our Menu</span>
           <span class="lang-content" data-lang="ar" style="display:none">استكشف قائمتنا</span>
         </button>
@@ -141,19 +174,18 @@
       <div class="scroll-indicator" id="scrollIndicator" aria-hidden="true">↓</div>
     </section>
 
-    <!-- Menu content (kept mostly unchanged) -->
-    <section class="menu-content" id="menuContent" aria-hidden="true">
+    <section class="menu-content" id="menuContent" aria-label="Menu content">
       <div class="floating-marquee" role="region" aria-label="Featured items">
         <div class="marquee-track" id="marqueeTrack" aria-hidden="false"></div>
       </div>
 
-      <header>
+      <header role="banner">
         <span class="lang-content active" data-lang="en">TURKIANA CAFE & SWEETS</span>
         <span class="lang-content" data-lang="ar" style="display:none">مقهى وحلويات تركيانا</span>
         <div class="top-decor" aria-hidden="true"></div>
       </header>
 
-      <div class="contact-info" style="text-align:center; padding:12px 0; background:rgba(255,215,0,.72); color:var(--accent-deep); font-weight:700;">
+      <div class="contact-info" role="navigation" aria-label="Contact">
         <span class="lang-content active" data-lang="en">
           📱 <a href="https://wa.me/97451866671" target="_blank" rel="noopener">WhatsApp</a> |
           📍 <a href="https://goo.gl/maps/Jg2o5f3Xc7xYyR8v5" target="_blank" rel="noopener">Location</a> |
@@ -168,35 +200,39 @@
         </span>
       </div>
 
-      <input type="search" id="searchBar" class="search-bar" placeholder="Search menu items..." style="display:block; margin:12px auto; max-width:420px; padding:10px 14px; border-radius:999px; border:1px solid rgba(128,0,32,.12);">
+      <input id="searchBar" class="search-bar" type="search" inputmode="search" aria-label="Search menu items" placeholder="Search...">
 
-      <div class="menu-section" id="menu-container"></div>
+      <div class="menu-section" id="menu-container" aria-live="polite"></div>
 
-      <!-- Item modal -->
-      <div class="modal" id="item-modal" aria-hidden="true">
-        <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-name">
-          <button class="close-btn" aria-label="Close" onclick="closeModal()">&times;</button>
+      <div class="modal" id="item-modal" role="dialog" aria-modal="true" aria-labelledby="modal-name" aria-hidden="true">
+        <div class="modal-content">
+          <button class="close-btn" aria-label="Close" id="closeItemModal">&times;</button>
           <h3 id="modal-name"></h3>
           <p id="modal-price" style="font-weight:700;margin:.4rem 0"></p>
           <p id="modal-description"></p>
         </div>
       </div>
 
-      <!-- Image modal (desktop) -->
-      <div class="modal" id="image-modal" onclick="closeImageModal()">
-        <img id="zoomed-image" alt="Menu item" style="max-width:95vw;max-height:90vh;border-radius:12px;">
+      <div class="modal" id="image-modal" role="dialog" aria-modal="true" aria-hidden="true">
+        <img id="zoomed-image" alt="Menu item image" style="max-width:95vw;max-height:85vh;border-radius:12px">
       </div>
 
-      <!-- Image modal (mobile) -->
-      <div class="modal" id="mobile-image-modal" onclick="closeMobileImageModal()">
-        <img id="mobile-zoomed-image" alt="Menu item" style="max-width:95vw;max-height:85vh;border-radius:12px;">
+      <div class="modal" id="mobile-image-modal" role="dialog" aria-modal="true" aria-hidden="true">
+        <img id="mobile-zoomed-image" alt="Menu item image" style="max-width:95vw;max-height:85vh;border-radius:12px">
       </div>
 
-      <a class="whatsapp-float" href="https://wa.me/97451866671" target="_blank" rel="noopener" style="position:fixed;right:18px;bottom:18px;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#25D366,#20BA5A);color:#fff;font-size:1.6rem;z-index:1200;text-decoration:none;">📱</a>
+      <a class="whatsapp-float" href="https://wa.me/97451866671" target="_blank" rel="noopener" aria-label="Order on WhatsApp">📱</a>
 
-      <footer style="background:rgba(128,0,32,.72);color:#ffd700;text-align:center;padding:26px;border-radius:8px;margin:26px 18px 40px;">
-        <h3><span class="lang-content active" data-lang="en">TURKIANA CAFE & SWEETS</span><span class="lang-content" data-lang="ar" style="display:none">مقهى وحلويات تركيانا</span></h3>
+      <footer>
+        <h3>
+          <span class="lang-content active" data-lang="en">TURKIANA CAFE & SWEET</span>
+          <span class="lang-content" data-lang="ar" style="display:none">مقهى وحلويات تركيانا</span>
+        </h3>
         <p>📱 +974 5186 6671</p>
+        <p>
+          <span class="lang-content active" data-lang="en">🌐 <a href="https://turkianasweets.com" target="_blank" rel="noopener">turkianasweets.com</a> | 📷 <a href="https://www.instagram.com/turkiana.qa/" target="_blank" rel="noopener">@turkiana.qa</a></span>
+          <span class="lang-content" data-lang="ar" style="display:none">🌐 <a href="https://turkianasweets.com" target="_blank" rel="noopener">turkianasweets.com</a> | 📷 <a href="https://www.instagram.com/turkiana.qa/" target="_blank" rel="noopener">@turkiana.qa</a></span>
+        </p>
         <p style="margin-top:12px;font-size:1rem">
           <span class="lang-content active" data-lang="en">Experience Authentic Turkish Flavors</span>
           <span class="lang-content" data-lang="ar" style="display:none">استمتع بالنكهات التركية الأصيلة</span>
@@ -205,581 +241,506 @@
     </section>
   </main>
 
-  <img id="hover-preview" alt="preview" />
+  <img id="hover-preview" alt="preview" aria-hidden="true" />
 
   <script>
-    /* =========================
-       Data (unchanged from provided context)
-       ========================= */
-    let currentLang = 'en';
-    const allergens = { nuts: "🥜", dairy: "🥛", gluten: "🌾" };
+    (function () {
+      'use strict';
 
-    const menuDataEn = {
-      "Turkish Morning": [
-        { name: "Turkish Classic Breakfast", price: "65 QR", description: "Traditional Turkish breakfast spread with cheese, olives, tomatoes, cucumbers, honey, and fresh bread", image: "Breakfast.jpg", allergens: ["dairy", "gluten"] },
-        { name: "Turkish Menemen", price: "45 QR", description: "Turkish-style scrambled eggs with tomatoes, peppers, and spices", image: "Menemen.jpg", allergens: ["dairy"] },
-        { name: "Plain Omelette", price: "25 QR", description: "Classic fluffy omelette", image: "Omellet.jpg", allergens: ["dairy"] }
-      ],
-      "Croissant Creations": [
-        { name: "Croissant Beef Ribs", price: "45 QR", description: "Beef Ribs, Cheddar Cheese, Kasfar Cheese, Pesto Sauce (Side: Tomatoes, Cucumbers, Green Olives)", image: "Ribs.jpg", allergens: ["dairy", "gluten", "nuts"] },
-        { name: "Avocado Croissant", price: "42 QR", description: "Scrambled Eggs, Avocado, Olive Paste (with Tomatoes and Cucumber as Sides)", image: "Avocado.jpg", allergens: ["dairy", "gluten"] },
-        { name: "Smoked Beef Croissant", price: "45 QR", description: "Scrambled Eggs with Thyme and Smoked Beef (Side: Tomato, Cucumber, Olives, Jam, and White Cheese)", image: "5.jpg", allergens: ["dairy", "gluten"] },
-        { name: "Butter & Jam Croissant", price: "40 QR", description: "Butter, Cherry Jam, Grilled Olives, Feta Cheese, Tomato, Cucumber, Praline", image: "4.jpg", allergens: ["dairy", "gluten", "nuts"] },
-        { name: "Croissant Scrambled Eggs", price: "37 QR", description: "Scrambled Eggs, Red Pepper, Thyme, Arugula, Tomatoes, Cucumbers, Grilled Olives", image: "1.jpg", allergens: ["dairy", "gluten"] }
-      ],
-      "From the Grill & Garden": [
-        { name: "Fried Potatoes", price: "25 QR", description: "Crispy golden french fries", image: "Patatas.jpg", allergens: [] },
-        { name: "Caesar Salad", price: "40 QR", description: "Fresh romaine lettuce with Caesar dressing, croutons, and parmesan", image: "Caesar.jpg", allergens: ["dairy", "gluten"] },
-        { name: "Turkiana Special Beef Burger", price: "55 QR", description: "Premium beef burger with special toppings and fries", image: "Burger.jpg", allergens: ["gluten", "dairy"] }
-      ],
-      "Baklava & Beyond": [
-        { name: "Turkish Mix Baklava", price: "45 QR", description: "Assorted traditional Turkish baklava", image: "Mix.jpg", allergens: ["nuts", "gluten"] },
-        { name: "Turkish Plain Baklava", price: "40 QR", description: "Classic plain baklava", image: "Slice.jpg", allergens: ["nuts", "gluten"] },
-        { name: "Nuts Stand-Tall", price: "99 QR", description: "Assorted Nuts", image: "Nuts.jpg", allergens: ["nuts"] },
-        { name: "Nuts Stand-Small", price: "60 QR", description: "Assorted Nuts", image: "Nuts.jpg", allergens: ["nuts"] },
-        { name: "Kunafa", price: "40 QR", description: "Turkish Kunafa with Akawi Cheese", image: "Kunafa.jpg", allergens: ["nuts", "gluten"] },
-        { name: "Chocolate Cake", price: "40 QR", description: "Rich chocolate molten cake", image: "Chocolate.jpg", allergens: ["dairy", "gluten"] },
-        { name: "Lotus Cake", price: "40 QR", description: "Rich lotus cake", image: "Lutos.jpg", allergens: ["dairy", "gluten"] },
-        { name: "Full Pistachio Cake", price: "40 QR", description: "Delicate pistachio flavored cake", image: "Full.jpg", allergens: ["nuts", "dairy", "gluten"] },
-        { name: "Lemon Cake", price: "38 QR", description: "Fresh lemon sponge cake", image: "Lemon.jpg", allergens: ["dairy", "gluten"] },
-        { name: "Tiramisu", price: "32 QR", description: "Classic Italian tiramisu", image: "Tiramisu.jpg", allergens: ["dairy", "gluten", "nuts"] },
-        { name: "Almond Chocolate Cake", price: "40 QR", description: "Almond chocolate cake", image: "Almond.jpg", allergens: ["nuts", "dairy", "gluten"] },
-        { name: "Lemon Sponge Cake", price: "42 QR", description: "Light lemon sponge cake", image: "Lemoncake.jpg", allergens: ["dairy", "gluten"] },
-        { name: "Raspberry Cheesecake", price: "30 QR", description: "Cherry cheesecake", image: "Cherry.jpg", allergens: ["dairy", "gluten"] },
-        { name: "Mulberry Cheesecake", price: "30 QR", description: "Mulberry cheesecake", image: "Mulberry.jpg", allergens: ["dairy", "gluten"] },
-        { name: "Chocolate Pistachio Cake", price: "40 QR", description: "Chocolate pistachio cake", image: "Chocolate_pistachio.jpg", allergens: ["dairy", "nuts", "gluten"] },
-        { name: "Strawberry Cake", price: "45 QR", description: "Strawberry cake", image: "Strawberry.jpg", allergens: ["dairy", "gluten"] },
-        { name: "White Almond Cake", price: "42 QR", description: "White almond cake", image: "White.jpg", allergens: ["nuts", "dairy", "gluten"] },
-        { name: "Trileche With Milk", price: "35 QR", description: "Turkish tres leches cake", image: "Trileche.jpg", allergens: ["dairy", "gluten"] },
-        { name: "San Sebastian Cheesecake", price: "42 QR", description: "San Sebastian cheesecake", image: "Sebastian.jpg", allergens: ["dairy", "gluten"] }
-      ],
-      "Arabian Brew": [
-        { name: "Arabic Coffee in a Full Dalla", price: "90 QR", description: "Arabic Coffee in a Full Dalla", allergens: ["dairy"] },
-        { name: "Arabic Coffee in a Half Dalla", price: "50 QR", description: "Arabic Coffee in a Half Dalla", allergens: ["dairy"] },
-        { name: "Arabic Coffee in a Cup", price: "30 QR", description: "Arabic Coffee in a Cup", allergens: ["dairy"] }
-      ],
-      "Tea Time": [
-        { name: "Turkish Tea", price: "15 QR", description: "Classic Turkish tea", allergens: [] },
-        { name: "Cup Of Tea", price: "18 QR", description: "Hot cup of tea", allergens: [] },
-        { name: "Apple Tea", price: "25 QR", description: "Apple tea", allergens: [] },
-        { name: "Mulberry Tea", price: "25 QR", description: "Mulberry tea", allergens: [] },
-        { name: "Lemon Mint", price: "25 QR", description: "Lemon mint tea", allergens: [] },
-        { name: "Pomegranate Tea", price: "25 QR", description: "Pomegranate tea", allergens: [] }
-      ],
-      "Tea on Ice": [
-        { name: "Ice Apple Tea", price: "28 QR", description: "Cold apple tea", allergens: [] },
-        { name: "Ice Mulberry Tea", price: "28 QR", description: "Cold mulberry tea", allergens: [] },
-        { name: "Ice Mint Lemon", price: "28 QR", description: "Cold mint lemon tea", allergens: [] },
-        { name: "Ice Pomegranate Tea", price: "28 QR", description: "Cold pomegranate tea", allergens: [] },
-        { name: "Hibiscus", price: "28 QR", description: "Cold hibiscus tea", allergens: [] }
-      ],
-      "Brewed the Turkish Way": [
-        { name: "Classic Turkish Coffee", price: "28 QR", description: "Classic Turkish Coffee", allergens: [] },
-        { name: "Turkish Coffee with Cardamon", price: "28 QR", description: "Turkish Coffee with Cardamon", allergens: [] },
-        { name: "Double Turkish Coffee", price: "40 QR", description: "Double Turkish Coffee", allergens: [] },
-        { name: "Ottoman Coffee", price: "28 QR", description: "Ottoman Coffee", allergens: [] },
-        { name: "Ottoman Coffee with Mastic", price: "28 QR", description: "Ottoman Coffee with Mastic", allergens: [] },
-        { name: "Ottoman Coffee with Hazelnuts", price: "28 QR", description: "Ottoman Coffee with Hazelnuts", allergens: ["nuts"] },
-        { name: "Sahlep", price: "28 QR", description: "Hot sahlep", allergens: ["dairy"] }
-      ],
-      "Herbal Infusions": [
-        { name: "Sage", price: "28 QR", description: "Sage tea", allergens: [] },
-        { name: "Mix Winter Tea", price: "28 QR", description: "Winter herbal tea mix", allergens: [] },
-        { name: "Green Tea", price: "28 QR", description: "Green tea", allergens: [] },
-        { name: "Chamomile", price: "28 QR", description: "Chamomile tea", allergens: [] },
-        { name: "Hibiscus", price: "28 QR", description: "Hibiscus tea", allergens: [] }
-      ],
-      "Café & Chill": [
-        { name: "Hot Chocolate (Hot/Ice)", price: "36 QR", description: "Hot chocolate", allergens: ["dairy"] },
-        { name: "Latte (Hot/Ice)", price: "29 QR", description: "Latte coffee", allergens: ["dairy"] },
-        { name: "Spanish Latte (Hot/Ice)", price: "32 QR", description: "Spanish Latte", allergens: ["dairy"] },
-        { name: "Salted Caramel Latte (Hot/Ice)", price: "32 QR", description: "Salted Caramel Latte", allergens: ["dairy"] },
-        { name: "Vanilla Latte (Hot/Ice)", price: "32 QR", description: "Vanilla Latte", allergens: ["dairy"] },
-        { name: "Cappuccino (Hot/Ice)", price: "29 QR", description: "Cappuccino", allergens: ["dairy"] },
-        { name: "White Mocha (Hot/Ice)", price: "32 QR", description: "White Mocha", allergens: ["dairy"] },
-        { name: "Flat White (Hot/Ice)", price: "27 QR", description: "Flat White coffee", allergens: ["dairy"] },
-        { name: "Cortado (Hot/Ice)", price: "24 QR", description: "Cortado coffee", allergens: ["dairy"] },
-        { name: "Espresso (Hot/Ice)", price: "21 QR", description: "Espresso coffee", allergens: [] },
-        { name: "Double Espresso (Hot/Ice)", price: "21 QR", description: "Double Espresso coffee", allergens: [] },
-        { name: "Macchiato (Hot/Ice)", price: "24 QR", description: "Macchiato coffee", allergens: ["dairy"] },
-        { name: "Americano (Hot/Ice)", price: "21 QR", description: "Americano coffee", allergens: [] },
-        { name: "Mocha (Hot/Ice)", price: "32 QR", description: "Mocha coffee", allergens: ["dairy"] }
-      ],
-      "Specialty Brews": [
-        { name: "V60 Pour Over (Hot & Ice)", price: "29 QR", description: "V60 pour-over coffee", allergens: [] },
-        { name: "Ice Drip", price: "32 QR", description: "Ice Drip coffee", allergens: [] },
-        { name: "Cold Brew", price: "36 QR", description: "Cold Brew coffee", allergens: [] }
-      ],
-      "Froozen": [
-        { name: "Mango Froozen", price: "38 QR", description: "Mango froozen drink", allergens: [] },
-        { name: "Şeftali Froozen", price: "38 QR", description: "Peach froozen drink", allergens: [] },
-        { name: "Çilekli Froozen", price: "38 QR", description: "Strawberry froozen drink", allergens: [] },
-        { name: "Orman Meyveli Froozen", price: "38 QR", description: "Forest fruits froozen drink", allergens: [] },
-        { name: "Yaban Mersini Froozen", price: "38 QR", description: "Blueberry froozen drink", allergens: [] }
-      ],
-      "Refreshments": [
-        { name: "Still Water (Small)", price: "11 QR", description: "Small still water", allergens: [] },
-        { name: "Still Water (Big)", price: "21 QR", description: "Big still water", allergens: [] },
-        { name: "Sparkling Water", price: "21 QR", description: "Sparkling water", allergens: [] },
-        { name: "Churchill", price: "25 QR", description: "Churchill drink", allergens: [] },
-        { name: "Lemonade", price: "30 QR", description: "Fresh lemonade", allergens: [] },
-        { name: "Fresh Orange Juice", price: "30 QR", description: "Fresh orange juice", allergens: [] },
-        { name: "Kinza Kola", price: "17 QR", description: "Kinza Kola", allergens: [] },
-        { name: "Kinza Kola Zero", price: "17 QR", description: "Kinza Kola Zero", allergens: [] }
-      ]
-    };
+      // --- Data: your original menu data (kept as you provided) ---
+      const allergens = { nuts:"🥜", dairy:"🥛", gluten:"🌾" };
 
-    const menuDataAr = {
-      "أطباق الإفطار المميزة":[
-        {name:"الإفطار التركي الكلاسيكي", price:"65 ريال", description:"إفطار تركي تقليدي مع الجبن والزيتون والطماطم والخيار والعسل والخبز الطازج", image:"Breakfast.jpg", allergens:["dairy","gluten"]},
-        {name:"المنيمن التركي", price:"45 ريال", description:"بيض مخفوق على الطريقة التركية مع الطماطم والفلفل والتوابل", image:"Menemen.jpg", allergens:["dairy"]},
-        {name:"أومليت عادي", price:"25 ريال", description:"أومليت كلاسيكي منفوش", image:"Omellet.jpg", allergens:["dairy"]}
-      ],
-      "كرواسون":[
-        {name:"كرواسون أضلاع اللحم", price:"45 ريال", description:"أضلاع لحم، جبن شيدر، جبن كسفار، صلصة البيستو (مع الطماطم والخيار والزيتون الأخضر)", image:"Ribs.jpg", allergens:["dairy","gluten","nuts"]},
-        {name:"كرواسون الأفوكادو", price:"42 ريال", description:"بيض مخفوق، أفوكادو، معجون الزيتون (مع الطماطم والخيار)", image:"Avocado.jpg", allergens:["dairy","gluten"]},
-        {name:"كرواسون اللحم المدخن", price:"45 ريال", description:"بيض مخفوق بالزعتر واللحم المدخن (مع الطماطم والخيار والزيتون والمربى والجبن الأبيض)", image:"5.jpg", allergens:["dairy","gluten"]},
-        {name:"كرواسون الزبدة والمربى", price:"40 ريال", description:"زبدة، مربى الكرز، زيتون مشوي، جبن فيتا، طماطم، خيار، براليني", image:"4.jpg", allergens:["dairy","gluten","nuts"]},
-        {name:"كرواسون البيض المخفوق", price:"37 ريال", description:"بيض مخفوق، فلفل أحمر، زعتر، جرجير، طماطم، خيار، زيتون مشوي", image:"1.jpg", allergens:["dairy","gluten"]}
-      ],
-      "الأطباق الرئيسية":[
-        {name:"البطاطس المقلية", price:"25 ريال", description:"بطاطس مقلية ذهبية مقرمشة", image:"Patatas.jpg", allergens:[]},
-        {name:"سلطة سيزر", price:"40 ريال", description:"خس روماني طازج مع صلصة سيزر وقطع الخبز المحمص والبارميزان", image:"Caesar.jpg", allergens:["dairy","gluten"]},
-        {name:"برجر اللحم المميز تركيانا", price:"55 ريال", description:"برجر لحم فاخر مع إضافات مميزة وبطاطس مقلية", image:"Burger.jpg", allergens:["gluten","dairy"]}
-      ],
-      "الحلويات والتحليات":[
-        {name:"بقلاوة تركية مشكلة", price:"45 ريال", description:"تشكيلة من البقلاوة التركية التقليدية", image:"Mix.jpg", allergens:["nuts","gluten"]},
-        {name:"طبق المكسرات", price:"99 ريال", description:"تشكيلة من المكسرات", image:"Nuts.jpg", allergens:["nuts","gluten"]},
-        {name:"بقلاوة تركية عادية", price:"40 ريال", description:"بقلاوة عادية كلاسيكية", image:"Slice.jpg", allergens:["nuts","gluten"]},
-        {name:"كنافة", price:"40 ريال", description:"كنافة تركية بجبن العكاوي", image:"Kunafa.jpg", allergens:["nuts","gluten"]},
-        {name:"كيك الشوكولاتة", price:"40 ريال", description:"كيك شوكولاتة غني ومنصهر", image:"Chocolate.jpg", allergens:["dairy","gluten"]},
-        {name:"كيك اللوتس", price:"40 ريال", description:"كيك لوتس غني", image:"Lutos.jpg", allergens:["dairy","gluten"]},
-        {name:"كيك الفستق الكامل", price:"40 ريال", description:"كيك فستق رقيق النكهة", image:"Full.jpg", allergens:["nuts","dairy","gluten"]},
-        {name:"كيك الليمون", price:"38 ريال", description:"كيك إسفنجي بالليمون الطازج", image:"Lemon.jpg", allergens:["dairy","gluten"]},
-        {name:"تيراميسو", price:"32 ريال", description:"تيراميسو إيطالي كلاسيكي", image:"Tiramisu.jpg", allergens:["dairy","gluten","nuts"]},
-        {name:"كيك اللوز بالشوكولاتة", price:"40 ريال", description:"كيك اللوز بالشوكولاتة", image:"Almond.jpg", allergens:["nuts","dairy","gluten"]},
-        {name:"كيك الليمون الإسفنجي", price:"42 ريال", description:"كيك ليمون إسفنجي خفيف", image:"Lemoncake.jpg", allergens:["dairy","gluten"]},
-        {name:"تشيز كيك التوت", price:"30 ريال", description:"تشيز كيك الكرز", image:"Cherry.jpg", allergens:["dairy","gluten"]},
-        {name:"تشيز كيك التوت الأسود", price:"30 ريال", description:"تشيز كيك التوت الأسود", image:"Mulberry.jpg", allergens:["dairy","gluten"]},
-        {name:"كيك الشوكولاتة بالفستق", price:"40 ريال", description:"كيك الشوكولاتة بالفستق", image:"Chocolate_pistachio.jpg", allergens:["dairy","nuts","gluten"]},
-        {name:"كيك الفراولة", price:"45 ريال", description:"كيك الفراولة", image:"Strawberry.jpg", allergens:["dairy","gluten"]},
-        {name:"كيك اللوز الأبيض", price:"42 ريال", description:"كيك اللوز الأبيض", image:"White.jpg", allergens:["nuts","dairy","gluten"]},
-        {name:"تريليتشي بالحليب", price:"35 ريال", description:"كيك الحليب التركي", image:"Trileche.jpg", allergens:["dairy","gluten"]},
-        {name:"تشيز كيك سان سيباستيان", price:"42 ريال", description:"تشيز كيك سان سيباستيان", image:"Sebastian.jpg", allergens:["dairy","gluten"]}
-      ],
-      "القهوة العربية":[
-        {name:"قهوة عربية في دلة كاملة", price:"90 ريال", description:"قهوة عربية في دلة كاملة", allergens:["dairy"]},
-        {name:"قهوة عربية في نصف دلة", price:"50 ريال", description:"قهوة عربية في نصف دلة", allergens:["dairy"]},
-        {name:"قهوة عربية في كوب", price:"30 ريال", description:"قهوة عربية في كوب", allergens:["dairy"]}
-      ],
-      "الشاي الساخن":[
-        {name:"الشاي التركي", price:"15 ريال", description:"شاي تركي كلاسيكي", allergens:[]},
-        {name:"كوب شاي", price:"18 ريال", description:"كوب شاي ساخن", allergens:[]},
-        {name:"شاي التفاح", price:"25 ريال", description:"شاي التفاح", allergens:[]},
-        {name:"شاي التوت", price:"25 ريال", description:"شاي التوت", allergens:[]},
-        {name:"ليمون نعناع", price:"25 ريال", description:"شاي الليمون بالنعناع", allergens:[]},
-        {name:"شاي الرمان", price:"25 ريال", description:"شاي الرمان", allergens:[]}
-      ],
-      "الشاي المثلج":[
-        {name:"شاي التفاح المثلج", price:"28 ريال", description:"شاي التفاح البارد", allergens:[]},
-        {name:"شاي التوت المثلج", price:"28 ريال", description:"شاي التوت البارد", allergens:[]},
-        {name:"ليمون نعناع مثلج", price:"28 ريال", description:"شاي الليمون بالنعناع البارد", allergens:[]},
-        {name:"شاي الرمان المثلج", price:"28 ريال", description:"شاي الرمان البارد", allergens:[]},
-        {name:"الكركديه", price:"28 ريال", description:"شاي الكركديه البارد", allergens:[]}
-      ],
-      "القهوة التركية":[
-        {name:"القهوة التركية الكلاسيكية", price:"28 ريال", description:"القهوة التركية الكلاسيكية", allergens:[]},
-        {name:"القهوة التركية بالهيل", price:"28 ريال", description:"القهوة التركية بالهيل", allergens:[]},
-        {name:"القهوة التركية المضاعفة", price:"40 ريال", description:"القهوة التركية المضاعفة", allergens:[]},
-        {name:"القهوة العثمانية", price:"28 ريال", description:"القهوة العثمانية", allergens:[]},
-        {name:"القهوة العثمانية بالمستكة", price:"28 ريال", description:"القهوة العثمانية بالمستكة", allergens:[]},
-        {name:"القهوة العثمانية بالبندق", price:"28 ريال", description:"القهوة العثمانية بالبندق", allergens:["nuts"]},
-        {name:"السحلب", price:"28 ريال", description:"السحلب الساخن", allergens:["dairy"]}
-      ],
-      "الشاي العشبي المميز":[
-        {name:"الميرمية", price:"28 ريال", description:"شاي الميرمية", allergens:[]},
-        {name:"خليط شاي الشتاء", price:"28 ريال", description:"خليط الشاي العشبي الشتوي", allergens:[]},
-        {name:"الشاي الأخضر", price:"28 ريال", description:"الشاي الأخضر", allergens:[]},
-        {name:"البابونج", price:"28 ريال", description:"شاي البابونج", allergens:[]},
-        {name:"الكركديه", price:"28 ريال", description:"شاي الكركديه", allergens:[]}
-      ],
-      "القهوة الساخنة والمثلجة":[
-        {name:"الشوكولاتة الساخنة (ساخن/مثلج)", price:"36 ريال", description:"الشوكولاتة الساخنة", allergens:["dairy"]},
-        {name:"لاتيه (ساخن/مثلج)", price:"29 ريال", description:"قهوة لاتيه", allergens:["dairy"]},
-        {name:"لاتيه إسباني (ساخن/مثلج)", price:"32 ريال", description:"لاتيه إسباني", allergens:["dairy"]},
-        {name:"لاتيه الكراميل المملح (ساخن/مثلج)", price:"32 ريال", description:"لاتيه الكراميل المملح", allergens:["dairy"]},
-        {name:"لاتيه الفانيليا (ساخن/مثلج)", price:"32 ريال", description:"لاتيه الفانيليا", allergens:["dairy"]},
-        {name:"كابتشينو (ساخن/مثلج)", price:"29 ريال", description:"كابتشينو", allergens:["dairy"]},
-        {name:"موكا أبيض (ساخن/مثلج)", price:"32 ريال", description:"موكا أبيض", allergens:["dairy"]},
-        {name:"فلات وايت (ساخن/مثلج)", price:"27 ريال", description:"قهوة فلات وايت", allergens:["dairy"]},
-        {name:"كورتادو (ساخن/مثلج)", price:"24 ريال", description:"قهوة كورتادو", allergens:["dairy"]},
-        {name:"إسبريسو (ساخن/مثلج)", price:"21 ريال", description:"قهوة إسبريسو", allergens:[]},
-        {name:"إسبريسو مضاعف (ساخن/مثلج)", price:"21 ريال", description:"قهوة إسبريسو مضاعفة", allergens:[]},
-        {name:"ماكياتو (ساخن/مثلج)", price:"24 ريال", description:"قهوة ماكياتو", allergens:["dairy"]},
-        {name:"أمريكانو (ساخن/مثلج)", price:"21 ريال", description:"قهوة أمريكانو", allergens:[]},
-        {name:"موكا (ساخن/مثلج)", price:"32 ريال", description:"قهوة موكا", allergens:["dairy"]}
-      ],
-      "القهوة المحضرة يدوياً المميزة":[
-        {name:"في60 بور أوفر (ساخن ومثلج)", price:"29 ريال", description:"قهوة في60 المقطرة", allergens:[]},
-        {name:"آيس دريب", price:"32 ريال", description:"قهوة آيس دريب", allergens:[]},
-        {name:"كولد برو", price:"36 ريال", description:"قهوة كولد برو", allergens:[]}
-      ],
-      "المشروبات المجمدة":[
-        {name:"مانجو مجمد", price:"38 ريال", description:"مشروب المانجو المجمد", allergens:[]},
-        {name:"خوخ مجمد", price:"38 ريال", description:"مشروب الخوخ المجمد", allergens:[]},
-        {name:"فراولة مجمدة", price:"38 ريال", description:"مشروب الفراولة المجمد", allergens:[]},
-        {name:"فواكه الغابة المجمدة", price:"38 ريال", description:"مشروب فواكه الغابة المجمد", allergens:[]},
-        {name:"توت أزرق مجمد", price:"38 ريال", description:"مشروب التوت الأزرق المجمد", allergens:[]}
-      ],
-      "المشروبات الباردة":[
-        {name:"مياه عادية (صغير)", price:"11 ريال", description:"مياه عادية صغيرة", allergens:[]},
-        {name:"مياه عادية (كبير)", price:"21 ريال", description:"مياه عادية كبيرة", allergens:[]},
-        {name:"مياه غازية", price:"21 ريال", description:"مياه غازية", allergens:[]},
-        {name:"تشرشل", price:"25 ريال", description:"مشروب تشرشل", allergens:[]},
-        {name:"عصير الليمون", price:"30 ريال", description:"عصير ليمون طازج", allergens:[]},
-        {name:"عصير البرتقال الطازج", price:"30 ريال", description:"عصير برتقال طازج", allergens:[]},
-        {name:"كينزا كولا", price:"17 ريال", description:"كينزا كولا", allergens:[]},
-        {name:"كينزا كولا زيرو", price:"17 ريال", description:"كينزا كولا زيرو", allergens:[]}
-      ]
-    };
+      const menuDataEn = { 
+        "Turkish Morning": [
+          { name: "Turkish Classic Breakfast", price: "65 QR", description: "Traditional Turkish breakfast spread with cheese, olives, tomatoes, cucumbers, honey, and fresh bread", image: "Breakfast.jpg", allergens: ["dairy", "gluten"] },
+          { name: "Turkish Menemen", price: "45 QR", description: "Turkish-style scrambled eggs with tomatoes, peppers, and spices", image: "Menemen.jpg", allergens: ["dairy"] },
+          { name: "Plain Omelette", price: "25 QR", description: "Classic fluffy omelette", image: "Omellet.jpg", allergens: ["dairy"] }
+        ],
+        "Croissant Creations": [
+          { name: "Croissant Beef Ribs", price: "45 QR", description: "Beef Ribs, Cheddar Cheese, Kasfar Cheese, Pesto Sauce (Side: Tomatoes, Cucumbers, Green Olives)", image: "Ribs.jpg", allergens: ["dairy", "gluten", "nuts"] },
+          { name: "Avocado Croissant", price: "42 QR", description: "Scrambled Eggs, Avocado, Olive Paste (with Tomatoes and Cucumber as Sides)", image: "Avocado.jpg", allergens: ["dairy", "gluten"] },
+          { name: "Smoked Beef Croissant", price: "45 QR", description: "Scrambled Eggs with Thyme and Smoked Beef (Side: Tomato, Cucumber, Olives, Jam, and White Cheese)", image: "5.jpg", allergens: ["dairy", "gluten"] },
+          { name: "Butter & Jam Croissant", price: "40 QR", description: "Butter, Cherry Jam, Grilled Olives, Feta Cheese, Tomato, Cucumber, Praline", image: "4.jpg", allergens: ["dairy", "gluten", "nuts"] },
+          { name: "Croissant Scrambled Eggs", price: "37 QR", description: "Scrambled Eggs, Red Pepper, Thyme, Arugula, Tomatoes, Cucumbers, Grilled Olives", image: "1.jpg", allergens: ["dairy", "gluten"] }
+        ],
+        "From the Grill & Garden": [
+          { name: "Fried Potatoes", price: "25 QR", description: "Crispy golden french fries", image: "Patatas.jpg", allergens: [] },
+          { name: "Caesar Salad", price: "40 QR", description: "Fresh romaine lettuce with Caesar dressing, croutons, and parmesan", image: "Caesar.jpg", allergens: ["dairy", "gluten"] },
+          { name: "Turkiana Special Beef Burger", price: "55 QR", description: "Premium beef burger with special toppings and fries", image: "Burger.jpg", allergens: ["gluten", "dairy"] }
+        ],
+        "Baklava & Beyond": [
+          { name: "Turkish Mix Baklava", price: "45 QR", description: "Assorted traditional Turkish baklava", image: "Mix.jpg", allergens: ["nuts", "gluten"] },
+          { name: "Turkish Plain Baklava", price: "40 QR", description: "Classic plain baklava", image: "Slice.jpg", allergens: ["nuts", "gluten"] },
+          { name: "Nuts Stand-Tall", price: "99 QR", description: "Assorted Nuts", image: "Nuts.jpg", allergens: ["nuts"] },
+          { name: "Nuts Stand-Small", price: "60 QR", description: "Assorted Nuts", image: "Nuts.jpg", allergens: ["nuts"] },
+          { name: "Kunafa", price: "40 QR", description: "Turkish Kunafa with Akawi Cheese", image: "Kunafa.jpg", allergens: ["nuts", "gluten"] },
+          { name: "Chocolate Cake", price: "40 QR", description: "Rich chocolate molten cake", image: "Chocolate.jpg", allergens: ["dairy", "gluten"] },
+          { name: "Lotus Cake", price: "40 QR", description: "Rich lotus cake", image: "Lutos.jpg", allergens: ["dairy", "gluten"] },
+          { name: "Full Pistachio Cake", price: "40 QR", description: "Delicate pistachio flavored cake", image: "Full.jpg", allergens: ["nuts", "dairy", "gluten"] },
+          { name: "Lemon Cake", price: "38 QR", description: "Fresh lemon sponge cake", image: "Lemon.jpg", allergens: ["dairy", "gluten"] },
+          { name: "Tiramisu", price: "32 QR", description: "Classic Italian tiramisu", image: "Tiramisu.jpg", allergens: ["dairy", "gluten", "nuts"] },
+          { name: "Almond Chocolate Cake", price: "40 QR", description: "Almond chocolate cake", image: "Almond.jpg", allergens: ["nuts", "dairy", "gluten"] },
+          { name: "Lemon Sponge Cake", price: "42 QR", description: "Light lemon sponge cake", image: "Lemoncake.jpg", allergens: ["dairy", "gluten"] },
+          { name: "Raspberry Cheesecake", price: "30 QR", description: "Cherry cheesecake", image: "Cherry.jpg", allergens: ["dairy", "gluten"] },
+          { name: "Mulberry Cheesecake", price: "30 QR", description: "Mulberry cheesecake", image: "Mulberry.jpg", allergens: ["dairy", "gluten"] },
+          { name: "Chocolate Pistachio Cake", price: "40 QR", description: "Chocolate pistachio cake", image: "Chocolate_pistachio.jpg", allergens: ["dairy", "nuts", "gluten"] },
+          { name: "Strawberry Cake", price: "45 QR", description: "Strawberry cake", image: "Strawberry.jpg", allergens: ["dairy", "gluten"] },
+          { name: "White Almond Cake", price: "42 QR", description: "White almond cake", image: "White.jpg", allergens: ["nuts", "dairy", "gluten"] },
+          { name: "Trileche With Milk", price: "35 QR", description: "Turkish tres leches cake", image: "Trileche.jpg", allergens: ["dairy", "gluten"] },
+          { name: "San Sebastian Cheesecake", price: "42 QR", description: "San Sebastian cheesecake", image: "Sebastian.jpg", allergens: ["dairy", "gluten"] }
+        ],
+        "Arabian Brew": [
+          { name: "Arabic Coffee in a Full Dalla", price: "90 QR", description: "Arabic Coffee in a Full Dalla", allergens: ["dairy"] },
+          { name: "Arabic Coffee in a Half Dalla", price: "50 QR", description: "Arabic Coffee in a Half Dalla", allergens: ["dairy"] },
+          { name: "Arabic Coffee in a Cup", price: "30 QR", description: "Arabic Coffee in a Cup", allergens: ["dairy"] }
+        ],
+        "Tea Time": [
+          { name: "Turkish Tea", price: "15 QR", description: "Classic Turkish tea", allergens: [] },
+          { name: "Cup Of Tea", price: "18 QR", description: "Hot cup of tea", allergens: [] },
+          { name: "Apple Tea", price: "25 QR", description: "Apple tea", allergens: [] },
+          { name: "Mulberry Tea", price: "25 QR", description: "Mulberry tea", allergens: [] },
+          { name: "Lemon Mint", price: "25 QR", description: "Lemon mint tea", allergens: [] },
+          { name: "Pomegranate Tea", price: "25 QR", description: "Pomegranate tea", allergens: [] }
+        ],
+        "Tea on Ice": [
+          { name: "Ice Apple Tea", price: "28 QR", description: "Cold apple tea", allergens: [] },
+          { name: "Ice Mulberry Tea", price: "28 QR", description: "Cold mulberry tea", allergens: [] },
+          { name: "Ice Mint Lemon", price: "28 QR", description: "Cold mint lemon tea", allergens: [] },
+          { name: "Ice Pomegranate Tea", price: "28 QR", description: "Cold pomegranate tea", allergens: [] },
+          { name: "Hibiscus", price: "28 QR", description: "Cold hibiscus tea", allergens: [] }
+        ],
+        "Brewed the Turkish Way": [
+          { name: "Classic Turkish Coffee", price: "28 QR", description: "Classic Turkish Coffee", allergens: [] },
+          { name: "Turkish Coffee with Cardamon", price: "28 QR", description: "Turkish Coffee with Cardamon", allergens: [] },
+          { name: "Double Turkish Coffee", price: "40 QR", description: "Double Turkish Coffee", allergens: [] },
+          { name: "Ottoman Coffee", price: "28 QR", description: "Ottoman Coffee", allergens: [] },
+          { name: "Ottoman Coffee with Mastic", price: "28 QR", description: "Ottoman Coffee with Mastic", allergens: [] },
+          { name: "Ottoman Coffee with Hazelnuts", price: "28 QR", description: "Ottoman Coffee with Hazelnuts", allergens: ["nuts"] },
+          { name: "Sahlep", price: "28 QR", description: "Hot sahlep", allergens: ["dairy"] }
+        ],
+        "Herbal Infusions": [
+          { name: "Sage", price: "28 QR", description: "Sage tea", allergens: [] },
+          { name: "Mix Winter Tea", price: "28 QR", description: "Winter herbal tea mix", allergens: [] },
+          { name: "Green Tea", price: "28 QR", description: "Green tea", allergens: [] },
+          { name: "Chamomile", price: "28 QR", description: "Chamomile tea", allergens: [] },
+          { name: "Hibiscus", price: "28 QR", description: "Hibiscus tea", allergens: [] }
+        ],
+        "Café & Chill": [
+          { name: "Hot Chocolate (Hot/Ice)", price: "36 QR", description: "Hot chocolate", allergens: ["dairy"] },
+          { name: "Latte (Hot/Ice)", price: "29 QR", description: "Latte coffee", allergens: ["dairy"] },
+          { name: "Spanish Latte (Hot/Ice)", price: "32 QR", description: "Spanish Latte", allergens: ["dairy"] },
+          { name: "Salted Caramel Latte (Hot/Ice)", price: "32 QR", description: "Salted Caramel Latte", allergens: ["dairy"] },
+          { name: "Vanilla Latte (Hot/Ice)", price: "32 QR",
+          description: "Vanilla Latte", allergens: ["dairy"] },
+          { name: "Cappuccino (Hot/Ice)", price: "29 QR", description: "Cappuccino", allergens: ["dairy"] },
+          { name: "White Mocha (Hot/Ice)", price: "32 QR", description: "White Mocha", allergens: ["dairy"] },
+          { name: "Flat White (Hot/Ice)", price: "27 QR", description: "Flat White coffee", allergens: ["dairy"] },
+          { name: "Cortado (Hot/Ice)", price: "24 QR", description: "Cortado coffee", allergens: ["dairy"] },
+          { name: "Espresso (Hot/Ice)", price: "21 QR", description: "Espresso coffee", allergens: [] },
+          { name: "Double Espresso (Hot/Ice)", price: "21 QR", description: "Double Espresso coffee", allergens: [] },
+          { name: "Macchiato (Hot/Ice)", price: "24 QR", description: "Macchiato coffee", allergens: ["dairy"] },
+          { name: "Americano (Hot/Ice)", price: "21 QR", description: "Americano coffee", allergens: [] },
+          { name: "Mocha (Hot/Ice)", price: "32 QR", description: "Mocha coffee", allergens: ["dairy"] }
+        ],
+        "Specialty Brews": [
+          { name: "V60 Pour Over (Hot & Ice)", price: "29 QR", description: "V60 pour-over coffee", allergens: [] },
+          { name: "Ice Drip", price: "32 QR", description: "Ice Drip coffee", allergens: [] },
+          { name: "Cold Brew", price: "36 QR", description: "Cold Brew coffee", allergens: [] }
+        ],
+        "Froozen": [
+          { name: "Mango Froozen", price: "38 QR", description: "Mango froozen drink", allergens: [] },
+          { name: "Şeftali Froozen", price: "38 QR", description: "Peach froozen drink", allergens: [] },
+          { name: "Çilekli Froozen", price: "38 QR", description: "Strawberry froozen drink", allergens: [] },
+          { name: "Orman Meyveli Froozen", price: "38 QR", description: "Forest fruits froozen drink", allergens: [] },
+          { name: "Yaban Mersini Froozen", price: "38 QR", description: "Blueberry froozen drink", allergens: [] }
+        ],
+        "Refreshments": [
+          { name: "Still Water (Small)", price: "11 QR", description: "Small still water", allergens: [] },
+          { name: "Still Water (Big)", price: "21 QR", description: "Big still water", allergens: [] },
+          { name: "Sparkling Water", price: "21 QR", description: "Sparkling water", allergens: [] },
+          { name: "Churchill", price: "25 QR", description: "Churchill drink", allergens: [] },
+          { name: "Lemonade", price: "30 QR", description: "Fresh lemonade", allergens: [] },
+          { name: "Fresh Orange Juice", price: "30 QR", description: "Fresh orange juice", allergens: [] },
+          { name: "Kinza Kola", price: "17 QR", description: "Kinza Kola", allergens: [] },
+          { name: "Kinza Kola Zero", price: "17 QR", description: "Kinza Kola Zero", allergens: [] }
+        ]
+      };
 
-    /* =========================
-       Helper functions & UI
-       ========================= */
+      const menuDataAr = {
+        "أطباق الإفطار المميزة":[
+          {name:"الإفطار التركي الكلاسيكي", price:"65 ريال", description:"إفطار تركي تقليدي مع الجبن والزيتون والطماطم والخيار والعسل والخبز الطازج", image:"Breakfast.jpg", allergens:["dairy","gluten"]},
+          {name:"المنيمن التركي", price:"45 ريال", description:"بيض مخفوق على الطريقة التركية مع الطماطم والفلفل والتوابل", image:"Menemen.jpg", allergens:["dairy"]},
+          {name:"أومليت عادي", price:"25 ريال", description:"أومليت كلاسيكي منفوش", image:"Omellet.jpg", allergens:["dairy"]}
+        ],
+        "كرواسون":[
+          {name:"كرواسون أضلاع اللحم", price:"45 ريال", description:"أضلاع لحم، جبن شيدر، جبن كسفار، صلصة البيستو (مع الطماطم والخيار والزيتون الأخضر)", image:"Ribs.jpg", allergens:["dairy","gluten","nuts"]},
+          {name:"كرواسون الأفوكادو", price:"42 ريال", description:"بيض مخفوق، أفوكادو، معجون الزيتون (مع الطماطم والخيار)", image:"Avocado.jpg", allergens:["dairy","gluten"]},
+          {name:"كرواسون اللحم المدخن", price:"45 ريال", description:"بيض مخفوق بالزعتر واللحم المدخن (مع الطماطم والخيار والزيتون والمربى والجبن الأبيض)", image:"5.jpg", allergens:["dairy","gluten"]},
+          {name:"كرواسون الزبدة والمربى", price:"40 ريال", description:"زبدة، مربى الكرز، زيتون مشوي، جبن فيتا، طماطم، خيار، براليني", image:"4.jpg", allergens:["dairy","gluten","nuts"]},
+          {name:"كرواسون البيض المخفوق", price:"37 ريال", description:"بيض مخفوق، فلفل أحمر، زعتر، جرجير، طماطم، خيار، زيتون مشوي", image:"1.jpg", allergens:["dairy","gluten"]}
+        ],
+        "الأطباق الرئيسية":[
+          {name:"البطاطس المقلية", price:"25 ريال", description:"بطاطس مقرمشة ذهبية", image:"Patatas.jpg", allergens:[]},
+          {name:"سلطة سيزر", price:"40 ريال", description:"خس روماني طازج مع صلصة سيزر وقطع الخبز المحمص والبارميزان", image:"Caesar.jpg", allergens:["dairy","gluten"]},
+          {name:"برجر اللحم المميز تركيانا", price:"55 ريال", description:"برجر لحم فاخر مع إضافات مميزة وبطاطس مقلية", image:"Burger.jpg", allergens:["gluten","dairy"]}
+        ],
+        "الحلويات والتحليات":[
+          {name:"بقلاوة تركية مشكلة", price:"45 ريال", description:"تشكيلة من البقلاوة التركية التقليدية", image:"Mix.jpg", allergens:["nuts","gluten"]},
+          {name:"طبق المكسرات", price:"99 ريال", description:"تشكيلة من المكسرات", image:"Nuts.jpg", allergens:["nuts"]},
+          {name:"بقلاوة تركية عادية", price:"40 ريال", description:"بقلاوة عادية كلاسيكية", image:"Slice.jpg", allergens:["nuts","gluten"]},
+          {name:"كنافة", price:"40 ريال", description:"كنافة تركية بجبن العكاوي", image:"Kunafa.jpg", allergens:["nuts","gluten"]},
+          {name:"كيك الشوكولاتة", price:"40 ريال", description:"كيك شوكولاتة غني", image:"Chocolate.jpg", allergens:["dairy","gluten"]}
+        ]
+      };
 
-    function getCurrentMenuData() {
-      return currentLang === 'ar' ? menuDataAr : menuDataEn;
-    }
-
-    // Resolve image src: if path looks like a filename, try relative path first, otherwise use provided URL
-    function resolveImg(src) {
-      if (!src) return src;
-      if (src.startsWith('http://') || src.startsWith('https://') || src.startsWith('/')) return src;
-      // if your images are under a specific folder, change the prefix accordingly
-      return src; // keep as-is (onerror fallback will handle missing files)
-    }
-
-    // Populate floating marquee with menu images (duplicates for smooth scroll)
-    function initMarquee() {
-      const menuData = getCurrentMenuData();
-      const allImages = [];
-      for (const cat in menuData) {
-        (menuData[cat] || []).forEach(i => { if (i.image) allImages.push(resolveImg(i.image)); });
-      }
+      // --- UI references ---
+      const langToggleBtn = document.getElementById('langToggle');
+      const langSpans = Array.from(document.querySelectorAll('.lang-content'));
+      const openMenuBtn = document.getElementById('openMenuBtn');
+      const landing = document.getElementById('landing');
+      const menuContent = document.getElementById('menuContent');
+      const searchBar = document.getElementById('searchBar');
       const marqueeTrack = document.getElementById('marqueeTrack');
-      marqueeTrack.innerHTML = '';
-      if (allImages.length === 0) {
-        const div = document.createElement('div');
-        div.className = 'marquee-item';
-        div.innerHTML = '<img src="https://dummyimage.com/150x100/e5e5e5/666666&text=Turkiana" alt="Turkiana">';
-        marqueeTrack.appendChild(div);
-        return;
+      const menuContainer = document.getElementById('menu-container');
+      const itemModal = document.getElementById('item-modal');
+      const closeItemModal = document.getElementById('closeItemModal');
+      const modalName = document.getElementById('modal-name');
+      const modalPrice = document.getElementById('modal-price');
+      const modalDescription = document.getElementById('modal-description');
+      const landingMarqueeTrack = document.getElementById('landingMarqueeTrack');
+      const hoverPreview = document.getElementById('hover-preview');
+
+      // --- language functions ---
+      let currentLang = 'en';
+      function setLanguage(lang) {
+        currentLang = lang;
+        document.documentElement.lang = (lang === 'ar') ? 'ar' : 'en';
+        document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+        document.body.classList.toggle('rtl', lang === 'ar');
+
+        langSpans.forEach(el => {
+          const elLang = el.dataset.lang;
+          if (!elLang) return;
+          el.style.display = (elLang === lang) ? '' : 'none';
+          el.classList.toggle('active', elLang === lang);
+        });
+
+        renderMenu();
+        initMarquee();
+        buildLandingMarquee(lang === 'ar' ? [
+          "حيث يلتقي التراث بالأناقة — تذوق قلب تركيا في تركيانا.",
+          "حلويات مصنعة يدوياً وقهوة طازجة — كل يوم احتفال صغير."
+        ] : [
+          "Where Tradition Meets Elegance — Taste the heart of Turkey at Turkiana.",
+          "Handmade sweets, freshly brewed coffee — every day a small celebration."
+        ]);
+
+        searchBar.placeholder = (lang === 'ar') ? 'ابحث في القائمة...' : 'Search...';
       }
-      // shuffle to vary order a bit
-      const shuffled = allImages.sort(() => Math.random() - 0.5);
-      const combined = [...shuffled, ...shuffled]; // duplicate for continuous scroll
-      combined.forEach(src => {
-        const item = document.createElement('div');
-        item.className = 'marquee-item';
-        item.innerHTML = `<img src="${src}" alt="Menu Item" onerror="this.src='https://dummyimage.com/150x100/e5e5e5/666666?text=Menu+Item'">`;
-        item.addEventListener('click', () => openImageModal(src));
-        marqueeTrack.appendChild(item);
-      });
-    }
 
-    // Render menu into menu-container
-    function renderMenu(menuData) {
-      const container = document.getElementById('menu-container');
-      container.innerHTML = '';
-      if (!menuData || Object.keys(menuData).length === 0) {
-        container.innerHTML = `<div style="padding:18px;text-align:center;color:#fff">No menu data available.</div>`;
-        return;
+      langToggleBtn.addEventListener('click', () => setLanguage(currentLang === 'en' ? 'ar' : 'en'));
+
+      // --- landing marquee ---
+      function buildLandingMarquee(arr) {
+        landingMarqueeTrack.innerHTML = '';
+        if (!arr || !arr.length) return;
+        const seq = arr.map(txt => {
+          const span = document.createElement('span');
+          span.className = 'item';
+          span.textContent = txt;
+          return span;
+        });
+        // duplicate for smooth loop
+        seq.concat(seq).forEach(n => landingMarqueeTrack.appendChild(n.cloneNode(true)));
       }
 
-      for (const category in menuData) {
-        const catBtn = document.createElement('div');
-        catBtn.className = 'category';
-        catBtn.textContent = category;
+      // --- marquee images ---
+      function resolveImg(src) {
+        if (!src) return '';
+        if (src.startsWith('http') || src.startsWith('/')) return src;
+        // If images are local filenames, keep as-is — onerror will fallback
+        return src;
+      }
+      function initMarquee() {
+        marqueeTrack.innerHTML = '';
+        const source = (currentLang === 'ar') ? menuDataAr : menuDataEn;
+        const imgs = [];
+        for (const cat in source) {
+          (source[cat] || []).forEach(i => { if (i.image) imgs.push(resolveImg(i.image)); });
+        }
+        if (!imgs.length) {
+          const div = document.createElement('div');
+          div.className = 'marquee-item';
+          div.innerHTML = '<img src="https://dummyimage.com/150x100/e5e5e5/666666?text=Turkiana" alt="Turkiana">';
+          marqueeTrack.appendChild(div);
+          return;
+        }
+        const list = imgs.concat(imgs);
+        list.forEach(src => {
+          const d = document.createElement('div');
+          d.className = 'marquee-item';
+          const img = document.createElement('img');
+          img.src = src;
+          img.alt = 'Menu Item';
+          img.onerror = function(){ this.src = 'https://dummyimage.com/150x100/e5e5e5/666666?text=Menu+Item' };
+          d.appendChild(img);
+          d.addEventListener('click', () => openImageModal(src));
+          marqueeTrack.appendChild(d);
+        });
+      }
 
-        const itemsContainer = document.createElement('div');
-        itemsContainer.className = 'items-container';
+      // --- render menu ---
+      function getCurrentMenuData() {
+        return currentLang === 'ar' ? menuDataAr : menuDataEn;
+      }
 
-        (menuData[category] || []).forEach(item => {
-          const itemDiv = document.createElement('div');
-          itemDiv.className = 'menu-item';
-          itemDiv.tabIndex = 0;
+      function renderMenu() {
+        menuContainer.innerHTML = '';
+        const source = getCurrentMenuData();
+        if (!source || Object.keys(source).length === 0) {
+          const empty = document.createElement('div');
+          empty.style.padding = '18px';
+          empty.style.textAlign = 'center';
+          empty.innerHTML = (currentLang === 'ar') ? '<strong>عذراً، لا توجد بيانات للقائمة حالياً.</strong>' : '<strong>Sorry, no menu data available.</strong>';
+          menuContainer.appendChild(empty);
+          return;
+        }
 
-          if (item.image) {
-            const img = document.createElement('img');
-            img.className = 'menu-img';
-            img.src = resolveImg(item.image);
-            img.alt = item.name || item.title || '';
-            img.onerror = function() { this.src = 'https://dummyimage.com/80x80/e5e5e5/666666?text=Menu+Item'; };
-            if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
-              img.addEventListener('click', (e) => { e.stopPropagation(); openMobileImageModal(img.src); });
-            } else {
-              img.addEventListener('mousemove', (e) => showHoverPreview(e, img.src));
-              img.addEventListener('mouseleave', hideHoverPreview);
-              img.addEventListener('click', (e) => { e.stopPropagation(); openImageModal(img.src); });
+        for (const category in source) {
+          const categoryEl = document.createElement('button');
+          categoryEl.className = 'category';
+          categoryEl.type = 'button';
+          categoryEl.setAttribute('aria-expanded', 'true');
+          categoryEl.textContent = category;
+
+          const itemsContainer = document.createElement('div');
+          itemsContainer.className = 'items-container open';
+
+          (source[category] || []).forEach(item => {
+            const itemEl = document.createElement('div');
+            itemEl.className = 'menu-item';
+            itemEl.tabIndex = 0;
+
+            if (item.image) {
+              const img = document.createElement('img');
+              img.src = resolveImg(item.image);
+              img.alt = item.name || item.title || '';
+              img.onerror = function(){ this.src = 'https://dummyimage.com/160x120/e5e5e5/666666?text=Menu+Item' };
+              img.className = 'menu-img';
+              if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+                img.addEventListener('click', (e) => { e.stopPropagation(); openMobileImageModal(img.src); });
+              } else {
+                img.addEventListener('mousemove', (ev) => showHoverPreview(ev, img.src));
+                img.addEventListener('mouseleave', hideHoverPreview);
+                img.addEventListener('click', (e)=>{ e.stopPropagation(); openImageModal(img.src); });
+              }
+              itemEl.appendChild(img);
             }
-            itemDiv.appendChild(img);
-          }
 
-          const info = document.createElement('div');
-          info.style.display = 'flex';
-          info.style.flexDirection = 'column';
-          info.style.gap = '.2rem';
-          info.style.flex = '1';
+            const info = document.createElement('div');
+            info.style.display = 'flex';
+            info.style.flexDirection = 'column';
+            info.style.gap = '4px';
 
-          const nameRow = document.createElement('div');
-          nameRow.className = 'menu-item-name';
-          nameRow.textContent = item.name || item.title || '';
-          if (item.allergens && item.allergens.length) {
-            const span = document.createElement('span');
-            span.className = 'allergen';
-            span.textContent = item.allergens.map(a => allergens[a] || '').join(' ');
-            nameRow.appendChild(span);
-          }
-          info.appendChild(nameRow);
+            const nameRow = document.createElement('div');
+            nameRow.className = 'menu-item-name';
+            nameRow.textContent = item.name || item.title || '';
 
-          const desc = document.createElement('div');
-          desc.style.fontSize = '.95rem';
-          desc.style.opacity = '.9';
-          desc.textContent = item.description || '';
-          info.appendChild(desc);
+            if (item.allergens && item.allergens.length) {
+              const allergenSpan = document.createElement('span');
+              allergenSpan.className = 'allergen';
+              allergenSpan.textContent = item.allergens.map(a => allergens[a] || '').join(' ');
+              nameRow.appendChild(allergenSpan);
+            }
+            info.appendChild(nameRow);
 
-          itemDiv.appendChild(info);
+            const desc = document.createElement('div');
+            desc.style.fontSize = '.95rem';
+            desc.style.opacity = '.9';
+            desc.textContent = item.description || '';
+            info.appendChild(desc);
 
-          const price = document.createElement('div');
-          price.style.fontWeight = '700';
-          price.textContent = item.price || '';
-          itemDiv.appendChild(price);
+            itemEl.appendChild(info);
 
-          itemDiv.addEventListener('click', () => openItemModal(item));
-          itemDiv.addEventListener('keypress', (e) => { if (e.key === 'Enter' || e.key === ' ') openItemModal(item); });
+            const priceSpan = document.createElement('div');
+            priceSpan.style.fontWeight = '700';
+            priceSpan.textContent = item.price || '';
+            itemEl.appendChild(priceSpan);
 
-          itemsContainer.appendChild(itemDiv);
-        });
+            itemEl.addEventListener('click', () => openItemModal(item));
+            itemEl.addEventListener('keypress', (e) => {
+              if (e.key === 'Enter' || e.key === ' ') { openItemModal(item); e.preventDefault(); }
+            });
 
-        catBtn.addEventListener('click', () => toggleCategory(itemsContainer));
-        container.appendChild(catBtn);
-        container.appendChild(itemsContainer);
+            itemsContainer.appendChild(itemEl);
+          });
+
+          categoryEl.addEventListener('click', () => toggleCategory(itemsContainer));
+          menuContainer.appendChild(categoryEl);
+          menuContainer.appendChild(itemsContainer);
+        }
       }
-    }
 
-    function toggleCategory(itemsDiv) {
-      const open = itemsDiv.style.display === 'flex';
-      if (open) {
-        itemsDiv.style.display = 'none';
-        itemsDiv.classList.remove('opening');
-      } else {
-        itemsDiv.style.display = 'flex';
-        itemsDiv.style.flexDirection = 'column';
-        itemsDiv.classList.add('opening');
-        setTimeout(() => itemsDiv.classList.remove('opening'), 400);
+      function toggleCategory(itemsDiv) {
+        const isOpen = itemsDiv.style.display === 'flex';
+        if (isOpen) { itemsDiv.style.display = 'none'; itemsDiv.classList.remove('opening'); }
+        else { itemsDiv.style.display = 'flex'; itemsDiv.style.flexDirection = 'column'; itemsDiv.classList.add('opening'); setTimeout(()=>itemsDiv.classList.remove('opening'),400); }
       }
-    }
 
-    // Hover preview
-    const hoverPreview = document.getElementById('hover-preview');
-    function showHoverPreview(e, src) {
-      if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return;
-      hoverPreview.src = src;
-      hoverPreview.style.display = 'block';
-      hoverPreview.style.opacity = '1';
-      const offset = 16;
-      let x = e.clientX + offset;
-      let y = e.clientY + offset;
-      const w = hoverPreview.offsetWidth || 240;
-      const h = hoverPreview.offsetHeight || 160;
-      if (x + w > window.innerWidth) x = e.clientX - w - offset;
-      if (y + h > window.innerHeight) y = window.innerHeight - h - offset;
-      hoverPreview.style.left = x + 'px';
-      hoverPreview.style.top = y + 'px';
-      hoverPreview.style.position = 'fixed';
-    }
-    function hideHoverPreview() {
-      hoverPreview.style.opacity = '0';
-      setTimeout(() => hoverPreview.style.display = 'none', 150);
-    }
-
-    // Search
-    document.getElementById('searchBar').addEventListener('input', function() {
-      const q = (this.value || '').trim().toLowerCase();
-      const cats = document.querySelectorAll('.category');
-      cats.forEach(cat => {
-        const itemsEl = cat.nextElementSibling;
-        if (!itemsEl) return;
-        let has = false;
-        Array.from(itemsEl.children).forEach(itemDiv => {
-          const name = (itemDiv.querySelector('.menu-item-name')?.textContent || '').toLowerCase();
-          const show = q === '' || name.includes(q);
-          itemDiv.style.display = show ? 'flex' : 'none';
-          if (show) has = true;
+      // --- search ---
+      searchBar.addEventListener('input', function (e) {
+        const q = (this.value || '').toLowerCase();
+        const categories = document.querySelectorAll('.category');
+        categories.forEach(cat => {
+          const itemsEl = cat.nextElementSibling;
+          if (!itemsEl) return;
+          let has = false;
+          Array.from(itemsEl.children).forEach(itemDiv => {
+            const name = (itemDiv.querySelector('.menu-item-name')?.textContent || '').toLowerCase();
+            const show = q === '' || name.includes(q);
+            itemDiv.style.display = show ? 'flex' : 'none';
+            if (show) has = true;
+          });
+          cat.style.display = has || q === '' ? 'block' : 'none';
+          if (q !== '' && has) { itemsEl.style.display = 'flex'; itemsEl.style.flexDirection = 'column'; }
         });
-        cat.style.display = has || q === '' ? 'block' : 'none';
-        if (q !== '' && has) { itemsEl.style.display = 'flex'; itemsEl.style.flexDirection = 'column'; }
       });
-    });
 
-    // Modals
-    function openItemModal(item) {
-      document.getElementById('modal-name').textContent = item.name || '';
-      document.getElementById('modal-price').textContent = item.price || '';
-      document.getElementById('modal-description').textContent = item.description || '';
-      document.getElementById('item-modal').classList.add('show');
-      document.getElementById('item-modal').setAttribute('aria-hidden', 'false');
-    }
-    function closeModal() {
-      document.getElementById('item-modal').classList.remove('show');
-      document.getElementById('item-modal').setAttribute('aria-hidden', 'true');
-    }
-    function openImageModal(src) {
-      const img = document.getElementById('zoomed-image');
-      img.src = src;
-      img.onerror = function() { this.src = 'https://dummyimage.com/800x600/e5e5e5/666666?text=Menu+Item'; };
-      document.getElementById('image-modal').classList.add('show');
-    }
-    function closeImageModal() { document.getElementById('image-modal').classList.remove('show'); }
-    function openMobileImageModal(src) {
-      const img = document.getElementById('mobile-zoomed-image');
-      img.src = src;
-      img.onerror = function() { this.src = 'https://dummyimage.com/400x300/e5e5e5/666666?text=Menu+Item'; };
-      document.getElementById('mobile-image-modal').classList.add('show');
-    }
-    function closeMobileImageModal() { document.getElementById('mobile-image-modal').classList.remove('show'); }
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') { closeModal(); closeImageModal(); closeMobileImageModal(); }
-    });
-
-    // Toggle language (simple)
-    document.getElementById('langToggle').addEventListener('click', () => {
-      currentLang = currentLang === 'en' ? 'ar' : 'en';
-      document.documentElement.lang = currentLang === 'ar' ? 'ar' : 'en';
-      document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
-      document.body.classList.toggle('rtl', currentLang === 'ar');
-      // swap visible language spans
-      document.querySelectorAll('.lang-content').forEach(el => {
-        const lang = el.dataset.lang;
-        el.style.display = (lang === currentLang) ? '' : 'none';
-        el.classList.toggle('active', lang === currentLang);
+      // --- item modal / image modal ---
+      function openItemModal(item) {
+        modalName.textContent = item.name || '';
+        modalPrice.textContent = item.price || '';
+        modalDescription.textContent = item.description || '';
+        itemModal.classList.add('show');
+        itemModal.setAttribute('aria-hidden', 'false');
+      }
+      function closeAllModals() {
+        document.querySelectorAll('.modal').forEach(m => { m.classList.remove('show'); m.setAttribute('aria-hidden', 'true'); });
+      }
+      closeItemModal.addEventListener('click', closeAllModals);
+      document.addEventListener('keydown', (e)=> { if (e.key === 'Escape') closeAllModals(); });
+      document.addEventListener('click', (e)=> {
+        document.querySelectorAll('.modal.show').forEach(m => {
+          const content = m.querySelector('.modal-content') || m.querySelector('img');
+          if (content && !content.contains(e.target) && !content.isSameNode(e.target)) closeAllModals();
+        });
       });
-      // re-render menu & marquee when language changes
-      renderMenu(getCurrentMenuData());
-      initMarquee();
-      // swap opening texts (landing)
-      document.querySelectorAll('.logo').forEach(el => el.textContent = currentLang === 'ar' ? 'تركيانا' : 'Turkiana');
-      document.querySelectorAll('.subtitle').forEach(el => el.textContent = currentLang === 'ar' ? 'مقهى وحلويات' : 'CAFÉ & SWEETS');
-      document.getElementById('openMenuBtn').textContent = currentLang === 'ar' ? 'استكشف قائمتنا' : 'Explore Our Menu';
-      // update marquee quote on landing
-      buildLandingMarquee(currentLang === 'ar' ? [
-        "حيث يلتقي التراث بالأناقة — تذوق قلب تركيا في تركيانا.",
-        "حلويات مصنعة يدوياً وقهوة طازجة — كل يوم احتفال صغير."
-      ] : [
-        "Where Tradition Meets Elegance — Taste the heart of Turkey at Turkiana.",
-        "Handmade sweets, freshly brewed coffee — every day a small celebration."
-      ]);
-    });
 
-    // Landing marquee (quotes)
-    function buildLandingMarquee(arr) {
-      const track = document.getElementById('landingMarqueeTrack');
-      track.innerHTML = '';
-      if (!arr || arr.length === 0) return;
-      const nodes = arr.map(txt => {
-        const s = document.createElement('span');
-        s.className = 'item';
-        s.textContent = txt;
-        return s;
-      });
-      // duplicate so -50% shift reveals repetition
-      const frag = document.createDocumentFragment();
-      nodes.forEach(n => frag.appendChild(n.cloneNode(true)));
-      nodes.forEach(n => frag.appendChild(n.cloneNode(true)));
-      track.appendChild(frag);
-    }
+      function openImageModal(src) {
+        const zoomed = document.getElementById('zoomed-image');
+        zoomed.src = src || '';
+        zoomed.onerror = function(){ this.src = 'https://dummyimage.com/800x600/e5e5e5/666666?text=Menu+Item' };
+        document.getElementById('image-modal').classList.add('show');
+      }
+      function openMobileImageModal(src) {
+        const m = document.getElementById('mobile-zoomed-image');
+        m.src = src || '';
+        m.onerror = function(){ this.src = 'https://dummyimage.com/400x300/e5e5e5/666666?text=Menu+Item' };
+        document.getElementById('mobile-image-modal').classList.add('show');
+      }
 
-    // Show menu action
-    function showMenu() {
-      document.getElementById('landing').style.display = 'none';
-      const menu = document.getElementById('menuContent');
-      menu.classList.add('show');
-      menu.setAttribute('aria-hidden', 'false');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-    document.getElementById('openMenuBtn').addEventListener('click', showMenu);
-    document.getElementById('scrollIndicator').addEventListener('click', showMenu);
+      // --- hover preview ---
+      function showHoverPreview(ev, src) {
+        if (!hoverPreview || !src) return;
+        if ('ontouchstart' in window || window.matchMedia('(hover:none)').matches) return;
+        hoverPreview.src = src;
+        hoverPreview.style.display = '';
+        hoverPreview.style.opacity = '1';
+        const offset = 18;
+        let x = ev.clientX + offset;
+        let y = ev.clientY + offset;
+        const w = hoverPreview.offsetWidth || 240;
+        const h = hoverPreview.offsetHeight || 160;
+        if (x + w > window.innerWidth) x = ev.clientX - w - offset;
+        if (y + h > window.innerHeight) y = window.innerHeight - h - offset;
+        hoverPreview.style.left = x + 'px';
+        hoverPreview.style.top = y + 'px';
+        hoverPreview.style.position = 'fixed';
+      }
+      function hideHoverPreview() { if (!hoverPreview) return; hoverPreview.style.display = 'none'; hoverPreview.style.opacity = '0'; }
 
-    // Robust video autoplay: try, retry, and listen for user gesture
-    (function videoPlayback() {
-      const video = document.getElementById('bgVideo');
-      if (!video) return;
-      try {
-        video.muted = true;
-        video.setAttribute('muted', '');
-        video.setAttribute('playsinline', '');
-        video.playsInline = true;
-        video.autoplay = true;
-        video.loop = true;
-        video.preload = 'auto';
-      } catch (e) {}
-      // poster is already set in markup; if you don't have Poster.jpg, browser will ignore
+      // --- show/hide menu ---
+      function showMenu() {
+        landing.style.display = 'none';
+        menuContent.classList.add('show');
+        menuContent.setAttribute('aria-hidden', 'false');
+        setTimeout(()=> searchBar && searchBar.focus(), 300);
+        window.scrollTo({ top: menuContent.offsetTop, behavior: 'smooth' });
+      }
+      openMenuBtn.addEventListener('click', showMenu);
+      document.getElementById('scrollIndicator').addEventListener('click', showMenu);
 
-      function tryPlay(attempts = 3, delay = 600) {
+      // --- landing quote init ---
+      function initLandingQuotes() {
+        const en = [
+          "Where Tradition Meets Elegance — Taste the heart of Turkey at Turkiana.",
+          "Handmade sweets, freshly brewed coffee — every day a small celebration."
+        ];
+        const ar = [
+          "حيث يلتقي التراث بالأناقة — تذوق قلب تركيا في تركيانا.",
+          "حلويات مصنعة يدوياً وقهوة طازجة — كل يوم احتفال صغير."
+        ];
+        buildLandingMarquee(currentLang === 'ar' ? ar : en);
+      }
+
+      // --- build landing marquee content ---
+      function buildLandingMarquee(arr) {
+        landingMarqueeTrack.innerHTML = '';
+        if (!arr || !arr.length) return;
+        const seq = arr.map(s => {
+          const sp = document.createElement('span');
+          sp.className = 'item';
+          sp.textContent = s;
+          return sp;
+        });
+        // duplicate for continuous scroll
+        seq.concat(seq).forEach(n => landingMarqueeTrack.appendChild(n.cloneNode(true)));
+      }
+
+      // --- video playback robustness ---
+      (function videoInit(){
+        const video = document.getElementById('bgVideo');
         if (!video) return;
-        video.play().then(() => {
-          video.classList.add('loaded');
-        }).catch(err => {
-          // autoplay blocked or other error
-          if (attempts > 0) setTimeout(() => tryPlay(attempts - 1, delay), delay);
-        });
-      }
+        try {
+          video.muted = true;
+          video.setAttribute('muted','');
+          video.setAttribute('playsinline','');
+          video.playsInline = true;
+          video.autoplay = true;
+          video.loop = true;
+          video.preload = 'auto';
+        } catch(e){}
+        function tryPlay(tries = 4, delay = 600) {
+          if (!video) return;
+          video.play().then(()=> {
+            video.classList.add('loaded');
+          }).catch(err => {
+            if (tries > 0) setTimeout(()=> tryPlay(tries - 1, delay), delay);
+          });
+        }
+        video.addEventListener('loadeddata', ()=> { video.classList.add('loaded'); tryPlay(2); });
+        video.addEventListener('canplay', ()=> tryPlay(2));
+        video.addEventListener('error', ()=> console.warn('Background video encountered an error'));
+        function onFirstGesture() { tryPlay(3); window.removeEventListener('touchstart', onFirstGesture); window.removeEventListener('click', onFirstGesture); }
+        window.addEventListener('touchstart', onFirstGesture, {passive:true});
+        window.addEventListener('click', onFirstGesture);
+        if (window.innerWidth <= 420) try { video.pause(); } catch(e){}
+      })();
 
-      video.addEventListener('loadeddata', () => {
-        video.classList.add('loaded');
-        tryPlay(2);
+      // --- init on DOM ready ---
+      document.addEventListener('DOMContentLoaded', () => {
+        setLanguage('en');
+        initLandingQuotes();
+        initMarquee();
+        renderMenu();
+        // accessibility: pause marquee on focus/blur
+        landingMarqueeTrack.addEventListener('focus', ()=> landingMarqueeTrack.style.animationPlayState = 'paused');
+        landingMarqueeTrack.addEventListener('blur', ()=> landingMarqueeTrack.style.animationPlayState = 'running');
+        // hover preview fallback: ensure it won't break
+        const hp = document.getElementById('hover-preview');
+        if (hp) hp.onerror = function(){ this.style.display='none'; };
       });
-      video.addEventListener('canplay', () => tryPlay(2));
-      video.addEventListener('error', () => console.warn('Video load error - check source or network'));
-
-      // Retry on first user gesture (common mobile requirement)
-      function onFirstGesture() { tryPlay(3); window.removeEventListener('touchstart', onFirstGesture); window.removeEventListener('click', onFirstGesture); }
-      window.addEventListener('touchstart', onFirstGesture, { passive: true });
-      window.addEventListener('click', onFirstGesture);
-
-      // Small-screen optimization: pause video to save bandwidth if window is narrow
-      if (window.innerWidth <= 420) {
-        try { video.pause(); } catch (e) {}
-      } else {
-        tryPlay(3);
-      }
     })();
-
-    // Init on DOM ready
-    window.addEventListener('DOMContentLoaded', () => {
-      // Initial landing marquee (English)
-      buildLandingMarquee([
-        "Where Tradition Meets Elegance — Taste the heart of Turkey at Turkiana.",
-        "Handmade sweets, freshly brewed coffee — every day a small celebration."
-      ]);
-
-      // Render menu & marquee images (use currentLang)
-      renderMenu(getCurrentMenuData());
-      initMarquee();
-
-      // initialize search placeholder language
-      document.getElementById('searchBar').placeholder = currentLang === 'ar' ? 'ابحث في القائمة...' : 'Search menu items...';
-    });
-
-    // Expose functions used inline in markup
-    window.toggleLanguage = () => document.getElementById('langToggle').click();
-    window.openImageModal = openImageModal;
-    window.openMobileImageModal = openMobileImageModal;
-    window.showMenu = showMenu;
-    window.closeModal = closeModal;
-    window.closeImageModal = closeImageModal;
-    window.closeMobileImageModal = closeMobileImageModal;
   </script>
 </body>
 </html>
