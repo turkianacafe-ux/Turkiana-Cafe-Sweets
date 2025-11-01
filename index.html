@@ -6,7 +6,6 @@
     <title>Turkiana Cafe & Sweets | مقهى وحلويات تركيانا</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Scheherazade+New&family=Inter:wght@300;400;600;700&family=Cormorant+Garamond:wght@300;400;600&family=Amiri:wght@400;700&family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* (Your original CSS kept unchanged) */
         * {
             margin: 0;
             padding: 0;
@@ -36,7 +35,6 @@
             font-family: 'Cairo', 'Amiri', serif;
         }
 
-        /* Language Toggle */
         .language-toggle {
             position: fixed;
             top: 20px;
@@ -65,7 +63,6 @@
             left: 20px;
         }
 
-        /* Landing Section */
         .landing-section {
             position: relative;
             width: 100%;
@@ -365,7 +362,6 @@
             }
         }
 
-        /* Menu Content */
         .menu-content {
             display: none;
             font-family: 'Inter', system-ui, Arial, Helvetica, sans-serif;
@@ -425,7 +421,6 @@
             z-index: -1;
         }
 
-        /* Header */
         header {
             background: rgba(128, 0, 32, 0.72);
             backdrop-filter: blur(40px) saturate(180%);
@@ -460,7 +455,6 @@
             background: repeating-linear-gradient(45deg, #ffd700, #ffd700 5px, var(--accent-deep) 5px, var(--accent-deep) 10px);
         }
 
-        /* Contact Info */
         .contact-info {
             background: rgba(255, 215, 0, 0.72);
             backdrop-filter: blur(40px) saturate(180%);
@@ -468,9 +462,11 @@
             border-bottom: 0.5px solid rgba(128, 0, 32, 0.2);
             color: var(--accent-deep);
             text-align: center;
-            padding: 12px 0;
+            padding: 12px 10px;
             font-weight: bold;
             animation: slideInDown 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+            font-size: 14px;
+            line-height: 1.6;
         }
 
         .contact-info a {
@@ -485,7 +481,33 @@
             opacity: 0.7;
         }
 
-        /* Floating Marquee */
+        .contact-info button {
+            margin-left: 8px;
+            padding: 3px 8px;
+            font-size: 12px;
+            border-radius: 5px;
+            border: 1px solid rgba(128, 0, 32, 0.3);
+            background: rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            color: var(--accent-deep);
+            font-weight: bold;
+            transition: all 0.2s ease;
+        }
+
+        .contact-info button:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(1.05);
+        }
+
+        .contact-info button:active {
+            transform: scale(0.95);
+        }
+
+        body.rtl .contact-info button {
+            margin-left: 0;
+            margin-right: 8px;
+        }
+
         .floating-marquee {
             position: sticky;
             top: 0;
@@ -549,7 +571,6 @@
             object-fit: cover;
         }
 
-        /* Menu Section */
         .menu-section {
             max-width: 1000px;
             margin: auto;
@@ -564,7 +585,6 @@
             font-family: 'Cairo', sans-serif;
         }
 
-        /* Search Bar */
         .search-bar {
             position: sticky;
             top: 130px;
@@ -609,7 +629,6 @@
             }
         }
 
-        /* Category */
         .category {
             background: rgba(255, 243, 230, 0.72);
             backdrop-filter: blur(20px) saturate(180%);
@@ -704,13 +723,13 @@
             right: 10px;
         }
 
-        /* Items Container */
         .items-container {
             display: none;
             margin-top: 10px;
             padding: 10px;
             border-radius: 16px;
             background: linear-gradient(180deg, rgba(255,250,245,0.9), rgba(255,250,245,0.7));
+            flex-direction: column;
         }
 
         .items-container.opening {
@@ -728,7 +747,6 @@
             }
         }
 
-        /* Menu Item */
         .menu-item {
             background: rgba(255, 243, 230, 0.72);
             backdrop-filter: blur(20px) saturate(180%);
@@ -822,7 +840,6 @@
             transform: scale(1.05);
         }
 
-        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -954,7 +971,6 @@
             box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
         }
 
-        /* WhatsApp Button */
         .whatsapp-float {
             position: fixed;
             bottom: 30px;
@@ -999,7 +1015,6 @@
             }
         }
 
-        /* Hover Preview */
         #hover-preview {
             position: fixed;
             display: none;
@@ -1014,7 +1029,6 @@
             border: 2px solid #d4af37;
         }
 
-        /* Footer */
         footer {
             background: rgba(128, 0, 32, 0.72);
             backdrop-filter: blur(40px) saturate(180%);
@@ -1048,7 +1062,6 @@
             opacity: 0.7;
         }
 
-        /* Language Content */
         .lang-content {
             display: none;
         }
@@ -1057,7 +1070,6 @@
             display: inline;
         }
 
-        /* Responsive Design (kept unchanged) */
         @media (max-width: 768px) {
             .logo {
                 font-size: 3rem;
@@ -1204,40 +1216,29 @@
         <div class="contact-info">
             <span class="lang-content active" data-lang="en">
                 📱 <a href="https://wa.me/97451866671" target="_blank">WhatsApp</a> | 
-                📍 <a href="https://goo.gl/maps/Jg2o5f3Xc7xYyR8v5" target="_blank">Location</a> | 
+                📍 <a href="https://maps.app.goo.gl/ud3JKc8DX1HxY6vk7" target="_blank">Location</a> | 
                 🌐 <a href="https://turkianasweets.com" target="_blank">Website</a> | 
-                📷 <a href="https://www.instagram.com/turkiana.qa/" target="_blank">Instagram</a>
+                📷 <a href="https://www.instagram.com/turkiana.qa/" target="_blank">Instagram</a> | 
+                📶 Wi‑Fi: <strong id="wifi-ssid-en">TP-Link_9D3A</strong> | 
+                🔑 Password: <strong id="wifi-pass-en">Turkiana123</strong>
+                <button id="copy-wifi-en" type="button" title="Copy Wi‑Fi details">Copy</button>
             </span>
+
             <span class="lang-content" data-lang="ar">
                 📱 <a href="https://wa.me/97451866671" target="_blank">واتساب</a> | 
-                📍 <a href="https://goo.gl/maps/Jg2o5f3Xc7xYyR8v5" target="_blank">الموقع</a> | 
+                📍 <a href="https://maps.app.goo.gl/ud3JKc8DX1HxY6vk7" target="_blank">الموقع</a> | 
                 🌐 <a href="https://turkianasweets.com" target="_blank">الموقع الإلكتروني</a> | 
-                📷 <a href="https://www.instagram.com/turkiana.qa/" target="_blank">إنستغرام</a>
+                📷 <a href="https://www.instagram.com/turkiana.qa/" target="_blank">إنستغرام</a> | 
+                📶 الواي فاي: <strong id="wifi-ssid-ar">TP-Link_9D3A</strong> | 
+                🔑 كلمة المرور: <strong id="wifi-pass-ar">Turkiana123</strong>
+                <button id="copy-wifi-ar" type="button" title="نسخ بيانات الواي فاي">نسخ</button>
             </span>
         </div>
 
-        <input type="text" id="searchBar" class="search-bar" placeholder="Search menu items...">
-
-        <div class="menu-section" id="menu-container"></div>
-
-        <div class="modal" id="item-modal" aria-hidden="true">
-            <div class="modal-content">
-                <span class="close-btn" onclick="closeModal()">&times;</span>
-                <h3 id="modal-name"></h3>
-                <p id="modal-price"></p>
-                <p id="modal-description"></p>
-            </div>
+        <div class="menu-section">
+            <input type="text" id="searchBar" class="search-bar" placeholder="Search menu items...">
+            <div id="menu-container"></div>
         </div>
-
-        <div class="modal" id="image-modal" onclick="closeImageModal()" aria-hidden="true">
-            <img id="zoomed-image" src="" alt="Menu item">
-        </div>
-
-        <div id="mobile-image-modal" class="modal" onclick="closeMobileImageModal()" aria-hidden="true">
-            <img id="mobile-zoomed-image" src="" alt="Menu Item">
-        </div>
-
-        <a href="https://wa.me/97451866671" target="_blank" class="whatsapp-float" title="Order on WhatsApp">📱</a>
 
         <footer>
             <h3>
@@ -1262,9 +1263,32 @@
         </footer>
     </div>
 
-    <script>
-        // Minimal, targeted fixes only. Keep your original data and design unchanged.
+    <a href="https://wa.me/97451866671" target="_blank" class="whatsapp-float" title="Contact us on WhatsApp">
+        💬
+    </a>
 
+    <div id="item-modal" class="modal" aria-hidden="true" onclick="if(event.target === this) closeModal()">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h3 id="modal-name"></h3>
+            <p id="modal-price" style="font-weight: bold; font-size: 1.2em; color: var(--gold);"></p>
+            <p id="modal-description" style="margin-top: 10px;"></p>
+        </div>
+    </div>
+
+    <div id="image-modal" class="modal" aria-hidden="true" onclick="if(event.target === this) closeImageModal()">
+        <span class="close-btn" onclick="closeImageModal()" style="position: fixed; top: 20px; right: 20px; background: rgba(255,255,255,0.9); z-index: 101;">&times;</span>
+        <img id="zoomed-image" src="" alt="Menu Item">
+    </div>
+
+    <div id="mobile-image-modal" class="modal" aria-hidden="true" onclick="if(event.target === this) closeMobileImageModal()">
+        <span class="close-btn" onclick="closeMobileImageModal()" style="position: fixed; top: 20px; right: 20px; background: rgba(255,255,255,0.9); z-index: 101;">&times;</span>
+        <img id="mobile-zoomed-image" src="" alt="Menu Item">
+    </div>
+
+    <img id="hover-preview" src="" alt="Preview">
+
+    <script>
         let currentLang = 'en';
 
         const allergens = { nuts: "🥜", dairy: "🥛", gluten: "🌾" };
@@ -1860,4 +1884,3 @@
     </script>
 </body>
 </html>
-
