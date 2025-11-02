@@ -21,6 +21,12 @@
             --muted: #bfb6b0;
             --paper: #fffaf5;
             --accent-deep: #800020;
+
+            /* Glass adjustments for stronger iOS-like glass */
+            --glass-blur-strong: 60px;    /* increased blur */
+            --glass-blur-medium: 36px;
+            --panel-tint: rgba(12,12,12,0.35);
+            --glass-border: rgba(255,255,255,0.06);
         }
 
         body {
@@ -40,13 +46,14 @@
             top: 20px;
             right: 20px;
             z-index: 1000;
-            background: rgba(212, 175, 55, 0.9);
-            backdrop-filter: blur(20px);
+            background: rgba(212, 175, 55, 0.95);
+            backdrop-filter: blur(18px) saturate(120%);
+            -webkit-backdrop-filter: blur(18px) saturate(120%);
             border-radius: 50px;
             padding: 8px 16px;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 4px 16px rgba(212, 175, 55, 0.3);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.28);
             font-weight: 600;
             color: #0a0a0a;
             font-size: 0.9rem;
@@ -55,7 +62,7 @@
 
         .language-toggle:hover {
             transform: scale(1.05);
-            box-shadow: 0 6px 24px rgba(212, 175, 55, 0.4);
+            box-shadow: 0 8px 28px rgba(212, 175, 55, 0.36);
         }
 
         body.rtl .language-toggle {
@@ -101,14 +108,17 @@
             }
         }
 
+        /* stronger glassy overlay (tint + heavy blur) to make panels pop */
         .overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(10,10,10,.85) 0%, rgba(61,20,20,.75) 50%, rgba(10,10,10,.85) 100%);
-            backdrop-filter: blur(40px) saturate(180%);
+            /* keep the intended warm tint but increase blur to create iOS-style glass */
+            background: linear-gradient(135deg, rgba(10,10,10,.72) 0%, rgba(61,20,20,.62) 50%, rgba(10,10,10,.72) 100%);
+            backdrop-filter: blur(var(--glass-blur-strong)) saturate(160%);
+            -webkit-backdrop-filter: blur(var(--glass-blur-strong)) saturate(160%);
             z-index: 1;
         }
 
@@ -136,7 +146,7 @@
             text-transform: uppercase;
             letter-spacing: 0.3rem;
             margin-bottom: 0.5rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.55);
         }
 
         body.rtl .logo {
@@ -151,7 +161,7 @@
             letter-spacing: 0.5rem;
             font-weight: 300;
             margin-bottom: 1rem;
-            opacity: 0.9;
+            opacity: 0.95;
         }
 
         body.rtl .subtitle {
@@ -164,7 +174,7 @@
             color: #c9a961;
             font-style: italic;
             margin-top: 1rem;
-            opacity: 0.8;
+            opacity: 0.88;
         }
 
         body.rtl .tagline {
@@ -173,7 +183,7 @@
         }
 
         .divider {
-            width: 200px;
+            width: 220px;
             height: 2px;
             background: linear-gradient(90deg, transparent, #d4af37, #8b0000, #d4af37, transparent);
             margin: 2rem auto;
@@ -199,7 +209,7 @@
             letter-spacing: 0.2rem;
             font-weight: 600;
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 8px 32px rgba(212, 175, 55, 0.3);
+            box-shadow: 0 10px 36px rgba(212, 175, 55, 0.28);
             animation: fadeInUp 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
         }
 
@@ -211,7 +221,7 @@
 
         .menu-button:hover {
             transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 16px 48px rgba(212, 175, 55, 0.5);
+            box-shadow: 0 18px 48px rgba(212, 175, 55, 0.4);
             background: linear-gradient(135deg, #f5e6d3, #d4af37);
             letter-spacing: 0.3rem;
         }
@@ -239,7 +249,7 @@
             width: 150px;
             height: 150px;
             border: 2px solid;
-            opacity: 0.3;
+            opacity: 0.28;
         }
 
         .corner-accent.top-left {
@@ -330,7 +340,7 @@
 
         @keyframes fadeIn {
             from { opacity: 0; }
-            to { opacity: 0.3; }
+            to { opacity: 0.28; }
         }
 
         .scroll-indicator {
@@ -347,7 +357,7 @@
             content: '↓';
             font-size: 2rem;
             color: #d4af37;
-            opacity: 0.7;
+            opacity: 0.85;
         }
 
         @keyframes bounce {
@@ -417,15 +427,17 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(10, 10, 10, 0.7);
+            /* slightly darker overlay to emulate depth behind glass panels */
+            background: rgba(8, 8, 8, 0.64);
             z-index: -1;
         }
 
+        /* header and panels: stronger glassy style (increased blur, subtle tint, softer border) */
         header {
-            background: rgba(128, 0, 32, 0.72);
-            backdrop-filter: blur(40px) saturate(180%);
-            -webkit-backdrop-filter: blur(40px) saturate(180%);
-            border-bottom: 0.5px solid rgba(255, 215, 0, 0.2);
+            background: linear-gradient(180deg, rgba(128,0,32,0.58), rgba(128,0,32,0.42));
+            backdrop-filter: blur(var(--glass-blur-medium)) saturate(170%);
+            -webkit-backdrop-filter: blur(var(--glass-blur-medium)) saturate(170%);
+            border-bottom: 1px solid var(--glass-border);
             color: #ffd700;
             padding: 25px 10px;
             text-align: center;
@@ -433,6 +445,9 @@
             font-weight: bold;
             position: relative;
             animation: slideInDown 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.45);
+            border-radius: 12px;
+            margin: 12px;
         }
 
         @keyframes slideInDown {
@@ -456,10 +471,10 @@
         }
 
         .contact-info {
-            background: rgba(255, 215, 0, 0.72);
-            backdrop-filter: blur(40px) saturate(180%);
-            -webkit-backdrop-filter: blur(40px) saturate(180%);
-            border-bottom: 0.5px solid rgba(128, 0, 32, 0.2);
+            background: linear-gradient(180deg, rgba(255, 215, 0, 0.82), rgba(255, 245, 220, 0.7));
+            backdrop-filter: blur(var(--glass-blur-medium)) saturate(170%);
+            -webkit-backdrop-filter: blur(var(--glass-blur-medium)) saturate(170%);
+            border-bottom: 1px solid rgba(128, 0, 32, 0.12);
             color: var(--accent-deep);
             text-align: center;
             padding: 12px 10px;
@@ -467,72 +482,60 @@
             animation: slideInDown 0.7s cubic-bezier(0.16, 1, 0.3, 1);
             font-size: 14px;
             line-height: 1.6;
+            border-radius: 12px;
+            margin: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.35);
         }
 
-        .contact-info a {
-            color: var(--accent-deep);
-            text-decoration: none;
-            font-weight: bold;
-            margin: 0 5px;
-            transition: opacity 0.3s ease;
-        }
-
-        .contact-info a:hover {
-            opacity: 0.7;
-        }
+        .contact-info a { color: var(--accent-deep); text-decoration: none; font-weight: bold; margin: 0 5px; transition: opacity 0.3s ease; }
+        .contact-info a:hover { opacity: 0.75; }
 
         .contact-info button {
             margin-left: 8px;
-            padding: 3px 8px;
+            padding: 4px 10px;
             font-size: 12px;
-            border-radius: 5px;
-            border: 1px solid rgba(128, 0, 32, 0.3);
-            background: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            border: 1px solid rgba(128, 0, 32, 0.18);
+            background: rgba(255, 255, 255, 0.85);
             cursor: pointer;
             color: var(--accent-deep);
             font-weight: bold;
-            transition: all 0.2s ease;
+            transition: all 0.18s ease;
         }
 
         .contact-info button:hover {
-            background: rgba(255, 255, 255, 0.4);
-            transform: scale(1.05);
-        }
-
-        .contact-info button:active {
-            transform: scale(0.95);
-        }
-
-        body.rtl .contact-info button {
-            margin-left: 0;
-            margin-right: 8px;
+            background: rgba(255, 255, 255, 0.95);
+            transform: scale(1.03);
         }
 
         .floating-marquee {
             position: sticky;
             top: 0;
             width: 100%;
-            height: 120px;
+            height: 160px; /* increased height to make images larger visually */
             overflow: hidden;
-            background: rgba(61, 20, 20, 0.72);
-            backdrop-filter: blur(40px) saturate(180%);
-            -webkit-backdrop-filter: blur(40px) saturate(180%);
-            border-bottom: 0.5px solid rgba(212, 175, 55, 0.3);
+            background: linear-gradient(180deg, rgba(61, 20, 20, 0.64), rgba(12,12,12,0.44));
+            backdrop-filter: blur(var(--glass-blur-medium)) saturate(170%);
+            -webkit-backdrop-filter: blur(var(--glass-blur-medium)) saturate(170%);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.26);
             z-index: 50;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.18);
+            display: flex;
+            align-items: center;
+            padding: 8px 0;
         }
 
         .marquee-track {
             display: flex;
             align-items: center;
             height: 100%;
-            animation: scroll-left 40s linear infinite;
-            gap: 20px;
-            padding: 10px 0;
+            animation: scroll-left 36s linear infinite; /* slightly faster for larger images */
+            gap: 28px;
+            padding: 10px 24px;
         }
 
         body.rtl .marquee-track {
-            animation: scroll-right 40s linear infinite;
+            animation: scroll-right 36s linear infinite;
         }
 
         @keyframes scroll-left {
@@ -545,40 +548,51 @@
             100% { transform: translateX(0); }
         }
 
+        /* larger marquee items (requested) */
         .marquee-item {
             flex-shrink: 0;
-            width: 150px;
-            height: 100px;
-            border-radius: 20px;
+            width: 220px;   /* increased width */
+            height: 140px;  /* increased height */
+            border-radius: 20px; /* slightly larger radius */
             overflow: hidden;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid rgba(212, 175, 55, 0.28);
+            box-shadow: 0 10px 36px rgba(0, 0, 0, 0.42);
+            transition: all 0.36s cubic-bezier(0.16, 1, 0.3, 1);
             cursor: pointer;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
+            background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+            backdrop-filter: blur(14px) saturate(120%);
+            -webkit-backdrop-filter: blur(14px) saturate(120%);
+            display:flex;
+            align-items:center;
+            justify-content:center;
         }
 
         .marquee-item:hover {
-            transform: scale(1.1) translateY(-5px);
-            border-color: #ffd700;
-            box-shadow: 0 12px 40px rgba(212, 175, 55, 0.4);
+            transform: scale(1.06) translateY(-6px);
+            border-color: rgba(255, 215, 0, 0.95);
+            box-shadow: 0 20px 70px rgba(212, 175, 55, 0.45);
         }
 
         .marquee-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display:block;
         }
 
         .menu-section {
             max-width: 1000px;
-            margin: auto;
-            padding: 20px;
-            background: var(--paper);
+            margin: 20px auto;
+            padding: 24px;
+            background: linear-gradient(180deg, rgba(255,250,245,0.96), rgba(255,250,245,0.88));
             color: #2b1a0f;
             font-family: 'Scheherazade New', serif;
-            min-height: 100vh;
+            min-height: 80vh;
+            border-radius: 18px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(var(--glass-blur-medium)) saturate(150%);
+            -webkit-backdrop-filter: blur(var(--glass-blur-medium)) saturate(150%);
         }
 
         body.rtl .menu-section {
@@ -587,23 +601,23 @@
 
         .search-bar {
             position: sticky;
-            top: 130px;
+            top: 180px;
             z-index: 10;
-            background: rgba(255, 250, 245, 0.72);
-            backdrop-filter: blur(40px) saturate(180%);
-            -webkit-backdrop-filter: blur(40px) saturate(180%);
-            border: 0.5px solid rgba(128, 0, 32, 0.2);
+            background: linear-gradient(180deg, rgba(255, 250, 245, 0.95), rgba(255, 250, 245, 0.9));
+            backdrop-filter: blur(var(--glass-blur-medium)) saturate(160%);
+            -webkit-backdrop-filter: blur(var(--glass-blur-medium)) saturate(160%);
+            border: 1px solid rgba(128, 0, 32, 0.12);
             width: 100%;
-            max-width: 400px;
-            margin: 10px auto 20px auto;
+            max-width: 520px;
+            margin: 14px auto 22px auto;
             display: block;
-            padding: 12px 18px;
+            padding: 14px 20px;
             font-size: 1em;
             border-radius: 980px;
             outline: none;
             animation: fadeInScale 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
         }
 
         body.rtl .search-bar {
@@ -613,9 +627,9 @@
 
         .search-bar:focus {
             transform: scale(1.02);
-            box-shadow: 0 8px 32px rgba(212, 175, 55, 0.2);
+            box-shadow: 0 14px 42px rgba(212, 175, 55, 0.18);
             border-color: #caa84a;
-            background: rgba(255, 250, 245, 0.85);
+            background: rgba(255, 250, 245, 1);
         }
 
         @keyframes fadeInScale {
@@ -630,12 +644,12 @@
         }
 
         .category {
-            background: rgba(255, 243, 230, 0.72);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border: 0.5px solid rgba(128, 0, 32, 0.15);
+            background: linear-gradient(180deg, rgba(255, 243, 230, 0.95), rgba(255, 243, 230, 0.86));
+            backdrop-filter: blur(22px) saturate(140%);
+            -webkit-backdrop-filter: blur(22px) saturate(140%);
+            border: 0.5px solid rgba(128, 0, 32, 0.14);
             border-left: 6px solid var(--accent-deep);
-            margin: 20px 0;
+            margin: 18px 0;
             padding: 20px;
             border-radius: 20px;
             font-size: 1.3em;
@@ -645,10 +659,10 @@
             cursor: pointer;
             position: relative;
             overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.36s cubic-bezier(0.16, 1, 0.3, 1);
             opacity: 0;
             animation: slideInLeft 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
         }
 
         body.rtl .category {
@@ -661,12 +675,6 @@
         .category:nth-child(4) { animation-delay: 0.2s; }
         .category:nth-child(6) { animation-delay: 0.3s; }
         .category:nth-child(8) { animation-delay: 0.4s; }
-        .category:nth-child(10) { animation-delay: 0.5s; }
-        .category:nth-child(12) { animation-delay: 0.6s; }
-        .category:nth-child(14) { animation-delay: 0.7s; }
-        .category:nth-child(16) { animation-delay: 0.8s; }
-        .category:nth-child(18) { animation-delay: 0.9s; }
-        .category:nth-child(20) { animation-delay: 1s; }
 
         @keyframes slideInLeft {
             from {
@@ -691,27 +699,19 @@
         }
 
         .category:hover {
-            background: rgba(255, 243, 230, 0.9);
+            background: rgba(255, 243, 230, 1);
             transform: translateX(10px) translateY(-2px);
-            box-shadow: 0 12px 32px rgba(128, 0, 32, 0.15);
+            box-shadow: 0 18px 42px rgba(128, 0, 32, 0.14);
         }
 
         body.rtl .category:hover {
             transform: translateX(-10px) translateY(-2px);
         }
 
-        .category:active {
-            transform: translateX(8px) scale(0.98);
-        }
-
-        body.rtl .category:active {
-            transform: translateX(-8px) scale(0.98);
-        }
-
         .category::before {
             content: '★';
             position: absolute;
-            left: 10px;
+            left: 12px;
             top: 50%;
             transform: translateY(-50%);
             color: #ffd700;
@@ -720,20 +720,21 @@
 
         body.rtl .category::before {
             left: auto;
-            right: 10px;
+            right: 12px;
         }
 
         .items-container {
             display: none;
             margin-top: 10px;
-            padding: 10px;
+            padding: 12px;
             border-radius: 16px;
-            background: linear-gradient(180deg, rgba(255,250,245,0.9), rgba(255,250,245,0.7));
+            background: linear-gradient(180deg, rgba(255,250,245,0.98), rgba(255,250,245,0.92));
             flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
         }
 
         .items-container.opening {
-            animation: expandDown 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            animation: expandDown 0.42s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         @keyframes expandDown {
@@ -748,28 +749,28 @@
         }
 
         .menu-item {
-            background: rgba(255, 243, 230, 0.72);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border: 0.5px solid rgba(128, 0, 32, 0.1);
+            background: linear-gradient(180deg, rgba(255, 243, 230, 0.98), rgba(255, 243, 230, 0.9));
+            backdrop-filter: blur(20px) saturate(140%);
+            -webkit-backdrop-filter: blur(20px) saturate(140%);
+            border: 0.5px solid rgba(128, 0, 32, 0.12);
             border-left: 4px solid var(--accent-deep);
-            margin: 10px 0 10px 20px;
-            padding: 15px 20px;
+            margin: 12px 0 12px 20px;
+            padding: 16px 20px;
             border-radius: 16px;
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.36s cubic-bezier(0.16, 1, 0.3, 1);
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 18px;
             opacity: 0;
-            animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            animation: fadeInUp 0.44s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
         }
 
         body.rtl .menu-item {
             border-left: none;
             border-right: 4px solid var(--accent-deep);
-            margin: 10px 20px 10px 0;
+            margin: 12px 20px 12px 0;
             flex-direction: row-reverse;
         }
 
@@ -777,11 +778,10 @@
         .menu-item:nth-child(2) { animation-delay: 0.1s; }
         .menu-item:nth-child(3) { animation-delay: 0.15s; }
         .menu-item:nth-child(4) { animation-delay: 0.2s; }
-        .menu-item:nth-child(5) { animation-delay: 0.25s; }
 
         .menu-item:hover {
-            background: rgba(255, 240, 230, 0.85);
-            box-shadow: 0 8px 24px rgba(128,0,32,0.15);
+            background: rgba(255, 240, 230, 0.98);
+            box-shadow: 0 18px 46px rgba(128,0,32,0.12);
             transform: translateX(10px);
             border-left-width: 8px;
         }
@@ -807,7 +807,7 @@
             flex: 1;
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 8px;
         }
 
         body.rtl .menu-item-name {
@@ -816,28 +816,28 @@
         }
 
         .allergen {
-            font-size: 0.9em;
-            color: red;
-            margin-left: 5px;
+            font-size: 0.95em;
+            color: #b22222;
+            margin-left: 6px;
         }
 
         body.rtl .allergen {
             margin-left: 0;
-            margin-right: 5px;
+            margin-right: 6px;
         }
 
         img.menu-img {
-            max-width: 80px;
-            height: 80px;
+            max-width: 110px; /* slightly larger image thumbnails */
+            height: 110px;
             object-fit: cover;
-            border-radius: 12px;
+            border-radius: 14px;
             cursor: pointer;
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+            transition: transform 0.36s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
         }
 
         .menu-item:hover img.menu-img {
-            transform: scale(1.05);
+            transform: scale(1.06);
         }
 
         .modal {
@@ -848,9 +848,9 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.7);
-            backdrop-filter: blur(40px);
-            -webkit-backdrop-filter: blur(40px);
+            background: rgba(0,0,0,0.72);
+            backdrop-filter: blur(var(--glass-blur-strong));
+            -webkit-backdrop-filter: blur(var(--glass-blur-strong));
             justify-content: center;
             align-items: center;
             padding: 20px;
@@ -867,20 +867,20 @@
         }
 
         .modal-content {
-            background: rgba(255, 250, 245, 0.95);
-            backdrop-filter: blur(40px) saturate(180%);
-            -webkit-backdrop-filter: blur(40px) saturate(180%);
-            border: 0.5px solid rgba(128, 0, 32, 0.2);
+            background: linear-gradient(180deg, rgba(255, 250, 245, 0.98), rgba(255, 250, 245, 0.95));
+            backdrop-filter: blur(var(--glass-blur-medium)) saturate(160%);
+            -webkit-backdrop-filter: blur(var(--glass-blur-medium)) saturate(160%);
+            border: 1px solid rgba(128, 0, 32, 0.12);
             padding: 30px;
-            border-radius: 32px;
-            max-width: 500px;
+            border-radius: 28px;
+            max-width: 560px;
             width: 100%;
             text-align: center;
             position: relative;
             font-size: 1em;
             color: #2b1a0f;
-            animation: popIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: popIn 0.36s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 30px 100px rgba(0, 0, 0, 0.42);
         }
 
         body.rtl .modal-content {
@@ -891,7 +891,7 @@
         @keyframes popIn {
             from {
                 opacity: 0;
-                transform: scale(0.85);
+                transform: scale(0.88);
             }
             to {
                 opacity: 1;
@@ -906,22 +906,22 @@
         }
 
         .modal-content p {
-            margin: 5px 0;
+            margin: 6px 0;
         }
 
         .close-btn {
             position: absolute;
             top: 15px;
             right: 15px;
-            width: 32px;
-            height: 32px;
+            width: 36px;
+            height: 36px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(128, 0, 32, 0.1);
+            background: rgba(128, 0, 32, 0.08);
             border-radius: 50%;
             cursor: pointer;
-            font-size: 1.5em;
+            font-size: 1.4em;
             font-weight: bold;
             color: var(--accent-deep);
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -933,28 +933,24 @@
         }
 
         .close-btn:hover {
-            background: rgba(128, 0, 32, 0.2);
-            transform: rotate(90deg) scale(1.1);
-        }
-
-        .close-btn:active {
-            transform: rotate(90deg) scale(0.95);
+            background: rgba(128, 0, 32, 0.16);
+            transform: rotate(90deg) scale(1.05);
         }
 
         #image-modal img {
-            max-width: 100vw;
-            max-height: 100vh;
+            max-width: 95vw;
+            max-height: 95vh;
             width: auto;
             height: auto;
-            border-radius: 24px;
-            animation: zoomIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
+            border-radius: 20px;
+            animation: zoomIn 0.36s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 40px 120px rgba(0, 0, 0, 0.6);
         }
 
         @keyframes zoomIn {
             from {
                 opacity: 0;
-                transform: scale(0.8);
+                transform: scale(0.86);
             }
             to {
                 opacity: 1;
@@ -965,10 +961,10 @@
         #mobile-image-modal img {
             max-width: 95vw;
             max-height: 90vh;
-            border-radius: 24px;
+            border-radius: 20px;
             object-fit: contain;
-            animation: zoomIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
+            animation: zoomIn 0.36s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 30px 90px rgba(0, 0, 0, 0.6);
         }
 
         .whatsapp-float {
@@ -984,7 +980,7 @@
             align-items: center;
             justify-content: center;
             font-size: 2em;
-            box-shadow: 0 12px 40px rgba(37, 211, 102, 0.4);
+            box-shadow: 0 18px 56px rgba(37, 211, 102, 0.36);
             cursor: pointer;
             z-index: 1000;
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -998,47 +994,45 @@
         }
 
         .whatsapp-float:hover {
-            transform: scale(1.1) translateY(-4px);
-            box-shadow: 0 16px 56px rgba(37, 211, 102, 0.5);
-        }
-
-        .whatsapp-float:active {
-            transform: scale(1.05) translateY(-2px);
+            transform: scale(1.08) translateY(-4px);
+            box-shadow: 0 22px 66px rgba(37, 211, 102, 0.48);
         }
 
         @keyframes pulse {
             0%, 100% {
-                box-shadow: 0 12px 40px rgba(37, 211, 102, 0.4);
+                box-shadow: 0 12px 40px rgba(37, 211, 102, 0.36);
             }
             50% {
-                box-shadow: 0 12px 40px rgba(37, 211, 102, 0.7);
+                box-shadow: 0 18px 60px rgba(37, 211, 102, 0.62);
             }
         }
 
         #hover-preview {
             position: fixed;
             display: none;
-            max-width: 300px;
-            max-height: 300px;
-            border-radius: 16px;
+            max-width: 320px;
+            max-height: 320px;
+            border-radius: 18px;
             z-index: 9999;
             pointer-events: none;
-            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
-            transition: opacity 0.2s ease;
+            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.4);
+            transition: opacity 0.18s ease, transform 0.18s ease;
             opacity: 0;
             border: 2px solid #d4af37;
         }
 
         footer {
-            background: rgba(128, 0, 32, 0.72);
-            backdrop-filter: blur(40px) saturate(180%);
-            -webkit-backdrop-filter: blur(40px) saturate(180%);
+            background: linear-gradient(180deg, rgba(128, 0, 32, 0.66), rgba(128, 0, 32, 0.5));
+            backdrop-filter: blur(var(--glass-blur-medium)) saturate(150%);
+            -webkit-backdrop-filter: blur(var(--glass-blur-medium)) saturate(150%);
             border-top: 0.5px solid rgba(255, 215, 0, 0.2);
             color: #ffd700;
             text-align: center;
             padding: 30px 20px;
             margin-top: 40px;
             font-size: 1em;
+            border-radius: 12px;
+            margin: 24px;
         }
 
         footer h3 {
@@ -1049,7 +1043,7 @@
 
         footer p {
             margin: 8px 0;
-            opacity: 0.9;
+            opacity: 0.95;
         }
 
         footer a {
@@ -1101,16 +1095,16 @@
             }
 
             .search-bar {
-                top: 130px;
+                top: 160px;
             }
 
             .floating-marquee {
-                height: 100px;
+                height: 120px;
             }
 
             .marquee-item {
-                width: 120px;
-                height: 80px;
+                width: 160px;
+                height: 100px;
             }
 
             .whatsapp-float {
@@ -1231,7 +1225,7 @@
                 📷 <a href="https://www.instagram.com/turkiana.qa/" target="_blank">إنستغرام</a> | 
                 📶 الواي فاي: <strong id="wifi-ssid-ar">TP-Link_9D3A</strong> | 
                 🔑 كلمة المرور: <strong id="wifi-pass-ar">Turkiana123</strong>
-                <button id="copy-wifi-ar" type="button" title="نسخ بيانات الواي فاي">نسخ</button>
+                <button id="copy-wifi-ar" type="button" title="نسخ بيانات الواي الفاي">نسخ</button>
             </span>
         </div>
 
@@ -1295,141 +1289,232 @@
 
         const menuDataEn = {
             "Turkish Morning": [
-                {name:"Turkish Classic Breakfast", price:"65 QR", description:"Authentic Turkish breakfast with fresh bread, cheese, olives, tomatoes, cucumbers, honey, and clotted cream served with Turkish tea", image:"Breakfast.jpg", allergens:["dairy","gluten"]},
-                {name:"Turkish Menemen", price:"45 QR", description:"Classic Turkish scrambled eggs with fresh tomatoes, green peppers, and aromatic spices for a rich, comforting taste", image:"Menemen.jpg", allergens:["dairy"]},
-                {name:"Plain Omelette", price:"25 QR", description:"Light and fluffy omelette cooked to perfection for a simple, classic start to your day", image:"Omellet.jpg", allergens:["dairy"]},
+                { name: "Turkish Classic Breakfast", price: "65 QR", description: "Traditional Turkish breakfast spread with cheese, olives, tomatoes, cucumbers, honey, and fresh bread", image: "Breakfast.jpg", allergens: ["dairy", "gluten"] },
+                { name: "Turkish Menemen", price: "45 QR", description: "Turkish-style scrambled eggs with tomatoes, peppers, and spices", image: "Menemen.jpg", allergens: ["dairy"] },
+                { name: "Plain Omelette", price: "25 QR", description: "Classic fluffy omelette", image: "Omellet.jpg", allergens: ["dairy"] }
             ],
             "Croissant Creations": [
-                {name:"Croissant Beef Ribs", price:"45 QR", description:"Flaky croissant filled with tender beef ribs, cheddar and kasfar cheese, topped with pesto sauce and served with tomatoes, cucumbers, and green olives on the side", image:"Ribs.jpg", allergens:["dairy","gluten","nuts"]},
-                {name:"Avocado Croissant", price:"42 QR", description:"Buttery croissant stuffed with creamy avocado, fluffy scrambled eggs, and olive paste, served with fresh tomatoes and cucumbers on the side", image:"Avocado.jpg", allergens:["dairy","gluten"]},
-                {name:"Smoked Beef Croissant", price:"45 QR", description:"Fresh croissant filled with scrambled eggs, smoked beef, and thyme, served with tomato, cucumber, olives, jam, and white cheese on the side", image:"5.jpg", allergens:["dairy","gluten"]},
-                {name:"Butter & Jam Croissant", price:"40 QR", description:"Buttery croissant served with cherry jam, grilled olives, feta cheese, tomato, cucumber, and praline for a sweet and savory treat", image:"4.jpg", allergens:["dairy","gluten","nuts"]},
-                {name:"Croissant Scrambled Eggs", price:"37 QR", description:"Flaky croissant filled with scrambled eggs, red pepper, thyme, and arugula, served with tomatoes, cucumbers, and grilled olives", image:"1.jpg", allergens:["dairy","gluten"]},
+                { name: "Croissant Beef Ribs", price: "45 QR", description: "Beef Ribs, Cheddar Cheese, Kasfar Cheese, Pesto Sauce (Side: Tomatoes, Cucumbers, Green Olives)", image: "Ribs.jpg", allergens: ["dairy", "gluten", "nuts"] },
+                { name: "Avocado Croissant", price: "42 QR", description: "Scrambled Eggs, Avocado, Olive Paste (with Tomatoes and Cucumber as Sides)", image: "Avocado.jpg", allergens: ["dairy", "gluten"] },
+                { name: "Smoked Beef Croissant", price: "45 QR", description: "Scrambled Eggs with Thyme and Smoked Beef (Side: Tomato, Cucumber, Olives, Jam, and White Cheese)", image: "5.jpg", allergens: ["dairy", "gluten"] },
+                { name: "Butter & Jam Croissant", price: "40 QR", description: "Butter, Cherry Jam, Grilled Olives, Feta Cheese, Tomato, Cucumber, Praline", image: "4.jpg", allergens: ["dairy", "gluten", "nuts"] },
+                { name: "Croissant Scrambled Eggs", price: "37 QR", description: "Scrambled Eggs, Red Pepper, Thyme, Arugula, Tomatoes, Cucumbers, Grilled Olives", image: "1.jpg", allergens: ["dairy", "gluten"] }
             ],
             "From the Grill & Garden": [
-                {name:"Fried Potatoes", price:"25 QR", description:"Crispy golden fried potatoes, perfectly seasoned for a classic side snack", image:"Patatas.jpg", allergens:[]},
-                {name:"Caesar Salad", price:"40 QR", description:"Crisp romaine lettuce tossed with creamy Caesar dressing, crunchy croutons, and shaved parmesan cheese", image:"Caesar.jpg", allergens:["dairy","gluten"]},
-                {name:"Turkiana Beef Burger", price:"59 QR", description:"Juicy premium beef patty topped with special sauces and fresh toppings, served with golden fries", image:"Burger.jpg", allergens:["gluten","dairy"]},
+                { name: "Fried Potatoes", price: "25 QR", description: "Crispy golden french fries", image: "Patatas.jpg", allergens: [] },
+                { name: "Caesar Salad", price: "40 QR", description: "Fresh romaine lettuce with Caesar dressing, croutons, and parmesan", image: "Caesar.jpg", allergens: ["dairy", "gluten"] },
+                { name: "Turkiana Special Beef Burger", price: "55 QR", description: "Premium beef burger with special toppings and fries", image: "Burger.jpg", allergens: ["gluten", "dairy"] }
             ],
             "Baklava & Beyond": [
-                {name:"Turkish Mix Baklava", price:"45 QR", description:"A delightful assortment of traditional Turkish baklava, rich in nuts and layered pastry", image:"Mix.jpg", allergens:["nuts","gluten"]},
-                {name:"Turkish Plain Baklava", price:"40 QR", description:"Classic Turkish baklava with layers of flaky pastry and a sweet nut filling", image:"Slice.jpg", allergens:["nuts","gluten"]},
-                {name:"Nuts Stand-Tall", price:"99 QR", description:"A premium assortment of mixed nuts, perfect for snacking or sharing", image:"Nuts.jpg", allergens:["nuts"]},
-                {name:"Nuts Stand-Small", price:"60 QR", description:"A small selection of premium mixed nuts, perfect for a light snack", image:"Nuts.jpg", allergens:["nuts"]},
-                {name:"Snickers-inspired cake", price:"42 QR", description:"Decadent cake inspired by Snickers, with rich chocolate, caramel, and nutty layers", image:"Snicker.jpg", allergens:["nuts","gluten"]},
-                {name:"Kunafa", price:"40 QR", description:"Traditional Turkish Kunafa made with Akawi cheese and a delicate crispy pastry, sweetened to perfection", image:"Kunafa.jpg", allergens:["nuts","gluten"]},
-                {name:"Chocolate Cake", price:"40 QR", description:"Decadent molten chocolate cake, rich and fudgy for chocolate lovers", image:"Chocolate.jpg", allergens:["dairy","gluten"]},
-                {name:"Lotus Cake", price:"40 QR", description:"Delicious cake infused with Lotus Biscoff flavors, soft, rich, and creamy", image:"Lutos.jpg", allergens:["dairy","gluten"]},
-                {name:"Full Pistachio Cake", price:"40 QR", description:"Moist and delicate cake infused with rich pistachio flavor", image:"Full.jpg", allergens:["nuts","dairy","gluten"]},
-                {name:"Lemon Cake", price:"38 QR", description:"Light and zesty lemon sponge cake, fresh and tangy for a refreshing treat", image:"Lemon.jpg", allergens:["dairy","gluten"]},
-                {name:"Tiramisu", price:"32 QR", description:"Classic Italian dessert with layers of coffee-soaked sponge, mascarpone cream, and a hint of cocoa", image:"Tiramisu.jpg", allergens:["dairy","gluten","nuts"]},
-                {name:"Almond Chocolate Cake", price:"40 QR", description:"Rich chocolate cake layered with almond flavors for a nutty and decadent treat", image:"Almond.jpg", allergens:["nuts","dairy","gluten"]},
-                {name:"Lemon Sponge Cake", price:"42 QR", description:"Soft and airy lemon sponge cake, bursting with fresh citrus flavor", image:"Lemoncake.jpg", allergens:["dairy","gluten"]},
-                {name:"Raspberry Cheesecake", price:"30 QR", description:"Creamy cheesecake topped with fresh raspberries for a sweet and tangy flavor", image:"Cherry.jpg", allergens:["dairy","gluten"]},
-                {name:"Mulberry Cheesecake", price:"30 QR", description:"Smooth and creamy cheesecake topped with luscious mulberries for a fruity delight", image:"Mulberry.jpg", allergens:["dairy","gluten"]},
-                {name:"Chocolate Pistachio Cake", price:"40 QR", description:"Rich chocolate cake layered with crunchy pistachios for a nutty, indulgent treat", image:"Chocolate_pistachio.jpg", allergens:["dairy","nuts","gluten"]},
-                {name:"Strawberry Cake", price:"45 QR", description:"Moist and fluffy cake topped with fresh strawberries for a sweet and fruity delight", image:"Strawberry.jpg", allergens:["dairy","gluten"]},
-                {name:"White Almond Cake", price:"42 QR", description:"Soft and creamy cake with delicate almond flavor, perfect for nut lovers", image:"White.jpg", allergens:["nuts","dairy","gluten"]},
-                {name:"Trileche With Milk", price:"35 QR", description:"Moist Turkish tres leches cake soaked in rich milk for a sweet and creamy dessert", image:"Trileche.jpg", allergens:["dairy","gluten"]},
-                {name:"San Sebastian Cheesecake", price:"42 QR", description:"Creamy and caramelized San Sebastian-style cheesecake with a rich, velvety texture", image:"Sebastian.jpg", allergens:["dairy","gluten"]},
+                { name: "Turkish Mix Baklava", price: "45 QR", description: "Assorted traditional Turkish baklava", image: "Mix.jpg", allergens: ["nuts", "gluten"] },
+                { name: "Turkish Plain Baklava", price: "40 QR", description: "Classic plain baklava", image: "Slice.jpg", allergens: ["nuts", "gluten"] },
+                { name: "Nuts Stand-Tall", price: "99 QR", description: "Assorted Nuts", image: "Nuts.jpg", allergens: ["nuts"] },
+                { name: "Nuts Stand-Small", price: "60 QR", description: "Assorted Nuts", image: "Nuts.jpg", allergens: ["nuts"] },
+                { name: "Snickers-inspired cake", price: "42 QR", description: "Snickers chocolate caramel Taste", image: "Snicker.jpg", allergens: ["nuts", "gluten"] },
+                { name: "Kunafa", price: "40 QR", description: "Turkish Kunafa with Akawi Cheese", image: "Kunafa.jpg", allergens: ["nuts", "gluten"] },
+                { name: "Chocolate Cake", price: "40 QR", description: "Rich chocolate molten cake", image: "Chocolate.jpg", allergens: ["dairy", "gluten"] },
+                { name: "Lotus Cake", price: "40 QR", description: "Rich lotus cake", image: "Lutos.jpg", allergens: ["dairy", "gluten"] },
+                { name: "Full Pistachio Cake", price: "40 QR", description: "Delicate pistachio flavored cake", image: "Full.jpg", allergens: ["nuts", "dairy", "gluten"] },
+                { name: "Lemon Cake", price: "38 QR", description: "Fresh lemon sponge cake", image: "Lemon.jpg", allergens: ["dairy", "gluten"] },
+                { name: "Tiramisu", price: "32 QR", description: "Classic Italian tiramisu", image: "Tiramisu.jpg", allergens: ["dairy", "gluten", "nuts"] },
+                { name: "Almond Chocolate Cake", price: "40 QR", description: "Almond chocolate cake", image: "Almond.jpg", allergens: ["nuts", "dairy", "gluten"] },
+                { name: "Lemon Sponge Cake", price: "42 QR", description: "Light lemon sponge cake", image: "Lemoncake.jpg", allergens: ["dairy", "gluten"] },
+                { name: "Raspberry Cheesecake", price: "30 QR", description: "Cherry cheesecake", image: "Cherry.jpg", allergens: ["dairy", "gluten"] },
+                { name: "Mulberry Cheesecake", price: "30 QR", description: "Mulberry cheesecake", image: "Mulberry.jpg", allergens: ["dairy", "gluten"] },
+                { name: "Chocolate Pistachio Cake", price: "40 QR", description: "Chocolate pistachio cake", image: "Chocolate_pistachio.jpg", allergens: ["dairy", "nuts", "gluten"] },
+                { name: "Strawberry Cake", price: "45 QR", description: "Strawberry cake", image: "Strawberry.jpg", allergens: ["dairy", "gluten"] },
+                { name: "White Almond Cake", price: "42 QR", description: "White almond cake", image: "White.jpg", allergens: ["nuts", "dairy", "gluten"] },
+                { name: "Trileche With Milk", price: "35 QR", description: "Turkish tres leches cake", image: "Trileche.jpg", allergens: ["dairy", "gluten"] },
+                { name: "San Sebastian Cheesecake", price: "42 QR", description: "San Sebastian cheesecake", image: "Sebastian.jpg", allergens: ["dairy", "gluten"] }
             ],
             "Arabian Brew": [
-                {name:"Arabic Coffee in a Full Dalla", price:"90 QR", description:"Traditional Arabic coffee served in a full Dalla, aromatic and rich in flavor", allergens:["dairy"]},
-                {name:"Arabic Coffee in a Half Dalla", price:"50 QR", description:"Traditional Arabic coffee served in a half Dalla, fragrant and smooth", allergens:["dairy"]},
-                {name:"Arabic Coffee in a Cup", price:"30 QR", description:"Authentic Arabic coffee served in a cup, rich and aromatic", allergens:["dairy"]},
+                { name: "Arabic Coffee in a Full Dalla", price: "90 QR", description: "Arabic Coffee in a Full Dalla", allergens: ["dairy"] },
+                { name: "Arabic Coffee in a Half Dalla", price: "50 QR", description: "Arabic Coffee in a Half Dalla", allergens: ["dairy"] },
+                { name: "Arabic Coffee in a Cup", price: "30 QR", description: "Arabic Coffee in a Cup", allergens: ["dairy"] }
             ],
             "Tea Time": [
-                {name:"Turkish Tea", price:"15 QR", description:"Traditional Turkish tea, served hot and full of flavor", allergens:[]},
-                {name:"Teapot", price:"30 QR", description:"Hot pot of freshly brewed tea, perfect for sharing", allergens:[]},
-                {name:"Apple Tea", price:"25 QR", description:"Fragrant and soothing apple-flavored tea, served hot", allergens:[]},
-                {name:"Mulberry Tea", price:"25 QR", description:"Sweet and aromatic mulberry tea, served hot for a comforting drink", allergens:[]},
-                {name:"Lemon Mint", price:"25 QR", description:"Refreshing lemon and mint tea, served hot for a soothing experience", allergens:[]},
-                {name:"Pomegranate Tea", price:"25 QR", description:"Vibrant and fruity pomegranate tea, served hot for a flavorful treat", allergens:[]},
+                { name: "Turkish Tea", price: "15 QR", description: "Classic Turkish tea", allergens: [] },
+                { name: "Teapot", price: "30 QR", description: "Hot pot of tea", allergens: [] },
+                { name: "Apple Tea", price: "25 QR", description: "Apple tea", allergens: [] },
+                { name: "Mulberry Tea", price: "25 QR", description: "Mulberry tea", allergens: [] },
+                { name: "Lemon Mint", price: "25 QR", description: "Lemon mint tea", allergens: [] },
+                { name: "Pomegranate Tea", price: "25 QR", description: "Pomegranate tea", allergens: [] }
             ],
             "Tea on Ice": [
-                {name:"Ice Apple Tea", price:"28 QR", description:"Chilled apple tea, refreshing and fruity", allergens:[]},
-                {name:"Ice Mulberry Tea", price:"28 QR", description:"Iced mulberry tea, sweet and invigorating", allergens:[]},
-                {name:"Ice Mint Lemon", price:"28 QR", description:"Cold mint and lemon tea, refreshing and zesty", allergens:[]},
-                {name:"Ice Pomegranate Tea", price:"28 QR", description:"Iced pomegranate tea, vibrant and fruity", allergens:[]},
-                {name:"Hibiscus", price:"28 QR", description:"Chilled hibiscus tea, tangy and refreshing", allergens:[]},
-
+                { name: "Ice Apple Tea", price: "28 QR", description: "Cold apple tea", allergens: [] },
+                { name: "Ice Mulberry Tea", price: "28 QR", description: "Cold mulberry tea", allergens: [] },
+                { name: "Ice Mint Lemon", price: "28 QR", description: "Cold mint lemon tea", allergens: [] },
+                { name: "Ice Pomegranate Tea", price: "28 QR", description: "Cold pomegranate tea", allergens: [] },
+                { name: "Hibiscus", price: "28 QR", description: "Cold hibiscus tea", allergens: [] }
             ],
             "Brewed the Turkish Way": [
-                {name:"Classic Turkish Coffee", price:"28 QR", description:"Rich and aromatic classic Turkish coffee, served traditionally", allergens:[]},
-                {name:"Turkish Coffee with Cardamon", price:"28 QR", description:"Classic Turkish coffee infused with fragrant cardamom", allergens:[]},
-                {name:"Double Turkish Coffee", price:"40 QR", description:"Strong and bold double shot of classic Turkish coffee", allergens:[]},
-                {name:"Ottoman Coffee", price:"28 QR", description:"Traditional Ottoman-style coffee, rich and flavorful", allergens:[]},
-                {name:"Ottoman Coffee with Mastic", price:"28 QR", description:"Ottoman coffee delicately flavored with mastic resin", allergens:[]},
-                {name:"Ottoman Coffee with Hazelnuts", price:"28 QR", description:"Ottoman coffee enriched with crunchy hazelnuts", allergens:["nuts"]},
-                {name:"Sahlep", price:"28 QR", description:"Warm and creamy Turkish sahlep, perfect for a cozy drink", allergens:["dairy"]},
-
+                { name: "Classic Turkish Coffee", price: "28 QR", description: "Classic Turkish Coffee", allergens: [] },
+                { name: "Turkish Coffee with Cardamon", price: "28 QR", description: "Turkish Coffee with Cardamon", allergens: [] },
+                { name: "Double Turkish Coffee", price: "40 QR", description: "Double Turkish Coffee", allergens: [] },
+                { name: "Ottoman Coffee", price: "28 QR", description: "Ottoman Coffee", allergens: [] },
+                { name: "Ottoman Coffee with Mastic", price: "28 QR", description: "Ottoman Coffee with Mastic", allergens: [] },
+                { name: "Ottoman Coffee with Hazelnuts", price: "28 QR", description: "Ottoman Coffee with Hazelnuts", allergens: ["nuts"] },
+                { name: "Sahlep", price: "28 QR", description: "Hot sahlep", allergens: ["dairy"] }
             ],
             "Herbal Infusions": [
-                {name:"Sage", price:"28 QR", description:"Soothing sage tea, warm and calming", allergens:[]},
-                {name:"Mix Winter Tea", price:"28 QR", description:"A comforting blend of winter herbs, perfect for a cozy cup", allergens:[]},
-                {name:"Green Tea", price:"28 QR", description:"Refreshing and light green tea, served hot", allergens:[]},
-                {name:"Chamomile", price:"28 QR", description:"Calming chamomile tea, naturally soothing", allergens:[]},
-                {name:"Hibiscus", price:"28 QR", description:"Tangy and vibrant hibiscus tea, served hot", allergens:[]},
-
+                { name: "Sage", price: "28 QR", description: "Sage tea", allergens: [] },
+                { name: "Mix Winter Tea", price: "28 QR", description: "Winter herbal tea mix", allergens: [] },
+                { name: "Green Tea", price: "28 QR", description: "Green tea", allergens: [] },
+                { name: "Chamomile", price: "28 QR", description: "Chamomile tea", allergens: [] },
+                { name: "Hibiscus", price: "28 QR", description: "Hibiscus tea", allergens: [] }
             ],
             "Café & Chill": [
-                {name:"Hot Chocolate (Hot/Ice)", price:"36 QR", description:"Rich and creamy hot chocolate, served hot or iced", allergens:["dairy"]},
-                {name:"Latte (Hot/Ice)", price:"29 QR", description:"Smooth and velvety latte coffee, hot or iced", allergens:["dairy"]},
-                {name:"Spanish Latte (Hot/Ice)", price:"32 QR", description:"Sweet and creamy Spanish latte, available hot or iced", allergens:["dairy"]},
-                {name:"Salted Caramel Latte (Hot/Ice)", price:"32 QR", description:"Latte with a perfect blend of salted caramel, hot or iced", allergens:["dairy"]},
-                {name:"Vanilla Latte (Hot/Ice)", price:"32 QR", description:"Classic latte infused with rich vanilla flavor, hot or iced", allergens:["dairy"]},
-                {name:"Cappuccino (Hot/Ice)", price:"29 QR", description:"Classic cappuccino with frothy milk, served hot or iced", allergens:["dairy"]},
-                {name:"White Mocha (Hot/Ice)", price:"32 QR", description:"Creamy white chocolate mocha, available hot or iced", allergens:["dairy"]},
-                {name:"Flat White (Hot/Ice)", price:"27 QR", description:"Smooth flat white coffee, perfectly balanced, hot or iced", allergens:["dairy"]},
-                {name:"Cortado (Hot/Ice)", price:"24 QR", description:"Espresso cut with a small amount of milk, hot or iced", allergens:["dairy"]},
-                {name:"Espresso (Hot/Ice)", price:"21 QR", description:"Bold and rich espresso shot, served hot or iced", allergens:[]},
-                {name:"Double Espresso (Hot/Ice)", price:"21 QR", description:"Double shot of strong espresso, hot or iced", allergens:[]},
-                {name:"Macchiato (Hot/Ice)", price:"24 QR", description:"Espresso topped with a dash of milk, hot or iced", allergens:["dairy"]},
-                {name:"Americano (Hot/Ice)", price:"21 QR", description:"Smooth Americano coffee, hot or iced", allergens:[]},
-                {name:"Mocha (Hot/Ice)", price:"32 QR", description:"Chocolate-infused mocha coffee, served hot or iced", allergens:["dairy"]},
-
+                { name: "Hot Chocolate (Hot/Ice)", price: "36 QR", description: "Hot chocolate", allergens: ["dairy"] },
+                { name: "Latte (Hot/Ice)", price: "29 QR", description: "Latte coffee", allergens: ["dairy"] },
+                { name: "Spanish Latte (Hot/Ice)", price: "32 QR", description: "Spanish Latte", allergens: ["dairy"] },
+                { name: "Salted Caramel Latte (Hot/Ice)", price: "32 QR", description: "Salted Caramel Latte", allergens: ["dairy"] },
+                { name: "Vanilla Latte (Hot/Ice)", price: "32 QR", description: "Vanilla Latte", allergens: ["dairy"] },
+                { name: "Cappuccino (Hot/Ice)", price: "29 QR", description: "Cappuccino", allergens: ["dairy"] },
+                { name: "White Mocha (Hot/Ice)", price: "32 QR", description: "White Mocha", allergens: ["dairy"] },
+                { name: "Flat White (Hot/Ice)", price: "27 QR", description: "Flat White coffee", allergens: ["dairy"] },
+                { name: "Cortado (Hot/Ice)", price: "24 QR", description: "Cortado coffee", allergens: ["dairy"] },
+                { name: "Espresso (Hot/Ice)", price: "21 QR", description: "Espresso coffee", allergens: [] },
+                { name: "Double Espresso (Hot/Ice)", price: "21 QR", description: "Double Espresso coffee", allergens: [] },
+                { name: "Macchiato (Hot/Ice)", price: "24 QR", description: "Macchiato coffee", allergens: ["dairy"] },
+                { name: "Americano (Hot/Ice)", price: "21 QR", description: "Americano coffee", allergens: [] },
+                { name: "Mocha (Hot/Ice)", price: "32 QR", description: "Mocha coffee", allergens: ["dairy"] }
             ],
             "Specialty Brews": [
-                {name:"V60 Pour Over (Hot & Ice)", price:"29 QR", description:"Expertly brewed V60 pour-over coffee, hot or iced for a clean and aromatic cup", allergens:[]},
-                {name:"Ice Drip", price:"32 QR", description:"Slow-dripped ice coffee, refreshing and smooth", allergens:[]},
-                {name:"Cold Brew", price:"36 QR", description:"Rich and smooth cold brew coffee, steeped for hours for maximum flavor", allergens:[]},
-
+                { name: "V60 Pour Over (Hot & Ice)", price: "29 QR", description: "V60 pour-over coffee", allergens: [] },
+                { name: "Ice Drip", price: "32 QR", description: "Ice Drip coffee", allergens: [] },
+                { name: "Cold Brew", price: "36 QR", description: "Cold Brew coffee", allergens: [] }
             ],
             "Froozen": [
-                {name:"Mango Froozen", price:"38 QR", description:"Refreshing frozen mango drink, fruity and icy", allergens:[]},
-                {name:"Şeftali Froozen", price:"38 QR", description:"Icy peach froozen drink, sweet and refreshing", allergens:[]},
-                {name:"Çilekli Froozen", price:"38 QR", description:"Frozen strawberry drink, sweet, fruity, and chilled", allergens:[]},
-                {name:"Orman Meyveli Froozen", price:"38 QR", description:"Icy forest fruits froozen drink, bursting with mixed berry flavors", allergens:[]},
-                {name:"Yaban Mersini Froozen", price:"38 QR", description:"Blueberry frozen drink, refreshing and fruity", allergens:[]},
-
+                { name: "Mango Froozen", price: "38 QR", description: "Mango froozen drink", allergens: [] },
+                { name: "Şeftali Froozen", price: "38 QR", description: "Peach froozen drink", allergens: [] },
+                { name: "Çilekli Froozen", price: "38 QR", description: "Strawberry froozen drink", allergens: [] },
+                { name: "Orman Meyveli Froozen", price: "38 QR", description: "Forest fruits froozen drink", allergens: [] },
+                { name: "Yaban Mersini Froozen", price: "38 QR", description: "Blueberry froozen drink", allergens: [] }
             ],
             "Refreshments": [
-                {name:"Still Water (Small)", price:"11 QR", description:"Refreshing small bottle of still water", allergens:[]},
-                {name:"Still Water (Big)", price:"21 QR", description:"Large bottle of still water, perfect to stay hydrated", allergens:[]},
-                {name:"Sparkling Water", price:"21 QR", description:"Effervescent sparkling water for a refreshing sip", allergens:[]},
-                {name:"Churchill", price:"25 QR", description:"Signature Churchill drink, unique and flavorful", allergens:[]},
-                {name:"Lemonade", price:"30 QR", description:"Freshly squeezed lemonade, tangy and refreshing", allergens:[]},
-                {name:"Fresh Orange Juice", price:"30 QR", description:"Cold-pressed fresh orange juice, naturally sweet and juicy", allergens:[]},
-                {name:"Kinza Kola", price:"17 QR", description:"Classic Kinza Kola, fizzy and refreshing", allergens:[]},
-                {name:"Kinza Kola Zero", price:"17 QR", description:"Kinza Kola Zero, sugar-free and fizzy", allergens:[]},
-
+                { name: "Still Water (Small)", price: "11 QR", description: "Small still water", allergens: [] },
+                { name: "Still Water (Big)", price: "21 QR", description: "Big still water", allergens: [] },
+                { name: "Sparkling Water", price: "21 QR", description: "Sparkling water", allergens: [] },
+                { name: "Churchill", price: "25 QR", description: "Churchill drink", allergens: [] },
+                { name: "Lemonade", price: "30 QR", description: "Fresh lemonade", allergens: [] },
+                { name: "Fresh Orange Juice", price: "30 QR", description: "Fresh orange juice", allergens: [] },
+                { name: "Kinza Kola", price: "17 QR", description: "Kinza Kola", allergens: [] },
+                { name: "Kinza Kola Zero", price: "17 QR", description: "Kinza Kola Zero", allergens: [] }
             ]
         };
 
         const menuDataAr = {
-            "Turkish Morning": [
-    {name:"Turkish Classic Breakfast | فطور تركي كلاسيكي", price:"65 QR", description:"Authentic Turkish breakfast with fresh bread, cheese, olives, tomatoes, cucumbers, honey, and clotted cream served with Turkish tea | فطور تركي أصيل مع خبز طازج، جبن، زيتون، طماطم، خيار، عسل، وكريمة مخثرة مع شاي تركي", image:"Breakfast.jpg", allergens:["dairy","gluten"]},
-    {name:"Turkish Menemen | منمن تركي", price:"45 QR", description:"Classic Turkish scrambled eggs with fresh tomatoes, green peppers, and aromatic spices for a rich, comforting taste | بيض مخفوق تركي كلاسيكي مع طماطم طازجة، فلفل أخضر وتوابل عطرية لمذاق غني ومريح", image:"Menemen.jpg", allergens:["dairy"]},
-    {name:"Plain Omelette | أومليت عادي", price:"25 QR", description:"Light and fluffy omelette cooked to perfection for a simple, classic start to your day | أومليت خفيف وهش مطهو بإتقان لبداية يوم بسيطة وكلاسيكية", image:"Omellet.jpg", allergens:["dairy"]},
-],
-"Croissant Creations": [
-    {name:"Croissant Beef Ribs | كرواسون أضلاع لحم", price:"45 QR", description:"Flaky croissant filled with tender beef ribs, cheddar and kasfar cheese, topped with pesto sauce and served with tomatoes, cucumbers, and green olives on the side | كرواسون هش محشو بأضلاع لحم طرية، جبن شيدر وكاسفار، مع صوص بيستو، يقدم مع طماطم، خيار وزيتون أخضر", image:"Ribs.jpg", allergens:["dairy","gluten","nuts"]},
-    {name:"Avocado Croissant | كرواسون أفوكادو", price:"42 QR", description:"Buttery croissant stuffed with creamy avocado, fluffy scrambled eggs, and olive paste, served with fresh tomatoes and cucumbers on the side | كرواسون زبدي محشو بالأفوكادو الكريمي، بيض مخفوق وهريس الزيتون، يقدم مع طماطم وخيار طازج", image:"Avocado.jpg", allergens:["dairy","gluten"]},
-    {name:"Smoked Beef Croissant | كرواسون لحم مدخن", price:"45 QR", description:"Fresh croissant filled with scrambled eggs, smoked beef, and thyme, served with tomato, cucumber, olives, jam, and white cheese on the side | كرواسون طازج محشو ببيض مخفوق، لحم مدخن وإكليل الجبل، يقدم مع طماطم، خيار، زيتون، مربى وجبن أبيض", image:"5.jpg", allergens:["dairy","gluten"]},
-    {name:"Butter & Jam Croissant | كرواسون بالزبدة والمربى", price:"40 QR", description:"Buttery croissant served with cherry jam, grilled olives, feta cheese, tomato, cucumber, and praline for a sweet and savory treat | كرواسون زبدي يقدم مع مربى الكرز، زيتون مشوي، جبن فيتا، طماطم، خيار وبرالين لمذاق حلو ومالح", image:"4.jpg", allergens:["dairy","gluten","nuts"]},
-    {name:"Croissant Scrambled Eggs | كرواسون بالبيض المخفوق", price:"37 QR", description:"Flaky croissant filled with scrambled eggs, red pepper, thyme, and arugula, served with tomatoes, cucumbers, and grilled olives | كرواسون هش محشو ببيض مخفوق، فلفل أحمر، إكليل الجبل وجرجير، يقدم مع طماطم، خيار وزيتون مشوي", image:"1.jpg", allergens:["dairy","gluten"]},
-],
-
+            "أطباق الإفطار المميزة":[
+                {name:"الإفطار التركي الكلاسيكي", price:"65 ريال", description:"إفطار تركي تقليدي مع الجبن والزيتون والطماطم والخيار والعسل والخبز الطازج", image:"Breakfast.jpg", allergens:["dairy","gluten"]},
+                {name:"المنيمن التركي", price:"45 ريال", description:"بيض مخفوق على الطريقة التركية مع الطماطم والفلفل والتوابل", image:"Menemen.jpg", allergens:["dairy"]},
+                {name:"أومليت عادي", price:"25 ريال", description:"أومليت كلاسيكي منفوش", image:"Omellet.jpg", allergens:["dairy"]}
+            ],
+            "كرواسون":[
+                {name:"كرواسون أضلاع اللحم", price:"45 ريال", description:"أضلاع لحم، جبن شيدر، جبن كسفار، صلصة البيستو (مع الطماطم والخيار والزيتون الأخضر)", image:"Ribs.jpg", allergens:["dairy","gluten","nuts"]},
+                {name:"كرواسون الأفوكادو", price:"42 ريال", description:"بيض مخفوق، أفوكادو، معجون الزيتون (مع الطماطم والخيار)", image:"Avocado.jpg", allergens:["dairy","gluten"]},
+                {name:"كرواسون اللحم المدخن", price:"45 ريال", description:"بيض مخفوق بالزعتر واللحم المدخن (مع الطماطم والخيار والزيتون والمربى والجبن الأبيض)", image:"5.jpg", allergens:["dairy","gluten"]},
+                {name:"كرواسون الزبدة والمربى", price:"40 ريال", description:"زبدة، مربى الكرز، زيتون مشوي، جبن فيتا، طماطم، خيار، براليني", image:"4.jpg", allergens:["dairy","gluten","nuts"]},
+                {name:"كرواسون البيض المخفوق", price:"37 ريال", description:"بيض مخفوق، فلفل أحمر، زعتر، جرجير، طماطم، خيار، زيتون مشوي", image:"1.jpg", allergens:["dairy","gluten"]}
+            ],
+            "الأطباق الرئيسية":[
+                {name:"البطاطس المقلية", price:"25 ريال", description:"بطاطس مقلية ذهبية مقرمشة", image:"Patatas.jpg", allergens:[]},
+                {name:"سلطة سيزر", price:"40 ريال", description:"خس روماني طازج مع صلصة سيزر وقطع الخبز المحمص والبارميزان", image:"Caesar.jpg", allergens:["dairy","gluten"]},
+                {name:"برجر اللحم المميز تركيانا", price:"55 ريال", description:"برجر لحم فاخر مع إضافات مميزة وبطاطس مقلية", image:"Burger.jpg", allergens:["gluten","dairy"]}
+            ],
+            "الحلويات والتحليات":[
+                {name:"بقلاوة تركية مشكلة", price:"45 ريال", description:"تشكيلة من البقلاوة التركية التقليدية", image:"Mix.jpg", allergens:["nuts","gluten"]},
+                {name:"طبق المكسرات", price:"99 ريال", description:"تشكيلة من المكسرات", image:"Nuts.jpg", allergens:["nuts","gluten"]},
+                {name:"بقلاوة تركية عادية", price:"40 ريال", description:"بقلاوة عادية كلاسيكية", image:"Slice.jpg", allergens:["nuts","gluten"]},
+                {name:"Snickers-inspired cake", price:"42 ريال", description:"Snickers chocolate caramel Taste", image:"Snicker.jpg", allergens:["nuts","gluten"]},
+                {name:"كنافة", price:"40 ريال", description:"كنافة تركية بجبن العكاوي", image:"Kunafa.jpg", allergens:["nuts","gluten"]},
+                {name:"كيك الشوكولاتة", price:"40 ريال", description:"كيك شوكولاتة غني ومنصهر", image:"Chocolate.jpg", allergens:["dairy","gluten"]},
+                {name:"كيك اللوتس", price:"40 ريال", description:"كيك لوتس غني", image:"Lutos.jpg", allergens:["dairy","gluten"]},
+                {name:"كيك الفستق الكامل", price:"40 ريال", description:"كيك فستق رقيق النكهة", image:"Full.jpg", allergens:["nuts","dairy","gluten"]},
+                {name:"كيك الليمون", price:"38 ريال", description:"كيك إسفنجي بالليمون الطازج", image:"Lemon.jpg", allergens:["dairy","gluten"]},
+                {name:"تيراميسو", price:"32 ريال", description:"تيراميسو إيطالي كلاسيكي", image:"Tiramisu.jpg", allergens:["dairy","gluten","nuts"]},
+                {name:"كيك اللوز بالشوكولاتة", price:"40 ريال", description:"كيك اللوز بالشوكولاتة", image:"Almond.jpg", allergens:["nuts","dairy","gluten"]},
+                {name:"كيك الليمون الإسفنجي", price:"42 ريال", description:"كيك ليمون إسفنجي خفيف", image:"Lemoncake.jpg", allergens:["dairy","gluten"]},
+                {name:"تشيز كيك التوت", price:"30 ريال", description:"تشيز كيك الكرز", image:"Cherry.jpg", allergens:["dairy","gluten"]},
+                {name:"تشيز كيك التوت الأسود", price:"30 ريال", description:"تشيز كيك التوت الأسود", image:"Mulberry.jpg", allergens:["dairy","gluten"]},
+                {name:"كيك الشوكولاتة بالفستق", price:"40 ريال", description:"كيك الشوكولاتة بالفستق", image:"Chocolate_pistachio.jpg", allergens:["dairy","nuts","gluten"]},
+                {name:"كيك الفراولة", price:"45 ريال", description:"كيك الفراولة", image:"Strawberry.jpg", allergens:["dairy","gluten"]},
+                {name:"كيك اللوز الأبيض", price:"42 ريال", description:"كيك اللوز الأبيض", image:"White.jpg", allergens:["nuts","dairy","gluten"]},
+                {name:"تريليتشي بالحليب", price:"35 ريال", description:"كيك الحليب التركي", image:"Trileche.jpg", allergens:["dairy","gluten"]},
+                {name:"تشيز كيك سان سيباستيان", price:"42 ريال", description:"تشيز كيك سان سيباستيان", image:"Sebastian.jpg", allergens:["dairy","gluten"]}
+            ],
+            "القهوة العربية":[
+                {name:"قهوة عربية في دلة كاملة", price:"90 ريال", description:"قهوة عربية في دلة كاملة", allergens:["dairy"]},
+                {name:"قهوة عربية في نصف دلة", price:"50 ريال", description:"قهوة عربية في نصف دلة", allergens:["dairy"]},
+                {name:"قهوة عربية في كوب", price:"30 ريال", description:"قهوة عربية في كوب", allergens:["dairy"]}
+            ],
+            "الشاي الساخن":[
+                {name:"الشاي التركي", price:"15 ريال", description:"شاي تركي كلاسيكي", allergens:[]},
+               {name: "ابريق شاي", price: "30 ريال", description: "ابريق شاي ساخن", allergens: []},
+                {name:"شاي التفاح", price:"25 ريال", description:"شاي التفاح", allergens:[]},
+                {name:"شاي التوت", price:"25 ريال", description:"شاي التوت", allergens:[]},
+                {name:"ليمون نعناع", price:"25 ريال", description:"شاي الليمون بالنعناع", allergens:[]},
+                {name:"شاي الرمان", price:"25 ريال", description:"شاي الرمان", allergens:[]}
+            ],
+            "الشاي المثلج":[
+                {name:"شاي التفاح المثلج", price:"28 ريال", description:"شاي التفاح البارد", allergens:[]},
+                {name:"شاي التوت المثلج", price:"28 ريال", description:"شاي التوت البارد", allergens:[]},
+                {name:"ليمون نعناع مثلج", price:"28 ريال", description:"شاي الليمون بالنعناع البارد", allergens:[]},
+                {name:"شاي الرمان المثلج", price:"28 ريال", description:"شاي الرمان البارد", allergens:[]},
+                {name:"الكركديه", price:"28 ريال", description:"شاي الكركديه البارد", allergens:[]}
+            ],
+            "القهوة التركية":[
+                {name:"القهوة التركية الكلاسيكية", price:"28 ريال", description:"القهوة التركية الكلاسيكية", allergens:[]},
+                {name:"القهوة التركية بالهيل", price:"28 ريال", description:"القهوة التركية بالهيل", allergens:[]},
+                {name:"القهوة التركية المضاعفة", price:"40 ريال", description:"القهوة التركية المضاعفة", allergens:[]},
+                {name:"القهوة العثمانية", price:"28 ريال", description:"القهوة العثمانية", allergens:[]},
+                {name:"القهوة العثمانية بالمستكة", price:"28 ريال", description:"القهوة العثمانية بالمستكة", allergens:[]},
+                {name:"القهوة العثمانية بالبندق", price:"28 ريال", description:"القهوة العثمانية بالبندق", allergens:["nuts"]},
+                {name:"السحلب", price:"28 ريال", description:"السحلب الساخن", allergens:["dairy"]}
+            ],
+            "الشاي العشبي المميز":[
+                {name:"الميرمية", price:"28 ريال", description:"شاي الميرمية", allergens:[]},
+                {name:"خليط شاي الشتاء", price:"28 ريال", description:"خليط الشاي العشبي الشتوي", allergens:[]},
+                {name:"الشاي الأخضر", price:"28 ريال", description:"الشاي الأخضر", allergens:[]},
+                {name:"البابونج", price:"28 ريال", description:"شاي البابونج", allergens:[]},
+                {name:"الكركديه", price:"28 ريال", description:"شاي الكركديه", allergens:[]}
+            ],
+            "القهوة الساخنة والمثلجة":[
+                {name:"الشوكولاتة الساخنة (ساخن/مثلج)", price:"36 ريال", description:"الشوكولاتة الساخنة", allergens:["dairy"]},
+                {name:"لاتيه (ساخن/مثلج)", price:"29 ريال", description:"قهوة لاتيه", allergens:["dairy"]},
+                {name:"لاتيه إسباني (ساخن/مثلج)", price:"32 ريال", description:"لاتيه إسباني", allergens:["dairy"]},
+                {name:"لاتيه الكراميل المملح (ساخن/مثلج)", price:"32 ريال", description:"لاتيه الكراميل المملح", allergens:["dairy"]},
+                {name:"لاتيه الفانيليا (ساخن/مثلج)", price:"32 ريال", description:"لاتيه الفانيليا", allergens:["dairy"]},
+                {name:"كابتشينو (ساخن/مثلج)", price:"29 ريال", description:"كابتشينو", allergens:["dairy"]},
+                {name:"موكا أبيض (ساخن/مثلج)", price:"32 ريال", description:"موكا أبيض", allergens:["dairy"]},
+                {name:"فلات وايت (ساخن/مثلج)", price:"27 ريال", description:"قهوة فلات وايت", allergens:["dairy"]},
+                {name:"كورتادو (ساخن/مثلج)", price:"24 ريال", description:"قهوة كورتادو", allergens:["dairy"]},
+                {name:"إسبريسو (ساخن/مثلج)", price:"21 ريال", description:"قهوة إسبريسو", allergens:[]},
+                {name:"إسبريسو مضاعف (ساخن/مثلج)", price:"21 ريال", description:"قهوة إسبريسو مضاعفة", allergens:[]},
+                {name:"ماكياتو (ساخن/مثلج)", price:"24 ريال", description:"قهوة ماكياتو", allergens:["dairy"]},
+                {name:"أمريكانو (ساخن/مثلج)", price:"21 ريال", description:"قهوة أمريكانو", allergens:[]},
+                {name:"موكا (ساخن/مثلج)", price:"32 ريال", description:"قهوة موكا", allergens:["dairy"]}
+            ],
+            "القهوة المحضرة يدوياً المميزة":[
+                {name:"في60 بور أوفر (ساخن ومثلج)", price:"29 ريال", description:"قهوة في60 المقطرة", allergens:[]},
+                {name:"آيس دريب", price:"32 ريال", description:"قهوة آيس دريب", allergens:[]},
+                {name:"كولد برو", price:"36 ريال", description:"قهوة كولد برو", allergens:[]}
+            ],
+            "المشروبات المجمدة":[
+                {name:"مانجو مجمد", price:"38 ريال", description:"مشروب المانجو المجمد", allergens:[]},
+                {name:"خوخ مجمد", price:"38 ريال", description:"مشروب الخوخ المجمد", allergens:[]},
+                {name:"فراولة مجمدة", price:"38 ريال", description:"مشروب الفراولة المجمد", allergens:[]},
+                {name:"فواكه الغابة المجمدة", price:"38 ريال", description:"مشروب فواكه الغابة المجمد", allergens:[]},
+                {name:"توت أزرق مجمد", price:"38 ريال", description:"مشروب التوت الأزرق المجمد", allergens:[]}
+            ],
+            "المشروبات الباردة":[
+                {name:"مياه عادية (صغير)", price:"11 ريال", description:"مياه عادية صغيرة", allergens:[]},
+                {name:"مياه عادية (كبير)", price:"21 ريال", description:"مياه عادية كبيرة", allergens:[]},
+                {name:"مياه غازية", price:"21 ريال", description:"مياه غازية", allergens:[]},
+                {name:"تشرشل", price:"25 ريال", description:"مشروب تشرشل", allergens:[]},
+                {name:"عصير الليمون", price:"30 ريال", description:"عصير ليمون طازج", allergens:[]},
+                {name:"عصير البرتقال الطازج", price:"30 ريال", description:"عصير برتقال طازج", allergens:[]},
+                {name:"كينزا كولا", price:"17 ريال", description:"كينزا كولا", allergens:[]},
+                {name:"كينزا كولا زيرو", price:"17 ريال", description:"كينزا كولا زيرو", allergens:[]}
             ]
         };
 
@@ -1438,7 +1523,7 @@
             return currentLang === 'ar' ? menuDataAr : menuDataEn;
         }
 
-        // marquee initialization
+        // marquee initialization (uses the same filenames from your data; images should be in the same folder)
         function initMarquee() {
             const allImages = [];
             const menuData = getCurrentMenuData();
@@ -1460,12 +1545,13 @@
             const marqueeTrack = document.getElementById('marqueeTrack');
             if(!marqueeTrack) return;
             marqueeTrack.innerHTML = '';
-            const imagesToShow = [...shuffledImages, ...shuffledImages];
+            const imagesToShow = [...shuffledImages, ...shuffledImages]; // duplicate to create continuous scroll
 
             imagesToShow.forEach(imgSrc => {
                 const item = document.createElement('div');
                 item.className = 'marquee-item';
-                item.innerHTML = `<img src="${imgSrc}" alt="Menu Item" onerror="this.src='https://dummyimage.com/150x100/e5e5e5/666666?text=Menu+Item'">`;
+                // Use safe path — keep original filenames as you provided
+                item.innerHTML = `<img src="${imgSrc}" alt="Menu Item" onerror="this.src='https://dummyimage.com/220x140/e5e5e5/666666?text=Menu+Item'">`;
                 item.addEventListener('click', () => openImageModal(imgSrc));
                 marqueeTrack.appendChild(item);
             });
@@ -1501,7 +1587,7 @@
                         img.alt = item.name || '';
                         img.className = 'menu-img';
                         img.onerror = function() {
-                            this.src = 'https://dummyimage.com/80x80/e5e5e5/666666?text=Menu+Item';
+                            this.src = 'https://dummyimage.com/110x110/e5e5e5/666666?text=Menu+Item';
                         };
 
                         if(isTouch){
@@ -1565,7 +1651,7 @@
         if(!hoverPreview) {
             hoverPreview = document.createElement("img");
             hoverPreview.id = "hover-preview";
-            hoverPreview.onerror = function() { this.src = 'https://dummyimage.com/300x300/e5e5e5/666666?text=Menu+Item'; };
+            hoverPreview.onerror = function() { this.src = 'https://dummyimage.com/320x320/e5e5e5/666666?text=Menu+Item'; };
             document.body.appendChild(hoverPreview);
         }
 
@@ -1575,11 +1661,11 @@
                 hoverPreview.style.display = "block";
                 hoverPreview.style.opacity = 1;
                 // position safely inside viewport
-                const offset = 15;
+                const offset = 18;
                 let left = e.clientX + offset;
                 let top = e.clientY + offset;
-                const w = hoverPreview.offsetWidth || 200;
-                const h = hoverPreview.offsetHeight || 150;
+                const w = hoverPreview.offsetWidth || 240;
+                const h = hoverPreview.offsetHeight || 180;
                 if(left + w > window.innerWidth) left = e.clientX - w - offset;
                 if(top + h > window.innerHeight) top = window.innerHeight - h - offset;
                 hoverPreview.style.left = left + "px";
@@ -1687,7 +1773,7 @@
             }
         });
 
-        // language toggle (missing previously)
+        // language toggle
         function toggleLanguage(){
             currentLang = currentLang === 'en' ? 'ar' : 'en';
             document.documentElement.lang = currentLang === 'ar' ? 'ar' : 'en';
@@ -1710,7 +1796,7 @@
             updateSearchPlaceholder();
         }
 
-        // show menu function (missing previously)
+        // show menu
         function showMenu(){
             const landing = document.getElementById("landing");
             const menuContent = document.getElementById("menuContent");
@@ -1738,7 +1824,6 @@
         (function videoRobustInit(){
             const video = document.getElementById('bgVideo');
             if(!video) return;
-            // defensive attributes
             try {
                 video.muted = true;
                 video.setAttribute('muted','');
@@ -1762,12 +1847,10 @@
             video.addEventListener('canplay', ()=> tryPlay(2));
             video.addEventListener('error', ()=> console.warn('Background video error or not accessible'));
 
-            // Retry on first user gesture (mobile)
             function onFirstGesture(){ tryPlay(3); window.removeEventListener('touchstart', onFirstGesture); window.removeEventListener('click', onFirstGesture); }
             window.addEventListener('touchstart', onFirstGesture, {passive:true});
             window.addEventListener('click', onFirstGesture);
 
-            // small-screen optimization: pause on tiny screens to save data
             if(window.innerWidth <= 420){
                 try { video.pause(); } catch(e){}
             } else {
@@ -1781,7 +1864,6 @@
             renderMenu(getCurrentMenuData());
             initMarquee();
 
-            // ensure video state change handled
             const video = document.getElementById('bgVideo');
             if(video){
                 video.addEventListener('loadeddata', function(){
@@ -1795,5 +1877,3 @@
     </script>
 </body>
 </html>
-
-
