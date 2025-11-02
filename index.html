@@ -1295,232 +1295,141 @@
 
         const menuDataEn = {
             "Turkish Morning": [
-                { name: "Turkish Classic Breakfast", price: "65 QR", description: "Traditional Turkish breakfast spread with cheese, olives, tomatoes, cucumbers, honey, and fresh bread", image: "Breakfast.jpg", allergens: ["dairy", "gluten"] },
-                { name: "Turkish Menemen", price: "45 QR", description: "Turkish-style scrambled eggs with tomatoes, peppers, and spices", image: "Menemen.jpg", allergens: ["dairy"] },
-                { name: "Plain Omelette", price: "25 QR", description: "Classic fluffy omelette", image: "Omellet.jpg", allergens: ["dairy"] }
+                {name:"Turkish Classic Breakfast", price:"65 QR", description:"Authentic Turkish breakfast with fresh bread, cheese, olives, tomatoes, cucumbers, honey, and clotted cream served with Turkish tea", image:"Breakfast.jpg", allergens:["dairy","gluten"]},
+                {name:"Turkish Menemen", price:"45 QR", description:"Classic Turkish scrambled eggs with fresh tomatoes, green peppers, and aromatic spices for a rich, comforting taste", image:"Menemen.jpg", allergens:["dairy"]},
+                {name:"Plain Omelette", price:"25 QR", description:"Light and fluffy omelette cooked to perfection for a simple, classic start to your day", image:"Omellet.jpg", allergens:["dairy"]},
             ],
             "Croissant Creations": [
-                { name: "Croissant Beef Ribs", price: "45 QR", description: "Beef Ribs, Cheddar Cheese, Kasfar Cheese, Pesto Sauce (Side: Tomatoes, Cucumbers, Green Olives)", image: "Ribs.jpg", allergens: ["dairy", "gluten", "nuts"] },
-                { name: "Avocado Croissant", price: "42 QR", description: "Scrambled Eggs, Avocado, Olive Paste (with Tomatoes and Cucumber as Sides)", image: "Avocado.jpg", allergens: ["dairy", "gluten"] },
-                { name: "Smoked Beef Croissant", price: "45 QR", description: "Scrambled Eggs with Thyme and Smoked Beef (Side: Tomato, Cucumber, Olives, Jam, and White Cheese)", image: "5.jpg", allergens: ["dairy", "gluten"] },
-                { name: "Butter & Jam Croissant", price: "40 QR", description: "Butter, Cherry Jam, Grilled Olives, Feta Cheese, Tomato, Cucumber, Praline", image: "4.jpg", allergens: ["dairy", "gluten", "nuts"] },
-                { name: "Croissant Scrambled Eggs", price: "37 QR", description: "Scrambled Eggs, Red Pepper, Thyme, Arugula, Tomatoes, Cucumbers, Grilled Olives", image: "1.jpg", allergens: ["dairy", "gluten"] }
+                {name:"Croissant Beef Ribs", price:"45 QR", description:"Flaky croissant filled with tender beef ribs, cheddar and kasfar cheese, topped with pesto sauce and served with tomatoes, cucumbers, and green olives on the side", image:"Ribs.jpg", allergens:["dairy","gluten","nuts"]},
+                {name:"Avocado Croissant", price:"42 QR", description:"Buttery croissant stuffed with creamy avocado, fluffy scrambled eggs, and olive paste, served with fresh tomatoes and cucumbers on the side", image:"Avocado.jpg", allergens:["dairy","gluten"]},
+                {name:"Smoked Beef Croissant", price:"45 QR", description:"Fresh croissant filled with scrambled eggs, smoked beef, and thyme, served with tomato, cucumber, olives, jam, and white cheese on the side", image:"5.jpg", allergens:["dairy","gluten"]},
+                {name:"Butter & Jam Croissant", price:"40 QR", description:"Buttery croissant served with cherry jam, grilled olives, feta cheese, tomato, cucumber, and praline for a sweet and savory treat", image:"4.jpg", allergens:["dairy","gluten","nuts"]},
+                {name:"Croissant Scrambled Eggs", price:"37 QR", description:"Flaky croissant filled with scrambled eggs, red pepper, thyme, and arugula, served with tomatoes, cucumbers, and grilled olives", image:"1.jpg", allergens:["dairy","gluten"]},
             ],
             "From the Grill & Garden": [
-                { name: "Fried Potatoes", price: "25 QR", description: "Crispy golden french fries", image: "Patatas.jpg", allergens: [] },
-                { name: "Caesar Salad", price: "40 QR", description: "Fresh romaine lettuce with Caesar dressing, croutons, and parmesan", image: "Caesar.jpg", allergens: ["dairy", "gluten"] },
-                { name: "Turkiana Special Beef Burger", price: "55 QR", description: "Premium beef burger with special toppings and fries", image: "Burger.jpg", allergens: ["gluten", "dairy"] }
+                {name:"Fried Potatoes", price:"25 QR", description:"Crispy golden fried potatoes, perfectly seasoned for a classic side snack", image:"Patatas.jpg", allergens:[]},
+                {name:"Caesar Salad", price:"40 QR", description:"Crisp romaine lettuce tossed with creamy Caesar dressing, crunchy croutons, and shaved parmesan cheese", image:"Caesar.jpg", allergens:["dairy","gluten"]},
+                {name:"Turkiana Beef Burger", price:"59 QR", description:"Juicy premium beef patty topped with special sauces and fresh toppings, served with golden fries", image:"Burger.jpg", allergens:["gluten","dairy"]},
             ],
             "Baklava & Beyond": [
-                { name: "Turkish Mix Baklava", price: "45 QR", description: "Assorted traditional Turkish baklava", image: "Mix.jpg", allergens: ["nuts", "gluten"] },
-                { name: "Turkish Plain Baklava", price: "40 QR", description: "Classic plain baklava", image: "Slice.jpg", allergens: ["nuts", "gluten"] },
-                { name: "Nuts Stand-Tall", price: "99 QR", description: "Assorted Nuts", image: "Nuts.jpg", allergens: ["nuts"] },
-                { name: "Nuts Stand-Small", price: "60 QR", description: "Assorted Nuts", image: "Nuts.jpg", allergens: ["nuts"] },
-                { name: "Snickers-inspired cake", price: "42 QR", description: "Snickers chocolate caramel Taste", image: "Snicker.jpg", allergens: ["nuts", "gluten"] },
-                { name: "Kunafa", price: "40 QR", description: "Turkish Kunafa with Akawi Cheese", image: "Kunafa.jpg", allergens: ["nuts", "gluten"] },
-                { name: "Chocolate Cake", price: "40 QR", description: "Rich chocolate molten cake", image: "Chocolate.jpg", allergens: ["dairy", "gluten"] },
-                { name: "Lotus Cake", price: "40 QR", description: "Rich lotus cake", image: "Lutos.jpg", allergens: ["dairy", "gluten"] },
-                { name: "Full Pistachio Cake", price: "40 QR", description: "Delicate pistachio flavored cake", image: "Full.jpg", allergens: ["nuts", "dairy", "gluten"] },
-                { name: "Lemon Cake", price: "38 QR", description: "Fresh lemon sponge cake", image: "Lemon.jpg", allergens: ["dairy", "gluten"] },
-                { name: "Tiramisu", price: "32 QR", description: "Classic Italian tiramisu", image: "Tiramisu.jpg", allergens: ["dairy", "gluten", "nuts"] },
-                { name: "Almond Chocolate Cake", price: "40 QR", description: "Almond chocolate cake", image: "Almond.jpg", allergens: ["nuts", "dairy", "gluten"] },
-                { name: "Lemon Sponge Cake", price: "42 QR", description: "Light lemon sponge cake", image: "Lemoncake.jpg", allergens: ["dairy", "gluten"] },
-                { name: "Raspberry Cheesecake", price: "30 QR", description: "Cherry cheesecake", image: "Cherry.jpg", allergens: ["dairy", "gluten"] },
-                { name: "Mulberry Cheesecake", price: "30 QR", description: "Mulberry cheesecake", image: "Mulberry.jpg", allergens: ["dairy", "gluten"] },
-                { name: "Chocolate Pistachio Cake", price: "40 QR", description: "Chocolate pistachio cake", image: "Chocolate_pistachio.jpg", allergens: ["dairy", "nuts", "gluten"] },
-                { name: "Strawberry Cake", price: "45 QR", description: "Strawberry cake", image: "Strawberry.jpg", allergens: ["dairy", "gluten"] },
-                { name: "White Almond Cake", price: "42 QR", description: "White almond cake", image: "White.jpg", allergens: ["nuts", "dairy", "gluten"] },
-                { name: "Trileche With Milk", price: "35 QR", description: "Turkish tres leches cake", image: "Trileche.jpg", allergens: ["dairy", "gluten"] },
-                { name: "San Sebastian Cheesecake", price: "42 QR", description: "San Sebastian cheesecake", image: "Sebastian.jpg", allergens: ["dairy", "gluten"] }
+                {name:"Turkish Mix Baklava", price:"45 QR", description:"A delightful assortment of traditional Turkish baklava, rich in nuts and layered pastry", image:"Mix.jpg", allergens:["nuts","gluten"]},
+                {name:"Turkish Plain Baklava", price:"40 QR", description:"Classic Turkish baklava with layers of flaky pastry and a sweet nut filling", image:"Slice.jpg", allergens:["nuts","gluten"]},
+                {name:"Nuts Stand-Tall", price:"99 QR", description:"A premium assortment of mixed nuts, perfect for snacking or sharing", image:"Nuts.jpg", allergens:["nuts"]},
+                {name:"Nuts Stand-Small", price:"60 QR", description:"A small selection of premium mixed nuts, perfect for a light snack", image:"Nuts.jpg", allergens:["nuts"]},
+                {name:"Snickers-inspired cake", price:"42 QR", description:"Decadent cake inspired by Snickers, with rich chocolate, caramel, and nutty layers", image:"Snicker.jpg", allergens:["nuts","gluten"]},
+                {name:"Kunafa", price:"40 QR", description:"Traditional Turkish Kunafa made with Akawi cheese and a delicate crispy pastry, sweetened to perfection", image:"Kunafa.jpg", allergens:["nuts","gluten"]},
+                {name:"Chocolate Cake", price:"40 QR", description:"Decadent molten chocolate cake, rich and fudgy for chocolate lovers", image:"Chocolate.jpg", allergens:["dairy","gluten"]},
+                {name:"Lotus Cake", price:"40 QR", description:"Delicious cake infused with Lotus Biscoff flavors, soft, rich, and creamy", image:"Lutos.jpg", allergens:["dairy","gluten"]},
+                {name:"Full Pistachio Cake", price:"40 QR", description:"Moist and delicate cake infused with rich pistachio flavor", image:"Full.jpg", allergens:["nuts","dairy","gluten"]},
+                {name:"Lemon Cake", price:"38 QR", description:"Light and zesty lemon sponge cake, fresh and tangy for a refreshing treat", image:"Lemon.jpg", allergens:["dairy","gluten"]},
+                {name:"Tiramisu", price:"32 QR", description:"Classic Italian dessert with layers of coffee-soaked sponge, mascarpone cream, and a hint of cocoa", image:"Tiramisu.jpg", allergens:["dairy","gluten","nuts"]},
+                {name:"Almond Chocolate Cake", price:"40 QR", description:"Rich chocolate cake layered with almond flavors for a nutty and decadent treat", image:"Almond.jpg", allergens:["nuts","dairy","gluten"]},
+                {name:"Lemon Sponge Cake", price:"42 QR", description:"Soft and airy lemon sponge cake, bursting with fresh citrus flavor", image:"Lemoncake.jpg", allergens:["dairy","gluten"]},
+                {name:"Raspberry Cheesecake", price:"30 QR", description:"Creamy cheesecake topped with fresh raspberries for a sweet and tangy flavor", image:"Cherry.jpg", allergens:["dairy","gluten"]},
+                {name:"Mulberry Cheesecake", price:"30 QR", description:"Smooth and creamy cheesecake topped with luscious mulberries for a fruity delight", image:"Mulberry.jpg", allergens:["dairy","gluten"]},
+                {name:"Chocolate Pistachio Cake", price:"40 QR", description:"Rich chocolate cake layered with crunchy pistachios for a nutty, indulgent treat", image:"Chocolate_pistachio.jpg", allergens:["dairy","nuts","gluten"]},
+                {name:"Strawberry Cake", price:"45 QR", description:"Moist and fluffy cake topped with fresh strawberries for a sweet and fruity delight", image:"Strawberry.jpg", allergens:["dairy","gluten"]},
+                {name:"White Almond Cake", price:"42 QR", description:"Soft and creamy cake with delicate almond flavor, perfect for nut lovers", image:"White.jpg", allergens:["nuts","dairy","gluten"]},
+                {name:"Trileche With Milk", price:"35 QR", description:"Moist Turkish tres leches cake soaked in rich milk for a sweet and creamy dessert", image:"Trileche.jpg", allergens:["dairy","gluten"]},
+                {name:"San Sebastian Cheesecake", price:"42 QR", description:"Creamy and caramelized San Sebastian-style cheesecake with a rich, velvety texture", image:"Sebastian.jpg", allergens:["dairy","gluten"]},
             ],
             "Arabian Brew": [
-                { name: "Arabic Coffee in a Full Dalla", price: "90 QR", description: "Arabic Coffee in a Full Dalla", allergens: ["dairy"] },
-                { name: "Arabic Coffee in a Half Dalla", price: "50 QR", description: "Arabic Coffee in a Half Dalla", allergens: ["dairy"] },
-                { name: "Arabic Coffee in a Cup", price: "30 QR", description: "Arabic Coffee in a Cup", allergens: ["dairy"] }
+                {name:"Arabic Coffee in a Full Dalla", price:"90 QR", description:"Traditional Arabic coffee served in a full Dalla, aromatic and rich in flavor", allergens:["dairy"]},
+                {name:"Arabic Coffee in a Half Dalla", price:"50 QR", description:"Traditional Arabic coffee served in a half Dalla, fragrant and smooth", allergens:["dairy"]},
+                {name:"Arabic Coffee in a Cup", price:"30 QR", description:"Authentic Arabic coffee served in a cup, rich and aromatic", allergens:["dairy"]},
             ],
             "Tea Time": [
-                { name: "Turkish Tea", price: "15 QR", description: "Classic Turkish tea", allergens: [] },
-                { name: "Teapot", price: "30 QR", description: "Hot pot of tea", allergens: [] },
-                { name: "Apple Tea", price: "25 QR", description: "Apple tea", allergens: [] },
-                { name: "Mulberry Tea", price: "25 QR", description: "Mulberry tea", allergens: [] },
-                { name: "Lemon Mint", price: "25 QR", description: "Lemon mint tea", allergens: [] },
-                { name: "Pomegranate Tea", price: "25 QR", description: "Pomegranate tea", allergens: [] }
+                {name:"Turkish Tea", price:"15 QR", description:"Traditional Turkish tea, served hot and full of flavor", allergens:[]},
+                {name:"Teapot", price:"30 QR", description:"Hot pot of freshly brewed tea, perfect for sharing", allergens:[]},
+                {name:"Apple Tea", price:"25 QR", description:"Fragrant and soothing apple-flavored tea, served hot", allergens:[]},
+                {name:"Mulberry Tea", price:"25 QR", description:"Sweet and aromatic mulberry tea, served hot for a comforting drink", allergens:[]},
+                {name:"Lemon Mint", price:"25 QR", description:"Refreshing lemon and mint tea, served hot for a soothing experience", allergens:[]},
+                {name:"Pomegranate Tea", price:"25 QR", description:"Vibrant and fruity pomegranate tea, served hot for a flavorful treat", allergens:[]},
             ],
             "Tea on Ice": [
-                { name: "Ice Apple Tea", price: "28 QR", description: "Cold apple tea", allergens: [] },
-                { name: "Ice Mulberry Tea", price: "28 QR", description: "Cold mulberry tea", allergens: [] },
-                { name: "Ice Mint Lemon", price: "28 QR", description: "Cold mint lemon tea", allergens: [] },
-                { name: "Ice Pomegranate Tea", price: "28 QR", description: "Cold pomegranate tea", allergens: [] },
-                { name: "Hibiscus", price: "28 QR", description: "Cold hibiscus tea", allergens: [] }
+                {name:"Ice Apple Tea", price:"28 QR", description:"Chilled apple tea, refreshing and fruity", allergens:[]},
+                {name:"Ice Mulberry Tea", price:"28 QR", description:"Iced mulberry tea, sweet and invigorating", allergens:[]},
+                {name:"Ice Mint Lemon", price:"28 QR", description:"Cold mint and lemon tea, refreshing and zesty", allergens:[]},
+                {name:"Ice Pomegranate Tea", price:"28 QR", description:"Iced pomegranate tea, vibrant and fruity", allergens:[]},
+                {name:"Hibiscus", price:"28 QR", description:"Chilled hibiscus tea, tangy and refreshing", allergens:[]},
+
             ],
             "Brewed the Turkish Way": [
-                { name: "Classic Turkish Coffee", price: "28 QR", description: "Classic Turkish Coffee", allergens: [] },
-                { name: "Turkish Coffee with Cardamon", price: "28 QR", description: "Turkish Coffee with Cardamon", allergens: [] },
-                { name: "Double Turkish Coffee", price: "40 QR", description: "Double Turkish Coffee", allergens: [] },
-                { name: "Ottoman Coffee", price: "28 QR", description: "Ottoman Coffee", allergens: [] },
-                { name: "Ottoman Coffee with Mastic", price: "28 QR", description: "Ottoman Coffee with Mastic", allergens: [] },
-                { name: "Ottoman Coffee with Hazelnuts", price: "28 QR", description: "Ottoman Coffee with Hazelnuts", allergens: ["nuts"] },
-                { name: "Sahlep", price: "28 QR", description: "Hot sahlep", allergens: ["dairy"] }
+                {name:"Classic Turkish Coffee", price:"28 QR", description:"Rich and aromatic classic Turkish coffee, served traditionally", allergens:[]},
+                {name:"Turkish Coffee with Cardamon", price:"28 QR", description:"Classic Turkish coffee infused with fragrant cardamom", allergens:[]},
+                {name:"Double Turkish Coffee", price:"40 QR", description:"Strong and bold double shot of classic Turkish coffee", allergens:[]},
+                {name:"Ottoman Coffee", price:"28 QR", description:"Traditional Ottoman-style coffee, rich and flavorful", allergens:[]},
+                {name:"Ottoman Coffee with Mastic", price:"28 QR", description:"Ottoman coffee delicately flavored with mastic resin", allergens:[]},
+                {name:"Ottoman Coffee with Hazelnuts", price:"28 QR", description:"Ottoman coffee enriched with crunchy hazelnuts", allergens:["nuts"]},
+                {name:"Sahlep", price:"28 QR", description:"Warm and creamy Turkish sahlep, perfect for a cozy drink", allergens:["dairy"]},
+
             ],
             "Herbal Infusions": [
-                { name: "Sage", price: "28 QR", description: "Sage tea", allergens: [] },
-                { name: "Mix Winter Tea", price: "28 QR", description: "Winter herbal tea mix", allergens: [] },
-                { name: "Green Tea", price: "28 QR", description: "Green tea", allergens: [] },
-                { name: "Chamomile", price: "28 QR", description: "Chamomile tea", allergens: [] },
-                { name: "Hibiscus", price: "28 QR", description: "Hibiscus tea", allergens: [] }
+                {name:"Sage", price:"28 QR", description:"Soothing sage tea, warm and calming", allergens:[]},
+                {name:"Mix Winter Tea", price:"28 QR", description:"A comforting blend of winter herbs, perfect for a cozy cup", allergens:[]},
+                {name:"Green Tea", price:"28 QR", description:"Refreshing and light green tea, served hot", allergens:[]},
+                {name:"Chamomile", price:"28 QR", description:"Calming chamomile tea, naturally soothing", allergens:[]},
+                {name:"Hibiscus", price:"28 QR", description:"Tangy and vibrant hibiscus tea, served hot", allergens:[]},
+
             ],
             "Café & Chill": [
-                { name: "Hot Chocolate (Hot/Ice)", price: "36 QR", description: "Hot chocolate", allergens: ["dairy"] },
-                { name: "Latte (Hot/Ice)", price: "29 QR", description: "Latte coffee", allergens: ["dairy"] },
-                { name: "Spanish Latte (Hot/Ice)", price: "32 QR", description: "Spanish Latte", allergens: ["dairy"] },
-                { name: "Salted Caramel Latte (Hot/Ice)", price: "32 QR", description: "Salted Caramel Latte", allergens: ["dairy"] },
-                { name: "Vanilla Latte (Hot/Ice)", price: "32 QR", description: "Vanilla Latte", allergens: ["dairy"] },
-                { name: "Cappuccino (Hot/Ice)", price: "29 QR", description: "Cappuccino", allergens: ["dairy"] },
-                { name: "White Mocha (Hot/Ice)", price: "32 QR", description: "White Mocha", allergens: ["dairy"] },
-                { name: "Flat White (Hot/Ice)", price: "27 QR", description: "Flat White coffee", allergens: ["dairy"] },
-                { name: "Cortado (Hot/Ice)", price: "24 QR", description: "Cortado coffee", allergens: ["dairy"] },
-                { name: "Espresso (Hot/Ice)", price: "21 QR", description: "Espresso coffee", allergens: [] },
-                { name: "Double Espresso (Hot/Ice)", price: "21 QR", description: "Double Espresso coffee", allergens: [] },
-                { name: "Macchiato (Hot/Ice)", price: "24 QR", description: "Macchiato coffee", allergens: ["dairy"] },
-                { name: "Americano (Hot/Ice)", price: "21 QR", description: "Americano coffee", allergens: [] },
-                { name: "Mocha (Hot/Ice)", price: "32 QR", description: "Mocha coffee", allergens: ["dairy"] }
+                {name:"Hot Chocolate (Hot/Ice)", price:"36 QR", description:"Rich and creamy hot chocolate, served hot or iced", allergens:["dairy"]},
+                {name:"Latte (Hot/Ice)", price:"29 QR", description:"Smooth and velvety latte coffee, hot or iced", allergens:["dairy"]},
+                {name:"Spanish Latte (Hot/Ice)", price:"32 QR", description:"Sweet and creamy Spanish latte, available hot or iced", allergens:["dairy"]},
+                {name:"Salted Caramel Latte (Hot/Ice)", price:"32 QR", description:"Latte with a perfect blend of salted caramel, hot or iced", allergens:["dairy"]},
+                {name:"Vanilla Latte (Hot/Ice)", price:"32 QR", description:"Classic latte infused with rich vanilla flavor, hot or iced", allergens:["dairy"]},
+                {name:"Cappuccino (Hot/Ice)", price:"29 QR", description:"Classic cappuccino with frothy milk, served hot or iced", allergens:["dairy"]},
+                {name:"White Mocha (Hot/Ice)", price:"32 QR", description:"Creamy white chocolate mocha, available hot or iced", allergens:["dairy"]},
+                {name:"Flat White (Hot/Ice)", price:"27 QR", description:"Smooth flat white coffee, perfectly balanced, hot or iced", allergens:["dairy"]},
+                {name:"Cortado (Hot/Ice)", price:"24 QR", description:"Espresso cut with a small amount of milk, hot or iced", allergens:["dairy"]},
+                {name:"Espresso (Hot/Ice)", price:"21 QR", description:"Bold and rich espresso shot, served hot or iced", allergens:[]},
+                {name:"Double Espresso (Hot/Ice)", price:"21 QR", description:"Double shot of strong espresso, hot or iced", allergens:[]},
+                {name:"Macchiato (Hot/Ice)", price:"24 QR", description:"Espresso topped with a dash of milk, hot or iced", allergens:["dairy"]},
+                {name:"Americano (Hot/Ice)", price:"21 QR", description:"Smooth Americano coffee, hot or iced", allergens:[]},
+                {name:"Mocha (Hot/Ice)", price:"32 QR", description:"Chocolate-infused mocha coffee, served hot or iced", allergens:["dairy"]},
+
             ],
             "Specialty Brews": [
-                { name: "V60 Pour Over (Hot & Ice)", price: "29 QR", description: "V60 pour-over coffee", allergens: [] },
-                { name: "Ice Drip", price: "32 QR", description: "Ice Drip coffee", allergens: [] },
-                { name: "Cold Brew", price: "36 QR", description: "Cold Brew coffee", allergens: [] }
+                {name:"V60 Pour Over (Hot & Ice)", price:"29 QR", description:"Expertly brewed V60 pour-over coffee, hot or iced for a clean and aromatic cup", allergens:[]},
+                {name:"Ice Drip", price:"32 QR", description:"Slow-dripped ice coffee, refreshing and smooth", allergens:[]},
+                {name:"Cold Brew", price:"36 QR", description:"Rich and smooth cold brew coffee, steeped for hours for maximum flavor", allergens:[]},
+
             ],
             "Froozen": [
-                { name: "Mango Froozen", price: "38 QR", description: "Mango froozen drink", allergens: [] },
-                { name: "Şeftali Froozen", price: "38 QR", description: "Peach froozen drink", allergens: [] },
-                { name: "Çilekli Froozen", price: "38 QR", description: "Strawberry froozen drink", allergens: [] },
-                { name: "Orman Meyveli Froozen", price: "38 QR", description: "Forest fruits froozen drink", allergens: [] },
-                { name: "Yaban Mersini Froozen", price: "38 QR", description: "Blueberry froozen drink", allergens: [] }
+                {name:"Mango Froozen", price:"38 QR", description:"Refreshing frozen mango drink, fruity and icy", allergens:[]},
+                {name:"Şeftali Froozen", price:"38 QR", description:"Icy peach froozen drink, sweet and refreshing", allergens:[]},
+                {name:"Çilekli Froozen", price:"38 QR", description:"Frozen strawberry drink, sweet, fruity, and chilled", allergens:[]},
+                {name:"Orman Meyveli Froozen", price:"38 QR", description:"Icy forest fruits froozen drink, bursting with mixed berry flavors", allergens:[]},
+                {name:"Yaban Mersini Froozen", price:"38 QR", description:"Blueberry frozen drink, refreshing and fruity", allergens:[]},
+
             ],
             "Refreshments": [
-                { name: "Still Water (Small)", price: "11 QR", description: "Small still water", allergens: [] },
-                { name: "Still Water (Big)", price: "21 QR", description: "Big still water", allergens: [] },
-                { name: "Sparkling Water", price: "21 QR", description: "Sparkling water", allergens: [] },
-                { name: "Churchill", price: "25 QR", description: "Churchill drink", allergens: [] },
-                { name: "Lemonade", price: "30 QR", description: "Fresh lemonade", allergens: [] },
-                { name: "Fresh Orange Juice", price: "30 QR", description: "Fresh orange juice", allergens: [] },
-                { name: "Kinza Kola", price: "17 QR", description: "Kinza Kola", allergens: [] },
-                { name: "Kinza Kola Zero", price: "17 QR", description: "Kinza Kola Zero", allergens: [] }
+                {name:"Still Water (Small)", price:"11 QR", description:"Refreshing small bottle of still water", allergens:[]},
+                {name:"Still Water (Big)", price:"21 QR", description:"Large bottle of still water, perfect to stay hydrated", allergens:[]},
+                {name:"Sparkling Water", price:"21 QR", description:"Effervescent sparkling water for a refreshing sip", allergens:[]},
+                {name:"Churchill", price:"25 QR", description:"Signature Churchill drink, unique and flavorful", allergens:[]},
+                {name:"Lemonade", price:"30 QR", description:"Freshly squeezed lemonade, tangy and refreshing", allergens:[]},
+                {name:"Fresh Orange Juice", price:"30 QR", description:"Cold-pressed fresh orange juice, naturally sweet and juicy", allergens:[]},
+                {name:"Kinza Kola", price:"17 QR", description:"Classic Kinza Kola, fizzy and refreshing", allergens:[]},
+                {name:"Kinza Kola Zero", price:"17 QR", description:"Kinza Kola Zero, sugar-free and fizzy", allergens:[]},
+
             ]
         };
 
         const menuDataAr = {
-            "أطباق الإفطار المميزة":[
-                {name:"الإفطار التركي الكلاسيكي", price:"65 ريال", description:"إفطار تركي تقليدي مع الجبن والزيتون والطماطم والخيار والعسل والخبز الطازج", image:"Breakfast.jpg", allergens:["dairy","gluten"]},
-                {name:"المنيمن التركي", price:"45 ريال", description:"بيض مخفوق على الطريقة التركية مع الطماطم والفلفل والتوابل", image:"Menemen.jpg", allergens:["dairy"]},
-                {name:"أومليت عادي", price:"25 ريال", description:"أومليت كلاسيكي منفوش", image:"Omellet.jpg", allergens:["dairy"]}
-            ],
-            "كرواسون":[
-                {name:"كرواسون أضلاع اللحم", price:"45 ريال", description:"أضلاع لحم، جبن شيدر، جبن كسفار، صلصة البيستو (مع الطماطم والخيار والزيتون الأخضر)", image:"Ribs.jpg", allergens:["dairy","gluten","nuts"]},
-                {name:"كرواسون الأفوكادو", price:"42 ريال", description:"بيض مخفوق، أفوكادو، معجون الزيتون (مع الطماطم والخيار)", image:"Avocado.jpg", allergens:["dairy","gluten"]},
-                {name:"كرواسون اللحم المدخن", price:"45 ريال", description:"بيض مخفوق بالزعتر واللحم المدخن (مع الطماطم والخيار والزيتون والمربى والجبن الأبيض)", image:"5.jpg", allergens:["dairy","gluten"]},
-                {name:"كرواسون الزبدة والمربى", price:"40 ريال", description:"زبدة، مربى الكرز، زيتون مشوي، جبن فيتا، طماطم، خيار، براليني", image:"4.jpg", allergens:["dairy","gluten","nuts"]},
-                {name:"كرواسون البيض المخفوق", price:"37 ريال", description:"بيض مخفوق، فلفل أحمر، زعتر، جرجير، طماطم، خيار، زيتون مشوي", image:"1.jpg", allergens:["dairy","gluten"]}
-            ],
-            "الأطباق الرئيسية":[
-                {name:"البطاطس المقلية", price:"25 ريال", description:"بطاطس مقلية ذهبية مقرمشة", image:"Patatas.jpg", allergens:[]},
-                {name:"سلطة سيزر", price:"40 ريال", description:"خس روماني طازج مع صلصة سيزر وقطع الخبز المحمص والبارميزان", image:"Caesar.jpg", allergens:["dairy","gluten"]},
-                {name:"برجر اللحم المميز تركيانا", price:"55 ريال", description:"برجر لحم فاخر مع إضافات مميزة وبطاطس مقلية", image:"Burger.jpg", allergens:["gluten","dairy"]}
-            ],
-            "الحلويات والتحليات":[
-                {name:"بقلاوة تركية مشكلة", price:"45 ريال", description:"تشكيلة من البقلاوة التركية التقليدية", image:"Mix.jpg", allergens:["nuts","gluten"]},
-                {name:"طبق المكسرات", price:"99 ريال", description:"تشكيلة من المكسرات", image:"Nuts.jpg", allergens:["nuts","gluten"]},
-                {name:"بقلاوة تركية عادية", price:"40 ريال", description:"بقلاوة عادية كلاسيكية", image:"Slice.jpg", allergens:["nuts","gluten"]},
-                {name:"Snickers-inspired cake", price:"42 ريال", description:"Snickers chocolate caramel Taste", image:"Snicker.jpg", allergens:["nuts","gluten"]},
-                {name:"كنافة", price:"40 ريال", description:"كنافة تركية بجبن العكاوي", image:"Kunafa.jpg", allergens:["nuts","gluten"]},
-                {name:"كيك الشوكولاتة", price:"40 ريال", description:"كيك شوكولاتة غني ومنصهر", image:"Chocolate.jpg", allergens:["dairy","gluten"]},
-                {name:"كيك اللوتس", price:"40 ريال", description:"كيك لوتس غني", image:"Lutos.jpg", allergens:["dairy","gluten"]},
-                {name:"كيك الفستق الكامل", price:"40 ريال", description:"كيك فستق رقيق النكهة", image:"Full.jpg", allergens:["nuts","dairy","gluten"]},
-                {name:"كيك الليمون", price:"38 ريال", description:"كيك إسفنجي بالليمون الطازج", image:"Lemon.jpg", allergens:["dairy","gluten"]},
-                {name:"تيراميسو", price:"32 ريال", description:"تيراميسو إيطالي كلاسيكي", image:"Tiramisu.jpg", allergens:["dairy","gluten","nuts"]},
-                {name:"كيك اللوز بالشوكولاتة", price:"40 ريال", description:"كيك اللوز بالشوكولاتة", image:"Almond.jpg", allergens:["nuts","dairy","gluten"]},
-                {name:"كيك الليمون الإسفنجي", price:"42 ريال", description:"كيك ليمون إسفنجي خفيف", image:"Lemoncake.jpg", allergens:["dairy","gluten"]},
-                {name:"تشيز كيك التوت", price:"30 ريال", description:"تشيز كيك الكرز", image:"Cherry.jpg", allergens:["dairy","gluten"]},
-                {name:"تشيز كيك التوت الأسود", price:"30 ريال", description:"تشيز كيك التوت الأسود", image:"Mulberry.jpg", allergens:["dairy","gluten"]},
-                {name:"كيك الشوكولاتة بالفستق", price:"40 ريال", description:"كيك الشوكولاتة بالفستق", image:"Chocolate_pistachio.jpg", allergens:["dairy","nuts","gluten"]},
-                {name:"كيك الفراولة", price:"45 ريال", description:"كيك الفراولة", image:"Strawberry.jpg", allergens:["dairy","gluten"]},
-                {name:"كيك اللوز الأبيض", price:"42 ريال", description:"كيك اللوز الأبيض", image:"White.jpg", allergens:["nuts","dairy","gluten"]},
-                {name:"تريليتشي بالحليب", price:"35 ريال", description:"كيك الحليب التركي", image:"Trileche.jpg", allergens:["dairy","gluten"]},
-                {name:"تشيز كيك سان سيباستيان", price:"42 ريال", description:"تشيز كيك سان سيباستيان", image:"Sebastian.jpg", allergens:["dairy","gluten"]}
-            ],
-            "القهوة العربية":[
-                {name:"قهوة عربية في دلة كاملة", price:"90 ريال", description:"قهوة عربية في دلة كاملة", allergens:["dairy"]},
-                {name:"قهوة عربية في نصف دلة", price:"50 ريال", description:"قهوة عربية في نصف دلة", allergens:["dairy"]},
-                {name:"قهوة عربية في كوب", price:"30 ريال", description:"قهوة عربية في كوب", allergens:["dairy"]}
-            ],
-            "الشاي الساخن":[
-                {name:"الشاي التركي", price:"15 ريال", description:"شاي تركي كلاسيكي", allergens:[]},
-               {name: "ابريق شاي", price: "30 ريال", description: "ابريق شاي ساخن", allergens: []},
-                {name:"شاي التفاح", price:"25 ريال", description:"شاي التفاح", allergens:[]},
-                {name:"شاي التوت", price:"25 ريال", description:"شاي التوت", allergens:[]},
-                {name:"ليمون نعناع", price:"25 ريال", description:"شاي الليمون بالنعناع", allergens:[]},
-                {name:"شاي الرمان", price:"25 ريال", description:"شاي الرمان", allergens:[]}
-            ],
-            "الشاي المثلج":[
-                {name:"شاي التفاح المثلج", price:"28 ريال", description:"شاي التفاح البارد", allergens:[]},
-                {name:"شاي التوت المثلج", price:"28 ريال", description:"شاي التوت البارد", allergens:[]},
-                {name:"ليمون نعناع مثلج", price:"28 ريال", description:"شاي الليمون بالنعناع البارد", allergens:[]},
-                {name:"شاي الرمان المثلج", price:"28 ريال", description:"شاي الرمان البارد", allergens:[]},
-                {name:"الكركديه", price:"28 ريال", description:"شاي الكركديه البارد", allergens:[]}
-            ],
-            "القهوة التركية":[
-                {name:"القهوة التركية الكلاسيكية", price:"28 ريال", description:"القهوة التركية الكلاسيكية", allergens:[]},
-                {name:"القهوة التركية بالهيل", price:"28 ريال", description:"القهوة التركية بالهيل", allergens:[]},
-                {name:"القهوة التركية المضاعفة", price:"40 ريال", description:"القهوة التركية المضاعفة", allergens:[]},
-                {name:"القهوة العثمانية", price:"28 ريال", description:"القهوة العثمانية", allergens:[]},
-                {name:"القهوة العثمانية بالمستكة", price:"28 ريال", description:"القهوة العثمانية بالمستكة", allergens:[]},
-                {name:"القهوة العثمانية بالبندق", price:"28 ريال", description:"القهوة العثمانية بالبندق", allergens:["nuts"]},
-                {name:"السحلب", price:"28 ريال", description:"السحلب الساخن", allergens:["dairy"]}
-            ],
-            "الشاي العشبي المميز":[
-                {name:"الميرمية", price:"28 ريال", description:"شاي الميرمية", allergens:[]},
-                {name:"خليط شاي الشتاء", price:"28 ريال", description:"خليط الشاي العشبي الشتوي", allergens:[]},
-                {name:"الشاي الأخضر", price:"28 ريال", description:"الشاي الأخضر", allergens:[]},
-                {name:"البابونج", price:"28 ريال", description:"شاي البابونج", allergens:[]},
-                {name:"الكركديه", price:"28 ريال", description:"شاي الكركديه", allergens:[]}
-            ],
-            "القهوة الساخنة والمثلجة":[
-                {name:"الشوكولاتة الساخنة (ساخن/مثلج)", price:"36 ريال", description:"الشوكولاتة الساخنة", allergens:["dairy"]},
-                {name:"لاتيه (ساخن/مثلج)", price:"29 ريال", description:"قهوة لاتيه", allergens:["dairy"]},
-                {name:"لاتيه إسباني (ساخن/مثلج)", price:"32 ريال", description:"لاتيه إسباني", allergens:["dairy"]},
-                {name:"لاتيه الكراميل المملح (ساخن/مثلج)", price:"32 ريال", description:"لاتيه الكراميل المملح", allergens:["dairy"]},
-                {name:"لاتيه الفانيليا (ساخن/مثلج)", price:"32 ريال", description:"لاتيه الفانيليا", allergens:["dairy"]},
-                {name:"كابتشينو (ساخن/مثلج)", price:"29 ريال", description:"كابتشينو", allergens:["dairy"]},
-                {name:"موكا أبيض (ساخن/مثلج)", price:"32 ريال", description:"موكا أبيض", allergens:["dairy"]},
-                {name:"فلات وايت (ساخن/مثلج)", price:"27 ريال", description:"قهوة فلات وايت", allergens:["dairy"]},
-                {name:"كورتادو (ساخن/مثلج)", price:"24 ريال", description:"قهوة كورتادو", allergens:["dairy"]},
-                {name:"إسبريسو (ساخن/مثلج)", price:"21 ريال", description:"قهوة إسبريسو", allergens:[]},
-                {name:"إسبريسو مضاعف (ساخن/مثلج)", price:"21 ريال", description:"قهوة إسبريسو مضاعفة", allergens:[]},
-                {name:"ماكياتو (ساخن/مثلج)", price:"24 ريال", description:"قهوة ماكياتو", allergens:["dairy"]},
-                {name:"أمريكانو (ساخن/مثلج)", price:"21 ريال", description:"قهوة أمريكانو", allergens:[]},
-                {name:"موكا (ساخن/مثلج)", price:"32 ريال", description:"قهوة موكا", allergens:["dairy"]}
-            ],
-            "القهوة المحضرة يدوياً المميزة":[
-                {name:"في60 بور أوفر (ساخن ومثلج)", price:"29 ريال", description:"قهوة في60 المقطرة", allergens:[]},
-                {name:"آيس دريب", price:"32 ريال", description:"قهوة آيس دريب", allergens:[]},
-                {name:"كولد برو", price:"36 ريال", description:"قهوة كولد برو", allergens:[]}
-            ],
-            "المشروبات المجمدة":[
-                {name:"مانجو مجمد", price:"38 ريال", description:"مشروب المانجو المجمد", allergens:[]},
-                {name:"خوخ مجمد", price:"38 ريال", description:"مشروب الخوخ المجمد", allergens:[]},
-                {name:"فراولة مجمدة", price:"38 ريال", description:"مشروب الفراولة المجمد", allergens:[]},
-                {name:"فواكه الغابة المجمدة", price:"38 ريال", description:"مشروب فواكه الغابة المجمد", allergens:[]},
-                {name:"توت أزرق مجمد", price:"38 ريال", description:"مشروب التوت الأزرق المجمد", allergens:[]}
-            ],
-            "المشروبات الباردة":[
-                {name:"مياه عادية (صغير)", price:"11 ريال", description:"مياه عادية صغيرة", allergens:[]},
-                {name:"مياه عادية (كبير)", price:"21 ريال", description:"مياه عادية كبيرة", allergens:[]},
-                {name:"مياه غازية", price:"21 ريال", description:"مياه غازية", allergens:[]},
-                {name:"تشرشل", price:"25 ريال", description:"مشروب تشرشل", allergens:[]},
-                {name:"عصير الليمون", price:"30 ريال", description:"عصير ليمون طازج", allergens:[]},
-                {name:"عصير البرتقال الطازج", price:"30 ريال", description:"عصير برتقال طازج", allergens:[]},
-                {name:"كينزا كولا", price:"17 ريال", description:"كينزا كولا", allergens:[]},
-                {name:"كينزا كولا زيرو", price:"17 ريال", description:"كينزا كولا زيرو", allergens:[]}
+            "Turkish Morning": [
+    {name:"Turkish Classic Breakfast | فطور تركي كلاسيكي", price:"65 QR", description:"Authentic Turkish breakfast with fresh bread, cheese, olives, tomatoes, cucumbers, honey, and clotted cream served with Turkish tea | فطور تركي أصيل مع خبز طازج، جبن، زيتون، طماطم، خيار، عسل، وكريمة مخثرة مع شاي تركي", image:"Breakfast.jpg", allergens:["dairy","gluten"]},
+    {name:"Turkish Menemen | منمن تركي", price:"45 QR", description:"Classic Turkish scrambled eggs with fresh tomatoes, green peppers, and aromatic spices for a rich, comforting taste | بيض مخفوق تركي كلاسيكي مع طماطم طازجة، فلفل أخضر وتوابل عطرية لمذاق غني ومريح", image:"Menemen.jpg", allergens:["dairy"]},
+    {name:"Plain Omelette | أومليت عادي", price:"25 QR", description:"Light and fluffy omelette cooked to perfection for a simple, classic start to your day | أومليت خفيف وهش مطهو بإتقان لبداية يوم بسيطة وكلاسيكية", image:"Omellet.jpg", allergens:["dairy"]},
+],
+"Croissant Creations": [
+    {name:"Croissant Beef Ribs | كرواسون أضلاع لحم", price:"45 QR", description:"Flaky croissant filled with tender beef ribs, cheddar and kasfar cheese, topped with pesto sauce and served with tomatoes, cucumbers, and green olives on the side | كرواسون هش محشو بأضلاع لحم طرية، جبن شيدر وكاسفار، مع صوص بيستو، يقدم مع طماطم، خيار وزيتون أخضر", image:"Ribs.jpg", allergens:["dairy","gluten","nuts"]},
+    {name:"Avocado Croissant | كرواسون أفوكادو", price:"42 QR", description:"Buttery croissant stuffed with creamy avocado, fluffy scrambled eggs, and olive paste, served with fresh tomatoes and cucumbers on the side | كرواسون زبدي محشو بالأفوكادو الكريمي، بيض مخفوق وهريس الزيتون، يقدم مع طماطم وخيار طازج", image:"Avocado.jpg", allergens:["dairy","gluten"]},
+    {name:"Smoked Beef Croissant | كرواسون لحم مدخن", price:"45 QR", description:"Fresh croissant filled with scrambled eggs, smoked beef, and thyme, served with tomato, cucumber, olives, jam, and white cheese on the side | كرواسون طازج محشو ببيض مخفوق، لحم مدخن وإكليل الجبل، يقدم مع طماطم، خيار، زيتون، مربى وجبن أبيض", image:"5.jpg", allergens:["dairy","gluten"]},
+    {name:"Butter & Jam Croissant | كرواسون بالزبدة والمربى", price:"40 QR", description:"Buttery croissant served with cherry jam, grilled olives, feta cheese, tomato, cucumber, and praline for a sweet and savory treat | كرواسون زبدي يقدم مع مربى الكرز، زيتون مشوي، جبن فيتا، طماطم، خيار وبرالين لمذاق حلو ومالح", image:"4.jpg", allergens:["dairy","gluten","nuts"]},
+    {name:"Croissant Scrambled Eggs | كرواسون بالبيض المخفوق", price:"37 QR", description:"Flaky croissant filled with scrambled eggs, red pepper, thyme, and arugula, served with tomatoes, cucumbers, and grilled olives | كرواسون هش محشو ببيض مخفوق، فلفل أحمر، إكليل الجبل وجرجير، يقدم مع طماطم، خيار وزيتون مشوي", image:"1.jpg", allergens:["dairy","gluten"]},
+],
+
             ]
         };
 
@@ -1886,4 +1795,5 @@
     </script>
 </body>
 </html>
+
 
