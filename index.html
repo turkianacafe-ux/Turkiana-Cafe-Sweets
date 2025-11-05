@@ -1436,64 +1436,118 @@
 
         // Partial Arabic data (kept exactly as in uploaded file)
         const menuDataAr = {
-            "صباح تركي": [
-                {name:"فطور تركي كلاسيكي", price:"65 ريال", description:"فطور تركي أصيل مع خبز طازج، جبن، زيتون، طماطم، خيار، عسل، وكريمة مخثرة مع شاي تركي", image:"Breakfast.jpg", allergens:["dairy","gluten"]},
-                {name:"منمن تركي", price:"45 ريال", description:"بيض مخفوق تركي كلاسيكي مع طماطم طازجة، فلفل أخضر وتوابل عطرية لمذاق غني ومريح", image:"Menemen.jpg", allergens:["dairy"]},
-                {name:"أومليت عادي", price:"25 ريال", description:"أومليت خفيف وهش مطهو بإتقان لبداية يوم بسيطة وكلاسيكية", image:"Omellet.jpg", allergens:["dairy"]},
-            ],
-            "إبداعات الكرواسون": [
-                {name:"كرواسون أضلاع لحم", price:"45 ريال", description:"كرواسون هش محشو بأضلاع لحم طرية، جبن شيدر وكاسفار، مع صوص بيستو، يقدم مع طماطم، خيار وزيتون أخضر", image:"Ribs.jpg", allergens:["dairy","gluten","nuts"]},
-                {name:"كرواسون أفوكادو", price:"42 ريال", description:"كرواسون زبدي محشو بالأفوكادو الكريمي، بيض مخفوق وهريس الزيتون، يقدم مع طماطم وخيار طازج", image:"Avocado.jpg", allergens:["dairy","gluten"]},
-                {name:"كرواسون لحم مدخن", price:"45 ريال", description:"كرواسون طازج محشو ببيض مخفوق، لحم مدخن وزعتر، يقدم مع طماطم، خيار، زيتون، مربى وجبن أبيض", image:"5.jpg", allergens:["dairy","gluten"]},
-                {name:"كرواسون بالزبدة والمربى", price:"40 ريال", description:"كرواسون زبدي يقدم مع مربى الكرز، زيتون مشوي، جبن فيتا، طماطم، خيار وبرالين لمذاق حلو ومالح", image:"4.jpg", allergens:["dairy","gluten","nuts"]},
-                {name:"كرواسون بالبيض المخفوق", price:"37 ريال", description:"كرواسون هش محشو ببيض مخفوق، فلفل أحمر، زعتر وجرجير، يقدم مع طماطم، خيار وزيتون مشوي", image:"1.jpg", allergens:["dairy","gluten"]},
-            ],
-            "من المشاوي والحديقة": [
-                {name:"بطاطس مقلية", price:"25 ريال", description:"بطاطس مقلية ذهبية مقرمشة، متبلة بإتقان لتكون وجبة جانبية كلاسيكية", image:"Patatas.jpg", allergens:[]},
-                {name:"سلطة سيزر", price:"40 ريال", description:"خس روماني طازج مع صوص سيزر كريمي، خبز محمص مقرمش وجبن بارميزان مبشور", image:"Caesar.jpg", allergens:["dairy","gluten"]},
-                {name:"برجر تركيانا باللحم البقري", price:"59 ريال", description:"شريحة لحم بقري ممتازة مع صلصات خاصة ومكونات طازجة، يقدم مع بطاطس ذهبية", image:"Burger.jpg", allergens:["gluten","dairy"]},
-            ],
-            "البقلاوة وما بعدها": [
-                {name:"بقلاوة تركية مشكلة", price:"45 ريال", description:"تشكيلة شهية من البقلاوة التركية التقليدية، غنية بالمكسرات وطبقات العجين", image:"Mix.jpg", allergens:["nuts","gluten"]},
-                {name:"بقلاوة تركية عادية", price:"40 ريال", description:"بقلاوة تركية كلاسيكية مع طبقات من العجين الهش وحشوة مكسرات حلوة", image:"Slice.jpg", allergens:["nuts","gluten"]},
-                {name:"مكسرات مشكلة كبيرة", price:"99 ريال", description:"تشكيلة فاخرة من المكسرات المختلطة، مثالية للتناول كوجبة خفيفة أو للمشاركة", image:"Nuts.jpg", allergens:["nuts"]},
-                {name:"مكسرات مشكلة صغيرة", price:"60 ريال", description:"تشكيلة صغيرة من المكسرات الفاخرة، مثالية للوجبات الخفيفة", image:"Nuts.jpg", allergens:["nuts"]},
-                {name:"كيكة سنكرز", price:"42 ريال", description:"كيكة فاخرة مستوحاة من سنكرز، مع طبقات الشوكولاتة والكراميل والمكسرات", image:"Snicker.jpg", allergens:["nuts","gluten"]},
-                {name:"كنافة", price:"40 ريال", description:"كنافة تركية تقليدية مع جبنة عكاوي وعجين هش، محلاة بإتقان", image:"Kunafa.jpg", allergens:["nuts","gluten"]},
-                {name:"كيكة الشوكولاتة", price:"40 ريال", description:"كيكة شوكولاتة لذيذة، غنية ورطبة لمحبي الشوكولاتة", image:"Chocolate.jpg", allergens:["dairy","gluten"]},
-                {name:"كيكة اللوتس", price:"40 ريال", description:"كيكة لذيذة بنكهة بسكويت اللوتس، ناعمة وغنية وكريمية", image:"Lutos.jpg", allergens:["dairy","gluten"]},
-                {name:"كيكة فستق كاملة", price:"40 ريال", description:"كيكة رطبة وناعمة بنكهة الفستق الغنية", image:"Full.jpg", allergens:["nuts","dairy","gluten"]},
-                {name:"كيكة الليمون", price:"38 ريال", description:"كيكة إسفنجية بالليمون خفيفة ومنعشة، حامضة قليلاً ولذيذة", image:"Lemon.jpg", allergens:["dairy","gluten"]},
-                {name:"تيراميسو", price:"32 ريال", description:"حلوى إيطالية كلاسيكية مع طبقات إسفنجية منقوعة بالقهوة وكريمة ماسكاربوني ولمسة كاكاو", image:"Tiramisu.jpg", allergens:["dairy","gluten","nuts"]},
-                {name:"كيكة الشوكولاتة باللوز", price:"40 ريال", description:"كيكة شوكولاتة غنية بطعم اللوز، لوجبة فاخرة ولذيذة", image:"Almond.jpg", allergens:["nuts","dairy","gluten"]},
-                {name:"كيكة إسفنجية بالليمون", price:"42 ريال", description:"كيكة إسفنجية خفيفة بالليمون، مليئة بنكهات الحمضيات الطازجة", image:"Lemoncake.jpg", allergens:["dairy","gluten"]},
-                {name:"تشيز كيك التوت الأحمر", price:"30 ريال", description:"تشيز كيك كريمي مع التوت الأحمر الطازج لمذاق حلو وحامض", image:"Cherry.jpg", allergens:["dairy","gluten"]},
-                {name:"تشيز كيك التوت الأسود", price:"30 ريال", description:"تشيز كيك كريمي مع التوت الأسود لمذاق فاكهي رائع", image:"Mulberry.jpg", allergens:["dairy","gluten"]},
-                {name:"كيكة الشوكولاتة بالفستق", price:"40 ريال", description:"كيكة شوكولاتة غنية مع فستق مقرمش، لوجبة فاخرة وممتعة", image:"Chocolate_pistachio.jpg", allergens:["dairy","nuts","gluten"]},
-                {name:"كيكة الفراولة", price:"45 ريال", description:"كيكة رطبة وهشة مع طبقة فراولة طازجة لمذاق حلو وفاكهي", image:"Strawberry.jpg", allergens:["dairy","gluten"]},
-                {name:"كيكة اللوز البيضاء", price:"42 ريال", description:"كيكة ناعمة وكريمية مع نكهة اللوز الرقيقة، مثالية لمحبي المكسرات", image:"White.jpg", allergens:["nuts","dairy","gluten"]},
-                {name:"تريليتش باللبن", price:"35 ريال", description:"كيكة تركية تريليتش رطبة منقوعة في الحليب الغني لحلوى حلوة وكريمية", image:"Trileche.jpg", allergens:["dairy","gluten"]},
-                {name:"تشيز كيك سان سباستيان", price:"42 ريال", description:"تشيز كيك كريمي ومكرمل على طريقة سان سباستيان مع ملمس غني وناعم", image:"Sebastian.jpg", allergens:["dairy","gluten"]},
-            ],
-            "القهوة العربية": [
-                {name:"قهوة عربية بالدلة الكبيرة", price:"90 ريال", description:"قهوة عربية تقليدية تقدم بالدلة الكبيرة، عطرية وغنية بالنكهة", allergens:[]},
-                {name:"قهوة عربية بالدلة الصغيرة", price:"50 ريال", description:"قهوة عربية تقليدية تقدم بالدلة الصغيرة، عطرية وسلسة", allergens:[]},
-                {name:"قهوة عربية بالفنجان", price:"30 ريال", description:"قهوة عربية أصيلة تقدم بالفنجان، غنية وعطرية", allergens:[]},
-            ],
-            "وقت الشاي": [
-                {name:"شاي تركي", price:"15 ريال", description:"شاي تركي تقليدي، يقدم ساخناً ومليئاً بالنكهة", allergens:[]},
-                {name:"إبريق شاي", price:"30 ريال", description:"إبريق شاي ساخن طازج، مثالي للمشاركة", allergens:[]},
-                {name:"شاي التفاح", price:"25 ريال", description:"شاي بنكهة التفاح العطري والمهدئ، يقدم ساخناً", allergens:[]},
-                {name:"شاي التوت الأسود", price:"25 ريال", description:"شاي التوت الأسود الحلو والعطري، يقدم ساخناً لمشروب مريح", allergens:[]},
-                {name:"ليمون بالنعناع", price:"25 ريال", description:"شاي الليمون والنعناع المنعش، يقدم ساخناً لتجربة مهدئة", allergens:[]},
-                {name:"شاي الرمان", price:"25 ريال", description:"شاي الرمان النابض بالحياة والفاكهي، يقدم ساخناً لمذاق لذيذ", allergens:[]},
-            ],
-            "شاي مثلج": [
-                {name:"شاي التفاح المثلج", price:"28 ريال", description:"شاي التفاح البارد، منعش وفاكهي", allergens:[]},
-                {name:"شاي التوت الأسود المثلج", price:"28 ريال", description:"شاي التوت الأسود المثلج، حلو ومنعش", allergens:[]},
-                {name:"نعناع بالليمون المثلج", price:"28 ريال", description:"شاي النعناع والليمون البارد، منعش ولذيذ", allergens:[]},
-                {name:"شاي الرمان المثلج", price:"28 ريال", description:"شاي الرمان المثلج، نابض بالحياة وفاكهي", allergens:[]},
-                {name:"كركديه مثلج", price:"28 ريال", description:"شاي الكركديه البارد، حامض ومنعش", allergens:[]},
+           "الإفطار التركي": [
+    { "name": "الإفطار التركي الكلاسيكي", "price": "65 ريال", "description": "إفطار تركي أصيل مع خبز طازج، جبن، زيتون، طماطم، خيار، عسل وقشطة، يقدم مع الشاي التركي", "image": "Breakfast.jpg", "allergens": ["dairy","gluten"] },
+    { "name": "المنمن التركي", "price": "45 ريال", "description": "بيض مخفوق على الطريقة التركية مع طماطم طازجة وفلفل أخضر وتوابل عطرية لوجبة غنية ومريحة", "image": "Menemen.jpg", "allergens": ["dairy"] },
+    { "name": "أومليت ساده", "price": "25 ريال", "description": "أومليت خفيف ورقيق مطهو بإتقان لبداية يوم بسيطة وكلاسيكية", "image": "Omellet.jpg", "allergens": ["dairy"] }
+],
+"إبداعات الكرواسان": [
+    { "name": "كرواسان ريبس لحم البقر", "price": "45 ريال", "description": "كرواسان مقرمش محشو بلحم البقر الطري وجبن الشيدر والكازفار، مغطى بصلصة بيستو ويقدم مع طماطم وخيار وزيتون أخضر جانباً", "image": "Ribs.jpg", "allergens": ["dairy","gluten","nuts"] },
+    { "name": "كرواسان الأفوكادو", "price": "42 ريال", "description": "كرواسان زبدة محشو بالأفوكادو الكريمي وبيض مخفوق ومعجون الزيتون، يقدم مع طماطم وخيار طازج جانباً", "image": "Avocado.jpg", "allergens": ["dairy","gluten"] },
+    { "name": "كرواسان لحم مدخن", "price": "45 ريال", "description": "كرواسان طازج محشو ببيض مخفوق ولحم مدخن وزعتر، يقدم مع طماطم وخيار وزيتون ومربى وجبن أبيض جانباً", "image": "5.jpg", "allergens": ["dairy","gluten"] },
+    { "name": "كرواسان زبدة ومربى", "price": "40 ريال", "description": "كرواسان زبدة يقدم مع مربى الكرز وزيتون مشوي وجبن فيتا وطماطم وخيار وبرالين للحصول على مذاق حلو ومالح", "image": "4.jpg", "allergens": ["dairy","gluten","nuts"] },
+    { "name": "كرواسان بالبيض المخفوق", "price": "37 ريال", "description": "كرواسان مقرمش محشو بالبيض المخفوق والفلفل الأحمر والزعتروالجرجير، يقدم مع طماطم وخيار وزيتون مشوي", "image": "1.jpg", "allergens": ["dairy","gluten"] }
+],
+"من الشواية والحديقة": [
+    { "name": "بطاطس مقلية", "price": "25 ريال", "description": "بطاطس ذهبية مقرمشة، متبلة بشكل مثالي كوجبة جانبية كلاسيكية", "image": "Patatas.jpg", "allergens": [] },
+    { "name": "سلطة سيزر", "price": "40 ريال", "description": "خس روماني مقرمش مع صوص سيزر كريمي وقطع خبز محمص وجبن بارميزان مبشور", "image": "Caesar.jpg", "allergens": ["dairy","gluten"] },
+    { "name": "برجر تركيانا", "price": "59 ريال", "description": "برجر لحم بقري ممتاز مع صوصات خاصة وإضافات طازجة، يقدم مع بطاطس ذهبية", "image": "Burger.jpg", "allergens": ["gluten","dairy"] }
+],
+"البقلاوة وأكثر": [
+    { "name": "مزيج البقلاوة التركية", "price": "45 ريال", "description": "تشكيلة لذيذة من البقلاوة التركية التقليدية، غنية بالمكسرات وطبقات العجين", "image": "Mix.jpg", "allergens": ["nuts","gluten"] },
+    { "name": "البقلاوة التركية التقليدية", "price": "40 ريال", "description": "بقلاوة تركية كلاسيكية بطبقات من العجين الهش وحشوة مكسرات حلوة", "image": "Slice.jpg", "allergens": ["nuts","gluten"] },
+    { "name": "تشكيلة مكسرات كبيرة", "price": "99 ريال", "description": "تشكيلة ممتازة من المكسرات المشكلة، مثالية للوجبات الخفيفة أو المشاركة", "image": "Nuts.jpg", "allergens": ["nuts"] },
+    { "name": "تشكيلة مكسرات صغيرة", "price": "60 ريال", "description": "تشكيلة صغيرة من المكسرات الفاخرة، مثالية لوجبة خفيفة", "image": "Nuts.jpg", "allergens": ["nuts"] },
+    { "name": "كعكة مستوحاة من سنكرز", "price": "42 ريال", "description": "كعكة شهية مستوحاة من سنكرز، مع طبقات من الشوكولاتة والكراميل والمكسرات", "image": "Snicker.jpg", "allergens": ["nuts","gluten"] },
+    { "name": "كنافة", "price": "40 ريال", "description": "كنافة تركية تقليدية مصنوعة من جبن عكاوي وعجين مقرمش حلو", "image": "Kunafa.jpg", "allergens": ["nuts","gluten"] },
+    { "name": "كعكة الشوكولاتة", "price": "40 ريال", "description": "كعكة شوكولاتة غنية ولذيذة لمحبي الشوكولاتة", "image": "Chocolate.jpg", "allergens": ["dairy","gluten"] },
+    { "name": "كعكة لوتس", "price": "40 ريال", "description": "كعكة لذيذة بنكهة بسكويت لوتس، ناعمة وغنية وكريمية", "image": "Lutos.jpg", "allergens": ["dairy","gluten"] },
+    { "name": "كعكة فستق كاملة", "price": "40 ريال", "description": "كعكة رطبة وهشة بنكهة الفستق الغنية", "image": "Full.jpg", "allergens": ["nuts","dairy","gluten"] },
+    { "name": "كعكة الليمون", "price": "38 ريال", "description": "كعكة إسفنجية ليمونية خفيفة ومنعشة", "image": "Lemon.jpg", "allergens": ["dairy","gluten"] },
+    { "name": "تيراميسو", "price": "32 ريال", "description": "تحلية إيطالية كلاسيكية بطبقات من الإسفنج المنقوع بالقهوة وكريمة ماسكاربوني ولمسة من الكاكاو", "image": "Tiramisu.jpg", "allergens": ["dairy","gluten","nuts"] },
+    { "name": "كعكة الشوكولاتة باللوز", "price": "40 ريال", "description": "كعكة شوكولاتة غنية بطبقات من نكهة اللوز لمذاق لذيذ ومكسراتي", "image": "Almond.jpg", "allergens": ["nuts","dairy","gluten"] },
+    { "name": "كعكة إسفنجية بالليمون", "price": "42 ريال", "description": "كعكة إسفنجية ناعمة ومنعشة بنكهة الليمون الطازج", "image": "Lemoncake.jpg", "allergens": ["dairy","gluten"] },
+    { "name": "تشيز كيك توت العليق", "price": "30 ريال", "description": "تشيز كيك كريمي مع توت العليق الطازج لمذاق حلو ومنعش", "image": "Cherry.jpg", "allergens": ["dairy","gluten"] },
+    { "name": "تشيز كيك توت الشمال", "price": "30 ريال", "description": "تشيز كيك ناعم وكريمي مع توت الشمال اللذيذ", "image": "Mulberry.jpg", "allergens": ["dairy","gluten"] },
+    { "name": "كعكة شوكولاتة بالفستق", "price": "40 ريال", "description": "كعكة شوكولاتة غنية مع فستق مقرمش لمذاق لذيذ ومكسراتي", "image": "Chocolate_pistachio.jpg", "allergens": ["dairy","nuts","gluten"] },
+    { "name": "كعكة الفراولة", "price": "45 ريال", "description": "كعكة رطبة وهشة مع طبقة فراولة طازجة لمذاق حلو وفواكه", "image": "Strawberry.jpg", "allergens": ["dairy","gluten"] },
+    { "name": "كعكة لوز أبيض", "price": "42 ريال", "description": "كعكة ناعمة وكريمية بنكهة اللوز الرقيقة، مثالية لمحبي المكسرات", "image": "White.jpg", "allergens": ["nuts","dairy","gluten"] },
+    { "name": "تريليتش باللبن", "price": "35 ريال", "description": "كعكة تركية تريليتش مبللة بالحليب الغني لمذاق حلو وكريمي", "image": "Trileche.jpg", "allergens": ["dairy","gluten"] },
+    { "name": "تشيز كيك سان سباستيان", "price": "42 ريال", "description": "تشيز كيك كريمية وكاراميلية على طريقة سان سباستيان، ناعمة وغنية", "image": "Sebastian.jpg", "allergens": ["dairy","gluten"] }
+],
+"مشروبات عربية": [
+    { "name": "قهوة عربية بالدلة كاملة", "price": "90 ريال", "description": "قهوة عربية تقليدية تقدم في دلة كاملة، عطرية وغنية بالنكهة", "allergens": [] },
+    { "name": "قهوة عربية بنصف الدلة", "price": "50 ريال", "description": "قهوة عربية تقليدية تقدم في نصف دلة، عطرية وناعمة", "allergens": [] },
+    { "name": "قهوة عربية في كوب", "price": "30 ريال", "description": "قهوة عربية أصيلة تقدم في كوب، غنية وعطرية", "allergens": [] }
+],
+"وقت الشاي": [
+    { "name": "شاي تركي", "price": "15 ريال", "description": "شاي تركي تقليدي، يقدم ساخناً ومليئاً بالنكهة", "allergens": [] },
+    { "name": "براد شاي", "price": "30 ريال", "description": "براد شاي ساخن معد طازجًا، مثالي للمشاركة", "allergens": [] },
+    { "name": "شاي التفاح", "price": "25 ريال", "description": "شاي تفاح عطري ومهدئ، يقدم ساخناً", "allergens": [] },
+    { "name": "شاي التوت", "price": "25 ريال", "description": "شاي توت حلو وعطري، يقدم ساخناً لمذاق مريح", "allergens": [] },
+    { "name": "شاي الليمون والنعناع", "price": "25 ريال", "description": "شاي منعش بالليمون والنعناع، يقدم ساخناً لتجربة مهدئة", "allergens": [] },
+    { "name": "شاي الرمان", "price": "25 ريال", "description": "شاي رمان حيوي وفاكهي، يقدم ساخناً لمذاق غني", "allergens": [] }
+],
+"الشاي المثلج": [
+    { "name": "شاي تفاح مثلج", "price": "28 ريال", "description": "شاي تفاح مثلج منعش وفاكهي", "allergens": [] },
+    { "name": "شاي توت مثلج", "price": "28 ريال", "description": "شاي توت مثلج حلو ومنشط", "allergens": [] },
+    { "name": "شاي نعناع وليمون مثلج", "price": "28 ريال", "description": "شاي بارد بالنعناع والليمون منعش وحيوي", "allergens": [] },
+    { "name": "شاي رمان مثلج", "price": "28 ريال", "description": "شاي رمان مثلج حيوي وفاكهي", "allergens": [] },
+    { "name": "كركديه مثلج", "price": "28 ريال", "description": "شاي كركديه مثلج، منعش وحامضي قليلاً", "allergens": [] }
+],
+"القهوة التركية": [
+    { "name": "قهوة تركية كلاسيكية", "price": "28 ريال", "description": "قهوة تركية غنية وعطرية تقدم بالطريقة التقليدية", "allergens": [] },
+    { "name": "قهوة تركية بالهيل", "price": "28 ريال", "description": "قهوة تركية كلاسيكية منكهة بالهيل العطري", "allergens": [] },
+    { "name": "قهوة تركية مزدوجة", "price": "40 ريال", "description": "قهوة تركية قوية ومركزة مزدوجة", "allergens": [] },
+    { "name": "قهوة عثمانية", "price": "28 ريال", "description": "قهوة على الطريقة العثمانية، غنية ولذيذة", "allergens": [] },
+    { "name": "قهوة عثمانية بالمستكة", "price": "28 ريال", "description": "قهوة عثمانية منكهة براتنج المستكة", "allergens": [] },
+    { "name": "قهوة عثمانية بالبندق", "price": "28 ريال", "description": "قهوة عثمانية غنية بالبندق المقرمش", "allergens": ["nuts"] },
+    { "name": "سحلب", "price": "28 ريال", "description": "مشروب سحلب تركي دافئ وكريمي، مثالي للجو البارد", "allergens": ["dairy"] }
+],
+"المشروبات العشبية": [
+    { "name": "الميرمية", "price": "28 ريال", "description": "شاي الميرمية مهدئ ودافئ", "allergens": [] },
+    { "name": "شاي الشتاء المختلط", "price": "28 ريال", "description": "خليط من أعشاب الشتاء المريح، مثالي لاحتساء كوب دافئ", "allergens": [] },
+    { "name": "الشاي الأخضر", "price": "28 ريال", "description": "شاي أخضر منعش وخفيف، يقدم ساخناً", "allergens": [] },
+    { "name": "البابونج", "price": "28 ريال", "description": "شاي البابونج مهدئ وطبيعي", "allergens": [] },
+    { "name": "الكركديه", "price": "28 ريال", "description": "شاي كركديه منعش وحيوي، يقدم ساخناً", "allergens": [] }
+],
+"كافيه ومشروبات": [
+    { "name": "شوكولاتة ساخنة (ساخن/مثلج)", "price": "36 ريال", "description": "شوكولاتة ساخنة وغنية، تقدم ساخنة أو مثلجة", "allergens": ["dairy"] },
+    { "name": "لاتيه (ساخن/مثلج)", "price": "29 ريال", "description": "قهوة لاتيه ناعمة ومخمليّة، ساخنة أو مثلجة", "allergens": ["dairy"] },
+    { "name": "لاتيه إسباني (ساخن/مثلج)", "price": "32 ريال", "description": "لاتيه إسباني حلو وكريمي، ساخن أو مثلج", "allergens": ["dairy"] },
+    { "name": "لاتيه بالكراميل المملح (ساخن/مثلج)", "price": "32 ريال", "description": "لاتيه مع مزيج مثالي من الكراميل المملح، ساخن أو مثلج", "allergens": ["dairy"] },
+    { "name": "لاتيه بالفانيليا (ساخن/مثلج)", "price": "32 ريال", "description": "لاتيه كلاسيكي منكه بالفانيليا، ساخن أو مثلج", "allergens": ["dairy"] },
+    { "name": "كابتشينو (ساخن/مثلج)", "price": "29 ريال", "description": "كابتشينو كلاسيكي مع رغوة الحليب، ساخن أو مثلج", "allergens": ["dairy"] },
+    { "name": "موكا أبيض (ساخن/مثلج)", "price": "32 ريال", "description": "موكا بالشوكولاتة البيضاء، ساخن أو مثلج", "allergens": ["dairy"] },
+    { "name": "فلات وايت (ساخن/مثلج)", "price": "27 ريال", "description": "فلات وايت ناعم ومتوازن، ساخن أو مثلج", "allergens": ["dairy"] },
+    { "name": "كورتادو (ساخن/مثلج)", "price": "24 ريال", "description": "اسبريسو مع كمية قليلة من الحليب، ساخن أو مثلج", "allergens": ["dairy"] },
+    { "name": "اسبريسو (ساخن/مثلج)", "price": "21 ريال", "description": "اسبريسو غني وقوي، ساخن أو مثلج", "allergens": [] },
+    { "name": "اسبريسو مزدوج (ساخن/مثلج)", "price": "21 ريال", "description": "اسبريسو مزدوج، ساخن أو مثلج", "allergens": [] },
+    { "name": "ماكياتو (ساخن/مثلج)", "price": "24 ريال", "description": "اسبريسو مع رشة حليب، ساخن أو مثلج", "allergens": ["dairy"] },
+    { "name": "أمريكانو (ساخن/مثلج)", "price": "21 ريال", "description": "أمريكانو ناعم، ساخن أو مثلج", "allergens": [] },
+    { "name": "موكا (ساخن/مثلج)", "price": "32 ريال", "description": "موكا بالشوكولاتة، ساخن أو مثلج", "allergens": ["dairy"] }
+],
+"مشروبات متخصصة": [
+    { "name": "V60 Pour Over (ساخن/مثلج)", "price": "29 ريال", "description": "قهوة V60 مصفاة بدقة، ساخنة أو مثلجة لكوب نظيف وعطري", "allergens": [] },
+    { "name": "ايس دريب", "price": "32 ريال", "description": "قهوة باردة مسلولة ببطء، منعشة وناعمة", "allergens": [] },
+    { "name": "كولد برو", "price": "36 ريال", "description": "قهوة كولد برو غنية وناعمة، منقوعة لساعات لأقصى نكهة", "allergens": [] }
+],
+"المشروبات المثلجة": [
+    { "name": "مانجو مثلج", "price": "38 ريال", "description": "مشروب مانجو مثلج منعش وفاكهي", "allergens": [] },
+    { "name": "خوخ مثلج", "price": "38 ريال", "description": "مشروب خوخ مثلج حلو ومنعش", "allergens": [] },
+    { "name": "فراولة مثلجة", "price": "38 ريال", "description": "مشروب فراولة مثلج حلو وفاكهي", "allergens": [] },
+    { "name": "توت الغابة مثلج", "price": "38 ريال", "description": "مشروب توت الغابة مثلج مليء بنكهات التوت المختلط", "allergens": [] },
+    { "name": "توت أزرق مثلج", "price": "38 ريال", "description": "مشروب توت أزرق مثلج منعش وفاكهي", "allergens": [] }
+],
+"المرطبات": [
+    { "name": "ماء عادي صغير", "price": "11 ريال", "description": "زجاجة ماء صغيرة ومنعشة", "allergens": [] },
+    { "name": "ماء عادي كبير", "price": "21 ريال", "description": "زجاجة ماء كبيرة، مثالية للبقاء مرطَّباً", "allergens": [] },
+    { "name": "ماء فوار", "price": "21 ريال", "description": "ماء فوار منعش للمذاق", "allergens": [] },
+    { "name": "تشرتشيل", "price": "25 ريال", "description": "مشروب تشرتشيل المميز، فريد ولذيذ", "allergens": [] },
+    { "name": "ليموناضة", "price": "30 ريال", "description": "ليموناضة طازجة وعصيرية، منعشة", "allergens": [] },
+    { "name": "عصير برتقال طازج", "price": "30 ريال", "description": "عصير برتقال طازج، طبيعي وحلو", "allergens": [] },
+    { "name": "كنزة كولا", "price": "17 ريال", "description": "كنزة كولا كلاسيكية، فوارة ومنعشة", "allergens": [] },
+    { "name": "كنزة كولا زيرو", "price": "17 ريال", "description": "كنزة كولا زيرو، خالية من السكر وفوارة", "allergens": [] }
             ]
         };
 
@@ -1824,4 +1878,5 @@
     </script>
 </body>
 </html>
+
 
