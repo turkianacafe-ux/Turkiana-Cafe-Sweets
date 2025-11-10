@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>Turkiana Cafe & Sweets — Menu (EN / AR)</title>
-  <meta name="description" content="Turkiana Cafe & Sweets — bilingual menu (English & Arabic) with slow-motion video background, marquee, calories, separate landing and menu pages." />
+  <meta name="description" content="Turkiana Cafe & Sweets — bilingual menu (English & Arabic) with responsive layout, marquee, calories, separate landing and menu pages." />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root{
@@ -16,42 +16,53 @@
       --max-width:1100px;
       --shadow:0 20px 60px rgba(2,6,23,0.6);
     }
+
     *{box-sizing:border-box;margin:0;padding:0;-webkit-font-smoothing:antialiased}
-    html,body{height:100%;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial;background:var(--bg);color:#fff}
-    /* Background */
-    .bg-video{position:fixed;inset:0;z-index:0;overflow:hidden}
-    .bg-video video{width:100%;height:100%;object-fit:cover;opacity:0.82;filter:contrast(1.02) saturate(1.02) brightness(1)}
+    html,body{height:100%;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial;background:var(--bg);color:#fff;-webkit-text-size-adjust:100%}
+    a { color: inherit; text-decoration: none; }
+
+    /* Background video */
+    .bg-video{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+    .bg-video video{width:100%;height:100%;object-fit:cover;opacity:0.86;filter:contrast(1.01) saturate(1.02) brightness(1.04)}
     .bg-overlay{position:fixed;inset:0;z-index:1;background:
       radial-gradient(800px 400px at 10% 20%, rgba(255,255,255,0.02), transparent 10%),
       radial-gradient(700px 300px at 85% 80%, rgba(255,255,255,0.02), transparent 12%),
-      linear-gradient(180deg, rgba(10,10,12,0.06), rgba(5,5,8,0.14));
-      backdrop-filter: blur(6px) saturate(110%);-webkit-backdrop-filter:blur(6px) saturate(110%);pointer-events:none}
+      linear-gradient(180deg, rgba(5,5,8,0.06), rgba(3,3,5,0.14));
+      backdrop-filter: blur(6px) saturate(110%); -webkit-backdrop-filter: blur(6px) saturate(110%);
+      pointer-events:none; }
+
     /* Top controls */
-    .top-controls{position:fixed;top:16px;left:50%;transform:translateX(-50%);width:calc(100% - 48px);max-width:var(--max-width);z-index:12;display:flex;justify-content:space-between;align-items:center;pointer-events:none}
+    .top-controls{position:fixed;top:14px;left:50%;transform:translateX(-50%);width:calc(100% - 32px);max-width:var(--max-width);z-index:12;display:flex;justify-content:space-between;align-items:center;pointer-events:none}
     .lang{pointer-events:auto;padding:8px 12px;border-radius:999px;background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));border:1px solid rgba(255,255,255,0.06);color:#fff;font-weight:700;cursor:pointer}
+
     /* App container */
     .app{min-height:100vh;display:flex;align-items:stretch;justify-content:center;position:relative;overflow:hidden;padding:48px 12px;z-index:6}
     .centered{width:100%;max-width:var(--max-width);margin:0 auto}
+
     /* Marquee */
     .marquee-wrap{width:100%;overflow:hidden;border-radius:12px;margin-bottom:18px;pointer-events:none}
-    .marquee{display:flex;gap:18px;align-items:center;white-space:nowrap;animation:marquee 20s linear infinite}
-    .marquee img{height:80px;border-radius:10px;object-fit:cover;box-shadow:0 10px 30px rgba(0,0,0,0.6)}
-    @keyframes marquee {0%{transform:translateX(0%);}100%{transform:translateX(-50%);}}
+    .marquee{display:flex;gap:18px;align-items:center;white-space:nowrap;animation:marquee 26s linear infinite}
+    .marquee img{height:84px;border-radius:10px;object-fit:cover;box-shadow:0 10px 30px rgba(0,0,0,0.6)}
+    @keyframes marquee {0%{transform:translateX(0%);}100%{transform:translateX(-50%);} }
+
     /* Landing (hero) */
     .landing{display:flex;align-items:center;justify-content:center;min-height:calc(100vh - 96px)}
-    .hero{width:100%;max-width:880px;border-radius:26px;padding:28px;text-align:center;background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));border:1px solid rgba(255,255,255,0.06);box-shadow:var(--shadow);backdrop-filter:blur(12px) saturate(120%)}
+    .hero{width:100%;max-width:980px;border-radius:20px;padding:28px;text-align:center;background:linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.06);box-shadow:var(--shadow);backdrop-filter:blur(10px) saturate(120%)}
     .brand{font-size:44px;font-weight:800;color:var(--gold);margin-bottom:6px}
     .sub{color:rgba(255,255,255,0.92);font-weight:700;letter-spacing:.12em;margin-bottom:6px}
     .tag{color:rgba(255,255,255,0.9);margin-bottom:14px}
     .primary{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:12px 22px;border-radius:999px;background:linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));color:#fff;font-weight:800;border:1px solid rgba(255,255,255,0.06);cursor:pointer}
+
     /* Menu page */
-    .menu-page{display:none;width:100%;max-width:var(--max-width);margin:0 auto;padding-bottom:100px}
-    .menu-panel{border-radius:18px;padding:18px;background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.05);box-shadow:var(--shadow);backdrop-filter:blur(14px) saturate(120%)}
+    .menu-page{display:none;width:100%;max-width:var(--max-width);margin:0 auto;padding-bottom:120px}
+    .menu-panel{border-radius:16px;padding:16px;background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.05);box-shadow:var(--shadow);backdrop-filter:blur(12px) saturate(120%)}
+
     /* Search & contact */
     .search{display:flex;justify-content:center;margin:12px 0}
-    .search input{width:100%;max-width:720px;padding:12px 16px;border-radius:999px;font-size:15px;border:1px solid rgba(255,255,255,0.06);background:rgba(0,0,0,0.18);color:#fff;outline:none}
+    .search input{width:100%;max-width:760px;padding:12px 16px;border-radius:999px;font-size:15px;border:1px solid rgba(255,255,255,0.06);background:rgba(0,0,0,0.18);color:#fff;outline:none}
     .contact-row-bottom{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:18px}
-    .contact-pill{display:inline-flex;gap:10px;align-items:center;padding:10px 12px;border-radius:999px;color:#fff;font-weight:700;text-decoration:none;background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.06);box-shadow:0 10px 30px rgba(0,0,0,0.45);cursor:pointer}
+    .contact-pill{display:inline-flex;gap:8px;align-items:center;padding:10px 12px;border-radius:999px;color:#fff;font-weight:700;text-decoration:none;background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.06);box-shadow:0 10px 30px rgba(0,0,0,0.45);cursor:pointer}
+
     /* Categories & results */
     .categories{display:flex;flex-direction:column;gap:12px;margin-top:8px}
     .category{display:flex;align-items:center;justify-content:space-between;padding:14px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.04);color:#fff;font-weight:800;cursor:pointer}
@@ -60,34 +71,48 @@
     .items{display:none;flex-direction:column;gap:10px;margin-top:8px;padding:12px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.02)}
     .items.open{display:flex}
     .flat-results{display:flex;flex-direction:column;gap:12px;margin-top:8px}
+
     /* Menu item */
     .menu-item{display:flex;gap:12px;align-items:center;padding:12px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.03);cursor:pointer;color:#fff;box-shadow:0 8px 30px rgba(0,0,0,0.45)}
     .thumb{width:84px;height:84px;border-radius:10px;overflow:hidden;background:#111;flex-shrink:0;display:flex;align-items:center;justify-content:center}
-    .thumb img{width:100%;height:100%;object-fit:cover}
-    .meta{flex:1;display:flex;flex-direction:column;gap:6px}
-    .name{color:var(--gold);font-weight:800}
-    .desc{color:rgba(255,255,255,0.85);font-size:13px;line-height:1.2}
+    .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+    .meta{flex:1;display:flex;flex-direction:column;gap:6px;min-width:0}
+    .name{color:var(--gold);font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .desc{color:rgba(255,255,255,0.85);font-size:13px;line-height:1.2;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
     .price{min-width:88px;text-align:right;color:var(--maroon);font-weight:800}
     .calories{font-size:12px;color:rgba(255,255,255,0.78);font-weight:700;margin-top:4px}
-    /* Modal */
+
+    /* Modal & hover preview */
     .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:30;background:rgba(2,6,23,0.6)}
     .modal.show{display:flex}
     .modal-card{width:92%;max-width:520px;background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.96));border-radius:14px;padding:18px;color:#2b1a0f;box-shadow:0 30px 100px rgba(2,6,23,0.7)}
     .close-btn{position:absolute;right:18px;top:18px;background:rgba(0,0,0,0.06);color:#111;border-radius:8px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer}
-    /* Floating WhatsApp */
-    .fab{position:fixed;right:22px;bottom:22px;z-index:12;width:64px;height:64px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#25D366,#20BA5A);color:#fff;font-size:22px;box-shadow:0 18px 60px rgba(2,6,23,0.6)}
-    /* Hover preview */
     #hover-preview{position:fixed;display:none;max-width:300px;max-height:300px;border-radius:12px;z-index:28;box-shadow:0 24px 80px rgba(2,6,23,0.7);overflow:hidden}
-    /* Responsive */
-    @media(max-width:880px){.brand{font-size:36px}.thumb{width:68px;height:68px}.hero{padding:20px}}
-    @media(max-width:480px){.top-controls{left:12px;transform:none;width:calc(100% - 24px)}.brand{font-size:28px}.marquee img{height:56px}}
+
+    /* Floating WhatsApp */
+    .fab{position:fixed;right:18px;bottom:18px;z-index:14;width:64px;height:64px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#25D366,#20BA5A);color:#fff;font-size:22px;box-shadow:0 18px 60px rgba(2,6,23,0.6)}
+
+    /* Responsive rules: scale fonts and spacing for tablets/phones */
+    @media (max-width:1000px){
+      .brand{font-size:36px}
+      .marquee img{height:72px}
+      .thumb{width:72px;height:72px}
+    }
+    @media (max-width:600px){
+      .hero{padding:18px}
+      .brand{font-size:28px}
+      .marquee img{height:56px}
+      .thumb{width:64px;height:64px}
+      .price{min-width:64px;font-size:14px}
+      .primary{padding:10px 14px;font-size:14px}
+      .search input{padding:10px 12px}
+    }
   </style>
 </head>
 <body>
-  <!-- Background video -->
+  <!-- Background video: your GitHub Pages host -->
   <div class="bg-video" aria-hidden="true">
-    <video id="bgVideo" autoplay muted loop playsinline preload="metadata" poster="">
-      <!-- Replace with your own video URL; ensure CORS allows playback -->
+    <video id="bgVideo" autoplay muted loop playsinline preload="metadata" poster="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Breakfast.jpg">
       <source src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Video.mp4" type="video/mp4">
     </video>
   </div>
@@ -100,25 +125,25 @@
 
   <div class="app" role="application">
     <div class="centered">
-      <!-- Landing page -->
+      <!-- Landing -->
       <section id="landingView" class="landing" aria-label="Landing page">
-        <div style="max-width:var(--max-width);margin:0 auto">
-          <!-- Marquee (top of landing) -->
+        <div style="max-width:var(--max-width);margin:0 auto;width:100%">
+
+          <!-- Marquee of images at top of landing (your repo images) -->
           <div class="marquee-wrap" aria-hidden="true">
             <div id="marquee" class="marquee" role="img" aria-label="Gallery">
-              <!-- Duplicate the images for continuous effect; replace with your images -->
-              <img src="Breakfast.jpg" alt="">
-              <img src="Mix.jpeg" alt="">
-              <img src="Latte.jpg" alt="">
-              <img src="Kunafa.jpg" alt="">
-              <img src="Burger.jpeg" alt="">
-              <img src="Fondue1.jpeg" alt="">
-              <img src="Breakfast.jpg" alt="">
-              <img src="Mix.jpeg" alt="">
-              <img src="Latte.jpg" alt="">
-              <img src="Kunafa.jpg" alt="">
-              <img src="Burger.jpeg" alt="">
-              <img src="Fondue1.jpeg" alt="">
+              <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Breakfast.jpg" alt="">
+              <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg" alt="">
+              <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Latte.jpg" alt="">
+              <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Kunafa.jpg" alt="">
+              <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Burger.jpeg" alt="">
+              <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Fondue1.jpeg" alt="">
+              <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Breakfast.jpg" alt="">
+              <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg" alt="">
+              <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Latte.jpg" alt="">
+              <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Kunafa.jpg" alt="">
+              <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Burger.jpeg" alt="">
+              <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Fondue1.jpeg" alt="">
             </div>
           </div>
 
@@ -127,7 +152,7 @@
             <div id="brandSub" class="sub">CAFÉ & SWEETS</div>
             <div id="brandTag" class="tag">Where Tradition Meets Elegance</div>
 
-            <div style="margin-top:18px;display:flex;gap:12px;justify-content:center;">
+            <div style="margin-top:18px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
               <button id="openMenuBtn" class="primary" aria-controls="menuPage" aria-expanded="false">Explore Our Menu</button>
               <a class="primary" href="https://wa.me/97451866671" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">Contact</a>
             </div>
@@ -135,7 +160,7 @@
         </div>
       </section>
 
-      <!-- Menu page -->
+      <!-- Menu Page -->
       <section id="menuPage" class="menu-page" aria-hidden="true" aria-label="Menu page">
         <div class="menu-panel" role="region" aria-label="Menu">
           <div class="search" role="search" aria-label="Search menu">
@@ -144,24 +169,26 @@
 
           <div id="resultsArea">
             <div id="categoriesView" class="categories" role="list"></div>
-            <div id="flatResults" class="flat-results" role="list" style="display:none"></div>
+            <div id="flatResults" class="flat-results" role="list" style="display:none;"></div>
           </div>
 
-          <div id="noResults" style="display:none;margin-top:18px;text-align:center;color:var(--muted)">
+          <div id="noResults" style="display:none;margin-top:18px;text-align:center;color:var(--muted);">
             <p id="noResultsText">No items found. Try a different search.</p>
           </div>
 
+          <!-- Contact row at bottom for the menu page -->
           <div class="contact-row-bottom" role="region" aria-label="Contact actions">
             <a class="contact-pill" id="contact-whatsapp" href="https://wa.me/97451866671" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
             <a class="contact-pill" id="contact-location" href="https://maps.app.goo.gl/ud3JKc8DX1HxY6vk7" target="_blank" rel="noopener noreferrer">📍 Location</a>
             <a class="contact-pill" id="contact-website" href="https://turkianasweets.com" target="_blank" rel="noopener noreferrer">🌐 Website</a>
             <a class="contact-pill" id="contact-ig" href="https://www.instagram.com/turkiana.qa/" target="_blank" rel="noopener noreferrer">📷 Instagram</a>
 
-            <div style="display:flex;gap:8px;align-items:center">
-              <div class="contact-pill" aria-hidden="true" style="cursor:default">📶 <span id="wifi-ssid-en" style="margin-inline-start:8px">TP-Link_9D3A</span></div>
+            <div style="display:flex;gap:8px;align-items:center;">
+              <div class="contact-pill" aria-hidden="true" style="cursor:default;">📶 <span id="wifi-ssid-en" style="margin-inline-start:8px">TP-Link_9D3A</span></div>
               <button class="contact-pill" id="copy-wifi-en" aria-live="polite" title="Copy Wi-Fi">🔑 <span id="wifi-pass-en" style="margin-inline-start:8px">Turkiana123</span></button>
             </div>
           </div>
+
         </div>
       </section>
 
@@ -169,7 +196,7 @@
   </div>
 
   <!-- Floating WhatsApp -->
-  <a class="fab" href="https://wa.me/97451866671" aria-label="WhatsApp">💬</a>
+  <a class="fab" href="https://wa.me/97451866671" aria-label="WhatsApp" title="WhatsApp">💬</a>
 
   <!-- Item modal -->
   <div id="item-modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
@@ -190,183 +217,187 @@
     </div>
   </div>
 
+  <!-- Hover preview -->
   <img id="hover-preview" src="" alt="Preview" />
 
-  <div id="ariaLive" aria-live="polite" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden"></div>
+  <div id="ariaLive" aria-live="polite" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;"></div>
 
   <script>
-    /* Slow motion video */
+    // Slow-motion background video playback (0.6x)
     const bgVideo = document.getElementById('bgVideo');
     bgVideo.playbackRate = 0.6;
     bgVideo.addEventListener('loadedmetadata', ()=>{ try{ bgVideo.play(); }catch(e){} });
 
-    /* Bilingual menu data (English and Arabic) with calories (estimates) */
+    // Use your repo base URL
+    const base = "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/";
+
+    // Menu data (images use your GitHub Pages filenames)
     const menuData = {
       "Turkish Morning": {
         arTitle: "الصباح التركي",
         items: [
-          { enName:"Turkish Classic Breakfast", arName:"فطور تركي كلاسيكي", price:"65 QR", descriptionEn:"Authentic Turkish breakfast with fresh bread, cheese, olives, tomatoes, cucumbers, honey, and clotted cream served with Turkish tea", descriptionAr:"فطور تركي أصيل مع خبز طازج، جبن، زيتون، طماطم، خيار، عسل وقشدة، يقدم مع شاي تركي", image:"Breakfast.jpg", calories:"680 kcal" },
-          { enName:"Turkish Menemen", arName:"مينمن تركي", price:"45 QR", descriptionEn:"Classic Turkish scrambled eggs with fresh tomatoes, green peppers, and aromatic spices", descriptionAr:"بيض تركي مخفوق مع طماطم طازجة، فلفل أخضر وتوابل عطرية", image:"Menemen.jpg", calories:"360 kcal" },
-          { enName:"Plain Omelette", arName:"أومليت عادي", price:"25 QR", descriptionEn:"Light and fluffy omelette", descriptionAr:"أومليت خفيف وهش", image:"Omellet.jpg", calories:"220 kcal" }
+          { enName:"Turkish Classic Breakfast", arName:"فطور تركي كلاسيكي", price:"65 QR", descriptionEn:"Authentic Turkish breakfast with fresh bread, cheese, olives, tomatoes, cucumbers, honey, and clotted cream served with Turkish tea", descriptionAr:"فطور تركي أصيل مع خبز طازج، جبن، زيتون، طماطم، خيار، عسل وقشدة، يقدم مع شاي تركي", image: base+"Breakfast.jpg", calories:"680 kcal" },
+          { enName:"Turkish Menemen", arName:"مينمن تركي", price:"45 QR", descriptionEn:"Classic Turkish scrambled eggs with fresh tomatoes, green peppers, and aromatic spices", descriptionAr:"بيض تركي مخفوق مع طماطم طازجة، فلفل أخضر وتوابل عطرية", image: base+"Menemen.jpg", calories:"360 kcal" },
+          { enName:"Plain Omelette", arName:"أومليت عادي", price:"25 QR", descriptionEn:"Light and fluffy omelette", descriptionAr:"أومليت خفيف وهش", image: base+"Omellet.jpg", calories:"220 kcal" }
         ]
       },
       "Croissant Creations": {
         arTitle: "إبداعات الكرواسون",
         items: [
-          { enName:"Croissant Beef Ribs", arName:"كرواسون أضلاع اللحم", price:"45 QR", descriptionEn:"Flaky croissant filled with tender beef ribs, cheddar and kasfar cheese, topped with pesto", descriptionAr:"كرواسون هش محشو بأضلاع لحم طرية وجبن شيدر وكاسفار، مغطى بصلصة البيستو", image:"Ribs.jpg", calories:"720 kcal" },
-          { enName:"Avocado Croissant", arName:"كرواسون الأفوكادو", price:"42 QR", descriptionEn:"Buttery croissant with avocado and scrambled eggs", descriptionAr:"كرواسون زبدي محشو بأفوكادو كريمي وبيض مخفوق", image:"Avocado.jpg", calories:"610 kcal" },
-          { enName:"Smoked Beef Croissant", arName:"كرواسون لحم مدخن", price:"45 QR", descriptionEn:"Croissant with smoked beef and eggs", descriptionAr:"كرواسون طازج محشو بالبيض المخفوق ولحم مدخن", image:"5.jpg", calories:"630 kcal" },
-          { enName:"Butter & Jam Croissant", arName:"كرواسون زبدة ومربى", price:"40 QR", descriptionEn:"Buttery croissant served with jam and sides", descriptionAr:"كرواسون زبدي يقدم مع مربى الكرز والزيتون المشوي وجبن الفيتا", image:"4.jpg", calories:"540 kcal" },
-          { enName:"Croissant Scrambled Eggs", arName:"كرواسون بالبيض المخفوق", price:"37 QR", descriptionEn:"Croissant with scrambled eggs and arugula", descriptionAr:"كرواسون هش محشو بالبيض المخفوق والجرجير", image:"1.jpg", calories:"520 kcal" }
+          { enName:"Croissant Beef Ribs", arName:"كرواسون أضلاع اللحم", price:"45 QR", descriptionEn:"Flaky croissant filled with tender beef ribs, cheddar and kasfar cheese, topped with pesto", descriptionAr:"كرواسون هش محشو بأضلاع لحم طرية وجبن شيدر وكاسفار، مغطى بصلصة البيستو", image: base+"Ribs.jpg", calories:"720 kcal" },
+          { enName:"Avocado Croissant", arName:"كرواسون الأفوكادو", price:"42 QR", descriptionEn:"Buttery croissant with avocado and scrambled eggs", descriptionAr:"كرواسون زبدي محشو بأفوكادو كريمي وبيض مخفوق", image: base+"Avocado.jpg", calories:"610 kcal" },
+          { enName:"Smoked Beef Croissant", arName:"كرواسون لحم مدخن", price:"45 QR", descriptionEn:"Croissant with smoked beef and eggs", descriptionAr:"كرواسون طازج محشو بالبيض المخفوق ولحم مدخن", image: base+"5.jpg", calories:"630 kcal" },
+          { enName:"Butter & Jam Croissant", arName:"كرواسون زبدة ومربى", price:"40 QR", descriptionEn:"Buttery croissant served with jam and sides", descriptionAr:"كرواسون زبدي يقدم مع مربى الكرز والزيتون المشوي وجبن الفيتا", image: base+"4.jpg", calories:"540 kcal" },
+          { enName:"Croissant Scrambled Eggs", arName:"كرواسون بالبيض المخفوق", price:"37 QR", descriptionEn:"Croissant with scrambled eggs and arugula", descriptionAr:"كرواسون هش محشو بالبيض المخفوق والجرجير", image: base+"1.jpg", calories:"520 kcal" }
         ]
       },
       "From the Grill & Garden": {
         arTitle: "من الشواية والحديقة",
         items: [
-          { enName:"Fried Potatoes", arName:"بطاطس مقلية", price:"25 QR", descriptionEn:"Crispy golden fried potatoes", descriptionAr:"بطاطس ذهبية مقرمشة", image:"Patatas.jpg", calories:"340 kcal" },
-          { enName:"Caesar Salad", arName:"سلطة سيزر", price:"40 QR", descriptionEn:"Romaine with Caesar dressing and croutons", descriptionAr:"خس روماني مع صوص سيزر وقطع خبز محمص", image:"Caesar.jpg", calories:"420 kcal" },
-          { enName:"Turkiana Beef Burger", arName:"برجر تركيانا", price:"59 QR", descriptionEn:"Premium beef burger with fries", descriptionAr:"برجر لحم بقري ممتاز مع البطاطس", image:"Burger.jpeg", calories:"950 kcal" }
+          { enName:"Fried Potatoes", arName:"بطاطس مقلية", price:"25 QR", descriptionEn:"Crispy golden fried potatoes", descriptionAr:"بطاطس ذهبية مقرمشة", image: base+"Patatas.jpg", calories:"340 kcal" },
+          { enName:"Caesar Salad", arName:"سلطة سيزر", price:"40 QR", descriptionEn:"Romaine with Caesar dressing and croutons", descriptionAr:"خس روماني مع صوص سيزر وقطع خبز محمص", image: base+"Caesar.jpg", calories:"420 kcal" },
+          { enName:"Turkiana Beef Burger", arName:"برجر تركيانا", price:"59 QR", descriptionEn:"Premium beef burger with fries", descriptionAr:"برجر لحم بقري ممتاز مع البطاطس", image: base+"Burger.jpeg", calories:"950 kcal" }
         ]
       },
       "Baklava & Beyond": {
         arTitle: "البقلاوة وما بعدها",
         items: [
-          { enName:"Turkish Mix Baklava", arName:"بقلاوة تركية مشكلة", price:"65 QR", descriptionEn:"Assorted traditional baklava", descriptionAr:"مجموعة رائعة من البقلاوة التركية التقليدية", image:"Mix.jpeg", calories:"450 kcal (per serving)" },
-          { enName:"Carrot Slice Baklava", arName:"بقلاوة شريحة الجزر", price:"40 QR", descriptionEn:"Classic layered baklava", descriptionAr:"بقلاوة تركية كلاسيكية بطبقات مقرمشة", image:"Carrot.jpeg", calories:"420 kcal" },
-          { enName:"Carrot Slice Baklava With Ice Cream", arName:"بقلاوة شريحة الجزر مع الآيس كريم", price:"49 QR", descriptionEn:"Baklava served with ice cream", descriptionAr:"بقلاوة تقدم مع الآيس كريم", image:"Carroticecream.jpeg", calories:"620 kcal" },
-          { enName:"Trio Baklava", arName:"تريو بقلاوة", price:"45 QR", descriptionEn:"Three-style baklava assortment", descriptionAr:"مجموعة من بقلاوة رول بالفستق وموسل وسوبييت", image:"TrioBaklava.jpeg", calories:"480 kcal" },
-          { enName:"Nuts Stand-Tall", arName:"مكسرات ستاند كبير", price:"99 QR", descriptionEn:"Premium mixed nuts", descriptionAr:"مجموعة ممتازة من المكسرات المختلطة", image:"Nuts.jpg", calories:"300 kcal (100g)" },
-          { enName:"Nuts Stand-Small", arName:"مكسرات ستاند صغير", price:"60 QR", descriptionEn:"Small mixed nuts", descriptionAr:"اختيار صغير من المكسرات المختلطة", image:"Nuts.jpg", calories:"180 kcal (60g)" },
-          { enName:"Snickers-inspired cake", arName:"كعكة مستوحاة من سنيكرز", price:"42 QR", descriptionEn:"Chocolate, caramel & nuts cake", descriptionAr:"كعكة فاخرة مع الشوكولاتة والكراميل", image:"Snicker.jpg", calories:"560 kcal" },
-          { enName:"Kunafa", arName:"كنافة", price:"40 QR", descriptionEn:"Kunafa with Akawi cheese", descriptionAr:"كنافة تركية تقليدية مع جبنة عكاوي", image:"Kunafa.jpg", calories:"520 kcal" },
-          { enName:"Chocolate Cake", arName:"كعكة الشوكولاتة", price:"40 QR", descriptionEn:"Molten chocolate cake", descriptionAr:"كعكة شوكولاتة غنية", image:"Chocolate.jpg", calories:"480 kcal" },
-          { enName:"Lotus Cake", arName:"كعكة اللوتس", price:"40 QR", descriptionEn:"Lotus Biscoff flavored cake", descriptionAr:"كعكة بنكهة بسكوف لوتس", image:"Lutos.jpg", calories:"520 kcal" },
-          { enName:"Brownies", arName:"براونيز", price:"35 QR", descriptionEn:"Fudgy chocolate brownies", descriptionAr:"براونيز شوكولاتة غنية", image:"Brownies.jpeg", calories:"380 kcal" },
-          { enName:"Full Pistachio Cake", arName:"كعكة الفستق كاملة", price:"40 QR", descriptionEn:"Pistachio flavored cake", descriptionAr:"كعكة بنكهة الفستق", image:"Full.jpg", calories:"470 kcal" },
-          { enName:"Lemon Cake", arName:"كعكة الليمون", price:"38 QR", descriptionEn:"Zesty lemon sponge cake", descriptionAr:"كعكة اسفنجية ليمونية خفيفة", image:"Lemon.jpg", calories:"420 kcal" },
-          { enName:"Tiramisu", arName:"تيراميسو", price:"42 QR", descriptionEn:"Coffee-soaked sponge with mascarpone", descriptionAr:"تيراميسو إيطالي كلاسيكي", image:"Tiramisu.jpg", calories:"420 kcal" },
-          { enName:"Almond Chocolate Cake", arName:"كعكة الشوكولاتة باللوز", price:"40 QR", descriptionEn:"Chocolate cake with almond notes", descriptionAr:"كعكة شوكولاتة مع اللوز", image:"Almond.jpg", calories:"490 kcal" },
-          { enName:"Lemon Sponge Cake", arName:"كعكة إسفنجية بالليمون", price:"42 QR", descriptionEn:"Light lemon sponge", descriptionAr:"كعكة إسفنجية ليمونية طرية", image:"Lemoncake.jpg", calories:"430 kcal" },
-          { enName:"Strawberry Cheesecake", arName:"تشيز كيك بالفراولة", price:"42 QR", descriptionEn:"Creamy cheesecake topped with strawberries", descriptionAr:"تشيز كيك كريمي مع فراولة طازجة", image:"Cherry.jpg", calories:"520 kcal" },
-          { enName:"Blueberry Cheesecake", arName:"تشيز كيك بالتوت الأزرق", price:"42 QR", descriptionEn:"Cheesecake with blueberries", descriptionAr:"تشيز كيك مع التوت الأزرق", image:"Mulberry.jpg", calories:"520 kcal" },
-          { enName:"Chocolate Pistachio Cake", arName:"كعكة الشوكولاتة والفستق", price:"40 QR", descriptionEn:"Chocolate cake with pistachios", descriptionAr:"كعكة شوكولاتة مع الفستق", image:"Chocolate_pistachio.jpg", calories:"510 kcal" },
-          { enName:"Strawberry Cake", arName:"كعكة الفراولة", price:"45 QR", descriptionEn:"Strawberry topped cake", descriptionAr:"كعكة مع فراولة طازجة", image:"Strawberry.jpg", calories:"470 kcal" },
-          { enName:"White Almond Cake", arName:"كعكة اللوز البيضاء", price:"42 QR", descriptionEn:"Almond flavored soft cake", descriptionAr:"كعكة طرية بنكهة اللوز", image:"White.jpg", calories:"500 kcal" },
-          { enName:"Trileche With Milk", arName:"تريليتش باللبن", price:"35 QR", descriptionEn:"Tres leches soaked cake", descriptionAr:"تريليتش منقوعة في اللبن", image:"Trileche.jpg", calories:"540 kcal" },
-          { enName:"San Sebastian Cheesecake", arName:"تشيز كيك سان سيباستيان", price:"42 QR", descriptionEn:"Caramelized San Sebastian cheesecake", descriptionAr:"تشيز كيك كريم وكراميل", image:"Sebastian.jpg", calories:"520 kcal" }
+          { enName:"Turkish Mix Baklava", arName:"بقلاوة تركية مشكلة", price:"65 QR", descriptionEn:"Assorted traditional baklava", descriptionAr:"مجموعة رائعة من البقلاوة التركية التقليدية", image: base+"Mix.jpeg", calories:"450 kcal (per serving)" },
+          { enName:"Carrot Slice Baklava", arName:"بقلاوة شريحة الجزر", price:"40 QR", descriptionEn:"Classic layered baklava", descriptionAr:"بقلاوة تركية كلاسيكية بطبقات مقرمشة", image: base+"Carrot.jpeg", calories:"420 kcal" },
+          { enName:"Carrot Slice Baklava With Ice Cream", arName:"بقلاوة شريحة الجزر مع الآيس كريم", price:"49 QR", descriptionEn:"Baklava served with ice cream", descriptionAr:"بقلاوة تقدم مع الآيس كريم", image: base+"Carroticecream.jpeg", calories:"620 kcal" },
+          { enName:"Trio Baklava", arName:"تريو بقلاوة", price:"45 QR", descriptionEn:"Three-style baklava assortment", descriptionAr:"مجموعة من بقلاوة رول بالفستق وموسل وسوبييت", image: base+"TrioBaklava.jpeg", calories:"480 kcal" },
+          { enName:"Nuts Stand-Tall", arName:"مكسرات ستاند كبير", price:"99 QR", descriptionEn:"Premium mixed nuts", descriptionAr:"مجموعة ممتازة من المكسرات المختلطة", image: base+"Nuts.jpg", calories:"300 kcal (100g)" },
+          { enName:"Nuts Stand-Small", arName:"مكسرات ستاند صغير", price:"60 QR", descriptionEn:"Small mixed nuts", descriptionAr:"اختيار صغير من المكسرات المختلطة", image: base+"Nuts.jpg", calories:"180 kcal (60g)" },
+          { enName:"Snickers-inspired cake", arName:"كعكة مستوحاة من سنيكرز", price:"42 QR", descriptionEn:"Chocolate, caramel & nuts cake", descriptionAr:"كعكة فاخرة مع الشوكولاتة والكراميل", image: base+"Snicker.jpg", calories:"560 kcal" },
+          { enName:"Kunafa", arName:"كنافة", price:"40 QR", descriptionEn:"Kunafa with Akawi cheese", descriptionAr:"كنافة تركية تقليدية مع جبنة عكاوي", image: base+"Kunafa.jpg", calories:"520 kcal" },
+          { enName:"Chocolate Cake", arName:"كعكة الشوكولاتة", price:"40 QR", descriptionEn:"Molten chocolate cake", descriptionAr:"كعكة شوكولاتة غنية", image: base+"Chocolate.jpg", calories:"480 kcal" },
+          { enName:"Lotus Cake", arName:"كعكة اللوتس", price:"40 QR", descriptionEn:"Lotus Biscoff flavored cake", descriptionAr:"كعكة بنكهة بسكوف لوتس", image: base+"Lutos.jpg", calories:"520 kcal" },
+          { enName:"Brownies", arName:"براونيز", price:"35 QR", descriptionEn:"Fudgy chocolate brownies", descriptionAr:"براونيز شوكولاتة غنية", image: base+"Brownies.jpeg", calories:"380 kcal" },
+          { enName:"Full Pistachio Cake", arName:"كعكة الفستق كاملة", price:"40 QR", descriptionEn:"Pistachio flavored cake", descriptionAr:"كعكة بنكهة الفستق", image: base+"Full.jpg", calories:"470 kcal" },
+          { enName:"Lemon Cake", arName:"كعكة الليمون", price:"38 QR", descriptionEn:"Zesty lemon sponge cake", descriptionAr:"كعكة اسفنجية ليمونية خفيفة", image: base+"Lemon.jpg", calories:"420 kcal" },
+          { enName:"Tiramisu", arName:"تيراميسو", price:"42 QR", descriptionEn:"Coffee-soaked sponge with mascarpone", descriptionAr:"تيراميسو إيطالي كلاسيكي", image: base+"Tiramisu.jpg", calories:"420 kcal" },
+          { enName:"Almond Chocolate Cake", arName:"كعكة الشوكولاتة باللوز", price:"40 QR", descriptionEn:"Chocolate cake with almond notes", descriptionAr:"كعكة شوكولاتة مع اللوز", image: base+"Almond.jpg", calories:"490 kcal" },
+          { enName:"Lemon Sponge Cake", arName:"كعكة إسفنجية بالليمون", price:"42 QR", descriptionEn:"Light lemon sponge", descriptionAr:"كعكة إسفنجية ليمونية طرية", image: base+"Lemoncake.jpg", calories:"430 kcal" },
+          { enName:"Strawberry Cheesecake", arName:"تشيز كيك بالفراولة", price:"42 QR", descriptionEn:"Creamy cheesecake topped with strawberries", descriptionAr:"تشيز كيك كريمي مع فراولة طازجة", image: base+"Cherry.jpg", calories:"520 kcal" },
+          { enName:"Blueberry Cheesecake", arName:"تشيز كيك بالتوت الأزرق", price:"42 QR", descriptionEn:"Cheesecake with blueberries", descriptionAr:"تشيز كيك مع التوت الأزرق", image: base+"Mulberry.jpg", calories:"520 kcal" },
+          { enName:"Chocolate Pistachio Cake", arName:"كعكة الشوكولاتة والفستق", price:"40 QR", descriptionEn:"Chocolate cake with pistachios", descriptionAr:"كعكة شوكولاتة مع الفستق", image: base+"Chocolate_pistachio.jpg", calories:"510 kcal" },
+          { enName:"Strawberry Cake", arName:"كعكة الفراولة", price:"45 QR", descriptionEn:"Strawberry topped cake", descriptionAr:"كعكة مع فراولة طازجة", image: base+"Strawberry.jpg", calories:"470 kcal" },
+          { enName:"White Almond Cake", arName:"كعكة اللوز البيضاء", price:"42 QR", descriptionEn:"Almond flavored soft cake", descriptionAr:"كعكة طرية بنكهة اللوز", image: base+"White.jpg", calories:"500 kcal" },
+          { enName:"Trileche With Milk", arName:"تريليتش باللبن", price:"35 QR", descriptionEn:"Tres leches soaked cake", descriptionAr:"تريليتش منقوعة في اللبن", image: base+"Trileche.jpg", calories:"540 kcal" },
+          { enName:"San Sebastian Cheesecake", arName:"تشيز كيك سان سيباستيان", price:"42 QR", descriptionEn:"Caramelized San Sebastian cheesecake", descriptionAr:"تشيز كيك كريم وكراميل", image: base+"Sebastian.jpg", calories:"520 kcal" }
         ]
       },
       "Fondue": {
         arTitle: "الفوندو",
         items: [
-          { enName:"Strawberry Fondue", arName:"فوندو بالفراولة", price:"25 QR", descriptionEn:"Strawberries with melted chocolate", descriptionAr:"فراولة طازجة مع شوكولاتة مذابة", image:"Fondue1.jpeg", calories:"320 kcal" },
-          { enName:"Strawberry-Banana Fondue", arName:"فوندو فراولة وموز", price:"35 QR", descriptionEn:"Strawberries & bananas with chocolate", descriptionAr:"فراولة وموز مع شوكولاتة ذائبة", image:"Fondue2.jpeg", calories:"410 kcal" },
-          { enName:"Turkiana Fondue", arName:"فوندو تركيانا", price:"45 QR", descriptionEn:"Signature fondue with assorted fruits", descriptionAr:"فوندو مع مجموعة من الفواكه", image:"Fondue3.jpeg", calories:"480 kcal" }
+          { enName:"Strawberry Fondue", arName:"فوندو بالفراولة", price:"25 QR", descriptionEn:"Strawberries with melted chocolate", descriptionAr:"فراولة طازجة مع شوكولاتة مذابة", image: base+"Fondue1.jpeg", calories:"320 kcal" },
+          { enName:"Strawberry-Banana Fondue", arName:"فوندو فراولة وموز", price:"35 QR", descriptionEn:"Strawberries & bananas with chocolate", descriptionAr:"فراولة وموز مع شوكولاتة ذائبة", image: base+"Fondue2.jpeg", calories:"410 kcal" },
+          { enName:"Turkiana Fondue", arName:"فوندو تركيانا", price:"45 QR", descriptionEn:"Signature fondue with assorted fruits", descriptionAr:"فوندو مع مجموعة من الفواكه", image: base+"Fondue3.jpeg", calories:"480 kcal" }
         ]
       },
       "Arabian Brew": {
         arTitle: "المشروبات العربية",
         items: [
-          { enName:"Arabic Coffee in a Full Dalla", arName:"قهوة عربية بالدلة الكاملة", price:"90 QR", descriptionEn:"Traditional Arabic coffee in a full Dalla", descriptionAr:"قهوة عربية بالدلة الكاملة", image:"Arabic.jpg", calories:"10 kcal (per cup)" },
-          { enName:"Arabic Coffee in a Half Dalla", arName:"قهوة عربية بنصف دلة", price:"50 QR", descriptionEn:"Half Dalla Arabic coffee", descriptionAr:"قهوة عربية بنصف دلة", image:"Arabic.jpg", calories:"10 kcal (per cup)" },
-          { enName:"Arabic Coffee in a Cup", arName:"قهوة عربية في فنجان", price:"30 QR", descriptionEn:"Arabic coffee by the cup", descriptionAr:"قهوة عربية في فنجان", image:"Arabic.jpg", calories:"10 kcal (per cup)" }
+          { enName:"Arabic Coffee in a Full Dalla", arName:"قهوة عربية بالدلة الكاملة", price:"90 QR", descriptionEn:"Traditional Arabic coffee in a full Dalla", descriptionAr:"قهوة عربية بالدلة الكاملة", image: base+"Arabic.jpg", calories:"10 kcal (per cup)" },
+          { enName:"Arabic Coffee in a Half Dalla", arName:"قهوة عربية بنصف دلة", price:"50 QR", descriptionEn:"Half Dalla Arabic coffee", descriptionAr:"قهوة عربية بنصف دلة", image: base+"Arabic.jpg", calories:"10 kcal (per cup)" },
+          { enName:"Arabic Coffee in a Cup", arName:"قهوة عربية في فنجان", price:"30 QR", descriptionEn:"Arabic coffee by the cup", descriptionAr:"قهوة عربية في فنجان", image: base+"Arabic.jpg", calories:"10 kcal (per cup)" }
         ]
       },
       "Tea Time": {
         arTitle: "وقت الشاي",
         items: [
-          { enName:"Turkish Tea", arName:"شاي تركي", price:"15 QR", descriptionEn:"Traditional Turkish tea", descriptionAr:"شاي تركي تقليدي", image:"Tea.jpg", calories:"2 kcal" },
-          { enName:"Apple Tea", arName:"شاي التفاح", price:"25 QR", descriptionEn:"Apple-flavored tea", descriptionAr:"شاي بنكهة التفاح", image:"Appletea.jpg", calories:"2 kcal" },
-          { enName:"Mulberry Tea", arName:"شاي التوت", price:"25 QR", descriptionEn:"Mulberry tea", descriptionAr:"شاي التوت", image:"Mulberrytea.jpg", calories:"2 kcal" },
-          { enName:"Lemon Mint", arName:"شاي بالليمون والنعناع", price:"25 QR", descriptionEn:"Lemon & mint tea", descriptionAr:"شاي الليمون والنعناع", image:"Lemontea.jpg", calories:"2 kcal" },
-          { enName:"Pomegranate Tea", arName:"شاي الرمان", price:"25 QR", descriptionEn:"Pomegranate tea", descriptionAr:"شاي الرمان", image:"Romantea.jpg", calories:"2 kcal" }
+          { enName:"Turkish Tea", arName:"شاي تركي", price:"15 QR", descriptionEn:"Traditional Turkish tea", descriptionAr:"شاي تركي تقليدي", image: base+"Tea.jpg", calories:"2 kcal" },
+          { enName:"Apple Tea", arName:"شاي التفاح", price:"25 QR", descriptionEn:"Apple-flavored tea", descriptionAr:"شاي بنكهة التفاح", image: base+"Appletea.jpg", calories:"2 kcal" },
+          { enName:"Mulberry Tea", arName:"شاي التوت", price:"25 QR", descriptionEn:"Mulberry tea", descriptionAr:"شاي التوت", image: base+"Mulberrytea.jpg", calories:"2 kcal" },
+          { enName:"Lemon Mint", arName:"شاي بالليمون والنعناع", price:"25 QR", descriptionEn:"Lemon & mint tea", descriptionAr:"شاي الليمون والنعناع", image: base+"Lemontea.jpg", calories:"2 kcal" },
+          { enName:"Pomegranate Tea", arName:"شاي الرمان", price:"25 QR", descriptionEn:"Pomegranate tea", descriptionAr:"شاي الرمان", image: base+"Romantea.jpg", calories:"2 kcal" }
         ]
       },
       "Tea on Ice": {
         arTitle: "الشاي المثلج",
         items: [
-          { enName:"Ice Apple Tea", arName:"شاي التفاح مثلج", price:"28 QR", descriptionEn:"Chilled apple tea", descriptionAr:"شاي التفاح المثلج", image:"Iceapple.jpeg", calories:"35 kcal" },
-          { enName:"Ice Mulberry Tea", arName:"شاي التوت المثلج", price:"28 QR", descriptionEn:"Iced mulberry tea", descriptionAr:"شاي التوت المثلج", image:"Icemulberry.jpeg", calories:"35 kcal" },
-          { enName:"Ice Mint Lemon", arName:"شاي النعناع والليمون المثلج", price:"28 QR", descriptionEn:"Iced mint & lemon tea", descriptionAr:"شاي النعناع والليمون المثلج", image:"Icelemon.jpeg", calories:"20 kcal" },
-          { enName:"Ice Pomegranate Tea", arName:"شاي الرمان المثلج", price:"28 QR", descriptionEn:"Iced pomegranate tea", descriptionAr:"شاي الرمان المثلج", image:"Iceroman.jpeg", calories:"45 kcal" },
-          { enName:"Hibiscus Ice", arName:"الكركديه مثلج", price:"28 QR", descriptionEn:"Chilled hibiscus tea", descriptionAr:"الكركديه مثلج", image:"Iceroman.jpeg", calories:"25 kcal" }
+          { enName:"Ice Apple Tea", arName:"شاي التفاح مثلج", price:"28 QR", descriptionEn:"Chilled apple tea", descriptionAr:"شاي التفاح المثلج", image: base+"Iceapple.jpeg", calories:"35 kcal" },
+          { enName:"Ice Mulberry Tea", arName:"شاي التوت المثلج", price:"28 QR", descriptionEn:"Iced mulberry tea", descriptionAr:"شاي التوت المثلج", image: base+"Icemulberry.jpeg", calories:"35 kcal" },
+          { enName:"Ice Mint Lemon", arName:"شاي النعناع والليمون المثلج", price:"28 QR", descriptionEn:"Iced mint & lemon tea", descriptionAr:"شاي النعناع والليمون المثلج", image: base+"Icelemon.jpeg", calories:"20 kcal" },
+          { enName:"Ice Pomegranate Tea", arName:"شاي الرمان المثلج", price:"28 QR", descriptionEn:"Iced pomegranate tea", descriptionAr:"شاي الرمان المثلج", image: base+"Iceroman.jpeg", calories:"45 kcal" },
+          { enName:"Hibiscus Ice", arName:"الكركديه مثلج", price:"28 QR", descriptionEn:"Chilled hibiscus tea", descriptionAr:"الكركديه مثلج", image: base+"Iceroman.jpeg", calories:"25 kcal" }
         ]
       },
       "Brewed the Turkish Way": {
         arTitle: "القهوة على الطريقة التركية",
         items: [
-          { enName:"Classic Turkish Coffee", arName:"قهوة تركية كلاسيكية", price:"28 QR", descriptionEn:"Classic Turkish coffee", descriptionAr:"قهوة تركية كلاسيكية", image:"Turkishcoffee.jpg", calories:"5 kcal" },
-          { enName:"Turkish Coffee with Cardamom", arName:"قهوة تركية بالهيل", price:"28 QR", descriptionEn:"Turkish coffee with cardamom", descriptionAr:"قهوة تركية بالهيل", image:"Turkishcoffee.jpg", calories:"5 kcal" },
-          { enName:"Double Turkish Coffee", arName:"قهوة تركية مزدوجة", price:"40 QR", descriptionEn:"Double shot Turkish coffee", descriptionAr:"قهوة تركية مزدوجة", image:"Turkishcoffee.jpg", calories:"10 kcal" },
-          { enName:"Ottoman Coffee", arName:"قهوة عثمانية", price:"28 QR", descriptionEn:"Ottoman style coffee", descriptionAr:"قهوة عثمانية", image:"Turkishcoffee.jpg", calories:"5 kcal" },
-          { enName:"Ottoman Coffee with Mastic", arName:"قهوة عثمانية بالمستيك", price:"28 QR", descriptionEn:"Ottoman coffee with mastic", descriptionAr:"قهوة عثمانية بالمستيك", image:"Turkishcoffee.jpg", calories:"5 kcal" },
-          { enName:"Ottoman Coffee with Hazelnuts", arName:"قهوة عثمانية بالبندق", price:"28 QR", descriptionEn:"Ottoman coffee with hazelnuts", descriptionAr:"قهوة عثمانية بالبندق", image:"Turkishcoffee.jpg", calories:"20 kcal" },
-          { enName:"Sahlep", arName:"شلهب", price:"28 QR", descriptionEn:"Warm and creamy sahlep", descriptionAr:"مشروب شلهب تركي دافئ وكريمي", image:"Sahlep.jpg", calories:"200 kcal" }
+          { enName:"Classic Turkish Coffee", arName:"قهوة تركية كلاسيكية", price:"28 QR", descriptionEn:"Classic Turkish coffee", descriptionAr:"قهوة تركية كلاسيكية", image: base+"Turkishcoffee.jpg", calories:"5 kcal" },
+          { enName:"Turkish Coffee with Cardamom", arName:"قهوة تركية بالهيل", price:"28 QR", descriptionEn:"Turkish coffee with cardamom", descriptionAr:"قهوة تركية بالهيل", image: base+"Turkishcoffee.jpg", calories:"5 kcal" },
+          { enName:"Double Turkish Coffee", arName:"قهوة تركية مزدوجة", price:"40 QR", descriptionEn:"Double shot Turkish coffee", descriptionAr:"قهوة تركية مزدوجة", image: base+"Turkishcoffee.jpg", calories:"10 kcal" },
+          { enName:"Ottoman Coffee", arName:"قهوة عثمانية", price:"28 QR", descriptionEn:"Ottoman style coffee", descriptionAr:"قهوة عثمانية", image: base+"Turkishcoffee.jpg", calories:"5 kcal" },
+          { enName:"Ottoman Coffee with Mastic", arName:"قهوة عثمانية بالمستيك", price:"28 QR", descriptionEn:"Ottoman coffee with mastic", descriptionAr:"قهوة عثمانية بالمستيك", image: base+"Turkishcoffee.jpg", calories:"5 kcal" },
+          { enName:"Ottoman Coffee with Hazelnuts", arName:"قهوة عثمانية بالبندق", price:"28 QR", descriptionEn:"Ottoman coffee with hazelnuts", descriptionAr:"قهوة عثمانية بالبندق", image: base+"Turkishcoffee.jpg", calories:"20 kcal" },
+          { enName:"Sahlep", arName:"شلهب", price:"28 QR", descriptionEn:"Warm and creamy sahlep", descriptionAr:"مشروب شلهب تركي دافئ وكريمي", image: base+"Sahlep.jpg", calories:"200 kcal" }
         ]
       },
       "Herbal Infusions": {
         arTitle: "المنقوعات العشبية",
         items: [
-          { enName:"Sage", arName:"مريمية", price:"28 QR", descriptionEn:"Soothing sage tea", descriptionAr:"شاي المريمية المهدئ", image:"Herb.jpeg", calories:"2 kcal" },
-          { enName:"Mix Winter Tea", arName:"شاي الشتاء المزيج", price:"28 QR", descriptionEn:"Winter herbs mix", descriptionAr:"مزيج أعشاب الشتاء", image:"Herb.jpeg", calories:"3 kcal" },
-          { enName:"Green Tea", arName:"الشاي الأخضر", price:"28 QR", descriptionEn:"Green tea", descriptionAr:"الشاي الأخضر", image:"Herb.jpeg", calories:"2 kcal" },
-          { enName:"Chamomile", arName:"البابونج", price:"28 QR", descriptionEn:"Chamomile tea", descriptionAr:"شاي البابونج", image:"Herb.jpeg", calories:"2 kcal" },
-          { enName:"Hibiscus", arName:"الكركديه", price:"28 QR", descriptionEn:"Hibiscus tea", descriptionAr:"شاي الكركديه", image:"Hibiscus.jpeg", calories:"2 kcal" }
+          { enName:"Sage", arName:"مريمية", price:"28 QR", descriptionEn:"Soothing sage tea", descriptionAr:"شاي المريمية المهدئ", image: base+"Herb.jpeg", calories:"2 kcal" },
+          { enName:"Mix Winter Tea", arName:"شاي الشتاء المزيج", price:"28 QR", descriptionEn:"Winter herbs mix", descriptionAr:"مزيج أعشاب الشتاء", image: base+"Herb.jpeg", calories:"3 kcal" },
+          { enName:"Green Tea", arName:"الشاي الأخضر", price:"28 QR", descriptionEn:"Green tea", descriptionAr:"الشاي الأخضر", image: base+"Herb.jpeg", calories:"2 kcal" },
+          { enName:"Chamomile", arName:"البابونج", price:"28 QR", descriptionEn:"Chamomile tea", descriptionAr:"شاي البابونج", image: base+"Herb.jpeg", calories:"2 kcal" },
+          { enName:"Hibiscus", arName:"الكركديه", price:"28 QR", descriptionEn:"Hibiscus tea", descriptionAr:"شاي الكركديه", image: base+"Hibiscus.jpeg", calories:"2 kcal" }
         ]
       },
       "Café & Chill": {
         arTitle: "كافيه واسترخاء",
         items: [
-          { enName:"Hot Chocolate (Hot/Ice)", arName:"هوت شوكولاتة (ساخن/مثلج)", price:"36 QR", descriptionEn:"Rich and creamy hot chocolate", descriptionAr:"هوت شوكولاتة غنية وكريمية", image:"Hotchoco.jpeg", calories:"360 kcal" },
-          { enName:"Piccolo", arName:"بيكولو", price:"24 QR", descriptionEn:"Smooth espresso with steamed milk", descriptionAr:"إسپريسو مع حليب مبخر", image:"cortado.jpg", calories:"120 kcal" },
-          { enName:"Latte (Hot/Ice)", arName:"لاتيه (ساخن/مثلج)", price:"29 QR", descriptionEn:"Smooth latte", descriptionAr:"لاتيه ناعم", image:"Latte.jpg", calories:"170 kcal" },
-          { enName:"Spanish Latte (Hot/Ice)", arName:"لاتيه إسباني (ساخن/مثلج)", price:"32 QR", descriptionEn:"Spanish latte", descriptionAr:"لاتيه إسباني", image:"Latte.jpg", calories:"220 kcal" },
-          { enName:"Salted Caramel Latte (Hot/Ice)", arName:"لاتيه بالكراميل المملح (ساخن/مثلج)", price:"32 QR", descriptionEn:"Salted caramel latte", descriptionAr:"لاتيه بالكراميل المملح", image:"Latte.jpg", calories:"230 kcal" },
-          { enName:"Vanilla Latte (Hot/Ice)", arName:"لاتيه فانيليا (ساخن/مثلج)", price:"32 QR", descriptionEn:"Vanilla latte", descriptionAr:"لاتيه فانيليا", image:"Latte.jpg", calories:"220 kcal" },
-          { enName:"Cappuccino (Hot/Ice)", arName:"كابوتشينو (ساخن/مثلج)", price:"29 QR", descriptionEn:"Classic cappuccino", descriptionAr:"كابوتشينو كلاسيكي", image:"Latte.jpg", calories:"150 kcal" },
-          { enName:"White Mocha (Hot/Ice)", arName:"وايت موكا (ساخن/مثلج)", price:"32 QR", descriptionEn:"White chocolate mocha", descriptionAr:"وايت موكا بالشوكولاتة البيضاء", image:"Latte.jpg", calories:"260 kcal" },
-          { enName:"Flat White (Hot/Ice)", arName:"فلات وايت (ساخن/مثلج)", price:"27 QR", descriptionEn:"Smooth flat white", descriptionAr:"فلات وايت ناعم", image:"Flatwhite.jpg", calories:"140 kcal" },
-          { enName:"Cortado (Hot/Ice)", arName:"كورتادو (ساخن/مثلج)", price:"24 QR", descriptionEn:"Espresso with a small amount of milk", descriptionAr:"كورتادو إسپريسو مع قليل من الحليب", image:"cortado.jpg", calories:"110 kcal" },
-          { enName:"Espresso Single / Double (Hot/Ice)", arName:"إسپريسو مفرد/مزدوج (ساخن/مثلج)", price:"21 QR", descriptionEn:"Espresso shot", descriptionAr:"إسپريسو", image:"Espresso.jpeg", calories:"5-10 kcal" },
-          { enName:"Macchiato (Hot/Ice)", arName:"ماكياتو (ساخن/مثلج)", price:"24 QR", descriptionEn:"Espresso with a dash of milk", descriptionAr:"ماكياتو إسپريسو مع لمسة حليب", image:"Machiatto.jpeg", calories:"40 kcal" },
-          { enName:"Americano (Hot/Ice)", arName:"أمريكانو (ساخن/مثلج)", price:"21 QR", descriptionEn:"Americano", descriptionAr:"أمريكانو", image:"Americano.jpeg", calories:"5 kcal" },
-          { enName:"Mocha (Hot/Ice)", arName:"موكا (ساخن/مثلج)", price:"32 QR", descriptionEn:"Chocolate mocha", descriptionAr:"موكا بالشوكولاتة", image:"Latte.jpg", calories:"260 kcal" }
+          { enName:"Hot Chocolate (Hot/Ice)", arName:"هوت شوكولاتة (ساخن/مثلج)", price:"36 QR", descriptionEn:"Rich and creamy hot chocolate", descriptionAr:"هوت شوكولاتة غنية وكريمية", image: base+"Hotchoco.jpeg", calories:"360 kcal" },
+          { enName:"Piccolo", arName:"بيكولو", price:"24 QR", descriptionEn:"Smooth espresso with steamed milk", descriptionAr:"إسپريسو مع حليب مبخر", image: base+"cortado.jpg", calories:"120 kcal" },
+          { enName:"Latte (Hot/Ice)", arName:"لاتيه (ساخن/مثلج)", price:"29 QR", descriptionEn:"Smooth latte", descriptionAr:"لاتيه ناعم", image: base+"Latte.jpg", calories:"170 kcal" },
+          { enName:"Spanish Latte (Hot/Ice)", arName:"لاتيه إسباني (ساخن/مثلج)", price:"32 QR", descriptionEn:"Spanish latte", descriptionAr:"لاتيه إسباني", image: base+"Latte.jpg", calories:"220 kcal" },
+          { enName:"Salted Caramel Latte (Hot/Ice)", arName:"لاتيه بالكراميل المملح (ساخن/مثلج)", price:"32 QR", descriptionEn:"Salted caramel latte", descriptionAr:"لاتيه بالكراميل المملح", image: base+"Latte.jpg", calories:"230 kcal" },
+          { enName:"Vanilla Latte (Hot/Ice)", arName:"لاتيه فانيليا (ساخن/مثلج)", price:"32 QR", descriptionEn:"Vanilla latte", descriptionAr:"لاتيه فانيليا", image: base+"Latte.jpg", calories:"220 kcal" },
+          { enName:"Cappuccino (Hot/Ice)", arName:"كابوتشينو (ساخن/مثلج)", price:"29 QR", descriptionEn:"Classic cappuccino", descriptionAr:"كابوتشينو كلاسيكي", image: base+"Latte.jpg", calories:"150 kcal" },
+          { enName:"White Mocha (Hot/Ice)", arName:"وايت موكا (ساخن/مثلج)", price:"32 QR", descriptionEn:"White chocolate mocha", descriptionAr:"وايت موكا بالشوكولاتة البيضاء", image: base+"Latte.jpg", calories:"260 kcal" },
+          { enName:"Flat White (Hot/Ice)", arName:"فلات وايت (ساخن/مثلج)", price:"27 QR", descriptionEn:"Smooth flat white", descriptionAr:"فلات وايت ناعم", image: base+"Flatwhite.jpg", calories:"140 kcal" },
+          { enName:"Cortado (Hot/Ice)", arName:"كورتادو (ساخن/مثلج)", price:"24 QR", descriptionEn:"Espresso with a small amount of milk", descriptionAr:"كورتادو إسپريسو مع قليل من الحليب", image: base+"cortado.jpg", calories:"110 kcal" },
+          { enName:"Espresso Single / Double (Hot/Ice)", arName:"إسپريسو مفرد/مزدوج (ساخن/مثلج)", price:"21 QR", descriptionEn:"Espresso shot", descriptionAr:"إسپريسو", image: base+"Espresso.jpeg", calories:"5-10 kcal" },
+          { enName:"Macchiato (Hot/Ice)", arName:"ماكياتو (ساخن/مثلج)", price:"24 QR", descriptionEn:"Espresso with a dash of milk", descriptionAr:"ماكياتو إسپريسو مع لمسة حليب", image: base+"Machiatto.jpeg", calories:"40 kcal" },
+          { enName:"Americano (Hot/Ice)", arName:"أمريكانو (ساخن/مثلج)", price:"21 QR", descriptionEn:"Americano", descriptionAr:"أمريكانو", image: base+"Americano.jpeg", calories:"5 kcal" },
+          { enName:"Mocha (Hot/Ice)", arName:"موكا (ساخن/مثلج)", price:"32 QR", descriptionEn:"Chocolate mocha", descriptionAr:"موكا بالشوكولاتة", image: base+"Latte.jpg", calories:"260 kcal" }
         ]
       },
       "Specialty Brews": {
         arTitle: "المشروبات المميزة",
         items: [
-          { enName:"V60 Pour Over (Hot & Ice)", arName:"V60 بورت أوفر (ساخن ومثلج)", price:"29 QR", descriptionEn:"V60 pour-over coffee", descriptionAr:"قهوة V60 مصفاة بعناية", image:"v60.jpg", calories:"2 kcal" },
-          { enName:"Ice Drip", arName:"آيس دريب", price:"32 QR", descriptionEn:"Slow-dripped ice coffee", descriptionAr:"قهوة باردة قطرية", image:"Icedrip.jpeg", calories:"2 kcal" },
-          { enName:"Cold Brew", arName:"كولد برو", price:"36 QR", descriptionEn:"Cold brew coffee", descriptionAr:"كولد برو", image:"Coldbrew.jpg", calories:"2 kcal" }
+          { enName:"V60 Pour Over (Hot & Ice)", arName:"V60 بورت أوفر (ساخن ومثلج)", price:"29 QR", descriptionEn:"V60 pour-over coffee", descriptionAr:"قهوة V60 مصفاة بعناية", image: base+"v60.jpg", calories:"2 kcal" },
+          { enName:"Ice Drip", arName:"آيس دريب", price:"32 QR", descriptionEn:"Slow-dripped ice coffee", descriptionAr:"قهوة باردة قطرية", image: base+"Icedrip.jpeg", calories:"2 kcal" },
+          { enName:"Cold Brew", arName:"كولد برو", price:"36 QR", descriptionEn:"Cold brew coffee", descriptionAr:"كولد برو", image: base+"Coldbrew.jpg", calories:"2 kcal" }
         ]
       },
       "Fizz": {
         arTitle: "الفيز",
         items: [
-          { enName:"Churchill", arName:"تشرشل", price:"25 QR", descriptionEn:"Signature drink", descriptionAr:"مشروب تشرشل المميز", image:"Churchill.jpeg", calories:"120 kcal" },
-          { enName:"Strawberry Mojito", arName:"موهيتو بالفراولة", price:"38 QR", descriptionEn:"Strawberry mojito", descriptionAr:"موهيتو بالفراولة", image:"Strawberrymojito.jpg", calories:"160 kcal" },
-          { enName:"Mulberry Mojito", arName:"موهيتو التوت", price:"42 QR", descriptionEn:"Mulberry mojito", descriptionAr:"موهيتو التوت", image:"Mulberrymojito.jpg", calories:"170 kcal" },
-          { enName:"Cooling Breeze", arName:"نسيم بارد", price:"33 QR", descriptionEn:"Mint & lime refreshment", descriptionAr:"نسيم منعش بالنعناع والليمون", image:"Coolingbreeze.jpeg", calories:"110 kcal" }
+          { enName:"Churchill", arName:"تشرشل", price:"25 QR", descriptionEn:"Signature drink", descriptionAr:"مشروب تشرشل المميز", image: base+"Churchill.jpeg", calories:"120 kcal" },
+          { enName:"Strawberry Mojito", arName:"موهيتو بالفراولة", price:"38 QR", descriptionEn:"Strawberry mojito", descriptionAr:"موهيتو بالفراولة", image: base+"Strawberrymojito.jpg", calories:"160 kcal" },
+          { enName:"Mulberry Mojito", arName:"موهيتو التوت", price:"42 QR", descriptionEn:"Mulberry mojito", descriptionAr:"موهيتو التوت", image: base+"Mulberrymojito.jpg", calories:"170 kcal" },
+          { enName:"Cooling Breeze", arName:"نسيم بارد", price:"33 QR", descriptionEn:"Mint & lime refreshment", descriptionAr:"نسيم منعش بالنعناع والليمون", image: base+"Coolingbreeze.jpeg", calories:"110 kcal" }
         ]
       },
       "Refreshments": {
         arTitle: "المشروبات الغازية والمرطبات",
         items: [
-          { enName:"Still Water (Small)", arName:"مياه عادية (صغير)", price:"11 QR", descriptionEn:"Small still water", descriptionAr:"زجاجة مياه صغيرة", image:"WaterBig.jpg", calories:"0 kcal" },
-          { enName:"Still Water (Big)", arName:"مياه عادية (كبير)", price:"21 QR", descriptionEn:"Large still water", descriptionAr:"زجاجة مياه كبيرة", image:"Watersmall.jpg", calories:"0 kcal" },
-          { enName:"Sparkling Water", arName:"مياه غازية", price:"21 QR", descriptionEn:"Sparkling water", descriptionAr:"مياه غازية", image:"Sparkling.jpg", calories:"0 kcal" },
-          { enName:"Lemonade", arName:"ليموناضة", price:"30 QR", descriptionEn:"Fresh lemonade", descriptionAr:"ليموناضة طازجة", image:"Lemonade.jpg", calories:"120 kcal" },
-          { enName:"Fresh Orange Juice", arName:"عصير برتقال طازج", price:"30 QR", descriptionEn:"Fresh orange juice", descriptionAr:"عصير برتقال طازج", image:"Orange.jpeg", calories:"140 kcal" },
-          { enName:"Orange Earl Grey Tea", arName:"شاي البرتقال إيرل جراي", price:"37 QR", descriptionEn:"Earl Grey with orange", descriptionAr:"شاي إيرل جراي بالنكهة البرتقالية", image:"Earl.jpeg", calories:"2 kcal" },
-          { enName:"Kinza Cola", arName:"كينزا كولا", price:"17 QR", descriptionEn:"Kinza Cola", descriptionAr:"كينزا كولا", image:"Cola.jpg", calories:"150 kcal" },
-          { enName:"Kinza Cola Zero", arName:"كينزا كولا زيرو", price:"17 QR", descriptionEn:"Kinza Cola Zero", descriptionAr:"كينزا كولا زيرو", image:"Zero.jpg", calories:"0 kcal" }
+          { enName:"Still Water (Small)", arName:"مياه عادية (صغير)", price:"11 QR", descriptionEn:"Small still water", descriptionAr:"زجاجة مياه صغيرة", image: base+"WaterBig.jpg", calories:"0 kcal" },
+          { enName:"Still Water (Big)", arName:"مياه عادية (كبير)", price:"21 QR", descriptionEn:"Large still water", descriptionAr:"زجاجة مياه كبيرة", image: base+"Watersmall.jpg", calories:"0 kcal" },
+          { enName:"Sparkling Water", arName:"مياه غازية", price:"21 QR", descriptionEn:"Sparkling water", descriptionAr:"مياه غازية", image: base+"Sparkling.jpg", calories:"0 kcal" },
+          { enName:"Lemonade", arName:"ليموناضة", price:"30 QR", descriptionEn:"Fresh lemonade", descriptionAr:"ليموناضة طازجة", image: base+"Lemonade.jpg", calories:"120 kcal" },
+          { enName:"Fresh Orange Juice", arName:"عصير برتقال طازج", price:"30 QR", descriptionEn:"Fresh orange juice", descriptionAr:"عصير برتقال طازج", image: base+"Orange.jpeg", calories:"140 kcal" },
+          { enName:"Orange Earl Grey Tea", arName:"شاي البرتقال إيرل جراي", price:"37 QR", descriptionEn:"Earl Grey with orange", descriptionAr:"شاي إيرل جراي بالنكهة البرتقالية", image: base+"Earl.jpeg", calories:"2 kcal" },
+          { enName:"Kinza Cola", arName:"كينزا كولا", price:"17 QR", descriptionEn:"Kinza Cola", descriptionAr:"كينزا كولا", image: base+"Cola.jpg", calories:"150 kcal" },
+          { enName:"Kinza Cola Zero", arName:"كينزا كولا زيرو", price:"17 QR", descriptionEn:"Kinza Cola Zero", descriptionAr:"كينزا كولا زيرو", image: base+"Zero.jpg", calories:"0 kcal" }
         ]
       }
     };
 
     /* State */
-    let currentLang = 'en'; // 'en' or 'ar'
+    let currentLang = 'en';
     const landingView = document.getElementById('landingView');
     const menuPage = document.getElementById('menuPage');
     const openMenuBtn = document.getElementById('openMenuBtn');
@@ -390,7 +421,6 @@
       return el;
     }
 
-    /* Build menu rows (shows EN or AR based on currentLang) */
     function buildMenuItemRow(item){
       const row = createEl('div',{class:'menu-item',tabindex:0,role:'listitem'});
       const thumb = createEl('div',{class:'thumb'});
@@ -416,7 +446,6 @@
       return row;
     }
 
-    /* Render categories (shows localized category titles) */
     function renderCategories(){
       categoriesView.innerHTML=''; flatResults.style.display='none'; categoriesView.style.display='flex'; noResults.style.display='none';
       Object.keys(menuData).forEach(catKey=>{
@@ -452,7 +481,6 @@
       }
     }
 
-    /* Flat search results view (hides categories) */
     function handleSearch(q){
       const qtrim = (q||'').trim().toLowerCase();
       if(!qtrim){ renderCategories(); return; }
@@ -554,7 +582,7 @@
       }
     });
 
-    /* Open menu navigation (separate page) */
+    /* Open menu navigation (separate view) */
     openMenuBtn.addEventListener('click', ()=>{
       landingView.style.display = 'none';
       menuPage.style.display = 'block';
@@ -569,15 +597,12 @@
       document.documentElement.lang = currentLang==='ar' ? 'ar' : 'en';
       document.documentElement.dir = currentLang==='ar' ? 'rtl' : 'ltr';
       langToggle.textContent = currentLang==='en' ? 'العربية' : 'English';
-      // update placeholders and brand text
       document.getElementById('searchBar').placeholder = currentLang==='en' ? 'Search menu items...' : 'ابحث عن عناصر القائمة...';
       document.getElementById('openMenuBtn').textContent = currentLang==='en' ? 'Explore Our Menu' : 'استعرض قائمتنا';
       document.getElementById('brandTitle').textContent = currentLang==='en' ? 'Turkiana' : 'تركيانا';
       document.getElementById('brandSub').textContent = currentLang==='en' ? 'CAFÉ & SWEETS' : 'مقهى وحلويات';
       document.getElementById('brandTag').textContent = currentLang==='en' ? 'Where Tradition Meets Elegance' : 'حيث يلتقي التراث بالأناقة';
-      // re-render menu in selected language
       renderCategories();
-      // if search has value, re-run search to show flat results localized
       if(searchInput.value && searchInput.value.trim()) handleSearch(searchInput.value);
       announce(currentLang==='en' ? 'Language switched to English' : 'تم تغيير اللغة إلى العربية');
     });
