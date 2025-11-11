@@ -82,6 +82,16 @@
     .price{min-width:88px;text-align:right;color:var(--maroon);font-weight:800}
     .calories{font-size:12px;color:rgba(255,255,255,0.78);font-weight:700;margin-top:4px}
 
+    /* Dietary pills */
+    .dietary-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+    .diet-pill{font-size:12px;padding:6px 8px;border-radius:10px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);color:#fff;font-weight:700}
+    .diet-vegan{background:#1e6f30}
+    .diet-veg{background:#2a7a2a}
+    .diet-gluten{background:#8b3d00}
+    .diet-nut{background:#6b3a6b}
+    .diet-dairy{background:#305a9a}
+    .diet-spicy{background:#9b2b2b}
+
     /* Modal & hover preview */
     .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:30;background:rgba(2,6,23,0.6)}
     .modal.show{display:flex}
@@ -110,7 +120,7 @@
   </style>
 </head>
 <body>
-  <!-- Background video: your GitHub Pages host -->
+  <!-- Background video: your GitHub Pages host (unchanged on language toggle) -->
   <div class="bg-video" aria-hidden="true">
     <video id="bgVideo" autoplay muted loop playsinline preload="metadata" poster="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Breakfast.jpg">
       <source src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Video.mp4" type="video/mp4">
@@ -206,6 +216,7 @@
       <div id="modal-price" style="font-weight:800;color:var(--gold);margin-bottom:8px"></div>
       <div id="modal-cal" style="font-weight:700;color:#444;margin-bottom:8px"></div>
       <div id="modal-description" style="color:#5a433b"></div>
+      <div id="modal-dietary" style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap"></div>
     </div>
   </div>
 
@@ -223,175 +234,177 @@
   <div id="ariaLive" aria-live="polite" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;"></div>
 
   <script>
-    // Slow-motion background video playback (0.6x)
+    // Slow-motion background video playback (0.6x) — background remains unchanged when switching language
     const bgVideo = document.getElementById('bgVideo');
     bgVideo.playbackRate = 0.6;
     bgVideo.addEventListener('loadedmetadata', ()=>{ try{ bgVideo.play(); }catch(e){} });
 
-    // Use your repo base URL
+    // Use your repo base URL (kept exactly as in your provided file)
     const base = "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/";
 
-    // Menu data (images use your GitHub Pages filenames)
+    // MENU DATA: added explicit dietary arrays for every item.
+    // Important: I did not change filenames or prices — I only added dietary tags and corrected Strawberry Fondue (no nuts).
     const menuData = {
       "Turkish Morning": {
         arTitle: "الصباح التركي",
         items: [
-          { enName:"Turkish Classic Breakfast", arName:"فطور تركي كلاسيكي", price:"65 QR", descriptionEn:"Authentic Turkish breakfast with fresh bread, cheese, olives, tomatoes, cucumbers, honey, and clotted cream served with Turkish tea", descriptionAr:"فطور تركي أصيل مع خبز طازج، جبن، زيتون، طماطم، خيار، عسل وقشدة، يقدم مع شاي تركي", image: base+"Breakfast.jpg", calories:"680 kcal" },
-          { enName:"Turkish Menemen", arName:"مينمن تركي", price:"45 QR", descriptionEn:"Classic Turkish scrambled eggs with fresh tomatoes, green peppers, and aromatic spices", descriptionAr:"بيض تركي مخفوق مع طماطم طازجة، فلفل أخضر وتوابل عطرية", image: base+"Menemen.jpg", calories:"360 kcal" },
-          { enName:"Plain Omelette", arName:"أومليت عادي", price:"25 QR", descriptionEn:"Light and fluffy omelette", descriptionAr:"أومليت خفيف وهش", image: base+"Omellet.jpg", calories:"220 kcal" }
+          { enName:"Turkish Classic Breakfast", arName:"فطور تركي كلاسيكي", price:"65 QR", descriptionEn:"Authentic Turkish breakfast with fresh bread, cheese, olives, tomatoes, cucumbers, honey, and clotted cream served with Turkish tea", descriptionAr:"فطور تركي أصيل مع خبز طازج، جبن، زيتون، طماطم، خيار، عسل وقشدة، يقدم مع شاي تركي", image: base+"Breakfast.jpg", calories:"680 kcal", dietary:["vegetarian","contains-dairy"] },
+          { enName:"Turkish Menemen", arName:"مينمن تركي", price:"45 QR", descriptionEn:"Classic Turkish scrambled eggs with fresh tomatoes, green peppers, and aromatic spices", descriptionAr:"بيض تركي مخفوق مع طماطم طازجة، فلفل أخضر وتوابل عطرية", image: base+"Menemen.jpg", calories:"360 kcal", dietary:["gluten-free","contains-dairy"] },
+          { enName:"Plain Omelette", arName:"أومليت عادي", price:"25 QR", descriptionEn:"Light and fluffy omelette", descriptionAr:"أومليت خفيف وهش", image: base+"Omellet.jpg", calories:"220 kcal", dietary:["gluten-free","contains-dairy"] }
         ]
       },
       "Croissant Creations": {
         arTitle: "إبداعات الكرواسون",
         items: [
-          { enName:"Croissant Beef Ribs", arName:"كرواسون أضلاع اللحم", price:"45 QR", descriptionEn:"Flaky croissant filled with tender beef ribs, cheddar and kasfar cheese, topped with pesto", descriptionAr:"كرواسون هش محشو بأضلاع لحم طرية وجبن شيدر وكاسفار، مغطى بصلصة البيستو", image: base+"Ribs.jpg", calories:"720 kcal" },
-          { enName:"Avocado Croissant", arName:"كرواسون الأفوكادو", price:"42 QR", descriptionEn:"Buttery croissant with avocado and scrambled eggs", descriptionAr:"كرواسون زبدي محشو بأفوكادو كريمي وبيض مخفوق", image: base+"Avocado.jpg", calories:"610 kcal" },
-          { enName:"Smoked Beef Croissant", arName:"كرواسون لحم مدخن", price:"45 QR", descriptionEn:"Croissant with smoked beef and eggs", descriptionAr:"كرواسون طازج محشو بالبيض المخفوق ولحم مدخن", image: base+"5.jpg", calories:"630 kcal" },
-          { enName:"Butter & Jam Croissant", arName:"كرواسون زبدة ومربى", price:"40 QR", descriptionEn:"Buttery croissant served with jam and sides", descriptionAr:"كرواسون زبدي يقدم مع مربى الكرز والزيتون المشوي وجبن الفيتا", image: base+"4.jpg", calories:"540 kcal" },
-          { enName:"Croissant Scrambled Eggs", arName:"كرواسون بالبيض المخفوق", price:"37 QR", descriptionEn:"Croissant with scrambled eggs and arugula", descriptionAr:"كرواسون هش محشو بالبيض المخفوق والجرجير", image: base+"1.jpg", calories:"520 kcal" }
+          { enName:"Croissant Beef Ribs", arName:"كرواسون أضلاع اللحم", price:"45 QR", descriptionEn:"Flaky croissant filled with tender beef ribs, cheddar and kasfar cheese, topped with pesto", descriptionAr:"كرواسون هش محشو بأضلاع لحم طرية وجبن شيدر وكاسفار، مغطى بصلصة البيستو", image: base+"Ribs.jpg", calories:"720 kcal", dietary:[] },
+          { enName:"Avocado Croissant", arName:"كرواسون الأفوكادو", price:"42 QR", descriptionEn:"Buttery croissant with avocado and scrambled eggs", descriptionAr:"كرواسون زبدي محشو بأفوكادو كريمي وبيض مخفوق", image: base+"Avocado.jpg", calories:"610 kcal", dietary:["vegetarian"] },
+          { enName:"Smoked Beef Croissant", arName:"كرواسون لحم مدخن", price:"45 QR", descriptionEn:"Croissant with smoked beef and eggs", descriptionAr:"كرواسون طازج محشو بالبيض المخفوق ولحم مدخن", image: base+"5.jpg", calories:"630 kcal", dietary:[] },
+          { enName:"Butter & Jam Croissant", arName:"كرواسون زبدة ومربى", price:"40 QR", descriptionEn:"Buttery croissant served with jam and sides", descriptionAr:"كرواسون زبدي يقدم مع مربى الكرز والزيتون المشوي وجبن الفيتا", image: base+"4.jpg", calories:"540 kcal", dietary:["vegetarian"] },
+          { enName:"Croissant Scrambled Eggs", arName:"كرواسون بالبيض المخفوق", price:"37 QR", descriptionEn:"Croissant with scrambled eggs and arugula", descriptionAr:"كرواسون هش محشو بالبيض المخفوق والجرجير", image: base+"1.jpg", calories:"520 kcal", dietary:["vegetarian"] }
         ]
       },
       "From the Grill & Garden": {
         arTitle: "من الشواية والحديقة",
         items: [
-          { enName:"Fried Potatoes", arName:"بطاطس مقلية", price:"25 QR", descriptionEn:"Crispy golden fried potatoes", descriptionAr:"بطاطس ذهبية مقرمشة", image: base+"Patatas.jpg", calories:"340 kcal" },
-          { enName:"Caesar Salad", arName:"سلطة سيزر", price:"40 QR", descriptionEn:"Romaine with Caesar dressing and croutons", descriptionAr:"خس روماني مع صوص سيزر وقطع خبز محمص", image: base+"Caesar.jpg", calories:"420 kcal" },
-          { enName:"Turkiana Beef Burger", arName:"برجر تركيانا", price:"59 QR", descriptionEn:"Premium beef burger with fries", descriptionAr:"برجر لحم بقري ممتاز مع البطاطس", image: base+"Burger.jpeg", calories:"950 kcal" }
+          { enName:"Fried Potatoes", arName:"بطاطس مقلية", price:"25 QR", descriptionEn:"Crispy golden fried potatoes", descriptionAr:"بطاطس ذهبية مقرمشة", image: base+"Patatas.jpg", calories:"340 kcal", dietary:["vegan","gluten-free"] },
+          { enName:"Caesar Salad", arName:"سلطة سيزر", price:"40 QR", descriptionEn:"Romaine with Caesar dressing and croutons", descriptionAr:"خس روماني مع صوص سيزر وقطع خبز محمص", image: base+"Caesar.jpg", calories:"420 kcal", dietary:["contains-gluten","contains-dairy"] },
+          { enName:"Turkiana Beef Burger", arName:"برجر تركيانا", price:"59 QR", descriptionEn:"Premium beef burger with fries", descriptionAr:"برجر لحم بقري ممتاز مع البطاطس", image: base+"Burger.jpeg", calories:"950 kcal", dietary:[] }
         ]
       },
       "Baklava & Beyond": {
         arTitle: "البقلاوة وما بعدها",
         items: [
-          { enName:"Turkish Mix Baklava", arName:"بقلاوة تركية مشكلة", price:"65 QR", descriptionEn:"Assorted traditional baklava", descriptionAr:"مجموعة رائعة من البقلاوة التركية التقليدية", image: base+"Mix.jpeg", calories:"450 kcal (per serving)" },
-          { enName:"Carrot Slice Baklava", arName:"بقلاوة شريحة الجزر", price:"40 QR", descriptionEn:"Classic layered baklava", descriptionAr:"بقلاوة تركية كلاسيكية بطبقات مقرمشة", image: base+"Carrot.jpeg", calories:"420 kcal" },
-          { enName:"Carrot Slice Baklava With Ice Cream", arName:"بقلاوة شريحة الجزر مع الآيس كريم", price:"49 QR", descriptionEn:"Baklava served with ice cream", descriptionAr:"بقلاوة تقدم مع الآيس كريم", image: base+"Carroticecream.jpeg", calories:"620 kcal" },
-          { enName:"Trio Baklava", arName:"تريو بقلاوة", price:"45 QR", descriptionEn:"Three-style baklava assortment", descriptionAr:"مجموعة من بقلاوة رول بالفستق وموسل وسوبييت", image: base+"TrioBaklava.jpeg", calories:"480 kcal" },
-          { enName:"Nuts Stand-Tall", arName:"مكسرات ستاند كبير", price:"99 QR", descriptionEn:"Premium mixed nuts", descriptionAr:"مجموعة ممتازة من المكسرات المختلطة", image: base+"Nuts.jpg", calories:"300 kcal (100g)" },
-          { enName:"Nuts Stand-Small", arName:"مكسرات ستاند صغير", price:"60 QR", descriptionEn:"Small mixed nuts", descriptionAr:"اختيار صغير من المكسرات المختلطة", image: base+"Nuts.jpg", calories:"180 kcal (60g)" },
-          { enName:"Snickers-inspired cake", arName:"كعكة مستوحاة من سنيكرز", price:"42 QR", descriptionEn:"Chocolate, caramel & nuts cake", descriptionAr:"كعكة فاخرة مع الشوكولاتة والكراميل", image: base+"Snicker.jpg", calories:"560 kcal" },
-          { enName:"Kunafa", arName:"كنافة", price:"40 QR", descriptionEn:"Kunafa with Akawi cheese", descriptionAr:"كنافة تركية تقليدية مع جبنة عكاوي", image: base+"Kunafa.jpg", calories:"520 kcal" },
-          { enName:"Chocolate Cake", arName:"كعكة الشوكولاتة", price:"40 QR", descriptionEn:"Molten chocolate cake", descriptionAr:"كعكة شوكولاتة غنية", image: base+"Chocolate.jpg", calories:"480 kcal" },
-          { enName:"Lotus Cake", arName:"كعكة اللوتس", price:"40 QR", descriptionEn:"Lotus Biscoff flavored cake", descriptionAr:"كعكة بنكهة بسكوف لوتس", image: base+"Lutos.jpg", calories:"520 kcal" },
-          { enName:"Brownies", arName:"براونيز", price:"35 QR", descriptionEn:"Fudgy chocolate brownies", descriptionAr:"براونيز شوكولاتة غنية", image: base+"Brownies.jpeg", calories:"380 kcal" },
-          { enName:"Full Pistachio Cake", arName:"كعكة الفستق كاملة", price:"40 QR", descriptionEn:"Pistachio flavored cake", descriptionAr:"كعكة بنكهة الفستق", image: base+"Full.jpg", calories:"470 kcal" },
-          { enName:"Lemon Cake", arName:"كعكة الليمون", price:"38 QR", descriptionEn:"Zesty lemon sponge cake", descriptionAr:"كعكة اسفنجية ليمونية خفيفة", image: base+"Lemon.jpg", calories:"420 kcal" },
-          { enName:"Tiramisu", arName:"تيراميسو", price:"42 QR", descriptionEn:"Coffee-soaked sponge with mascarpone", descriptionAr:"تيراميسو إيطالي كلاسيكي", image: base+"Tiramisu.jpg", calories:"420 kcal" },
-          { enName:"Almond Chocolate Cake", arName:"كعكة الشوكولاتة باللوز", price:"40 QR", descriptionEn:"Chocolate cake with almond notes", descriptionAr:"كعكة شوكولاتة مع اللوز", image: base+"Almond.jpg", calories:"490 kcal" },
-          { enName:"Lemon Sponge Cake", arName:"كعكة إسفنجية بالليمون", price:"42 QR", descriptionEn:"Light lemon sponge", descriptionAr:"كعكة إسفنجية ليمونية طرية", image: base+"Lemoncake.jpg", calories:"430 kcal" },
-          { enName:"Strawberry Cheesecake", arName:"تشيز كيك بالفراولة", price:"42 QR", descriptionEn:"Creamy cheesecake topped with strawberries", descriptionAr:"تشيز كيك كريمي مع فراولة طازجة", image: base+"Cherry.jpg", calories:"520 kcal" },
-          { enName:"Blueberry Cheesecake", arName:"تشيز كيك بالتوت الأزرق", price:"42 QR", descriptionEn:"Cheesecake with blueberries", descriptionAr:"تشيز كيك مع التوت الأزرق", image: base+"Mulberry.jpg", calories:"520 kcal" },
-          { enName:"Chocolate Pistachio Cake", arName:"كعكة الشوكولاتة والفستق", price:"40 QR", descriptionEn:"Chocolate cake with pistachios", descriptionAr:"كعكة شوكولاتة مع الفستق", image: base+"Chocolate_pistachio.jpg", calories:"510 kcal" },
-          { enName:"Strawberry Cake", arName:"كعكة الفراولة", price:"45 QR", descriptionEn:"Strawberry topped cake", descriptionAr:"كعكة مع فراولة طازجة", image: base+"Strawberry.jpg", calories:"470 kcal" },
-          { enName:"White Almond Cake", arName:"كعكة اللوز البيضاء", price:"42 QR", descriptionEn:"Almond flavored soft cake", descriptionAr:"كعكة طرية بنكهة اللوز", image: base+"White.jpg", calories:"500 kcal" },
-          { enName:"Trileche With Milk", arName:"تريليتش باللبن", price:"35 QR", descriptionEn:"Tres leches soaked cake", descriptionAr:"تريليتش منقوعة في اللبن", image: base+"Trileche.jpg", calories:"540 kcal" },
-          { enName:"San Sebastian Cheesecake", arName:"تشيز كيك سان سيباستيان", price:"42 QR", descriptionEn:"Caramelized San Sebastian cheesecake", descriptionAr:"تشيز كيك كريم وكراميل", image: base+"Sebastian.jpg", calories:"520 kcal" }
+          { enName:"Turkish Mix Baklava", arName:"بقلاوة تركية مشكلة", price:"65 QR", descriptionEn:"Assorted traditional baklava", descriptionAr:"مجموعة رائعة من البقلاوة التركية التقليدية", image: base+"Mix.jpeg", calories:"450 kcal (per serving)", dietary:["contains-nuts"] },
+          { enName:"Carrot Slice Baklava", arName:"بقلاوة شريحة الجزر", price:"40 QR", descriptionEn:"Classic layered baklava", descriptionAr:"بقلاوة تركية كلاسيكية بطبقات مقرمشة", image: base+"Carrot.jpeg", calories:"420 kcal", dietary:["vegetarian","contains-nuts"] },
+          { enName:"Carrot Slice Baklava With Ice Cream", arName:"بقلاوة شريحة الجزر مع الآيس كريم", price:"49 QR", descriptionEn:"Baklava served with ice cream", descriptionAr:"بقلاوة تقدم مع الآيس كريم", image: base+"Carroticecream.jpeg", calories:"620 kcal", dietary:["contains-nuts","contains-dairy"] },
+          { enName:"Trio Baklava", arName:"تريو بقلاوة", price:"45 QR", descriptionEn:"Three-style baklava assortment", descriptionAr:"مجموعة من بقلاوة رول بالفستق وموسل وسوبييت", image: base+"TrioBaklava.jpeg", calories:"480 kcal", dietary:["contains-nuts"] },
+          { enName:"Nuts Stand-Tall", arName:"مكسرات ستاند كبير", price:"99 QR", descriptionEn:"Premium mixed nuts", descriptionAr:"مجموعة ممتازة من المكسرات المختلطة", image: base+"Nuts.jpg", calories:"300 kcal (100g)", dietary:["contains-nuts"] },
+          { enName:"Nuts Stand-Small", arName:"مكسرات ستاند صغير", price:"60 QR", descriptionEn:"Small mixed nuts", descriptionAr:"اختيار صغير من المكسرات المختلطة", image: base+"Nuts.jpg", calories:"180 kcal (60g)", dietary:["contains-nuts"] },
+          { enName:"Snickers-inspired cake", arName:"كعكة مستوحاة من سنيكرز", price:"42 QR", descriptionEn:"Chocolate, caramel & nuts cake", descriptionAr:"كعكة فاخرة مع الشوكولاتة والكراميل", image: base+"Snicker.jpg", calories:"560 kcal", dietary:["contains-nuts"] },
+          { enName:"Kunafa", arName:"كنافة", price:"40 QR", descriptionEn:"Kunafa with Akawi cheese", descriptionAr:"كنافة تركية تقليدية مع جبنة عكاوي", image: base+"Kunafa.jpg", calories:"520 kcal", dietary:["contains-dairy"] },
+          { enName:"Chocolate Cake", arName:"كعكة الشوكولاتة", price:"40 QR", descriptionEn:"Molten chocolate cake", descriptionAr:"كعكة شوكولاتة غنية", image: base+"Chocolate.jpg", calories:"480 kcal", dietary:["contains-dairy"] },
+          { enName:"Lotus Cake", arName:"كعكة اللوتس", price:"40 QR", descriptionEn:"Lotus Biscoff flavored cake", descriptionAr:"كعكة بنكهة بسكوف لوتس", image: base+"Lutos.jpg", calories:"520 kcal", dietary:["contains-dairy"] },
+          { enName:"Brownies", arName:"براونيز", price:"35 QR", descriptionEn:"Fudgy chocolate brownies", descriptionAr:"براونيز شوكولاتة غنية", image: base+"Brownies.jpeg", calories:"380 kcal", dietary:["contains-dairy"] },
+          { enName:"Full Pistachio Cake", arName:"كعكة الفستق كاملة", price:"40 QR", descriptionEn:"Pistachio flavored cake", descriptionAr:"كعكة بنكهة الفستق", image: base+"Full.jpg", calories:"470 kcal", dietary:["contains-nuts"] },
+          { enName:"Lemon Cake", arName:"كعكة الليمون", price:"38 QR", descriptionEn:"Zesty lemon sponge cake", descriptionAr:"كعكة اسفنجية ليمونية خفيفة", image: base+"Lemon.jpg", calories:"420 kcal", dietary:["vegetarian"] },
+          { enName:"Tiramisu", arName:"تيراميسو", price:"42 QR", descriptionEn:"Coffee-soaked sponge with mascarpone", descriptionAr:"تيراميسو إيطالي كلاسيكي", image: base+"Tiramisu.jpg", calories:"420 kcal", dietary:["contains-dairy"] },
+          { enName:"Almond Chocolate Cake", arName:"كعكة الشوكولاتة باللوز", price:"40 QR", descriptionEn:"Chocolate cake with almond notes", descriptionAr:"كعكة شوكولاتة مع اللوز", image: base+"Almond.jpg", calories:"490 kcal", dietary:["contains-nuts"] },
+          { enName:"Lemon Sponge Cake", arName:"كعكة إسفنجية بالليمون", price:"42 QR", descriptionEn:"Light lemon sponge", descriptionAr:"كعكة إسفنجية ليمونية طرية", image: base+"Lemoncake.jpg", calories:"430 kcal", dietary:["vegetarian"] },
+          { enName:"Strawberry Cheesecake", arName:"تشيز كيك بالفراولة", price:"42 QR", descriptionEn:"Creamy cheesecake topped with strawberries", descriptionAr:"تشيز كيك كريمي مع فراولة طازجة", image: base+"Cherry.jpg", calories:"520 kcal", dietary:["contains-dairy"] },
+          { enName:"Blueberry Cheesecake", arName:"تشيز كيك بالتوت الأزرق", price:"42 QR", descriptionEn:"Cheesecake with blueberries", descriptionAr:"تشيز كيك مع التوت الأزرق", image: base+"Mulberry.jpg", calories:"520 kcal", dietary:["contains-dairy"] },
+          { enName:"Chocolate Pistachio Cake", arName:"كعكة الشوكولاتة والفستق", price:"40 QR", descriptionEn:"Chocolate cake with pistachios", descriptionAr:"كعكة شوكولاتة مع الفستق", image: base+"Chocolate_pistachio.jpg", calories:"510 kcal", dietary:["contains-nuts"] },
+          { enName:"Strawberry Cake", arName:"كعكة الفراولة", price:"45 QR", descriptionEn:"Strawberry topped cake", descriptionAr:"كعكة مع فراولة طازجة", image: base+"Strawberry.jpg", calories:"470 kcal", dietary:["contains-dairy"] },
+          { enName:"White Almond Cake", arName:"كعكة اللوز البيضاء", price:"42 QR", descriptionEn:"Almond flavored soft cake", descriptionAr:"كعكة طرية بنكهة اللوز", image: base+"White.jpg", calories:"500 kcal", dietary:["contains-nuts"] },
+          { enName:"Trileche With Milk", arName:"تريليتش باللبن", price:"35 QR", descriptionEn:"Tres leches soaked cake", descriptionAr:"تريليتش منقوعة في اللبن", image: base+"Trileche.jpg", calories:"540 kcal", dietary:["contains-dairy"] },
+          { enName:"San Sebastian Cheesecake", arName:"تشيز كيك سان سيباستيان", price:"42 QR", descriptionEn:"Caramelized San Sebastian cheesecake", descriptionAr:"تشيز كيك كريم وكراميل", image: base+"Sebastian.jpg", calories:"520 kcal", dietary:["contains-dairy"] }
         ]
       },
       "Fondue": {
         arTitle: "الفوندو",
         items: [
-          { enName:"Strawberry Fondue", arName:"فوندو بالفراولة", price:"25 QR", descriptionEn:"Strawberries with melted chocolate", descriptionAr:"فراولة طازجة مع شوكولاتة مذابة", image: base+"Fondue1.jpeg", calories:"320 kcal" },
-          { enName:"Strawberry-Banana Fondue", arName:"فوندو فراولة وموز", price:"35 QR", descriptionEn:"Strawberries & bananas with chocolate", descriptionAr:"فراولة وموز مع شوكولاتة ذائبة", image: base+"Fondue2.jpeg", calories:"410 kcal" },
-          { enName:"Turkiana Fondue", arName:"فوندو تركيانا", price:"45 QR", descriptionEn:"Signature fondue with assorted fruits", descriptionAr:"فوندو مع مجموعة من الفواكه", image: base+"Fondue3.jpeg", calories:"480 kcal" }
+          // CORRECTION: Strawberry Fondue is strawberries + milk chocolate only — no nuts.
+          { enName:"Strawberry Fondue", arName:"فوندو بالفراولة", price:"25 QR", descriptionEn:"Fresh strawberries with melted milk chocolate", descriptionAr:"فراولة طازجة مع شوكولاتة بالحليب مذابة", image: base+"Fondue1.jpeg", calories:"320 kcal", dietary:["contains-dairy"] },
+          { enName:"Strawberry-Banana Fondue", arName:"فوندو فراولة وموز", price:"35 QR", descriptionEn:"Strawberries & bananas with chocolate", descriptionAr:"فراولة وموز مع شوكولاتة ذائبة", image: base+"Fondue2.jpeg", calories:"410 kcal", dietary:["contains-dairy"] },
+          { enName:"Turkiana Fondue", arName:"فوندو تركيانا", price:"45 QR", descriptionEn:"Signature fondue with assorted fruits", descriptionAr:"فوندو مع مجموعة من الفواكه", image: base+"Fondue3.jpeg", calories:"480 kcal", dietary:[] }
         ]
       },
       "Arabian Brew": {
         arTitle: "المشروبات العربية",
         items: [
-          { enName:"Arabic Coffee in a Full Dalla", arName:"قهوة عربية بالدلة الكاملة", price:"90 QR", descriptionEn:"Traditional Arabic coffee in a full Dalla", descriptionAr:"قهوة عربية بالدلة الكاملة", image: base+"Arabic.jpg", calories:"10 kcal (per cup)" },
-          { enName:"Arabic Coffee in a Half Dalla", arName:"قهوة عربية بنصف دلة", price:"50 QR", descriptionEn:"Half Dalla Arabic coffee", descriptionAr:"قهوة عربية بنصف دلة", image: base+"Arabic.jpg", calories:"10 kcal (per cup)" },
-          { enName:"Arabic Coffee in a Cup", arName:"قهوة عربية في فنجان", price:"30 QR", descriptionEn:"Arabic coffee by the cup", descriptionAr:"قهوة عربية في فنجان", image: base+"Arabic.jpg", calories:"10 kcal (per cup)" }
+          { enName:"Arabic Coffee in a Full Dalla", arName:"قهوة عربية بالدلة الكاملة", price:"90 QR", descriptionEn:"Traditional Arabic coffee in a full Dalla", descriptionAr:"قهوة عربية بالدلة الكاملة", image: base+"Arabic.jpg", calories:"10 kcal (per cup)", dietary:["vegan","gluten-free","dairy-free"] },
+          { enName:"Arabic Coffee in a Half Dalla", arName:"قهوة عربية بنصف دلة", price:"50 QR", descriptionEn:"Half Dalla Arabic coffee", descriptionAr:"قهوة عربية بنصف دلة", image: base+"Arabic.jpg", calories:"10 kcal (per cup)", dietary:["vegan","gluten-free","dairy-free"] },
+          { enName:"Arabic Coffee in a Cup", arName:"قهوة عربية في فنجان", price:"30 QR", descriptionEn:"Arabic coffee by the cup", descriptionAr:"قهوة عربية في فنجان", image: base+"Arabic.jpg", calories:"10 kcal (per cup)", dietary:["vegan","gluten-free","dairy-free"] }
         ]
       },
       "Tea Time": {
         arTitle: "وقت الشاي",
         items: [
-          { enName:"Turkish Tea", arName:"شاي تركي", price:"15 QR", descriptionEn:"Traditional Turkish tea", descriptionAr:"شاي تركي تقليدي", image: base+"Tea.jpg", calories:"2 kcal" },
-          { enName:"Apple Tea", arName:"شاي التفاح", price:"25 QR", descriptionEn:"Apple-flavored tea", descriptionAr:"شاي بنكهة التفاح", image: base+"Appletea.jpg", calories:"2 kcal" },
-          { enName:"Mulberry Tea", arName:"شاي التوت", price:"25 QR", descriptionEn:"Mulberry tea", descriptionAr:"شاي التوت", image: base+"Mulberrytea.jpg", calories:"2 kcal" },
-          { enName:"Lemon Mint", arName:"شاي بالليمون والنعناع", price:"25 QR", descriptionEn:"Lemon & mint tea", descriptionAr:"شاي الليمون والنعناع", image: base+"Lemontea.jpg", calories:"2 kcal" },
-          { enName:"Pomegranate Tea", arName:"شاي الرمان", price:"25 QR", descriptionEn:"Pomegranate tea", descriptionAr:"شاي الرمان", image: base+"Romantea.jpg", calories:"2 kcal" }
+          { enName:"Turkish Tea", arName:"شاي تركي", price:"15 QR", descriptionEn:"Traditional Turkish tea", descriptionAr:"شاي تركي تقليدي", image: base+"Tea.jpg", calories:"2 kcal", dietary:["vegan","dairy-free"] },
+          { enName:"Apple Tea", arName:"شاي التفاح", price:"25 QR", descriptionEn:"Apple-flavored tea", descriptionAr:"شاي بنكهة التفاح", image: base+"Appletea.jpg", calories:"2 kcal", dietary:["vegan","dairy-free"] },
+          { enName:"Mulberry Tea", arName:"شاي التوت", price:"25 QR", descriptionEn:"Mulberry tea", descriptionAr:"شاي التوت", image: base+"Mulberrytea.jpg", calories:"2 kcal", dietary:["vegan","dairy-free"] },
+          { enName:"Lemon Mint", arName:"شاي بالليمون والنعناع", price:"25 QR", descriptionEn:"Lemon & mint tea", descriptionAr:"شاي الليمون والنعناع", image: base+"Lemontea.jpg", calories:"2 kcal", dietary:["vegan","dairy-free"] },
+          { enName:"Pomegranate Tea", arName:"شاي الرمان", price:"25 QR", descriptionEn:"Pomegranate tea", descriptionAr:"شاي الرمان", image: base+"Romantea.jpg", calories:"2 kcal", dietary:["vegan","dairy-free"] }
         ]
       },
       "Tea on Ice": {
         arTitle: "الشاي المثلج",
         items: [
-          { enName:"Ice Apple Tea", arName:"شاي التفاح مثلج", price:"28 QR", descriptionEn:"Chilled apple tea", descriptionAr:"شاي التفاح المثلج", image: base+"Iceapple.jpeg", calories:"35 kcal" },
-          { enName:"Ice Mulberry Tea", arName:"شاي التوت المثلج", price:"28 QR", descriptionEn:"Iced mulberry tea", descriptionAr:"شاي التوت المثلج", image: base+"Icemulberry.jpeg", calories:"35 kcal" },
-          { enName:"Ice Mint Lemon", arName:"شاي النعناع والليمون المثلج", price:"28 QR", descriptionEn:"Iced mint & lemon tea", descriptionAr:"شاي النعناع والليمون المثلج", image: base+"Icelemon.jpeg", calories:"20 kcal" },
-          { enName:"Ice Pomegranate Tea", arName:"شاي الرمان المثلج", price:"28 QR", descriptionEn:"Iced pomegranate tea", descriptionAr:"شاي الرمان المثلج", image: base+"Iceroman.jpeg", calories:"45 kcal" },
-          { enName:"Hibiscus Ice", arName:"الكركديه مثلج", price:"28 QR", descriptionEn:"Chilled hibiscus tea", descriptionAr:"الكركديه مثلج", image: base+"Iceroman.jpeg", calories:"25 kcal" }
+          { enName:"Ice Apple Tea", arName:"شاي التفاح مثلج", price:"28 QR", descriptionEn:"Chilled apple tea", descriptionAr:"شاي التفاح المثلج", image: base+"Iceapple.jpeg", calories:"35 kcal", dietary:["vegan","dairy-free"] },
+          { enName:"Ice Mulberry Tea", arName:"شاي التوت المثلج", price:"28 QR", descriptionEn:"Iced mulberry tea", descriptionAr:"شاي التوت المثلج", image: base+"Icemulberry.jpeg", calories:"35 kcal", dietary:["vegan","dairy-free"] },
+          { enName:"Ice Mint Lemon", arName:"شاي النعناع والليمون المثلج", price:"28 QR", descriptionEn:"Iced mint & lemon tea", descriptionAr:"شاي النعناع والليمون المثلج", image: base+"Icelemon.jpeg", calories:"20 kcal", dietary:["vegan","dairy-free"] },
+          { enName:"Ice Pomegranate Tea", arName:"شاي الرمان المثلج", price:"28 QR", descriptionEn:"Iced pomegranate tea", descriptionAr:"شاي الرمان المثلج", image: base+"Iceroman.jpeg", calories:"45 kcal", dietary:["vegan","dairy-free"] },
+          { enName:"Hibiscus Ice", arName:"الكركديه مثلج", price:"28 QR", descriptionEn:"Chilled hibiscus tea", descriptionAr:"الكركديه مثلج", image: base+"Iceroman.jpeg", calories:"25 kcal", dietary:["vegan","dairy-free"] }
         ]
       },
       "Brewed the Turkish Way": {
         arTitle: "القهوة على الطريقة التركية",
         items: [
-          { enName:"Classic Turkish Coffee", arName:"قهوة تركية كلاسيكية", price:"28 QR", descriptionEn:"Classic Turkish coffee", descriptionAr:"قهوة تركية كلاسيكية", image: base+"Turkishcoffee.jpg", calories:"5 kcal" },
-          { enName:"Turkish Coffee with Cardamom", arName:"قهوة تركية بالهيل", price:"28 QR", descriptionEn:"Turkish coffee with cardamom", descriptionAr:"قهوة تركية بالهيل", image: base+"Turkishcoffee.jpg", calories:"5 kcal" },
-          { enName:"Double Turkish Coffee", arName:"قهوة تركية مزدوجة", price:"40 QR", descriptionEn:"Double shot Turkish coffee", descriptionAr:"قهوة تركية مزدوجة", image: base+"Turkishcoffee.jpg", calories:"10 kcal" },
-          { enName:"Ottoman Coffee", arName:"قهوة عثمانية", price:"28 QR", descriptionEn:"Ottoman style coffee", descriptionAr:"قهوة عثمانية", image: base+"Turkishcoffee.jpg", calories:"5 kcal" },
-          { enName:"Ottoman Coffee with Mastic", arName:"قهوة عثمانية بالمستيك", price:"28 QR", descriptionEn:"Ottoman coffee with mastic", descriptionAr:"قهوة عثمانية بالمستيك", image: base+"Turkishcoffee.jpg", calories:"5 kcal" },
-          { enName:"Ottoman Coffee with Hazelnuts", arName:"قهوة عثمانية بالبندق", price:"28 QR", descriptionEn:"Ottoman coffee with hazelnuts", descriptionAr:"قهوة عثمانية بالبندق", image: base+"Turkishcoffee.jpg", calories:"20 kcal" },
-          { enName:"Sahlep", arName:"شلهب", price:"28 QR", descriptionEn:"Warm and creamy sahlep", descriptionAr:"مشروب شلهب تركي دافئ وكريمي", image: base+"Sahlep.jpg", calories:"200 kcal" }
+          { enName:"Classic Turkish Coffee", arName:"قهوة تركية كلاسيكية", price:"28 QR", descriptionEn:"Classic Turkish coffee", descriptionAr:"قهوة تركية كلاسيكية", image: base+"Turkishcoffee.jpg", calories:"5 kcal", dietary:["vegan","gluten-free","dairy-free"] },
+          { enName:"Turkish Coffee with Cardamom", arName:"قهوة تركية بالهيل", price:"28 QR", descriptionEn:"Turkish coffee with cardamom", descriptionAr:"قهوة تركية بالهيل", image: base+"Turkishcoffee.jpg", calories:"5 kcal", dietary:["vegan","gluten-free","dairy-free"] },
+          { enName:"Double Turkish Coffee", arName:"قهوة تركية مزدوجة", price:"40 QR", descriptionEn:"Double shot Turkish coffee", descriptionAr:"قهوة تركية مزدوجة", image: base+"Turkishcoffee.jpg", calories:"10 kcal", dietary:["vegan","gluten-free","dairy-free"] },
+          { enName:"Ottoman Coffee", arName:"قهوة عثمانية", price:"28 QR", descriptionEn:"Ottoman style coffee", descriptionAr:"قهوة عثمانية", image: base+"Turkishcoffee.jpg", calories:"5 kcal", dietary:["vegan","gluten-free","dairy-free"] },
+          { enName:"Ottoman Coffee with Mastic", arName:"قهوة عثمانية بالمستيك", price:"28 QR", descriptionEn:"Ottoman coffee with mastic", descriptionAr:"قهوة عثمانية بالمستيك", image: base+"Turkishcoffee.jpg", calories:"5 kcal", dietary:["vegan","gluten-free","dairy-free"] },
+          { enName:"Ottoman Coffee with Hazelnuts", arName:"قهوة عثمانية بالبندق", price:"28 QR", descriptionEn:"Ottoman coffee with hazelnuts", descriptionAr:"قهوة عثمانية بالبندق", image: base+"Turkishcoffee.jpg", calories:"20 kcal", dietary:["contains-nuts"] },
+          { enName:"Sahlep", arName:"شلهب", price:"28 QR", descriptionEn:"Warm and creamy sahlep", descriptionAr:"مشروب شلهب تركي دافئ وكريمي", image: base+"Sahlep.jpg", calories:"200 kcal", dietary:["contains-dairy"] }
         ]
       },
       "Herbal Infusions": {
         arTitle: "المنقوعات العشبية",
         items: [
-          { enName:"Sage", arName:"مريمية", price:"28 QR", descriptionEn:"Soothing sage tea", descriptionAr:"شاي المريمية المهدئ", image: base+"Herb.jpeg", calories:"2 kcal" },
-          { enName:"Mix Winter Tea", arName:"شاي الشتاء المزيج", price:"28 QR", descriptionEn:"Winter herbs mix", descriptionAr:"مزيج أعشاب الشتاء", image: base+"Herb.jpeg", calories:"3 kcal" },
-          { enName:"Green Tea", arName:"الشاي الأخضر", price:"28 QR", descriptionEn:"Green tea", descriptionAr:"الشاي الأخضر", image: base+"Herb.jpeg", calories:"2 kcal" },
-          { enName:"Chamomile", arName:"البابونج", price:"28 QR", descriptionEn:"Chamomile tea", descriptionAr:"شاي البابونج", image: base+"Herb.jpeg", calories:"2 kcal" },
-          { enName:"Hibiscus", arName:"الكركديه", price:"28 QR", descriptionEn:"Hibiscus tea", descriptionAr:"شاي الكركديه", image: base+"Hibiscus.jpeg", calories:"2 kcal" }
+          { enName:"Sage", arName:"مريمية", price:"28 QR", descriptionEn:"Soothing sage tea", descriptionAr:"شاي المريمية المهدئ", image: base+"Herb.jpeg", calories:"2 kcal", dietary:["vegan","dairy-free"] },
+          { enName:"Mix Winter Tea", arName:"شاي الشتاء المزيج", price:"28 QR", descriptionEn:"Winter herbs mix", descriptionAr:"مزيج أعشاب الشتاء", image: base+"Herb.jpeg", calories:"3 kcal", dietary:["vegan","dairy-free"] },
+          { enName:"Green Tea", arName:"الشاي الأخضر", price:"28 QR", descriptionEn:"Green tea", descriptionAr:"الشاي الأخضر", image: base+"Herb.jpeg", calories:"2 kcal", dietary:["vegan","dairy-free"] },
+          { enName:"Chamomile", arName:"البابونج", price:"28 QR", descriptionEn:"Chamomile tea", descriptionAr:"شاي البابونج", image: base+"Herb.jpeg", calories:"2 kcal", dietary:["vegan","dairy-free"] },
+          { enName:"Hibiscus", arName:"الكركديه", price:"28 QR", descriptionEn:"Hibiscus tea", descriptionAr:"شاي الكركديه", image: base+"Hibiscus.jpeg", calories:"2 kcal", dietary:["vegan","dairy-free"] }
         ]
       },
       "Café & Chill": {
         arTitle: "كافيه واسترخاء",
         items: [
-          { enName:"Hot Chocolate (Hot/Ice)", arName:"هوت شوكولاتة (ساخن/مثلج)", price:"36 QR", descriptionEn:"Rich and creamy hot chocolate", descriptionAr:"هوت شوكولاتة غنية وكريمية", image: base+"Hotchoco.jpeg", calories:"360 kcal" },
-          { enName:"Piccolo", arName:"بيكولو", price:"24 QR", descriptionEn:"Smooth espresso with steamed milk", descriptionAr:"إسپريسو مع حليب مبخر", image: base+"cortado.jpg", calories:"120 kcal" },
-          { enName:"Latte (Hot/Ice)", arName:"لاتيه (ساخن/مثلج)", price:"29 QR", descriptionEn:"Smooth latte", descriptionAr:"لاتيه ناعم", image: base+"Latte.jpg", calories:"170 kcal" },
-          { enName:"Spanish Latte (Hot/Ice)", arName:"لاتيه إسباني (ساخن/مثلج)", price:"32 QR", descriptionEn:"Spanish latte", descriptionAr:"لاتيه إسباني", image: base+"Latte.jpg", calories:"220 kcal" },
-          { enName:"Salted Caramel Latte (Hot/Ice)", arName:"لاتيه بالكراميل المملح (ساخن/مثلج)", price:"32 QR", descriptionEn:"Salted caramel latte", descriptionAr:"لاتيه بالكراميل المملح", image: base+"Latte.jpg", calories:"230 kcal" },
-          { enName:"Vanilla Latte (Hot/Ice)", arName:"لاتيه فانيليا (ساخن/مثلج)", price:"32 QR", descriptionEn:"Vanilla latte", descriptionAr:"لاتيه فانيليا", image: base+"Latte.jpg", calories:"220 kcal" },
-          { enName:"Cappuccino (Hot/Ice)", arName:"كابوتشينو (ساخن/مثلج)", price:"29 QR", descriptionEn:"Classic cappuccino", descriptionAr:"كابوتشينو كلاسيكي", image: base+"Latte.jpg", calories:"150 kcal" },
-          { enName:"White Mocha (Hot/Ice)", arName:"وايت موكا (ساخن/مثلج)", price:"32 QR", descriptionEn:"White chocolate mocha", descriptionAr:"وايت موكا بالشوكولاتة البيضاء", image: base+"Latte.jpg", calories:"260 kcal" },
-          { enName:"Flat White (Hot/Ice)", arName:"فلات وايت (ساخن/مثلج)", price:"27 QR", descriptionEn:"Smooth flat white", descriptionAr:"فلات وايت ناعم", image: base+"Flatwhite.jpg", calories:"140 kcal" },
-          { enName:"Cortado (Hot/Ice)", arName:"كورتادو (ساخن/مثلج)", price:"24 QR", descriptionEn:"Espresso with a small amount of milk", descriptionAr:"كورتادو إسپريسو مع قليل من الحليب", image: base+"cortado.jpg", calories:"110 kcal" },
-          { enName:"Espresso Single / Double (Hot/Ice)", arName:"إسپريسو مفرد/مزدوج (ساخن/مثلج)", price:"21 QR", descriptionEn:"Espresso shot", descriptionAr:"إسپريسو", image: base+"Espresso.jpeg", calories:"5-10 kcal" },
-          { enName:"Macchiato (Hot/Ice)", arName:"ماكياتو (ساخن/مثلج)", price:"24 QR", descriptionEn:"Espresso with a dash of milk", descriptionAr:"ماكياتو إسپريسو مع لمسة حليب", image: base+"Machiatto.jpeg", calories:"40 kcal" },
-          { enName:"Americano (Hot/Ice)", arName:"أمريكانو (ساخن/مثلج)", price:"21 QR", descriptionEn:"Americano", descriptionAr:"أمريكانو", image: base+"Americano.jpeg", calories:"5 kcal" },
-          { enName:"Mocha (Hot/Ice)", arName:"موكا (ساخن/مثلج)", price:"32 QR", descriptionEn:"Chocolate mocha", descriptionAr:"موكا بالشوكولاتة", image: base+"Latte.jpg", calories:"260 kcal" }
+          { enName:"Hot Chocolate (Hot/Ice)", arName:"هوت شوكولاتة (ساخن/مثلج)", price:"36 QR", descriptionEn:"Rich and creamy hot chocolate", descriptionAr:"هوت شوكولاتة غنية وكريمية", image: base+"Hotchoco.jpeg", calories:"360 kcal", dietary:["contains-dairy"] },
+          { enName:"Piccolo", arName:"بيكولو", price:"24 QR", descriptionEn:"Smooth espresso with steamed milk", descriptionAr:"إسپريسو مع حليب مبخر", image: base+"cortado.jpg", calories:"120 kcal", dietary:["contains-dairy"] },
+          { enName:"Latte (Hot/Ice)", arName:"لاتيه (ساخن/مثلج)", price:"29 QR", descriptionEn:"Smooth latte", descriptionAr:"لاتيه ناعم", image: base+"Latte.jpg", calories:"170 kcal", dietary:["contains-dairy"] },
+          { enName:"Spanish Latte (Hot/Ice)", arName:"لاتيه إسباني (ساخن/مثلج)", price:"32 QR", descriptionEn:"Spanish latte", descriptionAr:"لاتيه إسباني", image: base+"Latte.jpg", calories:"220 kcal", dietary:["contains-dairy"] },
+          { enName:"Salted Caramel Latte (Hot/Ice)", arName:"لاتيه بالكراميل المملح (ساخن/مثلج)", price:"32 QR", descriptionEn:"Salted caramel latte", descriptionAr:"لاتيه بالكراميل المملح", image: base+"Latte.jpg", calories:"230 kcal", dietary:["contains-dairy"] },
+          { enName:"Vanilla Latte (Hot/Ice)", arName:"لاتيه فانيليا (ساخن/مثلج)", price:"32 QR", descriptionEn:"Vanilla latte", descriptionAr:"لاتيه فانيليا", image: base+"Latte.jpg", calories:"220 kcal", dietary:["contains-dairy"] },
+          { enName:"Cappuccino (Hot/Ice)", arName:"كابوتشينو (ساخن/مثلج)", price:"29 QR", descriptionEn:"Classic cappuccino", descriptionAr:"كابوتشينو كلاسيكي", image: base+"Latte.jpg", calories:"150 kcal", dietary:["contains-dairy"] },
+          { enName:"White Mocha (Hot/Ice)", arName:"وايت موكا (ساخن/مثلج)", price:"32 QR", descriptionEn:"White chocolate mocha", descriptionAr:"وايت موكا بالشوكولاتة البيضاء", image: base+"Latte.jpg", calories:"260 kcal", dietary:["contains-dairy"] },
+          { enName:"Flat White (Hot/Ice)", arName:"فلات وايت (ساخن/مثلج)", price:"27 QR", descriptionEn:"Smooth flat white", descriptionAr:"فلات وايت ناعم", image: base+"Flatwhite.jpg", calories:"140 kcal", dietary:["contains-dairy"] },
+          { enName:"Cortado (Hot/Ice)", arName:"كورتادو (ساخن/مثلج)", price:"24 QR", descriptionEn:"Espresso with a small amount of milk", descriptionAr:"كورتادو إسپريسو مع قليل من الحليب", image: base+"cortado.jpg", calories:"110 kcal", dietary:["contains-dairy"] },
+          { enName:"Espresso Single / Double (Hot/Ice)", arName:"إسپريسو مفرد/مزدوج (ساخن/مثلج)", price:"21 QR", descriptionEn:"Espresso shot", descriptionAr:"إسپريسو", image: base+"Espresso.jpeg", calories:"5-10 kcal", dietary:["vegan","gluten-free","dairy-free"] },
+          { enName:"Macchiato (Hot/Ice)", arName:"ماكياتو (ساخن/مثلج)", price:"24 QR", descriptionEn:"Espresso with a dash of milk", descriptionAr:"ماكياتو إسپريسو مع لمسة حليب", image: base+"Machiatto.jpeg", calories:"40 kcal", dietary:["contains-dairy"] },
+          { enName:"Americano (Hot/Ice)", arName:"أمريكانو (ساخن/مثلج)", price:"21 QR", descriptionEn:"Americano", descriptionAr:"أمريكانو", image: base+"Americano.jpeg", calories:"5 kcal", dietary:["vegan","gluten-free","dairy-free"] },
+          { enName:"Mocha (Hot/Ice)", arName:"موكا (ساخن/مثلج)", price:"32 QR", descriptionEn:"Chocolate mocha", descriptionAr:"موكا بالشوكولاتة", image: base+"Latte.jpg", calories:"260 kcal", dietary:["contains-dairy"] }
         ]
       },
       "Specialty Brews": {
         arTitle: "المشروبات المميزة",
         items: [
-          { enName:"V60 Pour Over (Hot & Ice)", arName:"V60 بورت أوفر (ساخن ومثلج)", price:"29 QR", descriptionEn:"V60 pour-over coffee", descriptionAr:"قهوة V60 مصفاة بعناية", image: base+"v60.jpg", calories:"2 kcal" },
-          { enName:"Ice Drip", arName:"آيس دريب", price:"32 QR", descriptionEn:"Slow-dripped ice coffee", descriptionAr:"قهوة باردة قطرية", image: base+"Icedrip.jpeg", calories:"2 kcal" },
-          { enName:"Cold Brew", arName:"كولد برو", price:"36 QR", descriptionEn:"Cold brew coffee", descriptionAr:"كولد برو", image: base+"Coldbrew.jpg", calories:"2 kcal" }
+          { enName:"V60 Pour Over (Hot & Ice)", arName:"V60 بورت أوفر (ساخن ومثلج)", price:"29 QR", descriptionEn:"V60 pour-over coffee", descriptionAr:"قهوة V60 مصفاة بعناية", image: base+"v60.jpg", calories:"2 kcal", dietary:["vegan","dairy-free"] },
+          { enName:"Ice Drip", arName:"آيس دريب", price:"32 QR", descriptionEn:"Slow-dripped ice coffee", descriptionAr:"قهوة باردة قطرية", image: base+"Icedrip.jpeg", calories:"2 kcal", dietary:["vegan","dairy-free"] },
+          { enName:"Cold Brew", arName:"كولد برو", price:"36 QR", descriptionEn:"Cold brew coffee", descriptionAr:"كولد برو", image: base+"Coldbrew.jpg", calories:"2 kcal", dietary:["vegan","dairy-free"] }
         ]
       },
       "Fizz": {
         arTitle: "الفيز",
         items: [
-          { enName:"Churchill", arName:"تشرشل", price:"25 QR", descriptionEn:"Signature drink", descriptionAr:"مشروب تشرشل المميز", image: base+"Churchill.jpeg", calories:"120 kcal" },
-          { enName:"Strawberry Mojito", arName:"موهيتو بالفراولة", price:"38 QR", descriptionEn:"Strawberry mojito", descriptionAr:"موهيتو بالفراولة", image: base+"Strawberrymojito.jpg", calories:"160 kcal" },
-          { enName:"Mulberry Mojito", arName:"موهيتو التوت", price:"42 QR", descriptionEn:"Mulberry mojito", descriptionAr:"موهيتو التوت", image: base+"Mulberrymojito.jpg", calories:"170 kcal" },
-          { enName:"Cooling Breeze", arName:"نسيم بارد", price:"33 QR", descriptionEn:"Mint & lime refreshment", descriptionAr:"نسيم منعش بالنعناع والليمون", image: base+"Coolingbreeze.jpeg", calories:"110 kcal" }
+          { enName:"Churchill", arName:"تشرشل", price:"25 QR", descriptionEn:"Signature drink", descriptionAr:"مشروب تشرشل المميز", image: base+"Churchill.jpeg", calories:"120 kcal", dietary:[] },
+          { enName:"Strawberry Mojito", arName:"موهيتو بالفراولة", price:"38 QR", descriptionEn:"Strawberry mojito", descriptionAr:"موهيتو بالفراولة", image: base+"Strawberrymojito.jpg", calories:"160 kcal", dietary:[] },
+          { enName:"Mulberry Mojito", arName:"موهيتو التوت", price:"42 QR", descriptionEn:"Mulberry mojito", descriptionAr:"موهيتو التوت", image: base+"Mulberrymojito.jpg", calories:"170 kcal", dietary:[] },
+          { enName:"Cooling Breeze", arName:"نسيم بارد", price:"33 QR", descriptionEn:"Mint & lime refreshment", descriptionAr:"نسيم منعش بالنعناع والليمون", image: base+"Coolingbreeze.jpeg", calories:"110 kcal", dietary:[] }
         ]
       },
       "Refreshments": {
         arTitle: "المشروبات الغازية والمرطبات",
         items: [
-          { enName:"Still Water (Small)", arName:"مياه عادية (صغير)", price:"11 QR", descriptionEn:"Small still water", descriptionAr:"زجاجة مياه صغيرة", image: base+"WaterBig.jpg", calories:"0 kcal" },
-          { enName:"Still Water (Big)", arName:"مياه عادية (كبير)", price:"21 QR", descriptionEn:"Large still water", descriptionAr:"زجاجة مياه كبيرة", image: base+"Watersmall.jpg", calories:"0 kcal" },
-          { enName:"Sparkling Water", arName:"مياه غازية", price:"21 QR", descriptionEn:"Sparkling water", descriptionAr:"مياه غازية", image: base+"Sparkling.jpg", calories:"0 kcal" },
-          { enName:"Lemonade", arName:"ليموناضة", price:"30 QR", descriptionEn:"Fresh lemonade", descriptionAr:"ليموناضة طازجة", image: base+"Lemonade.jpg", calories:"120 kcal" },
-          { enName:"Fresh Orange Juice", arName:"عصير برتقال طازج", price:"30 QR", descriptionEn:"Fresh orange juice", descriptionAr:"عصير برتقال طازج", image: base+"Orange.jpeg", calories:"140 kcal" },
-          { enName:"Orange Earl Grey Tea", arName:"شاي البرتقال إيرل جراي", price:"37 QR", descriptionEn:"Earl Grey with orange", descriptionAr:"شاي إيرل جراي بالنكهة البرتقالية", image: base+"Earl.jpeg", calories:"2 kcal" },
-          { enName:"Kinza Cola", arName:"كينزا كولا", price:"17 QR", descriptionEn:"Kinza Cola", descriptionAr:"كينزا كولا", image: base+"Cola.jpg", calories:"150 kcal" },
-          { enName:"Kinza Cola Zero", arName:"كينزا كولا زيرو", price:"17 QR", descriptionEn:"Kinza Cola Zero", descriptionAr:"كينزا كولا زيرو", image: base+"Zero.jpg", calories:"0 kcal" }
+          { enName:"Still Water (Small)", arName:"مياه عادية (صغير)", price:"11 QR", descriptionEn:"Small still water", descriptionAr:"زجاجة مياه صغيرة", image: base+"WaterBig.jpg", calories:"0 kcal", dietary:["vegan","dairy-free"] },
+          { enName:"Still Water (Big)", arName:"مياه عادية (كبير)", price:"21 QR", descriptionEn:"Large still water", descriptionAr:"زجاجة مياه كبيرة", image: base+"Watersmall.jpg", calories:"0 kcal", dietary:["vegan","dairy-free"] },
+          { enName:"Sparkling Water", arName:"مياه غازية", price:"21 QR", descriptionEn:"Sparkling water", descriptionAr:"مياه غازية", image: base+"Sparkling.jpg", calories:"0 kcal", dietary:["vegan","dairy-free"] },
+          { enName:"Lemonade", arName:"ليموناضة", price:"30 QR", descriptionEn:"Fresh lemonade", descriptionAr:"ليموناضة طازجة", image: base+"Lemonade.jpg", calories:"120 kcal", dietary:["vegan","dairy-free"] },
+          { enName:"Fresh Orange Juice", arName:"عصير برتقال طازج", price:"30 QR", descriptionEn:"Fresh orange juice", descriptionAr:"عصير برتقال طازج", image: base+"Orange.jpeg", calories:"140 kcal", dietary:["vegan","dairy-free"] },
+          { enName:"Orange Earl Grey Tea", arName:"شاي البرتقال إيرل جراي", price:"37 QR", descriptionEn:"Earl Grey with orange", descriptionAr:"شاي إيرل جراي بالنكهة البرتقالية", image: base+"Earl.jpeg", calories:"2 kcal", dietary:["vegan","dairy-free"] },
+          { enName:"Kinza Cola", arName:"كينزا كولا", price:"17 QR", descriptionEn:"Kinza Cola", descriptionAr:"كينزا كولا", image: base+"Cola.jpg", calories:"150 kcal", dietary:[] },
+          { enName:"Kinza Cola Zero", arName:"كينزا كولا زيرو", price:"17 QR", descriptionEn:"Kinza Cola Zero", descriptionAr:"كينزا كولا زيرو", image: base+"Zero.jpg", calories:"0 kcal", dietary:[] }
         ]
       }
     };
@@ -421,6 +434,30 @@
       return el;
     }
 
+    // dietary label texts and classes
+    const DIETARY_LABELS = {
+      "vegan": { en: "Vegan", ar: "نباتي" , class: "diet-vegan" },
+      "vegetarian": { en: "Vegetarian", ar: "نباتي/خالي من اللحم" , class: "diet-veg" },
+      "gluten-free": { en: "Gluten-free", ar: "خالي من الغلوتين", class: "diet-gluten" },
+      "contains-nuts": { en: "Contains nuts", ar: "يحتوي على مكسرات", class: "diet-nut" },
+      "contains-gluten": { en: "Contains gluten", ar: "يحتوي على الغلوتين", class: "diet-gluten" },
+      "contains-dairy": { en: "Contains dairy", ar: "يحتوي على ألبان", class: "diet-dairy" },
+      "dairy-free": { en: "Dairy-free", ar: "خالي من الألبان", class: "diet-dairy" },
+      "spicy": { en: "Spicy", ar: "حار", class: "diet-spicy" }
+    };
+
+    function buildDietaryPills(item){
+      const wrap = createEl('div',{class:'dietary-row'});
+      (item.dietary || []).forEach(d=>{
+        const label = DIETARY_LABELS[d];
+        if(!label) return;
+        const pill = createEl('div',{class:'diet-pill '+label.class}, currentLang==='en' ? label.en : label.ar);
+        wrap.appendChild(pill);
+      });
+      // if no pills, return null so we don't render empty row
+      return wrap.children.length ? wrap : null;
+    }
+
     function buildMenuItemRow(item){
       const row = createEl('div',{class:'menu-item',tabindex:0,role:'listitem'});
       const thumb = createEl('div',{class:'thumb'});
@@ -433,7 +470,14 @@
       const nm = createEl('div',{class:'name'}, nameTxt || '');
       const desc = createEl('div',{class:'desc'}, descTxt || '');
       const cal = createEl('div',{class:'calories'}, item.calories || '');
-      meta.appendChild(nm); meta.appendChild(desc); meta.appendChild(cal);
+
+      meta.appendChild(nm);
+      meta.appendChild(desc);
+
+      const pills = buildDietaryPills(item);
+      if(pills) meta.appendChild(pills);
+
+      meta.appendChild(cal);
 
       const price = createEl('div',{class:'price'}, item.price || '');
 
@@ -541,6 +585,12 @@
       document.getElementById('modal-price').textContent = it.price || '';
       document.getElementById('modal-cal').textContent = it.calories ? (currentLang==='en' ? `Estimated: ${it.calories}` : `سعرات تقديرية: ${it.calories}`) : '';
       document.getElementById('modal-description').textContent = currentLang==='en' ? it.descriptionEn : it.descriptionAr;
+      const modalDiet = document.getElementById('modal-dietary');
+      modalDiet.innerHTML = '';
+      (it.dietary || []).forEach(d=>{
+        const lab = DIETARY_LABELS[d];
+        if(lab) modalDiet.appendChild(createEl('div',{class:'diet-pill '+lab.class}, currentLang==='en' ? lab.en : lab.ar));
+      });
       itemModal.classList.add('show'); itemModal.setAttribute('aria-hidden','false');
       const remove = trapFocus(itemModal); itemModal._removeTrap = remove;
       const close = document.getElementById('modalClose'); if(close) close.focus();
@@ -591,7 +641,7 @@
       announce(currentLang==='en'?'Menu opened':'تم فتح القائمة');
     });
 
-    /* Language toggle: switches UI and content to Arabic/English */
+    /* Language toggle: switches UI and content to Arabic/English — does NOT change background visuals */
     langToggle.addEventListener('click', ()=>{
       currentLang = currentLang==='en' ? 'ar' : 'en';
       document.documentElement.lang = currentLang==='ar' ? 'ar' : 'en';
@@ -602,6 +652,7 @@
       document.getElementById('brandTitle').textContent = currentLang==='en' ? 'Turkiana' : 'تركيانا';
       document.getElementById('brandSub').textContent = currentLang==='en' ? 'CAFÉ & SWEETS' : 'مقهى وحلويات';
       document.getElementById('brandTag').textContent = currentLang==='en' ? 'Where Tradition Meets Elegance' : 'حيث يلتقي التراث بالأناقة';
+      // Rebuild categories so labels & descriptions update
       renderCategories();
       if(searchInput.value && searchInput.value.trim()) handleSearch(searchInput.value);
       announce(currentLang==='en' ? 'Language switched to English' : 'تم تغيير اللغة إلى العربية');
@@ -631,7 +682,7 @@
     document.addEventListener('DOMContentLoaded', init);
 
     /* Expose for debug */
-    window._turkiana = { renderCategories, handleSearch };
+    window._turkiana = { renderCategories, handleSearch, menuData };
   </script>
 </body>
 </html>
