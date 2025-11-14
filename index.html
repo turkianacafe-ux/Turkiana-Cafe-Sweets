@@ -15,15 +15,14 @@
       --radius:18px;
       --max-width:1100px;
       --shadow:0 20px 60px rgba(2,6,23,0.6);
-      /* glass/tint colors for main menu */
-      --glass-bg: linear-gradient(180deg, rgba(122,25,33,0.24), rgba(255,255,255,0.02));
-      --glass-border: rgba(255,255,255,0.06);
-      --glass-highlight: rgba(202,168,74,0.06);
     }
 
+    /* Basic resets */
     *{box-sizing:border-box;margin:0;padding:0;-webkit-font-smoothing:antialiased}
-    html,body{height:100%;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial;background:var(--bg);color:#fff;-webkit-text-size-adjust:100%}
+    html { font-size:16px; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; }
+    body{height:100%;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial;background:var(--bg);color:#fff;-webkit-text-size-adjust:100%}
     a { color: inherit; text-decoration: none; }
+    img{display:block;max-width:100%}
 
     /* Background video */
     .bg-video{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
@@ -35,8 +34,8 @@
       backdrop-filter: blur(6px) saturate(110%); -webkit-backdrop-filter: blur(6px) saturate(110%);
       pointer-events:none; }
 
-    /* Top controls */
-    .top-controls{position:fixed;top:14px;left:50%;transform:translateX(-50%);width:calc(100% - 32px);max-width:var(--max-width);z-index:12;display:flex;justify-content:space-between;align-items:center;pointer-events:none}
+    /* Top controls: avoid translateX to prevent odd RTL/zoom behavior */
+    .top-controls{position:fixed;top:14px;left:0;right:0;margin:0 auto;z-index:12;display:flex;justify-content:space-between;align-items:center;pointer-events:none;width:calc(100% - 32px);max-width:var(--max-width);padding:0 16px}
     .lang{pointer-events:auto;padding:8px 12px;border-radius:999px;background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));border:1px solid rgba(255,255,255,0.06);color:#fff;font-weight:700;cursor:pointer}
 
     /* App container */
@@ -44,7 +43,7 @@
     .centered{width:100%;max-width:var(--max-width);margin:0 auto}
 
     /* Marquee */
-    .marquee-wrap{Width:100%;overflow:hidden;border-radius:12px;margin-bottom:18px;pointer-events:none}
+    .marquee-wrap{width:100%;overflow:hidden;border-radius:12px;margin-bottom:18px;pointer-events:none}
     .marquee{display:flex;gap:18px;align-items:center;white-space:nowrap;animation:marquee 26s linear infinite}
     .marquee img{height:84px;border-radius:10px;object-fit:cover;box-shadow:0 10px 30px rgba(0,0,0,0.6)}
     @keyframes marquee {0%{transform:translateX(0%);}100%{transform:translateX(-50%);} }
@@ -57,12 +56,11 @@
     .tag{color:rgba(255,255,255,0.9);margin-bottom:14px}
     .primary{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:12px 22px;border-radius:999px;background:linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));color:#fff;font-weight:800;border:1px solid rgba(255,255,255,0.06);cursor:pointer}
 
-    /* Menu page - modified to use glassy burgundy/gold/white style while preserving original structure */
+    /* Menu page */
     .menu-page{display:none;width:100%;max-width:var(--max-width);margin:0 auto;padding-bottom:120px}
     .menu-panel{
       border-radius:16px;
       padding:16px;
-      /* iOS-style liquid glass: burgundy tint with gold highlight + frosted blur */
       background:
         linear-gradient(180deg, rgba(122,25,33,0.22), rgba(255,255,255,0.02));
       border:1px solid rgba(255,255,255,0.06);
@@ -72,7 +70,6 @@
       position:relative;
       overflow: hidden;
     }
-    /* subtle decorative gold sheen bar at top of menu panel */
     .menu-panel::before{
       content:'';
       position:absolute;
@@ -85,13 +82,11 @@
       pointer-events:none;
     }
 
-    /* Search & contact (unchanged layout; styles preserved but color tuned) */
     .search{display:flex;justify-content:center;margin:12px 0}
     .search input{width:100%;max-width:760px;padding:12px 16px;border-radius:999px;font-size:15px;border:1px solid rgba(255,255,255,0.06);background:rgba(0,0,0,0.18);color:#fff;outline:none}
     .contact-row-bottom{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:18px}
     .contact-pill{display:inline-flex;gap:8px;align-items:center;padding:10px 12px;border-radius:999px;color:#fff;font-weight:700;text-decoration:none;background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.06);box-shadow:0 10px 30px rgba(0,0,0,0.45);cursor:pointer}
 
-    /* Categories & results (kept same) */
     .categories{display:flex;flex-direction:column;gap:12px;margin-top:8px}
     .category{display:flex;align-items:center;justify-content:space-between;padding:14px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.04);color:#fff;font-weight:800;cursor:pointer}
     .category .title{color:var(--gold);font-size:15px}
@@ -100,7 +95,6 @@
     .items.open{display:flex}
     .flat-results{display:flex;flex-direction:column;gap:12px;margin-top:8px}
 
-    /* Menu item (unchanged) */
     .menu-item{display:flex;gap:12px;align-items:center;padding:12px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.03);cursor:pointer;color:#fff;box-shadow:0 8px 30px rgba(0,0,0,0.45)}
     .thumb{width:84px;height:84px;border-radius:10px;overflow:hidden;background:#111;flex-shrink:0;display:flex;align-items:center;justify-content:center}
     .thumb img{width:100%;height:100%;object-fit:cover;display:block}
@@ -110,7 +104,6 @@
     .price{min-width:88px;text-align:right;color:var(--maroon);font-weight:800}
     .calories{font-size:12px;color:rgba(255,255,255,0.78);font-weight:700;margin-top:4px}
 
-    /* Dietary pills */
     .dietary-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
     .diet-pill{font-size:12px;padding:6px 8px;border-radius:10px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);color:#fff;font-weight:700}
     .diet-vegan{background:#1e6f30}
@@ -120,17 +113,15 @@
     .diet-dairy{background:#305a9a}
     .diet-spicy{background:#9b2b2b}
 
-    /* Modal & hover preview */
     .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:30;background:rgba(2,6,23,0.6)}
     .modal.show{display:flex}
     .modal-card{width:92%;max-width:520px;background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.96));border-radius:14px;padding:18px;color:#2b1a0f;box-shadow:0 30px 100px rgba(2,6,23,0.7)}
     .close-btn{position:absolute;right:18px;top:18px;background:rgba(0,0,0,0.06);color:#111;border-radius:8px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer}
     #hover-preview{position:fixed;display:none;max-width:300px;max-height:300px;border-radius:12px;z-index:28;box-shadow:0 24px 80px rgba(2,6,23,0.7);overflow:hidden}
 
-    /* Floating WhatsApp */
     .fab{position:fixed;right:18px;bottom:18px;z-index:14;width:64px;height:64px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#25D366,#20BA5A);color:#fff;font-size:22px;box-shadow:0 18px 60px rgba(2,6,23,0.6)}
 
-    /* Responsive rules: scale fonts and spacing for tablets/phones */
+    /* Responsive */
     @media (max-width:1000px){
       .brand{font-size:36px}
       .marquee img{height:72px}
@@ -146,15 +137,32 @@
       .search input{padding:10px 12px}
     }
 
-    /* Respect reduced motion - hide bg video for reduced-motion preference */
+    /* Respect reduced motion - hide bg video and marquee for reduced-motion */
     @media (prefers-reduced-motion: reduce) {
       .bg-video{display:none !important;}
       .marquee{animation: none !important;}
     }
+
+    /* Low-end mode (applied by JS when deviceMemory, saveData, or slow connection detected) */
+    .low-end .bg-video { display: none !important; }
+    .low-end .bg-overlay { display: none !important; }
+    .low-end .menu-panel { backdrop-filter: none !important; box-shadow: none !important; border: 1px solid rgba(255,255,255,0.03) !important; }
+    .low-end .marquee img { height:48px !important; }
+    .low-end .menu-item { box-shadow: none !important; border: 1px solid rgba(255,255,255,0.02) !important; }
+
+    /* RTL adjustments */
+    [dir="rtl"] .marquee { direction: ltr; } /* keep marquee LTR to avoid reversing images */
+    [dir="rtl"] .top-controls { direction: rtl; }
+    [dir="rtl"] .brand { text-align: center; }
+    /* Avoid transform-centering issues: center elements via flexbox/margins, not translate */
+    .center-abs { left:50%; transform:translateX(-50%); }
+    [dir="rtl"] .center-abs { left:50%; transform:translateX(-50%); }
+
+    /* Prevent browsers from auto-increasing font sizes on language change */
+    * { -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; -moz-text-size-adjust:100%; }
   </style>
 </head>
 <body>
-  <!-- Background video remains for landing only. We'll keep element but hide it when menu is open. -->
   <div class="bg-video" aria-hidden="true">
     <video id="bgVideo" autoplay muted loop playsinline preload="metadata" poster="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Breakfast.jpg">
       <source src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Video.mp4" type="video/mp4">
@@ -163,7 +171,6 @@
   <div class="bg-overlay" aria-hidden="true"></div>
 
   <div class="top-controls" role="region" aria-label="Top controls">
-    <!-- aria-pressed will be updated dynamically -->
     <button id="langToggle" class="lang" aria-pressed="false" aria-label="Toggle language">العربية</button>
     <div style="pointer-events:auto"></div>
   </div>
@@ -174,7 +181,6 @@
       <section id="landingView" class="landing" aria-label="Landing page">
         <div style="max-width:var(--max-width);margin:0 auto;width:100%">
 
-          <!-- Marquee of images at top of landing (your repo images) -->
           <div class="marquee-wrap" aria-hidden="true">
             <div id="marquee" class="marquee" role="img" aria-label="Gallery">
               <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Breakfast.jpg" alt="">
@@ -193,7 +199,6 @@
           </div>
 
           <div class="hero" role="region" aria-label="Hero">
-            <!-- Use Playfair-like serif look for Turkiana title while keeping markup identical -->
             <div id="brandTitle" class="brand">Turkiana</div>
             <div id="brandSub" class="sub">CAFÉ & SWEETS</div>
             <div id="brandTag" class="tag">Where Tradition Meets Elegance</div>
@@ -222,7 +227,6 @@
             <p id="noResultsText">No items found. Try a different search.</p>
           </div>
 
-          <!-- Contact row at bottom for the menu page -->
           <div class="contact-row-bottom" role="region" aria-label="Contact actions">
             <a class="contact-pill" id="contact-whatsapp" href="https://wa.me/97451866671" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
             <a class="contact-pill" id="contact-location" href="https://maps.app.goo.gl/ud3JKc8DX1HxY6vk7" target="_blank" rel="noopener noreferrer">📍 Location</a>
@@ -241,10 +245,8 @@
     </div>
   </div>
 
-  <!-- Floating WhatsApp -->
   <a class="fab" href="https://wa.me/97451866671" aria-label="WhatsApp" title="WhatsApp">💬</a>
 
-  <!-- Item modal -->
   <div id="item-modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
     <div class="modal-card" role="document">
       <button class="close-btn" id="modalClose" aria-label="Close">✕</button>
@@ -256,7 +258,6 @@
     </div>
   </div>
 
-  <!-- Image modal -->
   <div id="image-modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
     <div class="modal-card" style="background:transparent;box-shadow:none">
       <button class="close-btn" id="imageModalClose" aria-label="Close">✕</button>
@@ -264,23 +265,53 @@
     </div>
   </div>
 
-  <!-- Hover preview -->
   <img id="hover-preview" src="" alt="Preview" />
 
   <div id="ariaLive" aria-live="polite" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;"></div>
 
   <script>
+    // Early low-end detection to reduce heavy resource loading/rendering
+    (function optimizeForLowEnd() {
+      try {
+        const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+        const saveData = conn && conn.saveData;
+        const downlink = conn && conn.downlink; // Mbps
+        const deviceMemory = navigator.deviceMemory || 0; // GB, may be undefined
+
+        const isLowEnd = saveData
+          || (deviceMemory && deviceMemory <= 1)
+          || (downlink && downlink < 1.5)
+          || /Android\s[0-6]\b|MSIE|Trident/i.test(navigator.userAgent);
+
+        if (isLowEnd) {
+          document.documentElement.classList.add('low-end');
+          // Hide bg video early if present
+          const bg = document.querySelector('.bg-video');
+          if (bg) bg.style.display = 'none';
+          // Disable marquee animation
+          const marquee = document.querySelector('.marquee');
+          if (marquee) marquee.style.animation = 'none';
+          window._isLowEnd = true;
+        } else {
+          window._isLowEnd = false;
+        }
+      } catch (e) {
+        console.warn('Low-end detection failed', e);
+        window._isLowEnd = false;
+      }
+    })();
+
     // Slow-motion background video playback (0.6x) — keep for landing only.
     const bgVideo = document.getElementById('bgVideo');
     if (bgVideo) {
-      bgVideo.playbackRate = 0.6;
-      bgVideo.addEventListener('loadedmetadata', ()=>{ try{ bgVideo.play(); }catch(e){} });
+      try {
+        bgVideo.playbackRate = 0.6;
+        bgVideo.addEventListener('loadedmetadata', ()=>{ try{ bgVideo.play(); }catch(e){} });
+      } catch (e) { /* ignore */ }
     }
 
-    // Use your repo base URL (kept exactly as in your provided file)
     const base = "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/";
 
-    // MENU DATA: (unchanged; the long menuData block from your original file should be placed here)
     const menuData = {
        "Turkish Morning": {
         arTitle: "الصباح التركي",
@@ -340,7 +371,6 @@
       "Fondue": {
         arTitle: "الفوندو",
         items: [
-          // CORRECTION: Strawberry Fondue is strawberries + milk chocolate only — no nuts.
           { enName:"Strawberry Fondue", arName:"فوندو بالفراولة", price:"25 QR", descriptionEn:"Fresh strawberries with melted milk chocolate", descriptionAr:"فراولة طازجة مع شوكولاتة بالحليب مذابة", image: base+"Fondue1.jpeg", calories:"320 kcal", dietary:["contains-dairy"] },
           { enName:"Strawberry-Banana Fondue", arName:"فوندو فراولة وموز", price:"35 QR", descriptionEn:"Strawberries & bananas with chocolate", descriptionAr:"فراولة وموز مع شوكولاتة ذائبة", image: base+"Fondue2.jpeg", calories:"410 kcal", dietary:["contains-dairy"] },
           { enName:"Turkiana Fondue", arName:"فوندو تركيانا", price:"45 QR", descriptionEn:"Signature fondue with assorted fruits", descriptionAr:"فوندو مع مجموعة من الفواكه", image: base+"Fondue3.jpeg", calories:"480 kcal", dietary:[] }
@@ -473,7 +503,6 @@
       return el;
     }
 
-    // dietary label texts and classes (unchanged)
     const DIETARY_LABELS = {
       "vegan": { en: "Vegan", ar: "نباتي" , class: "diet-vegan" },
       "vegetarian": { en: "Vegetarian", ar: "نباتي/خالي من اللحم" , class: "diet-veg" },
@@ -556,7 +585,6 @@
       if(open){
         itemsWrap.classList.remove('open'); itemsWrap.setAttribute('aria-hidden','true'); catEl.setAttribute('aria-expanded','false'); catEl.querySelector('.chev').textContent='▸';
       } else {
-        // close others
         document.querySelectorAll('.items.open').forEach(x=>{ x.classList.remove('open'); x.setAttribute('aria-hidden','true'); const p=x.previousElementSibling; if(p){ p.setAttribute('aria-expanded','false'); p.querySelector('.chev').textContent='▸'; } });
         itemsWrap.classList.add('open'); itemsWrap.setAttribute('aria-hidden','false'); catEl.setAttribute('aria-expanded','true'); catEl.querySelector('.chev').textContent='▾';
         const first = itemsWrap.querySelector('.menu-item'); if(first) first.focus();
@@ -653,7 +681,7 @@
     /* Hover preview (desktop) */
     const hoverPrev = document.getElementById('hover-preview');
     let isTouch = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
-    document.addEventListener('mouseover',(e)=>{ if(isTouch) return; const t=e.target; if(t && t.tagName==='IMG' && t.closest('.thumb')){ hoverPrev.src = t.src; hoverPrev.style.display='block'; }});
+    document.addEventListener('mouseover',(e)=>{ if(isTouch || window._isLowEnd) return; const t=e.target; if(t && t.tagName==='IMG' && t.closest('.thumb')){ hoverPrev.src = t.src; hoverPrev.style.display = 'block'; }});
     document.addEventListener('mousemove',(e)=>{ if(!hoverPrev || hoverPrev.style.display!=='block') return; let x=e.clientX+18,y=e.clientY+18; const vw=window.innerWidth,vh=window.innerHeight,mw=300,mh=300; if(x+mw>vw) x=e.clientX-mw-18; if(y+mh>vh) y=e.clientY-mh-18; hoverPrev.style.left=x+'px'; hoverPrev.style.top=y+'px'; });
     document.addEventListener('mouseout',(e)=>{ const t=e.target; if(t && t.tagName==='IMG' && t.closest('.thumb')) hoverPrev.style.display='none'; });
 
@@ -673,27 +701,20 @@
       });
     }
 
-    /* Open menu navigation (separate view)
-       IMPORTANT CHANGE (minimal & requested): do NOT autofocus the search input when opening the menu.
-       Also hide the background video when the menu is active (so video stays landing-only).
-    */
+    /* Open menu navigation (do not autofocus search on open) */
     openMenuBtn.addEventListener('click', ()=>{
       landingView.style.display = 'none';
       menuPage.style.display = 'block';
       menuPage.setAttribute('aria-hidden','false');
-      // Removed: document.getElementById('searchBar').focus();
       announce(currentLang==='en'?'Menu opened':'تم فتح القائمة');
 
-      // Hide bg video and overlay to ensure menu page shows glassy burgundy background only
       const bg = document.querySelector('.bg-video');
       const overlay = document.querySelector('.bg-overlay');
       if(bg) bg.style.display = 'none';
       if(overlay) overlay.style.display = 'none';
-      // Optionally add a subtle page-level focus for accessibility
       menuPage.focus?.();
     });
 
-    /* When returning to landing, restore video display */
     function showLanding(){
       landingView.style.display = 'flex';
       menuPage.style.display = 'none';
@@ -705,28 +726,26 @@
       announce(currentLang==='en'?'Landing shown':'تم عرض الصفحة الرئيسية');
     }
 
-    /* Language toggle: switches UI and content to Arabic/English — does NOT change background visuals
-       Minimal accessibility improvement: update aria-pressed state properly when toggled.
-    */
+    /* Replace lang toggle with batched updates to avoid reflow-triggered auto-zoom on tablets */
     langToggle.addEventListener('click', ()=>{
-      currentLang = currentLang==='en' ? 'ar' : 'en';
-      document.documentElement.lang = currentLang==='ar' ? 'ar' : 'en';
-      document.documentElement.dir = currentLang==='ar' ? 'rtl' : 'ltr';
-      langToggle.textContent = currentLang==='en' ? 'العربية' : 'English';
-      // update aria-pressed to reflect "Arabic is active" when true (simple toggle)
-      langToggle.setAttribute('aria-pressed', String(currentLang==='ar'));
-      document.getElementById('searchBar').placeholder = currentLang==='en' ? 'Search menu items...' : 'ابحث عن عناصر القائمة...';
-      document.getElementById('openMenuBtn').textContent = currentLang==='en' ? 'Explore Our Menu' : 'استعرض قائمتنا';
-      document.getElementById('brandTitle').textContent = currentLang==='en' ? 'Turkiana' : 'تركيانا';
-      document.getElementById('brandSub').textContent = currentLang==='en' ? 'CAFÉ & SWEETS' : 'مقهى وحلويات';
-      document.getElementById('brandTag').textContent = currentLang==='en' ? 'Where Tradition Meets Elegance' : 'حيث يلتقي التراث بالأناقة';
-      // Rebuild categories so labels & descriptions update
-      renderCategories();
-      if(searchInput.value && searchInput.value.trim()) handleSearch(searchInput.value);
-      announce(currentLang==='en' ? 'Language switched to English' : 'تم تغيير اللغة إلى العربية');
+      currentLang = currentLang === 'en' ? 'ar' : 'en';
+      requestAnimationFrame(()=>{
+        document.documentElement.lang = currentLang === 'ar' ? 'ar' : 'en';
+        document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+        langToggle.textContent = currentLang === 'en' ? 'العربية' : 'English';
+        langToggle.setAttribute('aria-pressed', String(currentLang === 'ar'));
+        document.getElementById('searchBar').placeholder = currentLang === 'en' ? 'Search menu items...' : 'ابحث عن عناصر القائمة...';
+        document.getElementById('openMenuBtn').textContent = currentLang === 'en' ? 'Explore Our Menu' : 'استعرض قائمتنا';
+        document.getElementById('brandTitle').textContent = currentLang === 'en' ? 'Turkiana' : 'تركيانا';
+        document.getElementById('brandSub').textContent = currentLang === 'en' ? 'CAFÉ & SWEETS' : 'مقهى وحلويات';
+        document.getElementById('brandTag').textContent = currentLang === 'en' ? 'Where Tradition Meets Elegance' : 'حيث يلتقي التراث بالأناقة';
+        renderCategories();
+        if(searchInput.value && searchInput.value.trim()) handleSearch(searchInput.value);
+        announce(currentLang === 'en' ? 'Language switched to English' : 'تم تغيير اللغة إلى العربية');
+      });
     });
 
-    /* Search input logic (unchanged debounce & behavior) */
+    /* Search input debounce */
     let searchTimer = null;
     if (searchInput) {
       searchInput.addEventListener('input',(e)=>{
@@ -752,7 +771,6 @@
     }
     document.addEventListener('DOMContentLoaded', init);
 
-    /* Expose for debug */
     window._turkiana = { renderCategories, handleSearch, menuData, showLanding };
   </script>
 </body>
