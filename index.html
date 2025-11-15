@@ -18,18 +18,17 @@
       --glass-bg: linear-gradient(180deg, rgba(122,25,33,0.24), rgba(255,255,255,0.02));
     }
 
-    /* Basic resets + stable base font size to avoid auto-zoom on language switch */
     *{box-sizing:border-box;margin:0;padding:0;-webkit-font-smoothing:antialiased}
-    html { font-size:16px; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; -moz-text-size-adjust:100%; }
-    body{height:100%;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial;background:var(--bg);color:#fff}
+    html,body{height:100%;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial;background:var(--bg);color:#fff;-webkit-text-size-adjust:100%}
     a { color: inherit; text-decoration: none; }
     img{display:block;max-width:100%}
 
-    /* Background container (video injected conditionally via JS) */
+    /* Prevent browser auto-increase of fonts on language change (helps tablets) */
+    html { font-size:16px; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; -moz-text-size-adjust:100%; }
+
+    /* Background video */
     .bg-video{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
     .bg-video video{width:100%;height:100%;object-fit:cover;opacity:0.86;filter:contrast(1.01) saturate(1.02) brightness(1.04)}
-    .bg-poster{position:fixed;inset:0;z-index:0;background-size:cover;background-position:center;opacity:0.95;pointer-events:none}
-
     .bg-overlay{position:fixed;inset:0;z-index:1;background:
       radial-gradient(800px 400px at 10% 20%, rgba(255,255,255,0.02), transparent 10%),
       radial-gradient(700px 300px at 85% 80%, rgba(255,255,255,0.02), transparent 12%),
@@ -37,7 +36,7 @@
       backdrop-filter: blur(6px) saturate(110%); -webkit-backdrop-filter: blur(6px) saturate(110%);
       pointer-events:none; }
 
-    /* Top controls: avoid translate centering (fix RTL/tablet zoom issues) */
+    /* Top controls: avoid translateX centering (fixes weird zoom/shift on some tablets when dir changes) */
     .top-controls{position:fixed;top:14px;left:0;right:0;margin:0 auto;z-index:12;display:flex;justify-content:space-between;align-items:center;pointer-events:none;width:calc(100% - 32px);max-width:var(--max-width);padding:0 16px}
     .lang{pointer-events:auto;padding:8px 12px;border-radius:999px;background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));border:1px solid rgba(255,255,255,0.06);color:#fff;font-weight:700;cursor:pointer}
 
@@ -71,7 +70,17 @@
       position:relative;
       overflow: hidden;
     }
-    .menu-panel::before{ content:''; position:absolute; left:-30%; top:-20%; width:160%; height:32%; background:radial-gradient(600px 120px at 50% 0%, rgba(202,168,74,0.07), transparent 40%); transform:rotate(-6deg); pointer-events:none; }
+    .menu-panel::before{
+      content:'';
+      position:absolute;
+      left:-30%;
+      top:-20%;
+      width:160%;
+      height:32%;
+      background:radial-gradient(600px 120px at 50% 0%, rgba(202,168,74,0.07), transparent 40%);
+      transform:rotate(-6deg);
+      pointer-events:none;
+    }
 
     .search{display:flex;justify-content:center;margin:12px 0}
     .search input{width:100%;max-width:760px;padding:12px 16px;border-radius:999px;font-size:15px;border:1px solid rgba(255,255,255,0.06);background:rgba(0,0,0,0.18);color:#fff;outline:none}
@@ -88,7 +97,7 @@
 
     .menu-item{display:flex;gap:12px;align-items:center;padding:12px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.03);cursor:pointer;color:#fff;box-shadow:0 8px 30px rgba(0,0,0,0.45)}
     .thumb{width:84px;height:84px;border-radius:10px;overflow:hidden;background:#111;flex-shrink:0;display:flex;align-items:center;justify-content:center}
-    .thumb picture,img{width:100%;height:100%;object-fit:cover;display:block}
+    .thumb img{width:100%;height:100%;object-fit:cover;display:block}
     .meta{flex:1;display:flex;flex-direction:column;gap:6px;min-width:0}
     .name{color:var(--gold);font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     .desc{color:rgba(255,255,255,0.85);font-size:13px;line-height:1.2;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
@@ -127,16 +136,6 @@
       .search input{padding:10px 12px}
     }
 
-    /* Tablet-targeted CSS to reduce heavy effects for 700-1200px widths (C) */
-    @media (min-width:700px) and (max-width:1200px) {
-      /* reduce or remove expensive painting ops on tablets */
-      .menu-panel { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; box-shadow: 0 8px 30px rgba(0,0,0,0.45); }
-      .bg-overlay { display: none !important; }
-      .hero, .menu-panel { border-radius:12px; }
-      .brand { font-size:34px; }
-      html { font-size:15px; } /* slightly smaller baseline to avoid browser auto-zoom heuristics on direction change */
-    }
-
     /* Respect reduced motion */
     @media (prefers-reduced-motion: reduce) {
       .bg-video{display:none !important;}
@@ -145,8 +144,7 @@
 
     /* Low-end mode (applied by JS when deviceMemory, saveData, or slow connection detected) */
     .low-end .bg-video { display: none !important; }
-    .low-end .bg-poster { display: block !important; }
-    .low-end .marquee { animation: none !important; }
+    .low-end .bg-overlay { display: none !important; }
     .low-end .menu-panel { backdrop-filter: none !important; box-shadow: none !important; border: 1px solid rgba(255,255,255,0.03) !important; }
     .low-end .marquee img { height:48px !important; }
     .low-end .menu-item { box-shadow: none !important; border: 1px solid rgba(255,255,255,0.02) !important; }
@@ -161,8 +159,12 @@
   </style>
 </head>
 <body>
-  <!-- Background video / poster are loaded conditionally via JS (B) -->
-  <div id="bgContainer" aria-hidden="true"></div>
+  <!-- Background video remains for landing only -->
+  <div class="bg-video" aria-hidden="true">
+    <video id="bgVideo" autoplay muted loop playsinline preload="metadata" poster="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Breakfast.jpg">
+      <source src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Video.mp4" type="video/mp4">
+    </video>
+  </div>
   <div class="bg-overlay" aria-hidden="true"></div>
 
   <div class="top-controls" role="region" aria-label="Top controls">
@@ -185,7 +187,6 @@
               <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Kunafa.jpg" alt="">
               <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Burger.jpeg" alt="">
               <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Fondue1.jpeg" alt="">
-              <!-- duplicated for continuous marquee -->
               <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Breakfast.jpg" alt="">
               <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg" alt="">
               <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Latte.jpg" alt="">
@@ -270,78 +271,46 @@
   <div id="ariaLive" aria-live="polite" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;"></div>
 
   <script>
-    /**
-     * Implementations:
-     * A) Responsive images (srcset + WebP) — build <picture> in JS for each thumbnail
-     * B) Conditional background video loader — only load video on capable devices
-     * C) Tablet-targeted CSS — included in <style> (700-1200px rules)
-     *
-     * The menu rendering keeps your original menuData and interactions.
-     */
-
-    // --- B) Conditional background video loader ---
-    (function loadBackgroundMediaConditionally() {
+    // Early low-end detection to reduce visuals (hide video, stop marquee, simpler styles)
+    (function optimizeForLowEnd() {
       try {
-        const container = document.getElementById('bgContainer');
         const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
         const saveData = conn && conn.saveData;
         const downlink = conn && conn.downlink; // Mbps
-        const deviceMemory = navigator.deviceMemory || 0; // GB
-        const isLowMemory = deviceMemory && deviceMemory < 2;
-        const slowConnection = downlink && downlink < 1.5;
-        const poorNetwork = saveData || slowConnection;
-        const uaLow = /Android\s[0-6]\b|MSIE|Trident/i.test(navigator.userAgent);
+        const deviceMemory = navigator.deviceMemory || 0; // GB, may be undefined
 
-        // Only load video when device likely capable and user hasn't requested reduced motion
-        const shouldLoadVideo = !poorNetwork && !isLowMemory && !uaLow && window.matchMedia('(prefers-reduced-motion: no-preference)').matches;
+        const isLowEnd = saveData
+          || deviceMemory && deviceMemory <= 1
+          || (downlink && downlink < 1.5)
+          || /Android\s[0-6]\b|MSIE|Trident/i.test(navigator.userAgent);
 
-        const poster = 'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Breakfast.jpg';
-
-        if (shouldLoadVideo) {
-          const wrapper = document.createElement('div');
-          wrapper.className = 'bg-video';
-          wrapper.innerHTML = `
-            <video id="bgVideo" autoplay muted loop playsinline preload="metadata" poster="${poster}">
-              <source src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Video.mp4" type="video/mp4">
-            </video>
-          `;
-          container.appendChild(wrapper);
-
-          const vid = wrapper.querySelector('video');
-          vid.playbackRate = 0.85;
-          vid.addEventListener('loadedmetadata', ()=>{ try{ vid.play(); }catch(e){} });
-        } else {
-          const posterEl = document.createElement('div');
-          posterEl.className = 'bg-poster';
-          posterEl.style.backgroundImage = `url('${poster}')`;
-          container.appendChild(posterEl);
+        if (isLowEnd) {
           document.documentElement.classList.add('low-end');
+          const bg = document.querySelector('.bg-video'); if (bg) bg.style.display = 'none';
+          const marquee = document.querySelector('.marquee'); if (marquee) marquee.style.animation = 'none';
+          window._isLowEnd = true;
+        } else {
+          window._isLowEnd = false;
         }
-      } catch (e) {
-        console.warn('Background media conditional loader failed', e);
+      } catch(e) {
+        console.warn('optimizeForLowEnd detection failed', e);
+        window._isLowEnd = false;
       }
     })();
 
-    // --- A) Responsive images helper ---
-    function deriveResponsiveSources(origUrl) {
-      const idx = origUrl.lastIndexOf('.');
-      if (idx === -1) return { webpSrcset: null, imgSrcset: null, fallback: origUrl };
-      const base = origUrl.substring(0, idx);
-      const ext = origUrl.substring(idx+1);
-      const sizes = [320, 640, 1024];
-      const webpSources = sizes.map(s => `${base}-${s}.webp ${s}w`).join(', ');
-      const jpgSources = sizes.map(s => `${base}-${s}.${ext} ${s}w`).join(', ');
-      return {
-        webpSrcset: webpSources,
-        imgSrcset: jpgSources,
-        fallback: origUrl
-      };
+    // Slow-motion background video playback (0.6x)
+    const bgVideo = document.getElementById('bgVideo');
+    if (bgVideo) {
+      bgVideo.playbackRate = 0.6;
+      bgVideo.addEventListener('loadedmetadata', ()=>{ try{ bgVideo.play(); }catch(e){} });
     }
 
-    // --- Menu data (kept intact from your original file) ---
+    // Base URL for images (your repo)
     const base = "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/";
+
+    // --- menuData: preserved from your original file (kept intact) ---
     const menuData = {
-        "Turkish Morning": {
+       "Turkish Morning": {
         arTitle: "الصباح التركي",
         items: [
           { enName:"Turkish Classic Breakfast", arName:"فطور تركي كلاسيكي", price:"65 QR", descriptionEn:"Authentic Turkish breakfast with fresh bread, cheese, olives, tomatoes, cucumbers, honey, and clotted cream served with Turkish tea", descriptionAr:"فطور تركي أصيل مع خبز طازج، جبن، زيتون، طماطم، خيار، عسل وقشدة، يقدم مع شاي تركي", image: base+"Breakfast.jpg", calories:"680 kcal", dietary:["vegetarian","contains-dairy"] },
@@ -375,6 +344,7 @@
           { enName:"Carrot Slice Baklava", arName:"بقلاوة شريحة الجزر", price:"40 QR", descriptionEn:"Classic layered baklava", descriptionAr:"بقلاوة تركية كلاسيكية بطبقات مقرمشة", image: base+"Carrot.jpeg", calories:"420 kcal", dietary:["vegetarian","contains-nuts"] },
           { enName:"Carrot Slice Baklava With Ice Cream", arName:"بقلاوة شريحة الجزر مع الآيس كريم", price:"49 QR", descriptionEn:"Baklava served with ice cream", descriptionAr:"بقلاوة تقدم مع الآيس كريم", image: base+"Carroticecream.jpeg", calories:"620 kcal", dietary:["contains-nuts","contains-dairy"] },
           { enName:"Trio Baklava", arName:"تريو بقلاوة", price:"45 QR", descriptionEn:"Three-style baklava assortment", descriptionAr:"مجموعة من بقلاوة رول بالفستق وموسل وسوبييت", image: base+"TrioBaklava.jpeg", calories:"480 kcal", dietary:["contains-nuts"] },
+          { enName:"Umm Ali", arName:"أم علي", price:"37 QR", descriptionEn:"Traditional Arabic dessert made with puff pastry, milk, and nuts", descriptionAr:"حلوى عربية تقليدية مصنوعة من رقائق العجين والحليب والمكسرات", image: base+"Ummali.jpg", calories:"420 kcal (per serving)", dietary:["contains-nuts","dairy"] },
           { enName:"Nuts Stand-Tall", arName:"مكسرات ستاند كبير", price:"99 QR", descriptionEn:"Premium mixed nuts", descriptionAr:"مجموعة ممتازة من المكسرات المختلطة", image: base+"Nuts.jpg", calories:"300 kcal (100g)", dietary:["contains-nuts"] },
           { enName:"Nuts Stand-Small", arName:"مكسرات ستاند صغير", price:"60 QR", descriptionEn:"Small mixed nuts", descriptionAr:"اختيار صغير من المكسرات المختلطة", image: base+"Nutsmall.jpg", calories:"180 kcal (60g)", dietary:["contains-nuts"] },
           { enName:"Snickers-inspired cake", arName:"كعكة مستوحاة من سنيكرز", price:"42 QR", descriptionEn:"Chocolate, caramel & nuts cake", descriptionAr:"كعكة فاخرة مع الشوكولاتة والكراميل", image: base+"Snicker.jpg", calories:"560 kcal", dietary:["contains-nuts"] },
@@ -506,7 +476,6 @@
       }
     };
 
-
     /* State */
     let currentLang = 'en';
     const landingView = document.getElementById('landingView');
@@ -554,42 +523,11 @@
       return wrap.children.length ? wrap : null;
     }
 
-    // Build <picture> with responsive sources (A)
-    function buildResponsivePicture(origUrl, altText) {
-      const r = deriveResponsiveSources(origUrl);
-      const picture = document.createElement('picture');
-
-      if(r.webpSrcset) {
-        const sourceWebp = document.createElement('source');
-        sourceWebp.setAttribute('type','image/webp');
-        sourceWebp.setAttribute('srcset', r.webpSrcset);
-        sourceWebp.setAttribute('sizes','(max-width:600px) 64px, (max-width:1000px) 72px, 84px');
-        picture.appendChild(sourceWebp);
-      }
-
-      if(r.imgSrcset) {
-        const sourceImg = document.createElement('source');
-        sourceImg.setAttribute('srcset', r.imgSrcset);
-        sourceImg.setAttribute('sizes','(max-width:600px) 64px, (max-width:1000px) 72px, 84px');
-        picture.appendChild(sourceImg);
-      }
-
-      const img = document.createElement('img');
-      img.setAttribute('src', r.fallback);
-      img.setAttribute('alt', altText || '');
-      img.setAttribute('loading','lazy');
-      img.style.width = '84px';
-      img.style.height = '84px';
-      picture.appendChild(img);
-      return picture;
-    }
-
     function buildMenuItemRow(item){
       const row = createEl('div',{class:'menu-item',tabindex:0,role:'listitem'});
       const thumb = createEl('div',{class:'thumb'});
-
-      const picture = buildResponsivePicture(item.image || '', (currentLang==='en'?item.enName:item.arName) || '');
-      thumb.appendChild(picture);
+      const img = createEl('img',{src:item.image||'',alt:(currentLang==='en'?item.enName:item.arName)||'',loading:'lazy'});
+      thumb.appendChild(img);
 
       const meta = createEl('div',{class:'meta'});
       const nameTxt = currentLang==='en' ? item.enName : item.arName;
@@ -612,12 +550,7 @@
 
       row.addEventListener('click', ()=> openItemModal(item));
       row.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' ') { e.preventDefault(); openItemModal(item); } });
-
-      thumb.addEventListener('click', (e)=> {
-        e.stopPropagation();
-        const img = thumb.querySelector('img');
-        if(img && img.src) openImageModal(img.src, nameTxt);
-      });
+      img.addEventListener('click', (e)=>{ e.stopPropagation(); openImageModal(img.src, nameTxt); });
 
       return row;
     }
@@ -650,6 +583,7 @@
       if(open){
         itemsWrap.classList.remove('open'); itemsWrap.setAttribute('aria-hidden','true'); catEl.setAttribute('aria-expanded','false'); catEl.querySelector('.chev').textContent='▸';
       } else {
+        // close others
         document.querySelectorAll('.items.open').forEach(x=>{ x.classList.remove('open'); x.setAttribute('aria-hidden','true'); const p=x.previousElementSibling; if(p){ p.setAttribute('aria-expanded','false'); p.querySelector('.chev').textContent='▸'; } });
         itemsWrap.classList.add('open'); itemsWrap.setAttribute('aria-hidden','false'); catEl.setAttribute('aria-expanded','true'); catEl.querySelector('.chev').textContent='▾';
         const first = itemsWrap.querySelector('.menu-item'); if(first) first.focus();
@@ -746,7 +680,7 @@
     /* Hover preview (desktop) */
     const hoverPrev = document.getElementById('hover-preview');
     let isTouch = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
-    document.addEventListener('mouseover',(e)=>{ if(isTouch || document.documentElement.classList.contains('low-end')) return; const t=e.target; if(t && t.tagName==='IMG' && t.closest('.thumb')){ hoverPrev.src = t.src; hoverPrev.style.display = 'block'; }});
+    document.addEventListener('mouseover',(e)=>{ if(isTouch || window._isLowEnd) return; const t=e.target; if(t && t.tagName==='IMG' && t.closest('.thumb')){ hoverPrev.src = t.src; hoverPrev.style.display = 'block'; }});
     document.addEventListener('mousemove',(e)=>{ if(!hoverPrev || hoverPrev.style.display!=='block') return; let x=e.clientX+18,y=e.clientY+18; const vw=window.innerWidth,vh=window.innerHeight,mw=300,mh=300; if(x+mw>vw) x=e.clientX-mw-18; if(y+mh>vh) y=e.clientY-mh-18; hoverPrev.style.left=x+'px'; hoverPrev.style.top=y+'px'; });
     document.addEventListener('mouseout',(e)=>{ const t=e.target; if(t && t.tagName==='IMG' && t.closest('.thumb')) hoverPrev.style.display='none'; });
 
@@ -766,35 +700,49 @@
       });
     }
 
-    /* Open menu navigation (do not autofocus search) */
+    /* Open menu navigation (do not autofocus search on open) */
     openMenuBtn.addEventListener('click', ()=>{
       landingView.style.display = 'none';
       menuPage.style.display = 'block';
       menuPage.setAttribute('aria-hidden','false');
       announce(currentLang==='en'?'Menu opened':'تم فتح القائمة');
 
-      const bgVideo = document.getElementById('bgVideo');
-      const bgPoster = document.querySelector('.bg-poster');
-      if(bgVideo) bgVideo.style.display = 'none';
-      if(bgPoster) bgPoster.style.display = 'none';
+      // Hide bg video and overlay to ensure menu page shows glassy burgundy background only
+      const bg = document.querySelector('.bg-video');
+      const overlay = document.querySelector('.bg-overlay');
+      if(bg) bg.style.display = 'none';
+      if(overlay) overlay.style.display = 'none';
+      menuPage.focus?.();
     });
 
-    /* Language toggle: batched updates to avoid reflow-triggered auto-zoom on tablets */
+    /* When returning to landing, restore video display */
+    function showLanding(){
+      landingView.style.display = 'flex';
+      menuPage.style.display = 'none';
+      menuPage.setAttribute('aria-hidden','true');
+      const bg = document.querySelector('.bg-video');
+      const overlay = document.querySelector('.bg-overlay');
+      if(bg) bg.style.display = '';
+      if(overlay) overlay.style.display = '';
+      announce(currentLang==='en'?'Landing shown':'تم عرض الصفحة الرئيسية');
+    }
+
+    /* Language toggle: set lang & dir in one batch (reduces layout thrash that causes auto-zoom on some tablets) */
     langToggle.addEventListener('click', ()=>{
-      currentLang = currentLang === 'en' ? 'ar' : 'en';
+      currentLang = currentLang==='en' ? 'ar' : 'en';
       requestAnimationFrame(()=>{
-        document.documentElement.lang = currentLang === 'ar' ? 'ar' : 'en';
-        document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
-        langToggle.textContent = currentLang === 'en' ? 'العربية' : 'English';
-        langToggle.setAttribute('aria-pressed', String(currentLang === 'ar'));
-        document.getElementById('searchBar').placeholder = currentLang === 'en' ? 'Search menu items...' : 'ابحث عن عناصر القائمة...';
-        document.getElementById('openMenuBtn').textContent = currentLang === 'en' ? 'Explore Our Menu' : 'استعرض قائمتنا';
-        document.getElementById('brandTitle').textContent = currentLang === 'en' ? 'Turkiana' : 'تركيانا';
-        document.getElementById('brandSub').textContent = currentLang === 'en' ? 'CAFÉ & SWEETS' : 'مقهى وحلويات';
-        document.getElementById('brandTag').textContent = currentLang === 'en' ? 'Where Tradition Meets Elegance' : 'حيث يلتقي التراث بالأناقة';
+        document.documentElement.lang = currentLang==='ar' ? 'ar' : 'en';
+        document.documentElement.dir = currentLang==='ar' ? 'rtl' : 'ltr';
+        langToggle.textContent = currentLang==='en' ? 'العربية' : 'English';
+        langToggle.setAttribute('aria-pressed', String(currentLang==='ar'));
+        document.getElementById('searchBar').placeholder = currentLang==='en' ? 'Search menu items...' : 'ابحث عن عناصر القائمة...';
+        document.getElementById('openMenuBtn').textContent = currentLang==='en' ? 'Explore Our Menu' : 'استعرض قائمتنا';
+        document.getElementById('brandTitle').textContent = currentLang==='en' ? 'Turkiana' : 'تركيانا';
+        document.getElementById('brandSub').textContent = currentLang==='en' ? 'CAFÉ & SWEETS' : 'مقهى وحلويات';
+        document.getElementById('brandTag').textContent = currentLang==='en' ? 'Where Tradition Meets Elegance' : 'حيث يلتقي التراث بالأناقة';
         renderCategories();
         if(searchInput.value && searchInput.value.trim()) handleSearch(searchInput.value);
-        announce(currentLang === 'en' ? 'Language switched to English' : 'تم تغيير اللغة إلى العربية');
+        announce(currentLang==='en' ? 'Language switched to English' : 'تم تغيير اللغة إلى العربية');
       });
     });
 
@@ -825,23 +773,7 @@
     document.addEventListener('DOMContentLoaded', init);
 
     /* Expose for debug */
-    window._turkiana = { renderCategories, handleSearch, menuData };
-
-    /* deriveResponsiveSources helper (declared after use in buildResponsivePicture for clarity) */
-    function deriveResponsiveSources(origUrl) {
-      const idx = origUrl.lastIndexOf('.');
-      if (idx === -1) return { webpSrcset: null, imgSrcset: null, fallback: origUrl };
-      const base = origUrl.substring(0, idx);
-      const ext = origUrl.substring(idx+1);
-      const sizes = [320, 640, 1024];
-      const webpSources = sizes.map(s => `${base}-${s}.webp ${s}w`).join(', ');
-      const jpgSources = sizes.map(s => `${base}-${s}.${ext} ${s}w`).join(', ');
-      return {
-        webpSrcset: webpSources,
-        imgSrcset: jpgSources,
-        fallback: origUrl
-      };
-    }
+    window._turkiana = { renderCategories, handleSearch, menuData, showLanding };
   </script>
 </body>
 </html>
