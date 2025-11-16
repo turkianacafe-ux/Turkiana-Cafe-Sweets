@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -7,47 +7,40 @@
   <meta name="description" content="Turkiana Cafe & Sweets — Digital Menu with Modern Design" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
   <style>
     :root{
       --bg:#07070a;
       --gold:#caa84a;
       --maroon:#7a1921;
       --muted:#9b9b9f;
-      --radius:18px;
       --max-width:1100px;
       --shadow:0 20px 60px rgba(2,6,23,0.6);
       --glass-bg: linear-gradient(180deg, rgba(122,25,33,0.24), rgba(255,255,255,0.02));
     }
 
-    /* Basic reset + body */
-    *{box-sizing:border-box;margin:0;padding:0;-webkit-font-smoothing:antialiased}
-    html,body{height:100%;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial;background:var(--bg);color:#fff;-webkit-text-size-adjust:100%}
-    a { color: inherit; text-decoration: none; }
+    *{box-sizing:border-box;margin:0;padding:0;-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}
+    html{font-size:16px;scroll-behavior:smooth}
+    body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial;background:var(--bg);color:#fff;display:flex;flex-direction:column;min-height:100vh}
+    a{color:inherit;text-decoration:none}
     img{display:block;max-width:100%}
-    html { font-size:16px; }
+    button{font-family:inherit;border:none;outline:none}
 
-    /* Background video and overlay */
     .bg-video{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
-    .bg-video video{width:100%;height:100%;object-fit:cover;opacity:0.86;filter:contrast(1.01) saturate(1.02) brightness(1.04)}
-    .bg-overlay{position:fixed;inset:0;z-index:1;background:radial-gradient(800px 400px at 10% 20%, rgba(255,255,255,0.02), transparent 10%),radial-gradient(700px 300px at 85% 80%, rgba(255,255,255,0.02), transparent 12%),linear-gradient(180deg, rgba(5,5,8,0.06), rgba(3,3,5,0.14));backdrop-filter: blur(6px) saturate(110%); -webkit-backdrop-filter: blur(6px) saturate(110%);pointer-events:none; }
+    .bg-video video{width:100%;height:100%;object-fit:cover;opacity:0.86}
+    .bg-overlay{position:fixed;inset:0;z-index:1;background:radial-gradient(800px 400px at 10% 20%, rgba(255,255,255,0.02), transparent 10%),radial-gradient(700px 300px at 85% 80%, rgba(255,255,255,0.02), transparent 12%),linear-gradient(180deg, rgba(5,5,8,0.06), rgba(3,3,5,0.14));backdrop-filter:blur(6px) saturate(110%);pointer-events:none}
 
-    /* Top controls */
-    .top-controls{position:fixed;top:14px;left:0;right:0;margin:0 auto;z-index:12;display:flex;justify-content:flex-end;align-items:center;pointer-events:none;width:calc(100% - 32px);max-width:var(--max-width);padding:0 16px}
-    .lang{pointer-events:auto;padding:8px 12px;border-radius:999px;background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));border:1px solid rgba(255,255,255,0.06);color:#fff;font-weight:700;cursor:pointer;transition:all 0.3s ease}
+    .top-controls{position:fixed;top:14px;left:0;right:0;margin:0 auto;z-index:12;display:flex;justify-content:flex-end;align-items:center;width:calc(100% - 32px);max-width:var(--max-width);padding:0 16px}
+    .lang{padding:8px 12px;border-radius:999px;background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));border:1px solid rgba(255,255,255,0.06);color:#fff;font-weight:700;cursor:pointer;transition:all 0.3s ease}
     .lang:hover{background:linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.08));transform:scale(1.05)}
 
-    /* App layout */
-    .app{min-height:100vh;display:flex;align-items:stretch;justify-content:center;position:relative;overflow:hidden;padding:48px 12px;z-index:6}
+    .app{min-height:100vh;display:flex;align-items:stretch;justify-content:center;position:relative;overflow:hidden;padding:48px 12px;z-index:6;flex:1}
     .centered{width:100%;max-width:var(--max-width);margin:0 auto}
 
-    /* Marquee */
     .marquee-wrap{width:100%;overflow:hidden;border-radius:12px;margin-bottom:18px;pointer-events:none}
     .marquee{display:flex;gap:18px;align-items:center;white-space:nowrap;animation:marquee 26s linear infinite}
     .marquee img{height:84px;border-radius:10px;object-fit:cover;box-shadow:0 10px 30px rgba(0,0,0,0.6)}
-    @keyframes marquee {0%{transform:translateX(0%);}100%{transform:translateX(-50%);} }
+    @keyframes marquee{0%{transform:translateX(0%)}100%{transform:translateX(-50%)}}
 
-    /* Hero */
     .landing{display:flex;align-items:center;justify-content:center;min-height:calc(100vh - 96px)}
     .hero{width:100%;max-width:980px;border-radius:20px;padding:28px;text-align:center;background:linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.06);box-shadow:var(--shadow);backdrop-filter:blur(10px) saturate(120%)}
     .brand{font-size:44px;font-weight:800;color:var(--gold);margin-bottom:6px;font-family:"Playfair Display", serif}
@@ -56,28 +49,26 @@
     .primary{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:12px 22px;border-radius:999px;background:linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));color:#fff;font-weight:800;border:1px solid rgba(255,255,255,0.06);cursor:pointer;transition:all 0.3s ease}
     .primary:hover{background:linear-gradient(180deg, rgba(255,255,255,0.15), rgba(255,255,255,0.08));transform:translateY(-2px)}
 
-    /* Menu panel and search */
     .menu-page{display:none;width:100%;max-width:var(--max-width);margin:0 auto;padding-bottom:120px}
-    .menu-panel{border-radius:16px;padding:16px;background:var(--glass-bg);border:1px solid rgba(255,255,255,0.06);box-shadow:0 30px 80px rgba(11,3,6,0.6), inset 0 1px 0 rgba(255,255,255,0.02);backdrop-filter:blur(14px) saturate(120%) contrast(1.02);-webkit-backdrop-filter:blur(14px) saturate(120%) contrast(1.02);position:relative;overflow:hidden;}
-    .menu-panel::before{content:'';position:absolute;left:-30%;top:-20%;width:160%;height:32%;background:radial-gradient(600px 120px at 50% 0%, rgba(202,168,74,0.07), transparent 40%);transform:rotate(-6deg);pointer-events:none;}
+    .menu-panel{border-radius:16px;padding:16px;background:var(--glass-bg);border:1px solid rgba(255,255,255,0.06);box-shadow:0 30px 80px rgba(11,3,6,0.6), inset 0 1px 0 rgba(255,255,255,0.02);backdrop-filter:blur(14px) saturate(120%);position:relative;overflow:hidden}
+    .menu-panel::before{content:'';position:absolute;left:-30%;top:-20%;width:160%;height:32%;background:radial-gradient(600px 120px at 50% 0%, rgba(202,168,74,0.07), transparent 40%);transform:rotate(-6deg);pointer-events:none}
 
     .search{display:flex;justify-content:center;margin:12px 0}
     .search input{width:100%;max-width:760px;padding:12px 16px;border-radius:999px;font-size:15px;border:1px solid rgba(255,255,255,0.06);background:rgba(0,0,0,0.18);color:#fff;outline:none;transition:all 0.3s ease}
+    .search input::placeholder{color:rgba(255,255,255,0.5)}
     .search input:focus{border-color:rgba(202,168,74,0.5);background:rgba(0,0,0,0.25)}
 
-    /* Contact pills */
-    .contact-row-bottom{display:flex;gap:10px;justify-content:center;margin-top:18px}
-    .contact-pill{display:inline-flex;gap:8px;align-items:center;padding:12px 16px;border-radius:999px;color:#fff;font-weight:700;text-decoration:none;background:linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));border:1px solid rgba(255,255,255,0.06);box-shadow:0 10px 30px rgba(0,0,0,0.45);cursor:pointer;transition:all 0.3s ease;font-size:14px}
+    .contact-row-bottom{display:flex;gap:10px;justify-content:center;margin-top:18px;flex-wrap:wrap}
+    .contact-pill{display:inline-flex;gap:8px;align-items:center;padding:12px 16px;border-radius:999px;color:#fff;font-weight:700;text-decoration:none;background:linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));border:1px solid rgba(255,255,255,0.06);box-shadow:0 10px 30px rgba(0,0,0,0.45);cursor:pointer;transition:all 0.3s ease;font-size:14px;text-transform:uppercase;letter-spacing:0.5px}
     .contact-pill:hover{transform:translateY(-3px) scale(1.08);box-shadow:0 15px 45px rgba(0,0,0,0.6);background:linear-gradient(180deg, rgba(255,255,255,0.15), rgba(255,255,255,0.08))}
-    .contact-pill i{font-size:20px;transition:all 0.3s ease;width:24px;height:24px;display:flex;align-items:center;justify-content:center}
-    .contact-pill:hover i{transform:scale(1.2) rotate(8deg)}
+    .contact-pill i{display:none}
+    .contact-pill::before{content:attr(data-label);font-weight:700;font-size:13px;letter-spacing:0.5px}
 
-    .instagram-icon{background:linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 4px rgba(240, 148, 51, 0.3))}
-    .instagram-icon:hover{filter:drop-shadow(0 0 8px rgba(240, 148, 51, 0.6))}
+    .instagram-icon{color:#E1306C;transition:all 0.3s ease}
+    .instagram-icon:hover{color:#fd1d1d;filter:drop-shadow(0 0 8px rgba(232, 29, 45, 0.6))}
     .website-icon{color:var(--gold)}
     .wifi-icon{color:#5DADE2}
 
-    /* Categories & items */
     .categories{display:flex;flex-direction:column;gap:12px;margin-top:8px}
     .category{display:flex;align-items:center;justify-content:space-between;padding:14px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.04);color:#fff;font-weight:800;cursor:pointer;transition:all 0.3s ease}
     .category:hover{background:linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));transform:translateX(4px)}
@@ -104,9 +95,7 @@
     .diet-gluten{background:#8b3d00}
     .diet-nut{background:#6b3a6b}
     .diet-dairy{background:#305a9a}
-    .diet-spicy{background:#9b2b2b}
 
-    /* Modal */
     .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:30;background:rgba(2,6,23,0.6)}
     .modal.show{display:flex}
     .modal-card{width:92%;max-width:520px;background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.96));border-radius:14px;padding:18px;color:#2b1a0f;box-shadow:0 30px 100px rgba(2,6,23,0.7)}
@@ -114,26 +103,32 @@
     .close-btn:hover{background:rgba(0,0,0,0.12);transform:rotate(90deg)}
     #hover-preview{position:fixed;display:none;max-width:300px;max-height:300px;border-radius:12px;z-index:28;box-shadow:0 24px 80px rgba(2,6,23,0.7);overflow:hidden}
 
-    /* Floating CTA */
     .fab{position:fixed;right:18px;bottom:18px;z-index:14;width:64px;height:64px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#25D366,#20BA5A);color:#fff;font-size:28px;box-shadow:0 18px 60px rgba(2,6,23,0.6);transition:all 0.3s ease;cursor:pointer;border:none}
     .fab:hover{transform:scale(1.1);box-shadow:0 24px 80px rgba(37,211,102,0.4)}
 
-    /* Footer */
-    .footer{background:linear-gradient(180deg, rgba(122,25,33,0.4), rgba(0,0,0,0.6));border-top:1px solid rgba(255,255,255,0.1);padding:40px 20px;backdrop-filter:blur(10px)}
-    .footer-content{max-width:var(--max-width);margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;margin-bottom:30px}
-    .footer-section h4{color:var(--gold);font-size:16px;margin-bottom:12px;font-weight:800}
-    .footer-section p{color:rgba(255,255,255,0.85);font-size:14px;line-height:1.6;margin-bottom:8px}
-    .footer-section a{color:rgba(255,255,255,0.85);text-decoration:none;transition:all 0.3s ease;display:flex;align-items:center;gap:8px;font-size:14px}
-    .footer-section a:hover{color:var(--gold);transform:translateX(4px)}
-    .footer-bottom{text-align:center;color:rgba(255,255,255,0.7);font-size:13px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.1)}
-    .social-links{display:flex;gap:12px;margin-top:12px}
-    .social-links a{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;transition:all 0.3s ease;border:1px solid rgba(255,255,255,0.2)}
-    .social-links a:hover{background:rgba(255,255,255,0.2);transform:scale(1.1)}
+    .footer{background:linear-gradient(135deg, rgba(122,25,33,0.9) 0%, rgba(0,0,0,0.95) 100%);border-top:3px solid var(--gold);padding:80px 20px 40px;backdrop-filter:blur(10px);position:relative;z-index:5;overflow:hidden}
+    .footer::before{content:'';position:absolute;top:-50%;right:-10%;width:400px;height:400px;background:radial-gradient(circle, rgba(202,168,74,0.1), transparent);border-radius:50%;pointer-events:none}
+    .footer::after{content:'';position:absolute;bottom:-50%;left:-10%;width:400px;height:400px;background:radial-gradient(circle, rgba(202,168,74,0.08), transparent);border-radius:50%;pointer-events:none}
+    .footer-content{max-width:var(--max-width);margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:40px;margin-bottom:50px;position:relative;z-index:1}
+    .footer-section{backdrop-filter:blur(20px);background:rgba(255,255,255,0.03);border:1px solid rgba(202,168,74,0.2);border-radius:12px;padding:30px;transition:all 0.4s ease}
+    .footer-section:hover{background:rgba(255,255,255,0.06);border-color:rgba(202,168,74,0.5);transform:translateY(-8px)}
+    .footer-section h4{color:var(--gold);font-size:15px;margin-bottom:22px;font-weight:800;text-transform:uppercase;letter-spacing:2px}
+    .footer-section p{color:rgba(255,255,255,0.75);font-size:13px;line-height:1.8;margin-bottom:15px}
+    .footer-section a{color:rgba(255,255,255,0.75);text-decoration:none;transition:all 0.3s ease;display:flex;align-items:center;gap:12px;font-size:13px;margin-bottom:12px}
+    .footer-section a:hover{color:var(--gold)}
+    .footer-section a i{font-size:14px;width:18px;display:flex;align-items:center;justify-content:center;transition:all 0.3s ease}
+    .footer-section a:hover i{transform:translateX(4px)}
+    .footer-bottom{text-align:center;color:rgba(255,255,255,0.5);font-size:12px;padding-top:30px;border-top:1px solid rgba(255,255,255,0.1);max-width:var(--max-width);margin:0 auto;position:relative;z-index:1}
+    .social-links{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
+    .social-links a{display:inline-flex;align-items:center;justify-content:center;padding:10px 16px;border-radius:8px;background:linear-gradient(135deg, rgba(202,168,74,0.15), rgba(255,255,255,0.08));transition:all 0.3s ease;border:1px solid rgba(202,168,74,0.3);text-decoration:none;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:0.5px;color:#fff}
+    .social-links a:hover{background:linear-gradient(135deg, var(--gold), rgba(202,168,74,0.6));transform:translateY(-5px) scale(1.1);border-color:var(--gold)}
 
-    @media (max-width:1000px){
+    @media (max-width:1200px){.footer-content{grid-template-columns:1fr 1fr;gap:30px}}
+    @media (max-width:768px){
       .brand{font-size:36px}
       .marquee img{height:72px}
       .thumb{width:72px;height:72px}
+      .footer-content{grid-template-columns:1fr;gap:20px}
     }
     @media (max-width:600px){
       .hero{padding:18px}
@@ -144,68 +139,57 @@
       .primary{padding:10px 14px;font-size:14px}
       .search input{padding:10px 12px}
       .contact-pill{padding:10px 12px;font-size:12px}
+      .footer{padding:50px 15px 30px}
+      .footer-section{padding:20px}
     }
 
-    @media (prefers-reduced-motion: reduce) {
-      .bg-video{display:none !important;}
-      .marquee{animation: none !important;}
+    @media (prefers-reduced-motion: reduce){
+      .marquee{animation:none !important}
+      .bg-video{display:none !important}
     }
 
-    /* Low-end adjustments */
-    .low-end .bg-video { display: none !important; }
-    .low-end .bg-overlay { display: none !important; }
-    .low-end .menu-panel { backdrop-filter: none !important; box-shadow: none !important; border: 1px solid rgba(255,255,255,0.03) !important; }
-    .low-end .marquee img { height:48px !important; }
-    .low-end .menu-item { box-shadow: none !important; border: 1px solid rgba(255,255,255,0.02) !important; }
-
-    /* RTL tweaks */
-    [dir="rtl"] .marquee { direction: ltr; }
-    [dir="rtl"] .top-controls { direction: rtl; }
-    [dir="rtl"] .brand { text-align: center; }
-
+    [dir="rtl"] .marquee{direction:ltr}
   </style>
 </head>
 <body>
-  <!-- Background video (kept as requested) -->
   <div class="bg-video" aria-hidden="true">
-    <video id="bgVideo" autoplay muted loop playsinline preload="metadata" poster="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Breakfast.jpg">
+    <video id="bgVideo" autoplay muted loop playsinline preload="metadata">
       <source src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Video.mp4" type="video/mp4">
     </video>
   </div>
   <div class="bg-overlay" aria-hidden="true"></div>
 
-  <div class="top-controls" role="region" aria-label="Top controls">
-    <button id="langToggle" class="lang" aria-pressed="false" aria-label="Toggle language">العربية</button>
+  <div class="top-controls">
+    <button id="langToggle" class="lang" aria-label="Toggle language">العربية</button>
   </div>
 
-  <div class="app" role="application">
+  <div class="app">
     <div class="centered">
       <section id="landingView" class="landing" aria-label="Landing page">
         <div style="max-width:var(--max-width);margin:0 auto;width:100%">
-          <div class="marquee-wrap" aria-hidden="true">
-            <div id="marquee" class="marquee" role="img" aria-label="Gallery">
-              <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Breakfast.jpg" alt="">
-              <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg" alt="">
-              <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Latte.jpg" alt="">
-              <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Kunafa.jpg" alt="">
-              <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Burger.jpeg" alt="">
-              <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Fondue1.jpeg" alt="">
-              <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Breakfast.jpg" alt="">
-              <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg" alt="">
-              <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Latte.jpg" alt="">
-              <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Kunafa.jpg" alt="">
-              <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Burger.jpeg" alt="">
-              <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Fondue1.jpeg" alt="">
+          <div class="marquee-wrap">
+            <div id="marquee" class="marquee">
+              <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Breakfast.jpg" alt="Breakfast">
+              <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg" alt="Mix">
+              <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Latte.jpg" alt="Latte">
+              <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Kunafa.jpg" alt="Kunafa">
+              <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Burger.jpeg" alt="Burger">
+              <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Fondue1.jpeg" alt="Fondue">
+              <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Breakfast.jpg" alt="Breakfast">
+              <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg" alt="Mix">
+              <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Latte.jpg" alt="Latte">
+              <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Kunafa.jpg" alt="Kunafa">
+              <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Burger.jpeg" alt="Burger">
+              <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Fondue1.jpeg" alt="Fondue">
             </div>
           </div>
 
-          <div class="hero" role="region" aria-label="Hero">
+          <div class="hero">
             <div id="brandTitle" class="brand">Turkiana</div>
             <div id="brandSub" class="sub">CAFÉ & SWEETS</div>
             <div id="brandTag" class="tag">Where Tradition Meets Elegance</div>
-
-            <div style="margin-top:18px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-              <button id="openMenuBtn" class="primary" aria-controls="menuPage" aria-expanded="false">
+            <div style="margin-top:18px">
+              <button id="openMenuBtn" class="primary">
                 <i class="fas fa-utensils"></i> Explore Our Menu
               </button>
             </div>
@@ -213,38 +197,32 @@
         </div>
       </section>
 
-      <section id="menuPage" class="menu-page" aria-hidden="true" aria-label="Menu page">
-        <div class="menu-panel" role="region" aria-label="Menu">
-          <div class="search" role="search" aria-label="Search menu">
-            <input id="searchBar" type="search" placeholder="Search menu items..." aria-label="Search menu items" />
+      <section id="menuPage" class="menu-page">
+        <div class="menu-panel">
+          <div class="search">
+            <input id="searchBar" type="search" placeholder="Search menu items..." />
           </div>
 
           <div id="resultsArea">
-            <div id="categoriesView" class="categories" role="list"></div>
-            <div id="flatResults" class="flat-results" role="list" style="display:none;"></div>
+            <div id="categoriesView" class="categories"></div>
+            <div id="flatResults" class="flat-results" style="display:none"></div>
           </div>
 
-          <div id="noResults" style="display:none;margin-top:18px;text-align:center;color:var(--muted);">
-            <p id="noResultsText">No items found. Try a different search.</p>
+          <div id="noResults" style="display:none;margin-top:18px;text-align:center;color:var(--muted)">
+            <p id="noResultsText">No items found.</p>
           </div>
 
-          <div class="contact-row-bottom" role="region" aria-label="Contact actions">
-            <a class="contact-pill" id="contact-ig" href="https://www.instagram.com/turkiana.qa/" target="_blank" rel="noopener noreferrer" title="Instagram">
-              <i class="fab fa-instagram instagram-icon"></i>
-            </a>
-            <a class="contact-pill" id="contact-website" href="https://turkianasweets.com" target="_blank" rel="noopener noreferrer" title="Website">
-              <i class="fas fa-globe website-icon"></i>
-            </a>
-            <button class="contact-pill" id="copy-wifi-en" aria-live="polite" title="Copy Wi-Fi">
-              <i class="fas fa-wifi wifi-icon"></i>
-            </button>
+          <div class="contact-row-bottom">
+            <a class="contact-pill" data-label="Instagram" href="https://www.instagram.com/turkiana.qa/" target="_blank" rel="noopener noreferrer" title="Instagram"></a>
+            <a class="contact-pill" data-label="Website" href="https://turkianasweets.com" target="_blank" rel="noopener noreferrer" title="Website"></a>
+            <button class="contact-pill" data-label="Copy WiFi" id="copy-wifi-en" title="Copy Wi-Fi"></button>
           </div>
         </div>
       </section>
     </div>
   </div>
 
-  <a class="fab" href="https://wa.me/97451866671" aria-label="WhatsApp" title="WhatsApp">
+  <a class="fab" href="https://wa.me/97451866671" title="WhatsApp">
     <i class="fab fa-whatsapp"></i>
   </a>
 
@@ -252,68 +230,57 @@
     <div class="footer-content">
       <div class="footer-section">
         <h4>About Turkiana</h4>
-        <p>Experience authentic Turkish delicacies and modern café culture at Turkiana Sweets. Serving the finest desserts and traditional flavors across our premium locations.</p>
+        <p>Experience authentic Turkish delicacies and modern café culture. Serving the finest desserts and traditional flavors across our premium locations.</p>
         <div class="social-links">
-          <a href="https://www.instagram.com/turkiana.qa/" target="_blank" rel="noopener noreferrer" title="Instagram">
-            <i class="fab fa-instagram instagram-icon" style="background:none;-webkit-background-clip:unset;-webkit-text-fill-color:unset"></i>
-          </a>
-          <a href="https://wa.me/97451866671" target="_blank" rel="noopener noreferrer" title="WhatsApp">
-            <i class="fab fa-whatsapp" style="color:#25D366"></i>
-          </a>
-          <a href="https://turkianasweets.com/" target="_blank" rel="noopener noreferrer" title="Website">
-            <i class="fas fa-globe" style="color:var(--gold)"></i>
-          </a>
+          <a href="https://www.instagram.com/turkiana.qa/" target="_blank" rel="noopener noreferrer" title="Instagram">Instagram</a>
+          <a href="https://wa.me/97451866671" target="_blank" rel="noopener noreferrer" title="WhatsApp">WhatsApp</a>
+          <a href="https://turkianasweets.com/" target="_blank" rel="noopener noreferrer" title="Website">Website</a>
         </div>
       </div>
 
       <div class="footer-section">
         <h4>Quick Links</h4>
-        <a href="https://turkianasweets.com/about-us/" target="_blank" rel="noopener noreferrer">
-          <i class="fas fa-chevron-right"></i> About Us
+        <a href="https://turkianasweets.com/about-us/" target="_blank" rel="noopener noreferrer" style="padding:8px 12px;border-radius:6px;background:rgba(202,168,74,0.15);border:1px solid rgba(202,168,74,0.3);display:inline-flex;margin-bottom:12px;margin-top:0">
+          About Us
         </a>
-        <a href="https://turkianasweets.com/contact-us/" target="_blank" rel="noopener noreferrer">
-          <i class="fas fa-chevron-right"></i> Contact Us
+        <a href="https://turkianasweets.com/contact-us/" target="_blank" rel="noopener noreferrer" style="padding:8px 12px;border-radius:6px;background:rgba(202,168,74,0.15);border:1px solid rgba(202,168,74,0.3);display:inline-flex;margin-bottom:12px;margin-left:8px">
+          Contact Us
         </a>
-        <a href="https://turkianasweets.com/organizations/birthdays/" target="_blank" rel="noopener noreferrer">
-          <i class="fas fa-chevron-right"></i> Organizations
-        </a>
-        <a href="https://turkianasweets.com/" target="_blank" rel="noopener noreferrer">
-          <i class="fas fa-chevron-right"></i> Main Website
+        <a href="https://turkianasweets.com/" target="_blank" rel="noopener noreferrer" style="padding:8px 12px;border-radius:6px;background:rgba(202,168,74,0.15);border:1px solid rgba(202,168,74,0.3);display:inline-flex;margin-bottom:12px;margin-left:8px">
+          Main Website
         </a>
       </div>
 
       <div class="footer-section">
         <h4>Contact Info</h4>
-        <a href="tel:+97477984617">
-          <i class="fas fa-phone"></i> +974 7798 4617
+        <a href="tel:+97477984617" style="padding:10px 14px;border-radius:6px;background:rgba(202,168,74,0.15);border:1px solid rgba(202,168,74,0.3);display:inline-flex;margin-bottom:10px;gap:10px;text-decoration:none">
+          📞 +974 7798 4617
         </a>
-        <a href="mailto:info@turkianasweets.com">
-          <i class="fas fa-envelope"></i> info@turkianasweets.com
+        <a href="mailto:info@turkianasweets.com" style="padding:10px 14px;border-radius:6px;background:rgba(202,168,74,0.15);border:1px solid rgba(202,168,74,0.3);display:inline-flex;margin-bottom:10px;gap:10px;text-decoration:none">
+          ✉️ info@turkianasweets.com
         </a>
-        <p style="margin-top:12px;">
-          <i class="fas fa-map-marker-alt" style="color:var(--gold);margin-right:8px"></i>
-          Doha, Qatar
+        <p style="margin-top:12px;padding:10px 14px;border-radius:6px;background:rgba(202,168,74,0.15);border:1px solid rgba(202,168,74,0.3);display:inline-flex">
+          📍 Doha, Qatar
         </p>
       </div>
 
       <div class="footer-section">
         <h4>Find Us</h4>
         <p>Visit our multiple locations across Doha for an authentic Turkish café experience.</p>
-        <a href="https://maps.app.goo.gl/ud3JKc8DX1HxY6vk7" target="_blank" rel="noopener noreferrer">
-          <i class="fas fa-map-location-dot"></i> View Locations
+        <a href="https://maps.app.goo.gl/ud3JKc8DX1HxY6vk7" target="_blank" rel="noopener noreferrer" style="padding:10px 14px;border-radius:6px;background:linear-gradient(135deg, var(--gold), rgba(202,168,74,0.6));border:1px solid var(--gold);display:inline-flex;margin-top:10px;text-decoration:none;font-weight:700">
+          View Locations on Map
         </a>
       </div>
     </div>
 
     <div class="footer-bottom">
-      <p>© 2025 Turkiana Sweets & Café. All Rights Reserved. | Digital Menu</p>
+      <p>© 2025 Turkiana Sweets & Café. All Rights Reserved.</p>
     </div>
   </footer>
 
-  <!-- Item modal -->
-  <div id="item-modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
-    <div class="modal-card" role="document">
-      <button class="close-btn" id="modalClose" aria-label="Close"><i class="fas fa-times"></i></button>
+  <div id="item-modal" class="modal">
+    <div class="modal-card">
+      <button class="close-btn" id="modalClose"><i class="fas fa-times"></i></button>
       <h3 id="modal-name" style="margin-bottom:6px;color:var(--maroon)"></h3>
       <div id="modal-price" style="font-weight:800;color:var(--gold);margin-bottom:8px"></div>
       <div id="modal-cal" style="font-weight:700;color:#444;margin-bottom:8px"></div>
@@ -322,54 +289,17 @@
     </div>
   </div>
 
-  <!-- Image modal -->
-  <div id="image-modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+  <div id="image-modal" class="modal">
     <div class="modal-card" style="background:transparent;box-shadow:none">
-      <button class="close-btn" id="imageModalClose" aria-label="Close"><i class="fas fa-times"></i></button>
-      <img id="zoomed-image" src="" alt="" style="width:100%;border-radius:12px;display:block;margin-top:8px;">
+      <button class="close-btn" id="imageModalClose"><i class="fas fa-times"></i></button>
+      <img id="zoomed-image" src="" alt="" style="width:100%;border-radius:12px">
     </div>
   </div>
 
-  <img id="hover-preview" src="" alt="Preview" />
-  <div id="ariaLive" aria-live="polite" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;"></div>
-
   <script>
-    /* ---- Performance helper: low-end detection ---- */
-    (function optimizeForLowEnd() {
-      try {
-        const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-        const saveData = conn && conn.saveData;
-        const downlink = conn && conn.downlink;
-        const deviceMemory = navigator.deviceMemory || 0;
-
-        const isLowEnd = saveData || deviceMemory && deviceMemory <= 1 || (downlink && downlink < 1.5) || /Android\s[0-6]\b|MSIE|Trident/i.test(navigator.userAgent);
-        if (isLowEnd) {
-          document.documentElement.classList.add('low-end');
-          const bg = document.querySelector('.bg-video'); if (bg) bg.style.display = 'none';
-          const marquee = document.querySelector('.marquee'); if (marquee) marquee.style.animation = 'none';
-          window._isLowEnd = true;
-        } else {
-          window._isLowEnd = false;
-        }
-      } catch(e) {
-        console.warn('optimizeForLowEnd detection failed', e);
-        window._isLowEnd = false;
-      }
-    })();
-
-    /* ---- Ensure background video plays slightly slower for vibe ---- */
-    const bgVideo = document.getElementById('bgVideo');
-    if (bgVideo) {
-      bgVideo.playbackRate = 0.6;
-      bgVideo.addEventListener('loadedmetadata', ()=>{ try{ bgVideo.play(); }catch(e){} });
-    }
-
-    /* ---- base url for images (kept originals) ---- */
     const base = "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/";
-
-    /* ---- Menu data (kept EXACTLY as provided) ---- */
     const menuData = {
-       "Turkish Morning": {
+      "Turkish Morning": {
         arTitle: "الصباح التركي",
         items: [
           { enName:"Turkish Classic Breakfast", arName:"فطور تركي كلاسيكي", price:"65 QR", descriptionEn:"Authentic Turkish breakfast with fresh bread, cheese, olives, tomatoes, cucumbers, honey, and clotted cream served with Turkish tea", descriptionAr:"فطور تركي أصيل مع خبز طازج، جبن، زيتون، طماطم، خيار، عسل وقشدة، يقدم مع شاي تركي", image: base+"Breakfast.jpg", calories:"680 kcal", dietary:["vegetarian","contains-dairy"] },
@@ -456,7 +386,7 @@
         items: [
           { enName:"Ice Apple Tea", arName:"شاي التفاح مثلج", price:"28 QR", descriptionEn:"Chilled apple tea", descriptionAr:"شاي التفاح المثلج", image: base+"Iceapple.jpeg", calories:"35 kcal", dietary:["vegan","dairy-free"] },
           { enName:"Ice Mulberry Tea", arName:"شاي التوت المثلج", price:"28 QR", descriptionEn:"Iced mulberry tea", descriptionAr:"شاي التوت المثلج", image: base+"Icemulberry.jpeg", calories:"35 kcal", dietary:["vegan","dairy-free"] },
-          { enName:"Ice Mint Lemon", arName:"شай النعناع والليمون المثلج", price:"28 QR", descriptionEn:"Iced mint & lemon tea", descriptionAr:"شاي النعناع والليمون المثلج", image: base+"Icelemon.jpeg", calories:"20 kcal", dietary:["vegan","dairy-free"] },
+          { enName:"Ice Mint Lemon", arName:"شاي النعناع والليمون المثلج", price:"28 QR", descriptionEn:"Iced mint & lemon tea", descriptionAr:"شاي النعناع والليمون المثلج", image: base+"Icelemon.jpeg", calories:"20 kcal", dietary:["vegan","dairy-free"] },
           { enName:"Ice Pomegranate Tea", arName:"شاي الرمان المثلج", price:"28 QR", descriptionEn:"Iced pomegranate tea", descriptionAr:"شاي الرمان المثلج", image: base+"Iceroman.jpeg", calories:"45 kcal", dietary:["vegan","dairy-free"] },
           { enName:"Hibiscus Ice", arName:"الكركديه مثلج", price:"28 QR", descriptionEn:"Chilled hibiscus tea", descriptionAr:"الكركديه مثلج", image: base+"Iceroman.jpeg", calories:"25 kcal", dietary:["vegan","dairy-free"] }
         ]
@@ -531,11 +461,11 @@
           { enName:"Sparkling Water", arName:"مياه غازية", price:"21 QR", descriptionEn:"Sparkling water", descriptionAr:"مياه غازية", image: base+"Sparkling.jpg", calories:"0 kcal", dietary:["vegan","dairy-free"] },
           { enName:"Kinza Cola", arName:"كينزا كولا", price:"17 QR", descriptionEn:"Kinza Cola", descriptionAr:"كينزا كولا", image: base+"Cola.jpg", calories:"150 kcal", dietary:[] },
           { enName:"Kinza Cola Zero", arName:"كينزا كولا زيرو", price:"17 QR", descriptionEn:"Kinza Cola Zero", descriptionAr:"كينزا كولا زيرو", image: base+"Zero.jpg", calories:"0 kcal", dietary:[] }
-        ]
+             ]
       }
-    }; // end menuData
+    };
 
-    /* ---- Lightweight utilities ---- */
+
     let currentLang = 'en';
     const landingView = document.getElementById('landingView');
     const menuPage = document.getElementById('menuPage');
@@ -545,292 +475,237 @@
     const flatResults = document.getElementById('flatResults');
     const searchInput = document.getElementById('searchBar');
     const noResults = document.getElementById('noResults');
-    const noResultsText = document.getElementById('noResultsText');
-    const ariaLive = document.getElementById('ariaLive');
+    const itemModal = document.getElementById('item-modal');
+    const imageModal = document.getElementById('image-modal');
 
-    function announce(msg){ if(ariaLive) ariaLive.textContent = msg; }
+    const DIETARY_LABELS = {
+      "vegan": {en:"Vegan",ar:"نباتي",class:"diet-vegan"},
+      "vegetarian": {en:"Vegetarian",ar:"نباتي",class:"diet-veg"},
+      "gluten-free": {en:"Gluten-free",ar:"خالي من الغلوتين",class:"diet-gluten"},
+      "contains-nuts": {en:"Contains nuts",ar:"مكسرات",class:"diet-nut"},
+      "contains-dairy": {en:"Contains dairy",ar:"ألبان",class:"diet-dairy"},
+      "dairy-free": {en:"Dairy-free",ar:"خالي من الألبان",class:"diet-dairy"}
+    };
 
-    function createEl(tag, attrs={}, txt=''){
-      const el = document.createElement(tag);
-      for(const k in attrs){
-        if(k==='class') el.className = attrs[k];
-        else el.setAttribute(k, attrs[k]);
-      }
-      if(txt) el.textContent = txt;
+    function createEl(tag,attrs={},txt=''){
+      const el=document.createElement(tag);
+      for(const k in attrs) k==='class'?el.className=attrs[k]:el.setAttribute(k,attrs[k]);
+      if(txt) el.textContent=txt;
       return el;
     }
 
-    const DIETARY_LABELS = {
-      "vegan": { en: "Vegan", ar: "نباتي" , class: "diet-vegan" },
-      "vegetarian": { en: "Vegetarian", ar: "نباتي" , class: "diet-veg" },
-      "gluten-free": { en: "Gluten-free", ar: "خالي من الغلوتين", class: "diet-gluten" },
-      "contains-nuts": { en: "Contains nuts", ar: "يحتوي على مكسرات", class: "diet-nut" },
-      "contains-dairy": { en: "Contains dairy", ar: "يحتوي على ألبان", class: "diet-dairy" },
-      "dairy-free": { en: "Dairy-free", ar: "خالي من الألبان", class: "diet-dairy" }
-    };
-
     function buildDietaryPills(item){
-      const wrap = createEl('div',{class:'dietary-row'});
-      (item.dietary || []).forEach(d=>{
-        const label = DIETARY_LABELS[d];
+      const wrap=createEl('div',{class:'dietary-row'});
+      (item.dietary||[]).forEach(d=>{
+        const label=DIETARY_LABELS[d];
         if(!label) return;
-        const pill = createEl('div',{class:'diet-pill '+label.class}, currentLang==='en' ? label.en : label.ar);
+        const pill=createEl('div',{class:'diet-pill '+label.class},currentLang==='en'?label.en:label.ar);
         wrap.appendChild(pill);
       });
-      return wrap.children.length ? wrap : null;
+      return wrap.children.length?wrap:null;
     }
 
     function buildMenuItemRow(item){
-      const row = createEl('div',{class:'menu-item',tabindex:0,role:'listitem'});
-      const thumb = createEl('div',{class:'thumb'});
-      const img = createEl('img',{src:item.image||'',alt:(currentLang==='en'?item.enName:item.arName)||'',loading:'lazy'});
+      const row=createEl('div',{class:'menu-item',tabindex:0});
+      const thumb=createEl('div',{class:'thumb'});
+      const img=createEl('img',{src:item.image||'',alt:currentLang==='en'?item.enName:item.arName,loading:'lazy'});
       thumb.appendChild(img);
 
-      const meta = createEl('div',{class:'meta'});
-      const nameTxt = currentLang==='en' ? item.enName : item.arName;
-      const descTxt = currentLang==='en' ? item.descriptionEn : item.descriptionAr;
-      const nm = createEl('div',{class:'name'}, nameTxt || '');
-      const desc = createEl('div',{class:'desc'}, descTxt || '');
-      const cal = createEl('div',{class:'calories'}, item.calories || '');
+      const meta=createEl('div',{class:'meta'});
+      const nameTxt=currentLang==='en'?item.enName:item.arName;
+      const descTxt=currentLang==='en'?item.descriptionEn:item.descriptionAr;
+      const nm=createEl('div',{class:'name'},nameTxt);
+      const desc=createEl('div',{class:'desc'},descTxt);
+      const cal=createEl('div',{class:'calories'},item.calories||'');
 
       meta.appendChild(nm);
       meta.appendChild(desc);
-
-      const pills = buildDietaryPills(item);
+      const pills=buildDietaryPills(item);
       if(pills) meta.appendChild(pills);
-
       meta.appendChild(cal);
 
-      const price = createEl('div',{class:'price'}, item.price || '');
+      const price=createEl('div',{class:'price'},item.price||'');
 
-      row.appendChild(thumb); row.appendChild(meta); row.appendChild(price);
+      row.appendChild(thumb);
+      row.appendChild(meta);
+      row.appendChild(price);
 
-      row.addEventListener('click', ()=> openItemModal(item));
-      row.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' ') { e.preventDefault(); openItemModal(item); } });
-      img.addEventListener('click', (e)=>{ e.stopPropagation(); openImageModal(img.src, nameTxt); });
+      row.addEventListener('click',()=>openItemModal(item));
+      row.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openItemModal(item)}});
+      img.addEventListener('click',e=>{e.stopPropagation();openImageModal(img.src,nameTxt)});
 
       return row;
     }
 
-    /* ---- Render categories once and items lazily in chunks ---- */
     function renderCategories(){
-      categoriesView.innerHTML=''; flatResults.style.display='none'; categoriesView.style.display='flex'; noResults.style.display='none';
+      categoriesView.innerHTML='';
+      flatResults.style.display='none';
+      noResults.style.display='none';
       Object.keys(menuData).forEach(catKey=>{
-        const cat = menuData[catKey];
-        const titleText = currentLang==='en' ? catKey : cat.arTitle || catKey;
-        const catEl = createEl('div',{class:'category',tabindex:0,role:'button','aria-expanded':'false'});
-        const title = createEl('div',{}, titleText); title.className='title';
-        const chev = createEl('div',{},'▸'); chev.className='chev';
-        catEl.appendChild(title); catEl.appendChild(chev);
+        const cat=menuData[catKey];
+        const titleText=currentLang==='en'?catKey:cat.arTitle;
+        const catEl=createEl('div',{class:'category',tabindex:0});
+        const title=createEl('div',{class:'title'},titleText);
+        const chev=createEl('div',{class:'chev'},'▸');
+        catEl.appendChild(title);
+        catEl.appendChild(chev);
 
-        const itemsWrap = createEl('div',{class:'items','aria-hidden':'true'});
-        // We'll append items in chunks to avoid blocking UI
-        (cat.items||[]).forEach(it => {
-          // create but don't attach images heavy until visible via lazy-loading (loading="lazy")
-          itemsWrap.appendChild(buildMenuItemRow(it));
-        });
+        const itemsWrap=createEl('div',{class:'items'});
+        (cat.items||[]).forEach(it=>itemsWrap.appendChild(buildMenuItemRow(it)));
 
-        catEl.addEventListener('click', ()=> toggleCategory(itemsWrap,catEl));
-        catEl.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' ') { e.preventDefault(); toggleCategory(itemsWrap,catEl); } });
+        catEl.addEventListener('click',()=>toggleCategory(itemsWrap,catEl));
+        catEl.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggleCategory(itemsWrap,catEl)}});
 
         categoriesView.appendChild(catEl);
         categoriesView.appendChild(itemsWrap);
       });
     }
 
-    function toggleCategory(itemsWrap, catEl){
-      const open = itemsWrap.classList.contains('open');
-      if(open){
-        itemsWrap.classList.remove('open'); itemsWrap.setAttribute('aria-hidden','true'); catEl.setAttribute('aria-expanded','false'); catEl.querySelector('.chev').textContent='▸';
-      } else {
-        document.querySelectorAll('.items.open').forEach(x=>{ x.classList.remove('open'); x.setAttribute('aria-hidden','true'); const p=x.previousElementSibling; if(p){ p.setAttribute('aria-expanded','false'); p.querySelector('.chev').textContent='▸'; } });
-        itemsWrap.classList.add('open'); itemsWrap.setAttribute('aria-hidden','false'); catEl.setAttribute('aria-expanded','true'); catEl.querySelector('.chev').textContent='▾';
-        const first = itemsWrap.querySelector('.menu-item'); if(first) first.focus();
+    function toggleCategory(itemsWrap,catEl){
+      const open=itemsWrap.classList.contains('open');
+      document.querySelectorAll('.items.open').forEach(x=>{
+        x.classList.remove('open');
+        const p=x.previousElementSibling;
+        if(p) p.querySelector('.chev').textContent='▸';
+      });
+      if(!open){
+        itemsWrap.classList.add('open');
+        catEl.querySelector('.chev').textContent='▾';
+        const first=itemsWrap.querySelector('.menu-item');
+        if(first) first.focus();
       }
     }
 
-    /* ---- Search handling ---- */
     function handleSearch(q){
-      const qtrim = (q||'').trim().toLowerCase();
-      if(!qtrim){ renderCategories(); return; }
+      const qtrim=(q||'').trim().toLowerCase();
+      if(!qtrim){renderCategories();return}
 
-      flatResults.innerHTML=''; categoriesView.style.display='none'; flatResults.style.display='flex'; noResults.style.display='none';
+      flatResults.innerHTML='';
+      categoriesView.style.display='none';
+      flatResults.style.display='flex';
+      noResults.style.display='none';
 
-      const matched = [];
+      const matched=[];
       Object.keys(menuData).forEach(catKey=>{
-        const cat = menuData[catKey];
+        const cat=menuData[catKey];
         (cat.items||[]).forEach(it=>{
-          const nameEn = (it.enName||'').toLowerCase();
-          const nameAr = (it.arName||'').toLowerCase();
-          const descEn = (it.descriptionEn||'').toLowerCase();
-          const descAr = (it.descriptionAr||'').toLowerCase();
-          if(nameEn.includes(qtrim) || nameAr.includes(qtrim) || descEn.includes(qtrim) || descAr.includes(qtrim)){
-            matched.push(Object.assign({},it,{category: currentLang==='en'?catKey:cat.arTitle}));
+          const nameEn=(it.enName||'').toLowerCase();
+          const nameAr=(it.arName||'').toLowerCase();
+          const descEn=(it.descriptionEn||'').toLowerCase();
+          const descAr=(it.descriptionAr||'').toLowerCase();
+          if(nameEn.includes(qtrim)||nameAr.includes(qtrim)||descEn.includes(qtrim)||descAr.includes(qtrim)){
+            matched.push(Object.assign({},it,{category:currentLang==='en'?catKey:cat.arTitle}));
           }
         });
       });
 
       if(!matched.length){
-        flatResults.style.display='none'; noResults.style.display='block'; noResultsText.textContent = currentLang==='en' ? 'No items found. Try a different search.' : 'لم يتم العثور على عناصر. حاول البحث بكلمة أخرى.'; announce('No results');
+        flatResults.style.display='none';
+        noResults.style.display='block';
         return;
       }
 
       matched.forEach(it=>{
-        const wrapper = createEl('div',{style:'display:flex;flex-direction:column;gap:8px'});
-        const catLabelText = it.category || '';
-        const catLabel = createEl('div',{style:'font-size:12px;color:var(--muted);margin-bottom:6px'}, catLabelText);
+        const wrapper=createEl('div',{style:'display:flex;flex-direction:column;gap:8px'});
+        const catLabel=createEl('div',{style:'font-size:12px;color:var(--muted);margin-bottom:6px'},it.category||'');
         wrapper.appendChild(catLabel);
         wrapper.appendChild(buildMenuItemRow(it));
         flatResults.appendChild(wrapper);
       });
-
-      announce(`${matched.length} results`);
     }
 
-    /* ---- Modals and accessibility helpers ---- */
-    const itemModal = document.getElementById('item-modal');
-    const imageModal = document.getElementById('image-modal');
-    let lastFocus = null;
-    function trapFocus(modal){
-      const focusable = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-      if(!focusable.length) return null;
-      const first = focusable[0], last = focusable[focusable.length-1];
-      function handler(e){
-        if(e.key==='Tab'){
-          if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
-          else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
-        } else if(e.key==='Escape'){ closeAllModals(); }
-      }
-      modal.addEventListener('keydown', handler);
-      return ()=> modal.removeEventListener('keydown', handler);
-    }
     function openItemModal(it){
-      lastFocus = document.activeElement;
-      document.getElementById('modal-name').textContent = currentLang==='en' ? it.enName : it.arName;
-      document.getElementById('modal-price').textContent = it.price || '';
-      document.getElementById('modal-cal').textContent = it.calories ? (currentLang==='en' ? `Estimated: ${it.calories}` : `سعرات تقديرية: ${it.calories}`) : '';
-      document.getElementById('modal-description').textContent = currentLang==='en' ? it.descriptionEn : it.descriptionAr;
-      const modalDiet = document.getElementById('modal-dietary');
-      modalDiet.innerHTML = '';
-      (it.dietary || []).forEach(d=>{
-        const lab = DIETARY_LABELS[d];
-        if(lab) modalDiet.appendChild(createEl('div',{class:'diet-pill '+lab.class}, currentLang==='en' ? lab.en : lab.ar));
+      document.getElementById('modal-name').textContent=currentLang==='en'?it.enName:it.arName;
+      document.getElementById('modal-price').textContent=it.price||'';
+      document.getElementById('modal-cal').textContent=it.calories?(currentLang==='en'?`${it.calories}`:`${it.calories}`):' ';
+      document.getElementById('modal-description').textContent=currentLang==='en'?it.descriptionEn:it.descriptionAr;
+      const modalDiet=document.getElementById('modal-dietary');
+      modalDiet.innerHTML='';
+      (it.dietary||[]).forEach(d=>{
+        const lab=DIETARY_LABELS[d];
+        if(lab) modalDiet.appendChild(createEl('div',{class:'diet-pill '+lab.class},currentLang==='en'?lab.en:lab.ar));
       });
-      itemModal.classList.add('show'); itemModal.setAttribute('aria-hidden','false');
-      const remove = trapFocus(itemModal); itemModal._removeTrap = remove;
-      const close = document.getElementById('modalClose'); if(close) close.focus();
+      itemModal.classList.add('show');
+      document.getElementById('modalClose').focus();
     }
-    function closeItemModal(){ itemModal.classList.remove('show'); itemModal.setAttribute('aria-hidden','true'); if(itemModal._removeTrap) itemModal._removeTrap(); if(lastFocus && lastFocus.focus) lastFocus.focus(); }
 
-    function openImageModal(src, alt){
-      lastFocus = document.activeElement;
-      const img = document.getElementById('zoomed-image'); img.src = src||''; img.alt = alt||'';
-      imageModal.classList.add('show'); imageModal.setAttribute('aria-hidden','false');
-      const remove = trapFocus(imageModal); imageModal._removeTrap = remove;
-      const close = document.getElementById('imageModalClose'); if(close) close.focus();
+    function closeItemModal(){itemModal.classList.remove('show')}
+
+    function openImageModal(src,alt){
+      document.getElementById('zoomed-image').src=src||'';
+      document.getElementById('zoomed-image').alt=alt||'';
+      imageModal.classList.add('show');
+      document.getElementById('imageModalClose').focus();
     }
-    function closeImageModal(){ imageModal.classList.remove('show'); imageModal.setAttribute('aria-hidden','true'); if(imageModal._removeTrap) imageModal._removeTrap(); const img = document.getElementById('zoomed-image'); if(img) img.src=''; if(lastFocus && lastFocus.focus) lastFocus.focus(); }
 
-    document.getElementById('modalClose').addEventListener('click', closeItemModal);
-    document.getElementById('imageModalClose').addEventListener('click', closeImageModal);
-    [itemModal,imageModal].forEach(m=>{ if(!m) return; m.addEventListener('click',(e)=>{ if(e.target===m) closeAllModals(); }); });
+    function closeImageModal(){imageModal.classList.remove('show');document.getElementById('zoomed-image').src=''}
 
-    function closeAllModals(){ closeItemModal(); closeImageModal(); }
+    document.getElementById('modalClose').addEventListener('click',closeItemModal);
+    document.getElementById('imageModalClose').addEventListener('click',closeImageModal);
+    [itemModal,imageModal].forEach(m=>m.addEventListener('click',e=>{if(e.target===m){closeItemModal();closeImageModal()}}));
 
-    /* ---- Hover preview for non-touch devices ---- */
-    const hoverPrev = document.getElementById('hover-preview');
-    let isTouch = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
-    document.addEventListener('mouseover',(e)=>{ if(isTouch || window._isLowEnd) return; const t=e.target; if(t && t.tagName==='IMG' && t.closest('.thumb')){ hoverPrev.src = t.src; hoverPrev.style.display = 'block'; }});
-    document.addEventListener('mousemove',(e)=>{ if(!hoverPrev || hoverPrev.style.display!=='block') return; let x=e.clientX+18,y=e.clientY+18; const vw=window.innerWidth,vh=window.innerHeight,mw=300,mh=300; if(x+mw>vw) x=e.clientX-mw-18; if(y+mh>vh) y=e.clientY-mh-18; hoverPrev.style.left=x+'px'; hoverPrev.style.top=y+'px'; });
-    document.addEventListener('mouseout',(e)=>{ const t=e.target; if(t && t.tagName==='IMG' && t.closest('.thumb')) hoverPrev.style.display='none'; });
-
-    /* ---- Copy Wi-Fi button ---- */
-    const copyWifiBtn = document.getElementById('copy-wifi-en');
-    if (copyWifiBtn) {
-      copyWifiBtn.addEventListener('click', ()=>{
-        const ssid = 'TP-Link_9D3A';
-        const pass = 'Turkiana123';
-        const text = `Wi-Fi: ${ssid} Password: ${pass}`;
-        if(navigator.clipboard && navigator.clipboard.writeText){
-          navigator.clipboard.writeText(text).then(()=>{ const b=document.getElementById('copy-wifi-en'); const orig=b.innerHTML; b.innerHTML = '<i class="fas fa-check" style="color:#25D366"></i>'; setTimeout(()=>b.innerHTML=orig,1300); announce('Wi-Fi details copied'); }).catch(()=> announce('Copy failed'));
-        } else {
-          const ta=document.createElement('textarea'); ta.value=text; document.body.appendChild(ta); ta.select();
-          try{ document.execCommand('copy'); announce('Wi-Fi details copied'); }catch(e){ announce('Copy failed'); } document.body.removeChild(ta);
+    const copyWifiBtn=document.getElementById('copy-wifi-en');
+    if(copyWifiBtn){
+      copyWifiBtn.addEventListener('click',()=>{
+        const text='Wi-Fi: TP-Link_9D3A Password: Turkiana123';
+        if(navigator.clipboard&&navigator.clipboard.writeText){
+          navigator.clipboard.writeText(text).then(()=>{
+            const b=copyWifiBtn;
+            const orig=b.innerHTML;
+            b.innerHTML='<i class="fas fa-check" style="color:#25D366"></i>';
+            setTimeout(()=>b.innerHTML=orig,1300);
+          }).catch(()=>{});
+        }else{
+          const ta=document.createElement('textarea');
+          ta.value=text;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
         }
       });
     }
 
-    /* ---- Open / close menu and language toggle ---- */
-    openMenuBtn.addEventListener('click', ()=>{
-      landingView.style.display = 'none';
-      menuPage.style.display = 'block';
-      menuPage.setAttribute('aria-hidden','false');
-      announce(currentLang==='en'?'Menu opened':'تم فتح القائمة');
-
-      const bg = document.querySelector('.bg-video');
-      const overlay = document.querySelector('.bg-overlay');
-      if(bg) bg.style.display = 'none';
-      if(overlay) overlay.style.display = 'none';
-      menuPage.focus?.();
+    openMenuBtn.addEventListener('click',()=>{
+      landingView.style.display='none';
+      menuPage.style.display='block';
+      const bg=document.querySelector('.bg-video');
+      const overlay=document.querySelector('.bg-overlay');
+      if(bg) bg.style.display='none';
+      if(overlay) overlay.style.display='none';
     });
 
-    function showLanding(){
-      landingView.style.display = 'flex';
-      menuPage.style.display = 'none';
-      menuPage.setAttribute('aria-hidden','true');
-      const bg = document.querySelector('.bg-video');
-      const overlay = document.querySelector('.bg-overlay');
-      if(bg) bg.style.display = '';
-      if(overlay) overlay.style.display = '';
-      announce(currentLang==='en'?'Landing shown':'تم عرض الصفحة الرئيسية');
-    }
-
-    langToggle.addEventListener('click', ()=>{
-      currentLang = currentLang==='en' ? 'ar' : 'en';
-      requestAnimationFrame(()=>{
-        document.documentElement.lang = currentLang==='ar' ? 'ar' : 'en';
-        document.documentElement.dir = currentLang==='ar' ? 'rtl' : 'ltr';
-        langToggle.textContent = currentLang==='en' ? 'العربية' : 'English';
-        langToggle.setAttribute('aria-pressed', String(currentLang==='ar'));
-        document.getElementById('searchBar').placeholder = currentLang==='en' ? 'Search menu items...' : 'ابحث عن عناصر القائمة...';
-        document.getElementById('openMenuBtn').innerHTML = (currentLang==='en' ? '<i class="fas fa-utensils"></i> Explore Our Menu' : '<i class="fas fa-utensils"></i> استعرض قائمتنا');
-        document.getElementById('brandTitle').textContent = currentLang==='en' ? 'Turkiana' : 'تركيانا';
-        document.getElementById('brandSub').textContent = currentLang==='en' ? 'CAFÉ & SWEETS' : 'مقهى وحلويات';
-        document.getElementById('brandTag').textContent = currentLang==='en' ? 'Where Tradition Meets Elegance' : 'حيث يلتقي التراث بالأناقة';
-        renderCategories();
-        if(searchInput.value && searchInput.value.trim()) handleSearch(searchInput.value);
-        announce(currentLang==='en' ? 'Language switched to English' : 'تم تغيير اللغة إلى العربية');
-      });
-    });
-
-    /* ---- Search debounce ---- */
-    let searchTimer = null;
-    if (searchInput) {
-      searchInput.addEventListener('input',(e)=>{
-        clearTimeout(searchTimer);
-        searchTimer = setTimeout(()=>{ handleSearch(e.target.value || ''); }, 140);
-      });
-    }
-
-    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeAllModals(); });
-
-    /* ---- Init ---- */
-    function init(){
-      landingView.style.display = 'flex';
-      menuPage.style.display = 'none';
-      document.documentElement.lang = 'en';
-      document.documentElement.dir = 'ltr';
-      langToggle.textContent = 'العربية';
-      langToggle.setAttribute('aria-pressed','false');
-      document.getElementById('searchBar').placeholder = 'Search menu items...';
+    langToggle.addEventListener('click',()=>{
+      currentLang=currentLang==='en'?'ar':'en';
+      document.documentElement.lang=currentLang;
+      document.documentElement.dir=currentLang==='ar'?'rtl':'ltr';
+      langToggle.textContent=currentLang==='en'?'العربية':'English';
+      document.getElementById('searchBar').placeholder=currentLang==='en'?'Search menu items...':'ابحث عن عناصر القائمة...';
+      document.getElementById('openMenuBtn').innerHTML=currentLang==='en'?'<i class="fas fa-utensils"></i> Explore Our Menu':'<i class="fas fa-utensils"></i> استعرض قائمتنا';
+      document.getElementById('brandTag').textContent=currentLang==='en'?'Where Tradition Meets Elegance':'حيث يلتقي التراث بالأناقة';
+      document.getElementById('noResultsText').textContent=currentLang==='en'?'No items found.':'لم يتم العثور على عناصر.';
       renderCategories();
-      announce('Welcome to Turkiana. Press Explore Our Menu to continue.');
+      if(searchInput.value&&searchInput.value.trim()) handleSearch(searchInput.value);
+    });
+
+    let searchTimer=null;
+    if(searchInput){
+      searchInput.addEventListener('input',e=>{
+        clearTimeout(searchTimer);
+        searchTimer=setTimeout(()=>handleSearch(e.target.value||''),140);
+      });
     }
-    document.addEventListener('DOMContentLoaded', init);
 
-    /* ---- Expose for debugging / further integration ---- */
-    window._turkiana = { renderCategories, handleSearch, menuData, showLanding };
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeItemModal();closeImageModal()}});
 
+    function init(){
+      document.documentElement.lang='en';
+      document.documentElement.dir='ltr';
+      langToggle.textContent='العربية';
+      renderCategories();
+    }
+
+    init();
   </script>
 </body>
 </html>
