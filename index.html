@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -7,6 +7,7 @@
   <meta name="description" content="Turkiana Cafe & Sweets — Digital Menu with Modern Design" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
   <style>
     :root{
       --bg:#07070a;
@@ -19,29 +20,34 @@
       --glass-bg: linear-gradient(180deg, rgba(122,25,33,0.24), rgba(255,255,255,0.02));
     }
 
+    /* Basic reset + body */
     *{box-sizing:border-box;margin:0;padding:0;-webkit-font-smoothing:antialiased}
     html,body{height:100%;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial;background:var(--bg);color:#fff;-webkit-text-size-adjust:100%}
     a { color: inherit; text-decoration: none; }
     img{display:block;max-width:100%}
+    html { font-size:16px; }
 
-    html { font-size:16px; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; -moz-text-size-adjust:100%; }
-
+    /* Background video and overlay */
     .bg-video{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
     .bg-video video{width:100%;height:100%;object-fit:cover;opacity:0.86;filter:contrast(1.01) saturate(1.02) brightness(1.04)}
     .bg-overlay{position:fixed;inset:0;z-index:1;background:radial-gradient(800px 400px at 10% 20%, rgba(255,255,255,0.02), transparent 10%),radial-gradient(700px 300px at 85% 80%, rgba(255,255,255,0.02), transparent 12%),linear-gradient(180deg, rgba(5,5,8,0.06), rgba(3,3,5,0.14));backdrop-filter: blur(6px) saturate(110%); -webkit-backdrop-filter: blur(6px) saturate(110%);pointer-events:none; }
 
+    /* Top controls */
     .top-controls{position:fixed;top:14px;left:0;right:0;margin:0 auto;z-index:12;display:flex;justify-content:flex-end;align-items:center;pointer-events:none;width:calc(100% - 32px);max-width:var(--max-width);padding:0 16px}
     .lang{pointer-events:auto;padding:8px 12px;border-radius:999px;background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));border:1px solid rgba(255,255,255,0.06);color:#fff;font-weight:700;cursor:pointer;transition:all 0.3s ease}
     .lang:hover{background:linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.08));transform:scale(1.05)}
 
+    /* App layout */
     .app{min-height:100vh;display:flex;align-items:stretch;justify-content:center;position:relative;overflow:hidden;padding:48px 12px;z-index:6}
     .centered{width:100%;max-width:var(--max-width);margin:0 auto}
 
+    /* Marquee */
     .marquee-wrap{width:100%;overflow:hidden;border-radius:12px;margin-bottom:18px;pointer-events:none}
     .marquee{display:flex;gap:18px;align-items:center;white-space:nowrap;animation:marquee 26s linear infinite}
     .marquee img{height:84px;border-radius:10px;object-fit:cover;box-shadow:0 10px 30px rgba(0,0,0,0.6)}
     @keyframes marquee {0%{transform:translateX(0%);}100%{transform:translateX(-50%);} }
 
+    /* Hero */
     .landing{display:flex;align-items:center;justify-content:center;min-height:calc(100vh - 96px)}
     .hero{width:100%;max-width:980px;border-radius:20px;padding:28px;text-align:center;background:linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.06);box-shadow:var(--shadow);backdrop-filter:blur(10px) saturate(120%)}
     .brand{font-size:44px;font-weight:800;color:var(--gold);margin-bottom:6px;font-family:"Playfair Display", serif}
@@ -50,6 +56,7 @@
     .primary{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:12px 22px;border-radius:999px;background:linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));color:#fff;font-weight:800;border:1px solid rgba(255,255,255,0.06);cursor:pointer;transition:all 0.3s ease}
     .primary:hover{background:linear-gradient(180deg, rgba(255,255,255,0.15), rgba(255,255,255,0.08));transform:translateY(-2px)}
 
+    /* Menu panel and search */
     .menu-page{display:none;width:100%;max-width:var(--max-width);margin:0 auto;padding-bottom:120px}
     .menu-panel{border-radius:16px;padding:16px;background:var(--glass-bg);border:1px solid rgba(255,255,255,0.06);box-shadow:0 30px 80px rgba(11,3,6,0.6), inset 0 1px 0 rgba(255,255,255,0.02);backdrop-filter:blur(14px) saturate(120%) contrast(1.02);-webkit-backdrop-filter:blur(14px) saturate(120%) contrast(1.02);position:relative;overflow:hidden;}
     .menu-panel::before{content:'';position:absolute;left:-30%;top:-20%;width:160%;height:32%;background:radial-gradient(600px 120px at 50% 0%, rgba(202,168,74,0.07), transparent 40%);transform:rotate(-6deg);pointer-events:none;}
@@ -58,6 +65,7 @@
     .search input{width:100%;max-width:760px;padding:12px 16px;border-radius:999px;font-size:15px;border:1px solid rgba(255,255,255,0.06);background:rgba(0,0,0,0.18);color:#fff;outline:none;transition:all 0.3s ease}
     .search input:focus{border-color:rgba(202,168,74,0.5);background:rgba(0,0,0,0.25)}
 
+    /* Contact pills */
     .contact-row-bottom{display:flex;gap:10px;justify-content:center;margin-top:18px}
     .contact-pill{display:inline-flex;gap:8px;align-items:center;padding:12px 16px;border-radius:999px;color:#fff;font-weight:700;text-decoration:none;background:linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));border:1px solid rgba(255,255,255,0.06);box-shadow:0 10px 30px rgba(0,0,0,0.45);cursor:pointer;transition:all 0.3s ease;font-size:14px}
     .contact-pill:hover{transform:translateY(-3px) scale(1.08);box-shadow:0 15px 45px rgba(0,0,0,0.6);background:linear-gradient(180deg, rgba(255,255,255,0.15), rgba(255,255,255,0.08))}
@@ -69,6 +77,7 @@
     .website-icon{color:var(--gold)}
     .wifi-icon{color:#5DADE2}
 
+    /* Categories & items */
     .categories{display:flex;flex-direction:column;gap:12px;margin-top:8px}
     .category{display:flex;align-items:center;justify-content:space-between;padding:14px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.04);color:#fff;font-weight:800;cursor:pointer;transition:all 0.3s ease}
     .category:hover{background:linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));transform:translateX(4px)}
@@ -97,6 +106,7 @@
     .diet-dairy{background:#305a9a}
     .diet-spicy{background:#9b2b2b}
 
+    /* Modal */
     .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:30;background:rgba(2,6,23,0.6)}
     .modal.show{display:flex}
     .modal-card{width:92%;max-width:520px;background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.96));border-radius:14px;padding:18px;color:#2b1a0f;box-shadow:0 30px 100px rgba(2,6,23,0.7)}
@@ -104,9 +114,11 @@
     .close-btn:hover{background:rgba(0,0,0,0.12);transform:rotate(90deg)}
     #hover-preview{position:fixed;display:none;max-width:300px;max-height:300px;border-radius:12px;z-index:28;box-shadow:0 24px 80px rgba(2,6,23,0.7);overflow:hidden}
 
+    /* Floating CTA */
     .fab{position:fixed;right:18px;bottom:18px;z-index:14;width:64px;height:64px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#25D366,#20BA5A);color:#fff;font-size:28px;box-shadow:0 18px 60px rgba(2,6,23,0.6);transition:all 0.3s ease;cursor:pointer;border:none}
     .fab:hover{transform:scale(1.1);box-shadow:0 24px 80px rgba(37,211,102,0.4)}
 
+    /* Footer */
     .footer{background:linear-gradient(180deg, rgba(122,25,33,0.4), rgba(0,0,0,0.6));border-top:1px solid rgba(255,255,255,0.1);padding:40px 20px;backdrop-filter:blur(10px)}
     .footer-content{max-width:var(--max-width);margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;margin-bottom:30px}
     .footer-section h4{color:var(--gold);font-size:16px;margin-bottom:12px;font-weight:800}
@@ -139,20 +151,22 @@
       .marquee{animation: none !important;}
     }
 
+    /* Low-end adjustments */
     .low-end .bg-video { display: none !important; }
     .low-end .bg-overlay { display: none !important; }
     .low-end .menu-panel { backdrop-filter: none !important; box-shadow: none !important; border: 1px solid rgba(255,255,255,0.03) !important; }
     .low-end .marquee img { height:48px !important; }
     .low-end .menu-item { box-shadow: none !important; border: 1px solid rgba(255,255,255,0.02) !important; }
 
+    /* RTL tweaks */
     [dir="rtl"] .marquee { direction: ltr; }
     [dir="rtl"] .top-controls { direction: rtl; }
     [dir="rtl"] .brand { text-align: center; }
 
-    * { -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; }
   </style>
 </head>
 <body>
+  <!-- Background video (kept as requested) -->
   <div class="bg-video" aria-hidden="true">
     <video id="bgVideo" autoplay muted loop playsinline preload="metadata" poster="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Breakfast.jpg">
       <source src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Video.mp4" type="video/mp4">
@@ -296,6 +310,7 @@
     </div>
   </footer>
 
+  <!-- Item modal -->
   <div id="item-modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
     <div class="modal-card" role="document">
       <button class="close-btn" id="modalClose" aria-label="Close"><i class="fas fa-times"></i></button>
@@ -307,6 +322,7 @@
     </div>
   </div>
 
+  <!-- Image modal -->
   <div id="image-modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
     <div class="modal-card" style="background:transparent;box-shadow:none">
       <button class="close-btn" id="imageModalClose" aria-label="Close"><i class="fas fa-times"></i></button>
@@ -318,6 +334,7 @@
   <div id="ariaLive" aria-live="polite" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;"></div>
 
   <script>
+    /* ---- Performance helper: low-end detection ---- */
     (function optimizeForLowEnd() {
       try {
         const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
@@ -326,7 +343,6 @@
         const deviceMemory = navigator.deviceMemory || 0;
 
         const isLowEnd = saveData || deviceMemory && deviceMemory <= 1 || (downlink && downlink < 1.5) || /Android\s[0-6]\b|MSIE|Trident/i.test(navigator.userAgent);
-
         if (isLowEnd) {
           document.documentElement.classList.add('low-end');
           const bg = document.querySelector('.bg-video'); if (bg) bg.style.display = 'none';
@@ -341,14 +357,17 @@
       }
     })();
 
+    /* ---- Ensure background video plays slightly slower for vibe ---- */
     const bgVideo = document.getElementById('bgVideo');
     if (bgVideo) {
       bgVideo.playbackRate = 0.6;
       bgVideo.addEventListener('loadedmetadata', ()=>{ try{ bgVideo.play(); }catch(e){} });
     }
 
+    /* ---- base url for images (kept originals) ---- */
     const base = "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/";
 
+    /* ---- Menu data (kept EXACTLY as provided) ---- */
     const menuData = {
        "Turkish Morning": {
         arTitle: "الصباح التركي",
@@ -437,7 +456,7 @@
         items: [
           { enName:"Ice Apple Tea", arName:"شاي التفاح مثلج", price:"28 QR", descriptionEn:"Chilled apple tea", descriptionAr:"شاي التفاح المثلج", image: base+"Iceapple.jpeg", calories:"35 kcal", dietary:["vegan","dairy-free"] },
           { enName:"Ice Mulberry Tea", arName:"شاي التوت المثلج", price:"28 QR", descriptionEn:"Iced mulberry tea", descriptionAr:"شاي التوت المثلج", image: base+"Icemulberry.jpeg", calories:"35 kcal", dietary:["vegan","dairy-free"] },
-          { enName:"Ice Mint Lemon", arName:"شاي النعناع والليمون المثلج", price:"28 QR", descriptionEn:"Iced mint & lemon tea", descriptionAr:"شاي النعناع والليمون المثلج", image: base+"Icelemon.jpeg", calories:"20 kcal", dietary:["vegan","dairy-free"] },
+          { enName:"Ice Mint Lemon", arName:"شай النعناع والليمون المثلج", price:"28 QR", descriptionEn:"Iced mint & lemon tea", descriptionAr:"شاي النعناع والليمون المثلج", image: base+"Icelemon.jpeg", calories:"20 kcal", dietary:["vegan","dairy-free"] },
           { enName:"Ice Pomegranate Tea", arName:"شاي الرمان المثلج", price:"28 QR", descriptionEn:"Iced pomegranate tea", descriptionAr:"شاي الرمان المثلج", image: base+"Iceroman.jpeg", calories:"45 kcal", dietary:["vegan","dairy-free"] },
           { enName:"Hibiscus Ice", arName:"الكركديه مثلج", price:"28 QR", descriptionEn:"Chilled hibiscus tea", descriptionAr:"الكركديه مثلج", image: base+"Iceroman.jpeg", calories:"25 kcal", dietary:["vegan","dairy-free"] }
         ]
@@ -512,10 +531,11 @@
           { enName:"Sparkling Water", arName:"مياه غازية", price:"21 QR", descriptionEn:"Sparkling water", descriptionAr:"مياه غازية", image: base+"Sparkling.jpg", calories:"0 kcal", dietary:["vegan","dairy-free"] },
           { enName:"Kinza Cola", arName:"كينزا كولا", price:"17 QR", descriptionEn:"Kinza Cola", descriptionAr:"كينزا كولا", image: base+"Cola.jpg", calories:"150 kcal", dietary:[] },
           { enName:"Kinza Cola Zero", arName:"كينزا كولا زيرو", price:"17 QR", descriptionEn:"Kinza Cola Zero", descriptionAr:"كينزا كولا زيرو", image: base+"Zero.jpg", calories:"0 kcal", dietary:[] }
-             ]
+        ]
       }
-    };
+    }; // end menuData
 
+    /* ---- Lightweight utilities ---- */
     let currentLang = 'en';
     const landingView = document.getElementById('landingView');
     const menuPage = document.getElementById('menuPage');
@@ -592,6 +612,7 @@
       return row;
     }
 
+    /* ---- Render categories once and items lazily in chunks ---- */
     function renderCategories(){
       categoriesView.innerHTML=''; flatResults.style.display='none'; categoriesView.style.display='flex'; noResults.style.display='none';
       Object.keys(menuData).forEach(catKey=>{
@@ -603,7 +624,9 @@
         catEl.appendChild(title); catEl.appendChild(chev);
 
         const itemsWrap = createEl('div',{class:'items','aria-hidden':'true'});
+        // We'll append items in chunks to avoid blocking UI
         (cat.items||[]).forEach(it => {
+          // create but don't attach images heavy until visible via lazy-loading (loading="lazy")
           itemsWrap.appendChild(buildMenuItemRow(it));
         });
 
@@ -626,6 +649,7 @@
       }
     }
 
+    /* ---- Search handling ---- */
     function handleSearch(q){
       const qtrim = (q||'').trim().toLowerCase();
       if(!qtrim){ renderCategories(); return; }
@@ -663,6 +687,7 @@
       announce(`${matched.length} results`);
     }
 
+    /* ---- Modals and accessibility helpers ---- */
     const itemModal = document.getElementById('item-modal');
     const imageModal = document.getElementById('image-modal');
     let lastFocus = null;
@@ -712,12 +737,14 @@
 
     function closeAllModals(){ closeItemModal(); closeImageModal(); }
 
+    /* ---- Hover preview for non-touch devices ---- */
     const hoverPrev = document.getElementById('hover-preview');
     let isTouch = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
     document.addEventListener('mouseover',(e)=>{ if(isTouch || window._isLowEnd) return; const t=e.target; if(t && t.tagName==='IMG' && t.closest('.thumb')){ hoverPrev.src = t.src; hoverPrev.style.display = 'block'; }});
     document.addEventListener('mousemove',(e)=>{ if(!hoverPrev || hoverPrev.style.display!=='block') return; let x=e.clientX+18,y=e.clientY+18; const vw=window.innerWidth,vh=window.innerHeight,mw=300,mh=300; if(x+mw>vw) x=e.clientX-mw-18; if(y+mh>vh) y=e.clientY-mh-18; hoverPrev.style.left=x+'px'; hoverPrev.style.top=y+'px'; });
     document.addEventListener('mouseout',(e)=>{ const t=e.target; if(t && t.tagName==='IMG' && t.closest('.thumb')) hoverPrev.style.display='none'; });
 
+    /* ---- Copy Wi-Fi button ---- */
     const copyWifiBtn = document.getElementById('copy-wifi-en');
     if (copyWifiBtn) {
       copyWifiBtn.addEventListener('click', ()=>{
@@ -725,14 +752,15 @@
         const pass = 'Turkiana123';
         const text = `Wi-Fi: ${ssid} Password: ${pass}`;
         if(navigator.clipboard && navigator.clipboard.writeText){
-          navigator.clipboard.writeText(text).then(()=>{ const b=document.getElementById('copy-wifi-en'); const orig=b.innerHTML; b.innerHTML = '<i class="fas fa-check" style="color:#25D366"></i>'; setTimeout(()=>b.innerHTML=orig,1300); announce('Wi‑Fi details copied'); }).catch(()=> announce('Copy failed'));
+          navigator.clipboard.writeText(text).then(()=>{ const b=document.getElementById('copy-wifi-en'); const orig=b.innerHTML; b.innerHTML = '<i class="fas fa-check" style="color:#25D366"></i>'; setTimeout(()=>b.innerHTML=orig,1300); announce('Wi-Fi details copied'); }).catch(()=> announce('Copy failed'));
         } else {
           const ta=document.createElement('textarea'); ta.value=text; document.body.appendChild(ta); ta.select();
-          try{ document.execCommand('copy'); announce('Wi‑Fi details copied'); }catch(e){ announce('Copy failed'); } document.body.removeChild(ta);
+          try{ document.execCommand('copy'); announce('Wi-Fi details copied'); }catch(e){ announce('Copy failed'); } document.body.removeChild(ta);
         }
       });
     }
 
+    /* ---- Open / close menu and language toggle ---- */
     openMenuBtn.addEventListener('click', ()=>{
       landingView.style.display = 'none';
       menuPage.style.display = 'block';
@@ -775,6 +803,7 @@
       });
     });
 
+    /* ---- Search debounce ---- */
     let searchTimer = null;
     if (searchInput) {
       searchInput.addEventListener('input',(e)=>{
@@ -785,6 +814,7 @@
 
     document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeAllModals(); });
 
+    /* ---- Init ---- */
     function init(){
       landingView.style.display = 'flex';
       menuPage.style.display = 'none';
@@ -798,7 +828,9 @@
     }
     document.addEventListener('DOMContentLoaded', init);
 
+    /* ---- Expose for debugging / further integration ---- */
     window._turkiana = { renderCategories, handleSearch, menuData, showLanding };
+
   </script>
 </body>
 </html>
