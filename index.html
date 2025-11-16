@@ -58,17 +58,6 @@
     .search input::placeholder{color:rgba(255,255,255,0.5)}
     .search input:focus{border-color:rgba(202,168,74,0.5);background:rgba(0,0,0,0.25)}
 
-    .contact-row-bottom{display:flex;gap:10px;justify-content:center;margin-top:18px;flex-wrap:wrap}
-    .contact-pill{display:inline-flex;gap:8px;align-items:center;padding:12px 16px;border-radius:999px;color:#fff;font-weight:700;text-decoration:none;background:linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));border:1px solid rgba(255,255,255,0.06);box-shadow:0 10px 30px rgba(0,0,0,0.45);cursor:pointer;transition:all 0.3s ease;font-size:14px;text-transform:uppercase;letter-spacing:0.5px}
-    .contact-pill:hover{transform:translateY(-3px) scale(1.08);box-shadow:0 15px 45px rgba(0,0,0,0.6);background:linear-gradient(180deg, rgba(255,255,255,0.15), rgba(255,255,255,0.08))}
-    .contact-pill i{display:none}
-    .contact-pill::before{content:attr(data-label);font-weight:700;font-size:13px;letter-spacing:0.5px}
-
-    .instagram-icon{color:#E1306C;transition:all 0.3s ease}
-    .instagram-icon:hover{color:#fd1d1d;filter:drop-shadow(0 0 8px rgba(232, 29, 45, 0.6))}
-    .website-icon{color:var(--gold)}
-    .wifi-icon{color:#5DADE2}
-
     .categories{display:flex;flex-direction:column;gap:12px;margin-top:8px}
     .category{display:flex;align-items:center;justify-content:space-between;padding:14px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.04);color:#fff;font-weight:800;cursor:pointer;transition:all 0.3s ease}
     .category:hover{background:linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));transform:translateX(4px)}
@@ -98,10 +87,9 @@
 
     .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:30;background:rgba(2,6,23,0.6)}
     .modal.show{display:flex}
-    .modal-card{width:92%;max-width:520px;background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.96));border-radius:14px;padding:18px;color:#2b1a0f;box-shadow:0 30px 100px rgba(2,6,23,0.7)}
+    .modal-card{width:92%;max-width:520px;background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.96));border-radius:14px;padding:18px;color:#2b1a0f;box-shadow:0 30px 100px rgba(2,6,23,0.7);position:relative}
     .close-btn{position:absolute;right:18px;top:18px;background:rgba(0,0,0,0.06);color:#111;border-radius:8px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.3s ease;border:none;font-size:18px}
     .close-btn:hover{background:rgba(0,0,0,0.12);transform:rotate(90deg)}
-    #hover-preview{position:fixed;display:none;max-width:300px;max-height:300px;border-radius:12px;z-index:28;box-shadow:0 24px 80px rgba(2,6,23,0.7);overflow:hidden}
 
     .fab{position:fixed;right:18px;bottom:18px;z-index:14;width:64px;height:64px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#25D366,#20BA5A);color:#fff;font-size:28px;box-shadow:0 18px 60px rgba(2,6,23,0.6);transition:all 0.3s ease;cursor:pointer;border:none}
     .fab:hover{transform:scale(1.1);box-shadow:0 24px 80px rgba(37,211,102,0.4)}
@@ -121,9 +109,6 @@
     .footer-item-link{display:inline-flex;padding:10px 14px;border-radius:6px;background:rgba(202,168,74,0.15);border:1px solid rgba(202,168,74,0.3);text-decoration:none;font-weight:600;font-size:13px;color:rgba(255,255,255,0.85);transition:all 0.3s ease;cursor:pointer;margin-right:8px;margin-bottom:8px}
     .footer-item-link:hover{background:rgba(202,168,74,0.3);border-color:rgba(202,168,74,0.6);transform:translateY(-2px);color:var(--gold)}
     .footer-bottom{text-align:center;color:rgba(255,255,255,0.5);font-size:12px;padding-top:30px;border-top:1px solid rgba(255,255,255,0.1);max-width:var(--max-width);margin:0 auto;position:relative;z-index:1}
-    .social-links{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
-    .social-links a{display:inline-flex;align-items:center;justify-content:center;padding:10px 16px;border-radius:8px;background:linear-gradient(135deg, rgba(202,168,74,0.15), rgba(255,255,255,0.08));transition:all 0.3s ease;border:1px solid rgba(202,168,74,0.3);text-decoration:none;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:0.5px;color:#fff}
-    .social-links a:hover{background:linear-gradient(135deg, var(--gold), rgba(202,168,74,0.6));transform:translateY(-5px) scale(1.1);border-color:var(--gold)}
 
     @media (max-width:1200px){.footer-content{grid-template-columns:1fr 1fr;gap:30px}}
     @media (max-width:768px){
@@ -140,7 +125,6 @@
       .price{min-width:64px;font-size:14px}
       .primary{padding:10px 14px;font-size:14px}
       .search input{padding:10px 12px}
-      .contact-pill{padding:10px 12px;font-size:12px}
       .footer{padding:50px 15px 30px}
       .footer-section{padding:20px}
     }
@@ -447,10 +431,9 @@
           { enName:"Sparkling Water", arName:"مياه غازية", price:"21 QR", descriptionEn:"Sparkling water", descriptionAr:"مياه غازية", image: base+"Sparkling.jpg", calories:"0 kcal", dietary:["vegan","dairy-free"] },
           { enName:"Kinza Cola", arName:"كينزا كولا", price:"17 QR", descriptionEn:"Kinza Cola", descriptionAr:"كينزا كولا", image: base+"Cola.jpg", calories:"150 kcal", dietary:[] },
           { enName:"Kinza Cola Zero", arName:"كينزا كولا زيرو", price:"17 QR", descriptionEn:"Kinza Cola Zero", descriptionAr:"كينزا كولا زيرو", image: base+"Zero.jpg", calories:"0 kcal", dietary:[] }
-             ]
+        ]
       }
     };
-
 
     let currentLang = 'en';
     const landingView = document.getElementById('landingView');
@@ -630,28 +613,6 @@
     document.getElementById('imageModalClose').addEventListener('click',closeImageModal);
     [itemModal,imageModal].forEach(m=>m.addEventListener('click',e=>{if(e.target===m){closeItemModal();closeImageModal()}}));
 
-    const copyWifiBtn=document.getElementById('copy-wifi-en');
-    if(copyWifiBtn){
-      copyWifiBtn.addEventListener('click',()=>{
-        const text='Wi-Fi: TP-Link_9D3A Password: Turkiana123';
-        if(navigator.clipboard&&navigator.clipboard.writeText){
-          navigator.clipboard.writeText(text).then(()=>{
-            const b=copyWifiBtn;
-            const orig=b.innerHTML;
-            b.innerHTML='<i class="fas fa-check" style="color:#25D366"></i>';
-            setTimeout(()=>b.innerHTML=orig,1300);
-          }).catch(()=>{});
-        }else{
-          const ta=document.createElement('textarea');
-          ta.value=text;
-          document.body.appendChild(ta);
-          ta.select();
-          document.execCommand('copy');
-          document.body.removeChild(ta);
-        }
-      });
-    }
-
     openMenuBtn.addEventListener('click',()=>{
       landingView.style.display='none';
       menuPage.style.display='block';
@@ -684,6 +645,23 @@
 
     document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeItemModal();closeImageModal()}});
 
+    document.querySelectorAll('.footer-section h4').forEach(header => {
+      header.addEventListener('click', function() {
+        const content = this.nextElementSibling;
+        const chev = this.querySelector('.chev');
+        
+        document.querySelectorAll('.footer-content-items.open').forEach(item => {
+          if (item !== content) {
+            item.classList.remove('open');
+            item.previousElementSibling.querySelector('.chev').textContent = '▸';
+          }
+        });
+        
+        content.classList.toggle('open');
+        chev.textContent = content.classList.contains('open') ? '▾' : '▸';
+      });
+    });
+
     function init(){
       document.documentElement.lang='en';
       document.documentElement.dir='ltr';
@@ -692,26 +670,6 @@
     }
 
     init();
-
-    // Footer toggle like menu categories
-    document.querySelectorAll('.footer-section h4').forEach(header => {
-      header.addEventListener('click', function() {
-        const content = this.nextElementSibling;
-        const chev = this.querySelector('.chev');
-        
-        // Close all other sections
-        document.querySelectorAll('.footer-content-items.open').forEach(item => {
-          if (item !== content) {
-            item.classList.remove('open');
-            item.previousElementSibling.querySelector('.chev').textContent = '▸';
-          }
-        });
-        
-        // Toggle current section
-        content.classList.toggle('open');
-        chev.textContent = content.classList.contains('open') ? '▾' : '▸';
-      });
-    });
   </script>
 </body>
 </html>
