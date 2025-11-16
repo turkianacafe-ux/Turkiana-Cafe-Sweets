@@ -112,12 +112,14 @@
     .footer-content{max-width:var(--max-width);margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:40px;margin-bottom:50px;position:relative;z-index:1}
     .footer-section{backdrop-filter:blur(20px);background:rgba(255,255,255,0.03);border:1px solid rgba(202,168,74,0.2);border-radius:12px;padding:30px;transition:all 0.4s ease}
     .footer-section:hover{background:rgba(255,255,255,0.06);border-color:rgba(202,168,74,0.5);transform:translateY(-8px)}
-    .footer-section h4{color:var(--gold);font-size:15px;margin-bottom:22px;font-weight:800;text-transform:uppercase;letter-spacing:2px}
-    .footer-section p{color:rgba(255,255,255,0.75);font-size:13px;line-height:1.8;margin-bottom:15px}
-    .footer-section a{color:rgba(255,255,255,0.75);text-decoration:none;transition:all 0.3s ease;display:flex;align-items:center;gap:12px;font-size:13px;margin-bottom:12px}
-    .footer-section a:hover{color:var(--gold)}
-    .footer-section a i{font-size:14px;width:18px;display:flex;align-items:center;justify-content:center;transition:all 0.3s ease}
-    .footer-section a:hover i{transform:translateX(4px)}
+    .footer-section h4{color:var(--gold);font-size:15px;margin-bottom:22px;font-weight:800;text-transform:uppercase;letter-spacing:2px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:14px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.04);transition:all 0.3s ease}
+    .footer-section h4:hover{background:linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));transform:translateX(4px)}
+    .footer-section h4 .chev{color:var(--muted);font-size:17px;transition:transform 0.3s ease}
+    .footer-content-items{display:none;flex-direction:column;gap:10px;margin-top:8px;padding:12px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.02)}
+    .footer-content-items.open{display:flex}
+    .footer-section p{color:rgba(255,255,255,0.75);font-size:13px;line-height:1.8;margin:0;padding:0}
+    .footer-item-link{display:inline-flex;padding:10px 14px;border-radius:6px;background:rgba(202,168,74,0.15);border:1px solid rgba(202,168,74,0.3);text-decoration:none;font-weight:600;font-size:13px;color:rgba(255,255,255,0.85);transition:all 0.3s ease;cursor:pointer;margin-right:8px;margin-bottom:8px}
+    .footer-item-link:hover{background:rgba(202,168,74,0.3);border-color:rgba(202,168,74,0.6);transform:translateY(-2px);color:var(--gold)}
     .footer-bottom{text-align:center;color:rgba(255,255,255,0.5);font-size:12px;padding-top:30px;border-top:1px solid rgba(255,255,255,0.1);max-width:var(--max-width);margin:0 auto;position:relative;z-index:1}
     .social-links{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
     .social-links a{display:inline-flex;align-items:center;justify-content:center;padding:10px 16px;border-radius:8px;background:linear-gradient(135deg, rgba(202,168,74,0.15), rgba(255,255,255,0.08));transition:all 0.3s ease;border:1px solid rgba(202,168,74,0.3);text-decoration:none;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:0.5px;color:#fff}
@@ -211,12 +213,6 @@
           <div id="noResults" style="display:none;margin-top:18px;text-align:center;color:var(--muted)">
             <p id="noResultsText">No items found.</p>
           </div>
-
-          <div class="contact-row-bottom">
-            <a class="contact-pill" data-label="Instagram" href="https://www.instagram.com/turkiana.qa/" target="_blank" rel="noopener noreferrer" title="Instagram"></a>
-            <a class="contact-pill" data-label="Website" href="https://turkianasweets.com" target="_blank" rel="noopener noreferrer" title="Website"></a>
-            <button class="contact-pill" data-label="Copy WiFi" id="copy-wifi-en" title="Copy Wi-Fi"></button>
-          </div>
         </div>
       </section>
     </div>
@@ -229,47 +225,37 @@
   <footer class="footer">
     <div class="footer-content">
       <div class="footer-section">
-        <h4>About Turkiana</h4>
-        <p>Experience authentic Turkish delicacies and modern café culture. Serving the finest desserts and traditional flavors across our premium locations.</p>
-        <div class="social-links">
-          <a href="https://www.instagram.com/turkiana.qa/" target="_blank" rel="noopener noreferrer" title="Instagram">Instagram</a>
-          <a href="https://wa.me/97451866671" target="_blank" rel="noopener noreferrer" title="WhatsApp">WhatsApp</a>
-          <a href="https://turkianasweets.com/" target="_blank" rel="noopener noreferrer" title="Website">Website</a>
+        <h4><span>About Turkiana</span><span class="chev">▸</span></h4>
+        <div class="footer-content-items">
+          <p>Experience authentic Turkish delicacies and modern café culture. Serving the finest desserts and traditional flavors across our premium locations.</p>
         </div>
       </div>
 
       <div class="footer-section">
-        <h4>Quick Links</h4>
-        <a href="https://turkianasweets.com/about-us/" target="_blank" rel="noopener noreferrer" style="padding:8px 12px;border-radius:6px;background:rgba(202,168,74,0.15);border:1px solid rgba(202,168,74,0.3);display:inline-flex;margin-bottom:12px;margin-top:0">
-          About Us
-        </a>
-        <a href="https://turkianasweets.com/contact-us/" target="_blank" rel="noopener noreferrer" style="padding:8px 12px;border-radius:6px;background:rgba(202,168,74,0.15);border:1px solid rgba(202,168,74,0.3);display:inline-flex;margin-bottom:12px;margin-left:8px">
-          Contact Us
-        </a>
-        <a href="https://turkianasweets.com/" target="_blank" rel="noopener noreferrer" style="padding:8px 12px;border-radius:6px;background:rgba(202,168,74,0.15);border:1px solid rgba(202,168,74,0.3);display:inline-flex;margin-bottom:12px;margin-left:8px">
-          Main Website
-        </a>
+        <h4><span>Quick Links</span><span class="chev">▸</span></h4>
+        <div class="footer-content-items">
+          <a href="https://turkianasweets.com/about-us/" target="_blank" rel="noopener noreferrer" class="footer-item-link">About Us</a>
+          <a href="https://turkianasweets.com/contact-us/" target="_blank" rel="noopener noreferrer" class="footer-item-link">Contact Us</a>
+          <a href="https://turkianasweets.com/" target="_blank" rel="noopener noreferrer" class="footer-item-link">Main Website</a>
+        </div>
       </div>
 
       <div class="footer-section">
-        <h4>Contact Info</h4>
-        <a href="tel:+97477984617" style="padding:10px 14px;border-radius:6px;background:rgba(202,168,74,0.15);border:1px solid rgba(202,168,74,0.3);display:inline-flex;margin-bottom:10px;gap:10px;text-decoration:none">
-          📞 +974 7798 4617
-        </a>
-        <a href="mailto:info@turkianasweets.com" style="padding:10px 14px;border-radius:6px;background:rgba(202,168,74,0.15);border:1px solid rgba(202,168,74,0.3);display:inline-flex;margin-bottom:10px;gap:10px;text-decoration:none">
-          ✉️ info@turkianasweets.com
-        </a>
-        <p style="margin-top:12px;padding:10px 14px;border-radius:6px;background:rgba(202,168,74,0.15);border:1px solid rgba(202,168,74,0.3);display:inline-flex">
-          📍 Doha, Qatar
-        </p>
+        <h4><span>Contact Info</span><span class="chev">▸</span></h4>
+        <div class="footer-content-items">
+          <a href="tel:+97477984617" class="footer-item-link">📞 +974 7798 4617</a>
+          <a href="mailto:info@turkianasweets.com" class="footer-item-link">✉️ info@turkianasweets.com</a>
+          <div class="footer-item-link" style="padding:10px 14px;display:flex">📍 Doha, Qatar</div>
+        </div>
       </div>
 
       <div class="footer-section">
-        <h4>Find Us</h4>
-        <p>Visit our multiple locations across Doha for an authentic Turkish café experience.</p>
-        <a href="https://maps.app.goo.gl/ud3JKc8DX1HxY6vk7" target="_blank" rel="noopener noreferrer" style="padding:10px 14px;border-radius:6px;background:linear-gradient(135deg, var(--gold), rgba(202,168,74,0.6));border:1px solid var(--gold);display:inline-flex;margin-top:10px;text-decoration:none;font-weight:700">
-          View Locations on Map
-        </a>
+        <h4><span>Follow Us</span><span class="chev">▸</span></h4>
+        <div class="footer-content-items">
+          <a href="https://www.instagram.com/turkiana.qa/" target="_blank" rel="noopener noreferrer" class="footer-item-link">Instagram</a>
+          <a href="https://wa.me/97451866671" target="_blank" rel="noopener noreferrer" class="footer-item-link">WhatsApp</a>
+          <a href="https://turkianasweets.com/" target="_blank" rel="noopener noreferrer" class="footer-item-link">Website</a>
+        </div>
       </div>
     </div>
 
@@ -299,7 +285,7 @@
   <script>
     const base = "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/";
     const menuData = {
-      "Turkish Morning": {
+     "Turkish Morning": {
         arTitle: "الصباح التركي",
         items: [
           { enName:"Turkish Classic Breakfast", arName:"فطور تركي كلاسيكي", price:"65 QR", descriptionEn:"Authentic Turkish breakfast with fresh bread, cheese, olives, tomatoes, cucumbers, honey, and clotted cream served with Turkish tea", descriptionAr:"فطور تركي أصيل مع خبز طازج، جبن، زيتون، طماطم، خيار، عسل وقشدة، يقدم مع شاي تركي", image: base+"Breakfast.jpg", calories:"680 kcal", dietary:["vegetarian","contains-dairy"] },
@@ -706,6 +692,26 @@
     }
 
     init();
+
+    // Footer toggle like menu categories
+    document.querySelectorAll('.footer-section h4').forEach(header => {
+      header.addEventListener('click', function() {
+        const content = this.nextElementSibling;
+        const chev = this.querySelector('.chev');
+        
+        // Close all other sections
+        document.querySelectorAll('.footer-content-items.open').forEach(item => {
+          if (item !== content) {
+            item.classList.remove('open');
+            item.previousElementSibling.querySelector('.chev').textContent = '▸';
+          }
+        });
+        
+        // Toggle current section
+        content.classList.toggle('open');
+        chev.textContent = content.classList.contains('open') ? '▾' : '▸';
+      });
+    });
   </script>
 </body>
 </html>
