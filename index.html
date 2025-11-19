@@ -3,11 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Turkiana Cafe & Sweets — Menu</title>
+  <title>Turkiana Cafe & Sweets — Full Menu</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    /* Theme variables */
     :root{
       --bg:#07070a; --card:#0e0e12; --text:#fff; --muted:#9b9b9f;
       --gold:#caa84a; --maroon:#7a1921; --max-width:1200px;
@@ -23,72 +22,88 @@
     body{font-family:Inter,system-ui,-apple-system,"Segoe UI";background:var(--bg);color:var(--text);min-height:100vh}
     .container{max-width:var(--max-width);margin:0 auto;padding:24px}
 
-    /* Top bar */
     .top-bar{position:fixed;inset:0 0 auto 0;height:60px;display:flex;align-items:center;justify-content:space-between;padding:8px 20px;background:rgba(0,0,0,0.5);backdrop-filter:blur(6px);border-bottom:1px solid var(--border);z-index:50}
     .top-left,.top-right{display:flex;gap:8px;align-items:center}
-    .btn{padding:8px 12px;border-radius:10px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-weight:700;cursor:pointer}
+    .btn{padding:8px 12px;border-radius:10px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-weight:700;cursor:pointer;transition:all 0.2s}
+    .btn:hover{background:var(--gold);color:#111}
     .badge{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:999px;background:var(--maroon);color:#fff;font-size:12px;font-weight:800;margin-left:8px}
 
-    /* Hero */
     .hero{margin-top:80px;border-radius:12px;padding:20px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid var(--border);text-align:center}
     .brand{font-family:"Playfair Display",serif;font-size:32px;color:var(--gold);font-weight:800}
     .subtitle{color:var(--muted);margin-top:6px;font-size:13px}
 
-    /* Controls */
     .controls{display:flex;gap:12px;align-items:center;margin-top:16px;flex-wrap:wrap}
     .search{flex:1;min-width:220px}
     .search input{width:100%;padding:10px 12px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--text)}
     .filters{display:flex;gap:8px;flex-wrap:wrap}
-    .filter-btn{padding:8px 10px;border-radius:8px;border:1px solid var(--border);background:var(--surface);cursor:pointer;font-weight:700}
+    .filter-btn{padding:8px 10px;border-radius:8px;border:1px solid var(--border);background:var(--surface);cursor:pointer;font-weight:700;transition:all 0.2s;font-size:12px}
     .filter-btn.active{background:var(--gold);color:#111;border-color:var(--gold)}
-    .view-toggle{display:flex;gap:6px}
 
-    /* Items */
-    .items-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-top:18px}
-    .card{background:var(--card);border-radius:12px;padding:12px;border:1px solid var(--border);cursor:pointer;display:flex;flex-direction:column;gap:8px}
-    .card:hover{transform:translateY(-6px);transition:transform .18s}
+    .category-section{margin-top:32px}
+    .category-header{display:flex;align-items:center;gap:8px;margin-bottom:16px;padding-bottom:12px;border-bottom:2px solid var(--gold)}
+    .category-icon{font-size:24px}
+    .category-title{font-family:"Playfair Display",serif;font-size:22px;color:var(--gold);font-weight:800}
+
+    .items-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-bottom:24px}
+    .card{background:var(--card);border-radius:12px;padding:12px;border:1px solid var(--border);cursor:pointer;display:flex;flex-direction:column;gap:8px;transition:transform 0.2s;position:relative}
+    .card:hover{transform:translateY(-6px)}
+    
+    .item-badge{position:absolute;top:20px;right:12px;background:var(--maroon);color:#fff;padding:4px 8px;border-radius:6px;font-size:11px;font-weight:800;z-index:5}
     img.item-img{width:100%;height:160px;object-fit:cover;border-radius:8px;display:block}
-    .name{color:var(--gold);font-weight:800;font-size:14px;display:flex;justify-content:space-between;align-items:center;gap:8px}
-    .price{color:var(--maroon);font-weight:800}
-    .desc{color:var(--muted);font-size:12px;line-height:1.3}
-    .tags{display:flex;gap:6px;flex-wrap:wrap}
-    .tag{padding:4px 8px;border-radius:6px;background:var(--surface);font-size:11px;color:var(--muted)}
+    
+    .name{color:var(--gold);font-weight:800;font-size:14px;display:flex;justify-content:space-between;align-items:start;gap:8px}
+    .price{color:var(--maroon);font-weight:800;font-size:13px}
+    .desc{color:var(--muted);font-size:12px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    
+    .rating{display:flex;align-items:center;gap:4px;font-size:12px;margin-top:4px}
+    .stars{color:var(--gold);letter-spacing:1px}
+    .rating-count{color:var(--muted);font-size:11px}
+    
+    .tags{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0}
+    .tag{padding:3px 6px;border-radius:4px;background:var(--surface);font-size:10px;color:var(--muted)}
 
-    /* Modal */
-    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(2,6,23,0.6);z-index:70}
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(2,6,23,0.6);z-index:70;overflow-y:auto;padding:20px}
     .modal.show{display:flex}
-    .modal-content{width:92%;max-width:720px;background:var(--card);border-radius:12px;overflow:hidden;border:1px solid var(--border);color:var(--text)}
+    .modal-content{width:92%;max-width:720px;background:var(--card);border-radius:12px;overflow:hidden;border:1px solid var(--border);color:var(--text);max-height:90vh;overflow-y:auto}
     .modal-body{padding:18px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    .modal-img{width:100%;height:320px;object-fit:cover}
+    .modal-img{width:100%;height:320px;object-fit:cover;border-radius:8px}
     .modal-name{font-size:20px;font-weight:800;color:var(--maroon)}
     .modal-price{font-size:18px;font-weight:800;color:var(--gold);margin-bottom:8px}
-    .modal-desc{color:var(--muted);font-size:13px}
+    .modal-desc{color:var(--muted);font-size:13px;line-height:1.5}
+    
+    .modal-rating{display:flex;align-items:center;gap:8px;margin:12px 0;padding:12px;background:var(--surface);border-radius:8px}
+    .rating-input{display:flex;gap:4px;margin-top:8px}
+    .star-btn{background:none;border:none;font-size:24px;cursor:pointer;color:var(--muted);transition:color 0.2s}
+    .star-btn:hover,.star-btn.active{color:var(--gold)}
+    
     .modal-actions{display:flex;gap:8px;margin-top:12px}
     .modal .close{background:transparent;border:none;font-size:20px;cursor:pointer;color:var(--muted)}
-    .modal .add{background:var(--gold);border:none;padding:10px;border-radius:8px;font-weight:800;color:#111;cursor:pointer}
+    .modal .add{background:var(--gold);border:none;padding:10px;border-radius:8px;font-weight:800;color:#111;cursor:pointer;transition:all 0.2s;flex:1}
+    .modal .add:hover{transform:scale(1.05)}
 
-    /* Cart drawer */
-    .cart-drawer{position:fixed;right:0;top:0;height:100vh;width:360px;background:var(--card);z-index:60;transform:translateX(100%);transition:transform .25s;border-left:1px solid var(--border)}
+    .cart-drawer{position:fixed;right:0;top:0;height:100vh;width:360px;background:var(--card);z-index:60;transform:translateX(100%);transition:transform .25s;border-left:1px solid var(--border);display:flex;flex-direction:column}
     .cart-drawer.open{transform:translateX(0)}
-    .cart-header{padding:12px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
-    .cart-body{padding:12px;overflow:auto;height:calc(100vh - 170px)}
-    .cart-item{display:flex;gap:8px;padding:10px;border-radius:8px;background:var(--surface);margin-bottom:10px}
-    .cart-item img{width:64px;height:64px;object-fit:cover;border-radius:6px}
-    .cart-footer{padding:12px;border-top:1px solid var(--border)}
+    .cart-header{padding:12px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
+    .cart-body{padding:12px;overflow:auto;flex:1}
+    .cart-item{display:flex;gap:8px;padding:10px;border-radius:8px;background:var(--surface);margin-bottom:10px;font-size:13px}
+    .cart-item img{width:64px;height:64px;object-fit:cover;border-radius:6px;flex-shrink:0}
+    .cart-footer{padding:12px;border-top:1px solid var(--border);flex-shrink:0}
     .cart-total{display:flex;justify-content:space-between;font-weight:800;font-size:16px;margin-bottom:10px}
 
-    /* Footer */
-    footer{margin-top:28px;padding:26px;border-top:3px solid var(--gold);background:linear-gradient(135deg, rgba(122,25,33,0.9), rgba(0,0,0,0.95));color:#fff}
+    footer{margin-top:40px;padding:26px;border-top:3px solid var(--gold);background:linear-gradient(135deg, rgba(122,25,33,0.9), rgba(0,0,0,0.95));color:#fff}
     .footer-grid{max-width:var(--max-width);margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px}
 
-    /* Responsive */
     @media (max-width:768px){
       .modal-body{grid-template-columns:1fr;align-items:start}
       .cart-drawer{width:100%}
       .items-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
     }
-    /* small helpers */
     .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+    
+    .toast{position:fixed;bottom:20px;left:20px;background:rgba(0,0,0,0.8);color:#fff;padding:10px 14px;border-radius:8px;z-index:9999;animation:slideIn 0.3s}
+    @keyframes slideIn{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
+    
+    .no-results{padding:32px;text-align:center;color:var(--muted);grid-column:1/-1}
   </style>
 </head>
 <body>
@@ -115,30 +130,12 @@
     <section class="controls" aria-label="Controls">
       <div class="search" style="flex:1">
         <label for="searchInput" class="sr-only">Search items</label>
-        <input id="searchInput" type="search" placeholder="Search items (English or Arabic)" aria-label="Search menu items">
+        <input id="searchInput" type="search" placeholder="Search items..." aria-label="Search menu items">
       </div>
-
       <div class="filters" id="filterGroup" aria-hidden="false"></div>
-
-      <div class="view-toggle" role="group" aria-label="View toggle">
-        <button class="btn" id="gridView" aria-pressed="true" title="Grid view"><i class="fas fa-th"></i></button>
-        <button class="btn" id="listView" aria-pressed="false" title="List view"><i class="fas fa-list"></i></button>
-      </div>
     </section>
 
-    <section>
-      <div style="display:flex;gap:12px;margin-top:12px;align-items:center">
-        <div style="font-weight:800">Items: <span id="itemCount">0</span></div>
-        <div style="color:var(--muted)">Showing <strong id="displayCount">0</strong></div>
-      </div>
-
-      <div id="itemsContainer" class="items-grid" aria-live="polite" aria-label="Menu items"></div>
-
-      <div id="noResults" style="display:none;padding:32px;text-align:center;color:var(--muted)">
-        <i class="fas fa-search" style="font-size:40px;opacity:0.5;margin-bottom:12px;display:block"></i>
-        <div>No items found</div>
-      </div>
-    </section>
+    <div id="menuContainer"></div>
   </main>
 
   <!-- Modal -->
@@ -155,18 +152,26 @@
           <div id="modalTitle" class="modal-name">Item</div>
           <div id="modalPrice" class="modal-price">QAR 0</div>
           <div id="modalDesc" class="modal-desc">Description</div>
+          <div id="modalCalories" style="font-size:12px;color:var(--muted);margin-top:6px"></div>
+          
+          <div style="margin-top:12px;padding:12px;background:var(--surface);border-radius:8px">
+            <div style="font-weight:700;margin-bottom:8px">Rate this item:</div>
+            <div class="rating-input" id="ratingInput"></div>
+            <div style="margin-top:8px;font-size:12px;color:var(--muted)" id="ratingStats"></div>
+          </div>
+          
           <div class="tags" id="modalTags" style="margin-top:8px"></div>
 
-          <label for="itemSize" style="display:block;margin-top:10px;font-weight:700">Size</label>
-          <select id="itemSize" style="width:100%;padding:8px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--text)">
+          <label for="itemSize" style="display:block;margin-top:10px;font-weight:700;font-size:13px">Size</label>
+          <select id="itemSize" style="width:100%;padding:8px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--text);font-size:12px">
             <option>Standard</option><option>Small</option><option>Large</option>
           </select>
 
-          <label for="itemNotes" style="display:block;margin-top:10px;font-weight:700">Notes</label>
-          <textarea id="itemNotes" rows="3" style="width:100%;padding:8px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--text)"></textarea>
+          <label for="itemNotes" style="display:block;margin-top:10px;font-weight:700;font-size:13px">Notes</label>
+          <textarea id="itemNotes" rows="2" style="width:100%;padding:8px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--text);font-size:12px;font-family:inherit"></textarea>
 
           <div class="modal-actions" style="margin-top:12px">
-            <button id="addToCartBtn" class="add" aria-label="Add to cart"><i class="fas fa-shopping-cart"></i> Add to cart</button>
+            <button id="addToCartBtn" class="add" aria-label="Add to cart"><i class="fas fa-shopping-cart"></i> Add</button>
             <button id="modalCancel" class="btn">Cancel</button>
           </div>
         </div>
@@ -185,234 +190,338 @@
     </div>
     <div class="cart-footer">
       <div class="cart-total"><span>Total</span><span id="cartTotal">QAR 0.00</span></div>
-      <button id="whatsappBtn" class="btn" style="width:100%;background:var(--gold);border:none;color:#111;font-weight:800;margin-bottom:8px"><i class="fab fa-whatsapp"></i> Order on WhatsApp</button>
-      <button id="clearCart" class="btn" style="width:100%">Clear Cart</button>
+      <button id="whatsappBtn" class="btn" style="width:100%;background:var(--gold);border:none;color:#111;font-weight:800;margin-bottom:8px;font-size:13px"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+      <button id="clearCart" class="btn" style="width:100%;font-size:13px">Clear Cart</button>
     </div>
   </aside>
 
   <footer aria-label="Footer">
     <div class="footer-grid" style="max-width:var(--max-width);margin:0 auto">
       <div>
-        <h4 style="color:var(--gold)">About</h4>
-        <p style="color:var(--muted)">Experience authentic Turkish delicacies and premium café culture.</p>
+        <h4 style="color:var(--gold);font-size:14px">About</h4>
+        <p style="color:var(--muted);font-size:13px">Experience authentic Turkish delicacies and premium café culture.</p>
       </div>
       <div>
-        <h4 style="color:var(--gold)">Contact</h4>
-        <p style="color:var(--muted)">📞 +974 7798 4617<br>✉️ info@turkianasweets.com</p>
+        <h4 style="color:var(--gold);font-size:14px">Contact</h4>
+        <p style="color:var(--muted);font-size:13px">📞 +974 7798 4617<br>✉️ info@turkianasweets.com</p>
       </div>
       <div>
-        <h4 style="color:var(--gold)">Follow</h4>
-        <p style="color:var(--muted)"><a href="#" style="color:inherit;text-decoration:none">Instagram</a> • <a href="#" style="color:inherit;text-decoration:none">WhatsApp</a></p>
+        <h4 style="color:var(--gold);font-size:14px">Follow</h4>
+        <p style="color:var(--muted);font-size:13px"><a href="#" style="color:inherit;text-decoration:none">Instagram</a> • <a href="#" style="color:inherit;text-decoration:none">WhatsApp</a></p>
       </div>
       <div>
-        <h4 style="color:var(--gold)">Location</h4>
-        <p style="color:var(--muted)">Doha, Qatar © 2025 Turkiana</p>
+        <h4 style="color:var(--gold);font-size:14px">Location</h4>
+        <p style="color:var(--muted);font-size:13px">Doha, Qatar © 2025 Turkiana</p>
       </div>
     </div>
   </footer>
 
   <script>
-    /* ========= Data =========
-       - priceNum: numeric price used for calculations
-       - priceText: ready-to-display text (localized)
-       - enName / arName / descriptionEn / descriptionAr
-       - calories optional
-       - dietary: array of tags
-    */
     const menuData = [
-     
-  { category: "Turkish Morning", arCategory: "الصباح التركي",
-    items: [
-      { enName: "Turkish Classic Breakfast", arName: "فطور تركي كلاسيكي", priceNum: 65, priceText: "65 QAR", descriptionEn: "Authentic Turkish breakfast with fresh bread, cheese, olives, tomatoes, cucumbers, honey, and clotted cream served with Turkish tea", descriptionAr: "فطور تركي أصيل مع خبز طازج، جبن، زيتون، طماطم، خيار، عسل وقشدة، يقدم مع شاي تركي", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Breakfast.jpg", calories: 680, dietary: ["vegetarian","contains-dairy"] },
-      { enName: "Turkish Menemen", arName: "مينمن تركي", priceNum: 45, priceText: "45 QAR", descriptionEn: "Classic Turkish scrambled eggs with fresh tomatoes, green peppers, and aromatic spices", descriptionAr: "بيض تركي مخفوق مع طماطم طازجة، فلفل أخضر وتوابل عطرية", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Menemen.jpg", calories: 360, dietary: ["gluten-free","contains-dairy"] },
-      { enName: "Plain Omelette", arName: "أومليت عادي", priceNum: 25, priceText: "25 QAR", descriptionEn: "Light and fluffy omelette", descriptionAr: "أومليت خفيف وهش", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Omellet.jpg", calories: 220, dietary: ["gluten-free","contains-dairy"] }
-    ]
-  },
+      {
+        category: "Turkish Morning",
+        arCategory: "الصباح التركي",
+        icon: "🍳",
+        items: [
+          { id: "tm1", enName: "Turkish Classic Breakfast", arName: "فطور تركي كلاسيكي", priceNum: 65, descriptionEn: "Authentic Turkish breakfast with fresh bread, cheese, olives, tomatoes, cucumbers, honey, and clotted cream served with Turkish tea", descriptionAr: "فطور تركي أصيل مع خبز طازج، جبن، زيتون، طماطم، خيار، عسل وقشدة، يقدم مع شاي تركي", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Breakfast.jpg", calories: "680 kcal", dietary: ["vegetarian","contains-dairy"] },
+          { id: "tm2", enName: "Turkish Menemen", arName: "مينمن تركي", priceNum: 45, descriptionEn: "Classic Turkish scrambled eggs with fresh tomatoes, green peppers, and aromatic spices", descriptionAr: "بيض تركي مخفوق مع طماطم طازجة، فلفل أخضر وتوابل عطرية", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Menemen.jpg", calories: "360 kcal", dietary: ["gluten-free","contains-dairy"] },
+          { id: "tm3", enName: "Plain Omelette", arName: "أومليت عادي", priceNum: 25, descriptionEn: "Light and fluffy omelette", descriptionAr: "أومليت خفيف وهش", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Omellet.jpg", calories: "220 kcal", dietary: ["gluten-free","contains-dairy"] }
+        ]
+      },
+      {
+        category: "Croissant Creations",
+        arCategory: "إبداعات الكرواسون",
+        icon: "🥐",
+        items: [
+          { id: "cc1", enName: "Croissant Beef Ribs", arName: "كرواسون أضلاع اللحم", priceNum: 45, descriptionEn: "Flaky croissant filled with tender beef ribs, cheddar and kasfar cheese, topped with pesto", descriptionAr: "كرواسون هش محشو بأضلاع لحم طرية وجبن شيدر وكاسفار، مغطى بصلصة البيستو", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Ribs.jpg", calories: "720 kcal", dietary: [] },
+          { id: "cc2", enName: "Avocado Croissant", arName: "كرواسون الأفوكادو", priceNum: 42, descriptionEn: "Buttery croissant with avocado and scrambled eggs", descriptionAr: "كرواسون زبدي محشو بأفوكادو كريمي وبيض مخفوق", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Avocado.jpg", calories: "610 kcal", dietary: ["vegetarian"] },
+          { id: "cc3", enName: "Smoked Beef Croissant", arName: "كرواسون لحم مدخن", priceNum: 45, descriptionEn: "Croissant with smoked beef and eggs", descriptionAr: "كرواسون طازج محشو بالبيض المخفوق ولحم مدخن", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/5.jpg", calories: "630 kcal", dietary: [] },
+          { id: "cc4", enName: "Butter & Jam Croissant", arName: "كرواسون زبدة ومربى", priceNum: 40, descriptionEn: "Buttery croissant served with jam and sides", descriptionAr: "كرواسون زبدي يقدم مع مربى الكرز والزيتون المشوي وجبن الفيتا", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/4.jpg", calories: "540 kcal", dietary: ["vegetarian"] },
+          { id: "cc5", enName: "Croissant Scrambled Eggs", arName: "كرواسون بالبيض المخفوق", priceNum: 37, descriptionEn: "Croissant with scrambled eggs and arugula", descriptionAr: "كرواسون هش محشو بالبيض المخفوق والجرجير", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/1.jpg", calories: "520 kcal", dietary: ["vegetarian"] }
+        ]
+      },
+      {
+        category: "From the Grill & Garden",
+        arCategory: "من الشواية والحديقة",
+        icon: "🍔",
+        items: [
+          { id: "gg1", enName: "Turkiana Beef Burger", arName: "برجر تركيانا", priceNum: 69, descriptionEn: "Premium beef burger with fries", descriptionAr: "برجر لحم بقري ممتاز مع البطاطس", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Burger.jpeg", calories: "950 kcal", dietary: [] },
+          { id: "gg2", enName: "Turkiana Chicken Burger", arName: "برجر دجاج", priceNum: 59, descriptionEn: "Juicy chicken burger with fries", descriptionAr: "برجر دجاج لذيذ مع البطاطس", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Burgerchicken.jpg", calories: "850 kcal", dietary: [] },
+          { id: "gg3", enName: "Fried Potatoes", arName: "بطاطس مقلية", priceNum: 25, descriptionEn: "Crispy golden fried potatoes", descriptionAr: "بطاطس ذهبية مقرمشة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Patatas.jpg", calories: "340 kcal", dietary: ["vegan","gluten-free"] },
+          { id: "gg4", enName: "Caesar Salad", arName: "سلطة سيزر", priceNum: 47, descriptionEn: "Romaine with Caesar dressing and croutons", descriptionAr: "خس روماني مع صوص سيزر وقطع خبز محمص", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Caesar.jpeg", calories: "420 kcal", dietary: ["contains-gluten","contains-dairy"] }
+        ]
+      },
+      {
+        category: "Baklava & Beyond",
+        arCategory: "البقلاوة وما بعدها",
+        icon: "🥜",
+        items: [
+          { id: "bk1", enName: "Turkish Mix Baklava", arName: "بقلاوة تركية مشكلة", priceNum: 65, descriptionEn: "Assorted traditional baklava", descriptionAr: "مجموعة رائعة من البقلاوة التركية التقليدية", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg", calories: "450 kcal (per serving)", dietary: ["contains-nuts"] },
 
-  { category: "Croissant Creations", arCategory: "إبداعات الكرواسون",
-    items: [
-      { enName: "Croissant Beef Ribs", arName: "كرواسون أضلاع اللحم", priceNum: 45, priceText: "45 QAR", descriptionEn: "Flaky croissant filled with tender beef ribs, cheddar and kasfar cheese, topped with pesto", descriptionAr: "كرواسون هش محشو بأضلاع لحم طرية وجبن شيدر وكاسفار، مغطى بصلصة البيستو", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Ribs.jpg", calories: 720, dietary: [] },
-      { enName: "Avocado Croissant", arName: "كرواسون الأفوكادو", priceNum: 42, priceText: "42 QAR", descriptionEn: "Buttery croissant with avocado and scrambled eggs", descriptionAr: "كرواسون زبدي محشو بأفوكادو كريمي وبيض مخفوق", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Avocado.jpg", calories: 610, dietary: ["vegetarian"] },
-      { enName: "Smoked Beef Croissant", arName: "كرواسون لحم مدخن", priceNum: 45, priceText: "45 QAR", descriptionEn: "Croissant with smoked beef and eggs", descriptionAr: "كرواسون طازج محشو بالبيض المخفوق ولحم مدخن", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/5.jpg", calories: 630, dietary: [] },
-      { enName: "Butter & Jam Croissant", arName: "كرواسون زبدة ومربى", priceNum: 40, priceText: "40 QAR", descriptionEn: "Buttery croissant served with jam and sides", descriptionAr: "كرواسون زبدي يقدم مع مربى الكرز والزيتون المشوي وجبن الفيتا", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/4.jpg", calories: 540, dietary: ["vegetarian"] },
-      { enName: "Croissant Scrambled Eggs", arName: "كرواسون بالبيض المخفوق", priceNum: 37, priceText: "37 QAR", descriptionEn: "Croissant with scrambled eggs and arugula", descriptionAr: "كرواسون هش محشو بالبيض المخفوق والجرجير", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/1.jpg", calories: 520, dietary: ["vegetarian"] }
-    ]
-  },
+{ id: "bk2", enName: "Carrot Slice Baklava", arName: "بقلاوة شريحة الجزر", priceNum: 40, descriptionEn: "Classic layered baklava", descriptionAr: "بقلاوة تركية كلاسيكية بطبقات مقرمشة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Carrot.jpeg", calories: "420 kcal", dietary: ["vegetarian","contains-nuts"] },
 
-  { category: "From the Grill & Garden", arCategory: "من الشواية والحديقة",
-    items: [
-      { enName: "Turkiana Beef Burger", arName: "برجر تركيانا", priceNum: 69, priceText: "69 QAR", descriptionEn: "Premium beef burger with fries", descriptionAr: "برجر لحم بقري ممتاز مع البطاطس", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Burger.jpeg", calories: 950, dietary: [] },
-      { enName: "Turkiana Chicken Burger", arName: "برجر دجاج", priceNum: 59, priceText: "59 QAR", descriptionEn: "Juicy chicken burger with fries", descriptionAr: "برجر دجاج لذيذ مع البطاطس", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Burgerchicken.jpg", calories: 850, dietary: [] },
-      { enName: "Fried Potatoes", arName: "بطاطس مقلية", priceNum: 25, priceText: "25 QAR", descriptionEn: "Crispy golden fried potatoes", descriptionAr: "بطاطس ذهبية مقرمشة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Patatas.jpg", calories: 340, dietary: ["vegan","gluten-free"] },
-      { enName: "Caesar Salad", arName: "سلطة سيزر", priceNum: 47, priceText: "47 QAR", descriptionEn: "Romaine with Caesar dressing and croutons", descriptionAr: "خس روماني مع صوص سيزر وقطع خبز محمص", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Caesar.jpeg", calories: 420, dietary: ["contains-gluten","contains-dairy"] }
-    ]
-  },
+{ id: "bk3", enName: "Carrot Slice Baklava With Ice Cream", arName: "بقلاوة شريحة الجزر مع الآيس كريم", priceNum: 49, descriptionEn: "Baklava served with ice cream", descriptionAr: "بقلاوة تقدم مع الآيس كريم", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Carroticecream.jpeg", calories: "620 kcal", dietary: ["contains-nuts","contains-dairy"] },
 
-  { category: "Baklava & Beyond", arCategory: "البقلاوة وما بعدها",
-    items: [
-      { enName: "Turkish Mix Baklava", arName: "بقلاوة تركية مشكلة", priceNum: 65, priceText: "65 QAR", descriptionEn: "Assorted traditional baklava", descriptionAr: "مجموعة رائعة من البقلاوة التركية التقليدية", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg", calories: "450 kcal (per serving)", dietary: ["contains-nuts"] },
-      { enName: "Carrot Slice Baklava", arName: "بقلاوة شريحة الجزر", priceNum: 40, priceText: "40 QAR", descriptionEn: "Classic layered baklava", descriptionAr: "بقلاوة تركية كلاسيكية بطبقات مقرمشة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Carrot.jpeg", calories: 420, dietary: ["vegetarian","contains-nuts"] },
-      { enName: "Carrot Slice Baklava With Ice Cream", arName: "بقلاوة شريحة الجزر مع الآيس كريم", priceNum: 49, priceText: "49 QAR", descriptionEn: "Baklava served with ice cream", descriptionAr: "بقلاوة تقدم مع الآيس كريم", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Carroticecream.jpeg", calories: 620, dietary: ["contains-nuts","contains-dairy"] },
-      { enName: "Trio Baklava", arName: "تريو بقلاوة", priceNum: 45, priceText: "45 QAR", descriptionEn: "Three-style baklava assortment", descriptionAr: "مجموعة من بقلاوة رول بالفستق وموسل وسوبييت", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/TrioBaklava.jpeg", calories: 480, dietary: ["contains-nuts"] },
-      { enName: "Nuts Stand-Tall", arName: "مكسرات ستاند كبير", priceNum: 99, priceText: "99 QAR", descriptionEn: "Premium mixed nuts", descriptionAr: "مجموعة ممتازة من المكسرات المختلطة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Nuts.jpg", calories: "300 kcal (100g)", dietary: ["contains-nuts"] },
-      { enName: "Nuts Stand-Small", arName: "مكسرات ستاند صغير", priceNum: 60, priceText: "60 QAR", descriptionEn: "Small mixed nuts", descriptionAr: "اختيار صغير من المكسرات المختلطة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Nutsmall.jpg", calories: "180 kcal (60g)", dietary: ["contains-nuts"] },
-      { enName: "Assorted Nut Platter", arName: "طبق مكسرات مشكل", priceNum: 35, priceText: "35 QAR", descriptionEn: "Assorted mixed nuts platter", descriptionAr: "طبق متنوع من المكسرات المشكلة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Nutsplatter.jpg", calories: "180 kcal (60g)", dietary: ["contains-nuts"] },
-      { enName: "Snickers-inspired cake", arName: "كعكة مستوحاة من سنيكرز", priceNum: 42, priceText: "42 QAR", descriptionEn: "Chocolate, caramel & nuts cake", descriptionAr: "كعكة فاخرة مع الشوكولاتة والكراميل", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Snicker.jpg", calories: 560, dietary: ["contains-nuts"] },
-      { enName: "Kunafa", arName: "كنافة", priceNum: 40, priceText: "40 QAR", descriptionEn: "Kunafa with Akawi cheese", descriptionAr: "كنافة تركية تقليدية مع جبنة عكاوي", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Kunafa.jpeg", calories: 520, dietary: ["contains-dairy"] },
-      { enName: "Chocolate Cake", arName: "كعكة الشوكولاتة", priceNum: 40, priceText: "40 QAR", descriptionEn: "Molten chocolate cake", descriptionAr: "كعكة شوكولاتة غنية", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Chocolate.jpg", calories: 480, dietary: ["contains-dairy"] },
-      { enName: "Lotus Cake", arName: "كعكة اللوتس", priceNum: 40, priceText: "40 QAR", descriptionEn: "Lotus Biscoff flavored cake", descriptionAr: "كعكة بنكهة بسكوف لوتس", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Lutos.jpg", calories: 520, dietary: ["contains-dairy"] },
-      { enName: "Brownies", arName: "براونيز", priceNum: 45, priceText: "45 QAR", descriptionEn: "Fudgy chocolate brownies", descriptionAr: "براونيز شوكولاتة غنية", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Brown.jpg", calories: 380, dietary: ["contains-dairy"] },
-      { enName: "Full Pistachio Cake", arName: "كعكة الفستق كاملة", priceNum: 40, priceText: "40 QAR", descriptionEn: "Pistachio flavored cake", descriptionAr: "كعكة بنكهة الفستق", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Full.jpg", calories: 470, dietary: ["contains-nuts"] },
-      { enName: "Lemon Cake", arName: "كعكة الليمون", priceNum: 38, priceText: "38 QAR", descriptionEn: "Zesty lemon sponge cake", descriptionAr: "كعكة اسفنجية ليمونية خفيفة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Lemon.jpg", calories: 420, dietary: ["vegetarian"] },
-      { enName: "Tiramisu", arName: "تيراميسو", priceNum: 42, priceText: "42 QAR", descriptionEn: "Coffee-soaked sponge with mascarpone", descriptionAr: "تيراميسو إيطالي كلاسيكي", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Tiramisu.jpg", calories: 420, dietary: ["contains-dairy"] },
-      { enName: "Almond Chocolate Cake", arName: "كعكة الشوكولاتة باللوز", priceNum: 40, priceText: "40 QAR", descriptionEn: "Chocolate cake with almond notes", descriptionAr: "كعكة شوكولاتة مع اللوز", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Almond.jpg", calories: 490, dietary: ["contains-nuts"] },
-      { enName: "Lemon Sponge Cake", arName: "كعكة إسفنجية بالليمون", priceNum: 42, priceText: "42 QAR", descriptionEn: "Light lemon sponge", descriptionAr: "كعكة إسفنجية ليمونية طرية", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Lemoncake.jpg", calories: 430, dietary: ["vegetarian"] },
-      { enName: "Strawberry Cheesecake", arName: "تشيز كيك بالفراولة", priceNum: 42, priceText: "42 QAR", descriptionEn: "Creamy cheesecake topped with strawberries", descriptionAr: "تشيز كيك كريمي مع فراولة طازجة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Cherry.jpg", calories: 520, dietary: ["contains-dairy"] },
-      { enName: "Blueberry Cheesecake", arName: "تشيز كيك بالتوت الأزرق", priceNum: 42, priceText: "42 QAR", descriptionEn: "Cheesecake with blueberries", descriptionAr: "تشيز كيك مع التوت الأزرق", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mulberry.jpg", calories: 520, dietary: ["contains-dairy"] },
-      { enName: "Chocolate Pistachio Cake", arName: "كعكة الشوكولاتة والفستق", priceNum: 40, priceText: "40 QAR", descriptionEn: "Chocolate cake with pistachios", descriptionAr: "كعكة شوكولاتة مع الفستق", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Chocolate_pistachio.jpg", calories: 510, dietary: ["contains-nuts"] },
-      { enName: "Strawberry Cake", arName: "كعكة الفراولة", priceNum: 45, priceText: "45 QAR", descriptionEn: "Strawberry topped cake", descriptionAr: "كعكة مع فراولة طازجة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Strawberry.jpg", calories: 470, dietary: ["contains-dairy"] },
-      { enName: "White Almond Cake", arName: "كعكة اللوز البيضاء", priceNum: 42, priceText: "42 QAR", descriptionEn: "Almond flavored soft cake", descriptionAr: "كعكة طرية بنكهة اللوز", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/White.jpg", calories: 500, dietary: ["contains-nuts"] },
-      { enName: "Trileche With Milk", arName: "تريليتش باللبن", priceNum: 35, priceText: "35 QAR", descriptionEn: "Tres leches soaked cake", descriptionAr: "تريليتش منقوعة في اللبن", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Trileche.jpg", calories: 540, dietary: ["contains-dairy"] },
-      { enName: "San Sebastian Cheesecake", arName: "تشيز كيك سان سيباستيان", priceNum: 42, priceText: "42 QAR", descriptionEn: "Caramelized San Sebastian cheesecake", descriptionAr: "تشيز كيك كريم وكراميل", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Sebastian.jpg", calories: 520, dietary: ["contains-dairy"] }
-    ]
-  },
+{ id: "bk4", enName: "Trio Baklava", arName: "تريو بقلاوة", priceNum: 45, descriptionEn: "Three-style baklava assortment", descriptionAr: "مجموعة من بقلاوة رول بالفستق وموسل وسوبييت", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/TrioBaklava.jpeg", calories: "480 kcal", dietary: ["contains-nuts"] },
 
-  { category: "Fondue", arCategory: "الفوندو",
-    items: [
-      { enName: "Strawberry Fondue", arName: "فوندو بالفراولة", priceNum: 40, priceText: "40 QAR", descriptionEn: "Fresh strawberries with melted milk chocolate", descriptionAr: "فراولة طازجة مع شوكولاتة بالحليب مذابة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Fondue1.jpeg", calories: 320, dietary: ["contains-dairy"] },
-      { enName: "Strawberry-Banana Fondue", arName: "فوندو فراولة وموز", priceNum: 45, priceText: "45 QAR", descriptionEn: "Strawberries & bananas with chocolate", descriptionAr: "فراولة وموز مع شوكولاتة ذائبة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Fondue2.jpeg", calories: 410, dietary: ["contains-dairy"] },
-      { enName: "Turkiana Fondue", arName: "فوندو تركيانا", priceNum: 59, priceText: "59 QAR", descriptionEn: "Signature fondue with assorted fruits With Mouth Watering Brownie", descriptionAr: "فوندو مع مجموعة من الفواكه", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Fondue3.jpeg", calories: 480, dietary: [] }
-    ]
-  },
+{ id: "bk5", enName: "Nuts Stand-Tall", arName: "مكسرات ستاند كبير", priceNum: 99, descriptionEn: "Premium mixed nuts", descriptionAr: "مجموعة ممتازة من المكسرات المختلطة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Nuts.jpg", calories: "300 kcal (100g)", dietary: ["contains-nuts"] },
 
-  { category: "Arabian Brew", arCategory: "المشروبات العربية",
-    items: [
-      { enName: "Arabic Coffee in a Full Dalla", arName: "قهوة عربية بالدلة الكاملة", priceNum: 90, priceText: "90 QAR", descriptionEn: "Traditional Arabic coffee in a full Dalla", descriptionAr: "قهوة عربية بالدلة الكاملة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Arabic.jpg", calories: "10 kcal (per cup)", dietary: ["vegan","gluten-free","dairy-free"] },
-      { enName: "Arabic Coffee in a Half Dalla", arName: "قهوة عربية بنصف دلة", priceNum: 50, priceText: "50 QAR", descriptionEn: "Half Dalla Arabic coffee", descriptionAr: "قهوة عربية بنصف دلة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Arabic.jpg", calories: "10 kcal (per cup)", dietary: ["vegan","gluten-free","dairy-free"] },
-      { enName: "Arabic Coffee in a Cup", arName: "قهوة عربية في فنجان", priceNum: 30, priceText: "30 QAR", descriptionEn: "Arabic coffee by the cup", descriptionAr: "قهوة عربية في فنجان", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Arabic.jpg", calories: "10 kcal (per cup)", dietary: ["vegan","gluten-free","dairy-free"] }
-    ]
-  },
+{ id: "bk6", enName: "Nuts Stand-Small", arName: "مكسرات ستاند صغير", priceNum: 60, descriptionEn: "Small mixed nuts", descriptionAr: "اختيار صغير من المكسرات المختلطة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Nutsmall.jpg", calories: "180 kcal (60g)", dietary: ["contains-nuts"] },
 
-  { category: "Tea Time", arCategory: "وقت الشاي",
-    items: [
-      { enName: "Turkish Tea", arName: "شاي تركي", priceNum: 15, priceText: "15 QAR", descriptionEn: "Traditional Turkish tea", descriptionAr: "شاي تركي تقليدي", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Tea.jpg", calories: 2, dietary: ["vegan","dairy-free"] },
-      { enName: "Apple Tea", arName: "شاي التفاح", priceNum: 25, priceText: "25 QAR", descriptionEn: "Apple-flavored tea", descriptionAr: "شاي بنكهة التفاح", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Appletea.jpg", calories: 2, dietary: ["vegan","dairy-free"] },
-      { enName: "Mulberry Tea", arName: "شاي التوت", priceNum: 25, priceText: "25 QAR", descriptionEn: "Mulberry tea", descriptionAr: "شاي التوت", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mulberrytea.jpg", calories: 2, dietary: ["vegan","dairy-free"] },
-      { enName: "Lemon Mint", arName: "شاي بالليمون والنعناع", priceNum: 25, priceText: "25 QAR", descriptionEn: "Lemon & mint tea", descriptionAr: "شاي الليمون والنعناع", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Lemontea.jpg", calories: 2, dietary: ["vegan","dairy-free"] },
-      { enName: "Pomegranate Tea", arName: "شاي الرمان", priceNum: 25, priceText: "25 QAR", descriptionEn: "Pomegranate tea", descriptionAr: "شاي الرمان", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Romantea.jpg", calories: 2, dietary: ["vegan","dairy-free"] }
-    ]
-  },
+{ id: "bk7", enName: "Assorted Nut Platter", arName: "طبق مكسرات مشكل", priceNum: 35, descriptionEn: "Assorted mixed nuts platter", descriptionAr: "طبق متنوع من المكسرات المشكلة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Nutsplatter.jpg", calories: "180 kcal (60g)", dietary: ["contains-nuts"] },
 
-  { category: "Tea on Ice", arCategory: "الشاي المثلج",
-    items: [
-      { enName: "Ice Apple Tea", arName: "شاي التفاح مثلج", priceNum: 28, priceText: "28 QAR", descriptionEn: "Chilled apple tea", descriptionAr: "شاي التفاح المثلج", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Iceapple.jpeg", calories: 35, dietary: ["vegan","dairy-free"] },
-      { enName: "Ice Mulberry Tea", arName: "شاي التوت المثلج", priceNum: 28, priceText: "28 QAR", descriptionEn: "Iced mulberry tea", descriptionAr: "شاي التوت المثلج", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Icemulberry.jpeg", calories: 35, dietary: ["vegan","dairy-free"] },
-      { enName: "Ice Mint Lemon", arName: "شاي النعناع والليمون المثلج", priceNum: 28, priceText: "28 QAR", descriptionEn: "Iced mint & lemon tea", descriptionAr: "شاي النعناع والليمون المثلج", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Icelemon.jpeg", calories: 20, dietary: ["vegan","dairy-free"] },
-      { enName: "Ice Pomegranate Tea", arName: "شاي الرمان المثلج", priceNum: 28, priceText: "28 QAR", descriptionEn: "Iced pomegranate tea", descriptionAr: "شاي الرمان المثلج", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Iceroman.jpeg", calories: 45, dietary: ["vegan","dairy-free"] },
-      { enName: "Hibiscus Ice", arName: "الكركديه مثلج", priceNum: 28, priceText: "28 QAR", descriptionEn: "Chilled hibiscus tea", descriptionAr: "الكركديه مثلج", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Iceroman.jpeg", calories: 25, dietary: ["vegan","dairy-free"] }
-    ]
-  },
+{ id: "ck1", enName: "Snickers-inspired cake", arName: "كعكة مستوحاة من سنيكرز", priceNum: 42, descriptionEn: "Chocolate, caramel & nuts cake", descriptionAr: "كعكة فاخرة مع الشوكولاتة والكراميل", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Snicker.jpg", calories: "560 kcal", dietary: ["contains-nuts"] },
 
-  { category: "Brewed the Turkish Way", arCategory: "القهوة على الطريقة التركية",
-    items: [
-      { enName: "Classic Turkish Coffee", arName: "قهوة تركية كلاسيكية", priceNum: 28, priceText: "28 QAR", descriptionEn: "Classic Turkish coffee", descriptionAr: "قهوة تركية كلاسيكية", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkishcoffee.jpg", calories: 5, dietary: ["vegan","gluten-free","dairy-free"] },
-      { enName: "Double Turkish Coffee", arName: "قهوة تركية مزدوجة", priceNum: 40, priceText: "40 QAR", descriptionEn: "Double shot Turkish coffee", descriptionAr: "قهوة تركية مزدوجة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkishcoffee.jpg", calories: 10, dietary: ["vegan","gluten-free","dairy-free"] },
-      { enName: "Turkish Coffee with Cardamom", arName: "قهوة تركية بالهيل", priceNum: 28, priceText: "28 QAR", descriptionEn: "Turkish coffee with cardamom", descriptionAr: "قهوة تركية بالهيل", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Ottomancardamom.jpg", calories: 5, dietary: ["vegan","gluten-free","dairy-free"] },
-      { enName: "Ottoman Coffee", arName: "قهوة عثمانية", priceNum: 28, priceText: "28 QAR", descriptionEn: "Ottoman style coffee", descriptionAr: "قهوة عثمانية", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Ottoman.jpg", calories: 5, dietary: ["vegan","gluten-free","dairy-free"] },
-      { enName: "Ottoman Coffee with Mastic", arName: "قهوة عثمانية بالمستيك", priceNum: 28, priceText: "28 QAR", descriptionEn: "Ottoman coffee with mastic", descriptionAr: "قهوة عثمانية بالمستيك", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Ottomanmastica.jpg", calories: 5, dietary: ["vegan","gluten-free","dairy-free"] },
-      { enName: "Ottoman Coffee with Hazelnuts", arName: "قهوة عثمانية بالبندق", priceNum: 28, priceText: "28 QAR", descriptionEn: "Ottoman coffee with hazelnuts", descriptionAr: "قهوة عثمانية بالبندق", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Ottomanhazelnut.jpg", calories: 20, dietary: ["contains-nuts"] },
-      { enName: "Sahlep", arName: "شلهب", priceNum: 28, priceText: "28 QAR", descriptionEn: "Warm and creamy sahlep", descriptionAr: "مشروب شلهب تركي دافئ وكريمي", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Sahlep.jpg", calories: 200, dietary: ["contains-dairy"] }
-    ]
-  },
+{ id: "ck2", enName: "Kunafa", arName: "كنافة", priceNum: 40, descriptionEn: "Kunafa with Akawi cheese", descriptionAr: "كنافة تركية تقليدية مع جبنة عكاوي", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Kunafa.jpeg", calories: "520 kcal", dietary: ["contains-dairy"] },
 
-  { category: "Herbal Infusions", arCategory: "المنقوعات العشبية",
-    items: [
-      { enName: "Sage", arName: "مريمية", priceNum: 28, priceText: "28 QAR", descriptionEn: "Soothing sage tea", descriptionAr: "شاي المريمية المهدئ", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Herb.jpeg", calories: 2, dietary: ["vegan","dairy-free"] },
-      { enName: "Mix Winter Tea", arName: "شاي الشتاء المزيج", priceNum: 28, priceText: "28 QAR", descriptionEn: "Winter herbs mix", descriptionAr: "مزيج أعشاب الشتاء", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Herb.jpeg", calories: 3, dietary: ["vegan","dairy-free"] },
-      { enName: "Green Tea", arName: "الشاي الأخضر", priceNum: 28, priceText: "28 QAR", descriptionEn: "Green tea", descriptionAr: "الشاي الأخضر", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Herb.jpeg", calories: 2, dietary: ["vegan","dairy-free"] },
-      { enName: "Chamomile", arName: "البابونج", priceNum: 28, priceText: "28 QAR", descriptionEn: "Chamomile tea", descriptionAr: "شاي البابونج", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Chamomile.jpg", calories: 2, dietary: ["vegan","dairy-free"] },
-      { enName: "Hibiscus", arName: "الكركديه", priceNum: 28, priceText: "28 QAR", descriptionEn: "Hibiscus tea", descriptionAr: "شاي الكركديه", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Hibiscus.jpeg", calories: 2, dietary: ["vegan","dairy-free"] }
-    ]
-  },
+{ id: "ck3", enName: "Chocolate Cake", arName: "كعكة الشوكولاتة", priceNum: 40, descriptionEn: "Molten chocolate cake", descriptionAr: "كعكة شوكولاتة غنية", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Chocolate.jpg", calories: "480 kcal", dietary: ["contains-dairy"] },
 
-  { category: "Café & Chill", arCategory: "كافيه واسترخاء",
-    items: [
-      { enName: "Hot Chocolate (Hot/Ice)", arName: "هوت شوكولاتة (ساخن/مثلج)", priceNum: 36, priceText: "36 QAR", descriptionEn: "Rich and creamy hot chocolate", descriptionAr: "هوت شوكولاتة غنية وكريمية", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Hotchoco.jpeg", calories: 360, dietary: ["contains-dairy"] },
-      { enName: "Piccolo", arName: "بيكولو", priceNum: 24, priceText: "24 QAR", descriptionEn: "Smooth espresso with steamed milk", descriptionAr: "إسپريسو مع حليب مبخر", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/cortado.jpg", calories: 120, dietary: ["contains-dairy"] },
-      { enName: "Latte (Hot/Ice)", arName: "لاتيه (ساخن/مثلج)", priceNum: 29, priceText: "29 QAR", descriptionEn: "Smooth latte", descriptionAr: "لاتيه ناعم", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Latte.jpg", calories: 170, dietary: ["contains-dairy"] },
-      { enName: "Spanish Latte (Hot/Ice)", arName: "لاتيه إسباني (ساخن ومثلج)", priceNum: 32, priceText: "32 QAR", descriptionEn: "Spanish latte", descriptionAr: "لاتيه إسباني", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Latte.jpg", calories: 220, dietary: ["contains-dairy"] },
-      { enName: "Salted Caramel Latte (Hot/Ice)", arName: "لاتيه بالكراميل المملح (ساخن/مثلج)", priceNum: 32, priceText: "32 QAR", descriptionEn: "Salted caramel latte", descriptionAr: "لاتيه بالكراميل المملح", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Latte.jpg", calories: 230, dietary: ["contains-dairy"] },
-      { enName: "Vanilla Latte (Hot/Ice)", arName: "لاتيه فانيليا (ساخن/مثلج)", priceNum: 32, priceText: "32 QAR", descriptionEn: "Vanilla latte", descriptionAr: "لاتيه فانيليا", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Latte.jpg", calories: 220, dietary: ["contains-dairy"] },
-      { enName: "Cappuccino (Hot/Ice)", arName: "كابوتشينو (ساخن/مثلج)", priceNum: 29, priceText: "29 QAR", descriptionEn: "Classic cappuccino", descriptionAr: "كابوتشينو كلاسيكي", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Latte.jpg", calories: 150, dietary: ["contains-dairy"] },
-      { enName: "White Mocha (Hot/Ice)", arName: "وايت موكا (ساخن/مثلج)", priceNum: 32, priceText: "32 QAR", descriptionEn: "White chocolate mocha", descriptionAr: "وايت موكا بالشوكولاتة البيضاء", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Latte.jpg", calories: 260, dietary: ["contains-dairy"] },
-      { enName: "Flat White (Hot/Ice)", arName: "فلات وايت (ساخن/مثلج)", priceNum: 27, priceText: "27 QAR", descriptionEn: "Smooth flat white", descriptionAr: "فلات وايت ناعم", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Flatwhite.jpg", calories: 140, dietary: ["contains-dairy"] },
-      { enName: "Cortado (Hot/Ice)", arName: "كورتادو (ساخن/مثلج)", priceNum: 24, priceText: "24 QAR", descriptionEn: "Espresso with a small amount of milk", descriptionAr: "كورتادو إسپريسو مع قليل من الحليب", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/cortado.jpg", calories: 110, dietary: ["contains-dairy"] },
-      { enName: "Espresso Single / Double (Hot/Ice)", arName: "إسپريسو مفرد/مزدوج (ساخن/مثلج)", priceNum: 21, priceText: "21 QAR", descriptionEn: "Espresso shot", descriptionAr: "إسپريسو", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Espresso.jpeg", calories: "5-10 kcal", dietary: ["vegan","gluten-free","dairy-free"] },
-      { enName: "Macchiato (Hot/Ice)", arName: "ماكياتو (ساخن/مثلج)", priceNum: 24, priceText: "24 QAR", descriptionEn: "Espresso with a dash of milk", descriptionAr: "ماكياتو إسپريسو مع لمسة حليب", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Machiatto.jpeg", calories: 40, dietary: ["contains-dairy"] },
-      { enName: "Americano (Hot/Ice)", arName: "أمريكانو (ساخن/مثلج)", priceNum: 21, priceText: "21 QAR", descriptionEn: "Americano", descriptionAr: "أمريكانو", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Americano.jpeg", calories: 5, dietary: ["vegan","gluten-free","dairy-free"] },
-      { enName: "Mocha (Hot/Ice)", arName: "موكا (ساخن/مثلج)", priceNum: 32, priceText: "32 QAR", descriptionEn: "Chocolate mocha", descriptionAr: "موكا بالشوكولاتة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Latte.jpg", calories: 260, dietary: ["contains-dairy"] }
-    ]
-  },
+{ id: "ck4", enName: "Lotus Cake", arName: "كعكة اللوتس", priceNum: 40, descriptionEn: "Lotus Biscoff flavored cake", descriptionAr: "كعكة بنكهة بسكوف لوتس", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Lutos.jpg", calories: "520 kcal", dietary: ["contains-dairy"] },
 
-  { category: "Specialty Brews", arCategory: "المشروبات المميزة",
-    items: [
-      { enName: "V60 Pour Over (Hot & Ice)", arName: "V60 بورت أوفر (ساخن ومثلج)", priceNum: 29, priceText: "29 QAR", descriptionEn: "V60 pour-over coffee", descriptionAr: "قهوة V60 مصفاة بعناية", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/v60.jpg", calories: 2, dietary: ["vegan","dairy-free"] },
-      { enName: "Ice Drip", arName: "آيس دريب", priceNum: 32, priceText: "32 QAR", descriptionEn: "Slow-dripped ice coffee", descriptionAr: "قهوة باردة قطرية", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Icedrip.jpeg", calories: 2, dietary: ["vegan","dairy-free"] },
-      { enName: "Cold Brew", arName: "كولد برو", priceNum: 36, priceText: "36 QAR", descriptionEn: "Cold brew coffee", descriptionAr: "كولد برو", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Coldbrew.jpg", calories: 2, dietary: ["vegan","dairy-free"] }
-    ]
-  },
+{ id: "ck5", enName: "Brownies", arName: "براونيز", priceNum: 45, descriptionEn: "Fudgy chocolate brownies", descriptionAr: "براونيز شوكولاتة غنية", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Brown.jpg", calories: "380 kcal", dietary: ["contains-dairy"] },
 
-  { category: "Fizz", arCategory: "الفيز",
-    items: [
-      { enName: "Lemonade", arName: "ليموناضة", priceNum: 30, priceText: "30 QAR", descriptionEn: "Fresh lemonade", descriptionAr: "ليموناضة طازجة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Lemonade.jpg", calories: 120, dietary: ["vegan","dairy-free"] },
-      { enName: "Fresh Orange Juice", arName: "عصير برتقال طازج", priceNum: 30, priceText: "30 QAR", descriptionEn: "Fresh orange juice", descriptionAr: "عصير برتقال طازج", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Orange.jpeg", calories: 140, dietary: ["vegan","dairy-free"] },
-      { enName: "Orange Earl Grey Tea", arName: "شاي البرتقال إيرل جراي", priceNum: 37, priceText: "37 QAR", descriptionEn: "Earl Grey with orange", descriptionAr: "شاي إيرل جراي بالنكهة البرتقالية", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Earl.jpeg", calories: 2, dietary: ["vegan","dairy-free"] },
-      { enName: "Churchill", arName: "تشرشل", priceNum: 25, priceText: "25 QAR", descriptionEn: "Signature drink", descriptionAr: "مشروب تشرشل المميز", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Churchill.webp", calories: 120, dietary: [] },
-      { enName: "Strawberry Mojito", arName: "موهيتو بالفراولة", priceNum: 38, priceText: "38 QAR", descriptionEn: "Strawberry mojito", descriptionAr: "موهيتو بالفراولة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Strawberrymojito.jpg", calories: 160, dietary: [] },
-      { enName: "Passion Fruit Mojito", arName: "موهيتو فاكهة العاطفة", priceNum: 42, priceText: "42 QAR", descriptionEn: "Passion fruit mojito", descriptionAr: "موهيتو فاكهة العاطفة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Passionfruit.webp", calories: 170, dietary: [] },
-      { enName: "Blueberry Mojito", arName: "موهيتو التوت الأزرق", priceNum: 38, priceText: "38 QAR", descriptionEn: "Blueberry mojito", descriptionAr: "موهيتو التوت الأزرق", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Blueberrymojito.webp",calories: 150, dietary: [] },
-      { enName: "Black Mulberry Mojito", arName: "موهيتو التوت", priceNum: 42, priceText: "42 QAR", descriptionEn: "Black Mulberry mojito", descriptionAr: "موهيتو التوت", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mulberrymojito.jpg", calories: 170, dietary: [] },
-      { enName: "Mix Berries Mojito", arName: "موهيتو التوت المختلط", priceNum: 43, priceText: "43 QAR", descriptionEn: "Mix Berries mojito with fresh blackberries, strawberries, raspberries, mint, lime", descriptionAr: "موهيتو التوت المشكل بالتوت الأسود الطازج، الفراولة، التوت الأحمر، النعناع، والليمون", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mixberriesmojito.webp", calories: 176, dietary: [] },
-      { enName: "Cooling Breeze", arName: "نسيم بارد", priceNum: 33, priceText: "33 QAR", descriptionEn: "Mint & lime refreshment", descriptionAr: "نسيم منعش بالنعناع والليمون", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Coolingbreeze.jpg", calories: 110, dietary: [] }
-    ]
-  },
-{ category: "Refreshments", arCategory: "المشروبات الغازية والمرطبات",
-items: [
-{ enName:"Still Water (Small)", arName:"مياه عادية (صغير)", price:"11 QR", descriptionEn:"Small still water", descriptionAr:"زجاجة مياه صغيرة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/WaterBig.jpg", calories:"0 kcal", dietary:["vegan","dairy-free"] },
-          { enName:"Still Water (Big)", arName:"مياه عادية (كبير)", price:"21 QR", descriptionEn:"Large still water", descriptionAr:"زجاجة مياه كبيرة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Watersmall.jpg", calories:"0 kcal", dietary:["vegan","dairy-free"] },
-          { enName:"Sparkling Water", arName:"مياه غازية", price:"21 QR", descriptionEn:"Sparkling water", descriptionAr:"مياه غازية", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Sparkling.jpg", calories:"0 kcal", dietary:["vegan","dairy-free"] },
-          { enName:"Kinza Cola", arName:"كينزا كولا", price:"17 QR", descriptionEn:"Kinza Cola", descriptionAr:"كينزا كولا", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Cola.jpg", calories:"150 kcal", dietary:[] },
-          { enName:"Kinza Cola Zero", arName:"كينزا كولا زيرو", price:"17 QR", descriptionEn:"Kinza Cola Zero", descriptionAr:"كينزا كولا زيرو", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Zero.jpg", calories:"0 kcal", dietary:[] }
+{ id: "ck6", enName: "Full Pistachio Cake", arName: "كعكة الفستق كاملة", priceNum: 40, descriptionEn: "Pistachio flavored cake", descriptionAr: "كعكة بنكهة الفستق", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Full.jpg", calories: "470 kcal", dietary: ["contains-nuts"] },
+
+{ id: "ck7", enName: "Lemon Cake", arName: "كعكة الليمون", priceNum: 38, descriptionEn: "Zesty lemon sponge cake", descriptionAr: "كعكة اسفنجية ليمونية خفيفة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Lemon.jpg", calories: "420 kcal", dietary: ["vegetarian"] },
+
+{ id: "ck8", enName: "Tiramisu", arName: "تيراميسو", priceNum: 42, descriptionEn: "Coffee-soaked sponge with mascarpone", descriptionAr: "تيراميسو إيطالي كلاسيكي", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Tiramisu.jpg", calories: "420 kcal", dietary: ["contains-dairy"] },
+
+{ id: "ck9", enName: "Almond Chocolate Cake", arName: "كعكة الشوكولاتة باللوز", priceNum: 40, descriptionEn: "Chocolate cake with almond notes", descriptionAr: "كعكة شوكولاتة مع اللوز", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Almond.jpg", calories: "490 kcal", dietary: ["contains-nuts"] },
+
+{ id: "ck10", enName: "Lemon Sponge Cake", arName: "كعكة إسفنجية بالليمون", priceNum: 42, descriptionEn: "Light lemon sponge", descriptionAr: "كعكة إسفنجية ليمونية طرية", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Lemoncake.jpg", calories: "430 kcal", dietary: ["vegetarian"] },
+
+{ id: "ck11", enName: "Strawberry Cheesecake", arName: "تشيز كيك بالفراولة", priceNum: 42, descriptionEn: "Creamy cheesecake topped with strawberries", descriptionAr: "تشيز كيك كريمي مع فراولة طازجة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Cherry.jpg", calories: "520 kcal", dietary: ["contains-dairy"] },
+
+{ id: "ck12", enName: "Blueberry Cheesecake", arName: "تشيز كيك بالتوت الأزرق", priceNum: 42, descriptionEn: "Cheesecake with blueberries", descriptionAr: "تشيز كيك مع التوت الأزرق", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mulberry.jpg", calories: "520 kcal", dietary: ["contains-dairy"] },
+
+{ id: "ck13", enName: "Chocolate Pistachio Cake", arName: "كعكة الشوكولاتة والفستق", priceNum: 40, descriptionEn: "Chocolate cake with pistachios", descriptionAr: "كعكة شوكولاتة مع الفستق", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Chocolate_pistachio.jpg", calories: "510 kcal", dietary: ["contains-nuts"] },
+
+{ id: "ck14", enName: "Strawberry Cake", arName: "كعكة الفراولة", priceNum: 45, descriptionEn: "Strawberry topped cake", descriptionAr: "كعكة مع فراولة طازجة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Strawberry.jpg", calories: "470 kcal", dietary: ["contains-dairy"] },
+
+{ id: "ck15", enName: "White Almond Cake", arName: "كعكة اللوز البيضاء", priceNum: 42, descriptionEn: "Almond flavored soft cake", descriptionAr: "كعكة طرية بنكهة اللوز", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/White.jpg", calories: "500 kcal", dietary: ["contains-nuts"] },
+
+{ id: "ck16", enName: "Trileche With Milk", arName: "تريليتش باللبن", priceNum: 35, descriptionEn: "Tres leches soaked cake", descriptionAr: "تريليتش منقوعة في اللبن", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Trileche.jpg", calories: "540 kcal", dietary: ["contains-dairy"] },
+
+{ id: "ck17", enName: "San Sebastian Cheesecake", arName: "تشيز كيك سان سيباستيان", priceNum: 42, descriptionEn: "Caramelized San Sebastian cheesecake", descriptionAr: "تشيز كيك كريم وكراميل", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Sebastian.jpg", calories: "520 kcal", dietary: ["contains-dairy"] }
+
+        ]
+      },
+      {
+        category: "Fondue",
+        arCategory: "الفوندو",
+        icon: "🍓",
+        items: [
+          { id: "fd1", enName: "Strawberry Fondue", arName: "فوندو بالفراولة", priceNum: 40, descriptionEn: "Fresh strawberries with melted milk chocolate", descriptionAr: "فراولة طازجة مع شوكولاتة بالحليب مذابة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Fondue1.jpeg", calories: "320 kcal", dietary: ["contains-dairy"] },
+          { id: "fd2", enName: "Strawberry-Banana Fondue", arName: "فوندو فراولة وموز", priceNum: 45, descriptionEn: "Strawberries & bananas with chocolate", descriptionAr: "فراولة وموز مع شوكولاتة ذائبة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Fondue2.jpeg", calories: "410 kcal", dietary: ["contains-dairy"] },
+          { id: "fd3", enName: "Turkiana Fondue", arName: "فوندو تركيانا", priceNum: 59, descriptionEn: "Signature fondue with assorted fruits with brownie", descriptionAr: "فوندو مع مجموعة من الفواكه", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Fondue3.jpeg", calories: "480 kcal", dietary: [] }
+        ]
+      },
+      {
+        category: "Arabian Brew",
+        arCategory: "المشروبات العربية",
+        icon: "☕",
+        items: [
+          { id: "ab1", enName: "Arabic Coffee in a Full Dalla", arName: "قهوة عربية بالدلة الكاملة", priceNum: 90, descriptionEn: "Traditional Arabic coffee in a full Dalla", descriptionAr: "قهوة عربية بالدلة الكاملة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Arabic.jpg", calories: "10 kcal", dietary: ["vegan","gluten-free","dairy-free"] },
+          { id: "ab2", enName: "Arabic Coffee in a Half Dalla", arName: "قهوة عربية بنصف دلة", priceNum: 50, descriptionEn: "Half Dalla Arabic coffee", descriptionAr: "قهوة عربية بنصف دلة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Arabic.jpg", calories: "10 kcal", dietary: ["vegan","gluten-free","dairy-free"] },
+          { id: "ab3", enName: "Arabic Coffee in a Cup", arName: "قهوة عربية في فنجان", priceNum: 30, descriptionEn: "Arabic coffee by the cup", descriptionAr: "قهوة عربية في فنجان", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Arabic.jpg", calories: "10 kcal", dietary: ["vegan","gluten-free","dairy-free"] }
+        ]
+      },
+      {
+        category: "Tea Time",
+        arCategory: "وقت الشاي",
+        icon: "🍵",
+        items: [
+          { id: "tt1", enName: "Turkish Tea", arName: "شاي تركي", priceNum: 15, descriptionEn: "Traditional Turkish tea", descriptionAr: "شاي تركي تقليدي", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Tea.jpg", calories: "2 kcal", dietary: ["vegan","dairy-free"] },
+          { id: "tt2", enName: "Apple Tea", arName: "شاي التفاح", priceNum: 25, descriptionEn: "Apple-flavored tea", descriptionAr: "شاي بنكهة التفاح", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Appletea.jpg", calories: "2 kcal", dietary: ["vegan","dairy-free"] },
+          { id: "tt3", enName: "Mulberry Tea", arName: "شاي التوت", priceNum: 25, descriptionEn: "Mulberry tea", descriptionAr: "شاي التوت", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mulberrytea.jpg", calories: "2 kcal", dietary: ["vegan","dairy-free"] },
+          { id: "tt4", enName: "Lemon Mint", arName: "شاي بالليمون والنعناع", priceNum: 25, descriptionEn: "Lemon & mint tea", descriptionAr: "شاي الليمون والنعناع", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Lemontea.jpg", calories: "2 kcal", dietary: ["vegan","dairy-free"] },
+          { id: "tt5", enName: "Pomegranate Tea", arName: "شاي الرمان", priceNum: 25, descriptionEn: "Pomegranate tea", descriptionAr: "شاي الرمان", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Romantea.jpg", calories: "2 kcal", dietary: ["vegan","dairy-free"] }
+        ]
+      },
+      {
+        category: "Tea on Ice",
+        arCategory: "الشاي المثلج",
+        icon: "🧊",
+        items: [
+          { id: "tic1", enName: "Ice Apple Tea", arName: "شاي التفاح مثلج", priceNum: 28, descriptionEn: "Chilled apple tea", descriptionAr: "شاي التفاح المثلج", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Iceapple.jpeg", calories: "35 kcal", dietary: ["vegan","dairy-free"] },
+          { id: "tic2", enName: "Ice Mulberry Tea", arName: "شاي التوت المثلج", priceNum: 28, descriptionEn: "Iced mulberry tea", descriptionAr: "شاي التوت المثلج", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Icemulberry.jpeg", calories: "35 kcal", dietary: ["vegan","dairy-free"] },
+          { id: "tic3", enName: "Ice Mint Lemon", arName: "شاي النعناع والليمون المثلج", priceNum: 28, descriptionEn: "Iced mint & lemon tea", descriptionAr: "شاي النعناع والليمون المثلج", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Icelemon.jpeg", calories: "20 kcal", dietary: ["vegan","dairy-free"] },
+          { id: "tic4", enName: "Ice Pomegranate Tea", arName: "شاي الرمان المثلج", priceNum: 28, descriptionEn: "Iced pomegranate tea", descriptionAr: "شاي الرمان المثلج", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Iceroman.jpeg", calories: "45 kcal", dietary: ["vegan","dairy-free"] },
+          { id: "tic5", enName: "Hibiscus Ice", arName: "الكركديه مثلج", priceNum: 28, descriptionEn: "Chilled hibiscus tea", descriptionAr: "الكركديه مثلج", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Iceroman.jpeg", calories: "25 kcal", dietary: ["vegan","dairy-free"] }
+        ]
+      },
+      {
+        category: "Brewed the Turkish Way",
+        arCategory: "القهوة على الطريقة التركية",
+        icon: "🫖",
+        items: [
+          { id: "btw1", enName: "Classic Turkish Coffee", arName: "قهوة تركية كلاسيكية", priceNum: 28, descriptionEn: "Classic Turkish coffee", descriptionAr: "قهوة تركية كلاسيكية", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkishcoffee.jpg", calories: "5 kcal", dietary: ["vegan","gluten-free","dairy-free"] },
+          { id: "btw2", enName: "Double Turkish Coffee", arName: "قهوة تركية مزدوجة", priceNum: 40, descriptionEn: "Double shot Turkish coffee", descriptionAr: "قهوة تركية مزدوجة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkishcoffee.jpg", calories: "10 kcal", dietary: ["vegan","gluten-free","dairy-free"] },
+          { id: "btw3", enName: "Ottoman Coffee with Mastic", arName: "قهوة عثمانية بالمستيك", priceNum: 28, descriptionEn: "Ottoman coffee with mastic", descriptionAr: "قهوة عثمانية بالمستيك", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Ottomanmastica.jpg", calories: "5 kcal", dietary: ["vegan","gluten-free","dairy-free"] },
+          { id: "btw4", enName: "Ottoman Coffee with Hazelnuts", arName: "قهوة عثمانية بالبندق", priceNum: 28, descriptionEn: "Ottoman coffee with hazelnuts", descriptionAr: "قهوة عثمانية بالبندق", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Ottomanhazelnut.jpg", calories: "20 kcal", dietary: ["contains-nuts"] },
+           { id: "btw5", enName: "Turkish Coffee with Cardamom", arName: "قهوة تركية بالهيل", priceNum: 28, priceText: "28 QAR", descriptionEn: "Turkish coffee with cardamom", descriptionAr: "قهوة تركية بالهيل", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Ottomancardamom.jpg", calories: 5, dietary: ["vegan","gluten-free","dairy-free"] },
+
+          { id: "btw6", enName: "Sahlep", arName: "شلهب", priceNum: 28, descriptionEn: "Warm and creamy sahlep", descriptionAr: "مشروب شلهب تركي دافئ وكريمي", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Sahlep.jpg", calories: "200 kcal", dietary: ["contains-dairy"] }
+        ]
+      },
+      {
+        category: "Café & Chill",
+        arCategory: "كافيه واسترخاء",
+        icon: "☕",
+        items: [
+          { id: "cac1", enName: "Hot Chocolate (Hot/Ice)", arName: "هوت شوكولاتة (ساخن/مثلج)", priceNum: 36, descriptionEn: "Rich and creamy hot chocolate", descriptionAr: "هوت شوكولاتة غنية وكريمية", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Hotchoco.jpeg", calories: "360 kcal", dietary: ["contains-dairy"] },
+
+{ id: "cac2", enName: "Piccolo", arName: "بيكولو", priceNum: 24, descriptionEn: "Smooth espresso with steamed milk", descriptionAr: "إسپريسو مع حليب مبخر", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/cortado.jpg", calories: "120 kcal", dietary: ["contains-dairy"] },
+
+{ id: "cac3", enName: "Latte (Hot/Ice)", arName: "لاتيه (ساخن/مثلج)", priceNum: 29, descriptionEn: "Smooth latte", descriptionAr: "لاتيه ناعم", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Latte.jpg", calories: "170 kcal", dietary: ["contains-dairy"] },
+
+{ id: "cac4", enName: "Spanish Latte (Hot/Ice)", arName: "لاتيه إسباني (ساخن ومثلج)", priceNum: 32, descriptionEn: "Spanish latte", descriptionAr: "لاتيه إسباني", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Latte.jpg", calories: "220 kcal", dietary: ["contains-dairy"] },
+
+{ id: "cac5", enName: "Salted Caramel Latte (Hot/Ice)", arName: "لاتيه بالكراميل المملح (ساخن/مثلج)", priceNum: 32, descriptionEn: "Salted caramel latte", descriptionAr: "لاتيه بالكراميل المملح", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Latte.jpg", calories: "230 kcal", dietary: ["contains-dairy"] },
+
+{ id: "cac6", enName: "Vanilla Latte (Hot/Ice)", arName: "لاتيه فانيليا (ساخن/مثلج)", priceNum: 32, descriptionEn: "Vanilla latte", descriptionAr: "لاتيه فانيليا", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Latte.jpg", calories: "220 kcal", dietary: ["contains-dairy"] },
+
+{ id: "cac7", enName: "Cappuccino (Hot/Ice)", arName: "كابوتشينو (ساخن/مثلج)", priceNum: 29, descriptionEn: "Classic cappuccino", descriptionAr: "كابوتشينو كلاسيكي", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Latte.jpg", calories: "150 kcal", dietary: ["contains-dairy"] },
+
+{ id: "cac8", enName: "White Mocha (Hot/Ice)", arName: "وايت موكا (ساخن/مثلج)", priceNum: 32, descriptionEn: "White chocolate mocha", descriptionAr: "وايت موكا بالشوكولاتة البيضاء", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Latte.jpg", calories: "260 kcal", dietary: ["contains-dairy"] },
+
+{ id: "cac9", enName: "Flat White (Hot/Ice)", arName: "فلات وايت (ساخن/مثلج)", priceNum: 27, descriptionEn: "Smooth flat white", descriptionAr: "فلات وايت ناعم", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Flatwhite.jpg", calories: "140 kcal", dietary: ["contains-dairy"] },
+
+{ id: "cac10", enName: "Cortado (Hot/Ice)", arName: "كورتادو (ساخن/مثلج)", priceNum: 24, descriptionEn: "Espresso with a small amount of milk", descriptionAr: "كورتادو إسپريسو مع قليل من الحليب", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/cortado.jpg", calories: "110 kcal", dietary: ["contains-dairy"] },
+
+{ id: "cac11", enName: "Espresso Single / Double (Hot/Ice)", arName: "إسپريسو مفرد/مزدوج (ساخن/مثلج)", priceNum: 21, descriptionEn: "Espresso shot", descriptionAr: "إسپريسو", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Espresso.jpeg", calories: "5–10 kcal", dietary: ["vegan","gluten-free","dairy-free"] },
+
+{ id: "cac12", enName: "Macchiato (Hot/Ice)", arName: "ماكياتو (ساخن/مثلج)", priceNum: 24, descriptionEn: "Espresso with a dash of milk", descriptionAr: "ماكياتو إسپريسو مع لمسة حليب", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Machiatto.jpeg", calories: "40 kcal", dietary: ["contains-dairy"] },
+
+{ id: "cac13", enName: "Americano (Hot/Ice)", arName: "أمريكانو (ساخن/مثلج)", priceNum: 21, descriptionEn: "Americano", descriptionAr: "أمريكانو", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Americano.jpeg", calories: "5 kcal", dietary: ["vegan","gluten-free","dairy-free"] },
+
+{ id: "cac14", enName: "Mocha (Hot/Ice)", arName: "موكا (ساخن/مثلج)", priceNum: 32, descriptionEn: "Chocolate mocha", descriptionAr: "موكا بالشوكولاتة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Latte.jpg", calories: "260 kcal", dietary: ["contains-dairy"] }
+
+        ]
+      },
+      {
+        category: "Specialty Brews",
+        arCategory: "المشروبات المميزة",
+        icon: "☕",
+        items: [
+          { id: "sb1", enName: "V60 Pour Over (Hot & Ice)", arName: "V60 بورت أوفر (ساخن ومثلج)", priceNum: 29, descriptionEn: "V60 pour-over coffee", descriptionAr: "قهوة V60 مصفاة بعناية", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/v60.jpg", calories: "2 kcal", dietary: ["vegan","dairy-free"] },
+          { id: "sb2", enName: "Ice Drip", arName: "آيس دريب", priceNum: 32, descriptionEn: "Slow-dripped ice coffee", descriptionAr: "قهوة باردة قطرية", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Icedrip.jpeg", calories: "2 kcal", dietary: ["vegan","dairy-free"] },
+          { id: "sb3", enName: "Cold Brew", arName: "كولد برو", priceNum: 36, descriptionEn: "Cold brew coffee", descriptionAr: "كولد برو", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Coldbrew.jpg", calories: "2 kcal", dietary: ["vegan","dairy-free"] }
+        ]
+      },
+      {
+        category: "Fizz",
+        arCategory: "الفيز",
+        icon: "🍹",
+        items: [
+         { id: "fz1", enName: "Lemonade", arName: "ليموناضة", priceNum: 30, descriptionEn: "Fresh lemonade", descriptionAr: "ليموناضة طازجة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Lemonade.jpg", calories: "120 kcal", dietary: ["vegan","dairy-free"] },
+
+{ id: "fz2", enName: "Fresh Orange Juice", arName: "عصير برتقال طازج", priceNum: 30, descriptionEn: "Fresh orange juice", descriptionAr: "عصير برتقال طازج", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Orange.jpeg", calories: "140 kcal", dietary: ["vegan","dairy-free"] },
+
+{ id: "fz3", enName: "Orange Earl Grey Tea", arName: "شاي البرتقال إيرل جراي", priceNum: 37, descriptionEn: "Earl Grey with orange", descriptionAr: "شاي إيرل جراي بالنكهة البرتقالية", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Earl.jpeg", calories: "2 kcal", dietary: ["vegan","dairy-free"] },
+
+{ id: "fz4", enName: "Churchill", arName: "تشرشل", priceNum: 25, descriptionEn: "Signature drink", descriptionAr: "مشروب تشرشل المميز", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Churchill.webp", calories: "120 kcal", dietary: [] },
+
+{ id: "fz5", enName: "Strawberry Mojito", arName: "موهيتو بالفراولة", priceNum: 38, descriptionEn: "Strawberry mojito", descriptionAr: "موهيتو بالفراولة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Strawberrymojito.jpg", calories: "160 kcal", dietary: [] },
+
+{ id: "fz6", enName: "Passion Fruit Mojito", arName: "موهيتو فاكهة العاطفة", priceNum: 42, descriptionEn: "Passion fruit mojito", descriptionAr: "موهيتو فاكهة العاطفة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Passionfruit.webp", calories: "170 kcal", dietary: [] },
+
+{ id: "fz7", enName: "Blueberry Mojito", arName: "موهيتو التوت الأزرق", priceNum: 38, descriptionEn: "Blueberry mojito", descriptionAr: "موهيتو التوت الأزرق", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Blueberrymojito.webp", calories: "150 kcal", dietary: [] },
+
+{ id: "fz8", enName: "Black Mulberry Mojito", arName: "موهيتو التوت", priceNum: 42, descriptionEn: "Black Mulberry mojito", descriptionAr: "موهيتو التوت", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mulberrymojito.jpg", calories: "170 kcal", dietary: [] },
+
+{ id: "fz9", enName: "Mix Berries Mojito", arName: "موهيتو التوت المختلط", priceNum: 43, descriptionEn: "Mix Berries mojito with fresh blackberries, strawberries, raspberries, mint, lime", descriptionAr: "موهيتو التوت المشكل بالتوت الأسود الطازج، الفراولة، التوت الأحمر، النعناع، والليمون", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mixberriesmojito.webp", calories: "176 kcal", dietary: [] },
+
+{ id: "fz10", enName: "Cooling Breeze", arName: "نسيم بارد", priceNum: 33, descriptionEn: "Mint & lime refreshment", descriptionAr: "نسيم منعش بالنعناع والليمون", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Coolingbreeze.jpg", calories: "110 kcal", dietary: [] }
+
+        ]
+      },
+      {
+        category: "Refreshments",
+        arCategory: "المشروبات الغازية والمرطبات",
+        icon: "🥤",
+        items: [
+          { id: "rf1", enName: "Still Water (Small)", arName: "مياه عادية (صغير)", priceNum: 11, descriptionEn: "Small still water", descriptionAr: "زجاجة مياه صغيرة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/WaterBig.jpg", calories: "0 kcal", dietary: ["vegan","dairy-free"] },
+          { id: "rf2", enName: "Still Water (Big)", arName: "مياه عادية (كبير)", priceNum: 21, descriptionEn: "Large still water", descriptionAr: "زجاجة مياه كبيرة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Watersmall.jpg", calories: "0 kcal", dietary: ["vegan","dairy-free"] },
+          { id: "rf3", enName: "Sparkling Water", arName: "مياه غازية", priceNum: 21, descriptionEn: "Sparkling water", descriptionAr: "مياه غازية", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Sparkling.jpg", calories: "0 kcal", dietary: ["vegan","dairy-free"] },
+          { id: "rf4", enName: "Kinza Cola", arName: "كينزا كولا", priceNum: 17, descriptionEn: "Kinza Cola", descriptionAr: "كينزا كولا", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Cola.jpg", calories: "150 kcal", dietary: [] },
+          { id: "rf5", enName: "Kinza Cola Zero", arName: "كينزا كولا زيرو", priceNum: 17, descriptionEn: "Kinza Cola Zero", descriptionAr: "كينزا كولا زيرو", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Zero.jpg", calories: "0 kcal", dietary: [] }
         ]
       }
     ];
 
-    /* ========= State ========= */
-    let currentLang = 'en'; // or 'ar'
-    let cart = []; // items with {enName, arName, priceNum, qty, image, size, notes}
-    let favorites = []; // list of enName
-    let currentView = 'grid'; // or 'list'
+    let currentLang = 'en';
+    let cart = [];
     let activeFilters = new Set();
+    let activeModalData = null;
 
-    /* ========= Helpers ========= */
-    function formatPrice(num){ return `QAR ${Number(num).toFixed(2)}`; }
-
-    function createElem(html){
-      const t = document.createElement('template'); t.innerHTML = html.trim(); return t.content.firstChild;
+    function loadFromStorage(key, defaultValue = null) {
+      try {
+        const stored = localStorage.getItem(key);
+        if (stored) return JSON.parse(stored);
+      } catch (e) {
+        console.error('Storage error:', e);
+      }
+      return defaultValue;
     }
 
-    function debounce(fn, wait){
-      let t; return (...args) => { clearTimeout(t); t = setTimeout(()=> fn(...args), wait); };
+    function saveToStorage(key, value) {
+      try {
+        localStorage.setItem(key, JSON.stringify(value));
+      } catch (e) {
+        console.error('Storage error:', e);
+      }
     }
 
-    function escapeAttr(s){ if(s==null) return ''; return String(s).replace(/"/g,'&quot;'); }
+    function getRatings(itemId) {
+      const ratings = loadFromStorage('ratings', {});
+      return ratings[itemId] || { total: 0, count: 0, avg: 0 };
+    }
 
-    /* ========= Render filters ========= */
+    function saveRating(itemId, rating) {
+      const ratings = loadFromStorage('ratings', {});
+      if (!ratings[itemId]) {
+        ratings[itemId] = { total: 0, count: 0, avg: 0 };
+      }
+      ratings[itemId].total += rating;
+      ratings[itemId].count += 1;
+      ratings[itemId].avg = Math.round((ratings[itemId].total / ratings[itemId].count) * 10) / 10;
+      saveToStorage('ratings', ratings);
+      return ratings[itemId];
+    }
+
+    function formatPrice(num) {
+      return `QAR ${Number(num).toFixed(2)}`;
+    }
+
+    function renderStars(rating) {
+      const full = Math.floor(rating);
+      const half = rating % 1 >= 0.5 ? 1 : 0;
+      let stars = '★'.repeat(full);
+      if (half) stars += '✦';
+      stars += '☆'.repeat(5 - full - half);
+      return stars;
+    }
+
+    function showToast(msg) {
+      const t = document.createElement('div');
+      t.className = 'toast';
+      t.textContent = msg;
+      document.body.appendChild(t);
+      setTimeout(() => t.remove(), 2200);
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str).replace(/[&<>"']/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[s]));
+    }
+
+    // Render filters
     const filterGroupEl = document.getElementById('filterGroup');
-    (function initFilters(){
+    (function initFilters() {
       const tags = new Set();
       menuData.flatMap(c => c.items.flatMap(i => i.dietary || [])).forEach(t => tags.add(t));
-      if(!tags.size) return;
+      if (!tags.size) return;
       tags.forEach(tag => {
         const btn = document.createElement('button');
         btn.type = 'button';
@@ -420,187 +529,167 @@ items: [
         btn.textContent = tag;
         btn.dataset.tag = tag;
         btn.addEventListener('click', () => {
-          if(btn.classList.toggle('active')) activeFilters.add(tag);
+          if (btn.classList.toggle('active')) activeFilters.add(tag);
           else activeFilters.delete(tag);
-          renderItems();
+          renderMenu();
         });
         filterGroupEl.appendChild(btn);
       });
     })();
 
-    /* ========= Render items ========= */
-    const itemsContainer = document.getElementById('itemsContainer');
-    const itemCountEl = document.getElementById('itemCount');
-    const displayCountEl = document.getElementById('displayCount');
-    const noResultsEl = document.getElementById('noResults');
+    // Render menu
+    const menuContainer = document.getElementById('menuContainer');
 
-    function gatherAllItems(){
-      return menuData.flatMap(cat => cat.items.map(it => ({...it, category: cat.category, arCategory: cat.arCategory})));
-    }
-
-    function matchesFilters(item){
-      if(!activeFilters.size) return true;
+    function matchesFilters(item) {
+      if (!activeFilters.size) return true;
       const d = item.dietary || [];
-      for(const f of activeFilters){ if(d.includes(f)) return true; }
+      for (const f of activeFilters) {
+        if (d.includes(f)) return true;
+      }
       return false;
     }
 
-    function matchesQuery(item, q){
-      if(!q) return true;
-      const qTrim = q.trim();
-      if(!qTrim) return true;
-      const qLower = qTrim.toLowerCase();
-      const inEn = (item.enName && item.enName.toLowerCase().includes(qLower));
-      const inDescEn = (item.descriptionEn && item.descriptionEn.toLowerCase().includes(qLower));
-      const inAr = (item.arName && item.arName.includes(qTrim));
-      const inDescAr = (item.descriptionAr && item.descriptionAr.includes(qTrim));
-      return inEn || inDescEn || inAr || inDescAr;
+    function matchesQuery(item, q) {
+      if (!q) return true;
+      const qTrim = q.trim().toLowerCase();
+      if (!qTrim) return true;
+      return (item.enName && item.enName.toLowerCase().includes(qTrim)) ||
+             (item.descriptionEn && item.descriptionEn.toLowerCase().includes(qTrim)) ||
+             (item.arName && item.arName.includes(qTrim)) ||
+             (item.descriptionAr && item.descriptionAr.includes(qTrim));
     }
 
-    function renderItems(query = ''){
-      const all = gatherAllItems();
-      const filtered = all.filter(i => matchesFilters(i) && matchesQuery(i, query));
-      itemsContainer.innerHTML = '';
-      if(!filtered.length){
-        noResultsEl.style.display = 'block';
-      } else {
-        noResultsEl.style.display = 'none';
-      }
+    function renderMenu(query = '') {
+      menuContainer.innerHTML = '';
+      const searchTerm = query.trim();
 
-      filtered.forEach(item => {
-        const card = document.createElement('article');
-        card.className = 'card';
-        card.tabIndex = 0;
-        card.setAttribute('role','button');
-        card.dataset.name = item.enName;
-        card.dataset.price = item.priceNum;
-        card.dataset.image = item.image;
-        card.dataset.ar = item.arName || '';
-        card.dataset.descEn = item.descriptionEn || '';
-        card.dataset.descAr = item.descriptionAr || '';
+      menuData.forEach(category => {
+        const filtered = category.items.filter(i => matchesFilters(i) && matchesQuery(i, searchTerm));
+        if (!filtered.length) return;
 
-        const img = document.createElement('img');
-        img.className = 'item-img';
-        img.loading = 'lazy';
-        img.src = item.image;
-        img.alt = currentLang === 'en' ? item.enName : (item.arName || item.enName);
+        const section = document.createElement('section');
+        section.className = 'category-section';
 
-        const nameRow = document.createElement('div');
-        nameRow.className = 'name';
-        nameRow.innerHTML = `<span>${currentLang === 'en' ? escapeAttr(item.enName) : escapeAttr(item.arName || item.enName)}</span><span class="price">${escapeAttr(item.priceText || formatPrice(item.priceNum))}</span>`;
+        const header = document.createElement('div');
+        header.className = 'category-header';
+        header.innerHTML = `<span class="category-icon">${category.icon}</span><span class="category-title">${currentLang === 'en' ? category.category : category.arCategory}</span>`;
+        section.appendChild(header);
 
-        const desc = document.createElement('div');
-        desc.className = 'desc';
-        desc.textContent = currentLang === 'en' ? item.descriptionEn : (item.descriptionAr || item.descriptionEn);
+        const grid = document.createElement('div');
+        grid.className = 'items-grid';
 
-        const tagsWrap = document.createElement('div');
-        tagsWrap.className = 'tags';
-        (item.dietary || []).forEach(t => {
-          const tk = document.createElement('div');
-          tk.className = 'tag'; tk.textContent = t;
-          tagsWrap.appendChild(tk);
+        filtered.forEach(item => {
+          const ratings = getRatings(item.id);
+          const card = document.createElement('article');
+          card.className = 'card';
+          card.tabIndex = 0;
+          card.role = 'button';
+          card.dataset.itemId = item.id;
+
+          const ratingHtml = ratings.count > 0 ? `<div class="rating"><span class="stars">${renderStars(ratings.avg)}</span><span class="rating-count">(${ratings.count})</span></div>` : '<div class="rating"><span class="rating-count">No ratings</span></div>';
+
+          card.innerHTML = `
+            <img class="item-img" src="${escapeHtml(item.image)}" alt="${escapeHtml(currentLang === 'en' ? item.enName : item.arName || item.enName)}" loading="lazy">
+            <div class="name">
+              <span>${escapeHtml(currentLang === 'en' ? item.enName : item.arName || item.enName)}</span>
+              <span class="price">${formatPrice(item.priceNum)}</span>
+            </div>
+            <div class="desc">${escapeHtml(currentLang === 'en' ? item.descriptionEn : item.descriptionAr || item.descriptionEn)}</div>
+            ${ratingHtml}
+            <div class="tags">${(item.dietary || []).map(t => `<div class="tag">${escapeHtml(t)}</div>`).join('')}</div>
+          `;
+
+          card.addEventListener('click', () => openModal(item));
+          card.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') openModal(item);
+          });
+
+          grid.appendChild(card);
         });
 
-        const actions = document.createElement('div');
-        actions.style.display = 'flex';
-        actions.style.justifyContent = 'space-between';
-        actions.style.marginTop = '8px';
-
-        const viewBtn = document.createElement('button');
-        viewBtn.className = 'btn';
-        viewBtn.type = 'button';
-        viewBtn.textContent = 'View';
-        viewBtn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          openModalWithItemData(card.dataset);
-        });
-
-        const favBtn = document.createElement('button');
-        favBtn.className = 'btn';
-        favBtn.type = 'button';
-        favBtn.innerHTML = `<i class="fas fa-heart"></i>`;
-        if(favorites.includes(item.enName)) favBtn.style.background = 'var(--maroon)';
-        favBtn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          toggleFavorite(item.enName, favBtn);
-        });
-
-        actions.appendChild(viewBtn);
-        actions.appendChild(favBtn);
-
-        card.appendChild(img);
-        card.appendChild(nameRow);
-        card.appendChild(desc);
-        card.appendChild(tagsWrap);
-        card.appendChild(actions);
-
-        // Full-card click opens modal
-        card.addEventListener('click', () => openModalWithItemData(card.dataset));
-        card.addEventListener('keydown', (e) => { if(e.key === 'Enter' || e.key === ' ') openModalWithItemData(card.dataset); });
-
-        itemsContainer.appendChild(card);
+        section.appendChild(grid);
+        menuContainer.appendChild(section);
       });
-
-      itemCountEl.textContent = gatherAllItems().length;
-      displayCountEl.textContent = filtered.length;
     }
 
-    /* ========= Modal behavior ========= */
+    // Modal
     const itemModal = document.getElementById('itemModal');
     const modalImg = document.getElementById('modalImg');
     const modalTitle = document.getElementById('modalTitle');
     const modalPrice = document.getElementById('modalPrice');
     const modalDesc = document.getElementById('modalDesc');
+    const modalCalories = document.getElementById('modalCalories');
     const modalTags = document.getElementById('modalTags');
+    const ratingInput = document.getElementById('ratingInput');
+    const ratingStats = document.getElementById('ratingStats');
     const addToCartBtn = document.getElementById('addToCartBtn');
-    let activeModalData = null;
 
-    function openModalWithItemData(data){
-      activeModalData = {
-        enName: data.name,
-        arName: data.ar,
-        descriptionEn: data.descEn,
-        descriptionAr: data.descAr,
-        priceNum: Number(data.price) || 0,
-        priceText: formatPrice(Number(data.price) || 0),
-        image: data.image
-      };
-      modalImg.src = activeModalData.image;
-      modalImg.alt = currentLang === 'en' ? activeModalData.enName : (activeModalData.arName || activeModalData.enName);
-      modalTitle.textContent = currentLang === 'en' ? activeModalData.enName : (activeModalData.arName || activeModalData.enName);
-      modalPrice.textContent = activeModalData.priceText;
-      modalDesc.textContent = currentLang === 'en' ? (activeModalData.descriptionEn || '') : (activeModalData.descriptionAr || activeModalData.descriptionEn || '');
-      modalTags.innerHTML = ''; // no dietary info in dataset here
+    function openModal(item) {
+      activeModalData = item;
+
+      modalImg.src = item.image;
+      modalImg.alt = currentLang === 'en' ? item.enName : (item.arName || item.enName);
+      modalTitle.textContent = currentLang === 'en' ? item.enName : (item.arName || item.enName);
+      modalPrice.textContent = formatPrice(item.priceNum);
+      modalDesc.textContent = currentLang === 'en' ? (item.descriptionEn || '') : (item.descriptionAr || item.descriptionEn || '');
+      modalCalories.textContent = `📊 ${item.calories}`;
+
+      // Rating stars
+      ratingInput.innerHTML = '';
+      for (let i = 1; i <= 5; i++) {
+        const btn = document.createElement('button');
+        btn.className = 'star-btn';
+        btn.innerHTML = '★';
+        btn.dataset.rating = i;
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          saveRating(item.id, i);
+          updateRatingDisplay();
+          renderMenu();
+          showToast('Thank you for rating!');
+        });
+        ratingInput.appendChild(btn);
+      }
+
+      updateRatingDisplay();
+
+      // Tags
+      modalTags.innerHTML = (item.dietary || []).map(t => `<div class="tag">${escapeHtml(t)}</div>`).join('');
+
       itemModal.classList.add('show');
       itemModal.setAttribute('aria-hidden', 'false');
-      // focus management
       addToCartBtn.focus();
     }
 
-    function closeModal(){
+    function updateRatingDisplay() {
+      const ratings = getRatings(activeModalData.id);
+      if (ratings.count > 0) {
+        ratingStats.textContent = `Average: ${ratings.avg} ★ (${ratings.count} ${ratings.count === 1 ? 'rating' : 'ratings'})`;
+      } else {
+        ratingStats.textContent = 'Be the first to rate this item!';
+      }
+
+      ratingInput.querySelectorAll('.star-btn').forEach((btn, i) => {
+        if (i + 1 <= ratings.avg) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+    }
+
+    function closeModal() {
       activeModalData = null;
       itemModal.classList.remove('show');
-      itemModal.setAttribute('aria-hidden','true');
+      itemModal.setAttribute('aria-hidden', 'true');
     }
 
     document.getElementById('modalClose').addEventListener('click', closeModal);
     document.getElementById('modalCancel').addEventListener('click', closeModal);
-    itemModal.addEventListener('click', (e) => { if(e.target === itemModal) closeModal(); });
-    document.addEventListener('keydown', (e) => { if(e.key === 'Escape') { if(itemModal.classList.contains('show')) closeModal(); }} );
+    itemModal.addEventListener('click', (e) => { if (e.target === itemModal) closeModal(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && itemModal.classList.contains('show')) closeModal(); });
 
-    /* ========= Favorites ========= */
-    function toggleFavorite(enName, buttonEl){
-      const idx = favorites.indexOf(enName);
-      if(idx >= 0){ favorites.splice(idx,1); buttonEl.style.background = ''; showToast('Removed from favorites'); }
-      else { favorites.push(enName); buttonEl.style.background = 'var(--maroon)'; showToast('Added to favorites'); }
-    }
-
-    document.getElementById('favBtn').addEventListener('click', () => {
-      if(!favorites.length) { alert('No favorites yet'); return; }
-      alert('Favorites:\n' + favorites.join('\n'));
-    });
-
-    /* ========= Cart ========= */
+    // Cart
     const cartBadge = document.getElementById('cartBadge');
     const cartBtn = document.getElementById('cartBtn');
     const cartDrawer = document.getElementById('cartDrawer');
@@ -608,18 +697,19 @@ items: [
     const cartTotalEl = document.getElementById('cartTotal');
     const clearCartBtn = document.getElementById('clearCart');
 
-    function updateCartUI(){
-      const totalQty = cart.reduce((s,i)=> s + (i.qty||0), 0);
+    function updateCartUI() {
+      saveToStorage('cart', cart);
+      const totalQty = cart.reduce((s, i) => s + (i.qty || 0), 0);
       cartBadge.style.display = totalQty ? 'inline-flex' : 'none';
       cartBadge.textContent = totalQty;
       cartBtn.setAttribute('aria-expanded', !!totalQty);
-      const total = cart.reduce((s,i) => s + (i.priceNum * i.qty || 0), 0);
+      const total = cart.reduce((s, i) => s + (i.priceNum * i.qty || 0), 0);
       cartTotalEl.textContent = formatPrice(total);
       renderCartItems();
     }
 
-    function renderCartItems(){
-      if(!cart.length){
+    function renderCartItems() {
+      if (!cart.length) {
         cartBody.innerHTML = '<div style="color:var(--muted)">Your cart is empty</div>';
         return;
       }
@@ -628,80 +718,94 @@ items: [
         const el = document.createElement('div');
         el.className = 'cart-item';
         el.innerHTML = `
-          <img src="${escapeAttr(ci.image)}" alt="${escapeAttr(ci.enName)}">
-          <div style="flex:1">
-            <div style="font-weight:800">${escapeAttr(currentLang === 'en' ? ci.enName : (ci.arName || ci.enName))}</div>
-            <div style="color:var(--muted);font-size:13px">${ci.size || ''} ${ci.notes ? '• ' + escapeAttr(ci.notes) : ''}</div>
-            <div style="margin-top:6px;display:flex;gap:8px;align-items:center">
-              <button data-idx="${idx}" class="btn qty-dec">-</button>
-              <div style="min-width:28px;text-align:center">${ci.qty}</div>
-              <button data-idx="${idx}" class="btn qty-inc">+</button>
-              <div style="margin-left:auto;font-weight:800">${formatPrice(ci.priceNum * ci.qty)}</div>
+          <img src="${escapeHtml(ci.image)}" alt="${escapeHtml(ci.enName)}">
+          <div style="flex:1;min-width:0">
+            <div style="font-weight:800;font-size:13px">${escapeHtml(currentLang === 'en' ? ci.enName : (ci.arName || ci.enName))}</div>
+            <div style="color:var(--muted);font-size:11px">${ci.size || ''} ${ci.notes ? '• ' + escapeHtml(ci.notes) : ''}</div>
+            <div style="margin-top:6px;display:flex;gap:6px;align-items:center;flex-wrap:wrap">
+              <button data-idx="${idx}" class="btn qty-dec" style="padding:4px 8px;font-size:12px">−</button>
+              <div style="min-width:24px;text-align:center;font-size:12px">${ci.qty}</div>
+              <button data-idx="${idx}" class="btn qty-inc" style="padding:4px 8px;font-size:12px">+</button>
+              <div style="margin-left:auto;font-weight:800;font-size:12px">${formatPrice(ci.priceNum * ci.qty)}</div>
             </div>
-            <div style="margin-top:6px"><button data-idx="${idx}" class="btn remove">Remove</button></div>
+            <div style="margin-top:4px"><button data-idx="${idx}" class="btn remove" style="font-size:11px;padding:4px 6px">Remove</button></div>
           </div>
         `;
         cartBody.appendChild(el);
       });
 
-      // attach listeners
       cartBody.querySelectorAll('.qty-inc').forEach(b => {
-        b.addEventListener('click', (e) => {
-          const idx = Number(b.dataset.idx); cart[idx].qty += 1; updateCartUI();
+        b.addEventListener('click', () => {
+          const idx = Number(b.dataset.idx);
+          cart[idx].qty += 1;
+          updateCartUI();
         });
       });
       cartBody.querySelectorAll('.qty-dec').forEach(b => {
-        b.addEventListener('click', (e) => {
+        b.addEventListener('click', () => {
           const idx = Number(b.dataset.idx);
-          if(cart[idx].qty > 1) cart[idx].qty -= 1;
-          else cart.splice(idx,1);
+          if (cart[idx].qty > 1) cart[idx].qty -= 1;
+          else cart.splice(idx, 1);
           updateCartUI();
         });
       });
       cartBody.querySelectorAll('.remove').forEach(b => {
-        b.addEventListener('click', (e) => {
-          const idx = Number(b.dataset.idx); cart.splice(idx,1); updateCartUI();
+        b.addEventListener('click', () => {
+          const idx = Number(b.dataset.idx);
+          cart.splice(idx, 1);
+          updateCartUI();
         });
       });
     }
 
-    function openCart(){
+    function openCart() {
       cartDrawer.classList.add('open');
-      cartDrawer.setAttribute('aria-hidden','false');
+      cartDrawer.setAttribute('aria-hidden', 'false');
     }
-    function closeCart(){ cartDrawer.classList.remove('open'); cartDrawer.setAttribute('aria-hidden','true'); }
+
+    function closeCart() {
+      cartDrawer.classList.remove('open');
+      cartDrawer.setAttribute('aria-hidden', 'true');
+    }
 
     cartBtn.addEventListener('click', () => openCart());
     document.getElementById('closeCart').addEventListener('click', closeCart);
-    clearCartBtn.addEventListener('click', () => { cart = []; updateCartUI(); showToast('Cart cleared'); });
+    clearCartBtn.addEventListener('click', () => {
+      cart = [];
+      updateCartUI();
+      showToast('Cart cleared');
+    });
 
-    /* Whatsapp order */
+    // WhatsApp order
     document.getElementById('whatsappBtn').addEventListener('click', () => {
-      if(!cart.length){ showToast('Cart is empty'); return; }
+      if (!cart.length) {
+        showToast('Cart is empty');
+        return;
+      }
       const lines = cart.map(i => `${currentLang === 'en' ? i.enName : (i.arName || i.enName)} x${i.qty} - ${formatPrice(i.priceNum * i.qty)}`);
-      const total = formatPrice(cart.reduce((s,i)=> s + i.priceNum * i.qty, 0));
-      const message = encodeURIComponent(lines.join('\n') + `\nTotal: ${total}`);
-      // replace with your number
+      const total = formatPrice(cart.reduce((s, i) => s + i.priceNum * i.qty, 0));
+      const message = encodeURIComponent(lines.join('\n') + `\n\nTotal: ${total}`);
       window.open(`https://wa.me/97451866671?text=${message}`, '_blank');
     });
 
-    /* Add to cart from modal */
+    // Add to cart
     addToCartBtn.addEventListener('click', () => {
-      if(!activeModalData) return;
+      if (!activeModalData) return;
       const size = document.getElementById('itemSize').value || 'Standard';
       const notes = document.getElementById('itemNotes').value || '';
-      // check if same item with same size & notes exists
-      const existing = cart.find(c => c.enName === activeModalData.enName && c.size === size && c.notes === notes);
-      if(existing){ existing.qty += 1; }
-      else {
+      const existing = cart.find(c => c.id === activeModalData.id && c.size === size && c.notes === notes);
+      if (existing) {
+        existing.qty += 1;
+      } else {
         cart.push({
+          id: activeModalData.id,
           enName: activeModalData.enName,
           arName: activeModalData.arName,
           priceNum: activeModalData.priceNum,
-          priceText: activeModalData.priceText,
-          qty: 1,
           image: activeModalData.image,
-          size, notes
+          qty: 1,
+          size,
+          notes
         });
       }
       updateCartUI();
@@ -710,25 +814,15 @@ items: [
       showToast('Added to cart');
     });
 
-    /* ========= Search and view toggles ========= */
+    // Search
     const searchInput = document.getElementById('searchInput');
-    const debouncedSearch = debounce(() => renderItems(searchInput.value.trim()), 200);
-    searchInput.addEventListener('input', debouncedSearch);
-
-    document.getElementById('gridView').addEventListener('click', () => {
-      currentView = 'grid';
-      document.getElementById('gridView').setAttribute('aria-pressed','true');
-      document.getElementById('listView').setAttribute('aria-pressed','false');
-      itemsContainer.style.display = 'grid';
-    });
-    document.getElementById('listView').addEventListener('click', () => {
-      currentView = 'list';
-      document.getElementById('gridView').setAttribute('aria-pressed','false');
-      document.getElementById('listView').setAttribute('aria-pressed','true');
-      itemsContainer.style.display = 'block';
+    let searchTimeout;
+    searchInput.addEventListener('input', () => {
+      clearTimeout(searchTimeout);
+      searchTimeout = setTimeout(() => renderMenu(searchInput.value), 200);
     });
 
-    /* ========= Theme & Language ========= */
+    // Theme & Language
     const themeToggle = document.getElementById('themeToggle');
     themeToggle.addEventListener('click', () => {
       document.body.classList.toggle('theme-light');
@@ -741,49 +835,27 @@ items: [
       currentLang = currentLang === 'en' ? 'ar' : 'en';
       langToggle.textContent = currentLang === 'en' ? 'العربية' : 'English';
       document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
-      renderItems(searchInput.value.trim());
+      renderMenu(searchInput.value);
     });
 
-    /* ========= Utilities ========= */
-    function showToast(msg){
-      const t = document.createElement('div');
-      t.style.position = 'fixed';
-      t.style.bottom = '20px';
-      t.style.left = '20px';
-      t.style.background = 'rgba(0,0,0,0.8)';
-      t.style.color = '#fff';
-      t.style.padding = '10px 14px';
-      t.style.borderRadius = '8px';
-      t.style.zIndex = 9999;
-      t.textContent = msg;
-      document.body.appendChild(t);
-      setTimeout(()=> t.remove(), 2200);
-    }
+    // Favorites
+    document.getElementById('favBtn').addEventListener('click', () => {
+      showToast('Favorites feature coming soon!');
+    });
 
-    /* ========== Initialization ========== */
-    (function init(){
-      // Render initial items
-      renderItems();
+    // Initialize
+    cart = loadFromStorage('cart', []);
+    renderMenu();
+    updateCartUI();
+    document.addEventListener('click', (e) => {
+      if (!cartDrawer.classList.contains('open')) return;
+      const inside = cartDrawer.contains(e.target) || cartBtn.contains(e.target);
+      if (!inside) closeCart();
+    });
 
-      // Update initial counts
-      updateCartUI();
-
-      // Accessibility: trap focus in cart when opened (basic)
-      cartDrawer.addEventListener('keydown', (e) => {
-        if(e.key === 'Escape') closeCart();
-      });
-
-      // Close cart on outside click (mobile)
-      document.addEventListener('click', (e) => {
-        if(!cartDrawer.classList.contains('open')) return;
-        const inside = cartDrawer.contains(e.target) || cartBtn.contains(e.target);
-        if(!inside) closeCart();
-      });
-
-      // Ensure modal and cart aria-hidden initial states
-      itemModal.setAttribute('aria-hidden','true');
-      cartDrawer.setAttribute('aria-hidden','true');
-    })();
+    cartDrawer.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeCart();
+    });
   </script>
 </body>
 </html>
