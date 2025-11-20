@@ -6,15 +6,18 @@
   <title>Turkiana Cafe & Sweets — Full Menu</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta property="og:title" content="Turkiana Cafe & Sweets" />
+  <meta property="og:description" content="Experience authentic Turkish delicacies and premium café culture in Qatar" />
+  <meta property="og:image" content="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Breakfast.jpg" />
   <style>
     :root{
-      --bg:#07070a; --card:#0e0e12; --text:#fff; --muted:#9b9b9f;
-      --gold:#caa84a; --maroon:#7a1921; --max-width:1200px;
-      --surface: rgba(255,255,255,0.03); --border: rgba(255,255,255,0.06);
-    }
-    .theme-light{
       --bg:#ffffff; --card:#ffffff; --text:#111; --muted:#6b6b6b;
-      --gold:#caa84a; --maroon:#7a1921; --surface:#f6f6f6; --border:#e6e6e6;
+      --gold:#caa84a; --maroon:#7a1921; --max-width:1200px;
+      --surface:#f6f6f6; --border:#e6e6e6;
+    }
+    .theme-dark{
+      --bg:#07070a; --card:#0e0e12; --text:#fff; --muted:#9b9b9f;
+      --gold:#caa84a; --maroon:#7a1921; --surface: rgba(255,255,255,0.03); --border: rgba(255,255,255,0.06);
     }
 
     *{box-sizing:border-box;margin:0;padding:0}
@@ -22,34 +25,45 @@
     body{font-family:Inter,system-ui,-apple-system,"Segoe UI";background:var(--bg);color:var(--text);min-height:100vh}
     .container{max-width:var(--max-width);margin:0 auto;padding:24px}
 
-    .top-bar{position:fixed;inset:0 0 auto 0;height:60px;display:flex;align-items:center;justify-content:space-between;padding:8px 20px;background:rgba(0,0,0,0.5);backdrop-filter:blur(6px);border-bottom:1px solid var(--border);z-index:50}
+    .top-bar{position:fixed;inset:0 0 auto 0;height:70px;display:flex;align-items:center;justify-content:space-between;padding:8px 20px;background:rgba(255,255,255,0.95);backdrop-filter:blur(6px);border-bottom:1px solid var(--border);z-index:50}
+    .theme-dark .top-bar{background:rgba(0,0,0,0.5)}
     .top-left,.top-right{display:flex;gap:8px;align-items:center}
     .btn{padding:8px 12px;border-radius:10px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-weight:700;cursor:pointer;transition:all 0.2s}
     .btn:hover{background:var(--gold);color:#111}
     .badge{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:999px;background:var(--maroon);color:#fff;font-size:12px;font-weight:800;margin-left:8px}
+    .fav-badge{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:999px;background:rgba(202,168,74,0.2);color:var(--gold);font-size:14px;font-weight:800;margin-left:4px;border:1px solid var(--gold)}
 
-    .hero{margin-top:80px;border-radius:12px;padding:20px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid var(--border);text-align:center}
+    .hero{margin-top:90px;border-radius:12px;padding:20px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid var(--border);text-align:center}
     .brand{font-family:"Playfair Display",serif;font-size:32px;color:var(--gold);font-weight:800}
     .subtitle{color:var(--muted);margin-top:6px;font-size:13px}
 
     .controls{display:flex;gap:12px;align-items:center;margin-top:16px;flex-wrap:wrap}
-    .search{flex:1;min-width:220px}
+    .search{flex:1;min-width:220px;position:relative}
     .search input{width:100%;padding:10px 12px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--text)}
-    .filters{display:flex;gap:8px;flex-wrap:wrap}
+    .search-suggestions{position:absolute;top:100%;left:0;right:0;background:var(--card);border:1px solid var(--border);border-top:none;border-radius:0 0 8px 8px;max-height:200px;overflow-y:auto;z-index:40;display:none}
+    .search-suggestions.show{display:block}
+    .suggestion-item{padding:10px 12px;cursor:pointer;border-bottom:1px solid var(--border);color:var(--text);font-size:13px}
+    .suggestion-item:hover{background:var(--surface)}
+    .filters-sort{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+    .sort-controls{display:flex;gap:8px}
     .filter-btn{padding:8px 10px;border-radius:8px;border:1px solid var(--border);background:var(--surface);cursor:pointer;font-weight:700;transition:all 0.2s;font-size:12px}
     .filter-btn.active{background:var(--gold);color:#111;border-color:var(--gold)}
 
-    .category-section{margin-top:32px}
+    .category-section{margin-top:32px;animation:fadeIn 0.3s ease-in}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
     .category-header{display:flex;align-items:center;gap:8px;margin-bottom:16px;padding-bottom:12px;border-bottom:2px solid var(--gold)}
     .category-icon{font-size:24px}
     .category-title{font-family:"Playfair Display",serif;font-size:22px;color:var(--gold);font-weight:800}
 
     .items-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-bottom:24px}
-    .card{background:var(--card);border-radius:12px;padding:12px;border:1px solid var(--border);cursor:pointer;display:flex;flex-direction:column;gap:8px;transition:transform 0.2s;position:relative}
+    .card{background:var(--card);border-radius:12px;padding:12px;border:1px solid var(--border);cursor:pointer;display:flex;flex-direction:column;gap:8px;transition:transform 0.2s;position:relative;overflow:hidden}
     .card:hover{transform:translateY(-6px)}
-    
-    .item-badge{position:absolute;top:20px;right:12px;background:var(--maroon);color:#fff;padding:4px 8px;border-radius:6px;font-size:11px;font-weight:800;z-index:5}
-    img.item-img{width:100%;height:160px;object-fit:cover;border-radius:8px;display:block}
+    .card-badge{position:absolute;top:12px;right:12px;background:var(--maroon);color:#fff;padding:6px 10px;border-radius:6px;font-size:11px;font-weight:800;z-index:5}
+    .card-badge.popular{background:var(--gold);color:#111}
+    .card-fav{position:absolute;top:12px;left:12px;background:rgba(255,255,255,0.9);border:none;width:32px;height:32px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:6;transition:all 0.2s}
+    .card-fav:hover{transform:scale(1.1)}
+    .card-fav.active{color:var(--maroon)}
+    img.item-img{width:100%;height:160px;object-fit:cover;border-radius:8px;display:block;background:var(--surface);animation:fadeIn 0.4s}
     
     .name{color:var(--gold);font-weight:800;font-size:14px;display:flex;justify-content:space-between;align-items:start;gap:8px}
     .price{color:var(--maroon);font-weight:800;font-size:13px}
@@ -61,6 +75,9 @@
     
     .tags{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0}
     .tag{padding:3px 6px;border-radius:4px;background:var(--surface);font-size:10px;color:var(--muted)}
+
+    .skeleton{background:linear-gradient(90deg, var(--surface) 25%, rgba(0,0,0,0.1) 50%, var(--surface) 75%);background-size:200% 100%;animation:loading 1.5s infinite;border-radius:8px}
+    @keyframes loading{0%{background-position:200% 0}100%{background-position:-200% 0}}
 
     .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(2,6,23,0.6);z-index:70;overflow-y:auto;padding:20px}
     .modal.show{display:flex}
@@ -76,6 +93,11 @@
     .star-btn{background:none;border:none;font-size:24px;cursor:pointer;color:var(--muted);transition:color 0.2s}
     .star-btn:hover,.star-btn.active{color:var(--gold)}
     
+    .qty-selector{display:flex;gap:8px;align-items:center;margin:12px 0;padding:12px;background:var(--surface);border-radius:8px}
+    .qty-btn{background:none;border:1px solid var(--border);width:32px;height:32px;border-radius:6px;cursor:pointer;font-weight:800;transition:all 0.2s}
+    .qty-btn:hover{background:var(--gold);color:#111}
+    .qty-display{min-width:40px;text-align:center;font-weight:800}
+    
     .modal-actions{display:flex;gap:8px;margin-top:12px}
     .modal .close{background:transparent;border:none;font-size:20px;cursor:pointer;color:var(--muted)}
     .modal .add{background:var(--gold);border:none;padding:10px;border-radius:8px;font-weight:800;color:#111;cursor:pointer;transition:all 0.2s;flex:1}
@@ -89,21 +111,37 @@
     .cart-item img{width:64px;height:64px;object-fit:cover;border-radius:6px;flex-shrink:0}
     .cart-footer{padding:12px;border-top:1px solid var(--border);flex-shrink:0}
     .cart-total{display:flex;justify-content:space-between;font-weight:800;font-size:16px;margin-bottom:10px}
+    .loyalty-points{padding:10px;background:var(--surface);border-radius:8px;margin-bottom:8px;font-size:12px;color:var(--text)}
 
     footer{margin-top:40px;padding:26px;border-top:3px solid var(--gold);background:linear-gradient(135deg, rgba(122,25,33,0.9), rgba(0,0,0,0.95));color:#fff}
     .footer-grid{max-width:var(--max-width);margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px}
+    footer a{color:inherit;text-decoration:none;transition:color 0.2s}
+    footer a:hover{color:var(--gold)}
+
+    .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);display:none;z-index:80}
+    .modal-overlay.show{display:block}
 
     @media (max-width:768px){
+      .top-bar{height:60px;padding:6px 12px}
       .modal-body{grid-template-columns:1fr;align-items:start}
       .cart-drawer{width:100%}
       .items-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
+      .controls{flex-direction:column}
+      .search{width:100%}
+      .sort-controls{width:100%;justify-content:space-between}
     }
     .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
     
-    .toast{position:fixed;bottom:20px;left:20px;background:rgba(0,0,0,0.8);color:#fff;padding:10px 14px;border-radius:8px;z-index:9999;animation:slideIn 0.3s}
+    .toast{position:fixed;bottom:20px;left:20px;background:rgba(0,0,0,0.8);color:#fff;padding:12px 16px;border-radius:8px;z-index:9999;animation:slideIn 0.3s;max-width:300px}
     @keyframes slideIn{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
     
     .no-results{padding:32px;text-align:center;color:var(--muted);grid-column:1/-1}
+    
+    .newsletter-modal{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--card);padding:30px;border-radius:12px;z-index:90;max-width:400px;border:1px solid var(--border);box-shadow:0 10px 40px rgba(0,0,0,0.2);display:none}
+    .newsletter-modal.show{display:block}
+    .newsletter-modal h3{color:var(--gold);margin-bottom:15px;font-size:18px}
+    .newsletter-modal input{width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;margin-bottom:10px;background:transparent;color:var(--text)}
+    .newsletter-modal button{width:100%;padding:10px;background:var(--gold);color:#111;border:none;border-radius:8px;font-weight:800;cursor:pointer}
   </style>
 </head>
 <body>
@@ -113,7 +151,7 @@
       <button id="langToggle" class="btn" aria-pressed="false" title="Toggle language">العربية</button>
     </div>
     <div class="top-right">
-      <button id="favBtn" class="btn" title="Favorites"><i class="fas fa-heart"></i></button>
+      <button id="favBtn" class="btn" title="View Favorites"><i class="fas fa-heart"></i><span id="favBadge" class="fav-badge" style="display:none">0</span></button>
       <button id="cartBtn" class="btn" aria-controls="cartDrawer" aria-expanded="false" title="Open cart">
         <i class="fas fa-shopping-cart"></i>
         <span id="cartBadge" class="badge" style="display:none">0</span>
@@ -131,8 +169,20 @@
       <div class="search" style="flex:1">
         <label for="searchInput" class="sr-only">Search items</label>
         <input id="searchInput" type="search" placeholder="Search items..." aria-label="Search menu items">
+        <div id="searchSuggestions" class="search-suggestions"></div>
       </div>
-      <div class="filters" id="filterGroup" aria-hidden="false"></div>
+      <div class="filters-sort">
+        <div class="filters" id="filterGroup" aria-hidden="false"></div>
+        <div class="sort-controls">
+          <select id="sortSelect" class="filter-btn" style="cursor:pointer;padding:8px 10px">
+            <option value="">Sort By</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="rating">Highest Rated</option>
+            <option value="name">Name (A-Z)</option>
+          </select>
+        </div>
+      </div>
     </section>
 
     <div id="menuContainer"></div>
@@ -158,6 +208,13 @@
             <div style="font-weight:700;margin-bottom:8px">Rate this item:</div>
             <div class="rating-input" id="ratingInput"></div>
             <div style="margin-top:8px;font-size:12px;color:var(--muted)" id="ratingStats"></div>
+          </div>
+          
+          <div class="qty-selector">
+            <button class="qty-btn" id="qtyDec">−</button>
+            <div class="qty-display" id="qtyDisplay">1</div>
+            <button class="qty-btn" id="qtyInc">+</button>
+            <span style="margin-left:auto;font-size:12px;color:var(--muted)">Quantity</span>
           </div>
           
           <div class="tags" id="modalTags" style="margin-top:8px"></div>
@@ -189,11 +246,23 @@
       <div style="color:var(--muted)">Your cart is empty</div>
     </div>
     <div class="cart-footer">
+      <div id="loyaltyPoints" class="loyalty-points" style="display:none">💎 Loyalty Points: <span id="pointsDisplay">0</span></div>
       <div class="cart-total"><span>Total</span><span id="cartTotal">QAR 0.00</span></div>
       <button id="whatsappBtn" class="btn" style="width:100%;background:var(--gold);border:none;color:#111;font-weight:800;margin-bottom:8px;font-size:13px"><i class="fab fa-whatsapp"></i> WhatsApp</button>
       <button id="clearCart" class="btn" style="width:100%;font-size:13px">Clear Cart</button>
     </div>
   </aside>
+
+  <!-- Favorites Modal -->
+  <div id="favoritesModal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-content">
+      <div style="display:flex;justify-content:space-between;padding:10px;border-bottom:1px solid var(--border)">
+        <div style="font-weight:800">My Favorites</div>
+        <button id="closeFav" class="close" aria-label="Close"><i class="fas fa-times"></i></button>
+      </div>
+      <div id="favoritesContent" style="padding:18px;max-height:70vh;overflow-y:auto"></div>
+    </div>
+  </div>
 
   <footer aria-label="Footer">
     <div class="footer-grid" style="max-width:var(--max-width);margin:0 auto">
@@ -207,14 +276,16 @@
       </div>
       <div>
         <h4 style="color:var(--gold);font-size:14px">Follow</h4>
-        <p style="color:var(--muted);font-size:13px"><a href="#" style="color:inherit;text-decoration:none">Instagram</a> • <a href="#" style="color:inherit;text-decoration:none">WhatsApp</a></p>
+        <p style="color:var(--muted);font-size:13px"><a href="https://instagram.com/turkiana.qa" target="_blank" rel="noopener noreferrer">Instagram</a> • <a href="https://wa.me/97451866671" target="_blank" rel="noopener noreferrer">WhatsApp</a></p>
       </div>
       <div>
-        <h4 style="color:var(--gold);font-size:14px">Location</h4>
-        <p style="color:var(--muted);font-size:13px">Doha, Qatar © 2025 Turkiana</p>
+        <h4 style="color:var(--gold);font-size:14px">Locations</h4>
+        <p style="color:var(--muted);font-size:13px"><a href="https://turkianasweets.com" target="_blank" rel="noopener noreferrer">All Branches in Qatar</a><br>© 2025 Turkiana</p>
       </div>
     </div>
   </footer>
+
+  <div id="modalOverlay" class="modal-overlay"></div>
 
   <script>
     const menuData = [
@@ -223,7 +294,7 @@
         arCategory: "الصباح التركي",
         icon: "🍳",
         items: [
-          { id: "tm1", enName: "Turkish Classic Breakfast", arName: "فطور تركي كلاسيكي", priceNum: 65, descriptionEn: "Authentic Turkish breakfast with fresh bread, cheese, olives, tomatoes, cucumbers, honey, and clotted cream served with Turkish tea", descriptionAr: "فطور تركي أصيل مع خبز طازج، جبن، زيتون، طماطم، خيار، عسل وقشدة، يقدم مع شاي تركي", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Breakfast.jpg", calories: "680 kcal", dietary: ["vegetarian","contains-dairy"] },
+          { id: "tm1", enName: "Turkish Classic Breakfast", arName: "فطور تركي كلاسيكي", priceNum: 65, descriptionEn: "Authentic Turkish breakfast with fresh bread, cheese, olives, tomatoes, cucumbers, honey, and clotted cream served with Turkish tea", descriptionAr: "فطور تركي أصيل مع خبز طازج، جبن، زيتون، طماطم، خيار، عسل وقشدة، يقدم مع شاي تركي", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Breakfast.jpg", calories: "680 kcal", dietary: ["vegetarian","contains-dairy"], popular: true },
           { id: "tm2", enName: "Turkish Menemen", arName: "مينمن تركي", priceNum: 45, descriptionEn: "Classic Turkish scrambled eggs with fresh tomatoes, green peppers, and aromatic spices", descriptionAr: "بيض تركي مخفوق مع طماطم طازجة، فلفل أخضر وتوابل عطرية", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Menemen.jpg", calories: "360 kcal", dietary: ["gluten-free","contains-dairy"] },
           { id: "tm3", enName: "Plain Omelette", arName: "أومليت عادي", priceNum: 25, descriptionEn: "Light and fluffy omelette", descriptionAr: "أومليت خفيف وهش", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Omellet.jpg", calories: "220 kcal", dietary: ["gluten-free","contains-dairy"] }
         ]
@@ -248,7 +319,7 @@
           { id: "gg1", enName: "Turkiana Beef Burger", arName: "برجر تركيانا", priceNum: 69, descriptionEn: "Premium beef burger with fries", descriptionAr: "برجر لحم بقري ممتاز مع البطاطس", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Burger.jpeg", calories: "950 kcal", dietary: [] },
           { id: "gg2", enName: "Turkiana Chicken Burger", arName: "برجر دجاج", priceNum: 59, descriptionEn: "Juicy chicken burger with fries", descriptionAr: "برجر دجاج لذيذ مع البطاطس", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Burgerchicken.jpg", calories: "850 kcal", dietary: [] },
           { id: "gg3", enName: "Fried Potatoes", arName: "بطاطس مقلية", priceNum: 25, descriptionEn: "Crispy golden fried potatoes", descriptionAr: "بطاطس ذهبية مقرمشة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Patatas.jpg", calories: "340 kcal", dietary: ["vegan","gluten-free"] },
-          { id: "gg4", enName: "Caesar Salad", arName: "سلطة سيزر", priceNum: 47, descriptionEn: "Romaine with Caesar dressing and croutons", descriptionAr: "خس روماني مع صوص سيزر وقطع خبز محمص", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Caesar.jpeg", calories: "420 kcal", dietary: ["contains-gluten","contains-dairy"] }
+          { id: "gg4", enName: "Caesar Salad", arName: "سلطة سيزر", priceNum: 47, descriptionEn: "Romaine with Caesar dressing and croutons", descriptionAr: "خس روماني مع صوس سيزر وقطع خبز محمص", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Caesar.jpeg", calories: "420 kcal", dietary: ["contains-gluten","contains-dairy"] }
         ]
       },
       {
@@ -258,52 +329,51 @@
         items: [
           { id: "bk1", enName: "Turkish Mix Baklava", arName: "بقلاوة تركية مشكلة", priceNum: 65, descriptionEn: "Assorted traditional baklava", descriptionAr: "مجموعة رائعة من البقلاوة التركية التقليدية", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg", calories: "450 kcal (per serving)", dietary: ["contains-nuts"] },
 
-{ id: "bk2", enName: "Carrot Slice Baklava", arName: "بقلاوة شريحة الجزر", priceNum: 40, descriptionEn: "Classic layered baklava", descriptionAr: "بقلاوة تركية كلاسيكية بطبقات مقرمشة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Carrot.jpeg", calories: "420 kcal", dietary: ["vegetarian","contains-nuts"] },
+          { id: "bk2", enName: "Carrot Slice Baklava", arName: "بقلاوة شريحة الجزر", priceNum: 40, descriptionEn: "Classic layered baklava", descriptionAr: "بقلاوة تركية كلاسيكية بطبقات مقرمشة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Carrot.jpeg", calories: "420 kcal", dietary: ["vegetarian","contains-nuts"] },
 
-{ id: "bk3", enName: "Carrot Slice Baklava With Ice Cream", arName: "بقلاوة شريحة الجزر مع الآيس كريم", priceNum: 49, descriptionEn: "Baklava served with ice cream", descriptionAr: "بقلاوة تقدم مع الآيس كريم", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Carroticecream.jpeg", calories: "620 kcal", dietary: ["contains-nuts","contains-dairy"] },
+          { id: "bk3", enName: "Carrot Slice Baklava With Ice Cream", arName: "بقلاوة شريحة الجزر مع الآيس كريم", priceNum: 49, descriptionEn: "Baklava served with ice cream", descriptionAr: "بقلاوة تقدم مع الآيس كريم", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Carroticecream.jpeg", calories: "620 kcal", dietary: ["contains-nuts","contains-dairy"] },
 
-{ id: "bk4", enName: "Trio Baklava", arName: "تريو بقلاوة", priceNum: 45, descriptionEn: "Three-style baklava assortment", descriptionAr: "مجموعة من بقلاوة رول بالفستق وموسل وسوبييت", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/TrioBaklava.jpeg", calories: "480 kcal", dietary: ["contains-nuts"] },
+          { id: "bk4", enName: "Trio Baklava", arName: "تريو بقلاوة", priceNum: 45, descriptionEn: "Three-style baklava assortment", descriptionAr: "مجموعة من بقلاوة رول بالفستق وموسل وسوبييت", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/TrioBaklava.jpeg", calories: "480 kcal", dietary: ["contains-nuts"] },
 
-{ id: "bk5", enName: "Nuts Stand-Tall", arName: "مكسرات ستاند كبير", priceNum: 99, descriptionEn: "Premium mixed nuts", descriptionAr: "مجموعة ممتازة من المكسرات المختلطة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Nuts.jpg", calories: "300 kcal (100g)", dietary: ["contains-nuts"] },
+          { id: "bk5", enName: "Nuts Stand-Tall", arName: "مكسرات ستاند كبير", priceNum: 99, descriptionEn: "Premium mixed nuts", descriptionAr: "مجموعة ممتازة من المكسرات المختلطة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Nuts.jpg", calories: "300 kcal (100g)", dietary: ["contains-nuts"] },
 
-{ id: "bk6", enName: "Nuts Stand-Small", arName: "مكسرات ستاند صغير", priceNum: 60, descriptionEn: "Small mixed nuts", descriptionAr: "اختيار صغير من المكسرات المختلطة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Nutsmall.jpg", calories: "180 kcal (60g)", dietary: ["contains-nuts"] },
+          { id: "bk6", enName: "Nuts Stand-Small", arName: "مكسرات ستاند صغير", priceNum: 60, descriptionEn: "Small mixed nuts", descriptionAr: "اختيار صغير من المكسرات المختلطة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Nutsmall.jpg", calories: "180 kcal (60g)", dietary: ["contains-nuts"] },
 
-{ id: "bk7", enName: "Assorted Nut Platter", arName: "طبق مكسرات مشكل", priceNum: 35, descriptionEn: "Assorted mixed nuts platter", descriptionAr: "طبق متنوع من المكسرات المشكلة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Nutsplatter.jpg", calories: "180 kcal (60g)", dietary: ["contains-nuts"] },
+          { id: "bk7", enName: "Assorted Nut Platter", arName: "طبق مكسرات مشكل", priceNum: 35, descriptionEn: "Assorted mixed nuts platter", descriptionAr: "طبق متنوع من المكسرات المشكلة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Nutsplatter.jpg", calories: "180 kcal (60g)", dietary: ["contains-nuts"] },
 
-{ id: "ck1", enName: "Snickers-inspired cake", arName: "كعكة مستوحاة من سنيكرز", priceNum: 42, descriptionEn: "Chocolate, caramel & nuts cake", descriptionAr: "كعكة فاخرة مع الشوكولاتة والكراميل", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Snicker.jpg", calories: "560 kcal", dietary: ["contains-nuts"] },
+          { id: "ck1", enName: "Snickers-inspired cake", arName: "كعكة مستوحاة من سنيكرز", priceNum: 42, descriptionEn: "Chocolate, caramel & nuts cake", descriptionAr: "كعكة فاخرة مع الشوكولاتة والكراميل", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Snicker.jpg", calories: "560 kcal", dietary: ["contains-nuts"] },
 
-{ id: "ck2", enName: "Kunafa", arName: "كنافة", priceNum: 40, descriptionEn: "Kunafa with Akawi cheese", descriptionAr: "كنافة تركية تقليدية مع جبنة عكاوي", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Kunafa.jpeg", calories: "520 kcal", dietary: ["contains-dairy"] },
+          { id: "ck2", enName: "Kunafa", arName: "كنافة", priceNum: 40, descriptionEn: "Kunafa with Akawi cheese", descriptionAr: "كنافة تركية تقليدية مع جبنة عكاوي", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Kunafa.jpeg", calories: "520 kcal", dietary: ["contains-dairy"] },
 
-{ id: "ck3", enName: "Chocolate Cake", arName: "كعكة الشوكولاتة", priceNum: 40, descriptionEn: "Molten chocolate cake", descriptionAr: "كعكة شوكولاتة غنية", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Chocolate.jpg", calories: "480 kcal", dietary: ["contains-dairy"] },
+          { id: "ck3", enName: "Chocolate Cake", arName: "كعكة الشوكولاتة", priceNum: 40, descriptionEn: "Molten chocolate cake", descriptionAr: "كعكة شوكولاتة غنية", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Chocolate.jpg", calories: "480 kcal", dietary: ["contains-dairy"] },
 
-{ id: "ck4", enName: "Lotus Cake", arName: "كعكة اللوتس", priceNum: 40, descriptionEn: "Lotus Biscoff flavored cake", descriptionAr: "كعكة بنكهة بسكوف لوتس", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Lutos.jpg", calories: "520 kcal", dietary: ["contains-dairy"] },
+          { id: "ck4", enName: "Lotus Cake", arName: "كعكة اللوتس", priceNum: 40, descriptionEn: "Lotus Biscoff flavored cake", descriptionAr: "كعكة بنكهة بسكوف لوتس", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Lutos.jpg", calories: "520 kcal", dietary: ["contains-dairy"] },
 
-{ id: "ck5", enName: "Brownies", arName: "براونيز", priceNum: 45, descriptionEn: "Fudgy chocolate brownies", descriptionAr: "براونيز شوكولاتة غنية", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Brown.jpg", calories: "380 kcal", dietary: ["contains-dairy"] },
+          { id: "ck5", enName: "Brownies", arName: "براونيز", priceNum: 45, descriptionEn: "Fudgy chocolate brownies", descriptionAr: "براونيز شوكولاتة غنية", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Brown.jpg", calories: "380 kcal", dietary: ["contains-dairy"] },
 
-{ id: "ck6", enName: "Full Pistachio Cake", arName: "كعكة الفستق كاملة", priceNum: 40, descriptionEn: "Pistachio flavored cake", descriptionAr: "كعكة بنكهة الفستق", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Full.jpg", calories: "470 kcal", dietary: ["contains-nuts"] },
+          { id: "ck6", enName: "Full Pistachio Cake", arName: "كعكة الفستق كاملة", priceNum: 40, descriptionEn: "Pistachio flavored cake", descriptionAr: "كعكة بنكهة الفستق", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Full.jpg", calories: "470 kcal", dietary: ["contains-nuts"] },
 
-{ id: "ck7", enName: "Lemon Cake", arName: "كعكة الليمون", priceNum: 38, descriptionEn: "Zesty lemon sponge cake", descriptionAr: "كعكة اسفنجية ليمونية خفيفة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Lemon.jpg", calories: "420 kcal", dietary: ["vegetarian"] },
+          { id: "ck7", enName: "Lemon Cake", arName: "كعكة الليمون", priceNum: 38, descriptionEn: "Zesty lemon sponge cake", descriptionAr: "كعكة اسفنجية ليمونية خفيفة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Lemon.jpg", calories: "420 kcal", dietary: ["vegetarian"] },
 
-{ id: "ck8", enName: "Tiramisu", arName: "تيراميسو", priceNum: 42, descriptionEn: "Coffee-soaked sponge with mascarpone", descriptionAr: "تيراميسو إيطالي كلاسيكي", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Tiramisu.jpg", calories: "420 kcal", dietary: ["contains-dairy"] },
+          { id: "ck8", enName: "Tiramisu", arName: "تيراميسو", priceNum: 42, descriptionEn: "Coffee-soaked sponge with mascarpone", descriptionAr: "تيراميسو إيطالي كلاسيكي", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Tiramisu.jpg", calories: "420 kcal", dietary: ["contains-dairy"] },
 
-{ id: "ck9", enName: "Almond Chocolate Cake", arName: "كعكة الشوكولاتة باللوز", priceNum: 40, descriptionEn: "Chocolate cake with almond notes", descriptionAr: "كعكة شوكولاتة مع اللوز", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Almond.jpg", calories: "490 kcal", dietary: ["contains-nuts"] },
+          { id: "ck9", enName: "Almond Chocolate Cake", arName: "كعكة الشوكولاتة باللوز", priceNum: 40, descriptionEn: "Chocolate cake with almond notes", descriptionAr: "كعكة شوكولاتة مع اللوز", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Almond.jpg", calories: "490 kcal", dietary: ["contains-nuts"] },
 
-{ id: "ck10", enName: "Lemon Sponge Cake", arName: "كعكة إسفنجية بالليمون", priceNum: 42, descriptionEn: "Light lemon sponge", descriptionAr: "كعكة إسفنجية ليمونية طرية", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Lemoncake.jpg", calories: "430 kcal", dietary: ["vegetarian"] },
+          { id: "ck10", enName: "Lemon Sponge Cake", arName: "كعكة إسفنجية بالليمون", priceNum: 42, descriptionEn: "Light lemon sponge", descriptionAr: "كعكة إسفنجية ليمونية طرية", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Lemoncake.jpg", calories: "430 kcal", dietary: ["vegetarian"] },
 
-{ id: "ck11", enName: "Strawberry Cheesecake", arName: "تشيز كيك بالفراولة", priceNum: 42, descriptionEn: "Creamy cheesecake topped with strawberries", descriptionAr: "تشيز كيك كريمي مع فراولة طازجة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Cherry.jpg", calories: "520 kcal", dietary: ["contains-dairy"] },
+          { id: "ck11", enName: "Strawberry Cheesecake", arName: "تشيز كيك بالفراولة", priceNum: 42, descriptionEn: "Creamy cheesecake topped with strawberries", descriptionAr: "تشيز كيك كريمي مع فراولة طازجة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Cherry.jpg", calories: "520 kcal", dietary: ["contains-dairy"] },
 
-{ id: "ck12", enName: "Blueberry Cheesecake", arName: "تشيز كيك بالتوت الأزرق", priceNum: 42, descriptionEn: "Cheesecake with blueberries", descriptionAr: "تشيز كيك مع التوت الأزرق", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mulberry.jpg", calories: "520 kcal", dietary: ["contains-dairy"] },
+          { id: "ck12", enName: "Blueberry Cheesecake", arName: "تشيز كيك بالتوت الأزرق", priceNum: 42, descriptionEn: "Cheesecake with blueberries", descriptionAr: "تشيز كيك مع التوت الأزرق", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mulberry.jpg", calories: "520 kcal", dietary: ["contains-dairy"] },
 
-{ id: "ck13", enName: "Chocolate Pistachio Cake", arName: "كعكة الشوكولاتة والفستق", priceNum: 40, descriptionEn: "Chocolate cake with pistachios", descriptionAr: "كعكة شوكولاتة مع الفستق", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Chocolate_pistachio.jpg", calories: "510 kcal", dietary: ["contains-nuts"] },
+          { id: "ck13", enName: "Chocolate Pistachio Cake", arName: "كعكة الشوكولاتة والفستق", priceNum: 40, descriptionEn: "Chocolate cake with pistachios", descriptionAr: "كعكة شوكولاتة مع الفستق", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Chocolate_pistachio.jpg", calories: "510 kcal", dietary: ["contains-nuts"] },
 
-{ id: "ck14", enName: "Strawberry Cake", arName: "كعكة الفراولة", priceNum: 45, descriptionEn: "Strawberry topped cake", descriptionAr: "كعكة مع فراولة طازجة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Strawberry.jpg", calories: "470 kcal", dietary: ["contains-dairy"] },
+          { id: "ck14", enName: "Strawberry Cake", arName: "كعكة الفراولة", priceNum: 45, descriptionEn: "Strawberry topped cake", descriptionAr: "كعكة مع فراولة طازجة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Strawberry.jpg", calories: "470 kcal", dietary: ["contains-dairy"] },
 
-{ id: "ck15", enName: "White Almond Cake", arName: "كعكة اللوز البيضاء", priceNum: 42, descriptionEn: "Almond flavored soft cake", descriptionAr: "كعكة طرية بنكهة اللوز", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/White.jpg", calories: "500 kcal", dietary: ["contains-nuts"] },
+          { id: "ck15", enName: "White Almond Cake", arName: "كعكة اللوز البيضاء", priceNum: 42, descriptionEn: "Almond flavored soft cake", descriptionAr: "كعكة طرية بنكهة اللوز", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/White.jpg", calories: "500 kcal", dietary: ["contains-nuts"] },
 
-{ id: "ck16", enName: "Trileche With Milk", arName: "تريليتش باللبن", priceNum: 35, descriptionEn: "Tres leches soaked cake", descriptionAr: "تريليتش منقوعة في اللبن", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Trileche.jpg", calories: "540 kcal", dietary: ["contains-dairy"] },
+          { id: "ck16", enName: "Trileche With Milk", arName: "تريليتش باللبن", priceNum: 35, descriptionEn: "Tres leches soaked cake", descriptionAr: "تريليتش منقوعة في اللبن", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Trileche.jpg", calories: "540 kcal", dietary: ["contains-dairy"] },
 
-{ id: "ck17", enName: "San Sebastian Cheesecake", arName: "تشيز كيك سان سيباستيان", priceNum: 42, descriptionEn: "Caramelized San Sebastian cheesecake", descriptionAr: "تشيز كيك كريم وكراميل", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Sebastian.jpg", calories: "520 kcal", dietary: ["contains-dairy"] }
-
+          { id: "ck17", enName: "San Sebastian Cheesecake", arName: "تشيز كيك سان سيباستيان", priceNum: 42, descriptionEn: "Caramelized San Sebastian cheesecake", descriptionAr: "تشيز كيك كريم وكراميل", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Sebastian.jpg", calories: "520 kcal", dietary: ["contains-dairy"] }
         ]
       },
       {
@@ -453,8 +523,12 @@
 
     let currentLang = 'en';
     let cart = [];
+    let favorites = [];
     let activeFilters = new Set();
     let activeModalData = null;
+    let modalQuantity = 1;
+    let loyaltyPoints = 0;
+    let recentSearches = [];
 
     function loadFromStorage(key, defaultValue = null) {
       try {
@@ -517,6 +591,32 @@
       return String(str).replace(/[&<>"']/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[s]));
     }
 
+    function isFavorite(itemId) {
+      return favorites.some(f => f.id === itemId);
+    }
+
+    function toggleFavorite(item) {
+      const idx = favorites.findIndex(f => f.id === item.id);
+      if (idx > -1) {
+        favorites.splice(idx, 1);
+      } else {
+        favorites.push(item);
+      }
+      saveToStorage('favorites', favorites);
+      updateFavBadge();
+      renderMenu();
+    }
+
+    function updateFavBadge() {
+      const badge = document.getElementById('favBadge');
+      if (favorites.length > 0) {
+        badge.style.display = 'inline-flex';
+        badge.textContent = favorites.length;
+      } else {
+        badge.style.display = 'none';
+      }
+    }
+
     // Render filters
     const filterGroupEl = document.getElementById('filterGroup');
     (function initFilters() {
@@ -537,6 +637,78 @@
         filterGroupEl.appendChild(btn);
       });
     })();
+
+    // Search with suggestions
+    const searchInput = document.getElementById('searchInput');
+    const searchSuggestions = document.getElementById('searchSuggestions');
+    let searchTimeout;
+
+    function getAllItems() {
+      return menuData.flatMap(c => c.items);
+    }
+
+    searchInput.addEventListener('input', () => {
+      clearTimeout(searchTimeout);
+      const query = searchInput.value.trim().toLowerCase();
+      
+      if (query.length > 0) {
+        const items = getAllItems().filter(i => 
+          i.enName.toLowerCase().includes(query) || (i.arName && i.arName.includes(query))
+        );
+        
+        if (items.length > 0) {
+          searchSuggestions.innerHTML = items.slice(0, 5).map(item => 
+            `<div class="suggestion-item" data-id="${item.id}">${escapeHtml(currentLang === 'en' ? item.enName : item.arName)}</div>`
+          ).join('');
+          searchSuggestions.classList.add('show');
+          
+          searchSuggestions.querySelectorAll('.suggestion-item').forEach(el => {
+            el.addEventListener('click', () => {
+              const item = items.find(i => i.id === el.dataset.id);
+              openModal(item);
+              searchSuggestions.classList.remove('show');
+              searchInput.value = '';
+            });
+          });
+        }
+      } else {
+        searchSuggestions.classList.remove('show');
+      }
+      
+      searchTimeout = setTimeout(() => renderMenu(query), 200);
+    });
+
+    document.addEventListener('click', (e) => {
+      if (e.target !== searchInput && !searchSuggestions.contains(e.target)) {
+        searchSuggestions.classList.remove('show');
+      }
+    });
+
+    // Sort functionality
+    const sortSelect = document.getElementById('sortSelect');
+    sortSelect.addEventListener('change', () => {
+      renderMenu(searchInput.value);
+    });
+
+    function sortItems(items, sortBy) {
+      const sorted = [...items];
+      switch(sortBy) {
+        case 'price-asc':
+          return sorted.sort((a, b) => a.priceNum - b.priceNum);
+        case 'price-desc':
+          return sorted.sort((a, b) => b.priceNum - a.priceNum);
+        case 'rating':
+          return sorted.sort((a, b) => {
+            const ratingA = getRatings(a.id).avg;
+            const ratingB = getRatings(b.id).avg;
+            return ratingB - ratingA;
+          });
+        case 'name':
+          return sorted.sort((a, b) => a.enName.localeCompare(b.enName));
+        default:
+          return sorted;
+      }
+    }
 
     // Render menu
     const menuContainer = document.getElementById('menuContainer');
@@ -563,9 +735,12 @@
     function renderMenu(query = '') {
       menuContainer.innerHTML = '';
       const searchTerm = query.trim();
+      const sortBy = sortSelect.value;
 
       menuData.forEach(category => {
-        const filtered = category.items.filter(i => matchesFilters(i) && matchesQuery(i, searchTerm));
+        let filtered = category.items.filter(i => matchesFilters(i) && matchesQuery(i, searchTerm));
+        filtered = sortItems(filtered, sortBy);
+        
         if (!filtered.length) return;
 
         const section = document.createElement('section');
@@ -581,15 +756,25 @@
 
         filtered.forEach(item => {
           const ratings = getRatings(item.id);
+          const isFav = isFavorite(item.id);
           const card = document.createElement('article');
           card.className = 'card';
           card.tabIndex = 0;
           card.role = 'button';
           card.dataset.itemId = item.id;
 
+          let badgeHtml = '';
+          if (item.popular) {
+            badgeHtml = '<div class="card-badge popular">Popular</div>';
+          } else if (item.new) {
+            badgeHtml = '<div class="card-badge">New</div>';
+          }
+
           const ratingHtml = ratings.count > 0 ? `<div class="rating"><span class="stars">${renderStars(ratings.avg)}</span><span class="rating-count">(${ratings.count})</span></div>` : '<div class="rating"><span class="rating-count">No ratings</span></div>';
 
           card.innerHTML = `
+            <button class="card-fav ${isFav ? 'active' : ''}" data-id="${item.id}" title="Add to favorites"><i class="fas fa-heart"></i></button>
+            ${badgeHtml}
             <img class="item-img" src="${escapeHtml(item.image)}" alt="${escapeHtml(currentLang === 'en' ? item.enName : item.arName || item.enName)}" loading="lazy">
             <div class="name">
               <span>${escapeHtml(currentLang === 'en' ? item.enName : item.arName || item.enName)}</span>
@@ -600,9 +785,18 @@
             <div class="tags">${(item.dietary || []).map(t => `<div class="tag">${escapeHtml(t)}</div>`).join('')}</div>
           `;
 
-          card.addEventListener('click', () => openModal(item));
+          card.addEventListener('click', (e) => {
+            if (!e.target.closest('.card-fav')) openModal(item);
+          });
+          
           card.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' || e.key === ' ') openModal(item);
+          });
+
+          card.querySelector('.card-fav').addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleFavorite(item);
+            showToast(isFavorite(item.id) ? 'Added to favorites!' : 'Removed from favorites');
           });
 
           grid.appendChild(card);
@@ -624,9 +818,13 @@
     const ratingInput = document.getElementById('ratingInput');
     const ratingStats = document.getElementById('ratingStats');
     const addToCartBtn = document.getElementById('addToCartBtn');
+    const qtyDisplay = document.getElementById('qtyDisplay');
+    const qtyInc = document.getElementById('qtyInc');
+    const qtyDec = document.getElementById('qtyDec');
 
     function openModal(item) {
       activeModalData = item;
+      modalQuantity = 1;
 
       modalImg.src = item.image;
       modalImg.alt = currentLang === 'en' ? item.enName : (item.arName || item.enName);
@@ -634,6 +832,7 @@
       modalPrice.textContent = formatPrice(item.priceNum);
       modalDesc.textContent = currentLang === 'en' ? (item.descriptionEn || '') : (item.descriptionAr || item.descriptionEn || '');
       modalCalories.textContent = `📊 ${item.calories}`;
+      qtyDisplay.textContent = modalQuantity;
 
       // Rating stars
       ratingInput.innerHTML = '';
@@ -653,8 +852,6 @@
       }
 
       updateRatingDisplay();
-
-      // Tags
       modalTags.innerHTML = (item.dietary || []).map(t => `<div class="tag">${escapeHtml(t)}</div>`).join('');
 
       itemModal.classList.add('show');
@@ -683,7 +880,20 @@
       activeModalData = null;
       itemModal.classList.remove('show');
       itemModal.setAttribute('aria-hidden', 'true');
+      modalQuantity = 1;
     }
+
+    qtyInc.addEventListener('click', () => {
+      modalQuantity++;
+      qtyDisplay.textContent = modalQuantity;
+    });
+
+    qtyDec.addEventListener('click', () => {
+      if (modalQuantity > 1) {
+        modalQuantity--;
+        qtyDisplay.textContent = modalQuantity;
+      }
+    });
 
     document.getElementById('modalClose').addEventListener('click', closeModal);
     document.getElementById('modalCancel').addEventListener('click', closeModal);
@@ -697,6 +907,8 @@
     const cartBody = document.getElementById('cartBody');
     const cartTotalEl = document.getElementById('cartTotal');
     const clearCartBtn = document.getElementById('clearCart');
+    const pointsDisplay = document.getElementById('pointsDisplay');
+    const loyaltyPoints_el = document.getElementById('loyaltyPoints');
 
     function updateCartUI() {
       saveToStorage('cart', cart);
@@ -706,6 +918,15 @@
       cartBtn.setAttribute('aria-expanded', !!totalQty);
       const total = cart.reduce((s, i) => s + (i.priceNum * i.qty || 0), 0);
       cartTotalEl.textContent = formatPrice(total);
+      
+      loyaltyPoints = Math.floor(total / 10);
+      if (loyaltyPoints > 0) {
+        loyaltyPoints_el.style.display = 'block';
+        pointsDisplay.textContent = loyaltyPoints;
+      } else {
+        loyaltyPoints_el.style.display = 'none';
+      }
+      
       renderCartItems();
     }
 
@@ -740,6 +961,7 @@
           const idx = Number(b.dataset.idx);
           cart[idx].qty += 1;
           updateCartUI();
+          showToast('Updated cart');
         });
       });
       cartBody.querySelectorAll('.qty-dec').forEach(b => {
@@ -755,6 +977,7 @@
           const idx = Number(b.dataset.idx);
           cart.splice(idx, 1);
           updateCartUI();
+          showToast('Item removed');
         });
       });
     }
@@ -785,7 +1008,7 @@
       }
       const lines = cart.map(i => `${currentLang === 'en' ? i.enName : (i.arName || i.enName)} x${i.qty} - ${formatPrice(i.priceNum * i.qty)}`);
       const total = formatPrice(cart.reduce((s, i) => s + i.priceNum * i.qty, 0));
-      const message = encodeURIComponent(lines.join('\n') + `\n\nTotal: ${total}`);
+      const message = encodeURIComponent(lines.join('\n') + `\n\nTotal: ${total}\n\n💎 Loyalty Points: ${loyaltyPoints}`);
       window.open(`https://wa.me/97451866671?text=${message}`, '_blank');
     });
 
@@ -796,38 +1019,67 @@
       const notes = document.getElementById('itemNotes').value || '';
       const existing = cart.find(c => c.id === activeModalData.id && c.size === size && c.notes === notes);
       if (existing) {
-        existing.qty += 1;
+        existing.qty += modalQuantity;
       } else {
-        cart.push({
-          id: activeModalData.id,
-          enName: activeModalData.enName,
-          arName: activeModalData.arName,
-          priceNum: activeModalData.priceNum,
-          image: activeModalData.image,
-          qty: 1,
-          size,
-          notes
-        });
+        for (let i = 0; i < modalQuantity; i++) {
+          cart.push({
+            id: activeModalData.id,
+            enName: activeModalData.enName,
+            arName: activeModalData.arName,
+            priceNum: activeModalData.priceNum,
+            image: activeModalData.image,
+            qty: 1,
+            size,
+            notes
+          });
+        }
       }
       updateCartUI();
       closeModal();
       openCart();
-      showToast('Added to cart');
+      showToast(`Added ${modalQuantity}x ${currentLang === 'en' ? activeModalData.enName : activeModalData.arName} to cart!`);
     });
 
-    // Search
-    const searchInput = document.getElementById('searchInput');
-    let searchTimeout;
-    searchInput.addEventListener('input', () => {
-      clearTimeout(searchTimeout);
-      searchTimeout = setTimeout(() => renderMenu(searchInput.value), 200);
+    // Favorites Modal
+    const favBtn = document.getElementById('favBtn');
+    const favoritesModal = document.getElementById('favoritesModal');
+    const favoritesContent = document.getElementById('favoritesContent');
+    const closeFav = document.getElementById('closeFav');
+
+    favBtn.addEventListener('click', () => {
+      if (favorites.length === 0) {
+        showToast('No favorites yet!');
+        return;
+      }
+      favoritesContent.innerHTML = '<div class="items-grid">' + favorites.map(item => {
+        const ratings = getRatings(item.id);
+        const ratingHtml = ratings.count > 0 ? `<div class="rating"><span class="stars">${renderStars(ratings.avg)}</span><span class="rating-count">(${ratings.count})</span></div>` : '';
+        return `
+          <article class="card" style="cursor:pointer">
+            <img class="item-img" src="${escapeHtml(item.image)}" alt="${escapeHtml(item.enName)}" loading="lazy">
+            <div class="name">
+              <span>${escapeHtml(currentLang === 'en' ? item.enName : item.arName)}</span>
+              <span class="price">${formatPrice(item.priceNum)}</span>
+            </div>
+            <div class="desc">${escapeHtml(currentLang === 'en' ? item.descriptionEn : item.descriptionAr)}</div>
+            ${ratingHtml}
+          </article>
+        `;
+      }).join('') + '</div>';
+      favoritesModal.classList.add('show');
+      favoritesModal.setAttribute('aria-hidden', 'false');
+    });
+
+    closeFav.addEventListener('click', () => {
+      favoritesModal.classList.remove('show');
+      favoritesModal.setAttribute('aria-hidden', 'true');
     });
 
     // Theme & Language
     const themeToggle = document.getElementById('themeToggle');
     themeToggle.addEventListener('click', () => {
-      document.body.classList.toggle('theme-light');
-      const pressed = document.body.classList.contains('theme-light');
+      document.body.classList.toggle('theme-dark');
+      const pressed = document.body.classList.contains('theme-dark');
       themeToggle.setAttribute('aria-pressed', String(pressed));
     });
 
@@ -839,15 +1091,13 @@
       renderMenu(searchInput.value);
     });
 
-    // Favorites
-    document.getElementById('favBtn').addEventListener('click', () => {
-      showToast('Favorites feature coming soon!');
-    });
-
     // Initialize
     cart = loadFromStorage('cart', []);
+    favorites = loadFromStorage('favorites', []);
+    updateFavBadge();
     renderMenu();
     updateCartUI();
+    
     document.addEventListener('click', (e) => {
       if (!cartDrawer.classList.contains('open')) return;
       const inside = cartDrawer.contains(e.target) || cartBtn.contains(e.target);
@@ -857,6 +1107,13 @@
     cartDrawer.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') closeCart();
     });
+
+    // Newsletter popup (show after 10 seconds)
+    setTimeout(() => {
+      if (!loadFromStorage('newsletterDismissed')) {
+        showToast('📧 Subscribe to our newsletter for exclusive offers!');
+      }
+    }, 10000);
   </script>
 </body>
 </html>
