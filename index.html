@@ -290,243 +290,282 @@
   <script>
     const menuData = [
       {
-        category: "Turkish Morning",
-        arCategory: "الصباح التركي",
-        icon: "🍳",
-        items: [
-          { id: "tm1", enName: "Turkish Classic Breakfast", arName: "فطور تركي كلاسيكي", priceNum: 65, descriptionEn: "Authentic Turkish breakfast with fresh bread, cheese, olives, tomatoes, cucumbers, honey, and clotted cream served with Turkish tea", descriptionAr: "فطور تركي أصيل مع خبز طازج، جبن، زيتون، طماطم، خيار، عسل وقشدة، يقدم مع شاي تركي", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Breakfast.jpg", calories: "680 kcal", dietary: ["vegetarian","contains-dairy"], popular: true },
-          { id: "tm2", enName: "Turkish Menemen", arName: "مينمن تركي", priceNum: 45, descriptionEn: "Classic Turkish scrambled eggs with fresh tomatoes, green peppers, and aromatic spices", descriptionAr: "بيض تركي مخفوق مع طماطم طازجة، فلفل أخضر وتوابل عطرية", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Menemen.jpg", calories: "360 kcal", dietary: ["gluten-free","contains-dairy"] },
-          { id: "tm3", enName: "Plain Omelette", arName: "أومليت عادي", priceNum: 25, descriptionEn: "Light and fluffy omelette", descriptionAr: "أومليت خفيف وهش", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Omellet.jpg", calories: "220 kcal", dietary: ["gluten-free","contains-dairy"] }
-        ]
+    category: "Turkish Morning",
+arCategory: "الصباح التركي",
+icon: "🍳",
+items: [
+  { id: "tm1", enName: "Turkish Classic Breakfast", arName: "فطور تركي كلاسيكي", priceNum: 65, descriptionEn: "A rich and traditional Turkish spread featuring freshly baked warm bread, assorted cheeses, marinated olives, ripe tomatoes, crisp cucumbers, natural honey, and velvety clotted cream, all served with aromatic Turkish tea to create an authentic and fulfilling morning experience.", descriptionAr: "وجبة تركية أصيلة وغنية تتضمن خبزًا طازجًا ساخنًا، مجموعة من الأجبان، زيتون متبّل، طماطم ناضجة، خيار مقرمش، عسل طبيعي وقشطة ناعمة، تُقدّم مع شاي تركي عطري لتجربة صباح كاملة ومتوازنة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Breakfast.jpg", calories: "680 kcal", dietary: ["vegetarian","contains-dairy"], popular: true },
+
+  { id: "tm2", enName: "Turkish Menemen", arName: "مينمن تركي", priceNum: 45, descriptionEn: "A comforting Turkish classic made with softly scrambled eggs cooked gently with juicy tomatoes, tender green peppers, and fragrant spices, creating a warm, homestyle dish full of rich and savory flavors.", descriptionAr: "طبق تركي مميز من البيض المخفوق المطهو برفق مع طماطم عصيرية، فلفل أخضر طري وتوابل عطرية، ليقدم نكهة منزلية دافئة مليئة بالغنى والطعم التقليدي.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Menemen.jpg", calories: "360 kcal", dietary: ["gluten-free","contains-dairy"] },
+
+  { id: "tm3", enName: "Plain Omelette", arName: "أومليت عادي", priceNum: 25, descriptionEn: "A light and tender omelette cooked to a delicate golden finish, offering natural egg richness with a soft, airy texture that makes every bite simple yet deeply satisfying.", descriptionAr: "أومليت خفيف وطري يُطهى حتى يصل إلى لون ذهبي ناعم، يتميز بنكهة البيض الطبيعية وقوام هش يمنحك وجبة بسيطة لكنها مليئة بالرضا.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Omellet.jpg", calories: "220 kcal", dietary: ["gluten-free","contains-dairy"] }
+]
       },
       {
-        category: "Croissant Creations",
-        arCategory: "إبداعات الكرواسون",
-        icon: "🥐",
-        items: [
-          { id: "cc1", enName: "Croissant Beef Ribs", arName: "كرواسون أضلاع اللحم", priceNum: 45, descriptionEn: "Flaky croissant filled with tender beef ribs, cheddar and kasfar cheese, topped with pesto", descriptionAr: "كرواسون هش محشو بأضلاع لحم طرية وجبن شيدر وكاسفار، مغطى بصلصة البيستو", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Ribs.jpg", calories: "720 kcal", dietary: [] },
-          { id: "cc2", enName: "Avocado Croissant", arName: "كرواسون الأفوكادو", priceNum: 42, descriptionEn: "Buttery croissant with avocado and scrambled eggs", descriptionAr: "كرواسون زبدي محشو بأفوكادو كريمي وبيض مخفوق", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Avocado.jpg", calories: "610 kcal", dietary: ["vegetarian"] },
-          { id: "cc3", enName: "Smoked Beef Croissant", arName: "كرواسون لحم مدخن", priceNum: 45, descriptionEn: "Croissant with smoked beef and eggs", descriptionAr: "كرواسون طازج محشو بالبيض المخفوق ولحم مدخن", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/5.jpg", calories: "630 kcal", dietary: [] },
-          { id: "cc4", enName: "Butter & Jam Croissant", arName: "كرواسون زبدة ومربى", priceNum: 40, descriptionEn: "Buttery croissant served with jam and sides", descriptionAr: "كرواسون زبدي يقدم مع مربى الكرز والزيتون المشوي وجبن الفيتا", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/4.jpg", calories: "540 kcal", dietary: ["vegetarian"] },
-          { id: "cc5", enName: "Croissant Scrambled Eggs", arName: "كرواسون بالبيض المخفوق", priceNum: 37, descriptionEn: "Croissant with scrambled eggs and arugula", descriptionAr: "كرواسون هش محشو بالبيض المخفوق والجرجير", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/1.jpg", calories: "520 kcal", dietary: ["vegetarian"] },
-        { id: "cc6", enName: "Plain Butter Croissant", arName: "كرواسون زبدة", priceNum: 20, descriptionEn: "Freshly baked plain butter croissant", descriptionAr: "كرواسون زبدة طازج وهش", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Plain.webp", calories: "320 kcal", dietary: ["vegetarian"] },
-        { id: "cc7", enName: "Cheese Butter Croissant", arName: "كرواسون زبدة بالجبنة", priceNum: 20, descriptionEn: "Butter croissant filled with cheese", descriptionAr: "كرواسون زبدة محشو بالجبنة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Cheese.jpg", calories: "360 kcal", dietary: ["vegetarian"] },
-{ id: "cc8", enName: "Chocolate Butter Croissant", arName: "كرواسون زبدة بالشوكولاتة", priceNum: 20, descriptionEn: "Butter croissant filled with chocolate", descriptionAr: "كرواسون زبدة محشو بالشوكولاتة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Chocolatecroissant.jpg", calories: "380 kcal", dietary: ["vegetarian"] },
-        { id: "cc9", enName: "Almond Butter Croissant", arName: "كرواسون زبدة باللوز", priceNum: 20, descriptionEn: "Butter croissant topped with roasted almonds", descriptionAr: "كرواسون زبدة مغطى باللوز المحمص", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Almondcroissant.jpg", calories: "400 kcal", dietary: ["vegetarian"] },
-        { id: "cc10", enName: "Cinnamon Danish", arName: "دانش بالقرفة", priceNum: 20, descriptionEn: "Soft cinnamon danish pastry", descriptionAr: "دانش طري محشو بنكهة القرفة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Cinnamon.jpg", calories: "390 kcal", dietary: ["vegetarian"] },
-{ id: "cc11", enName: "Danish Shell", arName: "دانش شِل", priceNum: 20, descriptionEn: "Classic danish shell pastry", descriptionAr: "فطيرة دانش بشكل صدفة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Danish.jpg", calories: "380 kcal", dietary: ["vegetarian"] },
-{ id: "cc12", enName: "Raisins Danish", arName: "دانش بالزبيب", priceNum: 20, descriptionEn: "Soft danish pastry with raisins", descriptionAr: "فطيرة دانش طرية محشوة بالزبيب", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Raisin.jpg", calories: "390 kcal", dietary: ["vegetarian"] }
+      category: "Croissant Creations",
+arCategory: "إبداعات الكرواسون",
+icon: "🥐",
+items: [
+  { id: "cc1", enName: "Croissant Beef Ribs", arName: "كرواسون أضلاع اللحم", priceNum: 45, descriptionEn: "A golden, flaky croissant generously filled with tender slow-cooked beef ribs, melted cheddar, and kasfar cheese, finished with a fresh layer of aromatic pesto for a rich and deeply satisfying flavor.", descriptionAr: "كرواسون ذهبي هش محشو بأضلاع لحم مطهوة ببطء لتصبح طرية وغنية، مع جبن شيدر وكاسفار مذابَين، ويُختتم بطبقة من البيستو العطري لنكهة فاخرة ومشبعة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Ribs.jpg", calories: "720 kcal", dietary: [] },
 
-        ]
+  { id: "cc2", enName: "Avocado Croissant", arName: "كرواسون الأفوكادو", priceNum: 42, descriptionEn: "A buttery, crisp croissant layered with creamy fresh avocado and soft scrambled eggs, creating a smooth and comforting blend of flavors perfect for a balanced morning bite.", descriptionAr: "كرواسون زبدي مقرمش محشو بأفوكادو طازج كريمي وبيض مخفوق طري، ليمنح مزيجًا ناعمًا ومتناسقًا يناسب وجبة صباحية متوازنة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Avocado.jpg", calories: "610 kcal", dietary: ["vegetarian"] },
+
+  { id: "cc3", enName: "Smoked Beef Croissant", arName: "كرواسون لحم مدخن", priceNum: 45, descriptionEn: "Freshly baked croissant filled with delicate scrambled eggs and slices of flavorful smoked beef, blending smoky richness with buttery pastry in every bite.", descriptionAr: "كرواسون طازج محشو ببيض مخفوق ناعم وشرائح من اللحم المدخن الغني بالنكهة، لمزيج يجمع بين القوام الهش والطعم الدخاني الفاخر.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/5.jpg", calories: "630 kcal", dietary: [] },
+
+  { id: "cc4", enName: "Butter & Jam Croissant", arName: "كرواسون زبدة ومربى", priceNum: 40, descriptionEn: "A warm, buttery croissant served with cherry jam, roasted olives, and creamy feta, offering a sweet-and-savory pairing that elevates a classic favorite.", descriptionAr: "كرواسون زبدي دافئ يُقدّم مع مربى الكرز والزيتون المشوي وجبن الفيتا الكريمي، ليجمع بين النكهات الحلوة والمالحة في توازن مميز.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/4.jpg", calories: "540 kcal", dietary: ["vegetarian"] },
+
+  { id: "cc5", enName: "Croissant Scrambled Eggs", arName: "كرواسون بالبيض المخفوق", priceNum: 37, descriptionEn: "A light, flaky croissant generously filled with soft scrambled eggs and fresh arugula, creating a warm, airy, and refreshing breakfast bite.", descriptionAr: "كرواسون هش محشو ببيض مخفوق طري وأوراق الجرجير الطازجة، ليمنحك وجبة صباحية دافئة ومنعشة في كل لقمة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/1.jpg", calories: "520 kcal", dietary: ["vegetarian"] },
+
+  { id: "cc6", enName: "Plain Butter Croissant", arName: "كرواسون زبدة", priceNum: 20, descriptionEn: "A freshly baked classic butter croissant with a crisp exterior and soft, airy layers, offering simple pleasure in its purest form.", descriptionAr: "كرواسون زبدة طازج بقوام هش من الخارج وطبقات هوائية ناعمة من الداخل، يقدم متعة بسيطة بطعمها الأصلي.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Plain.webp", calories: "320 kcal", dietary: ["vegetarian"] },
+
+  { id: "cc7", enName: "Cheese Butter Croissant", arName: "كرواسون زبدة بالجبنة", priceNum: 20, descriptionEn: "A buttery croissant filled with melted cheese, offering a warm, savory bite wrapped in delicate pastry layers.", descriptionAr: "كرواسون زبدة محشو بجبنة مذابة تمنحك طعمًا مالحًا ودافئًا داخل طبقات العجين الهشة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Cheese.jpg", calories: "360 kcal", dietary: ["vegetarian"] },
+
+  { id: "cc8", enName: "Chocolate Butter Croissant", arName: "كرواسون زبدة بالشوكولاتة", priceNum: 20, descriptionEn: "A light and flaky butter croissant filled with smooth, rich chocolate for a delightful sweet treat.", descriptionAr: "كرواسون زبدة هش محشو بشوكولاتة ناعمة وغنية ليقدم نكهة حلوة ولذيذة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Chocolatecroissant.jpg", calories: "380 kcal", dietary: ["vegetarian"] },
+
+  { id: "cc9", enName: "Almond Butter Croissant", arName: "كرواسون زبدة باللوز", priceNum: 20, descriptionEn: "A tender butter croissant topped with roasted almonds, adding a nutty aroma and a pleasant crunch to each bite.", descriptionAr: "كرواسون زبدة طري مغطى باللوز المحمص لإضافة رائحة مكسرات غنية وقرمشة لطيفة في كل لقمة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Almondcroissant.jpg", calories: "400 kcal", dietary: ["vegetarian"] },
+
+  { id: "cc10", enName: "Cinnamon Danish", arName: "دانش بالقرفة", priceNum: 20, descriptionEn: "A soft, sweet Danish pastry swirled with warm cinnamon for a fragrant and comforting flavor.", descriptionAr: "دانش طري محشو بنكهات القرفة الدافئة ليمنح رائحة عطرية وطعمًا مريحًا.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Cinnamon.jpg", calories: "390 kcal", dietary: ["vegetarian"] },
+
+  { id: "cc11", enName: "Danish Shell", arName: "دانش شِل", priceNum: 20, descriptionEn: "A classic shell-shaped Danish pastry with a light, golden texture that highlights simple sweetness.", descriptionAr: "دانش كلاسيكي بشكل صدفة بقوام ذهبي خفيف يبرز نكهة الحلاوة البسيطة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Danish.jpg", calories: "380 kcal", dietary: ["vegetarian"] },
+
+  { id: "cc12", enName: "Raisins Danish", arName: "دانش بالزبيب", priceNum: 20, descriptionEn: "A soft Danish pastry filled with sweet raisins, adding a chewy texture and naturally fruity flavor.", descriptionAr: "دانش طري محشو بالزبيب الحلو ليمنحك قوامًا مطاطيًا خفيفًا ونكهة فاكهية طبيعية.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Raisin.jpg", calories: "390 kcal", dietary: ["vegetarian"] }
+]
+
       },
       {
         category: "From the Grill & Garden",
-        arCategory: "من الشواية والحديقة",
-        icon: "🍔",
-        items: [
-          { id: "gg1", enName: "Turkiana Beef Burger", arName: "برجر تركيانا", priceNum: 69, descriptionEn: "Premium beef burger with fries", descriptionAr: "برجر لحم بقري ممتاز مع البطاطس", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Burger.jpeg", calories: "950 kcal", dietary: [] },
-          { id: "gg2", enName: "Turkiana Chicken Burger", arName: "برجر دجاج", priceNum: 59, descriptionEn: "Juicy chicken burger with fries", descriptionAr: "برجر دجاج لذيذ مع البطاطس", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Burgerchicken.jpg", calories: "850 kcal", dietary: [] },
-          { id: "gg3", enName: "Fried Potatoes", arName: "بطاطس مقلية", priceNum: 25, descriptionEn: "Crispy golden fried potatoes", descriptionAr: "بطاطس ذهبية مقرمشة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Patatas.jpg", calories: "340 kcal", dietary: ["vegan","gluten-free"] },
-          { id: "gg4", enName: "Caesar Salad", arName: "سلطة سيزر", priceNum: 47, descriptionEn: "Romaine with Caesar dressing and croutons", descriptionAr: "خس روماني مع صوس سيزر وقطع خبز محمص", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Caesar.jpeg", calories: "420 kcal", dietary: ["contains-gluten","contains-dairy"] }
-        ]
+arCategory: "من الشواية والحديقة",
+icon: "🍔",
+items: [
+  { id: "gg1", enName: "Turkiana Beef Burger", arName: "برجر تركيانا", priceNum: 69, descriptionEn: "A handcrafted premium beef patty grilled to perfection, layered with fresh toppings and signature sauce, served with a generous portion of crispy golden fries for a rich and satisfying meal.", descriptionAr: "برجر لحم بقري فاخر مشوي بإتقان ومزين بخضار طازجة وصوص مميز، يُقدّم مع كمية سخية من البطاطس الذهبية المقرمشة لوجبة مشبعة وغنية بالنكهات.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Burger.jpeg", calories: "950 kcal", dietary: [] },
+
+  { id: "gg2", enName: "Turkiana Chicken Burger", arName: "برجر دجاج", priceNum: 59, descriptionEn: "A juicy, well-seasoned chicken fillet served inside a soft bun with fresh toppings and house sauce, paired with crispy fries for a balanced and flavorful bite.", descriptionAr: "قطعة دجاج متبّلة بعناية وشويها بعصارة، تُقدّم داخل خبز طري مع خضار طازجة وصوص خاص، وتأتي مع بطاطس مقرمشة لوجبة لذيذة ومتكاملة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Burgerchicken.jpg", calories: "850 kcal", dietary: [] },
+
+  { id: "gg3", enName: "Fried Potatoes", arName: "بطاطس مقلية", priceNum: 25, descriptionEn: "Perfectly fried golden potatoes with a crisp exterior and a soft, fluffy center, offering a simple yet irresistible side enjoyed by everyone.", descriptionAr: "بطاطس مقلية ذهبية بقوام مقرمش من الخارج وطري من الداخل، تُقدّم كطبق جانبي بسيط لكنه محبّب لدى الجميع.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Patatas.jpg", calories: "340 kcal", dietary: ["vegan","gluten-free"] },
+
+  { id: "gg4", enName: "Caesar Salad", arName: "سلطة سيزر", priceNum: 47, descriptionEn: "Crisp romaine lettuce tossed in creamy Caesar dressing, topped with crunchy croutons and parmesan for a fresh, classic, and satisfying salad.", descriptionAr: "خس روماني مقرمش يُمزج مع صوص السيزر الكريمي ويُزين بقطع الخبز المحمص وجبن البارميزان، لسلطة كلاسيكية منعشة ومشبعة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Caesar.jpeg", calories: "420 kcal", dietary: ["contains-gluten","contains-dairy"] }
+]
       },
       {
-        category: "Baklava & Beyond",
-        arCategory: "البقلاوة وما بعدها",
-        icon: "🥜",
-        items: [
-          { id: "bk1", enName: "Turkish Mix Baklava", arName: "بقلاوة تركية مشكلة", priceNum: 65, descriptionEn: "Assorted traditional baklava", descriptionAr: "مجموعة رائعة من البقلاوة التركية التقليدية", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg", calories: "450 kcal (per serving)", dietary: ["contains-nuts"] },
+      category: "Baklava & Beyond",
+arCategory: "البقلاوة وما بعدها",
+icon: "🥜",
+items: [
+  { id: "bk1", enName: "Turkish Mix Baklava", arName: "بقلاوة تركية مشكلة", priceNum: 65, descriptionEn: "An exquisite assortment of traditional Turkish baklava, with layers of crisp filo pastry, fragrant syrup, and a medley of finely chopped nuts for a perfect balance of sweetness and texture.", descriptionAr: "مجموعة فاخرة من البقلاوة التركية التقليدية، بطبقات من عجينة الفيلو المقرمشة، وشراب عطر، ومزيج من المكسرات المفرومة بدقة لتوازن مثالي بين الحلاوة والقوام.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg", calories: "450 kcal (per serving)", dietary: ["contains-nuts"] },
 
-          { id: "bk2", enName: "Carrot Slice Baklava", arName: "بقلاوة شريحة الجزر", priceNum: 40, descriptionEn: "Classic layered baklava", descriptionAr: "بقلاوة تركية كلاسيكية بطبقات مقرمشة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Carrot.jpeg", calories: "420 kcal", dietary: ["vegetarian","contains-nuts"] },
+  { id: "bk2", enName: "Carrot Slice Baklava", arName: "بقلاوة شريحة الجزر", priceNum: 40, descriptionEn: "Classic Turkish baklava enriched with the subtle sweetness of carrot, layered with delicate filo and brushed with golden syrup for a rich, melt-in-your-mouth experience.", descriptionAr: "بقلاوة تركية كلاسيكية مع حلاوة خفيفة من الجزر، بطبقات دقيقة من الفيلو ومغطاة بشراب ذهبي لتجربة غنية تذوب في الفم.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Carrot.jpeg", calories: "420 kcal", dietary: ["vegetarian","contains-nuts"] },
 
-          { id: "bk3", enName: "Carrot Slice Baklava With Ice Cream", arName: "بقلاوة شريحة الجزر مع الآيس كريم", priceNum: 49, descriptionEn: "Baklava served with ice cream", descriptionAr: "بقلاوة تقدم مع الآيس كريم", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Carroticecream.jpeg", calories: "620 kcal", dietary: ["contains-nuts","contains-dairy"] },
+  { id: "bk3", enName: "Carrot Slice Baklava With Ice Cream", arName: "بقلاوة شريحة الجزر مع الآيس كريم", priceNum: 49, descriptionEn: "Warm, crispy carrot baklava paired with a scoop of creamy ice cream, blending textures and temperatures for an indulgent dessert experience.", descriptionAr: "بقلاوة الجزر الدافئة والمقرمشة تقدم مع كرة من الآيس كريم الكريمي، مزيج من القوام ودرجات الحرارة لتجربة حلوى فاخرة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Carroticecream.jpeg", calories: "620 kcal", dietary: ["contains-nuts","contains-dairy"] },
 
-          { id: "bk4", enName: "Trio Baklava", arName: "تريو بقلاوة", priceNum: 45, descriptionEn: "Three-style baklava assortment", descriptionAr: "مجموعة من بقلاوة رول بالفستق وموسل وسوبييت", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/TrioBaklava.jpeg", calories: "480 kcal", dietary: ["contains-nuts"] },
+  { id: "bk4", enName: "Trio Baklava", arName: "تريو بقلاوة", priceNum: 45, descriptionEn: "A delightful trio of baklava styles including pistachio rolls, moussel, and subiyet, each offering unique flavors and textures for the ultimate baklava tasting.", descriptionAr: "مجموعة رائعة من ثلاثة أنواع بقلاوة: رول بالفستق، موسل، وسوبييت، كل نوع يقدم نكهات وقوام فريد لتجربة تذوق البقلاوة المثالية.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/TrioBaklava.jpeg", calories: "480 kcal", dietary: ["contains-nuts"] },
 
-          { id: "bk5", enName: "Nuts Stand-Tall", arName: "مكسرات ستاند كبير", priceNum: 99, descriptionEn: "Premium mixed nuts", descriptionAr: "مجموعة ممتازة من المكسرات المختلطة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Nuts.jpg", calories: "300 kcal (100g)", dietary: ["contains-nuts"] },
+  { id: "bk5", enName: "Nuts Stand-Tall", arName: "مكسرات ستاند كبير", priceNum: 99, descriptionEn: "A premium selection of mixed nuts, roasted to perfection to enhance their natural flavors and provide a crunchy, satisfying snack.", descriptionAr: "مجموعة ممتازة من المكسرات المختلطة، محمصة بعناية لتعزيز النكهات الطبيعية وتوفير وجبة خفيفة مقرمشة ومشبعة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Nuts.jpg", calories: "300 kcal (100g)", dietary: ["contains-nuts"] },
 
-          { id: "bk6", enName: "Nuts Stand-Small", arName: "مكسرات ستاند صغير", priceNum: 60, descriptionEn: "Small mixed nuts", descriptionAr: "اختيار صغير من المكسرات المختلطة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Nutsmall.jpg", calories: "180 kcal (60g)", dietary: ["contains-nuts"] },
+  { id: "bk6", enName: "Nuts Stand-Small", arName: "مكسرات ستاند صغير", priceNum: 60, descriptionEn: "A compact selection of mixed nuts, offering the same roasted perfection and flavor in a smaller portion for a quick, satisfying snack.", descriptionAr: "اختيار صغير من المكسرات المختلطة يقدم نفس الجودة المحمصة والنكهات الغنية بحجم أصغر لتناول خفيف وممتع.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Nutsmall.jpg", calories: "180 kcal (60g)", dietary: ["contains-nuts"] },
 
-          { id: "bk7", enName: "Assorted Nut Platter", arName: "طبق مكسرات مشكل", priceNum: 35, descriptionEn: "Assorted mixed nuts platter", descriptionAr: "طبق متنوع من المكسرات المشكلة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Nutsplatter.jpg", calories: "180 kcal (60g)", dietary: ["contains-nuts"] },
+  { id: "bk7", enName: "Assorted Nut Platter", arName: "طبق مكسرات مشكل", priceNum: 35, descriptionEn: "A colorful assortment of mixed nuts, carefully selected to deliver a variety of flavors and textures, perfect for sharing or enjoying solo.", descriptionAr: "طبق متنوع من المكسرات المشكلة، مختارة بعناية لتقديم مجموعة من النكهات والقوام، مثالية للمشاركة أو الاستمتاع بمفردك.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Nutsplatter.jpg", calories: "180 kcal (60g)", dietary: ["contains-nuts"] },
 
-          { id: "ck1", enName: "Snickers-inspired cake", arName: "كعكة مستوحاة من سنيكرز", priceNum: 42, descriptionEn: "Chocolate, caramel & nuts cake", descriptionAr: "كعكة فاخرة مع الشوكولاتة والكراميل", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Snicker.jpg", calories: "560 kcal", dietary: ["contains-nuts"] },
+  { id: "ck1", enName: "Snickers-inspired cake", arName: "كعكة مستوحاة من سنيكرز", priceNum: 42, descriptionEn: "A decadent cake layered with rich chocolate, gooey caramel, and crunchy nuts, inspired by the classic Snickers bar for a truly indulgent treat.", descriptionAr: "كعكة فاخرة بطبقات من الشوكولاتة الغنية والكراميل اللزج والمكسرات المقرمشة، مستوحاة من سنيكرز الكلاسيكية لتجربة حلوى فاخرة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Snicker.jpg", calories: "560 kcal", dietary: ["contains-nuts"] },
 
-          { id: "ck2", enName: "Kunafa", arName: "كنافة", priceNum: 40, descriptionEn: "Kunafa with Akawi cheese", descriptionAr: "كنافة تركية تقليدية مع جبنة عكاوي", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Kunafa.jpeg", calories: "520 kcal", dietary: ["contains-dairy"] },
+  { id: "ck2", enName: "Kunafa", arName: "كنافة", priceNum: 40, descriptionEn: "Traditional Turkish kunafa with delicate Akawi cheese, baked until golden and soaked in sweet syrup for a perfectly balanced dessert.", descriptionAr: "كنافة تركية تقليدية مع جبنة عكاوي لطيفة، مخبوزة حتى تصبح ذهبية وتغمر بشراب حلو لتقديم حلوى متوازنة تماماً.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Kunafa.jpeg", calories: "520 kcal", dietary: ["contains-dairy"] },
 
-          { id: "ck3", enName: "Chocolate Cake", arName: "كعكة الشوكولاتة", priceNum: 40, descriptionEn: "Molten chocolate cake", descriptionAr: "كعكة شوكولاتة غنية", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Chocolate.jpg", calories: "480 kcal", dietary: ["contains-dairy"] },
+  { id: "ck3", enName: "Chocolate Cake", arName: "كعكة الشوكولاتة", priceNum: 40, descriptionEn: "Rich and moist molten chocolate cake with an intense cocoa flavor that melts in your mouth with every bite.", descriptionAr: "كعكة شوكولاتة غنية ورطبة بنكهات كاكاو مكثفة تذوب في الفم مع كل قضمة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Chocolate.jpg", calories: "480 kcal", dietary: ["contains-dairy"] },
 
-          { id: "ck4", enName: "Lotus Cake", arName: "كعكة اللوتس", priceNum: 40, descriptionEn: "Lotus Biscoff flavored cake", descriptionAr: "كعكة بنكهة بسكوف لوتس", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Lutos.jpg", calories: "520 kcal", dietary: ["contains-dairy"] },
+  { id: "ck4", enName: "Lotus Cake", arName: "كعكة اللوتس", priceNum: 40, descriptionEn: "Soft and moist cake infused with the iconic Lotus Biscoff flavor, perfect for anyone who loves a caramelized, spiced dessert.", descriptionAr: "كعكة طرية ورطبة بنكهة بسكوف لوتس الشهيرة، مثالية لعشاق الحلويات الكراميلية المتبلة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Lutos.jpg", calories: "520 kcal", dietary: ["contains-dairy"] },
 
-          { id: "ck5", enName: "Brownies", arName: "براونيز", priceNum: 45, descriptionEn: "Fudgy chocolate brownies", descriptionAr: "براونيز شوكولاتة غنية", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Brown.jpg", calories: "380 kcal", dietary: ["contains-dairy"] },
+  { id: "ck5", enName: "Brownies", arName: "براونيز", priceNum: 45, descriptionEn: "Fudgy and rich chocolate brownies with a soft, dense texture and an intense chocolate taste for chocolate lovers.", descriptionAr: "براونيز شوكولاتة غنية وكثيفة بقوام ناعم ومتماسك وطعم شوكولاتة مكثف لعشاق الشوكولاتة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Brown.jpg", calories: "380 kcal", dietary: ["contains-dairy"] },
 
-          { id: "ck6", enName: "Full Pistachio Cake", arName: "كعكة الفستق كاملة", priceNum: 40, descriptionEn: "Pistachio flavored cake", descriptionAr: "كعكة بنكهة الفستق", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Full.jpg", calories: "470 kcal", dietary: ["contains-nuts"] },
+  { id: "ck6", enName: "Full Pistachio Cake", arName: "كعكة الفستق كاملة", priceNum: 40, descriptionEn: "A pistachio-infused cake with a delicate nutty flavor and a soft, moist texture that melts in your mouth.", descriptionAr: "كعكة بنكهة الفستق مع طعم مكسراتي رقيق وقوام ناعم ورطب يذوب في الفم.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Full.jpg", calories: "470 kcal", dietary: ["contains-nuts"] },
 
-          { id: "ck7", enName: "Lemon Cake", arName: "كعكة الليمون", priceNum: 38, descriptionEn: "Zesty lemon sponge cake", descriptionAr: "كعكة اسفنجية ليمونية خفيفة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Lemon.jpg", calories: "420 kcal", dietary: ["vegetarian"] },
+  { id: "ck7", enName: "Lemon Cake", arName: "كعكة الليمون", priceNum: 38, descriptionEn: "Light and fluffy lemon sponge cake with a zesty citrus aroma, perfect for a refreshing dessert experience.", descriptionAr: "كعكة إسفنجية ليمونية خفيفة وهشة مع رائحة حمضية منعشة، مثالية لتجربة حلوى منعشة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Lemon.jpg", calories: "420 kcal", dietary: ["vegetarian"] },
 
-          { id: "ck8", enName: "Tiramisu", arName: "تيراميسو", priceNum: 42, descriptionEn: "Coffee-soaked sponge with mascarpone", descriptionAr: "تيراميسو إيطالي كلاسيكي", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Tiramisu.jpg", calories: "420 kcal", dietary: ["contains-dairy"] },
+  { id: "ck8", enName: "Tiramisu", arName: "تيراميسو", priceNum: 42, descriptionEn: "Classic Italian tiramisu with coffee-soaked sponge layers, creamy mascarpone, and a dusting of cocoa powder for a rich, elegant dessert.", descriptionAr: "تيراميسو إيطالي كلاسيكي بطبقات إسفنجية منقوعة بالقهوة، كريمة ماسكربوني، ورشة كاكاو لحلوى غنية وأنيقة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Tiramisu.jpg", calories: "420 kcal", dietary: ["contains-dairy"] },
 
-          { id: "ck9", enName: "Almond Chocolate Cake", arName: "كعكة الشوكولاتة باللوز", priceNum: 40, descriptionEn: "Chocolate cake with almond notes", descriptionAr: "كعكة شوكولاتة مع اللوز", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Almond.jpg", calories: "490 kcal", dietary: ["contains-nuts"] },
+  { id: "ck9", enName: "Almond Chocolate Cake", arName: "كعكة الشوكولاتة باللوز", priceNum: 40, descriptionEn: "Rich chocolate cake with subtle almond undertones and a soft, moist texture, combining nutty and chocolate flavors beautifully.", descriptionAr: "كعكة شوكولاتة غنية مع لمسات لوزية خفيفة وقوام ناعم ورطب يجمع بين النكهات المكسراتية والشوكولاتة بشكل رائع.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Almond.jpg", calories: "490 kcal", dietary: ["contains-nuts"] },
 
-          { id: "ck10", enName: "Lemon Sponge Cake", arName: "كعكة إسفنجية بالليمون", priceNum: 42, descriptionEn: "Light lemon sponge", descriptionAr: "كعكة إسفنجية ليمونية طرية", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Lemoncake.jpg", calories: "430 kcal", dietary: ["vegetarian"] },
+  { id: "ck10", enName: "Lemon Sponge Cake", arName: "كعكة إسفنجية بالليمون", priceNum: 42, descriptionEn: "Soft, airy lemon sponge cake with a tangy citrus flavor that brightens the palate and delights the senses.", descriptionAr: "كعكة إسفنجية ليمونية طرية وهشة مع نكهة حمضية تنعش الحنك وتسر الحواس.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Lemoncake.jpg", calories: "430 kcal", dietary: ["vegetarian"] },
 
-          { id: "ck11", enName: "Strawberry Cheesecake", arName: "تشيز كيك بالفراولة", priceNum: 42, descriptionEn: "Creamy cheesecake topped with strawberries", descriptionAr: "تشيز كيك كريمي مع فراولة طازجة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Cherry.jpg", calories: "520 kcal", dietary: ["contains-dairy"] },
+  { id: "ck11", enName: "Strawberry Cheesecake", arName: "تشيز كيك بالفراولة", priceNum: 42, descriptionEn: "Creamy, rich cheesecake topped with fresh, juicy strawberries for a classic dessert that balances sweetness and tartness.", descriptionAr: "تشيز كيك كريمي غني مع فراولة طازجة وعصيرية لتقديم حلوى كلاسيكية متوازنة بين الحلاوة والحموضة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Cherry.jpg", calories: "520 kcal", dietary: ["contains-dairy"] },
 
-          { id: "ck12", enName: "Blueberry Cheesecake", arName: "تشيز كيك بالتوت الأزرق", priceNum: 42, descriptionEn: "Cheesecake with blueberries", descriptionAr: "تشيز كيك مع التوت الأزرق", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mulberry.jpg", calories: "520 kcal", dietary: ["contains-dairy"] },
+  { id: "ck12", enName: "Blueberry Cheesecake", arName: "تشيز كيك بالتوت الأزرق", priceNum: 42, descriptionEn: "Smooth and creamy cheesecake topped with fresh blueberries, offering a refreshing fruity note with every bite.", descriptionAr: "تشيز كيك ناعم وكريمي مع توت أزرق طازج، يقدم لمسة فاكهية منعشة مع كل قضمة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mulberry.jpg", calories: "520 kcal", dietary: ["contains-dairy"] },
 
-          { id: "ck13", enName: "Chocolate Pistachio Cake", arName: "كعكة الشوكولاتة والفستق", priceNum: 40, descriptionEn: "Chocolate cake with pistachios", descriptionAr: "كعكة شوكولاتة مع الفستق", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Chocolate_pistachio.jpg", calories: "510 kcal", dietary: ["contains-nuts"] },
+  { id: "ck13", enName: "Chocolate Pistachio Cake", arName: "كعكة الشوكولاتة والفستق", priceNum: 40, descriptionEn: "Decadent chocolate cake generously studded with crunchy pistachios, combining the richness of chocolate with the nutty aroma of pistachios.", descriptionAr: "كعكة شوكولاتة فاخرة مع قطع فستق مقرمشة، تجمع بين غنى الشوكولاتة ورائحة المكسرات للفستق.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Chocolate_pistachio.jpg", calories: "510 kcal", dietary: ["contains-nuts"] },
 
-          { id: "ck14", enName: "Strawberry Cake", arName: "كعكة الفراولة", priceNum: 45, descriptionEn: "Strawberry topped cake", descriptionAr: "كعكة مع فراولة طازجة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Strawberry.jpg", calories: "470 kcal", dietary: ["contains-dairy"] },
+  { id: "ck14", enName: "Strawberry Cake", arName: "كعكة الفراولة", priceNum: 45, descriptionEn: "Soft, moist cake generously topped with fresh strawberries for a vibrant, fruity dessert experience.", descriptionAr: "كعكة طرية ورطبة مغطاة بسخاء بالفراولة الطازجة لتجربة حلوى فاكهية مليئة بالحيوية.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Strawberry.jpg", calories: "470 kcal", dietary: ["contains-dairy"] },
 
-          { id: "ck15", enName: "White Almond Cake", arName: "كعكة اللوز البيضاء", priceNum: 42, descriptionEn: "Almond flavored soft cake", descriptionAr: "كعكة طرية بنكهة اللوز", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/White.jpg", calories: "500 kcal", dietary: ["contains-nuts"] },
+  { id: "ck15", enName: "White Almond Cake", arName: "كعكة اللوز البيضاء", priceNum: 42, descriptionEn: "Delicately flavored almond cake with a soft, tender texture and a subtle nutty aroma that melts in your mouth.", descriptionAr: "كعكة طرية بنكهة اللوز الرقيقة مع قوام ناعم وعطر خفيف للمكسرات يذوب في الفم.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/White.jpg", calories: "500 kcal", dietary: ["contains-nuts"] },
 
-          { id: "ck16", enName: "Trileche With Milk", arName: "تريليتش باللبن", priceNum: 35, descriptionEn: "Tres leches soaked cake", descriptionAr: "تريليتش منقوعة في اللبن", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Trileche.jpg", calories: "540 kcal", dietary: ["contains-dairy"] },
+  { id: "ck16", enName: "Trileche With Milk", arName: "تريليتش باللبن", priceNum: 35, descriptionEn: "Soft sponge cake soaked in a rich blend of three types of milk, creating a moist, luscious, and indulgent dessert.", descriptionAr: "كعكة إسفنجية طرية منقوعة في مزيج غني من ثلاثة أنواع حليب لتقديم حلوى رطبة وفاخرة ومشبعة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Trileche.jpg", calories: "540 kcal", dietary: ["contains-dairy"] },
 
-          { id: "ck17", enName: "San Sebastian Cheesecake", arName: "تشيز كيك سان سيباستيان", priceNum: 42, descriptionEn: "Caramelized San Sebastian cheesecake", descriptionAr: "تشيز كيك كريم وكراميل", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Sebastian.jpg", calories: "520 kcal", dietary: ["contains-dairy"] },
-         { id: "ck18", enName: "Cheesecake", arName: "تشيز كيك", priceNum: 42, descriptionEn: "Plain cheesecake. Choose your flavor: Lotus, Blackberry, Raspberries, Blueberry, Oreo, Strawberry, Mango, Pistachio, Chocolate", descriptionAr: "تشيز كيك عادي. اختر النكهة: لوتس، توت أسود، توت أحمر، توت أزرق، أوريو، فراولة، مانجو، فستق، شوكولاتة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Cheesecake.jpg", calories: "500 kcal", dietary: ["contains-dairy"] }
-        ]
+  { id: "ck17", enName: "San Sebastian Cheesecake", arName: "تشيز كيك سان سيباستيان", priceNum: 42, descriptionEn: "A creamy, caramelized San Sebastian cheesecake with a perfectly burnt top, offering rich flavor and silky texture.", descriptionAr: "تشيز كيك سان سيباستيان كريمي ومكرمل مع سطح محترق بشكل مثالي، يقدم نكهة غنية وقوام حريري.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Sebastian.jpg", calories: "520 kcal", dietary: ["contains-dairy"] },
+
+  { id: "ck18", enName: "Cheesecake", arName: "تشيز كيك", priceNum: 42, descriptionEn: "Classic plain cheesecake. Choose from Lotus, Blackberry, Raspberry, Blueberry, Oreo, Strawberry, Mango, Pistachio, or Chocolate to customize your perfect slice.", descriptionAr: "تشيز كيك عادي كلاسيكي. اختر من بين لوتس، توت أسود، توت أحمر، توت أزرق، أوريو، فراولة، مانجو، فستق، أو شوكولاتة للحصول على شريحة مثالية.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Cheesecake.jpg", calories: "500 kcal", dietary: ["contains-dairy"] }
+]
+
       },
       {
-        category: "Fondue",
-        arCategory: "الفوندو",
-        icon: "🍓",
-        items: [
-          { id: "fd1", enName: "Strawberry Fondue", arName: "فوندو بالفراولة", priceNum: 40, descriptionEn: "Fresh strawberries with melted milk chocolate", descriptionAr: "فراولة طازجة مع شوكولاتة بالحليب مذابة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Fondue1.jpeg", calories: "320 kcal", dietary: ["contains-dairy"] },
-          { id: "fd2", enName: "Strawberry-Banana Fondue", arName: "فوندو فراولة وموز", priceNum: 45, descriptionEn: "Strawberries & bananas with chocolate", descriptionAr: "فراولة وموز مع شوكولاتة ذائبة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Fondue2.jpeg", calories: "410 kcal", dietary: ["contains-dairy"] },
-          { id: "fd3", enName: "Turkiana Fondue", arName: "فوندو تركيانا", priceNum: 59, descriptionEn: "Signature fondue with assorted fruits with brownie", descriptionAr: "فوندو مع مجموعة من الفواكه", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Fondue3.jpeg", calories: "480 kcal", dietary: [] }
-        ]
+category: "Fondue",
+arCategory: "الفوندو",
+icon: "🍓",
+items: [
+  { id: "fd1", enName: "Strawberry Fondue", arName: "فوندو بالفراولة", priceNum: 40, descriptionEn: "Juicy, fresh strawberries served with velvety, melted milk chocolate for a luscious, indulgent treat that melts in your mouth.", descriptionAr: "فراولة طازجة وعصيرية تقدم مع شوكولاتة بالحليب المذابة الناعمة لتجربة فاخرة تذوب في الفم.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Fondue1.jpeg", calories: "320 kcal", dietary: ["contains-dairy"] },
+
+  { id: "fd2", enName: "Strawberry-Banana Fondue", arName: "فوندو فراولة وموز", priceNum: 45, descriptionEn: "A delightful combination of fresh strawberries and ripe bananas, dipped in smooth, rich chocolate for a perfect harmony of fruity sweetness and creamy indulgence.", descriptionAr: "مزيج شهي من الفراولة الطازجة والموز الناضج، يغمس في شوكولاتة ناعمة وغنية لتوازن مثالي بين حلاوة الفواكه وكريمة الشوكولاتة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Fondue2.jpeg", calories: "410 kcal", dietary: ["contains-dairy"] },
+
+  { id: "fd3", enName: "Turkiana Fondue", arName: "فوندو تركيانا", priceNum: 59, descriptionEn: "Our signature fondue featuring a colorful assortment of fresh fruits, rich chocolate, and bite-sized brownie pieces for a decadent, shareable dessert experience.", descriptionAr: "الفوندو المميز لدينا مع مجموعة ملونة من الفواكه الطازجة، شوكولاتة غنية وقطع براوني صغيرة لتجربة حلوى فاخرة يمكن مشاركتها.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Fondue3.jpeg", calories: "480 kcal", dietary: [] }
+]
       },
       {
         category: "Arabian Brew",
-        arCategory: "المشروبات العربية",
-        icon: "☕",
-        items: [
-          { id: "ab1", enName: "Arabic Coffee in a Full Dalla", arName: "قهوة عربية بالدلة الكاملة", priceNum: 90, descriptionEn: "Traditional Arabic coffee in a full Dalla", descriptionAr: "قهوة عربية بالدلة الكاملة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Arabic.jpg", calories: "10 kcal", dietary: ["vegan","gluten-free","dairy-free"] },
-          { id: "ab2", enName: "Arabic Coffee in a Half Dalla", arName: "قهوة عربية بنصف دلة", priceNum: 50, descriptionEn: "Half Dalla Arabic coffee", descriptionAr: "قهوة عربية بنصف دلة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Arabic.jpg", calories: "10 kcal", dietary: ["vegan","gluten-free","dairy-free"] },
-          { id: "ab3", enName: "Arabic Coffee in a Cup", arName: "قهوة عربية في فنجان", priceNum: 30, descriptionEn: "Arabic coffee by the cup", descriptionAr: "قهوة عربية في فنجان", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Arabiccup.jpeg", calories: "10 kcal", dietary: ["vegan","gluten-free","dairy-free"] }
-        ]
+arCategory: "المشروبات العربية",
+icon: "☕",
+items: [
+  { id: "ab1", enName: "Arabic Coffee in a Full Dalla", arName: "قهوة عربية بالدلة الكاملة", priceNum: 90, descriptionEn: "A full Dalla of traditional Arabic coffee, delicately spiced and freshly brewed, offering the authentic aroma and flavor of the Arabian tradition.", descriptionAr: "دلة كاملة من القهوة العربية التقليدية، مُبهرة بتوابل دقيقة ومعدّة طازجة، لتجربة النكهة الأصيلة والعبق العربي.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Arabic.jpg", calories: "10 kcal", dietary: ["vegan","gluten-free","dairy-free"] },
+
+  { id: "ab2", enName: "Arabic Coffee in a Half Dalla", arName: "قهوة عربية بنصف دلة", priceNum: 50, descriptionEn: "Half Dalla of aromatic Arabic coffee, perfectly brewed with traditional spices, capturing the rich heritage in every sip.", descriptionAr: "نصف دلة من القهوة العربية العطرية، معدة بعناية مع توابل تقليدية، لتجربة تراثية غنية في كل رشفة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Arabic.jpg", calories: "10 kcal", dietary: ["vegan","gluten-free","dairy-free"] },
+
+  { id: "ab3", enName: "Arabic Coffee in a Cup", arName: "قهوة عربية في فنجان", priceNum: 30, descriptionEn: "A single cup of traditional Arabic coffee, infused with delicate spices and served warm, delivering a comforting taste of Arabian culture.", descriptionAr: "فنجان واحد من القهوة العربية التقليدية، ممزوجة بتوابل خفيفة ومقدمة دافئة، لتجربة مريحة من الثقافة العربية.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Arabiccup.jpeg", calories: "10 kcal", dietary: ["vegan","gluten-free","dairy-free"] }
+]
       },
       {
-        category: "Tea Time",
-        arCategory: "وقت الشاي",
-        icon: "🍵",
-        items: [
-          { id: "tt1", enName: "Turkish Tea", arName: "شاي تركي", priceNum: 15, descriptionEn: "Traditional Turkish tea", descriptionAr: "شاي تركي تقليدي", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Tea.jpg", calories: "2 kcal", dietary: ["vegan","dairy-free"] },
-          { id: "tt2", enName: "Turkish Tea in a Pot", arName: "شاي تركي في إبريق", priceNum: 45, descriptionEn: "Traditional Turkish tea served in a pot for up to 4 people", descriptionAr: "شاي تركي تقليدي يُقدّم في إبريق يكفي حتى ٤ أشخاص", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkishteapot.jpeg", calories: "0 kcal", dietary: ["vegan","gluten-free","dairy-free"] },
-          { id: "tt3", enName: "Apple Tea", arName: "شاي التفاح", priceNum: 25, descriptionEn: "Apple-flavored tea", descriptionAr: "شاي بنكهة التفاح", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Appletea.jpg", calories: "2 kcal", dietary: ["vegan","dairy-free"] },
-          { id: "tt4", enName: "Mulberry Tea", arName: "شاي التوت", priceNum: 25, descriptionEn: "Mulberry tea", descriptionAr: "شاي التوت", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mulberrytea.jpg", calories: "2 kcal", dietary: ["vegan","dairy-free"] },
-          { id: "tt5", enName: "Lemon Mint", arName: "شاي بالليمون والنعناع", priceNum: 25, descriptionEn: "Lemon & mint tea", descriptionAr: "شاي الليمون والنعناع", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Lemontea.jpg", calories: "2 kcal", dietary: ["vegan","dairy-free"] },
-          { id: "tt6", enName: "Pomegranate Tea", arName: "شاي الرمان", priceNum: 25, descriptionEn: "Pomegranate tea", descriptionAr: "شاي الرمان", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Romantea.jpg", calories: "2 kcal", dietary: ["vegan","dairy-free"] }
-        ]
+       category: "Tea Time",
+arCategory: "وقت الشاي",
+icon: "🍵",
+items: [
+  { id: "tt1", enName: "Turkish Tea", arName: "شاي تركي", priceNum: 15, descriptionEn: "A classic cup of Turkish tea, brewed to perfection with a rich, deep flavor and served warm, offering a comforting sip of tradition.", descriptionAr: "كوب كلاسيكي من الشاي التركي، مُعد بعناية ليقدم نكهة عميقة وغنية، ويمنحك دفء ورشفة تقليدية مريحة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Tea.jpg", calories: "2 kcal", dietary: ["vegan","dairy-free"] },
+
+  { id: "tt2", enName: "Turkish Tea in a Pot", arName: "شاي تركي في إبريق", priceNum: 45, descriptionEn: "Generous pot of traditional Turkish tea, brewed to share with up to 4 people, offering the authentic aroma and warmth of Turkish hospitality.", descriptionAr: "إبريق غني من الشاي التركي التقليدي، يكفي حتى ٤ أشخاص، مع عبق الطعم الأصيل ودفء الضيافة التركية.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkishteapot.jpeg", calories: "0 kcal", dietary: ["vegan","gluten-free","dairy-free"] },
+
+  { id: "tt3", enName: "Apple Tea", arName: "شاي التفاح", priceNum: 25, descriptionEn: "A fragrant tea infused with the sweet and tangy flavor of fresh apples, providing a soothing and refreshing taste experience.", descriptionAr: "شاي عطري ممزوج بنكهات التفاح الطازج الحلوة والمنعشة، ليمنحك تجربة مريحة ومنعشة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Appletea.jpg", calories: "2 kcal", dietary: ["vegan","dairy-free"] },
+
+  { id: "tt4", enName: "Mulberry Tea", arName: "شاي التوت", priceNum: 25, descriptionEn: "Delicate mulberry tea with a naturally sweet taste, offering a unique fruity aroma and a calming cup of warmth.", descriptionAr: "شاي توت دقيق بطعم طبيعي حلو، يقدم عبقاً فريداً وتجربة دافئة ومريحة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mulberrytea.jpg", calories: "2 kcal", dietary: ["vegan","dairy-free"] },
+
+  { id: "tt5", enName: "Lemon Mint", arName: "شاي بالليمون والنعناع", priceNum: 25, descriptionEn: "Refreshing blend of zesty lemon and fresh mint leaves, creating a vibrant and invigorating tea experience.", descriptionAr: "مزيج منعش من الليمون الحامض وأوراق النعناع الطازجة، ليقدم تجربة شاي نابضة ومنعشة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Lemontea.jpg", calories: "2 kcal", dietary: ["vegan","dairy-free"] },
+
+  { id: "tt6", enName: "Pomegranate Tea", arName: "شاي الرمان", priceNum: 25, descriptionEn: "Rich and fruity tea infused with the sweet-tart flavor of pomegranate, offering a vibrant and soothing drink.", descriptionAr: "شاي غني وفاكهي ممزوج بنكهات الرمان الحلوة والحامضة، لتجربة شاي نابضة ومريحة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Romantea.jpg", calories: "2 kcal", dietary: ["vegan","dairy-free"] }
+]
       },
       {
         category: "Tea on Ice",
-        arCategory: "الشاي المثلج",
-        icon: "🧊",
-        items: [
-          { id: "tic1", enName: "Ice Apple Tea", arName: "شاي التفاح مثلج", priceNum: 28, descriptionEn: "Chilled apple tea", descriptionAr: "شاي التفاح المثلج", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Iceapple.jpeg", calories: "35 kcal", dietary: ["vegan","dairy-free"] },
-          { id: "tic2", enName: "Ice Mulberry Tea", arName: "شاي التوت المثلج", priceNum: 28, descriptionEn: "Iced mulberry tea", descriptionAr: "شاي التوت المثلج", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Icemulberry.jpeg", calories: "35 kcal", dietary: ["vegan","dairy-free"] },
-          { id: "tic3", enName: "Ice Mint Lemon", arName: "شاي النعناع والليمون المثلج", priceNum: 28, descriptionEn: "Iced mint & lemon tea", descriptionAr: "شاي النعناع والليمون المثلج", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Icelemon.jpeg", calories: "20 kcal", dietary: ["vegan","dairy-free"] },
-          { id: "tic4", enName: "Ice Pomegranate Tea", arName: "شاي الرمان المثلج", priceNum: 28, descriptionEn: "Iced pomegranate tea", descriptionAr: "شاي الرمان المثلج", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Iceroman.jpeg", calories: "45 kcal", dietary: ["vegan","dairy-free"] },
-          { id: "tic5", enName: "Hibiscus Ice", arName: "الكركديه مثلج", priceNum: 28, descriptionEn: "Chilled hibiscus tea", descriptionAr: "الكركديه مثلج", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Iceroman.jpeg", calories: "25 kcal", dietary: ["vegan","dairy-free"] }
-        ]
+arCategory: "الشاي المثلج",
+icon: "🧊",
+items: [
+  { id: "tic1", enName: "Ice Apple Tea", arName: "شاي التفاح مثلج", priceNum: 28, descriptionEn: "Refreshing chilled apple tea with a naturally sweet and crisp flavor, served over ice for a perfect cool sip.", descriptionAr: "شاي التفاح المثلج المنعش بنكهة طبيعية حلوة ومقرمشة، يقدم مع الثلج لانتعاش مثالي.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Iceapple.jpeg", calories: "35 kcal", dietary: ["vegan","dairy-free"] },
+
+  { id: "tic2", enName: "Ice Mulberry Tea", arName: "شاي التوت المثلج", priceNum: 28, descriptionEn: "Chilled mulberry tea with a subtly sweet and fruity taste, perfect for a revitalizing iced treat.", descriptionAr: "شاي التوت المثلج بطعم فاكهي وحلو خفيف، مثالي كمنعش مثلج.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Icemulberry.jpeg", calories: "35 kcal", dietary: ["vegan","dairy-free"] },
+
+  { id: "tic3", enName: "Ice Mint Lemon", arName: "شاي النعناع والليمون المثلج", priceNum: 28, descriptionEn: "Iced tea infused with fresh mint and zesty lemon, offering a cool and invigorating refreshment.", descriptionAr: "شاي مثلج ممزوج بأوراق النعناع الطازجة والليمون الحامض، ليمنحك انتعاشاً بارداً ومنعشاً.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Icelemon.jpeg", calories: "20 kcal", dietary: ["vegan","dairy-free"] },
+
+  { id: "tic4", enName: "Ice Pomegranate Tea", arName: "شاي الرمان المثلج", priceNum: 28, descriptionEn: "Cool pomegranate tea served over ice, delivering a bold fruity flavor with a refreshing finish.", descriptionAr: "شاي الرمان المثلج يقدم مع الثلج، بنكهة فاكهية قوية ولمسة منعشة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Iceroman.jpeg", calories: "45 kcal", dietary: ["vegan","dairy-free"] },
+
+  { id: "tic5", enName: "Hibiscus Ice", arName: "الكركديه مثلج", priceNum: 28, descriptionEn: "Chilled hibiscus tea with a vibrant floral aroma and slightly tangy taste, perfect for a refreshing iced drink.", descriptionAr: "شاي الكركديه المثلج بعطر زهري نابض وطعم منعش قليل الحموضة، مثالي كشراب بارد ومنعش.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Iceroman.jpeg", calories: "25 kcal", dietary: ["vegan","dairy-free"] }
+]
       },
       {
-        category: "Brewed the Turkish Way",
-        arCategory: "القهوة على الطريقة التركية",
-        icon: "🫖",
-        items: [
-          { id: "btw1", enName: "Classic Turkish Coffee", arName: "قهوة تركية كلاسيكية", priceNum: 28, descriptionEn: "Classic Turkish coffee", descriptionAr: "قهوة تركية كلاسيكية", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkishcoffee.jpg", calories: "5 kcal", dietary: ["vegan","gluten-free","dairy-free"] },
-          { id: "btw2", enName: "Double Turkish Coffee", arName: "قهوة تركية مزدوجة", priceNum: 40, descriptionEn: "Double shot Turkish coffee", descriptionAr: "قهوة تركية مزدوجة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkishcoffee.jpg", calories: "10 kcal", dietary: ["vegan","gluten-free","dairy-free"] },
-          { id: "btw3", enName: "Ottoman Coffee with Mastic", arName: "قهوة عثمانية بالمستيك", priceNum: 28, descriptionEn: "Ottoman coffee with mastic", descriptionAr: "قهوة عثمانية بالمستيك", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Ottomanmastica.jpg", calories: "5 kcal", dietary: ["vegan","gluten-free","dairy-free"] },
-          { id: "btw4", enName: "Ottoman Coffee with Hazelnuts", arName: "قهوة عثمانية بالبندق", priceNum: 28, descriptionEn: "Ottoman coffee with hazelnuts", descriptionAr: "قهوة عثمانية بالبندق", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Ottomanhazelnut.jpg", calories: "20 kcal", dietary: ["contains-nuts"] },
-           { id: "btw5", enName: "Turkish Coffee with Cardamom", arName: "قهوة تركية بالهيل", priceNum: 28, priceText: "28 QAR", descriptionEn: "Turkish coffee with cardamom", descriptionAr: "قهوة تركية بالهيل", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Ottomancardamom.jpg", calories: 5, dietary: ["vegan","gluten-free","dairy-free"] },
+      category: "Brewed the Turkish Way",
+arCategory: "القهوة على الطريقة التركية",
+icon: "🫖",
+items: [
+  { id: "btw1", enName: "Classic Turkish Coffee", arName: "قهوة تركية كلاسيكية", priceNum: 28, descriptionEn: "Rich and aromatic Turkish coffee, perfectly brewed to bring out its deep, bold flavors in every sip.", descriptionAr: "قهوة تركية غنية وعطرية، مُحضرة بعناية لتبرز نكهاتها العميقة والجريئة في كل رشفة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkishcoffee.jpg", calories: "5 kcal", dietary: ["vegan","gluten-free","dairy-free"] },
 
-          { id: "btw6", enName: "Sahlep", arName: "شلهب", priceNum: 28, descriptionEn: "Warm and creamy sahlep", descriptionAr: "مشروب شلهب تركي دافئ وكريمي", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Sahlep.jpg", calories: "200 kcal", dietary: ["contains-dairy"] }
-        ]
+  { id: "btw2", enName: "Double Turkish Coffee", arName: "قهوة تركية مزدوجة", priceNum: 40, descriptionEn: "Intense double-shot Turkish coffee for lovers of a stronger, bolder coffee experience.", descriptionAr: "قهوة تركية مزدوجة القوة لعشاق النكهة الغنية والجريئة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkishcoffee.jpg", calories: "10 kcal", dietary: ["vegan","gluten-free","dairy-free"] },
+
+  { id: "btw3", enName: "Ottoman Coffee with Mastic", arName: "قهوة عثمانية بالمستيك", priceNum: 28, descriptionEn: "Fragrant Ottoman coffee infused with mastic, offering a unique resinous aroma and delicate taste.", descriptionAr: "قهوة عثمانية عطرية ممزوجة بالمستيك، تقدم نكهة فريدة ورائحة راتنجية مميزة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Ottomanmastica.jpg", calories: "5 kcal", dietary: ["vegan","gluten-free","dairy-free"] },
+
+  { id: "btw4", enName: "Ottoman Coffee with Hazelnuts", arName: "قهوة عثمانية بالبندق", priceNum: 28, descriptionEn: "Smooth Ottoman coffee enriched with finely ground hazelnuts for a nutty, aromatic twist.", descriptionAr: "قهوة عثمانية ناعمة مع البندق المطحون لتجربة غنية بنكهة الجوز والعطرية.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Ottomanhazelnut.jpg", calories: "20 kcal", dietary: ["contains-nuts"] },
+
+  { id: "btw5", enName: "Turkish Coffee with Cardamom", arName: "قهوة تركية بالهيل", priceNum: 28, descriptionEn: "Classic Turkish coffee delicately infused with cardamom, adding a warm and aromatic spice note.", descriptionAr: "قهوة تركية كلاسيكية ممزوجة بالهيل لإضافة لمسة دافئة وعطرية من التوابل.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Ottomancardamom.jpg", calories: "5 kcal", dietary: ["vegan","gluten-free","dairy-free"] },
+
+  { id: "btw6", enName: "Sahlep", arName: "شلهب", priceNum: 28, descriptionEn: "Warm, creamy, and comforting Turkish sahlep, traditionally made with orchid root powder and a hint of cinnamon.", descriptionAr: "شلهب تركي دافئ وكريمي ومريح، محضر تقليدياً من مسحوق جذور الأوركيد ولمسة من القرفة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Sahlep.jpg", calories: "200 kcal", dietary: ["contains-dairy"] }
+]
       },
       {
-        category: "Café & Chill",
-        arCategory: "كافيه واسترخاء",
-        icon: "☕",
-        items: [
-          { id: "cac1", enName: "Hot Chocolate (Hot/Ice)", arName: "هوت شوكولاتة (ساخن/مثلج)", priceNum: 36, descriptionEn: "Rich and creamy hot chocolate", descriptionAr: "هوت شوكولاتة غنية وكريمية", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Hotchoco.jpeg", calories: "360 kcal", dietary: ["contains-dairy"] },
+      category: "Café & Chill",
+arCategory: "كافيه واسترخاء",
+icon: "☕",
+items: [
+  { id: "cac1", enName: "Hot Chocolate (Hot/Ice)", arName: "هوت شوكولاتة (ساخن/مثلج)", priceNum: 36, descriptionEn: "Decadent hot chocolate, rich and creamy, crafted with velvety milk and premium cocoa for a comforting treat.", descriptionAr: "هوت شوكولاتة غنية وكريمية، محضرة بحليب ناعم وشوكولاتة فاخرة لتجربة دافئة وممتعة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Hotchoco.jpeg", calories: "360 kcal", dietary: ["contains-dairy"] },
 
-{ id: "cac2", enName: "Piccolo", arName: "بيكولو", priceNum: 24, descriptionEn: "Smooth espresso with steamed milk", descriptionAr: "إسپريسو مع حليب مبخر", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/cortado.jpg", calories: "120 kcal", dietary: ["contains-dairy"] },
+  { id: "cac2", enName: "Piccolo", arName: "بيكولو", priceNum: 24, descriptionEn: "Smooth and balanced espresso with steamed milk, offering a subtle yet flavorful coffee experience.", descriptionAr: "إسپريسو سلس ومتوازن مع حليب مبخر، يقدم تجربة قهوة لطيفة ونكهة متوازنة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/cortado.jpg", calories: "120 kcal", dietary: ["contains-dairy"] },
 
-{ id: "cac3", enName: "Latte (Hot/Ice)", arName: "لاتيه (ساخن/مثلج)", priceNum: 29, descriptionEn: "Smooth latte", descriptionAr: "لاتيه ناعم", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Latte.jpg", calories: "170 kcal", dietary: ["contains-dairy"] },
+  { id: "cac3", enName: "Latte (Hot/Ice)", arName: "لاتيه (ساخن/مثلج)", priceNum: 29, descriptionEn: "Classic latte, smooth steamed milk blended with rich espresso for a comforting, creamy drink.", descriptionAr: "لاتيه كلاسيكي، حليب مبخر ناعم ممزوج مع إسپريسو غني لمشروب كريمي ومريح.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Latte.jpg", calories: "170 kcal", dietary: ["contains-dairy"] },
 
-{ id: "cac4", enName: "Spanish Latte (Hot/Ice)", arName: "لاتيه إسباني (ساخن ومثلج)", priceNum: 32, descriptionEn: "Spanish latte", descriptionAr: "لاتيه إسباني", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Latte.jpg", calories: "220 kcal", dietary: ["contains-dairy"] },
+  { id: "cac4", enName: "Spanish Latte (Hot/Ice)", arName: "لاتيه إسباني (ساخن ومثلج)", priceNum: 32, descriptionEn: "Smooth latte enriched with sweetened condensed milk for a rich and indulgent flavor.", descriptionAr: "لاتيه ناعم مع الحليب المكثف المحلى لنكهة غنية وممتعة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Latte.jpg", calories: "220 kcal", dietary: ["contains-dairy"] },
 
-{ id: "cac5", enName: "Salted Caramel Latte (Hot/Ice)", arName: "لاتيه بالكراميل المملح (ساخن/مثلج)", priceNum: 32, descriptionEn: "Salted caramel latte", descriptionAr: "لاتيه بالكراميل المملح", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Latte.jpg", calories: "230 kcal", dietary: ["contains-dairy"] },
+  { id: "cac5", enName: "Salted Caramel Latte (Hot/Ice)", arName: "لاتيه بالكراميل المملح (ساخن/مثلج)", priceNum: 32, descriptionEn: "Velvety latte blended with rich caramel and a hint of salt for a perfectly balanced sweet and savory taste.", descriptionAr: "لاتيه كريمي ممزوج بالكراميل الغني ولمسة من الملح لتجربة متوازنة بين الحلاوة والمالحة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Latte.jpg", calories: "230 kcal", dietary: ["contains-dairy"] },
 
-{ id: "cac6", enName: "Vanilla Latte (Hot/Ice)", arName: "لاتيه فانيليا (ساخن/مثلج)", priceNum: 32, descriptionEn: "Vanilla latte", descriptionAr: "لاتيه فانيليا", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Latte.jpg", calories: "220 kcal", dietary: ["contains-dairy"] },
+  { id: "cac6", enName: "Vanilla Latte (Hot/Ice)", arName: "لاتيه فانيليا (ساخن/مثلج)", priceNum: 32, descriptionEn: "Classic latte infused with smooth vanilla syrup, offering a sweet and fragrant coffee experience.", descriptionAr: "لاتيه كلاسيكي ممزوج بشراب الفانيليا الناعم، لتجربة قهوة عطرية وحلوة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Latte.jpg", calories: "220 kcal", dietary: ["contains-dairy"] },
 
-{ id: "cac7", enName: "Cappuccino (Hot/Ice)", arName: "كابوتشينو (ساخن/مثلج)", priceNum: 29, descriptionEn: "Classic cappuccino", descriptionAr: "كابوتشينو كلاسيكي", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Latte.jpg", calories: "150 kcal", dietary: ["contains-dairy"] },
+  { id: "cac7", enName: "Cappuccino (Hot/Ice)", arName: "كابوتشينو (ساخن/مثلج)", priceNum: 29, descriptionEn: "Classic cappuccino with a rich espresso base topped with a creamy, airy foam for a delightful coffee ritual.", descriptionAr: "كابوتشينو كلاسيكي مع قاعدة إسپريسو غنية مغطاة برغوة كريمية وخفيفة لتجربة قهوة ممتعة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Latte.jpg", calories: "150 kcal", dietary: ["contains-dairy"] },
 
-{ id: "cac8", enName: "White Mocha (Hot/Ice)", arName: "وايت موكا (ساخن/مثلج)", priceNum: 32, descriptionEn: "White chocolate mocha", descriptionAr: "وايت موكا بالشوكولاتة البيضاء", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Latte.jpg", calories: "260 kcal", dietary: ["contains-dairy"] },
+  { id: "cac8", enName: "White Mocha (Hot/Ice)", arName: "وايت موكا (ساخن/مثلج)", priceNum: 32, descriptionEn: "Creamy white chocolate mocha, a smooth combination of espresso and melted white chocolate.", descriptionAr: "وايت موكا بالشوكولاتة البيضاء الكريمية، مزيج سلس من الإسپريسو والشوكولاتة البيضاء المذابة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Latte.jpg", calories: "260 kcal", dietary: ["contains-dairy"] },
 
-{ id: "cac9", enName: "Flat White (Hot/Ice)", arName: "فلات وايت (ساخن/مثلج)", priceNum: 27, descriptionEn: "Smooth flat white", descriptionAr: "فلات وايت ناعم", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Flatwhite.jpg", calories: "140 kcal", dietary: ["contains-dairy"] },
+  { id: "cac9", enName: "Flat White (Hot/Ice)", arName: "فلات وايت (ساخن/مثلج)", priceNum: 27, descriptionEn: "Velvety flat white, expertly brewed espresso topped with silky microfoam.", descriptionAr: "فلات وايت ناعم، إسپريسو معد بعناية مغطى برغوة حريرية.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Flatwhite.jpg", calories: "140 kcal", dietary: ["contains-dairy"] },
 
-{ id: "cac10", enName: "Cortado (Hot/Ice)", arName: "كورتادو (ساخن/مثلج)", priceNum: 24, descriptionEn: "Espresso with a small amount of milk", descriptionAr: "كورتادو إسپريسو مع قليل من الحليب", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/cortado.jpg", calories: "110 kcal", dietary: ["contains-dairy"] },
+  { id: "cac10", enName: "Cortado (Hot/Ice)", arName: "كورتادو (ساخن/مثلج)", priceNum: 24, descriptionEn: "Balanced cortado with equal parts espresso and steamed milk, perfect for a smooth coffee experience.", descriptionAr: "كورتادو متوازن مع أجزاء متساوية من الإسپريسو والحليب المبخر، لتجربة قهوة سلسة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/cortado.jpg", calories: "110 kcal", dietary: ["contains-dairy"] },
 
-{ id: "cac11", enName: "Espresso Single / Double (Hot/Ice)", arName: "إسپريسو مفرد/مزدوج (ساخن/مثلج)", priceNum: 21, descriptionEn: "Espresso shot", descriptionAr: "إسپريسو", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Espresso.jpeg", calories: "5–10 kcal", dietary: ["vegan","gluten-free","dairy-free"] },
+  { id: "cac11", enName: "Espresso Single / Double (Hot/Ice)", arName: "إسپريسو مفرد/مزدوج (ساخن/مثلج)", priceNum: 21, descriptionEn: "Pure espresso shot, intense and aromatic, served as single or double.", descriptionAr: "إسپريسو نقي، قوي وعطري، يقدم مفرد أو مزدوج.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Espresso.jpeg", calories: "5–10 kcal", dietary: ["vegan","gluten-free","dairy-free"] },
 
-{ id: "cac12", enName: "Macchiato (Hot/Ice)", arName: "ماكياتو (ساخن/مثلج)", priceNum: 24, descriptionEn: "Espresso with a dash of milk", descriptionAr: "ماكياتو إسپريسو مع لمسة حليب", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Machiatto.jpeg", calories: "40 kcal", dietary: ["contains-dairy"] },
+  { id: "cac12", enName: "Macchiato (Hot/Ice)", arName: "ماكياتو (ساخن/مثلج)", priceNum: 24, descriptionEn: "Espresso macchiato with a dash of silky milk foam for a delicate flavor balance.", descriptionAr: "ماكياتو إسپريسو مع لمسة من الرغوة الحريرية لتوازن نكهة لطيفة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Machiatto.jpeg", calories: "40 kcal", dietary: ["contains-dairy"] },
 
-{ id: "cac13", enName: "Americano (Hot/Ice)", arName: "أمريكانو (ساخن/مثلج)", priceNum: 21, descriptionEn: "Americano", descriptionAr: "أمريكانو", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Americano.jpeg", calories: "5 kcal", dietary: ["vegan","gluten-free","dairy-free"] },
+  { id: "cac13", enName: "Americano (Hot/Ice)", arName: "أمريكانو (ساخن/مثلج)", priceNum: 21, descriptionEn: "Classic Americano, smooth espresso diluted with hot water for a light yet flavorful experience.", descriptionAr: "أمريكانو كلاسيكي، إسپريسو سلس مخفف بالماء الساخن لتجربة خفيفة وغنية بالنكهة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Americano.jpeg", calories: "5 kcal", dietary: ["vegan","gluten-free","dairy-free"] },
 
-{ id: "cac14", enName: "Mocha (Hot/Ice)", arName: "موكا (ساخن/مثلج)", priceNum: 32, descriptionEn: "Chocolate mocha", descriptionAr: "موكا بالشوكولاتة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Latte.jpg", calories: "260 kcal", dietary: ["contains-dairy"] }
-
-        ]
+  { id: "cac14", enName: "Mocha (Hot/Ice)", arName: "موكا (ساخن/مثلج)", priceNum: 32, descriptionEn: "Decadent chocolate mocha, blending rich espresso with smooth chocolate for a luscious drink.", descriptionAr: "موكا بالشوكولاتة الفاخرة، مزيج الإسپريسو الغني مع الشوكولاتة الناعمة لمشروب لذيذ.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Latte.jpg", calories: "260 kcal", dietary: ["contains-dairy"] }
+]
       },
       {
-        category: "Specialty Brews",
-        arCategory: "المشروبات المميزة",
-        icon: "☕",
-        items: [
-          { id: "sb1", enName: "V60 Pour Over (Hot & Ice)", arName: "V60 بورت أوفر (ساخن ومثلج)", priceNum: 29, descriptionEn: "V60 pour-over coffee", descriptionAr: "قهوة V60 مصفاة بعناية", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/v60.jpg", calories: "2 kcal", dietary: ["vegan","dairy-free"] },
-          { id: "sb2", enName: "Ice Drip", arName: "آيس دريب", priceNum: 32, descriptionEn: "Slow-dripped ice coffee", descriptionAr: "قهوة باردة قطرية", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Icedrip.jpeg", calories: "2 kcal", dietary: ["vegan","dairy-free"] },
-          { id: "sb3", enName: "Cold Brew", arName: "كولد برو", priceNum: 36, descriptionEn: "Cold brew coffee", descriptionAr: "كولد برو", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Coldbrew.jpg", calories: "2 kcal", dietary: ["vegan","dairy-free"] }
-        ]
+      category: "Specialty Brews",
+arCategory: "المشروبات المميزة",
+icon: "☕",
+items: [
+  { id: "sb1", enName: "V60 Pour Over (Hot & Ice)", arName: "V60 بورت أوفر (ساخن ومثلج)", priceNum: 29, descriptionEn: "Hand-brewed V60 pour-over coffee, highlighting bright flavors and a clean, crisp finish.", descriptionAr: "قهوة V60 مصفاة بعناية، تبرز النكهات الزاهية ونهاية نظيفة ومنعشة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/v60.jpg", calories: "2 kcal", dietary: ["vegan","dairy-free"] },
+
+  { id: "sb2", enName: "Ice Drip", arName: "آيس دريب", priceNum: 32, descriptionEn: "Slow-dripped iced coffee with smooth, concentrated flavor, perfect for a refreshing boost.", descriptionAr: "قهوة باردة قطرية بطيئة مع نكهة مركزة وسلسة، مثالية لإنعاش يومك.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Icedrip.jpeg", calories: "2 kcal", dietary: ["vegan","dairy-free"] },
+
+  { id: "sb3", enName: "Cold Brew", arName: "كولد برو", priceNum: 36, descriptionEn: "Rich and smooth cold brew, steeped for hours to extract deep, mellow coffee flavors.", descriptionAr: "كولد برو غني وسلس، منقوع لساعات لاستخراج نكهات القهوة العميقة والناعمة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Coldbrew.jpg", calories: "2 kcal", dietary: ["vegan","dairy-free"] }
+]
       },
       {
-        category: "Fizz",
-        arCategory: "الفيز",
-        icon: "🍹",
-        items: [
-         { id: "fz1", enName: "Lemonade", arName: "ليموناضة", priceNum: 30, descriptionEn: "Fresh lemonade", descriptionAr: "ليموناضة طازجة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Lemonade.jpg", calories: "120 kcal", dietary: ["vegan","dairy-free"] },
+       category: "Fizz",
+arCategory: "الفيز",
+icon: "🍹",
+items: [
+  { id: "fz1", enName: "Lemonade", arName: "ليموناضة", priceNum: 30, descriptionEn: "Refreshing fresh lemonade, perfectly chilled", descriptionAr: "ليموناضة طازجة منعشة، تقدم باردة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Lemonade.jpg", calories: "120 kcal", dietary: ["vegan","dairy-free"] },
 
-{ id: "fz2", enName: "Fresh Orange Juice", arName: "عصير برتقال طازج", priceNum: 30, descriptionEn: "Fresh orange juice", descriptionAr: "عصير برتقال طازج", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Orange.jpeg", calories: "140 kcal", dietary: ["vegan","dairy-free"] },
+  { id: "fz2", enName: "Fresh Orange Juice", arName: "عصير برتقال طازج", priceNum: 30, descriptionEn: "Freshly squeezed orange juice, full of natural flavor", descriptionAr: "عصير برتقال طازج مع نكهة طبيعية", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Orange.jpeg", calories: "140 kcal", dietary: ["vegan","dairy-free"] },
 
-{ id: "fz3", enName: "Orange Earl Grey Tea", arName: "شاي البرتقال إيرل جراي", priceNum: 37, descriptionEn: "Earl Grey with orange", descriptionAr: "شاي إيرل جراي بالنكهة البرتقالية", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Earl.jpeg", calories: "2 kcal", dietary: ["vegan","dairy-free"] },
+  { id: "fz3", enName: "Orange Earl Grey Tea", arName: "شاي البرتقال إيرل جراي", priceNum: 37, descriptionEn: "Earl Grey tea infused with fresh orange notes", descriptionAr: "شاي إيرل جراي مع لمسات البرتقال الطازج", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Earl.jpeg", calories: "2 kcal", dietary: ["vegan","dairy-free"] },
 
-{ id: "fz4", enName: "Churchill", arName: "تشرشل", priceNum: 25, descriptionEn: "Signature drink", descriptionAr: "مشروب تشرشل المميز", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Churchill.webp", calories: "120 kcal", dietary: [] },
+  { id: "fz4", enName: "Churchill", arName: "تشرشل", priceNum: 25, descriptionEn: "Signature refreshing drink", descriptionAr: "مشروب تشرشل المميز والمنعش", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Churchill.webp", calories: "120 kcal", dietary: [] },
 
-{ id: "fz5", enName: "Strawberry Mojito", arName: "موهيتو بالفراولة", priceNum: 38, descriptionEn: "Strawberry mojito", descriptionAr: "موهيتو بالفراولة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Strawberrymojito.jpg", calories: "160 kcal", dietary: [] },
+  { id: "fz5", enName: "Strawberry Mojito", arName: "موهيتو بالفراولة", priceNum: 38, descriptionEn: "Classic strawberry mojito with fresh mint and lime", descriptionAr: "موهيتو بالفراولة مع النعناع الطازج والليمون", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Strawberrymojito.jpg", calories: "160 kcal", dietary: [] },
 
-{ id: "fz6", enName: "Passion Fruit Mojito", arName: "موهيتو فاكهة العاطفة", priceNum: 42, descriptionEn: "Passion fruit mojito", descriptionAr: "موهيتو فاكهة العاطفة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Passionfruit.webp", calories: "170 kcal", dietary: [] },
+  { id: "fz6", enName: "Passion Fruit Mojito", arName: "موهيتو فاكهة العاطفة", priceNum: 42, descriptionEn: "Exotic passion fruit mojito, refreshing and fruity", descriptionAr: "موهيتو فاكهة العاطفة المميزة والمنعشة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Passionfruit.webp", calories: "170 kcal", dietary: [] },
 
-{ id: "fz7", enName: "Blueberry Mojito", arName: "موهيتو التوت الأزرق", priceNum: 38, descriptionEn: "Blueberry mojito", descriptionAr: "موهيتو التوت الأزرق", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Blueberrymojito.webp", calories: "150 kcal", dietary: [] },
+  { id: "fz7", enName: "Blueberry Mojito", arName: "موهيتو التوت الأزرق", priceNum: 38, descriptionEn: "Blueberry mojito with fresh mint and lime", descriptionAr: "موهيتو التوت الأزرق مع النعناع الطازج والليمون", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Blueberrymojito.webp", calories: "150 kcal", dietary: [] },
 
-{ id: "fz8", enName: "Black Mulberry Mojito", arName: "موهيتو التوت", priceNum: 42, descriptionEn: "Black Mulberry mojito", descriptionAr: "موهيتو التوت", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mulberrymojito.jpg", calories: "170 kcal", dietary: [] },
+  { id: "fz8", enName: "Black Mulberry Mojito", arName: "موهيتو التوت", priceNum: 42, descriptionEn: "Rich black mulberry mojito with refreshing mint", descriptionAr: "موهيتو التوت الأسود الغني مع النعناع المنعش", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mulberrymojito.jpg", calories: "170 kcal", dietary: [] },
 
-{ id: "fz9", enName: "Mix Berries Mojito", arName: "موهيتو التوت المختلط", priceNum: 43, descriptionEn: "Mix Berries mojito with fresh blackberries, strawberries, raspberries, mint, lime", descriptionAr: "موهيتو التوت المشكل بالتوت الأسود الطازج، الفراولة، التوت الأحمر، النعناع، والليمون", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mixberriesmojito.webp", calories: "176 kcal", dietary: [] },
+  { id: "fz9", enName: "Mix Berries Mojito", arName: "موهيتو التوت المختلط", priceNum: 43, descriptionEn: "A refreshing mix of blackberries, strawberries, raspberries, mint & lime", descriptionAr: "موهيتو التوت المشكل مع التوت الأسود والفراولة والتوت الأحمر والنعناع والليمون", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mixberriesmojito.webp", calories: "176 kcal", dietary: [] },
 
-{ id: "fz10", enName: "Cooling Breeze", arName: "نسيم بارد", priceNum: 33, descriptionEn: "Mint & lime refreshment", descriptionAr: "نسيم منعش بالنعناع والليمون", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Coolingbreeze.jpg", calories: "110 kcal", dietary: [] }
-
-        ]
+  { id: "fz10", enName: "Cooling Breeze", arName: "نسيم بارد", priceNum: 33, descriptionEn: "Mint & lime drink to refresh your senses", descriptionAr: "نسيم منعش بالنعناع والليمون لإنعاش الحواس", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Coolingbreeze.jpg", calories: "110 kcal", dietary: [] }
+]
       },
       {
         category: "Refreshments",
-        arCategory: "المشروبات الغازية والمرطبات",
-        icon: "🥤",
-        items: [
-          { id: "rf1", enName: "Still Water (Small)", arName: "مياه عادية (صغير)", priceNum: 11, descriptionEn: "Small still water", descriptionAr: "زجاجة مياه صغيرة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/WaterBig.jpg", calories: "0 kcal", dietary: ["vegan","dairy-free"] },
-          { id: "rf2", enName: "Still Water (Big)", arName: "مياه عادية (كبير)", priceNum: 21, descriptionEn: "Large still water", descriptionAr: "زجاجة مياه كبيرة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Watersmall.jpg", calories: "0 kcal", dietary: ["vegan","dairy-free"] },
-          { id: "rf3", enName: "Sparkling Water", arName: "مياه غازية", priceNum: 21, descriptionEn: "Sparkling water", descriptionAr: "مياه غازية", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Sparkling.jpg", calories: "0 kcal", dietary: ["vegan","dairy-free"] },
-          { id: "rf4", enName: "Kinza Cola", arName: "كينزا كولا", priceNum: 17, descriptionEn: "Kinza Cola", descriptionAr: "كينزا كولا", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Cola.jpg", calories: "150 kcal", dietary: [] },
-          { id: "rf5", enName: "Kinza Cola Zero", arName: "كينزا كولا زيرو", priceNum: 17, descriptionEn: "Kinza Cola Zero", descriptionAr: "كينزا كولا زيرو", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Zero.jpg", calories: "0 kcal", dietary: [] }
-        ]
+arCategory: "المشروبات الغازية والمرطبات",
+icon: "🥤",
+items: [
+  { id: "rf1", enName: "Still Water (Small)", arName: "مياه عادية (صغير)", priceNum: 11, descriptionEn: "Small bottle of still water", descriptionAr: "زجاجة مياه صغيرة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/WaterBig.jpg", calories: "0 kcal", dietary: ["vegan","dairy-free"] },
+
+  { id: "rf2", enName: "Still Water (Big)", arName: "مياه عادية (كبير)", priceNum: 21, descriptionEn: "Large bottle of still water", descriptionAr: "زجاجة مياه كبيرة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Watersmall.jpg", calories: "0 kcal", dietary: ["vegan","dairy-free"] },
+
+  { id: "rf3", enName: "Sparkling Water", arName: "مياه غازية", priceNum: 21, descriptionEn: "Refreshing sparkling water", descriptionAr: "مياه غازية منعشة", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Sparkling.jpg", calories: "0 kcal", dietary: ["vegan","dairy-free"] },
+
+  { id: "rf4", enName: "Kinza Cola", arName: "كينزا كولا", priceNum: 17, descriptionEn: "Classic Kinza Cola", descriptionAr: "مشروب كينزا كولا الكلاسيكي", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Cola.jpg", calories: "150 kcal", dietary: [] },
+
+  { id: "rf5", enName: "Kinza Cola Zero", arName: "كينزا كولا زيرو", priceNum: 17, descriptionEn: "Kinza Cola Zero, sugar-free", descriptionAr: "كينزا كولا زيرو خالية من السكر", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Zero.jpg", calories: "0 kcal", dietary: [] }
+]
       }
     ];
 
