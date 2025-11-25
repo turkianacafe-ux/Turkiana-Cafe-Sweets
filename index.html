@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Turkiana Cafe & Sweets — Full Menu</title>
+  <title>Turkiana Cafe & Sweets — Menu Display</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
@@ -25,7 +25,6 @@
     .top-left,.top-right{display:flex;gap:8px;align-items:center}
     .btn{padding:8px 12px;border-radius:10px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-weight:700;cursor:pointer;transition:all 0.2s}
     .btn:hover{background:var(--gold);color:#111}
-    .badge{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:999px;background:var(--maroon);color:#fff;font-size:12px;font-weight:800;margin-left:8px}
     .hero{margin-top:90px;border-radius:12px;padding:20px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid var(--border);text-align:center}
     .brand{font-family:"Playfair Display",serif;font-size:32px;color:var(--gold);font-weight:800}
     .subtitle{color:var(--muted);margin-top:6px;font-size:13px}
@@ -39,7 +38,7 @@
     .filters-sort{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
     .filter-btn{padding:8px 10px;border-radius:8px;border:1px solid var(--border);background:var(--surface);cursor:pointer;font-weight:700;transition:all 0.2s;font-size:12px}
     .filter-btn.active{background:var(--gold);color:#111;border-color:var(--gold)}
-    .rec-section{margin-top:32px;padding:24px;background:linear-gradient(135deg,rgba(202,168,74,0.15),rgba(122,25,33,0.1));border-radius:12px;border-left:5px solid var(--gold)}
+    .rec-section{margin-top:32px;padding:24px;background:linear-gradient(135deg,rgba(202,168,74,0.08),rgba(122,25,33,0.04));border-radius:12px;border-left:5px solid var(--gold)}
     .rec-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
     .rec-card{background:var(--card);padding:14px;border-radius:10px;border:2px solid var(--gold);cursor:pointer;transition:all 0.3s;display:flex;flex-direction:column;gap:10px;position:relative}
     .rec-badge{display:inline-block;background:linear-gradient(135deg,var(--gold),var(--maroon));color:#fff;padding:6px 12px;border-radius:6px;font-size:10px;font-weight:900;width:fit-content;position:absolute;top:8px;right:8px}
@@ -49,9 +48,6 @@
     .card{background:var(--card);border-radius:12px;padding:12px;border:1px solid var(--border);cursor:pointer;display:flex;flex-direction:column;gap:8px;transition:transform 0.2s;position:relative;overflow:hidden}
     .card:hover{transform:translateY(-6px)}
     .card-badge{position:absolute;top:12px;right:12px;background:var(--maroon);color:#fff;padding:6px 10px;border-radius:6px;font-size:11px;font-weight:800;z-index:5}
-    .card-badge.popular{background:var(--gold);color:#111}
-    .card-fav{position:absolute;top:12px;left:12px;background:rgba(255,255,255,0.9);border:none;width:32px;height:32px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:6;transition:all 0.2s}
-    .card-fav.active{color:var(--maroon)}
     img.item-img{width:100%;height:160px;object-fit:cover;border-radius:8px;display:block;background:var(--surface);animation:fadeIn 0.4s}
     .name{color:var(--gold);font-weight:800;font-size:14px;display:flex;justify-content:space-between;align-items:start;gap:8px}
     .desc{color:var(--muted);font-size:12px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
@@ -63,14 +59,7 @@
     .modal-body{padding:18px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
     .modal-img{width:100%;height:320px;object-fit:cover;border-radius:8px}
     .modal-name{font-size:20px;font-weight:800;color:var(--maroon)}
-    .qty-selector{display:flex;gap:8px;align-items:center;margin:12px 0;padding:12px;background:var(--surface);border-radius:8px}
-    .qty-btn{background:none;border:1px solid var(--border);width:32px;height:32px;border-radius:6px;cursor:pointer;font-weight:800;transition:all 0.2s}
-    .cart-drawer{position:fixed;right:0;top:0;height:100vh;width:360px;background:var(--card);z-index:60;transform:translateX(100%);transition:transform .25s;border-left:1px solid var(--border);display:flex;flex-direction:column}
-    .cart-drawer.open{transform:translateX(0)}
-    .cart-header{padding:12px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
-    .cart-body{padding:12px;overflow:auto;flex:1}
-    .cart-item{display:flex;gap:8px;padding:10px;border-radius:8px;background:var(--surface);margin-bottom:10px;font-size:13px}
-    .cart-item img{width:64px;height:64px;object-fit:cover;border-radius:6px;flex-shrink:0}
+    .hours-pill{padding:8px 12px;border-radius:999px;background:var(--surface);font-weight:700;color:var(--maroon);display:inline-block}
     footer{margin-top:40px;padding:26px;border-top:3px solid var(--gold);background:linear-gradient(135deg, rgba(122,25,33,0.9), rgba(0,0,0,0.95));color:#fff}
     .toast{position:fixed;bottom:20px;left:20px;background:rgba(0,0,0,0.8);color:#fff;padding:12px 16px;border-radius:8px;z-index:9999;animation:slideIn 0.3s;max-width:300px}
     @keyframes slideIn{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
@@ -78,32 +67,29 @@
     @media (max-width:768px){
       .top-bar{height:60px;padding:6px 12px}
       .modal-body{grid-template-columns:1fr;align-items:start}
-      .cart-drawer{width:100%}
       .items-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
       .rec-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
       .controls{flex-direction:column}
       .search{width:100%}
     }
+    @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
   </style>
 </head>
 <body>
-  <div class="top-bar" role="banner">
+  <div class="top-bar" role="banner" aria-label="Top bar">
     <div class="top-left">
       <button id="themeToggle" class="btn" aria-label="Toggle theme"><i class="fas fa-adjust"></i></button>
       <button id="langToggle" class="btn" aria-label="Toggle language">العربية</button>
     </div>
-    <div class="top-right">
-      <button id="cartBtn" class="btn" aria-label="Open cart">
-        <i class="fas fa-shopping-cart"></i>
-        <span id="cartBadge" class="badge" style="display:none">0</span>
-      </button>
+    <div class="top-right" style="display:flex;align-items:center;gap:12px">
+      <div class="hours-pill" aria-hidden="true">Open: Sat–Wed 7:00 AM — 11:00 PM • Thu–Fri 7:00 AM — 12:00 AM</div>
     </div>
   </div>
 
   <main class="container" id="main" role="main">
-    <section class="hero" id="hero">
-      <div class="brand">Turkiana</div>
-      <div class="subtitle">CAFÉ & SWEETS — Where Tradition Meets Excellence</div>
+    <section class="hero" id="hero" aria-labelledby="brandTitle">
+      <div id="brandTitle" class="brand">Turkiana</div>
+      <div class="subtitle">CAFÉ & SWEETS — Display-only menu for in-cafe tablet viewing</div>
     </section>
 
     <section class="controls" aria-label="Controls">
@@ -111,7 +97,7 @@
         <input id="searchInput" type="search" placeholder="Search items..." aria-label="Search items" autocomplete="off">
         <div id="searchSuggestions" class="search-suggestions" role="listbox" aria-label="Search suggestions"></div>
       </div>
-      <div class="filters-sort">
+      <div class="filters-sort" aria-hidden="false">
         <div id="filterGroup" aria-label="Filters"></div>
         <select id="sortSelect" class="filter-btn" aria-label="Sort">
           <option value="">Sort By</option>
@@ -122,72 +108,48 @@
       </div>
     </section>
 
-    <div id="recommendationsContainer"></div>
-    <div id="menuContainer"></div>
+    <div id="recommendationsContainer" aria-live="polite"></div>
+    <div id="menuContainer" aria-live="polite"></div>
   </main>
 
+  <!-- Item modal: view-only (no add to cart) -->
   <div id="itemModal" class="modal" role="dialog" aria-hidden="true" aria-modal="true">
     <div class="modal-content" role="document">
       <div style="display:flex;justify-content:flex-end;padding:10px;border-bottom:1px solid var(--border)">
-        <button class="close" id="modalClose" aria-label="Close modal"><i class="fas fa-times"></i></button>
+        <button class="close btn" id="modalClose" aria-label="Close modal"><i class="fas fa-times"></i></button>
       </div>
       <div class="modal-body">
         <img id="modalImg" class="modal-img" alt="" loading="lazy">
         <div>
           <div id="modalTitle" class="modal-name">Item</div>
-          <div id="modalPrice" class="modal-price">QAR 0</div>
-          <div id="modalDesc" class="modal-desc"></div>
+          <div id="modalPrice" class="modal-price" style="font-weight:700;margin-top:6px">QAR 0</div>
+          <div id="modalDesc" class="modal-desc" style="margin-top:8px;color:var(--muted)"></div>
           <div id="modalCalories" style="font-size:12px;color:var(--muted);margin-top:6px"></div>
+          <div class="tags" id="modalTags" style="margin-top:12px"></div>
 
-          <div class="qty-selector" aria-label="Quantity selector">
-            <button class="qty-btn" id="qtyDec" aria-label="Decrease quantity">−</button>
-            <div class="qty-display" id="qtyDisplay">1</div>
-            <button class="qty-btn" id="qtyInc" aria-label="Increase quantity">+</button>
-            <span style="margin-left:auto;font-size:12px;color:var(--muted)">Quantity</span>
-          </div>
-
-          <div class="tags" id="modalTags" aria-hidden="true"></div>
-
-          <label style="display:block;margin-top:10px;font-weight:700;font-size:13px">Size</label>
-          <select id="itemSize" style="width:100%;padding:8px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--text);font-size:12px">
-            <option>Standard</option><option>Small</option><option>Large</option>
-          </select>
-
-          <label style="display:block;margin-top:10px;font-weight:700;font-size:13px">Notes</label>
-          <textarea id="itemNotes" rows="2" style="width:100%;padding:8px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--text);font-size:12px;font-family:inherit"></textarea>
-
-          <div class="modal-actions" style="margin-top:12px">
-            <button id="addToCartBtn" class="add"><i class="fas fa-shopping-cart"></i> Add</button>
-            <button id="modalCancel" class="btn">Cancel</button>
+          <div style="margin-top:14px;color:var(--muted);font-size:13px">
+            
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <aside id="cartDrawer" class="cart-drawer" aria-hidden="true">
-    <div class="cart-header">
-      <div style="font-weight:800">Your Cart</div>
-      <button id="closeCart" class="btn" aria-label="Close cart">✕</button>
-    </div>
-    <div class="cart-body" id="cartBody" tabindex="0">
-      <div style="color:var(--muted)">Your cart is empty</div>
-    </div>
-    <div class="cart-footer">
-      <div id="loyaltyPoints" class="loyalty-points" style="display:none">💎 Loyalty Points: <span id="pointsDisplay">0</span></div>
-      <div class="cart-total"><span>Total</span><span id="cartTotal">QAR 0.00</span></div>
-      <button id="whatsappBtn" class="btn" style="width:100%;background:var(--gold);border:none;color:#111;font-weight:800;margin-bottom:8px;font-size:13px"><i class="fab fa-whatsapp"></i> WhatsApp</button>
-      <button id="clearCart" class="btn" style="width:100%;font-size:13px">Clear Cart</button>
-    </div>
-  </aside>
-
   <div id="toastLive" class="sr-only" aria-live="polite" aria-atomic="true"></div>
 
   <footer>
-    <div class="footer-grid">
+    <div style="display:flex;gap:24px;flex-wrap:wrap;align-items:flex-start;justify-content:space-between">
       <div>
         <h4 style="color:var(--gold);font-size:14px">About</h4>
-        <p style="color:var(--muted);font-size:13px">Experience authentic Turkish delicacies and premium café culture.</p>
+        <p style="color:var(--muted);font-size:13px">At Turkiana Café & Sweets, we bring a taste of Turkey to everyone. We specialize in traditional Turkish sweets like baklava, kunefe, and Turkish delight, all made with high-quality ingredients and authentic recipes.
+
+But it’s not just about sweets — we also serve a full café menu. Our guests can enjoy Turkish coffee, espresso-based drinks, teas, fresh juices, and even mojitos. For food, we offer breakfast items, sandwiches, salads, and burgers, so there’s something for everyone.
+
+We focus on authenticity and quality. Every dessert is crafted carefully to reflect Turkish culinary traditions, and many of our sweets are beautifully packaged so they can also be given as gifts.
+
+With multiple branches in Qatar, including a cozy spot in Msheireb Downtown, we aim to give every customer a warm, welcoming experience — whether they’re stopping by for a quick coffee, a meal, or some special treats to take home.
+
+In short, Turkiana is our space where Turkish culture, flavors, and hospitality come together in every bite and sip./p>
       </div>
       <div>
         <h4 style="color:var(--gold);font-size:14px">Contact</h4>
@@ -195,18 +157,19 @@
       </div>
       <div>
         <h4 style="color:var(--gold);font-size:14px">Follow</h4>
-        <p style="color:var(--muted);font-size:13px"><a href="https://instagram.com/turkiana.qa" target="_blank" rel="noopener">Instagram</a> • <a href="https://wa.me/97451866671" target="_blank" rel="noopener">WhatsApp</a></p>
+        <p style="color:var(--muted);font-size:13px"><a href="https://instagram.com/turkiana.qa" target="_blank" rel="noopener">Instagram</a></p>
       </div>
       <div>
-        <h4 style="color:var(--gold);font-size:14px">Locations</h4>
-        <p style="color:var(--muted);font-size:13px"><a href="https://turkianasweets.com" target="_blank" rel="noopener">All Branches in Qatar</a><br>© 2025 Turkiana</p>
+        <h4 style="color:var(--gold);font-size:14px">Opening Hours</h4>
+        <p style="color:var(--muted);font-size:13px">Saturday — Wednesday: 7:00 AM — 11:00 PM<br>Thursday & Friday: 7:00 AM — 12:00 AM</p>
+ 
       </div>
     </div>
   </footer>
 
   <script>
-    // Complete app: menuData inserted (from provided context). State persisted in localStorage.
-    const STORAGE_KEYS = { CART: 'turkiana_cart_v1', THEME: 'turkiana_theme_v1', LANG: 'turkiana_lang_v1' };
+    // Storage keys for theme & language only (no cart)
+    const STORAGE_KEYS = { THEME: 'turkiana_theme_v1', LANG: 'turkiana_lang_v1' };
 
     // Recommendations mapping
     const recommendations = {
@@ -214,14 +177,13 @@
       croissant: { enName: "Croissant Beef Ribs", id: "cc1", reason: "Premium unique" },
       burger: { enName: "Turkiana Beef Burger", id: "gg1", reason: "Flagship popular" },
       baklava: { enName: "Turkish Mix Baklava", id: "bk1", reason: "Traditional dessert" },
-      fondue: { enName: "Turkiana Fondue", id: "fd3", reason: "Shareable experience" },
-      coffee: { enName: "Classic Turkish Coffee", id: "btw1", reason: "Must-try brew" },
-      tea: { enName: "Turkish Tea", id: "tt1", reason: "Affordable essential" },
-      latte: { enName: "Salted Caramel Latte", id: "cac5", reason: "Modern classic" }
+      coffee: { enName: "Classic Turkish Coffee", id: "btw1", reason: "Must-try brew" }
     };
 
-    // menuData (copied from user's provided context)
-    const menuData = [
+    // menuData (same as provided)
+    const menuData = [ /* full menu array copied from context (kept intact) */ 
+      /* For brevity in this snippet the actual data is included below exactly as in prompt */
+      
       { category: "Turkish Morning", arCategory: "الصباح التركي", icon: "🍳", items: [
         { id: "tm1", enName: "Turkish Classic Breakfast", arName: "فطور تركي كلاسيكي", priceNum: 65, descriptionEn: "A rich and traditional Turkish spread featuring freshly baked warm bread, assorted cheeses, marinated olives, ripe tomatoes, crisp cucumbers, natural honey, and velvety clotted cream, all served with aromatic Turkish tea to create an authentic and fulfilling morning experience.", descriptionAr: "وجبة تركية أصيلة وغنية تتضمن خبزًا طازجًا ساخنًا، مجموعة من الأجبان، زيتون متبّل، طماطم ناضجة، خيار مقرمش، عسل طبيعي وقشطة ناعمة، تُقدّم مع شاي تركي عطري لتجربة صباح كاملة ومتوازنة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Breakfast.jpg", calories: "680 kcal", dietary: ["vegetarian","contains-dairy"], popular: true },
         { id: "tm2", enName: "Turkish Menemen", arName: "مينمن تركي", priceNum: 45, descriptionEn: "A comforting Turkish classic made with softly scrambled eggs cooked gently with juicy tomatoes, tender green peppers, and fragrant spices, creating a warm, homestyle dish full of rich and savory flavors.", descriptionAr: "طبق تركي مميز من البيض المخفوق المطهو برفق مع طماطم عصيرية، فلفل أخضر طري وتوابل عطرية، ليقدم نكهة منزلية دافئة مليئة بالغنى والطعم التقليدي.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Menemen.jpg", calories: "360 kcal", dietary: ["gluten-free","contains-dairy"] },
@@ -347,267 +309,185 @@
         { id: "rf4", enName: "Kinza Cola", arName: "كينزا كولا", priceNum: 17, descriptionEn: "Classic Kinza Cola", descriptionAr: "مشروب كينزا كولا الكلاسيكي", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Cola.jpg", calories: "150 kcal", dietary: [] },
         { id: "rf5", enName: "Kinza Cola Zero", arName: "كينزا كولا زيرو", priceNum: 17, descriptionEn: "Kinza Cola Zero, sugar-free", descriptionAr: "كينزا كولا زيرو خالية من السكر", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Zero.jpg", calories: "0 kcal", dietary: [] }
       ]}
-    ];
+      ];
+ // End menuData
 
-    // STATE
+    // State
     let currentLang = localStorage.getItem(STORAGE_KEYS.LANG) || 'en';
-    let cart = JSON.parse(localStorage.getItem(STORAGE_KEYS.CART) || '[]');
     let activeFilters = new Set();
-    let activeModalData = null;
-    let modalQuantity = 1;
-    let loyaltyPoints = 0;
-    let lastFocusedElement = null;
     let suggestionIndex = -1;
+    let lastFocusedElement = null;
 
-    // UTIL
-    function formatPrice(n) { return `QAR ${Number(n || 0).toFixed(2)}`; }
-    function escapeHtml(s) { return String(s || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
-    function getAllItems() { return menuData.flatMap(c => c.items || []); }
-    function toast(message) {
-      const t = document.createElement('div'); t.className = 'toast'; t.textContent = message;
-      document.body.appendChild(t);
-      document.getElementById('toastLive').textContent = message;
-      setTimeout(() => t.remove(), 2400);
+    // Utilities
+    function formatPrice(n){ return `QAR ${Number(n||0).toFixed(2)}`; }
+    function escapeHtml(s){ return String(s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+    function getAllItems(){ return menuData.flatMap(c=>c.items||[]); }
+    function toast(msg){
+      const t = document.createElement('div'); t.className='toast'; t.textContent = msg; document.body.appendChild(t);
+      document.getElementById('toastLive').textContent = msg;
+      setTimeout(()=> t.remove(), 1800);
     }
-    function saveCart() { localStorage.setItem(STORAGE_KEYS.CART, JSON.stringify(cart)); }
-    function saveTheme(theme) { localStorage.setItem(STORAGE_KEYS.THEME, theme); }
-    function saveLang(lang) { localStorage.setItem(STORAGE_KEYS.LANG, lang); }
+    function saveTheme(t){ localStorage.setItem(STORAGE_KEYS.THEME, t); }
+    function saveLang(l){ localStorage.setItem(STORAGE_KEYS.LANG, l); }
 
-    // THEME & LANG INIT
-    (function initThemeLang() {
+    // Init theme & lang
+    (function initThemeLang(){
       const savedTheme = localStorage.getItem(STORAGE_KEYS.THEME);
-      if (savedTheme === 'dark') document.body.classList.add('theme-dark');
-      if (currentLang === 'ar') {
-        document.getElementById('langToggle').textContent = 'English';
-        document.documentElement.dir = 'rtl';
-      } else {
-        document.getElementById('langToggle').textContent = 'العربية';
-        document.documentElement.dir = 'ltr';
-      }
+      if(savedTheme==='dark') document.body.classList.add('theme-dark');
+      if(currentLang === 'ar'){ document.getElementById('langToggle').textContent='English'; document.documentElement.dir='rtl'; }
+      else { document.getElementById('langToggle').textContent='العربية'; document.documentElement.dir='ltr'; }
     })();
 
-    // RENDER RECOMMENDATIONS
-    function renderRecommendations() {
+    // Render recommendations
+    function renderRecommendations(){
       const out = document.getElementById('recommendationsContainer');
-      const items = Object.values(recommendations).map(r => {
-        const item = getAllItems().find(i => i.id === r.id);
-        if (!item) return '';
-        const name = currentLang === 'en' ? r.enName : (item.arName || r.enName);
-        const descSource = currentLang === 'en' ? (item.descriptionEn || '') : (item.descriptionAr || item.descriptionEn || '');
-        const desc = descSource.substring(0, 60);
+      const itemsHtml = Object.values(recommendations).map(r=>{
+        const item = getAllItems().find(i=>i.id===r.id);
+        if(!item) return '';
+        const name = currentLang==='en' ? r.enName : (item.arName||r.enName);
+        const descSource = currentLang==='en' ? (item.descriptionEn||'') : (item.descriptionAr||item.descriptionEn||'');
+        const desc = descSource.substring(0,60);
         return `<div class="rec-card" data-id="${escapeHtml(item.id)}" role="button" tabindex="0">
           <div class="rec-badge">Recommended</div>
           <img class="rec-img" src="${escapeHtml(item.image)}" alt="${escapeHtml(name)}" loading="lazy">
-          <div class="rec-name">${escapeHtml(name)}</div>
-          <div class="rec-price">${formatPrice(item.priceNum)}</div>
-          <div class="rec-desc">${escapeHtml(desc)}${descSource.length>=60? '...' : ''}</div>
-          <div class="rec-reason">💡 ${escapeHtml(r.reason)}</div>
+          <div style="font-weight:800">${escapeHtml(name)}</div>
+          <div style="font-weight:700">${formatPrice(item.priceNum)}</div>
+          <div style="color:var(--muted);font-size:13px">${escapeHtml(desc)}${descSource.length>=60? '...' : ''}</div>
+          <div style="font-size:12px;margin-top:6px">💡 ${escapeHtml(r.reason)}</div>
         </div>`;
       }).join('');
-      out.innerHTML = items ? `<section class="rec-section"><div class="rec-title">⭐ Our Top Recommendations</div><div class="rec-grid">${items}</div></section>` : '';
-      document.querySelectorAll('.rec-card').forEach(el => {
-        el.addEventListener('click', () => { openModalById(el.dataset.id); });
-        el.addEventListener('keydown', (e) => { if (e.key === 'Enter') el.click(); });
+      out.innerHTML = itemsHtml ? `<section class="rec-section" aria-label="Top recommendations"><div style="font-weight:800;margin-bottom:12px">⭐ Our Top Recommendations</div><div class="rec-grid">${itemsHtml}</div></section>` : '';
+      document.querySelectorAll('.rec-card').forEach(el=>{
+        el.addEventListener('click', ()=> openModalById(el.dataset.id));
+        el.addEventListener('keydown', e=> { if(e.key==='Enter') el.click(); });
       });
     }
 
-    // RENDER MENU
-    function renderMenu(query = '') {
-      const q = String(query || '').trim().toLowerCase();
+    // Render menu (filter + sort + search)
+    function renderMenu(query=''){
+      const q = String(query||'').trim().toLowerCase();
       const sortBy = document.getElementById('sortSelect').value;
       const container = document.getElementById('menuContainer');
-      container.innerHTML = menuData.map(cat => {
-        const itemsRaw = (cat.items || []).slice();
-        let items = itemsRaw.filter(i => {
-          if (activeFilters.size) {
-            const hasAny = Array.from(activeFilters).some(f => (i.dietary || []).includes(f));
-            if (!hasAny) return false;
+      container.innerHTML = menuData.map(cat=>{
+        const itemsRaw = (cat.items||[]).slice();
+        let items = itemsRaw.filter(i=>{
+          if(activeFilters.size){
+            const has = Array.from(activeFilters).some(f => (i.dietary||[]).includes(f));
+            if(!has) return false;
           }
-          if (!q) return true;
-          const en = (i.enName || '').toLowerCase();
-          const ar = (i.arName || '').toLowerCase();
-          return en.includes(q) || ar.includes(q) || (i.descriptionEn || '').toLowerCase().includes(q) || (i.descriptionAr || '').toLowerCase().includes(q);
+          if(!q) return true;
+          const en = (i.enName||'').toLowerCase(), ar = (i.arName||'').toLowerCase();
+          return en.includes(q) || ar.includes(q) || (i.descriptionEn||'').toLowerCase().includes(q) || (i.descriptionAr||'').toLowerCase().includes(q);
         });
-        if (sortBy === 'price-asc') items.sort((a,b)=>a.priceNum-b.priceNum);
-        else if (sortBy === 'price-desc') items.sort((a,b)=>b.priceNum-a.priceNum);
-        else if (sortBy === 'name') items.sort((a,b)=> (a.enName||'').localeCompare(b.enName||''));
-        if (!items.length) return '';
-        const sectionHtml = `<section class="category-section">
-          <div class="category-header"><span class="category-icon">${escapeHtml(cat.icon||'')}</span>
-            <span class="category-title">${escapeHtml(currentLang === 'en' ? cat.category : (cat.arCategory || cat.category))}</span>
-          </div>
+        if(sortBy==='price-asc') items.sort((a,b)=>a.priceNum-b.priceNum);
+        else if(sortBy==='price-desc') items.sort((a,b)=>b.priceNum-a.priceNum);
+        else if(sortBy==='name') items.sort((a,b)=> (a.enName||'').localeCompare(b.enName||''));
+        if(!items.length) return '';
+        return `<section class="category-section" aria-labelledby="cat-${escapeHtml(cat.category)}">
+          <div style="display:flex;gap:10px;align-items:center;margin-bottom:10px"><div style="font-size:20px">${escapeHtml(cat.icon||'')}</div><div id="cat-${escapeHtml(cat.category)}" style="font-weight:800">${escapeHtml(currentLang==='en'?cat.category:(cat.arCategory||cat.category))}</div></div>
           <div class="items-grid">
-            ${items.map(item => `
-              <article class="card" data-id="${escapeHtml(item.id)}" tabindex="0" role="button" aria-label="${escapeHtml(currentLang === 'en' ? item.enName : (item.arName || item.enName))}">
+            ${items.map(item=>`
+              <article class="card" data-id="${escapeHtml(item.id)}" tabindex="0" role="button" aria-label="${escapeHtml(currentLang==='en'?item.enName:(item.arName||item.enName))}">
                 ${item.popular ? '<div class="card-badge popular">Popular</div>' : ''}
-                <img class="item-img" src="${escapeHtml(item.image)}" alt="${escapeHtml(currentLang === 'en' ? item.enName : (item.arName || item.enName))}" loading="lazy">
-                <div class="name"><span>${escapeHtml(currentLang === 'en' ? item.enName : (item.arName || item.enName))}</span><span class="price">${formatPrice(item.priceNum)}</span></div>
-                <div class="desc">${escapeHtml(((currentLang === 'en' ? item.descriptionEn : (item.descriptionAr || item.descriptionEn))||'').substring(0,80))}${((currentLang === 'en' ? item.descriptionEn : (item.descriptionAr || item.descriptionEn))||'').length>80 ? '...' : ''}</div>
+                <img class="item-img" src="${escapeHtml(item.image)}" alt="${escapeHtml(currentLang==='en'?item.enName:(item.arName||item.enName))}" loading="lazy">
+                <div class="name"><span>${escapeHtml(currentLang==='en'?item.enName:(item.arName||item.enName))}</span><span style="font-weight:800">${formatPrice(item.priceNum)}</span></div>
+                <div class="desc">${escapeHtml(((currentLang==='en'?item.descriptionEn:(item.descriptionAr||item.descriptionEn))||'').substring(0,80))}${((currentLang==='en'?item.descriptionEn:(item.descriptionAr||item.descriptionEn))||'').length>80? '...' : ''}</div>
                 <div class="tags">${(item.dietary||[]).map(t=>`<div class="tag">${escapeHtml(t)}</div>`).join('')}</div>
               </article>
             `).join('')}
           </div>
         </section>`;
-        return sectionHtml;
       }).join('');
-      // Wire up card event listeners
-      document.querySelectorAll('.card').forEach(card => {
-        card.addEventListener('click', () => openModalById(card.dataset.id));
-        card.addEventListener('keydown', (e) => { if (e.key === 'Enter') card.click(); });
+      // wire up cards
+      document.querySelectorAll('.card').forEach(card=>{
+        card.addEventListener('click', ()=> openModalById(card.dataset.id));
+        card.addEventListener('keydown', e=> { if(e.key==='Enter') card.click(); });
       });
-      updateSearchSuggestions(); // keep suggestions consistent
+      updateSearchSuggestions();
     }
 
-    // OPEN/CLOSE MODAL WITH FOCUS MANAGEMENT
-    function openModal(item) {
+    // Modal (view-only)
+    let activeModalData = null;
+    let lastFocus = null;
+    function openModal(item){
       activeModalData = item;
-      modalQuantity = 1;
-      lastFocusedElement = document.activeElement;
+      lastFocus = document.activeElement;
       const img = document.getElementById('modalImg');
-      img.src = item.image || '';
-      img.alt = currentLang === 'en' ? item.enName : (item.arName || item.enName);
-      document.getElementById('modalTitle').textContent = currentLang === 'en' ? item.enName : (item.arName || item.enName);
+      img.src = item.image||'';
+      img.alt = currentLang==='en'?item.enName:(item.arName||item.enName);
+      document.getElementById('modalTitle').textContent = currentLang==='en'?item.enName:(item.arName||item.enName);
       document.getElementById('modalPrice').textContent = formatPrice(item.priceNum);
-      document.getElementById('modalDesc').textContent = currentLang === 'en' ? item.descriptionEn || '' : (item.descriptionAr || item.descriptionEn || '');
+      document.getElementById('modalDesc').textContent = currentLang==='en'?item.descriptionEn||'':(item.descriptionAr||item.descriptionEn||'');
       document.getElementById('modalCalories').textContent = item.calories ? `📊 ${item.calories}` : '';
-      document.getElementById('qtyDisplay').textContent = String(modalQuantity);
-      document.getElementById('modalTags').innerHTML = (item.dietary || []).map(t => `<div class="tag">${escapeHtml(t)}</div>`).join('');
-      document.getElementById('itemNotes').value = '';
-      document.getElementById('itemSize').value = 'Standard';
+      document.getElementById('modalTags').innerHTML = (item.dietary||[]).map(t=>`<div class="tag">${escapeHtml(t)}</div>`).join('');
       const modal = document.getElementById('itemModal');
-      modal.classList.add('show');
-      modal.setAttribute('aria-hidden','false');
+      modal.classList.add('show'); modal.setAttribute('aria-hidden','false');
       trapFocus(modal);
-      document.getElementById('addToCartBtn').focus();
+      document.getElementById('modalClose').focus();
     }
-    function openModalById(id) {
+    function openModalById(id){
       const item = getAllItems().find(i=>i.id===id);
-      if (item) openModal(item);
+      if(item) openModal(item);
     }
-    function closeModal() {
+    function closeModal(){
       const modal = document.getElementById('itemModal');
-      modal.classList.remove('show');
-      modal.setAttribute('aria-hidden','true');
-      activeModalData = null; modalQuantity = 1;
+      modal.classList.remove('show'); modal.setAttribute('aria-hidden','true');
       releaseFocusTrap();
-      if (lastFocusedElement) lastFocusedElement.focus();
+      if(lastFocus) lastFocus.focus();
+      activeModalData = null;
     }
 
-    // FOCUS TRAP implementation (simple)
-    let focusTrapContainer = null;
-    let focusableElements = [];
-    let focusTrapHandler = null;
-    function trapFocus(container) {
-      focusTrapContainer = container;
-      focusableElements = Array.from(container.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')).filter(el => !el.hasAttribute('disabled'));
-      if (focusableElements.length) focusableElements[0].focus();
-      focusTrapHandler = function(e) {
-        if (e.key !== 'Tab') return;
-        const first = focusableElements[0];
-        const last = focusableElements[focusableElements.length-1];
-        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    // focus trap (basic)
+    let trapHandler=null, focusableEls=[];
+    function trapFocus(container){
+      focusableEls = Array.from(container.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')).filter(el=>!el.hasAttribute('disabled'));
+      if(focusableEls.length) focusableEls[0].focus();
+      trapHandler = function(e){
+        if(e.key!=='Tab') return;
+        const first = focusableEls[0], last = focusableEls[focusableEls.length-1];
+        if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+        else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
       };
-      document.addEventListener('keydown', focusTrapHandler);
+      document.addEventListener('keydown', trapHandler);
     }
-    function releaseFocusTrap() {
-      if (focusTrapHandler) document.removeEventListener('keydown', focusTrapHandler);
-      focusTrapContainer = null; focusableElements = []; focusTrapHandler = null;
+    function releaseFocusTrap(){
+      if(trapHandler) document.removeEventListener('keydown', trapHandler);
+      trapHandler = null; focusableEls = [];
     }
 
     // Modal controls
-    document.getElementById('qtyInc').addEventListener('click', () => { modalQuantity++; document.getElementById('qtyDisplay').textContent = modalQuantity; });
-    document.getElementById('qtyDec').addEventListener('click', () => { if (modalQuantity>1){ modalQuantity--; document.getElementById('qtyDisplay').textContent = modalQuantity; }});
     document.getElementById('modalClose').addEventListener('click', closeModal);
-    document.getElementById('modalCancel').addEventListener('click', closeModal);
-    document.getElementById('itemModal').addEventListener('click', (e)=>{ if (e.target.id==='itemModal') closeModal(); });
+    document.getElementById('itemModal').addEventListener('click', (e)=> { if(e.target.id==='itemModal') closeModal(); });
+    document.addEventListener('keydown', (e)=> { if(e.key==='Escape'){ if(document.getElementById('itemModal').classList.contains('show')) closeModal(); } });
 
-    // ADD TO CART
-    document.getElementById('addToCartBtn').addEventListener('click', () => {
-      if (!activeModalData) return;
-      const size = document.getElementById('itemSize').value;
-      const notes = document.getElementById('itemNotes').value.trim();
-      const existingIndex = cart.findIndex(ci => ci.id === activeModalData.id && ci.size === size && ci.notes === notes);
-      if (existingIndex >= 0) cart[existingIndex].qty += modalQuantity;
-      else cart.push({...activeModalData, qty: modalQuantity, size, notes});
-      saveCart(); updateCartUI();
-      closeModal(); document.getElementById('cartDrawer').classList.add('open'); document.getElementById('cartDrawer').setAttribute('aria-hidden','false');
-      toast('✅ Added to cart!');
-    });
-
-    // CART UI
-    function updateCartUI() {
-      const totalQty = cart.reduce((s,i)=>s + (i.qty||0),0);
-      const cartBadge = document.getElementById('cartBadge');
-      cartBadge.style.display = totalQty ? 'inline-flex' : 'none'; cartBadge.textContent = totalQty;
-      const total = cart.reduce((s,i)=> s + ((i.priceNum||0)*(i.qty||0)), 0);
-      document.getElementById('cartTotal').textContent = formatPrice(total);
-      loyaltyPoints = Math.floor(total/10);
-      const lpEl = document.getElementById('loyaltyPoints');
-      if (loyaltyPoints){ lpEl.style.display='block'; document.getElementById('pointsDisplay').textContent = loyaltyPoints; } else lpEl.style.display='none';
-      const cb = document.getElementById('cartBody');
-      if (!cart.length) { cb.innerHTML = '<div style="color:var(--muted)">Your cart is empty</div>'; return; }
-      cb.innerHTML = cart.map((ci, idx)=>`
-        <div class="cart-item" data-idx="${idx}">
-          <img src="${escapeHtml(ci.image)}" alt="${escapeHtml(currentLang==='en'?ci.enName:(ci.arName||ci.enName))}" loading="lazy">
-          <div style="flex:1">
-            <div style="font-weight:800;font-size:13px">${escapeHtml(currentLang==='en'?ci.enName:(ci.arName||ci.enName))}</div>
-            <div style="color:var(--muted);font-size:11px">${escapeHtml(ci.size||'')}${ci.notes? ' • '+escapeHtml(ci.notes):''}</div>
-            <div style="margin-top:6px;font-weight:800;font-size:12px">${formatPrice(ci.priceNum)} × ${ci.qty||0}</div>
-            <div style="margin-top:6px"><button class="btn remove-item" data-idx="${idx}" style="font-size:11px;padding:4px 6px;">Remove</button></div>
-          </div>
-        </div>
-      `).join('');
-      cb.querySelectorAll('.remove-item').forEach(btn=>btn.addEventListener('click', ()=> {
-        const idx = Number(btn.dataset.idx); if (!Number.isNaN(idx)) cart.splice(idx,1); saveCart(); updateCartUI(); toast('Removed');
-      }));
-    }
-
-    // Cart controls
-    document.getElementById('cartBtn').addEventListener('click', ()=> {
-      document.getElementById('cartDrawer').classList.add('open'); document.getElementById('cartDrawer').setAttribute('aria-hidden','false'); lastFocusedElement = document.activeElement;
-      document.getElementById('closeCart').focus();
-    });
-    document.getElementById('closeCart').addEventListener('click', ()=> {
-      document.getElementById('cartDrawer').classList.remove('open'); document.getElementById('cartDrawer').setAttribute('aria-hidden','true');
-      if (lastFocusedElement) lastFocusedElement.focus();
-    });
-    document.getElementById('clearCart').addEventListener('click', ()=> { cart = []; saveCart(); updateCartUI(); toast('Cart cleared'); });
-
-    document.getElementById('whatsappBtn').addEventListener('click', ()=> {
-      if (!cart.length){ toast('Cart is empty'); return; }
-      const lines = cart.map(ci => `${currentLang==='en'?ci.enName:(ci.arName||ci.enName)} - ${ci.qty} x ${formatPrice(ci.priceNum)}${ci.size? ' • '+ci.size:''}${ci.notes? ' • '+ci.notes:''}`);
-      const total = formatPrice(cart.reduce((s,i)=>s+((i.priceNum||0)*(i.qty||0)),0));
-      const msg = encodeURIComponent(lines.join('\n') + `\n\nTotal: ${total}\n\n💎 Loyalty Points: ${loyaltyPoints}`);
-      window.open(`https://wa.me/97451866671?text=${msg}`,'_blank');
-    });
-
-    // FILTERS
-    function buildFilters() {
+    // Filters
+    function buildFilters(){
       const tags = new Set(); menuData.flatMap(c=>c.items||[]).forEach(i=> (i.dietary||[]).forEach(t=>tags.add(t)));
       const fg = document.getElementById('filterGroup');
       fg.innerHTML = Array.from(tags).map(tag=>`<button class="filter-btn" data-tag="${escapeHtml(tag)}">${escapeHtml(tag)}</button>`).join('');
-      fg.querySelectorAll('.filter-btn').forEach(btn=>btn.addEventListener('click', ()=>{
-        const tag = btn.dataset.tag;
-        if (btn.classList.toggle('active')) activeFilters.add(tag); else activeFilters.delete(tag);
-        renderMenu(document.getElementById('searchInput').value);
-      }));
+      fg.querySelectorAll('.filter-btn').forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          const tag = btn.dataset.tag;
+          if(btn.classList.toggle('active')) activeFilters.add(tag); else activeFilters.delete(tag);
+          renderMenu(document.getElementById('searchInput').value);
+        });
+      });
     }
 
-    // SEARCH with suggestions + keyboard navigation
+    // Search suggestions + keyboard nav
     const searchInput = document.getElementById('searchInput');
     const suggestionsEl = document.getElementById('searchSuggestions');
     let searchTimer = null;
 
-    function updateSearchSuggestions() {
+    function updateSearchSuggestions(){
       const q = (searchInput.value||'').trim().toLowerCase();
       suggestionIndex = -1;
-      if (!q){ suggestionsEl.classList.remove('show'); suggestionsEl.innerHTML=''; return; }
+      if(!q){ suggestionsEl.classList.remove('show'); suggestionsEl.innerHTML=''; return; }
       const items = getAllItems().filter(i=>{
         const en = (i.enName||'').toLowerCase(), ar = (i.arName||'').toLowerCase();
         return en.includes(q) || ar.includes(q) || (i.descriptionEn||'').toLowerCase().includes(q);
       }).slice(0,8);
-      if (!items.length){ suggestionsEl.classList.remove('show'); suggestionsEl.innerHTML=''; return; }
+      if(!items.length){ suggestionsEl.classList.remove('show'); suggestionsEl.innerHTML=''; return; }
       suggestionsEl.innerHTML = items.map(it=>`<div class="suggestion-item" role="option" data-id="${escapeHtml(it.id)}">${escapeHtml(currentLang==='en'?it.enName:(it.arName||it.enName))} — ${formatPrice(it.priceNum)}</div>`).join('');
       suggestionsEl.classList.add('show');
       suggestionsEl.querySelectorAll('.suggestion-item').forEach(el=>{
@@ -621,29 +501,28 @@
       searchTimer = setTimeout(()=> { renderMenu(q); updateSearchSuggestions(); }, 160);
     });
 
-    // Keyboard navigation for suggestions
     searchInput.addEventListener('keydown', (e)=>{
-      if (!suggestionsEl.classList.contains('show')) return;
+      if(!suggestionsEl.classList.contains('show')) return;
       const items = Array.from(suggestionsEl.querySelectorAll('.suggestion-item'));
-      if (!items.length) return;
-      if (e.key === 'ArrowDown') { e.preventDefault(); suggestionIndex = Math.min(suggestionIndex+1, items.length-1); updateSuggestionSelection(items); }
-      else if (e.key === 'ArrowUp') { e.preventDefault(); suggestionIndex = Math.max(suggestionIndex-1, 0); updateSuggestionSelection(items); }
-      else if (e.key === 'Enter') { e.preventDefault(); if (suggestionIndex >=0) items[suggestionIndex].click(); }
-      else if (e.key === 'Escape') { suggestionsEl.classList.remove('show'); suggestionIndex = -1; }
+      if(!items.length) return;
+      if(e.key === 'ArrowDown'){ e.preventDefault(); suggestionIndex = Math.min(suggestionIndex+1, items.length-1); updateSuggestionSelection(items); }
+      else if(e.key === 'ArrowUp'){ e.preventDefault(); suggestionIndex = Math.max(suggestionIndex-1, 0); updateSuggestionSelection(items); }
+      else if(e.key === 'Enter'){ e.preventDefault(); if(suggestionIndex >= 0) items[suggestionIndex].click(); }
+      else if(e.key === 'Escape'){ suggestionsEl.classList.remove('show'); suggestionIndex = -1; }
     });
 
     function updateSuggestionSelection(items){
       items.forEach((it,i)=> it.setAttribute('aria-selected', (i===suggestionIndex).toString()));
-      if (suggestionIndex>=0) items[suggestionIndex].scrollIntoView({block:'nearest'});
+      if(suggestionIndex>=0) items[suggestionIndex].scrollIntoView({block:'nearest'});
     }
 
-    // Close suggestions on outside click
-    document.addEventListener('click', (e)=> { if (!e.target.closest('.search')) suggestionsEl.classList.remove('show'); });
+    document.addEventListener('click', (e)=> { if(!e.target.closest('.search')) suggestionsEl.classList.remove('show'); });
 
-    // THEME & LANGUAGE BUTTONS
+    // Theme & language toggles
     document.getElementById('themeToggle').addEventListener('click', ()=>{
       document.body.classList.toggle('theme-dark');
       saveTheme(document.body.classList.contains('theme-dark') ? 'dark' : 'light');
+      toast('Theme toggled');
     });
 
     document.getElementById('langToggle').addEventListener('click', ()=>{
@@ -654,25 +533,18 @@
       renderRecommendations(); renderMenu(document.getElementById('searchInput').value); buildFilters();
     });
 
-    // SORT
+    // Sort
     document.getElementById('sortSelect').addEventListener('change', ()=> renderMenu(document.getElementById('searchInput').value));
 
-    // Global keyboard (Escape to close modal or cart)
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') { if (document.getElementById('itemModal').classList.contains('show')) closeModal(); else if (document.getElementById('cartDrawer').classList.contains('open')) { document.getElementById('cartDrawer').classList.remove('open'); document.getElementById('cartDrawer').setAttribute('aria-hidden','true'); } }
-    });
-
     // Initialization
-    function init() {
+    function init(){
       buildFilters();
       renderRecommendations();
       renderMenu();
-      updateCartUI();
-      // restore persisted cart/theme/lang
       const savedTheme = localStorage.getItem(STORAGE_KEYS.THEME);
-      if (savedTheme === 'dark') document.body.classList.add('theme-dark');
+      if(savedTheme==='dark') document.body.classList.add('theme-dark');
       const savedLang = localStorage.getItem(STORAGE_KEYS.LANG);
-      if (savedLang) { currentLang = savedLang; document.getElementById('langToggle').textContent = currentLang === 'en' ? 'العربية' : 'English'; document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr'; renderRecommendations(); renderMenu(); }
+      if(savedLang){ currentLang = savedLang; document.getElementById('langToggle').textContent = currentLang === 'en' ? 'العربية' : 'English'; document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr'; renderRecommendations(); renderMenu(); }
     }
 
     init();
