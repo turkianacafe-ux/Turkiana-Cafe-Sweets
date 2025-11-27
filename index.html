@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Turkiana Cafe & Sweets — Gallery Menu</title>
+  <title>Turkiana Cafe & Sweets – Gallery Menu</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
@@ -322,15 +322,15 @@
   <div class="container">
     <header>
       <div class="eyebrow">Turkiana Cafe & Sweets</div>
-      <h1> Gallery of Turkish Flavors</h1>
-      <p>Discover our dishes as you would art—crafted with tradition, beauty, and the spirit of Turkish hospitality..</p>
+      <h1>Gallery of Turkish Flavors</h1>
+      <p>Discover our dishes as you would art—crafted with tradition, beauty, and the spirit of Turkish hospitality.</p>
       <div class="hero-pill">crafted for admiration</div>
     </header>
 
     <main id="menu-container"></main>
 
     <footer>
-     A gallery of artisan-crafted dishes-designed to inspire, captivate, and celebrate the spirit of Turkish craftsmanship.
+     A gallery of artisan-crafted dishes designed to inspire, captivate, and celebrate the spirit of Turkish craftsmanship.
     </footer>
   </div>
 
@@ -355,9 +355,10 @@
     </div>
   </div>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script>
     const menuData = [
-      { category: "Turkish Morning", arCategory: "الصباح التركي", icon: "🍳", items: [
+     { category: "Turkish Morning", arCategory: "الصباح التركي", icon: "🍳", items: [
         { id: "tm1", enName: "Turkish Classic Breakfast", arName: "فطور تركي كلاسيكي", priceNum: 65, descriptionEn: "A rich and traditional Turkish spread featuring freshly baked warm bread, assorted cheeses, marinated olives, ripe tomatoes, crisp cucumbers, natural honey, and velvety clotted cream, all served with aromatic Turkish tea to create an authentic and fulfilling morning experience.", descriptionAr: "وجبة تركية أصيلة وغنية تتضمن خبزًا طازجًا ساخنًا، مجموعة من الأجبان، زيتون متبّل، طماطم ناضجة، خيار مقرمش، عسل طبيعي وقشطة ناعمة، تُقدّم مع شاي تركي عطري لتجربة صباح كاملة ومتوازنة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Breakfast.jpg", calories: "680 kcal", dietary: ["vegetarian","contains-dairy"], popular: true },
         { id: "tm2", enName: "Turkish Menemen", arName: "مينمن تركي", priceNum: 45, descriptionEn: "A comforting Turkish classic made with softly scrambled eggs cooked gently with juicy tomatoes, tender green peppers, and fragrant spices, creating a warm, homestyle dish full of rich and savory flavors.", descriptionAr: "طبق تركي مميز من البيض المخفوق المطهو برفق مع طماطم عصيرية، فلفل أخضر طري وتوابل عطرية، ليقدم نكهة منزلية دافئة مليئة بالغنى والطعم التقليدي.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Menemen.jpg", calories: "360 kcal", dietary: ["gluten-free","contains-dairy"] },
         { id: "tm3", enName: "Plain Omelette", arName: "أومليت عادي", priceNum: 25, descriptionEn: "A light and tender omelette cooked to a delicate golden finish, offering natural egg richness with a soft, airy texture that makes every bite simple yet deeply satisfying.", descriptionAr: "أومليت خفيف وطري يُطهى حتى يصل إلى لون ذهبي ناعم، يتميز بنكهة البيض الطبيعية وقوام هش يمنحك وجبة بسيطة لكنها مليئة بالرضا.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Omellet.jpg", calories: "220 kcal", dietary: ["gluten-free","contains-dairy"] }
@@ -483,6 +484,7 @@
         { id: "rf5", enName: "Kinza Cola Zero", arName: "كينزا كولا زيرو", priceNum: 17, descriptionEn: "Kinza Cola Zero, sugar-free", descriptionAr: "كينزا كولا زيرو خالية من السكر", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Zero.jpg", calories: "0 kcal", dietary: [] }
       ]}
     ];
+
 
     const menuContainer = document.getElementById("menu-container");
     const modal = document.getElementById("imageModal");
