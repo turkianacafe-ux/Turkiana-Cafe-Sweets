@@ -9,29 +9,43 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #03060d;
-      --panel: #0d1321;
-      --card: #12182c;
+      --bg: #02040d;
+      --panel: rgba(4, 9, 22, 0.85);
+      --card: rgba(18, 24, 44, 0.85);
       --text: #f4f4f6;
-      --muted: #a0a8c3;
+      --muted: #9aa4c5;
       --accent: #f97316;
       --gold: #caa84a;
+      --glass: rgba(15, 21, 40, 0.6);
       font-family: "Inter", "Segoe UI", system-ui, sans-serif;
     }
+
     * {
       box-sizing: border-box;
     }
+
     body {
       margin: 0;
-      background: var(--bg);
+      background: radial-gradient(circle at top, rgba(249, 115, 22, 0.25), transparent 55%), linear-gradient(180deg, #050814 0%, #02040d 100%);
       color: var(--text);
       min-height: 100vh;
+      transition: background 0.7s ease;
     }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(120deg, rgba(202, 168, 74, 0.15), transparent 45%, rgba(249, 115, 22, 0.08));
+      z-index: -1;
+    }
+
     .container {
       max-width: 1200px;
       margin: 0 auto;
       padding: 40px 24px 80px;
     }
+
     header {
       padding: 80px 0 60px;
       text-align: center;
@@ -39,27 +53,38 @@
       overflow: hidden;
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
-    header::before {
+
+    header::after {
       content: "";
       position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at top right, rgba(249, 115, 22, 0.4), transparent 55%);
-      opacity: 0.4;
+      inset: 10% -20% auto;
+      height: 280px;
+      background: radial-gradient(circle, rgba(202, 168, 74, 0.18), transparent);
+      filter: blur(10px);
+      z-index: 0;
     }
+
     header .eyebrow {
       font-size: 12px;
       text-transform: uppercase;
       letter-spacing: 0.4em;
       color: var(--muted);
+      position: relative;
+      z-index: 1;
     }
+
     header h1 {
       font-family: "Playfair Display", serif;
-      font-size: clamp(2.8rem, 4vw, 3.6rem);
+      font-size: clamp(3rem, 4vw, 3.8rem);
       margin: 0.9rem 0 0;
       letter-spacing: 0.08em;
       position: relative;
       z-index: 1;
+      background: linear-gradient(120deg, #f97316, #facc15, #caa84a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
+
     header p {
       max-width: 720px;
       margin: 18px auto 0;
@@ -69,6 +94,7 @@
       z-index: 1;
       line-height: 1.6;
     }
+
     .hero-pill {
       display: inline-flex;
       align-items: center;
@@ -84,10 +110,131 @@
       text-transform: uppercase;
       position: relative;
       z-index: 1;
+      color: var(--gold);
     }
-    section {
-      margin-top: 48px;
+
+    .controls {
+      margin: -40px 0 40px;
+      padding: 20px;
+      border-radius: 24px;
+      background: var(--glass);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(20px);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+      justify-content: space-between;
     }
+
+    .controls .search-input {
+      flex: 1;
+      min-width: 250px;
+      border: none;
+      border-radius: 999px;
+      padding: 14px 18px;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text);
+      font-size: 1rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      outline: none;
+      letter-spacing: 0.02em;
+    }
+
+    .controls .search-input::placeholder {
+      color: rgba(244, 244, 246, 0.6);
+    }
+
+    .controls .search-input:focus {
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px);
+    }
+
+    .filters {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      border: none;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text);
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .filter-btn:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 0 30px rgba(249, 115, 22, 0.4);
+    }
+
+    .filter-btn.active {
+      background: linear-gradient(135deg, rgba(249, 115, 22, 0.3), rgba(202, 168, 74, 0.2));
+      border: 1px solid rgba(249, 115, 22, 0.7);
+      color: #fff;
+      box-shadow: 0 0 25px rgba(249, 115, 22, 0.45);
+    }
+
+    .no-results {
+      display: none;
+      margin-top: 30px;
+      padding: 28px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.04);
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 25px 55px rgba(0, 0, 0, 0.45);
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .no-results.visible {
+      display: flex;
+    }
+
+    .no-results button {
+      border: none;
+      padding: 10px 20px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #f97316, #caa84a);
+      color: #05060d;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .no-results button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(250, 147, 37, 0.45);
+    }
+
+    main section {
+      background: rgba(10, 13, 33, 0.75);
+      border-radius: 28px;
+      padding: 30px;
+      margin-bottom: 32px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(16px);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    main section:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 40px 70px rgba(0, 0, 0, 0.6);
+    }
+
     .section-header {
       display: flex;
       align-items:flex-end;
@@ -95,30 +242,40 @@
       gap: 1rem;
       margin-bottom: 1.2rem;
     }
+
     .section-header h2 {
       font-size: 2rem;
       margin: 0;
       font-family: "Playfair Display", serif;
-      color: #fff;
+      background: linear-gradient(120deg, #f97316, #caa84a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
+
     .section-header span {
       color: var(--muted);
       font-size: 11px;
       letter-spacing: 0.4em;
       text-transform: uppercase;
     }
+
     .section-header .icon-chip {
       font-size: 18px;
       color: var(--gold);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      letter-spacing: 0.15em;
     }
+
     .category-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 20px;
     }
+
     .dish-card {
-      background: linear-gradient(180deg, var(--panel), #151b2c);
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      background: linear-gradient(180deg, rgba(8, 12, 26, 0.95), rgba(18, 24, 43, 0.9));
       border-radius: 24px;
       overflow: hidden;
       position: relative;
@@ -126,20 +283,25 @@
       flex-direction: column;
       gap: 12px;
       padding-bottom: 20px;
-      box-shadow: 0 28px 60px rgba(0, 0, 0, 0.55);
-      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.65);
+      transition: transform 0.35s ease, box-shadow 0.35s ease, border 0.35s ease;
+      border: 1px solid transparent;
     }
+
     .dish-card::after {
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, transparent, #03060d 70%);
+      background: linear-gradient(120deg, rgba(249, 115, 22, 0.15), transparent 55%);
       pointer-events: none;
     }
+
     .dish-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 36px 80px rgba(0, 0, 0, 0.7);
+      transform: translateY(-10px);
+      border-color: rgba(249, 115, 22, 0.6);
+      box-shadow: 0 35px 60px rgba(249, 115, 22, 0.2), 0 40px 80px rgba(0, 0, 0, 0.8);
     }
+
     .dish-card img {
       width: 100%;
       height: 220px;
@@ -149,14 +311,17 @@
       cursor: pointer;
       transition: transform 0.3s ease;
     }
+
     .dish-card img:hover {
-      transform: scale(1.02);
+      transform: scale(1.03);
     }
+
     .dish-card .content {
       position: relative;
       z-index: 1;
       padding: 0 18px;
     }
+
     .dish-card .name {
       display: flex;
       align-items: flex-start;
@@ -166,18 +331,21 @@
       font-weight: 700;
       color: #fff;
     }
+
     .dish-card .price {
       font-size: 1rem;
       color: var(--accent);
       white-space: nowrap;
     }
+
     .dish-card .desc {
       color: var(--muted);
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       margin-top: 8px;
-      line-height: 1.5;
+      line-height: 1.6;
       min-height: 70px;
     }
+
     .dish-card .meta {
       display: flex;
       flex-wrap: wrap;
@@ -188,11 +356,15 @@
       text-transform: uppercase;
       color: var(--muted);
     }
+
     .tag {
       padding: 4px 10px;
       border-radius: 999px;
       border: 1px solid rgba(255, 255, 255, 0.2);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
     }
+
     .badge {
       position: absolute;
       top: 16px;
@@ -205,39 +377,35 @@
       letter-spacing: 0.3em;
       text-transform: uppercase;
     }
+
     .modal-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(2, 7, 20, 0.8);
+      background: rgba(2, 7, 20, 0.9);
       display: none;
       align-items: center;
       justify-content: center;
       padding: 1rem;
       z-index: 200;
       overflow-y: auto;
+      backdrop-filter: blur(8px);
     }
+
     .modal-backdrop.active {
       display: flex;
     }
+
     .modal-content {
-      background: #050710;
-      border-radius: 24px;
+      background: rgba(5, 7, 16, 0.95);
+      border-radius: 28px;
       max-width: 900px;
       width: 100%;
       overflow: hidden;
       border: 1px solid rgba(255, 255, 255, 0.08);
-      animation: pop 0.3s ease;
+      animation: pop 0.35s ease;
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
     }
-    @keyframes pop {
-      from {
-        opacity: 0;
-        transform: scale(0.9);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
+
     .modal-header {
       padding: 18px;
       display: flex;
@@ -245,62 +413,84 @@
       align-items: center;
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
+
     .modal-header h3 {
       margin: 0;
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       font-family: "Playfair Display", serif;
+      background: linear-gradient(120deg, #f97316, #caa84a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
+
     .modal-header button {
       background: transparent;
       border: none;
       color: var(--text);
       font-size: 1.5rem;
       cursor: pointer;
+      transition: transform 0.25s ease;
     }
+
+    .modal-header button:hover {
+      transform: scale(1.1);
+    }
+
     .modal-body {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 0;
     }
+
     .modal-body img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      filter: grayscale(0.03);
     }
+
     .modal-text {
       padding: 24px;
       display: flex;
       flex-direction: column;
       gap: 14px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.4));
     }
+
     .modal-text p {
       margin: 0;
       color: var(--muted);
       line-height: 1.6;
     }
+
     .modal-text .calories {
       font-size: 0.9rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--gold);
     }
+
     .modal-text .dietary {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
     }
+
     .modal-text .dietary span {
       font-size: 10px;
       padding: 4px 10px;
       border-radius: 999px;
       border: 1px solid rgba(255, 255, 255, 0.2);
     }
+
     .bean-selector {
       margin-top: 16px;
-      padding: 12px;
-      background: rgba(202, 168, 74, 0.1);
-      border: 1px solid rgba(202, 168, 74, 0.3);
-      border-radius: 12px;
+      padding: 14px;
+      background: rgba(202, 168, 74, 0.12);
+      border: 1px solid rgba(202, 168, 74, 0.4);
+      border-radius: 14px;
     }
+
     .bean-selector label {
       display: block;
       font-size: 0.85rem;
@@ -310,11 +500,13 @@
       letter-spacing: 0.1em;
       text-transform: uppercase;
     }
+
     .bean-options {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
     }
+
     .bean-option {
       padding: 8px 14px;
       border-radius: 8px;
@@ -326,15 +518,19 @@
       transition: all 0.2s ease;
       font-weight: 500;
     }
+
     .bean-option:hover {
       border-color: var(--gold);
       color: var(--gold);
+      transform: translateY(-2px);
     }
+
     .bean-option.selected {
       background: var(--gold);
       color: #03060d;
       border-color: var(--gold);
     }
+
     .modal-footer {
       padding: 18px 24px;
       border-top: 1px solid rgba(255, 255, 255, 0.05);
@@ -342,12 +538,14 @@
       font-size: 0.9rem;
       color: var(--muted);
     }
+
     .modal-footer .selected-bean {
       display: block;
       margin-bottom: 8px;
       font-size: 0.85rem;
       color: var(--gold);
     }
+
     footer {
       margin-top: 80px;
       text-align: center;
@@ -355,16 +553,39 @@
       color: var(--muted);
       font-size: 0.9rem;
     }
+
+    @keyframes pop {
+      from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.92);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
     @media (max-width: 768px) {
+      header {
+        padding-top: 60px;
+      }
+
       .section-header {
         flex-direction: column;
         align-items: flex-start;
       }
+
       .modal-body {
         grid-template-columns: 1fr;
       }
+
       .bean-options {
         flex-direction: column;
+      }
+
+      .controls {
+        flex-direction: column;
+        align-items: stretch;
       }
     }
   </style>
@@ -377,6 +598,20 @@
       <p>Discover our dishes as you would art—crafted with tradition, beauty, and the spirit of Turkish hospitality.</p>
       <div class="hero-pill">crafted for admiration</div>
     </header>
+
+    <div class="controls">
+      <input id="searchInput" class="search-input" type="search" placeholder="Live search dishes by name..." autocomplete="off" />
+      <div class="filters">
+        <button class="filter-btn" data-filter="popular">🔥 Popular</button>
+        <button class="filter-btn" data-filter="vegan">🌿 Vegan</button>
+        <button class="filter-btn" data-filter="vegetarian">🥦 Vegetarian</button>
+      </div>
+    </div>
+
+    <div id="noResults" class="no-results">
+      <p>🥲 We couldn't find anything that matches yet. Try resetting filters or search terms.</p>
+      <button id="resetFiltersBtn">Show full menu</button>
+    </div>
 
     <main id="menu-container"></main>
 
@@ -435,8 +670,8 @@
       { category: "From the Grill & Garden", arCategory: "من الشواية والحديقة", icon: "🍔", items: [
         { id: "gg1", enName: "Turkiana Beef Burger", arName: "برجر تركيانا", priceNum: 69, descriptionEn: "A handcrafted premium beef patty grilled to perfection, layered with fresh toppings and signature sauce, served with a generous portion of crispy golden fries for a rich and satisfying meal.", descriptionAr: "برجر لحم بقري فاخر مشوي بإتقان ومزين بخضار طازجة وصوص مميز، يُقدّم مع كمية سخية من البطاطس الذهبية المقرمشة لوجبة مشبعة وغنية بالنكهات.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Burger.jpeg", calories: "950 kcal", dietary: [] },
         { id: "gg2", enName: "Turkiana Chicken Burger", arName: "برجر دجاج", priceNum: 59, descriptionEn: "A juicy, well-seasoned chicken fillet served inside a soft bun with fresh toppings and house sauce, paired with crispy fries for a balanced and flavorful bite.", descriptionAr: "قطعة دجاج متبّلة بعناية وشويها بعصارة، تُقدّم داخل خبز طري مع خضار طازجة وصوص خاص، وتأتي مع بطاطس مقرمشة لوجبة لذيذة ومتكاملة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Burgerchicken.jpg", calories: "850 kcal", dietary: [] },
-        { id: "gg3", enName: "Fried Potatoes", arName: "بطاطس مقلية", priceNum: 25, descriptionEn: "Perfectly fried golden potatoes with a crisp exterior and a soft, fluffy center, offering a simple yet irresistible side enjoyed by everyone.", descriptionAr: "بطاطس مقلية ذهبية بقوام مقرمش من الخارج وطري من الداخل، تُقدّم كطبق جانبي بسيط لكنه محبّب لدى الجميع.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Patatas.jpg", calories: "340 kcal", dietary: ["vegan","gluten-free"] },
-        { id: "gg4", enName: "Caesar Salad", arName: "سلطة سيزر", priceNum: 47, descriptionEn: "Crisp romaine lettuce tossed in creamy Caesar dressing, topped with crunchy croutons and parmesan for a fresh, classic, and satisfying salad.", descriptionAr: "خس روماني مقرمش يُمزج مع صوص السيزر الكريمي ويُزين بقطع الخبز المحمص وجبن البارميزان، لسلطة كلاسيكية منعشة ومشبعة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Caesar.jpeg", calories: "420 kcal", dietary: ["contains-gluten","contains-dairy"] }
+        { id: "gg3", enName: "Fried Potatoes", arName: "بطاطس مقلية", priceNum: 25, descriptionEn: "Perfectly fried golden potatoes with a crisp exterior and a soft, fluffy center, offering a simple yet irresistible side enjoyed by everyone.", descriptionAr: "بطاطس مقلية ذهبية بقوام مقرمش من الخارج وطري من الداخل، تُقدّم كطبق جانبي بسيط لكنه محبّب لدى الجميع.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Patatas.jpg", calories: "340 kcal", dietary: ["vegan","gluten-free"], popular: true },
+        { id: "gg4", enName: "Caesar Salad", arName: "سلطة سيزر", priceNum: 47, descriptionEn: "Crisp romaine lettuce tossed in creamy Caesar dressing, topped with crunchy croutons and parmesan for a fresh, classic, and satisfying salad.", descriptionAr: "خس روماني مقرمش يُمزج مع صوص السيزر الكريمي ويُزين بقطع الخبز المحمص وجبن البارميزان، لسلطة كلاسيكية منعشة ومشبعة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Caesar.jpeg", calories: "420 kcal", dietary: ["contains-gluten","contains-dairy","vegetarian"] }
       ]},
       { category: "Baklava & Beyond", arCategory: "البقلاوة وما بعدها", icon: "🥜", items: [
         { id: "bk1", enName: "Turkish Mix Baklava", arName: "بقلاوة تركية مشكلة", priceNum: 65, descriptionEn: "An exquisite assortment of traditional Turkish baklava, with layers of crisp filo pastry, fragrant syrup, and a medley of finely chopped nuts for a perfect balance of sweetness and texture.", descriptionAr: "مجموعة فاخرة من البقلاوة التركية التقليدية، بطبقات من عجينة الفيلو المقرمشة، وشراب عطر، ومزيج من المكسرات المفرومة بدقة لتوازن مثالي بين الحلاوة والقوام.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg", calories: "450 kcal (per serving)", dietary: ["contains-nuts"] },
@@ -445,7 +680,7 @@
         { id: "bk4", enName: "Trio Baklava", arName: "تريو بقلاوة", priceNum: 45, descriptionEn: "A delightful trio of baklava styles including pistachio rolls, moussel, and subiyet, each offering unique flavors and textures for the ultimate baklava tasting.", descriptionAr: "مجموعة رائعة من ثلاثة أنواع بقلاوة: رول بالفستق، موسل، وسوبييت، كل نوع يقدم نكهات وقوام فريد لتجربة تذوق البقلاوة المثالية.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/TrioBaklava.jpeg", calories: "480 kcal", dietary: ["contains-nuts"] },
                { id: "ck1", enName: "Snickers-inspired cake", arName: "كعكة مستوحاة من سنيكرز", priceNum: 42, descriptionEn: "A decadent cake layered with rich chocolate, gooey caramel, and crunchy nuts, inspired by the classic Snickers bar for a truly indulgent treat.", descriptionAr: "كعكة فاخرة بطبقات من الشوكولاتة الغنية والكراميل اللزج والمكسرات المقرمشة، مستوحاة من سنيكرز الكلاسيكية لتجربة حلوى فاخرة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Snicker.jpg", calories: "560 kcal", dietary: ["contains-nuts"] },
         { id: "ck2", enName: "Kunafa", arName: "كنافة", priceNum: 40, descriptionEn: "Traditional Turkish kunafa with delicate Akawi cheese, baked until golden and soaked in sweet syrup for a perfectly balanced dessert.", descriptionAr: "كنافة تركية تقليدية مع جبنة عكاوي لطيفة، مخبوزة حتى تصبح ذهبية وتغمر بشراب حلو لتقديم حلوى متوازنة تماماً.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Kunafa.jpeg", calories: "520 kcal", dietary: ["contains-dairy"] },
-        { id: "ck3", enName: "Chocolate Cake", arName: "كعكة الشوكولاتة", priceNum: 40, descriptionEn: "Rich and moist molten chocolate cake with an intense cocoa flavor that melts in your mouth with every bite.", descriptionAr: "كعكة شوكولاتة غنية ورطبة بنكهات كاكاو مكثفة تذوب في الفم مع كل قضمة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Chocolate.jpg", calories: "480 kcal", dietary: ["contains-dairy"] },
+        { id: "ck3", enName: "Chocolate Cake", arName: "كعكة الشوكولاتة", priceNum: 40, descriptionEn: "Rich and moist molten chocolate cake with an intense cocoa flavor that melts in your mouth with every bite.", descriptionAr: "كعكة شوكولاتة غنية ورطبة بنكهات كاكاو مكثفة تذوب في الفم مع كل قضمة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Chocolate.jpg", calories: "480 kcal", dietary: ["contains-dairy"], popular: true },
         { id: "ck4", enName: "Lotus Cake", arName: "كعكة اللوتس", priceNum: 40, descriptionEn: "Soft and moist cake infused with the iconic Lotus Biscoff flavor, perfect for anyone who loves a caramelized, spiced dessert.", descriptionAr: "كعكة طرية ورطبة بنكهة بسكوف لوتس الشهيرة، مثالية لعشاق الحلويات الكراميلية المتبلة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Lutos.jpg", calories: "520 kcal", dietary: ["contains-dairy"] },
         { id: "ck5", enName: "Brownies", arName: "براونيز", priceNum: 45, descriptionEn: "Fudgy and rich chocolate brownies with a soft, dense texture and an intense chocolate taste for chocolate lovers.", descriptionAr: "براونيز شوكولاتة غنية وكثيفة بقوام ناعم ومتماسك وطعم شوكولاتة مكثف لعشاق الشوكولاتة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Brown.jpg", calories: "380 kcal", dietary: ["contains-dairy"] },
         { id: "ck6", enName: "Full Pistachio Cake", arName: "كعكة الفستق كاملة", priceNum: 40, descriptionEn: "A pistachio-infused cake with a delicate nutty flavor and a soft, moist texture that melts in your mouth.", descriptionAr: "كعكة بنكهة الفستق مع طعم مكسراتي رقيق وقوام ناعم ورطب يذوب في الفم.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Full.jpg", calories: "470 kcal", dietary: ["contains-nuts"] },
@@ -473,7 +708,7 @@
         { id: "ab3", enName: "Arabic Coffee in a Cup", arName: "قهوة عربية في فنجان", priceNum: 30, descriptionEn: "A single cup of traditional Arabic coffee, infused with delicate spices and served warm, delivering a comforting taste of Arabian culture.", descriptionAr: "فنجان واحد من القهوة العربية التقليدية، ممزوجة بتوابل خفيفة ومقدمة دافئة، لتجربة مريحة من الثقافة العربية.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Arabiccup.jpeg", calories: "10 kcal", dietary: ["vegan","gluten-free","dairy-free"] }
       ]},
       { category: "Tea Time", arCategory: "وقت الشاي", icon: "🍵", items: [
-        { id: "tt1", enName: "Turkish Tea", arName: "شاي تركي", priceNum: 15, descriptionEn: "A classic cup of Turkish tea, brewed to perfection with a rich, deep flavor and served warm, offering a comforting sip of tradition.", descriptionAr: "كوب كلاسيكي من الشاي التركي، مُعد بعناية ليقدم نكهة عميقة وغنية، ويمنحك دفء ورشفة تقليدية مريحة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Tea.jpg", calories: "2 kcal", dietary: ["vegan","dairy-free"] },
+        { id: "tt1", enName: "Turkish Tea", arName: "شاي تركي", priceNum: 15, descriptionEn: "A classic cup of Turkish tea, brewed to perfection with a rich, deep flavor and served warm, offering a comforting sip of tradition.", descriptionAr: "كوب كلاسيكي من الشاي التركي، مُعد بعناية ليقدم نكهة عميقة وغنية، ويمنحك دفء ورشفة تقليدية مريحة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Tea.jpg", calories: "2 kcal", dietary: ["vegan","dairy-free"], popular: true },
         { id: "tt2", enName: "Turkish Tea in a Pot", arName: "شاي تركي في إبريق", priceNum: 45, descriptionEn: "Generous pot of traditional Turkish tea, brewed to share with up to 4 people, offering the authentic aroma and warmth of Turkish hospitality.", descriptionAr: "إبريق غني من الشاي التركي التقليدي، يكفي حتى ٤ أشخاص، مع عبق الطعم الأصيل ودفء الضيافة التركية.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkishteapot.jpeg", calories: "0 kcal", dietary: ["vegan","gluten-free","dairy-free"] },
         { id: "tt3", enName: "Apple Tea", arName: "شاي التفاح", priceNum: 25, descriptionEn: "A fragrant tea infused with the sweet and tangy flavor of fresh apples, providing a soothing and refreshing taste experience.", descriptionAr: "شاي عطري ممزوج بنكهات التفاح الطازج الحلوة والمنعشة، ليمنحك تجربة مريحة ومنعشة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Appletea.jpg", calories: "2 kcal", dietary: ["vegan","dairy-free"] },
         { id: "tt4", enName: "Mulberry Tea", arName: "شاي التوت", priceNum: 25, descriptionEn: "Delicate mulberry tea with a naturally sweet taste, offering a unique fruity aroma and a calming cup of warmth.", descriptionAr: "شاي توت دقيق بطعم طبيعي حلو، يقدم عبقاً فريداً وتجربة دافئة ومريحة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mulberrytea.jpg", calories: "2 kcal", dietary: ["vegan","dairy-free"] },
@@ -550,8 +785,19 @@
     const beanSelector = document.getElementById("beanSelector");
     const beanOptions = document.getElementById("beanOptions");
     const selectedBeanDisplay = document.getElementById("selectedBeanDisplay");
+    const searchInput = document.getElementById("searchInput");
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const noResults = document.getElementById("noResults");
+    const resetFiltersBtn = document.getElementById("resetFiltersBtn");
+
+    const filterMatchers = {
+      popular: dish => dish.popular,
+      vegan: dish => dish.dietary.includes("vegan"),
+      vegetarian: dish => dish.dietary.includes("vegetarian")
+    };
 
     let currentSelectedBean = null;
+    const activeFilters = new Set();
 
     const createDishCard = (dish) => {
       const article = document.createElement("article");
@@ -565,12 +811,12 @@
           </div>
           <p class="desc">${dish.descriptionEn}</p>
           <div class="meta">
-            <span>${dish.calories}</span>
+            <span>✨ ${dish.calories}</span>
             ${dish.dietary.map(tag => `<span class="tag">${tag.replace(/-/g, " ")}</span>`).join("")}
             ${dish.popular ? `<span class="badge">Popular</span>` : ""}
           </div>
           <div class="meta">
-            <span>${dish.arName}</span>
+            <span>🌙 ${dish.arName}</span>
           </div>
         </div>
       `;
@@ -624,25 +870,73 @@
       currentSelectedBean = null;
     };
 
-    menuData.forEach(section => {
-      const block = document.createElement("section");
-      block.innerHTML = `
-        <div class="section-header">
-          <div>
-            <h2>${section.category}</h2>
-            <div class="icon-chip">${section.icon} ${section.arCategory}</div>
+    const matchesFilters = (dish) => {
+      if (!activeFilters.size) return true;
+      return [...activeFilters].every(filterKey => filterMatchers[filterKey](dish));
+    };
+
+    const renderMenu = () => {
+      const query = searchInput.value.trim().toLowerCase();
+      menuContainer.innerHTML = "";
+      let totalMatches = 0;
+
+      menuData.forEach(section => {
+        const filteredItems = section.items.filter(item => {
+          const matchesText = item.enName.toLowerCase().includes(query);
+          return matchesText && matchesFilters(item);
+        });
+
+        if (!filteredItems.length) return;
+
+        totalMatches += filteredItems.length;
+        const block = document.createElement("section");
+        block.innerHTML = `
+          <div class="section-header">
+            <div>
+              <h2>${section.category}</h2>
+              <div class="icon-chip">${section.icon} ${section.arCategory}</div>
+            </div>
+            <span>${section.category}</span>
           </div>
-          <span>${section.category}</span>
-        </div>
-      `;
-      const grid = document.createElement("div");
-      grid.className = "category-grid";
-      section.items.forEach(item => {
-        grid.appendChild(createDishCard(item));
+        `;
+        const grid = document.createElement("div");
+        grid.className = "category-grid";
+        filteredItems.forEach(item => grid.appendChild(createDishCard(item)));
+        block.appendChild(grid);
+        menuContainer.appendChild(block);
       });
-      block.appendChild(grid);
-      menuContainer.appendChild(block);
+
+      noResults.classList.toggle("visible", totalMatches === 0);
+    };
+
+    const toggleFilter = (filterKey, button) => {
+      if (activeFilters.has(filterKey)) {
+        activeFilters.delete(filterKey);
+        button.classList.remove("active");
+      } else {
+        activeFilters.add(filterKey);
+        button.classList.add("active");
+      }
+      renderMenu();
+    };
+
+    const resetControls = () => {
+      activeFilters.clear();
+      filterButtons.forEach(btn => btn.classList.remove("active"));
+      searchInput.value = "";
+      renderMenu();
+      searchInput.focus();
+    };
+
+    filterButtons.forEach((btn) => {
+      btn.addEventListener("click", () => toggleFilter(btn.dataset.filter, btn));
     });
+
+    searchInput.addEventListener("input", () => {
+      renderMenu();
+    });
+
+    resetFiltersBtn.addEventListener("click", resetControls);
 
     modalCloseBtn.addEventListener("click", closeModal);
     modal.addEventListener("click", (e) => {
@@ -650,6 +944,8 @@
         closeModal();
       }
     });
+
+    renderMenu();
   </script>
 </body>
 </html>
