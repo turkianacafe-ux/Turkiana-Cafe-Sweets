@@ -2,201 +2,363 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Turkiana Cafe & Sweets – Gallery Menu</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Turkiana Cafe & Sweets — Elevated Menu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+    rel="stylesheet"
+  />
   <style>
     :root {
       --bg: #02040d;
-      --panel: rgba(4, 9, 22, 0.85);
-      --card: rgba(18, 24, 44, 0.85);
-      --text: #f4f4f6;
-      --muted: #9aa4c5;
+      --panel: rgba(9, 15, 28, 0.85);
+      --text: #f7f7fb;
+      --muted: rgba(216, 223, 255, 0.82);
       --accent: #f97316;
-      --gold: #caa84a;
-      --glass: rgba(15, 21, 40, 0.6);
-      font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+      --subtle: rgba(255, 255, 255, 0.1);
+      font-family: "Inter", system-ui, sans-serif;
     }
 
-    * {
+    *,
+    *::before,
+    *::after {
       box-sizing: border-box;
     }
 
     body {
       margin: 0;
-      background: radial-gradient(circle at top, rgba(249, 115, 22, 0.25), transparent 55%), linear-gradient(180deg, #050814 0%, #02040d 100%);
-      color: var(--text);
       min-height: 100vh;
-      transition: background 0.7s ease;
+      background: radial-gradient(circle at top, rgba(249, 115, 22, 0.16), transparent 52%),
+        linear-gradient(180deg, #04060f 0%, #010308 100%);
+      color: var(--text);
     }
 
     body::before {
       content: "";
       position: fixed;
       inset: 0;
-      background: linear-gradient(120deg, rgba(202, 168, 74, 0.15), transparent 45%, rgba(249, 115, 22, 0.08));
+      background: radial-gradient(circle, rgba(202, 168, 74, 0.25), transparent 55%);
+      z-index: -2;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 10% 0;
+      background: linear-gradient(90deg, rgba(250, 147, 37, 0.4), transparent 60%);
+      filter: blur(70px);
       z-index: -1;
     }
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 40px 24px 80px;
+    .page {
+      position: relative;
+      overflow: hidden;
+      padding-bottom: 80px;
     }
 
     header {
-      padding: 80px 0 60px;
       text-align: center;
-      position: relative;
-      overflow: hidden;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    header::after {
-      content: "";
-      position: absolute;
-      inset: 10% -20% auto;
-      height: 280px;
-      background: radial-gradient(circle, rgba(202, 168, 74, 0.18), transparent);
-      filter: blur(10px);
-      z-index: 0;
+      padding: 72px 24px 40px;
     }
 
     header .eyebrow {
+      letter-spacing: 0.6em;
       font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.4em;
-      color: var(--muted);
-      position: relative;
-      z-index: 1;
+      color: rgba(255, 255, 255, 0.65);
+      margin-bottom: 12px;
     }
 
     header h1 {
       font-family: "Playfair Display", serif;
-      font-size: clamp(3rem, 4vw, 3.8rem);
-      margin: 0.9rem 0 0;
-      letter-spacing: 0.08em;
-      position: relative;
-      z-index: 1;
+      font-size: clamp(2.6rem, 4vw, 3.6rem);
+      margin: 0;
+      letter-spacing: 0.1em;
       background: linear-gradient(120deg, #f97316, #facc15, #caa84a);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
     header p {
-      max-width: 720px;
-      margin: 18px auto 0;
-      font-size: 1.05rem;
-      color: var(--muted);
-      position: relative;
-      z-index: 1;
+      margin: 16px auto 0;
+      max-width: 760px;
+      color: rgba(255, 255, 255, 0.7);
       line-height: 1.6;
     }
 
     .hero-pill {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      font-size: 12px;
-      padding: 0.4rem 0.9rem;
+      margin-top: 20px;
+      padding: 10px 22px;
       border-radius: 999px;
       border: 1px solid rgba(255, 255, 255, 0.4);
-      background: rgba(202, 168, 74, 0.15);
-      margin-top: 1.2rem;
-      letter-spacing: 0.3em;
       text-transform: uppercase;
-      position: relative;
-      z-index: 1;
-      color: var(--gold);
+      letter-spacing: 0.4em;
+      font-size: 11px;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.08);
     }
 
-    .controls {
-      margin: -40px 0 40px;
-      padding: 20px;
-      border-radius: 24px;
-      background: var(--glass);
+    .hero-pill span {
+      color: #ffcc7d;
+    }
+
+    .sticky-controls {
+      position: sticky;
+      top: 16px;
+      z-index: 50;
+      margin: -10px auto 40px;
+      max-width: 1200px;
+      padding: 18px;
+      border-radius: 20px;
+      backdrop-filter: blur(26px);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
-      backdrop-filter: blur(20px);
+      background: linear-gradient(135deg, rgba(4, 9, 22, 0.95), rgba(202, 168, 74, 0.05));
       display: flex;
       flex-wrap: wrap;
-      gap: 16px;
+      gap: 12px;
       align-items: center;
-      justify-content: space-between;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.55);
+      margin-left: auto;
+      margin-right: auto;
     }
 
-    .controls .search-input {
+    .search-input {
       flex: 1;
-      min-width: 250px;
-      border: none;
-      border-radius: 999px;
+      min-width: 220px;
       padding: 14px 18px;
+      border-radius: 16px;
+      border: none;
       background: rgba(255, 255, 255, 0.08);
       color: var(--text);
       font-size: 1rem;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      letter-spacing: 0.04em;
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+    }
+
+    .search-input:focus {
       outline: none;
-      letter-spacing: 0.02em;
-    }
-
-    .controls .search-input::placeholder {
-      color: rgba(244, 244, 246, 0.6);
-    }
-
-    .controls .search-input:focus {
-      box-shadow: 0 0 30px rgba(255, 255, 255, 0.25);
-      transform: translateY(-2px);
+      box-shadow: 0 0 20px rgba(249, 115, 22, 0.5);
+      transform: translateY(-1px);
     }
 
     .filters {
       display: flex;
-      gap: 8px;
       flex-wrap: wrap;
+      gap: 8px;
     }
 
     .filter-btn {
-      border: none;
-      padding: 10px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      background: rgba(255, 255, 255, 0.06);
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.05);
-      color: var(--text);
-      font-size: 0.9rem;
-      letter-spacing: 0.1em;
+      padding: 10px 18px;
       text-transform: uppercase;
+      letter-spacing: 0.3em;
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.85);
       cursor: pointer;
       transition: all 0.3s ease;
-      font-weight: 600;
+    }
+
+    .filter-btn.active {
+      background: linear-gradient(135deg, rgba(249, 115, 22, 0.45), rgba(202, 168, 74, 0.3));
+      border-color: rgba(249, 115, 22, 0.9);
+      color: #fff;
+      box-shadow: 0 12px 30px rgba(249, 115, 22, 0.35);
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    section {
+      background: rgba(10, 13, 33, 0.8);
+      border-radius: 28px;
+      padding: 32px;
+      margin-bottom: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+      position: relative;
+      overflow: hidden;
+    }
+
+    section::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(140deg, rgba(255, 255, 255, 0.04), transparent 40%);
+      pointer-events: none;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .section-header h2 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(1.9rem, 3vw, 2.4rem);
+      margin: 0;
+      letter-spacing: 0.08em;
+      color: #fff;
+    }
+
+    .section-header .ar-label {
+      font-size: 0.8rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .section-header .pill {
+      padding: 6px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
       display: inline-flex;
       align-items: center;
       gap: 6px;
     }
 
-    .filter-btn:hover {
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 0 30px rgba(249, 115, 22, 0.4);
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
     }
 
-    .filter-btn.active {
-      background: linear-gradient(135deg, rgba(249, 115, 22, 0.3), rgba(202, 168, 74, 0.2));
-      border: 1px solid rgba(249, 115, 22, 0.7);
+    .dish-card {
+      background: linear-gradient(180deg, rgba(13, 16, 30, 0.9), rgba(8, 11, 26, 0.9));
+      border-radius: 22px;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 18px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.55);
+      transition: transform 0.35s ease, border 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .dish-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(249, 115, 22, 0.5);
+      box-shadow: 0 35px 70px rgba(0, 0, 0, 0.65);
+    }
+
+    .dish-card img {
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      transition: transform 0.5s ease, filter 0.5s ease;
+    }
+
+    .dish-card:hover img {
+      transform: scale(1.02);
+      filter: brightness(1.03);
+    }
+
+    .content {
+      padding: 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .content .name {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 6px;
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+
+    .content .name span:first-child {
+      line-height: 1.3;
+      letter-spacing: 0.02em;
+    }
+
+    .price-chip {
+      font-size: 0.95rem;
       color: #fff;
-      box-shadow: 0 0 25px rgba(249, 115, 22, 0.45);
+      background: rgba(249, 115, 22, 0.18);
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(249, 115, 22, 0.5);
+    }
+
+    .desc {
+      color: rgba(255, 255, 255, 0.75);
+      margin: 10px 0 4px;
+      line-height: 1.5;
+      min-height: 70px;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .meta .tag {
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+    }
+
+    .badge {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      padding: 5px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(249, 115, 22, 0.7);
+      background: rgba(249, 115, 22, 0.2);
+      letter-spacing: 0.3em;
+      font-size: 0.6rem;
+    }
+
+    .dish-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 22px;
+      background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.1), transparent 50%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .dish-card:hover::before {
+      opacity: 1;
     }
 
     .no-results {
-      display: none;
-      margin-top: 30px;
-      padding: 28px;
-      border-radius: 20px;
-      background: rgba(255, 255, 255, 0.04);
+      margin: 60px 0;
       text-align: center;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: 0 25px 55px rgba(0, 0, 0, 0.45);
+      padding: 40px;
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      display: none;
       flex-direction: column;
-      gap: 12px;
+      gap: 16px;
+      color: rgba(255, 255, 255, 0.8);
     }
 
     .no-results.visible {
@@ -205,235 +367,68 @@
 
     .no-results button {
       border: none;
-      padding: 10px 20px;
+      padding: 12px 28px;
       border-radius: 999px;
       background: linear-gradient(135deg, #f97316, #caa84a);
-      color: #05060d;
-      font-weight: 700;
+      font-weight: 600;
       cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .no-results button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(250, 147, 37, 0.45);
-    }
-
-    main section {
-      background: rgba(10, 13, 33, 0.75);
-      border-radius: 28px;
-      padding: 30px;
-      margin-bottom: 32px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.55);
-      backdrop-filter: blur(16px);
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-    }
-
-    main section:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 40px 70px rgba(0, 0, 0, 0.6);
-    }
-
-    .section-header {
-      display: flex;
-      align-items:flex-end;
-      justify-content: space-between;
-      gap: 1rem;
-      margin-bottom: 1.2rem;
-    }
-
-    .section-header h2 {
-      font-size: 2rem;
-      margin: 0;
-      font-family: "Playfair Display", serif;
-      background: linear-gradient(120deg, #f97316, #caa84a);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .section-header span {
-      color: var(--muted);
-      font-size: 11px;
-      letter-spacing: 0.4em;
-      text-transform: uppercase;
-    }
-
-    .section-header .icon-chip {
-      font-size: 18px;
-      color: var(--gold);
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      letter-spacing: 0.15em;
-    }
-
-    .category-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
-    }
-
-    .dish-card {
-      background: linear-gradient(180deg, rgba(8, 12, 26, 0.95), rgba(18, 24, 43, 0.9));
-      border-radius: 24px;
-      overflow: hidden;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      padding-bottom: 20px;
-      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.65);
-      transition: transform 0.35s ease, box-shadow 0.35s ease, border 0.35s ease;
-      border: 1px solid transparent;
-    }
-
-    .dish-card::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(120deg, rgba(249, 115, 22, 0.15), transparent 55%);
-      pointer-events: none;
-    }
-
-    .dish-card:hover {
-      transform: translateY(-10px);
-      border-color: rgba(249, 115, 22, 0.6);
-      box-shadow: 0 35px 60px rgba(249, 115, 22, 0.2), 0 40px 80px rgba(0, 0, 0, 0.8);
-    }
-
-    .dish-card img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      filter: brightness(0.92);
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-
-    .dish-card img:hover {
-      transform: scale(1.03);
-    }
-
-    .dish-card .content {
-      position: relative;
-      z-index: 1;
-      padding: 0 18px;
-    }
-
-    .dish-card .name {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 12px;
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: #fff;
-    }
-
-    .dish-card .price {
-      font-size: 1rem;
-      color: var(--accent);
-      white-space: nowrap;
-    }
-
-    .dish-card .desc {
-      color: var(--muted);
-      font-size: 0.95rem;
-      margin-top: 8px;
-      line-height: 1.6;
-      min-height: 70px;
-    }
-
-    .dish-card .meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 10px;
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    .tag {
-      padding: 4px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      font-size: 0.75rem;
-      letter-spacing: 0.15em;
-    }
-
-    .badge {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      padding: 6px 12px;
-      border-radius: 999px;
-      background: rgba(202, 168, 74, 0.2);
-      border: 1px solid rgba(202, 168, 74, 0.7);
-      font-size: 9px;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
+    footer {
+      text-align: center;
+      padding: 40px 20px 20px;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.9rem;
     }
 
     .modal-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(2, 7, 20, 0.9);
+      background: rgba(1, 1, 5, 0.9);
       display: none;
       align-items: center;
       justify-content: center;
-      padding: 1rem;
-      z-index: 200;
-      overflow-y: auto;
-      backdrop-filter: blur(8px);
+      z-index: 100;
+      padding: 20px;
     }
 
     .modal-backdrop.active {
       display: flex;
     }
 
-    .modal-content {
-      background: rgba(5, 7, 16, 0.95);
+    .modal-card {
+      width: min(920px, 100%);
       border-radius: 28px;
-      max-width: 900px;
-      width: 100%;
       overflow: hidden;
+      background: rgba(6, 10, 18, 0.98);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      animation: pop 0.35s ease;
       box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
+      animation: pop 0.4s ease;
     }
 
     .modal-header {
-      padding: 18px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     }
 
     .modal-header h3 {
       margin: 0;
-      font-size: 1.5rem;
       font-family: "Playfair Display", serif;
+      font-size: 1.8rem;
       background: linear-gradient(120deg, #f97316, #caa84a);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
     .modal-header button {
-      background: transparent;
       border: none;
+      background: transparent;
       color: var(--text);
-      font-size: 1.5rem;
+      font-size: 1.7rem;
       cursor: pointer;
-      transition: transform 0.25s ease;
-    }
-
-    .modal-header button:hover {
-      transform: scale(1.1);
     }
 
     .modal-body {
@@ -445,119 +440,79 @@
     .modal-body img {
       width: 100%;
       height: 100%;
+      min-height: 280px;
       object-fit: cover;
-      filter: grayscale(0.03);
+      filter: saturate(1.05);
     }
 
-    .modal-text {
+    .modal-info {
       padding: 24px;
       display: flex;
       flex-direction: column;
       gap: 14px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.4));
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(0, 0, 0, 0.35));
     }
 
-    .modal-text p {
+    .modal-info p {
       margin: 0;
-      color: var(--muted);
       line-height: 1.6;
+      color: rgba(255, 255, 255, 0.78);
     }
 
-    .modal-text .calories {
-      font-size: 0.9rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gold);
-    }
-
-    .modal-text .dietary {
+    .modal-meta {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .modal-text .dietary span {
-      font-size: 10px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      gap: 10px;
+      font-size: 0.8rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.7);
     }
 
     .bean-selector {
-      margin-top: 16px;
+      margin-top: 12px;
       padding: 14px;
-      background: rgba(202, 168, 74, 0.12);
-      border: 1px solid rgba(202, 168, 74, 0.4);
-      border-radius: 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(249, 115, 22, 0.5);
+      background: rgba(249, 115, 22, 0.12);
     }
 
-    .bean-selector label {
-      display: block;
-      font-size: 0.85rem;
-      color: var(--gold);
-      font-weight: 600;
-      margin-bottom: 8px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
-    .bean-options {
+    .bean-selector .bean-options {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
+      margin-top: 8px;
     }
 
     .bean-option {
-      padding: 8px 14px;
-      border-radius: 8px;
-      border: 1px solid rgba(202, 168, 74, 0.5);
-      background: transparent;
-      color: var(--muted);
-      cursor: pointer;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 6px 14px;
       font-size: 0.85rem;
+      background: transparent;
+      color: var(--text);
+      cursor: pointer;
       transition: all 0.2s ease;
-      font-weight: 500;
-    }
-
-    .bean-option:hover {
-      border-color: var(--gold);
-      color: var(--gold);
-      transform: translateY(-2px);
     }
 
     .bean-option.selected {
-      background: var(--gold);
-      color: #03060d;
-      border-color: var(--gold);
+      background: rgba(255, 255, 255, 0.9);
+      color: #04050b;
+      border-color: rgba(255, 255, 255, 0.6);
     }
 
     .modal-footer {
-      padding: 18px 24px;
       border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 18px 24px;
+      font-size: 0.95rem;
       text-align: right;
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-
-    .modal-footer .selected-bean {
-      display: block;
-      margin-bottom: 8px;
-      font-size: 0.85rem;
-      color: var(--gold);
-    }
-
-    footer {
-      margin-top: 80px;
-      text-align: center;
-      padding-bottom: 40px;
-      color: var(--muted);
-      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.75);
     }
 
     @keyframes pop {
       from {
         opacity: 0;
-        transform: translateY(20px) scale(0.92);
+        transform: translateY(40px) scale(0.96);
       }
       to {
         opacity: 1;
@@ -566,89 +521,83 @@
     }
 
     @media (max-width: 768px) {
-      header {
-        padding-top: 60px;
-      }
-
-      .section-header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .modal-body {
-        grid-template-columns: 1fr;
-      }
-
-      .bean-options {
-        flex-direction: column;
-      }
-
-      .controls {
+      .sticky-controls {
         flex-direction: column;
         align-items: stretch;
+      }
+
+      section {
+        padding: 24px;
+      }
+
+      .modal-info {
+        padding: 20px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="page">
     <header>
       <div class="eyebrow">Turkiana Cafe & Sweets</div>
-      <h1>Gallery of Turkish Flavors</h1>
-      <p>Discover our dishes as you would art—crafted with tradition, beauty, and the spirit of Turkish hospitality.</p>
-      <div class="hero-pill">crafted for admiration</div>
+      <h1>Gallery of Ottoman Elegance</h1>
+      <p>Immerse in curated Turkish flavors where each plate balances ritual, craftsmanship, and modern elegance.</p>
+      <div class="hero-pill">✨ <span>Perfected by Time-Honored Technique</span></div>
     </header>
 
-    <div class="controls">
-      <input id="searchInput" class="search-input" type="search" placeholder="Live search dishes by name..." autocomplete="off" />
+    <div class="sticky-controls">
+      <input id="searchInput" class="search-input" type="search" placeholder="Search dishes, keywords, calories..." />
       <div class="filters">
-        <button class="filter-btn" data-filter="popular">🔥 Popular</button>
-        <button class="filter-btn" data-filter="vegan">🌿 Vegan</button>
-        <button class="filter-btn" data-filter="vegetarian">🥦 Vegetarian</button>
+        <button class="filter-btn" data-filter="popular">Popular</button>
+        <button class="filter-btn" data-filter="vegan">Vegan</button>
+        <button class="filter-btn" data-filter="vegetarian">Vegetarian</button>
+        <button class="filter-btn" data-filter="contains-dairy">Contains Dairy</button>
+        <button class="filter-btn" data-filter="contains-nuts">Contains Nuts</button>
       </div>
     </div>
 
     <div id="noResults" class="no-results">
-      <p>🥲 We couldn't find anything that matches yet. Try resetting filters or search terms.</p>
-      <button id="resetFiltersBtn">Show full menu</button>
+      <strong>Oops, nothing matched yet.</strong>
+      <span>Adjust search, reset filters, or explore chef’s picks.</span>
+      <button id="resetFiltersBtn">Reset everything</button>
     </div>
 
     <main id="menu-container"></main>
 
-    <footer>
-     A gallery of artisan-crafted dishes designed to inspire, captivate, and celebrate the spirit of Turkish craftsmanship.
-    </footer>
+    <footer>Curated dishes, framed like art—Turkiana Cafe & Sweets welcomes you to a sensory celebration.</footer>
   </div>
 
-  <div class="modal-backdrop" id="imageModal">
-    <div class="modal-content">
+  <div id="imageModal" class="modal-backdrop" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true">
       <div class="modal-header">
         <h3 id="modalTitle"></h3>
-        <button aria-label="Close">&times;</button>
+        <button aria-label="Close modal">&times;</button>
       </div>
       <div class="modal-body">
-        <img id="modalImage" alt="Dish image" />
-        <div class="modal-text">
+        <img id="modalImage" src="" alt="" />
+        <div class="modal-info">
           <p id="modalDescEn"></p>
           <p id="modalDescAr"></p>
-          <div class="calories" id="modalCalories"></div>
-          <div class="dietary" id="modalDietary"></div>
-          <div class="bean-selector" id="beanSelector" style="display: none;">
-            <label>Select Your Bean Origin</label>
+          <div class="modal-meta">
+            <span id="modalCalories"></span>
+            <span id="modalDietary"></span>
+          </div>
+          <div id="beanSelector" class="bean-selector" style="display: none;">
+            <div style="font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;">Choose bean</div>
             <div class="bean-options" id="beanOptions"></div>
           </div>
         </div>
       </div>
       <div class="modal-footer">
-        <span class="selected-bean" id="selectedBeanDisplay" style="display: none;"></span>
-        Price · <span id="modalPrice"></span> QAR
+        <span id="selectedBeanDisplay" style="display: none;"></span>
+        Price · <strong id="modalPrice"></strong> QAR
       </div>
     </div>
   </div>
 
   <script>
     const menuData = [
-    { category: "Turkish Morning", arCategory: "الصباح التركي", icon: "🍳", items: [
+       { category: "Turkish Morning", arCategory: "الصباح التركي", icon: "🍳", items: [
         { id: "tm1", enName: "Turkish Classic Breakfast", arName: "فطور تركي كلاسيكي", priceNum: 65, descriptionEn: "A rich and traditional Turkish spread featuring freshly baked warm bread, assorted cheeses, marinated olives, ripe tomatoes, crisp cucumbers, natural honey, and velvety clotted cream, all served with aromatic Turkish tea to create an authentic and fulfilling morning experience.", descriptionAr: "وجبة تركية أصيلة وغنية تتضمن خبزًا طازجًا ساخنًا، مجموعة من الأجبان، زيتون متبّل، طماطم ناضجة، خيار مقرمش، عسل طبيعي وقشطة ناعمة، تُقدّم مع شاي تركي عطري لتجربة صباح كاملة ومتوازنة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Breakfast.jpg", calories: "680 kcal", dietary: ["vegetarian","contains-dairy"], popular: true },
         { id: "tm2", enName: "Turkish Menemen", arName: "مينمن تركي", priceNum: 45, descriptionEn: "A comforting Turkish classic made with softly scrambled eggs cooked gently with juicy tomatoes, tender green peppers, and fragrant spices, creating a warm, homestyle dish full of rich and savory flavors.", descriptionAr: "طبق تركي مميز من البيض المخفوق المطهو برفق مع طماطم عصيرية، فلفل أخضر طري وتوابل عطرية، ليقدم نكهة منزلية دافئة مليئة بالغنى والطعم التقليدي.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Menemen.jpg", calories: "360 kcal", dietary: ["gluten-free","contains-dairy"] },
         { id: "tm3", enName: "Plain Omelette", arName: "أومليت عادي", priceNum: 25, descriptionEn: "A light and tender omelette cooked to a delicate golden finish, offering natural egg richness with a soft, airy texture that makes every bite simple yet deeply satisfying.", descriptionAr: "أومليت خفيف وطري يُطهى حتى يصل إلى لون ذهبي ناعم، يتميز بنكهة البيض الطبيعية وقوام هش يمنحك وجبة بسيطة لكنها مليئة بالرضا.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Omellet.jpg", calories: "220 kcal", dietary: ["gluten-free","contains-dairy"] }
@@ -772,106 +721,105 @@
     ];
 
     const menuContainer = document.getElementById("menu-container");
+    const searchInput = document.getElementById("searchInput");
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const noResults = document.getElementById("noResults");
+    const resetFiltersBtn = document.getElementById("resetFiltersBtn");
     const modal = document.getElementById("imageModal");
-    const modalImage = document.getElementById("modalImage");
     const modalTitle = document.getElementById("modalTitle");
+    const modalImage = document.getElementById("modalImage");
     const modalDescEn = document.getElementById("modalDescEn");
     const modalDescAr = document.getElementById("modalDescAr");
     const modalPrice = document.getElementById("modalPrice");
     const modalCalories = document.getElementById("modalCalories");
     const modalDietary = document.getElementById("modalDietary");
-    const modalCloseBtn = modal.querySelector(".modal-header button");
     const beanSelector = document.getElementById("beanSelector");
     const beanOptions = document.getElementById("beanOptions");
     const selectedBeanDisplay = document.getElementById("selectedBeanDisplay");
-    const searchInput = document.getElementById("searchInput");
-    const filterButtons = document.querySelectorAll(".filter-btn");
-    const noResults = document.getElementById("noResults");
-    const resetFiltersBtn = document.getElementById("resetFiltersBtn");
-
-    const filterMatchers = {
-      popular: dish => dish.popular,
-      vegan: dish => dish.dietary.includes("vegan"),
-      vegetarian: dish => dish.dietary.includes("vegetarian")
-    };
-
-    let currentSelectedBean = null;
+    const modalCloseBtn = modal.querySelector(".modal-header button");
     const activeFilters = new Set();
+    let currentBean = null;
+
+    const filterConditions = {
+      popular: item => item.popular,
+      vegan: item => item.dietary.includes("vegan"),
+      vegetarian: item => item.dietary.includes("vegetarian"),
+      "contains-dairy": item => item.dietary.includes("contains-dairy"),
+      "contains-nuts": item => item.dietary.includes("contains-nuts")
+    };
 
     const createDishCard = (dish) => {
       const article = document.createElement("article");
       article.className = "dish-card";
       article.innerHTML = `
-        <img src="${dish.image}" alt="${dish.enName}" data-id="${dish.id}" />
+        <img src="${dish.image}" alt="${dish.enName}" loading="lazy" />
         <div class="content">
           <div class="name">
             <span>${dish.enName}</span>
-            <span class="price">QAR ${dish.priceNum}</span>
+            <span class="price-chip">QAR ${dish.priceNum.toFixed(0)}</span>
           </div>
           <p class="desc">${dish.descriptionEn}</p>
           <div class="meta">
-            <span>✨ ${dish.calories}</span>
+            <span class="tag">${dish.calories}</span>
             ${dish.dietary.map(tag => `<span class="tag">${tag.replace(/-/g, " ")}</span>`).join("")}
-            ${dish.popular ? `<span class="badge">Popular</span>` : ""}
           </div>
           <div class="meta">
-            <span>🌙 ${dish.arName}</span>
+            <span class="tag">🌙 ${dish.arName}</span>
           </div>
         </div>
+        ${dish.popular ? `<div class="badge">Chef's Pick</div>` : ""}
       `;
-      const img = article.querySelector("img");
-      img.addEventListener("click", () => openModal(dish));
+      article.querySelector("img").addEventListener("click", () => openModal(dish));
       return article;
     };
 
     const openModal = (dish) => {
-      modalImage.src = dish.image;
       modalTitle.textContent = dish.enName;
+      modalImage.src = dish.image;
+      modalImage.alt = dish.enName;
       modalDescEn.textContent = dish.descriptionEn;
       modalDescAr.textContent = dish.descriptionAr;
-      modalPrice.textContent = dish.priceNum.toFixed(2);
+      modalPrice.textContent = dish.priceNum.toFixed(0);
       modalCalories.textContent = dish.calories;
-      modalDietary.innerHTML = dish.dietary.length
-        ? dish.dietary.map(tag => `<span>${tag.replace(/-/g, " ")}</span>`).join("")
-        : "<span>Chef's Creation</span>";
-      
-      if (dish.hasBeansSelector) {
+      modalDietary.textContent = dish.dietary.length ? dish.dietary.join(" • ") : "Chef’s creation";
+
+      if (dish.hasBeansSelector && dish.beans) {
         beanSelector.style.display = "block";
-        beanOptions.innerHTML = dish.beans.map((bean, idx) => `
-          <button class="bean-option ${idx === 0 ? "selected" : ""}" data-bean="${bean}">
-            ${bean}
-          </button>
-        `).join("");
-        
-        currentSelectedBean = dish.beans[0];
-        selectedBeanDisplay.textContent = `Selected: ${currentSelectedBean}`;
+        beanOptions.innerHTML = dish.beans
+          .map((bean, index) => `<button class="bean-option ${index === 0 ? "selected" : ""}" data-bean="${bean}">${bean}</button>`)
+          .join("");
+        currentBean = dish.beans[0];
+        selectedBeanDisplay.textContent = `Selected bean: ${currentBean}`;
         selectedBeanDisplay.style.display = "block";
-        
-        document.querySelectorAll(".bean-option").forEach(btn => {
-          btn.addEventListener("click", (e) => {
-            document.querySelectorAll(".bean-option").forEach(b => b.classList.remove("selected"));
-            e.target.classList.add("selected");
-            currentSelectedBean = e.target.dataset.bean;
-            selectedBeanDisplay.textContent = `Selected: ${currentSelectedBean}`;
+
+        beanOptions.querySelectorAll(".bean-option").forEach(btn => {
+          btn.addEventListener("click", () => {
+            beanOptions.querySelectorAll(".bean-option").forEach(b => b.classList.remove("selected"));
+            btn.classList.add("selected");
+            currentBean = btn.dataset.bean;
+            selectedBeanDisplay.textContent = `Selected bean: ${currentBean}`;
           });
         });
       } else {
         beanSelector.style.display = "none";
         selectedBeanDisplay.style.display = "none";
-        currentSelectedBean = null;
+        currentBean = null;
       }
-      
+
+      modal.setAttribute("aria-hidden", "false");
       modal.classList.add("active");
+      document.body.style.overflow = "hidden";
     };
 
     const closeModal = () => {
+      modal.setAttribute("aria-hidden", "true");
       modal.classList.remove("active");
-      currentSelectedBean = null;
+      document.body.style.overflow = "";
     };
 
     const matchesFilters = (dish) => {
       if (!activeFilters.size) return true;
-      return [...activeFilters].every(filterKey => filterMatchers[filterKey](dish));
+      return [...activeFilters].every(filter => filterConditions[filter](dish));
     };
 
     const renderMenu = () => {
@@ -881,65 +829,66 @@
 
       menuData.forEach(section => {
         const filteredItems = section.items.filter(item => {
-          const matchesText = item.enName.toLowerCase().includes(query);
-          return matchesText && matchesFilters(item);
+          const textMatch =
+            item.enName.toLowerCase().includes(query) ||
+            item.arName.toLowerCase().includes(query) ||
+            item.descriptionEn.toLowerCase().includes(query);
+          return textMatch && matchesFilters(item);
         });
 
         if (!filteredItems.length) return;
 
         totalMatches += filteredItems.length;
-        const block = document.createElement("section");
-        block.innerHTML = `
+        const sectionEl = document.createElement("section");
+        sectionEl.innerHTML = `
           <div class="section-header">
             <div>
               <h2>${section.category}</h2>
-              <div class="icon-chip">${section.icon} ${section.arCategory}</div>
+              <div class="ar-label">${section.arCategory}</div>
             </div>
-            <span>${section.category}</span>
+            <div class="pill">${section.icon} ${section.category}</div>
           </div>
         `;
         const grid = document.createElement("div");
         grid.className = "category-grid";
         filteredItems.forEach(item => grid.appendChild(createDishCard(item)));
-        block.appendChild(grid);
-        menuContainer.appendChild(block);
+        sectionEl.appendChild(grid);
+        menuContainer.appendChild(sectionEl);
       });
 
       noResults.classList.toggle("visible", totalMatches === 0);
     };
 
-    const toggleFilter = (filterKey, button) => {
-      if (activeFilters.has(filterKey)) {
-        activeFilters.delete(filterKey);
-        button.classList.remove("active");
-      } else {
-        activeFilters.add(filterKey);
-        button.classList.add("active");
-      }
-      renderMenu();
-    };
+    filterButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const key = btn.dataset.filter;
+        if (activeFilters.has(key)) {
+          activeFilters.delete(key);
+          btn.classList.remove("active");
+        } else {
+          activeFilters.add(key);
+          btn.classList.add("active");
+        }
+        renderMenu();
+      });
+    });
 
-    const resetControls = () => {
+    searchInput.addEventListener("input", () => renderMenu());
+
+    resetFiltersBtn.addEventListener("click", () => {
       activeFilters.clear();
       filterButtons.forEach(btn => btn.classList.remove("active"));
       searchInput.value = "";
       renderMenu();
-      searchInput.focus();
-    };
-
-    filterButtons.forEach((btn) => {
-      btn.addEventListener("click", () => toggleFilter(btn.dataset.filter, btn));
     });
-
-    searchInput.addEventListener("input", () => {
-      renderMenu();
-    });
-
-    resetFiltersBtn.addEventListener("click", resetControls);
 
     modalCloseBtn.addEventListener("click", closeModal);
-    modal.addEventListener("click", (e) => {
-      if (e.target === modal) {
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) closeModal();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && modal.classList.contains("active")) {
         closeModal();
       }
     });
