@@ -13,17 +13,12 @@
   <style>
     :root {
       --bg: #02040d;
-      --panel: rgba(9, 15, 28, 0.85);
       --text: #f7f7fb;
-      --muted: rgba(216, 223, 255, 0.82);
       --accent: #f97316;
-      --subtle: rgba(255, 255, 255, 0.1);
       font-family: "Inter", system-ui, sans-serif;
     }
 
-    *,
-    *::before,
-    *::after {
+    * {
       box-sizing: border-box;
     }
 
@@ -60,19 +55,12 @@
 
     header {
       text-align: center;
-      padding: 72px 24px 40px;
-    }
-
-    header .eyebrow {
-      letter-spacing: 0.6em;
-      font-size: 12px;
-      color: rgba(255, 255, 255, 0.65);
-      margin-bottom: 12px;
+      padding: 60px 24px 30px;
     }
 
     header h1 {
       font-family: "Playfair Display", serif;
-      font-size: clamp(2.6rem, 4vw, 3.6rem);
+      font-size: clamp(2.4rem, 4vw, 3.2rem);
       margin: 0;
       letter-spacing: 0.1em;
       background: linear-gradient(120deg, #f97316, #facc15, #caa84a);
@@ -81,304 +69,231 @@
     }
 
     header p {
-      margin: 16px auto 0;
+      margin: 12px auto 0;
       max-width: 760px;
       color: rgba(255, 255, 255, 0.7);
-      line-height: 1.6;
+      font-size: 0.95rem;
     }
 
-    .hero-pill {
-      display: inline-flex;
-      align-items: center;
-      margin-top: 20px;
-      padding: 10px 22px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.4);
-      text-transform: uppercase;
-      letter-spacing: 0.4em;
-      font-size: 11px;
-      gap: 8px;
-      background: rgba(255, 255, 255, 0.08);
-    }
-
-    .hero-pill span {
-      color: #ffcc7d;
-    }
-
-    .sticky-controls {
-      position: sticky;
-      top: 16px;
-      z-index: 50;
-      margin: -10px auto 40px;
+    .search-bar {
       max-width: 1200px;
-      padding: 18px;
-      border-radius: 20px;
-      backdrop-filter: blur(26px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      background: linear-gradient(135deg, rgba(4, 9, 22, 0.95), rgba(202, 168, 74, 0.05));
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      align-items: center;
-      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.55);
-      margin-left: auto;
-      margin-right: auto;
+      margin: 0 auto 20px;
+      padding: 0 20px;
     }
 
     .search-input {
-      flex: 1;
-      min-width: 220px;
+      width: 100%;
       padding: 14px 18px;
       border-radius: 16px;
       border: none;
       background: rgba(255, 255, 255, 0.08);
       color: var(--text);
       font-size: 1rem;
-      letter-spacing: 0.04em;
-      transition: box-shadow 0.3s ease, transform 0.3s ease;
+      transition: box-shadow 0.3s ease;
     }
 
     .search-input:focus {
       outline: none;
       box-shadow: 0 0 20px rgba(249, 115, 22, 0.5);
-      transform: translateY(-1px);
     }
 
-    .filters {
+    .categories-container {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: linear-gradient(180deg, rgba(4, 6, 15, 0.98), rgba(4, 6, 15, 0.95));
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 16px 0;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .categories-scroll {
       display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
+      gap: 10px;
+      overflow-x: auto;
+      padding: 0 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      scroll-behavior: smooth;
     }
 
-    .filter-btn {
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      background: rgba(255, 255, 255, 0.06);
+    .categories-scroll::-webkit-scrollbar {
+      height: 4px;
+    }
+
+    .categories-scroll::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .categories-scroll::-webkit-scrollbar-thumb {
+      background: rgba(249, 115, 22, 0.5);
+      border-radius: 10px;
+    }
+
+    .category-pill {
+      flex-shrink: 0;
+      padding: 10px 20px;
       border-radius: 999px;
-      padding: 10px 18px;
-      text-transform: uppercase;
-      letter-spacing: 0.3em;
-      font-size: 0.75rem;
-      color: rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.06);
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
       cursor: pointer;
       transition: all 0.3s ease;
+      white-space: nowrap;
     }
 
-    .filter-btn.active {
-      background: linear-gradient(135deg, rgba(249, 115, 22, 0.45), rgba(202, 168, 74, 0.3));
-      border-color: rgba(249, 115, 22, 0.9);
+    .category-pill:hover {
+      border-color: rgba(249, 115, 22, 0.6);
       color: #fff;
-      box-shadow: 0 12px 30px rgba(249, 115, 22, 0.35);
+    }
+
+    .category-pill.active {
+      background: linear-gradient(135deg, rgba(249, 115, 22, 0.6), rgba(202, 168, 74, 0.4));
+      border-color: rgba(249, 115, 22, 1);
+      color: #fff;
+      box-shadow: 0 8px 24px rgba(249, 115, 22, 0.4);
     }
 
     main {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0 20px;
+      padding: 40px 20px;
     }
 
-    section {
-      background: rgba(10, 13, 33, 0.8);
-      border-radius: 28px;
-      padding: 32px;
-      margin-bottom: 40px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
-      position: relative;
-      overflow: hidden;
+    .section-title {
+      margin-bottom: 30px;
     }
 
-    section::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(140deg, rgba(255, 255, 255, 0.04), transparent 40%);
-      pointer-events: none;
-    }
-
-    .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 24px;
-      flex-wrap: wrap;
-    }
-
-    .section-header h2 {
+    .section-title h2 {
       font-family: "Playfair Display", serif;
-      font-size: clamp(1.9rem, 3vw, 2.4rem);
+      font-size: 2rem;
       margin: 0;
       letter-spacing: 0.08em;
       color: #fff;
     }
 
-    .section-header .ar-label {
-      font-size: 0.8rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
+    .section-title p {
       color: rgba(255, 255, 255, 0.6);
+      font-size: 0.9rem;
+      margin: 8px 0 0;
     }
 
-    .section-header .pill {
-      padding: 6px 16px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      font-size: 0.7rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .category-grid {
+    .items-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 18px;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
     }
 
     .dish-card {
       background: linear-gradient(180deg, rgba(13, 16, 30, 0.9), rgba(8, 11, 26, 0.9));
-      border-radius: 22px;
+      border-radius: 16px;
       overflow: hidden;
-      position: relative;
       border: 1px solid rgba(255, 255, 255, 0.08);
-      padding-bottom: 18px;
-      display: flex;
-      flex-direction: column;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.55);
-      transition: transform 0.35s ease, border 0.35s ease, box-shadow 0.35s ease;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
     }
 
     .dish-card:hover {
-      transform: translateY(-8px);
+      transform: translateY(-6px);
       border-color: rgba(249, 115, 22, 0.5);
-      box-shadow: 0 35px 70px rgba(0, 0, 0, 0.65);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
     }
 
-    .dish-card img {
+    .dish-image {
       width: 100%;
-      height: 210px;
+      height: 200px;
       object-fit: cover;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      transition: transform 0.5s ease, filter 0.5s ease;
+      background: rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
     }
 
-    .dish-card:hover img {
-      transform: scale(1.02);
-      filter: brightness(1.03);
+    .dish-card:hover .dish-image {
+      transform: scale(1.05);
     }
 
-    .content {
-      padding: 18px;
-      position: relative;
-      z-index: 1;
+    .dish-info {
+      padding: 16px;
     }
 
-    .content .name {
+    .dish-name {
+      font-weight: 600;
+      font-size: 1.05rem;
+      margin: 0 0 8px;
+      color: #fff;
+    }
+
+    .dish-desc {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.4;
+      margin: 0 0 12px;
+      min-height: 50px;
+    }
+
+    .dish-footer {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
-      gap: 6px;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .dish-price {
+      font-size: 1.1rem;
       font-weight: 700;
-      font-size: 1.05rem;
+      color: #ffcc7d;
     }
 
-    .content .name span:first-child {
-      line-height: 1.3;
-      letter-spacing: 0.02em;
+    .dish-cal {
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.5);
+      text-transform: uppercase;
     }
 
-    .price-chip {
-      font-size: 0.95rem;
-      color: #fff;
-      background: rgba(249, 115, 22, 0.18);
-      padding: 4px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(249, 115, 22, 0.5);
-    }
-
-    .desc {
-      color: rgba(255, 255, 255, 0.75);
-      margin: 10px 0 4px;
-      line-height: 1.5;
-      min-height: 70px;
-    }
-
-    .meta {
+    .dish-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
     }
 
-    .meta .tag {
-      padding: 5px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      font-size: 0.65rem;
-      letter-spacing: 0.15em;
+    .dish-tag {
+      font-size: 0.7rem;
+      color: rgba(255, 255, 255, 0.6);
+      background: rgba(249, 115, 22, 0.15);
+      padding: 4px 8px;
+      border-radius: 8px;
+      text-transform: uppercase;
+      border: 1px solid rgba(249, 115, 22, 0.3);
     }
 
     .badge {
       position: absolute;
-      top: 16px;
-      right: 16px;
-      padding: 5px 14px;
+      top: 12px;
+      right: 12px;
+      background: linear-gradient(135deg, rgba(249, 115, 22, 0.9), rgba(202, 168, 74, 0.7));
+      color: #fff;
+      padding: 6px 12px;
       border-radius: 999px;
-      border: 1px solid rgba(249, 115, 22, 0.7);
-      background: rgba(249, 115, 22, 0.2);
-      letter-spacing: 0.3em;
-      font-size: 0.6rem;
-    }
-
-    .dish-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: 22px;
-      background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.1), transparent 50%);
-      opacity: 0;
-      transition: opacity 0.4s ease;
-    }
-
-    .dish-card:hover::before {
-      opacity: 1;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      box-shadow: 0 4px 12px rgba(249, 115, 22, 0.4);
     }
 
     .no-results {
-      margin: 60px 0;
       text-align: center;
-      padding: 40px;
-      border-radius: 24px;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      display: none;
-      flex-direction: column;
-      gap: 16px;
-      color: rgba(255, 255, 255, 0.8);
-    }
-
-    .no-results.visible {
-      display: flex;
-    }
-
-    .no-results button {
-      border: none;
-      padding: 12px 28px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, #f97316, #caa84a);
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    footer {
-      text-align: center;
-      padding: 40px 20px 20px;
+      padding: 60px 20px;
       color: rgba(255, 255, 255, 0.6);
-      font-size: 0.9rem;
+    }
+
+    .no-results strong {
+      display: block;
+      font-size: 1.2rem;
+      margin-bottom: 10px;
     }
 
     .modal-backdrop {
@@ -398,12 +313,14 @@
 
     .modal-card {
       width: min(920px, 100%);
-      border-radius: 28px;
+      border-radius: 20px;
       overflow: hidden;
       background: rgba(6, 10, 18, 0.98);
       border: 1px solid rgba(255, 255, 255, 0.08);
       box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
       animation: pop 0.4s ease;
+      max-height: 90vh;
+      overflow-y: auto;
     }
 
     .modal-header {
@@ -412,6 +329,10 @@
       align-items: center;
       padding: 24px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      position: sticky;
+      top: 0;
+      background: rgba(6, 10, 18, 0.98);
+      z-index: 10;
     }
 
     .modal-header h3 {
@@ -429,6 +350,11 @@
       color: var(--text);
       font-size: 1.7rem;
       cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .modal-header button:hover {
+      color: #f97316;
     }
 
     .modal-body {
@@ -442,7 +368,6 @@
       height: 100%;
       min-height: 280px;
       object-fit: cover;
-      filter: saturate(1.05);
     }
 
     .modal-info {
@@ -507,6 +432,12 @@
       font-size: 0.95rem;
       text-align: right;
       color: rgba(255, 255, 255, 0.75);
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .modal-footer strong {
+      color: #ffcc7d;
+      font-size: 1.1rem;
     }
 
     @keyframes pop {
@@ -520,18 +451,34 @@
       }
     }
 
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.9rem;
+    }
+
     @media (max-width: 768px) {
-      .sticky-controls {
-        flex-direction: column;
-        align-items: stretch;
+      header {
+        padding: 40px 20px 20px;
       }
 
-      section {
-        padding: 24px;
+      .category-pill {
+        padding: 8px 16px;
+        font-size: 0.8rem;
       }
 
-      .modal-info {
-        padding: 20px;
+      main {
+        padding: 20px 16px;
+      }
+
+      .items-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 12px;
+      }
+
+      .modal-body {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -539,32 +486,21 @@
 <body>
   <div class="page">
     <header>
-      <div class="eyebrow">Turkiana Cafe & Sweets</div>
-      <h1>Gallery of Ottoman Elegance</h1>
-      <p>Immerse in curated Turkish flavors where each plate balances ritual, craftsmanship, and modern elegance.</p>
-      <div class="hero-pill">✨ <span>Perfected by Time-Honored Technique</span></div>
+      <h1>Turkiana Cafe & Sweets</h1>
+      <p>Experience premium Turkish flavors & sweets</p>
     </header>
 
-    <div class="sticky-controls">
-      <input id="searchInput" class="search-input" type="search" placeholder="Search dishes, keywords, calories..." />
-      <div class="filters">
-        <button class="filter-btn" data-filter="popular">Popular</button>
-        <button class="filter-btn" data-filter="vegan">Vegan</button>
-        <button class="filter-btn" data-filter="vegetarian">Vegetarian</button>
-        <button class="filter-btn" data-filter="contains-dairy">Contains Dairy</button>
-        <button class="filter-btn" data-filter="contains-nuts">Contains Nuts</button>
-      </div>
+    <div class="search-bar">
+      <input id="searchInput" class="search-input" type="search" placeholder="Search dishes..." />
     </div>
 
-    <div id="noResults" class="no-results">
-      <strong>Oops, nothing matched yet.</strong>
-      <span>Adjust search, reset filters, or explore chef’s picks.</span>
-      <button id="resetFiltersBtn">Reset everything</button>
+    <div class="categories-container">
+      <div class="categories-scroll" id="categoriesScroll"></div>
     </div>
 
-    <main id="menu-container"></main>
+    <main id="mainContent"></main>
 
-    <footer>Curated dishes, framed like art—Turkiana Cafe & Sweets welcomes you to a sensory celebration.</footer>
+    <footer>Curated with care — Turkiana Cafe & Sweets</footer>
   </div>
 
   <div id="imageModal" class="modal-backdrop" aria-hidden="true">
@@ -583,13 +519,13 @@
             <span id="modalDietary"></span>
           </div>
           <div id="beanSelector" class="bean-selector" style="display: none;">
-            <div style="font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;">Choose bean</div>
+            <div style="font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 8px;">Choose bean</div>
             <div class="bean-options" id="beanOptions"></div>
           </div>
         </div>
       </div>
       <div class="modal-footer">
-        <span id="selectedBeanDisplay" style="display: none;"></span>
+        <span id="selectedBeanDisplay" style="display: none; margin-right: 16px;"></span>
         Price · <strong id="modalPrice"></strong> QAR
       </div>
     </div>
@@ -597,7 +533,7 @@
 
   <script>
     const menuData = [
-            { category: "Baklava & Beyond", arCategory: "البقلاوة وما بعدها", icon: "🥜", items: [
+       { category: "Baklava & Beyond", arCategory: "البقلاوة وما بعدها", icon: "🥜", items: [
               { id: "bk2", enName: "Ottoman Salad", arName: "سلطة عثمانية", priceNum: 59, descriptionEn: "A refreshing traditional salad made with crisp vegetables, fresh herbs, and a light zesty dressing inspired by classic Ottoman flavors.", descriptionAr: "سلطة تقليدية منعشة محضرة من خضروات مقرمشة وأعشاب طازجة وصلصة خفيفة ومنعشة مستوحاة من النكهات العثمانية.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Salad.jpg", calories: "120 kcal (per serving)", dietary: ["vegetarian"] },
               { id: "bk1", enName: "Turkish Mix Baklava", arName: "بقلاوة تركية مشكلة", priceNum: 65, descriptionEn: "An exquisite assortment of traditional Turkish baklava, with layers of crisp filo pastry, fragrant syrup, and a medley of finely chopped nuts for a perfect balance of sweetness and texture.", descriptionAr: "مجموعة فاخرة من البقلاوة التركية التقليدية، بطبقات من عجينة الفيلو المقرمشة، وشراب عطر، ومزيج من المكسرات المفرومة بدقة لتوازن مثالي بين الحلاوة والقوام.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg", calories: "450 kcal (per serving)", dietary: ["contains-nuts"] },
         { id: "bk2", enName: "Carrot Slice Baklava", arName: "بقلاوة شريحة الجزر", priceNum: 40, descriptionEn: "Classic Turkish baklava enriched with the subtle sweetness of carrot, layered with delicate filo and brushed with golden syrup for a rich, melt-in-your-mouth experience.", descriptionAr: "بقلاوة تركية كلاسيكية مع حلاوة خفيفة من الجزر، بطبقات دقيقة من الفيلو ومغطاة بشراب ذهبي لتجربة غنية تذوب في الفم.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Carrot.jpeg", calories: "420 kcal", dietary: ["vegetarian","contains-nuts"] },
@@ -739,12 +675,9 @@
         { id: "gg4", enName: "Caesar Salad", arName: "سلطة سيزر", priceNum: 47, descriptionEn: "Crisp romaine lettuce tossed in creamy Caesar dressing, topped with crunchy croutons and parmesan for a fresh, classic, and satisfying salad.", descriptionAr: "خس روماني مقرمش يُمزج مع صوص السيزر الكريمي ويُزين بقطع الخبز المحمص وجبن البارميزان، لسلطة كلاسيكية منعشة ومشبعة.", image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Caesar.jpeg", calories: "420 kcal", dietary: ["contains-gluten","contains-dairy","vegetarian"] }
    ]}
     ];
-
-    const menuContainer = document.getElementById("menu-container");
     const searchInput = document.getElementById("searchInput");
-    const filterButtons = document.querySelectorAll(".filter-btn");
-    const noResults = document.getElementById("noResults");
-    const resetFiltersBtn = document.getElementById("resetFiltersBtn");
+    const categoriesScroll = document.getElementById("categoriesScroll");
+    const mainContent = document.getElementById("mainContent");
     const modal = document.getElementById("imageModal");
     const modalTitle = document.getElementById("modalTitle");
     const modalImage = document.getElementById("modalImage");
@@ -757,73 +690,117 @@
     const beanOptions = document.getElementById("beanOptions");
     const selectedBeanDisplay = document.getElementById("selectedBeanDisplay");
     const modalCloseBtn = modal.querySelector(".modal-header button");
-    const activeFilters = new Set();
+    let activeCategory = null;
     let currentBean = null;
 
-    const filterConditions = {
-      popular: item => item.popular,
-      vegan: item => item.dietary.includes("vegan"),
-      vegetarian: item => item.dietary.includes("vegetarian"),
-      "contains-dairy": item => item.dietary.includes("contains-dairy"),
-      "contains-nuts": item => item.dietary.includes("contains-nuts")
+    const renderCategories = () => {
+      categoriesScroll.innerHTML = "";
+      
+      menuData.forEach(section => {
+        const pill = document.createElement("button");
+        pill.className = "category-pill";
+        if (activeCategory === section.category) pill.classList.add("active");
+        pill.innerHTML = `${section.icon} ${section.category}`;
+        pill.addEventListener("click", () => {
+          activeCategory = section.category;
+          renderCategories();
+          renderContent();
+        });
+        categoriesScroll.appendChild(pill);
+      });
     };
 
-    const createDishCard = (dish) => {
-      const article = document.createElement("article");
-      article.className = "dish-card";
-      article.innerHTML = `
-        <img src="${dish.image}" alt="${dish.enName}" loading="lazy" />
-        <div class="content">
-          <div class="name">
-            <span>${dish.enName}</span>
-            <span class="price-chip">QAR ${dish.priceNum.toFixed(0)}</span>
-          </div>
-          <p class="desc">${dish.descriptionEn}</p>
-          <div class="meta">
-            <span class="tag">${dish.calories}</span>
-            ${dish.dietary.map(tag => `<span class="tag">${tag.replace(/-/g, " ")}</span>`).join("")}
-          </div>
-          <div class="meta">
-            <span class="tag">🌙 ${dish.arName}</span>
-          </div>
-        </div>
-        ${dish.popular ? `<div class="badge">Chef's Pick</div>` : ""}
-      `;
-      article.querySelector("img").addEventListener("click", () => openModal(dish));
-      return article;
+    const renderContent = () => {
+      mainContent.innerHTML = "";
+      
+      const filteredData = activeCategory 
+        ? menuData.filter(s => s.category === activeCategory)
+        : menuData;
+
+      if (filteredData.length === 0) {
+        mainContent.innerHTML = '<div class="no-results"><strong>No items found</strong></div>';
+        return;
+      }
+
+      filteredData.forEach(section => {
+        const filteredItems = section.items.filter(item => {
+          const query = searchInput.value.toLowerCase();
+          return item.enName.toLowerCase().includes(query) || 
+                 item.descriptionEn.toLowerCase().includes(query);
+        });
+
+        if (filteredItems.length === 0) return;
+
+        const sectionDiv = document.createElement("div");
+
+        const titleDiv = document.createElement("div");
+        titleDiv.className = "section-title";
+        titleDiv.innerHTML = `<h2>${section.category}</h2><p>${section.arCategory}</p>`;
+        sectionDiv.appendChild(titleDiv);
+
+        const gridDiv = document.createElement("div");
+        gridDiv.className = "items-grid";
+
+        filteredItems.forEach(item => {
+          const card = document.createElement("div");
+          card.className = "dish-card";
+          let dietaryTags = item.dietary.map(d => `<span class="dish-tag">${d.replace(/-/g, " ")}</span>`).join("");
+          
+          card.innerHTML = `
+            <img src="${item.image}" alt="${item.enName}" class="dish-image" />
+            ${item.popular ? `<div class="badge">Chef's Pick</div>` : ""}
+            <div class="dish-info">
+              <h3 class="dish-name">${item.enName}</h3>
+              <p class="dish-desc">${item.descriptionEn}</p>
+              <div class="dish-footer">
+                <span class="dish-price">QAR ${item.priceNum}</span>
+                <span class="dish-cal">${item.calories}</span>
+              </div>
+              <div class="dish-tags">
+                ${dietaryTags}
+              </div>
+            </div>
+          `;
+          
+          card.addEventListener("click", () => openModal(item));
+          gridDiv.appendChild(card);
+        });
+
+        sectionDiv.appendChild(gridDiv);
+        mainContent.appendChild(sectionDiv);
+      });
     };
 
-    const openModal = (dish) => {
-      modalTitle.textContent = dish.enName;
-      modalImage.src = dish.image;
-      modalImage.alt = dish.enName;
-      modalDescEn.textContent = dish.descriptionEn;
-      modalDescAr.textContent = dish.descriptionAr;
-      modalPrice.textContent = dish.priceNum.toFixed(0);
-      modalCalories.textContent = dish.calories;
-      modalDietary.textContent = dish.dietary.length ? dish.dietary.join(" • ") : "Chef’s creation";
+    const openModal = (item) => {
+      modalTitle.textContent = item.enName;
+      modalImage.src = item.image;
+      modalImage.alt = item.enName;
+      modalDescEn.textContent = item.descriptionEn;
+      modalDescAr.textContent = item.descriptionAr;
+      modalPrice.textContent = item.priceNum;
+      modalCalories.textContent = item.calories;
+      modalDietary.textContent = item.dietary.length ? item.dietary.join(" • ") : "Chef's creation";
 
-      if (dish.hasBeansSelector && dish.beans) {
+      if (item.hasBeansSelector && item.beans) {
         beanSelector.style.display = "block";
-        beanOptions.innerHTML = dish.beans
+        beanOptions.innerHTML = item.beans
           .map((bean, index) => `<button class="bean-option ${index === 0 ? "selected" : ""}" data-bean="${bean}">${bean}</button>`)
           .join("");
-        currentBean = dish.beans[0];
-        selectedBeanDisplay.textContent = `Selected bean: ${currentBean}`;
-        selectedBeanDisplay.style.display = "block";
+        currentBean = item.beans[0];
+        selectedBeanDisplay.textContent = `Selected: ${currentBean}`;
+        selectedBeanDisplay.style.display = "inline";
 
         beanOptions.querySelectorAll(".bean-option").forEach(btn => {
           btn.addEventListener("click", () => {
             beanOptions.querySelectorAll(".bean-option").forEach(b => b.classList.remove("selected"));
             btn.classList.add("selected");
             currentBean = btn.dataset.bean;
-            selectedBeanDisplay.textContent = `Selected bean: ${currentBean}`;
+            selectedBeanDisplay.textContent = `Selected: ${currentBean}`;
           });
         });
       } else {
         beanSelector.style.display = "none";
         selectedBeanDisplay.style.display = "none";
-        currentBean = null;
       }
 
       modal.setAttribute("aria-hidden", "false");
@@ -837,83 +814,13 @@
       document.body.style.overflow = "";
     };
 
-    const matchesFilters = (dish) => {
-      if (!activeFilters.size) return true;
-      return [...activeFilters].every(filter => filterConditions[filter](dish));
-    };
-
-    const renderMenu = () => {
-      const query = searchInput.value.trim().toLowerCase();
-      menuContainer.innerHTML = "";
-      let totalMatches = 0;
-
-      menuData.forEach(section => {
-        const filteredItems = section.items.filter(item => {
-          const textMatch =
-            item.enName.toLowerCase().includes(query) ||
-            item.arName.toLowerCase().includes(query) ||
-            item.descriptionEn.toLowerCase().includes(query);
-          return textMatch && matchesFilters(item);
-        });
-
-        if (!filteredItems.length) return;
-
-        totalMatches += filteredItems.length;
-        const sectionEl = document.createElement("section");
-        sectionEl.innerHTML = `
-          <div class="section-header">
-            <div>
-              <h2>${section.category}</h2>
-              <div class="ar-label">${section.arCategory}</div>
-            </div>
-            <div class="pill">${section.icon} ${section.category}</div>
-          </div>
-        `;
-        const grid = document.createElement("div");
-        grid.className = "category-grid";
-        filteredItems.forEach(item => grid.appendChild(createDishCard(item)));
-        sectionEl.appendChild(grid);
-        menuContainer.appendChild(sectionEl);
-      });
-
-      noResults.classList.toggle("visible", totalMatches === 0);
-    };
-
-    filterButtons.forEach(btn => {
-      btn.addEventListener("click", () => {
-        const key = btn.dataset.filter;
-        if (activeFilters.has(key)) {
-          activeFilters.delete(key);
-          btn.classList.remove("active");
-        } else {
-          activeFilters.add(key);
-          btn.classList.add("active");
-        }
-        renderMenu();
-      });
-    });
-
-    searchInput.addEventListener("input", () => renderMenu());
-
-    resetFiltersBtn.addEventListener("click", () => {
-      activeFilters.clear();
-      filterButtons.forEach(btn => btn.classList.remove("active"));
-      searchInput.value = "";
-      renderMenu();
-    });
-
+    searchInput.addEventListener("input", renderContent);
     modalCloseBtn.addEventListener("click", closeModal);
-    modal.addEventListener("click", (event) => {
-      if (event.target === modal) closeModal();
-    });
+    modal.addEventListener("click", (e) => e.target === modal && closeModal());
+    document.addEventListener("keydown", (e) => e.key === "Escape" && modal.classList.contains("active") && closeModal());
 
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" && modal.classList.contains("active")) {
-        closeModal();
-      }
-    });
-
-    renderMenu();
+    renderCategories();
+    renderContent();
   </script>
 </body>
 </html>
