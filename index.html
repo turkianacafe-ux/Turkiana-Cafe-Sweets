@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Turkiana Café & Sweets — Enhanced Menu</title>
+  <title>Turkiana Café & Sweets — Elevated Menu</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
@@ -11,17 +11,20 @@
     :root {
       --bg: #02040d;
       --text: #f7f7fb;
-      --muted: rgba(247, 247, 251, 0.6);
+      --muted: rgba(247, 247, 251, 0.65);
       --accent: #f97316;
       font-family: "Inter", system-ui, sans-serif;
     }
-    * {
+    *, *::before, *::after {
       box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
     }
     body {
       margin: 0;
       min-height: 100vh;
-      background: radial-gradient(circle at 20% 0%, rgba(249, 115, 22, 0.18), transparent 45%), linear-gradient(180deg, #04060f 0%, #010308 100%);
+      background: radial-gradient(circle at 20% -10%, rgba(249, 115, 22, 0.18), transparent 45%), linear-gradient(180deg, #04060f 0%, #010308 100%);
       color: var(--text);
     }
     .page {
@@ -119,6 +122,46 @@
       max-width: 1200px;
       margin: 0 auto;
       padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+    .favorites-section {
+      border-radius: 20px;
+      padding: 24px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .favorites-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .favorites-title h2 {
+      margin: 0;
+      font-size: 1.4rem;
+      font-family: "Playfair Display", serif;
+      letter-spacing: 0.08em;
+    }
+    .favorites-count {
+      font-size: 0.9rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.7);
+    }
+    .favorites-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+    }
+    .favorites-empty {
+      font-size: 0.9rem;
+      color: var(--muted);
     }
     .section-title {
       margin-bottom: 30px;
@@ -225,6 +268,63 @@
       background: linear-gradient(130deg, rgba(249, 115, 22, 0.95), rgba(202, 168, 74, 0.8));
       color: #fff;
       box-shadow: 0 10px 25px rgba(249, 115, 22, 0.4);
+      animation: badgePulse 3s ease-in-out infinite;
+    }
+    .favorite-toggle {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      background: rgba(255, 255, 255, 0.08);
+      color: rgba(255, 255, 255, 0.8);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
+    }
+    .favorite-toggle:hover {
+      transform: scale(1.1);
+      background: rgba(255, 255, 255, 0.2);
+    }
+    .favorite-toggle.active {
+      background: rgba(249, 115, 22, 0.95);
+      color: #04050b;
+      border-color: rgba(249, 115, 22, 0.9);
+    }
+    .favorites-card {
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.03);
+      display: grid;
+      gap: 10px;
+      padding: 12px;
+      position: relative;
+      cursor: pointer;
+      overflow: hidden;
+    }
+    .favorites-card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 12px;
+      background: rgba(0, 0, 0, 0.2);
+    }
+    .favorites-card h3 {
+      margin: 0;
+      font-size: 1rem;
+    }
+    .favorites-card p {
+      margin: 0;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.65);
+    }
+    .favorites-card span {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #ffcc7d;
     }
     .no-results {
       text-align: center;
@@ -376,6 +476,20 @@
         transform: translateY(0) scale(1);
       }
     }
+    @keyframes badgePulse {
+      0% {
+        transform: scale(0.95);
+        box-shadow: 0 10px 22px rgba(249, 115, 22, 0.4);
+      }
+      50% {
+        transform: scale(1.05);
+        box-shadow: 0 10px 32px rgba(249, 115, 22, 0.6);
+      }
+      100% {
+        transform: scale(0.95);
+        box-shadow: 0 10px 22px rgba(249, 115, 22, 0.4);
+      }
+    }
     @media (max-width: 768px) {
       .search-bar {
         padding: 0 16px 20px;
@@ -386,11 +500,12 @@
       main {
         padding: 30px 16px;
       }
-      .dish-desc {
-        min-height: auto;
-      }
       .modal-body {
         grid-template-columns: 1fr;
+      }
+      .favorite-toggle {
+        bottom: 14px;
+        right: 14px;
       }
     }
   </style>
@@ -410,7 +525,15 @@
       <div class="categories-scroll" id="categoriesScroll"></div>
     </div>
 
-    <main id="mainContent"></main>
+    <main id="mainContent">
+      <section class="favorites-section" id="favoritesSection">
+        <div class="favorites-title">
+          <h2>Favorites</h2>
+          <span class="favorites-count" id="favoritesCount">0 ITEMS</span>
+        </div>
+        <div class="favorites-grid" id="favoritesGrid"></div>
+      </section>
+    </main>
 
     <footer>Experience the balance of savory bites and sweet finishes at Turkiana Café & Sweets.</footer>
   </div>
@@ -422,7 +545,7 @@
         <button aria-label="Close modal">&times;</button>
       </div>
       <div class="modal-body">
-        <img id="modalImage" src="" alt="" />
+        <img id="modalImage" src="" alt="" loading="lazy" />
         <div class="modal-info">
           <p id="modalDescEn"></p>
           <p id="modalDescAr"></p>
@@ -444,6 +567,10 @@
   </div>
 
   <script>
+    const stateKey = "turkianaMenuState";
+    const favoritesKey = "turkianaFavorites";
+    const persistedState = JSON.parse(localStorage.getItem(stateKey) || "{}");
+    const persistedFavorites = JSON.parse(localStorage.getItem(favoritesKey) || "[]");
     const menuData = [
       {
         category: "Baklava & Beyond",
@@ -1672,6 +1799,8 @@
     const searchInput = document.getElementById("searchInput");
     const categoriesScroll = document.getElementById("categoriesScroll");
     const mainContent = document.getElementById("mainContent");
+    const favoritesGrid = document.getElementById("favoritesGrid");
+    const favoritesCount = document.getElementById("favoritesCount");
     const modal = document.getElementById("imageModal");
     const modalTitle = document.getElementById("modalTitle");
     const modalImage = document.getElementById("modalImage");
@@ -1684,8 +1813,45 @@
     const beanOptions = document.getElementById("beanOptions");
     const selectedBeanDisplay = document.getElementById("selectedBeanDisplay");
     const modalCloseBtn = modal.querySelector(".modal-header button");
-    let activeCategory = null;
+    let activeCategory = persistedState.category || null;
+    let searchQuery = persistedState.search || "";
+    let favorites = new Set(persistedFavorites);
     let currentBean = null;
+    searchInput.value = searchQuery;
+    const persistState = () => {
+      localStorage.setItem(stateKey, JSON.stringify({ category: activeCategory, search: searchQuery }));
+    };
+    const persistFavorites = () => {
+      localStorage.setItem(favoritesKey, JSON.stringify(Array.from(favorites)));
+    };
+    const getItemById = (id) => {
+      for (const section of menuData) {
+        const match = section.items.find(item => item.id === id);
+        if (match) return match;
+      }
+      return null;
+    };
+    const renderFavoritesPanel = () => {
+      const favoriteItems = Array.from(favorites).map(getItemById).filter(Boolean);
+      favoritesCount.textContent = `${favoriteItems.length} ITEMS`;
+      favoritesGrid.innerHTML = "";
+      if (!favoriteItems.length) {
+        favoritesGrid.innerHTML = '<p class="favorites-empty">Tap the heart icon on any dish to add it to favorites for quick access.</p>';
+        return;
+      }
+      favoriteItems.forEach(item => {
+        const favCard = document.createElement("article");
+        favCard.className = "favorites-card";
+        favCard.innerHTML = `
+          <img src="${item.image}" alt="${item.enName}" loading="lazy" />
+          <h3>${item.enName}</h3>
+          <p>${item.descriptionEn}</p>
+          <span>QAR ${item.priceNum}</span>
+        `;
+        favCard.addEventListener("click", () => openModal(item));
+        favoritesGrid.appendChild(favCard);
+      });
+    };
     const renderCategories = () => {
       categoriesScroll.innerHTML = "";
       const allPill = document.createElement("button");
@@ -1694,6 +1860,7 @@
       if (!activeCategory) allPill.classList.add("active");
       allPill.addEventListener("click", () => {
         activeCategory = null;
+        persistState();
         renderCategories();
         renderContent();
       });
@@ -1705,38 +1872,70 @@
         pill.innerText = `${section.icon} ${section.category}`;
         pill.addEventListener("click", () => {
           activeCategory = section.category;
+          persistState();
           renderCategories();
           renderContent();
+          categoriesScroll.scrollTo({ left: pill.offsetLeft - 30, behavior: "smooth" });
         });
         categoriesScroll.appendChild(pill);
       });
     };
+    const createFavoriteToggle = (item) => {
+      const toggle = document.createElement("button");
+      toggle.type = "button";
+      toggle.className = `favorite-toggle ${favorites.has(item.id) ? "active" : ""}`;
+      toggle.innerHTML = "❤";
+      toggle.addEventListener("click", (event) => {
+        event.stopPropagation();
+        if (favorites.has(item.id)) {
+          favorites.delete(item.id);
+        } else {
+          favorites.add(item.id);
+        }
+        persistFavorites();
+        renderFavoritesPanel();
+        renderContent();
+      });
+      return toggle;
+    };
     const renderContent = () => {
-      mainContent.innerHTML = "";
+      const existingFavoritesSection = document.getElementById("favoritesSection");
+      if (!existingFavoritesSection) return;
       const filteredData = activeCategory ? menuData.filter(section => section.category === activeCategory) : menuData;
-      if (!filteredData.length) {
-        mainContent.innerHTML = '<div class="no-results"><strong>No items found</strong><p>Try adjusting your search or select another category.</p></div>';
-        return;
-      }
+      const query = searchQuery.toLowerCase().trim();
+      const sectionsWithResults = [];
       filteredData.forEach(section => {
         const filteredItems = section.items.filter(item => {
-          const query = searchInput.value.toLowerCase();
-          return item.enName.toLowerCase().includes(query) || item.descriptionEn.toLowerCase().includes(query) || item.arName.toLowerCase().includes(query);
+          const haystack = `${item.enName} ${item.descriptionEn} ${item.arName}`.toLowerCase();
+          return haystack.includes(query);
         });
-        if (!filteredItems.length) return;
+        if (filteredItems.length) {
+          sectionsWithResults.push({ ...section, items: filteredItems });
+        }
+      });
+      const existingSections = Array.from(mainContent.querySelectorAll(".menu-section"));
+      existingSections.forEach(section => section.remove());
+      if (!sectionsWithResults.length) {
+        const noResults = document.createElement("div");
+        noResults.className = "no-results";
+        noResults.innerHTML = "<strong>No items found</strong><p>Try adjusting your search term or explore another section.</p>";
+        mainContent.appendChild(noResults);
+        return;
+      }
+      sectionsWithResults.forEach(section => {
         const sectionWrapper = document.createElement("section");
+        sectionWrapper.className = "menu-section";
         const titleDiv = document.createElement("div");
         titleDiv.className = "section-title";
         titleDiv.innerHTML = `<h2>${section.category}</h2><p>${section.arCategory}</p>`;
         sectionWrapper.appendChild(titleDiv);
         const gridDiv = document.createElement("div");
         gridDiv.className = "items-grid";
-        filteredItems.forEach(item => {
+        section.items.forEach(item => {
           const card = document.createElement("article");
           card.className = "dish-card";
-          const tags = item.dietary.map(tag => `<span class="dish-tag">${tag.replace(/-/g, " ")}</span>`).join("");
           card.innerHTML = `
-            <img src="${item.image}" alt="${item.enName}" class="dish-image" />
+            <img src="${item.image}" alt="${item.enName}" class="dish-image" loading="lazy" />
             ${item.popular ? `<div class="badge">Chef’s Pick</div>` : ""}
             <div class="dish-info">
               <h3 class="dish-name">${item.enName}</h3>
@@ -1745,18 +1944,19 @@
                 <span class="dish-price">QAR ${item.priceNum}</span>
                 <span class="dish-cal">${item.calories}</span>
               </div>
-              <div class="dish-tags">${tags}</div>
+              <div class="dish-tags">
+                ${item.dietary.map(tag => `<span class="dish-tag">${tag.replace(/-/g, " ")}</span>`).join("")}
+              </div>
             </div>
           `;
+          const favToggle = createFavoriteToggle(item);
+          card.appendChild(favToggle);
           card.addEventListener("click", () => openModal(item));
           gridDiv.appendChild(card);
         });
         sectionWrapper.appendChild(gridDiv);
         mainContent.appendChild(sectionWrapper);
       });
-      if (!mainContent.innerHTML.trim()) {
-        mainContent.innerHTML = '<div class="no-results"><strong>No items found</strong><p>Try adjusting your search term or look at another section.</p></div>';
-      }
     };
     const openModal = (item) => {
       modalTitle.textContent = item.enName;
@@ -1794,7 +1994,11 @@
       modal.classList.remove("active");
       document.body.style.overflow = "";
     };
-    searchInput.addEventListener("input", renderContent);
+    searchInput.addEventListener("input", (event) => {
+      searchQuery = event.target.value;
+      persistState();
+      renderContent();
+    });
     modalCloseBtn.addEventListener("click", closeModal);
     modal.addEventListener("click", (event) => {
       if (event.target === modal) closeModal();
@@ -1803,6 +2007,7 @@
       if (event.key === "Escape" && modal.classList.contains("active")) closeModal();
     });
     renderCategories();
+    renderFavoritesPanel();
     renderContent();
   </script>
 </body>
