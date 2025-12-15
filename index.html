@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="theme-color" content="#f97316"/>
+  <meta name="mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-title" content="Turkiana"/>
+  <link rel="icon" type="image/png" href="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Logo.png"/>
+  <link rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjoiVHVya2lhbmEgQ2Fmw6kgJiBTd2VldHMiLCJzaG9ydF9uYW1lIjoiVHVya2lhbmEiLCJzdGFydF91cmwiOiIuIiwiZGlzcGxheSI6InN0YW5kYWxvbmUiLCJ0aGVtZV9jb2xvciI6IiNmOTczMTYiLCJiYWNrZ3JvdW5kX2NvbG9yIjoiIzAyMDQwZCIsImljb25zIjpbeyJzcmMiOiJodHRwczovL3R1cmtpYW5hY2FmZS11eC5naXRodWIuaW8vVHVya2lhbmEtQ2FmZS1Td2VldHMvTG9nby5wbmciLCJzaXplcyI6IjE5MngxOTIiLCJ0eXBlIjoiaW1hZ2UvcG5nIn0seyJzcmMiOiJodHRwczovL3R1cmtpYW5hY2FmZS11eC5naXRodWIuaW8vVHVya2lhbmEtQ2FmZS1Td2VldHMvTG9nby5wbmciLCJzaXplcyI6IjUxMng1MTIiLCJ0eXBlIjoiaW1hZ2UvcG5nIn1dfQ=="/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet"/>
   <title>Turkiana Café & Sweets — Elevated Menu</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
       --bg: #02040d;
@@ -180,7 +186,7 @@
     }
     .items-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: repeat(4, minmax(140px, 1fr));
       gap: 20px;
     }
     .dish-card {
@@ -490,22 +496,9 @@
         box-shadow: 0 10px 22px rgba(249, 115, 22, 0.4);
       }
     }
-    @media (max-width: 768px) {
-      .search-bar {
-        padding: 0 16px 20px;
-      }
-      .categories-scroll {
-        padding: 0 16px;
-      }
-      main {
-        padding: 30px 16px;
-      }
-      .modal-body {
-        grid-template-columns: 1fr;
-      }
-      .favorite-toggle {
-        bottom: 14px;
-        right: 14px;
+    @media (max-width: 640px) {
+      .items-grid {
+        grid-template-columns: repeat(4, minmax(110px, 1fr));
       }
     }
   </style>
@@ -513,18 +506,15 @@
 <body>
   <div class="page">
     <header>
-      <h1>Turkiana Café & Sweets</h1>
+      <h1>Turkiana Café &amp; Sweets</h1>
       <p>Curated bites, balanced pairings, and sensory storytelling inspired by Turkish hospitality.</p>
     </header>
-
     <div class="search-bar">
-      <input id="searchInput" class="search-input" type="search" placeholder="Search dishes, flavors, or ingredients..." />
+      <input id="searchInput" class="search-input" type="search" placeholder="Search dishes, flavors, or ingredients..."/>
     </div>
-
     <div class="categories-container">
       <div class="categories-scroll" id="categoriesScroll"></div>
     </div>
-
     <main id="mainContent">
       <section class="favorites-section" id="favoritesSection">
         <div class="favorites-title">
@@ -534,10 +524,8 @@
         <div class="favorites-grid" id="favoritesGrid"></div>
       </section>
     </main>
-
-    <footer>Experience the balance of savory bites and sweet finishes at Turkiana Café & Sweets.</footer>
+    <footer>Experience the balance of savory bites and sweet finishes at Turkiana Café &amp; Sweets.</footer>
   </div>
-
   <div id="imageModal" class="modal-backdrop" aria-hidden="true">
     <div class="modal-card" role="dialog" aria-modal="true">
       <div class="modal-header">
@@ -545,7 +533,7 @@
         <button aria-label="Close modal">&times;</button>
       </div>
       <div class="modal-body">
-        <img id="modalImage" src="" alt="" loading="lazy" />
+        <img id="modalImage" src="" alt="" loading="lazy"/>
         <div class="modal-info">
           <p id="modalDescEn"></p>
           <p id="modalDescAr"></p>
@@ -565,8 +553,13 @@
       </div>
     </div>
   </div>
-
   <script>
+    const swCode = "const CACHE_NAME=\"turkiana-v1\";const CACHE_URLS=[self.registration.scope];self.addEventListener(\"install\",event=>{event.waitUntil(caches.open(CACHE_NAME).then(cache=>cache.addAll(CACHE_URLS)));self.skipWaiting();});self.addEventListener(\"activate\",event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.map(key=>key===CACHE_NAME?Promise.resolve():caches.delete(key)))));self.clients.claim();});self.addEventListener(\"fetch\",event=>{event.respondWith(caches.match(event.request).then(response=>response||fetch(event.request)));});";
+    if ("serviceWorker" in navigator) {
+      const swBlob = new Blob([swCode], { type: "application/javascript" });
+      const swUrl = URL.createObjectURL(swBlob);
+      navigator.serviceWorker.register(swUrl);
+    }
     const stateKey = "turkianaMenuState";
     const favoritesKey = "turkianaFavorites";
     const persistedState = JSON.parse(localStorage.getItem(stateKey) || "{}");
@@ -1843,7 +1836,7 @@
         const favCard = document.createElement("article");
         favCard.className = "favorites-card";
         favCard.innerHTML = `
-          <img src="${item.image}" alt="${item.enName}" loading="lazy" />
+          <img src="${item.image}" alt="${item.enName}" loading="lazy"/>
           <h3>${item.enName}</h3>
           <p>${item.descriptionEn}</p>
           <span>QAR ${item.priceNum}</span>
@@ -1899,8 +1892,6 @@
       return toggle;
     };
     const renderContent = () => {
-      const existingFavoritesSection = document.getElementById("favoritesSection");
-      if (!existingFavoritesSection) return;
       const filteredData = activeCategory ? menuData.filter(section => section.category === activeCategory) : menuData;
       const query = searchQuery.toLowerCase().trim();
       const sectionsWithResults = [];
@@ -1915,6 +1906,8 @@
       });
       const existingSections = Array.from(mainContent.querySelectorAll(".menu-section"));
       existingSections.forEach(section => section.remove());
+      const favoritesSection = document.getElementById("favoritesSection");
+      if (favoritesSection) favoritesSection.after(document.createElement("div"));
       if (!sectionsWithResults.length) {
         const noResults = document.createElement("div");
         noResults.className = "no-results";
@@ -1935,7 +1928,7 @@
           const card = document.createElement("article");
           card.className = "dish-card";
           card.innerHTML = `
-            <img src="${item.image}" alt="${item.enName}" class="dish-image" loading="lazy" />
+            <img src="${item.image}" alt="${item.enName}" class="dish-image" loading="lazy"/>
             ${item.popular ? `<div class="badge">Chef’s Pick</div>` : ""}
             <div class="dish-info">
               <h3 class="dish-name">${item.enName}</h3>
