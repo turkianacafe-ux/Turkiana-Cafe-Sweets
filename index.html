@@ -1,66 +1,146 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Turkiana Café & Sweets — Menu</title>
+  <title>Turkiana Café & Sweets — Qatar National Day 2025</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --bg: #02040d;
+      --bg: #0a0204;
       --text: #f7f7fb;
       --muted: rgba(247, 247, 251, 0.65);
-      --accent: #f97316;
+      --accent: #8B0921;
+      --gold: #D4AF37;
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
       font-family: Inter, sans-serif;
-      background: linear-gradient(180deg, #04060f 0%, #010308 100%);
+      background: linear-gradient(180deg, #05010c 0%, #020102 40%, #0c060d 100%);
       color: var(--text);
       min-height: 100vh;
+      position: relative;
     }
-    .page { padding-bottom: 40px; }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(135deg, rgba(255,255,255,0.02) 0 10px, rgba(255,255,255,0) 10px 20px);
+      pointer-events: none;
+      opacity: 0.25;
+    }
+    .page { padding-bottom: 40px; position: relative; z-index: 1; }
     header {
       text-align: center;
-      padding: 60px 24px 30px;
+      padding: 60px 24px 10px;
+      background: linear-gradient(135deg, rgba(139,9,33,0.3) 0%, rgba(212,175,55,0.1) 100%);
+      border-bottom: 2px solid rgba(212,175,55,0.3);
     }
     header h1 {
       font-family: "Playfair Display", serif;
-      font-size: clamp(2rem, 4vw, 3rem);
+      font-size: clamp(2rem, 4vw, 3.4rem);
       margin: 0;
-      background: linear-gradient(130deg, #f97316, #facc15, #caa84a);
+      background: linear-gradient(130deg, #f7f7fb, #D4AF37);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     header p {
       margin: 12px auto 0;
-      max-width: 600px;
+      max-width: 640px;
       color: var(--muted);
+      font-size: 0.95rem;
+    }
+    header .subline {
+      margin-top: 8px;
       font-size: 0.9rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: #D4AF37;
+      font-weight: 600;
+    }
+    .qatar-banner {
+      margin: 32px auto 0;
+      padding: 24px;
+      max-width: 1100px;
+      border-radius: 20px;
+      background: linear-gradient(120deg, rgba(139,9,33,0.95), rgba(14,2,10,0.9));
+      border: 2px solid rgba(212,175,55,0.4);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(139,9,33,0.3);
+    }
+    .qatar-banner::after {
+      content: "🇶🇦 2025";
+      position: absolute;
+      inset: 10px;
+      opacity: 0.08;
+      font-size: 4rem;
+      text-align: center;
+      letter-spacing: 0.4em;
+      font-weight: 700;
+      pointer-events: none;
+    }
+    .qatar-banner-content {
+      position: relative;
+      z-index: 2;
+      flex: 1;
+      min-width: 200px;
+    }
+    .qatar-banner-flag {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.2rem;
+      position: relative;
+      z-index: 2;
+      animation: pulse-glow 3s ease-in-out infinite;
+    }
+    .qatar-banner-flag span {
+      font-size: 3rem;
+      line-height: 1;
+    }
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.8; }
+    }
+    .qatar-banner h3 {
+      margin: 0 0 8px 0;
+      font-family: "Playfair Display", serif;
+      font-size: 1.6rem;
+      color: #D4AF37;
+    }
+    .qatar-banner p {
+      margin: 0;
+      color: rgba(255,255,255,0.9);
+      font-size: 0.95rem;
     }
     .search-bar {
       max-width: 1200px;
-      margin: 0 auto;
+      margin: 30px auto 0;
       padding: 0 20px 20px;
     }
     .search-input {
       width: 100%;
       padding: 14px 18px;
       border-radius: 16px;
-      border: none;
+      border: 1px solid rgba(212,175,55,0.3);
       background: rgba(255, 255, 255, 0.07);
       color: var(--text);
       font-size: 1rem;
-    }
-    .search-input::placeholder {
-      color: rgba(255, 255, 255, 0.4);
+      transition: all 0.3s;
     }
     .search-input:focus {
       outline: none;
-      box-shadow: 0 0 20px rgba(249, 115, 22, 0.5);
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(212,175,55,0.6);
+      box-shadow: 0 0 20px rgba(212,175,55,0.2);
     }
     .filters-bar {
       max-width: 1200px;
@@ -82,11 +162,12 @@
       transition: all 0.25s;
     }
     .filter-btn:hover {
-      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(212,175,55,0.5);
+      color: rgba(255, 255, 255, 0.9);
     }
     .filter-btn.active {
-      background: rgba(249, 115, 22, 0.3);
-      border-color: rgba(249, 115, 22, 0.8);
+      background: linear-gradient(135deg, rgba(139,9,33,0.5), rgba(212,175,55,0.3));
+      border-color: rgba(212,175,55,0.8);
       color: #fff;
     }
     .favorites-toggle {
@@ -104,20 +185,20 @@
       gap: 6px;
     }
     .favorites-toggle:hover {
-      background: rgba(249, 115, 22, 0.2);
+      border-color: rgba(212,175,55,0.5);
     }
     .favorites-toggle.active {
-      background: rgba(249, 115, 22, 0.4);
-      border-color: rgba(249, 115, 22, 1);
+      background: linear-gradient(135deg, rgba(139,9,33,0.5), rgba(212,175,55,0.3));
+      border-color: rgba(212,175,55,1);
       color: #fff;
     }
     .categories-container {
       position: sticky;
       top: 0;
       z-index: 50;
-      background: rgba(2, 4, 13, 0.95);
+      background: rgba(2, 4, 13, 0.98);
       backdrop-filter: blur(18px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid rgba(212,175,55,0.2);
       padding: 12px 0;
     }
     .categories-scroll {
@@ -127,9 +208,19 @@
       padding: 0 20px;
       max-width: 1200px;
       margin: 0 auto;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(212,175,55,0.3) transparent;
     }
-    .categories-scroll::-webkit-scrollbar { height: 4px; }
-    .categories-scroll::-webkit-scrollbar-thumb { background: rgba(249, 115, 22, 0.6); border-radius: 10px; }
+    .categories-scroll::-webkit-scrollbar {
+      height: 6px;
+    }
+    .categories-scroll::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .categories-scroll::-webkit-scrollbar-thumb {
+      background: rgba(212,175,55,0.3);
+      border-radius: 3px;
+    }
     .category-pill {
       flex-shrink: 0;
       padding: 10px 18px;
@@ -142,11 +233,15 @@
       transition: all 0.25s;
       white-space: nowrap;
     }
+    .category-pill:hover {
+      border-color: rgba(212,175,55,0.5);
+      background: rgba(212,175,55,0.1);
+    }
     .category-pill.active {
-      background: linear-gradient(135deg, rgba(249, 115, 22, 0.8), rgba(202, 168, 74, 0.5));
-      border-color: rgba(249, 115, 22, 1);
+      background: linear-gradient(135deg, rgba(139,9,33,0.8), rgba(212,175,55,0.4));
+      border-color: rgba(212,175,55,0.8);
       color: #fff;
-      box-shadow: 0 8px 20px rgba(249, 115, 22, 0.3);
+      box-shadow: 0 8px 20px rgba(139,9,33,0.4);
     }
     main {
       max-width: 1200px;
@@ -174,15 +269,16 @@
       border-radius: 14px;
       overflow: hidden;
       border: 1px solid rgba(255, 255, 255, 0.08);
-      background: rgba(10, 13, 28, 0.8);
+      background: rgba(10, 13, 28, 0.9);
       cursor: pointer;
       transition: all 0.3s;
       position: relative;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
     }
     .dish-card:hover {
       transform: translateY(-8px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-      border-color: rgba(249, 115, 22, 0.5);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+      border-color: rgba(212,175,55,0.4);
     }
     .dish-image-wrapper {
       position: relative;
@@ -204,8 +300,9 @@
       padding: 4px 10px;
       border-radius: 20px;
       font-size: 0.65rem;
-      background: rgba(249, 115, 22, 0.9);
-      color: #fff;
+      background: rgba(212,175,55,0.2);
+      color: #D4AF37;
+      border: 1px solid rgba(212,175,55,0.5);
       animation: pulse 2s infinite;
     }
     .dish-info {
@@ -236,18 +333,14 @@
       place-items: center;
     }
     .favorite-toggle:hover {
-      transform: scale(1.15);
-      background: rgba(255, 255, 255, 0.2);
+      border-color: rgba(212,175,55,0.8);
+      background: rgba(212,175,55,0.2);
     }
     .favorite-toggle.active {
-      background: rgba(249, 115, 22, 0.9);
+      background: rgba(139, 9, 33, 0.8);
       color: #fff;
-      border-color: rgba(249, 115, 22, 1);
+      border-color: rgba(212,175,55,0.9);
       animation: heartbeat 0.3s;
-    }
-    @keyframes heartbeat {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.2); }
     }
     .modal-backdrop {
       position: fixed;
@@ -258,44 +351,52 @@
       justify-content: center;
       z-index: 1000;
       padding: 20px;
+      opacity: 0;
+      transition: opacity 0.3s;
     }
-    .modal-backdrop.active { display: flex; }
+    .modal-backdrop.active {
+      display: flex;
+      opacity: 1;
+    }
     .modal-card {
-      width: min(900px, 100%);
-      border-radius: 16px;
-      background: rgba(8, 12, 24, 0.98);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.8);
+      background: linear-gradient(135deg, rgba(10,13,28,0.98) 0%, rgba(20,8,25,0.95) 100%);
+      border-radius: 20px;
+      border: 1px solid rgba(212,175,55,0.3);
+      overflow: hidden;
+      max-width: 900px;
+      width: 100%;
       max-height: 90vh;
       display: flex;
       flex-direction: column;
-      animation: pop 0.3s ease;
+      box-shadow: 0 20px 60px rgba(139,9,33,0.5);
     }
     .modal-header {
-      padding: 20px;
+      padding: 20px 24px;
+      border-bottom: 1px solid rgba(212,175,55,0.2);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
     .modal-header h3 {
       margin: 0;
       font-family: "Playfair Display", serif;
-      font-size: 1.6rem;
-      background: linear-gradient(120deg, #f97316, #caa84a);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      font-size: 1.8rem;
+      color: #D4AF37;
     }
     .modal-header button {
       background: none;
       border: none;
-      color: var(--text);
-      font-size: 1.8rem;
+      color: rgba(255,255,255,0.7);
+      font-size: 2rem;
       cursor: pointer;
-      transition: transform 0.2s;
+      transition: all 0.3s;
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
     }
     .modal-header button:hover {
-      transform: scale(1.1);
+      color: #D4AF37;
     }
     .modal-body {
       display: grid;
@@ -303,44 +404,50 @@
       gap: 0;
       overflow-y: auto;
       flex: 1;
-      max-height: calc(90vh - 100px);
     }
-    .modal-image { width: 100%; height: 100%; object-fit: cover; }
+    .modal-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      min-height: 300px;
+    }
     .modal-info {
       padding: 24px;
       display: flex;
       flex-direction: column;
-      gap: 14px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.3));
+      gap: 16px;
     }
     .modal-info h4 {
       margin: 0;
+      color: #D4AF37;
       font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.7);
-    }
-    .modal-info p {
-      margin: 0;
-      line-height: 1.6;
-      color: rgba(255, 255, 255, 0.8);
-      font-size: 0.95rem;
-    }
-    .modal-meta {
-      font-size: 0.75rem;
-      color: rgba(255, 255, 255, 0.6);
       text-transform: uppercase;
       letter-spacing: 0.1em;
     }
+    .modal-info p {
+      margin: 0;
+      color: rgba(255,255,255,0.85);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+    .modal-meta {
+      padding: 12px;
+      background: rgba(212,175,55,0.1);
+      border-radius: 8px;
+      border: 1px solid rgba(212,175,55,0.2);
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.8);
+    }
     .beans-selector {
-      margin-top: 12px;
-      padding: 16px;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 12px;
+      background: rgba(139,9,33,0.2);
+      border-radius: 8px;
+      border: 1px solid rgba(139,9,33,0.4);
     }
     .beans-selector h4 {
-      margin: 0 0 12px 0;
+      margin: 0 0 10px 0;
+      color: #D4AF37;
       font-size: 0.85rem;
-      color: rgba(255, 255, 255, 0.9);
     }
     .beans-options {
       display: flex;
@@ -348,39 +455,108 @@
       gap: 8px;
     }
     .bean-btn {
-      padding: 6px 14px;
-      border-radius: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      background: rgba(255, 255, 255, 0.05);
-      color: rgba(255, 255, 255, 0.8);
+      flex: 1;
+      min-width: 70px;
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.05);
+      color: rgba(255,255,255,0.7);
       font-size: 0.75rem;
       cursor: pointer;
-      transition: all 0.2s;
+      transition: all 0.25s;
     }
     .bean-btn:hover {
-      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(212,175,55,0.5);
+      background: rgba(212,175,55,0.1);
     }
     .bean-btn.selected {
-      background: rgba(249, 115, 22, 0.4);
-      border-color: rgba(249, 115, 22, 1);
+      background: linear-gradient(135deg, rgba(139,9,33,0.6), rgba(212,175,55,0.3));
+      border-color: rgba(212,175,55,0.8);
       color: #fff;
     }
     .modal-footer {
       padding: 16px 24px;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      background: rgba(0, 0, 0, 0.3);
-      text-align: right;
+      border-top: 1px solid rgba(212,175,55,0.2);
+      text-align: center;
+      background: rgba(212,175,55,0.05);
     }
-    .modal-footer span { font-size: 1rem; color: rgba(255, 255, 255, 0.8); }
-    .modal-footer strong { color: #ffcc7d; font-size: 1.3rem; }
+    .modal-footer strong {
+      color: #D4AF37;
+      font-size: 1.3rem;
+    }
+    .national-day-panel {
+      margin: 0 auto 30px;
+      max-width: 1200px;
+      padding: 0 20px;
+    }
+    .national-day-panel h2 {
+      margin: 0 0 10px;
+      font-size: 1.4rem;
+      color: #D4AF37;
+    }
+    .national-day-panel p {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    .national-day-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+    }
+    .national-day-card {
+      border-radius: 18px;
+      border: 2px solid rgba(212,175,55,0.3);
+      background: rgba(139,9,33,0.15);
+      padding: 12px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    .national-day-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(212,175,55,0.6);
+      background: rgba(139,9,33,0.25);
+      box-shadow: 0 12px 30px rgba(139,9,33,0.3);
+    }
+    .national-day-card img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+    .national-day-card .card-body {
+      padding: 12px 6px 0;
+    }
+    .national-day-card h4 {
+      margin: 0 0 4px;
+      font-size: 0.95rem;
+      color: #D4AF37;
+    }
+    .national-day-card span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.7);
+    }
     .no-results {
+      grid-column: 1 / -1;
       text-align: center;
       padding: 60px 20px;
       color: var(--muted);
     }
-    @keyframes pop {
-      from { opacity: 0; transform: scale(0.95) translateY(20px); }
-      to { opacity: 1; transform: scale(1) translateY(0); }
+    .no-results strong {
+      color: #D4AF37;
+      display: block;
+      margin-bottom: 8px;
+      font-size: 1.2rem;
+    }
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
     }
     @keyframes pulse {
       0%, 100% { transform: scale(1); }
@@ -391,6 +567,8 @@
       .items-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; }
       .filters-bar { justify-content: center; }
       .favorites-toggle { margin-left: 0; }
+      .qatar-banner { flex-direction: column; }
+      header { padding: 40px 20px 10px; }
     }
   </style>
 </head>
@@ -398,10 +576,23 @@
   <div class="page">
     <header>
       <h1>Turkiana Café & Sweets</h1>
-      <p>Curated bites and sensory storytelling inspired by Turkish hospitality</p>
+      <div class="subline">Qatar National Day 2025 • December 18</div>
+      <p>Celebrating the warmth of Qatari hospitality with specially curated flavours, maroon pride, and heartfelt greetings in every bite.</p>
     </header>
+
+    <div class="qatar-banner">
+      <div class="qatar-banner-content">
+        <h3>Weaving Qatar into Every Flavour</h3>
+        <p>Enjoy national pride with festive indulgences inspired by maroon sunsets, golden dreams, and Azm ambitions for 2025.</p>
+      </div>
+      <div class="qatar-banner-flag">
+        <span>🇶🇦</span>
+        <span>QND 2025</span>
+      </div>
+    </div>
+
     <div class="search-bar">
-      <input id="searchInput" class="search-input" type="search" placeholder="Search dishes..."/>
+      <input id="searchInput" class="search-input" type="search" placeholder="Search dishes, coffee, or sweets..."/>
     </div>
     <div class="filters-bar">
       <button class="filter-btn" data-filter="vegetarian">🌱 Vegetarian</button>
@@ -416,6 +607,13 @@
     <div class="categories-container">
       <div class="categories-scroll" id="categoriesScroll"></div>
     </div>
+
+    <div class="national-day-panel">
+      <h2>✨ Qatar National Day Specials 2025</h2>
+      <p>Exclusive selections celebrating our pride with Turkish Hospitality</p>
+      <div class="national-day-grid" id="nationalDayGrid"></div>
+    </div>
+
     <main id="mainContent"></main>
   </div>
 
@@ -426,7 +624,7 @@
         <button aria-label="Close">&times;</button>
       </div>
       <div class="modal-body">
-        <img id="modalImage" src="" alt=""/>
+        <img id="modalImage" class="modal-image" src="" alt=""/>
         <div class="modal-info">
           <div>
             <h4>Description</h4>
@@ -438,7 +636,7 @@
           </div>
           <div class="modal-meta">
             <div id="modalCalories"></div>
-            <div id="modalDietary"></div>
+            <div id="modalDietary" style="margin-top: 6px;"></div>
           </div>
           <div id="beansSelector"></div>
         </div>
@@ -558,21 +756,17 @@ const allItems = [
 const categories = [...new Set(allItems.map(item => item.cat))];
 let activeCategory = null;
 let searchQuery = "";
-let favorites = new Set(JSON.parse(localStorage.getItem('turkiana-favorites') || '[]'));
+let favorites = new Set();
 let activeDietaryFilters = new Set();
 let showFavoritesOnly = false;
 let selectedBean = "Ethiopia";
-
-const saveFavorites = () => {
-  localStorage.setItem('turkiana-favorites', JSON.stringify([...favorites]));
-  updateFavCount();
-};
 
 const updateFavCount = () => {
   document.getElementById('favCount').textContent = favorites.size;
 };
 
 const renderCategories = () => {
+  const categoriesScroll = document.getElementById("categoriesScroll");
   categoriesScroll.innerHTML = '';
   const allBtn = document.createElement("button");
   allBtn.className = "category-pill" + (!activeCategory ? " active" : "");
@@ -591,7 +785,6 @@ const renderCategories = () => {
 
 const matchesDietaryFilters = (item) => {
   if (activeDietaryFilters.size === 0) return true;
-  
   for (let filter of activeDietaryFilters) {
     if (filter === 'vegetarian' && !item.dietary.includes('vegetarian')) return false;
     if (filter === 'vegan' && !item.dietary.includes('vegan')) return false;
@@ -601,21 +794,32 @@ const matchesDietaryFilters = (item) => {
   return true;
 };
 
+const renderSpecials = () => {
+  const grid = document.getElementById("nationalDayGrid");
+  grid.innerHTML = '';
+  const specials = allItems.filter(item => item.nationalDay);
+  specials.forEach(item => {
+    const card = document.createElement("div");
+    card.className = "national-day-card";
+    card.innerHTML = `<img src="${item.image}" alt="${item.enName}"/><div class="card-body"><h4>${item.enName}</h4><span>QAR ${item.price}</span></div>`;
+    card.onclick = () => openModal(item);
+    grid.appendChild(card);
+  });
+};
+
 const renderContent = () => {
+  const mainContent = document.getElementById("mainContent");
   mainContent.innerHTML = '';
-  
   let filtered = allItems.filter(item => {
     const matchCat = !activeCategory || item.cat === activeCategory;
-    const matchSearch = !searchQuery || 
-      item.enName.toLowerCase().includes(searchQuery) || 
-      item.arName.includes(searchQuery);
+    const matchSearch = !searchQuery || item.enName.toLowerCase().includes(searchQuery) || item.arName.includes(searchQuery);
     const matchDietary = matchesDietaryFilters(item);
     const matchFav = !showFavoritesOnly || favorites.has(item.id);
     return matchCat && matchSearch && matchDietary && matchFav;
   });
 
   if (!filtered.length) {
-    mainContent.innerHTML = '<div class="no-results"><strong>No items found</strong><p>Try adjusting your filters</p></div>';
+    mainContent.innerHTML = '<div class="no-results"><strong>No items found</strong><p>Try adjusting your filters or search</p></div>';
     return;
   }
 
@@ -628,24 +832,14 @@ const renderContent = () => {
   Object.entries(grouped).forEach(([cat, items]) => {
     const section = document.createElement("div");
     section.className = "section";
-    section.innerHTML = `<h2>${cat}</h2><p style="margin-top: -10px; font-size: 0.8rem; color: rgba(255,255,255,0.5);">Click on any item for details</p>`;
-    
+    section.innerHTML = `<h2>${cat}</h2><p>Click on any item for details</p>`;
     const grid = document.createElement("div");
     grid.className = "items-grid";
 
     items.forEach(item => {
       const card = document.createElement("div");
       card.className = "dish-card";
-      card.innerHTML = `
-        <div class="dish-image-wrapper">
-          <img src="${item.image}" alt="${item.enName}" class="dish-image"/>
-          ${item.popular ? '<div class="badge">Chef\'s Pick</div>' : ''}
-        </div>
-        <div class="dish-info">
-          <h3 class="dish-name">${item.enName}</h3>
-        </div>
-        <button class="favorite-toggle ${favorites.has(item.id) ? 'active' : ''}">❤</button>
-      `;
+      card.innerHTML = `<div class="dish-image-wrapper"><img src="${item.image}" alt="${item.enName}" class="dish-image"/>${item.popular ? '<div class="badge">Chef\'s Pick</div>' : ''}</div><div class="dish-info"><h3 class="dish-name">${item.enName}</h3></div><button class="favorite-toggle ${favorites.has(item.id) ? 'active' : ''}">❤</button>`;
 
       card.querySelector(".favorite-toggle").onclick = (e) => {
         e.stopPropagation();
@@ -654,7 +848,7 @@ const renderContent = () => {
         } else {
           favorites.add(item.id);
         }
-        saveFavorites();
+        updateFavCount();
         card.querySelector(".favorite-toggle").classList.toggle("active");
       };
 
@@ -673,17 +867,12 @@ const openModal = (item) => {
   document.getElementById("modalDescEn").textContent = item.enDesc;
   document.getElementById("modalDescAr").textContent = item.arDesc;
   document.getElementById("modalPrice").textContent = item.price;
-  document.getElementById("modalCalories").textContent = item.calories;
-  document.getElementById("modalDietary").textContent = item.dietary.length ? item.dietary.join(" • ") : "House selection";
+  document.getElementById("modalCalories").textContent = "☕ " + item.calories;
+  document.getElementById("modalDietary").textContent = item.dietary.length ? "🏷️ " + item.dietary.join(" • ") : "House Selection";
   
   const beansSelector = document.getElementById("beansSelector");
   if (item.hasBeansSelector && item.beans) {
-    beansSelector.innerHTML = `
-      <div class="beans-selector">
-        <h4>☕ Select Coffee Origin</h4>
-        <div class="beans-options"></div>
-      </div>
-    `;
+    beansSelector.innerHTML = `<div class="beans-selector"><h4>☕ Select Coffee Origin</h4><div class="beans-options"></div></div>`;
     const options = beansSelector.querySelector('.beans-options');
     item.beans.forEach(bean => {
       const btn = document.createElement('button');
@@ -700,17 +889,20 @@ const openModal = (item) => {
     beansSelector.innerHTML = '';
   }
   
+  const modal = document.getElementById("modal");
   modal.classList.add("active");
   modal.setAttribute("aria-hidden", "false");
   document.body.style.overflow = "hidden";
 };
 
 const closeModal = () => {
+  const modal = document.getElementById("modal");
   modal.classList.remove("active");
   modal.setAttribute("aria-hidden", "true");
   document.body.style.overflow = "";
 };
 
+const modal = document.getElementById("modal");
 modal.querySelector(".modal-header button").onclick = closeModal;
 modal.onclick = (e) => {
   if (e.target === modal) closeModal();
@@ -743,6 +935,7 @@ document.getElementById('favoritesToggle').onclick = () => {
 
 const updateUI = () => {
   renderCategories();
+  renderSpecials();
   renderContent();
 };
 
