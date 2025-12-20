@@ -31,6 +31,25 @@
       pointer-events: none;
       opacity: 0.25;
     }
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.85) 1.5px, transparent 1.5px);
+      background-size: 220px 220px;
+      opacity: 0.35;
+      pointer-events: none;
+      z-index: 5;
+      animation: snowFall 20s linear infinite, snowDrift 8s ease-in-out infinite alternate;
+    }
+    @keyframes snowFall {
+      from { background-position: 0 -220px; }
+      to { background-position: 0 220px; }
+    }
+    @keyframes snowDrift {
+      0% { transform: translateX(-4%); }
+      100% { transform: translateX(4%); }
+    }
     .page { padding-bottom: 40px; position: relative; z-index: 1; }
     header {
       text-align: center;
@@ -651,6 +670,7 @@
 
   <script>
 const allItems = [
+  { id:"bak1", cat:"Baklava & Beyond", enName:"Ottoman Salad", arName:"سلطة عثمانية", price:59, enDesc:"A refreshing traditional salad made with crisp vegetables, fresh herbs, and a light zesty dressing inspired by classic Ottoman flavors.", arDesc:"سلطة تقليدية منعشة محضرة من خضروات مقرمشة وأعشاب طازجة وصلصة خفيفة ومنعشة مستوحاة من النكهات العثمانية.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Salad.jpg", calories:"120 kcal", dietary:["vegetarian"] },
   { id:"bak2", cat:"Baklava & Beyond", enName:"Turkish Mix Baklava", arName:"بقلاوة تركية مشكلة", price:65, enDesc:"An exquisite assortment of traditional Turkish baklava, with layers of crisp filo pastry, fragrant syrup, and a medley of finely chopped nuts for a perfect balance of sweetness and texture.", arDesc:"مجموعة فاخرة من البقلاوة التركية التقليدية، بطبقات من عجينة الفيلو المقرمشة، وشراب عطر، ومزيج من المكسرات المفرومة بدقة لتوازن مثالي بين الحلاوة والقوام.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg", calories:"450 kcal", dietary:["contains-nuts"] },
   { id:"bak3", cat:"Baklava & Beyond", enName:"Carrot Slice Baklava", arName:"بقلاوة شريحة الجزر", price:40, enDesc:"Classic Turkish baklava enriched with the subtle sweetness of carrot, layered with delicate filo and brushed with golden syrup for a rich, melt-in-your-mouth experience.", arDesc:"بقلاوة تركية كلاسيكية مع حلاوة خفيفة من الجزر، بطبقات دقيقة من الفيلو ومغطاة بشراب ذهبي لتجربة غنية تذوب في الفم.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Carrot.jpeg", calories:"420 kcal", dietary:["vegetarian","contains-nuts"] },
   { id:"bak4", cat:"Baklava & Beyond", enName:"Carrot Slice Baklava With Ice Cream", arName:"بقلاوة شريحة الجزر مع الآيس كريم", price:51, enDesc:"Warm, crispy carrot baklava paired with a scoop of creamy ice cream, blending textures and temperatures for an indulgent dessert experience.", arDesc:"بقلاوة الجزر الدافئة والمقرمشة تقدم مع كرة من الآيس كريم الكريمي، مزيج من القوام ودرجات الحرارة لتجربة حلوى فاخرة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Carroticecream.jpeg", calories:"620 kcal", dietary:["contains-nuts","contains-dairy"] },
@@ -676,7 +696,7 @@ const allItems = [
   { id:"bak24", cat:"Baklava & Beyond", enName:"Fanzuella Sweet", arName:"حلوى فانزويلا", price:45, enDesc:"A delicious Fanzeulla sweet with perfect balance.", arDesc:"حلوى فانزويلا لذيذة بتوازن مثالي.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Fanzuella.webp", calories:"300 kcal", dietary:["vegetarian"] },
   { id:"fd1", cat:"Fondue & Nuts", enName:"Strawberry Fondue", arName:"فوندو بالفراولة", price:40, enDesc:"Juicy, fresh strawberries served with velvety, melted milk chocolate for a luscious, indulgent treat that melts in your mouth.", arDesc:"فراولة طازجة وعصيرية تقدم مع شوكولاتة بالحليب المذابة الناعمة لتجربة فاخرة تذوب في الفم.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Fondue1.jpeg", calories:"320 kcal", dietary:["contains-dairy"] },
   { id:"fd2", cat:"Fondue & Nuts", enName:"Strawberry-Banana Fondue", arName:"فوندو فراولة وموز", price:45, enDesc:"A delightful combination of fresh strawberries and ripe bananas, dipped in smooth, rich chocolate for a perfect harmony of fruity sweetness and creamy indulgence.", arDesc:"مزيج شهي من الفراولة الطازجة والموز الناضج، يغمس في شوكولاتة ناعمة وغنية لتوازن مثالي بين حلاوة الفواكه وكريمة الشوكولاتة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Fondue2.jpeg", calories:"410 kcal", dietary:["contains-dairy"] },
-  { id:"fd3", cat:"Fondue & Nuts", enName:"Turkiana Fondue", arName:"فونду تركيانا", price:59, enDesc:"Our signature fondue featuring a colorful assortment of fresh fruits, rich chocolate, and bite-sized brownie pieces for a decadent, shareable dessert experience.", arDesc:"الفوندو المميز لدينا مع مجموعة ملونة من الفواكه الطازجة، شوكولاتة غنية وقطع براوني صغيرة لتجربة حلوى فاخرة يمكن مشاركتها.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Fondue3.jpeg", calories:"480 kcal", dietary:[] },
+  { id:"fd3", cat:"Fondue & Nuts", enName:"Turkiana Fondue", arName:"فوندو تركيانا", price:59, enDesc:"Our signature fondue featuring a colorful assortment of fresh fruits, rich chocolate, and bite-sized brownie pieces for a decadent, shareable dessert experience.", arDesc:"الفوندو المميز لدينا مع مجموعة ملونة من الفواكه الطازجة، شوكولاتة غنية وقطع براوني صغيرة لتجربة حلوى فاخرة يمكن مشاركتها.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Fondue3.jpeg", calories:"480 kcal", dietary:[] },
   { id:"fd4", cat:"Fondue & Nuts", enName:"Nuts Stand-Tall", arName:"مكسرات ستاند كبير", price:99, enDesc:"A premium selection of mixed nuts, roasted to perfection to enhance their natural flavors and provide a crunchy, satisfying snack.", arDesc:"مجموعة ممتازة من المكسرات المختلطة، محمصة بعناية لتعزيز النكهات الطبيعية وتوفير وجبة خفيفة مقرمشة ومشبعة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Nuts.jpg", calories:"300 kcal", dietary:["contains-nuts"] },
   { id:"fd5", cat:"Fondue & Nuts", enName:"Nuts Stand-Small", arName:"مكسرات ستاند صغير", price:60, enDesc:"A compact selection of mixed nuts, offering the same roasted perfection and flavor in a smaller portion for a quick, satisfying snack.", arDesc:"اختيار صغير من المكسرات المختلطة يقدم نفس الجودة المحمصة والنكهات الغنية بحجم أصغر لتناول خفيف وممتع.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Nutsmall.jpg", calories:"180 kcal", dietary:["contains-nuts"] },
   { id:"fd6", cat:"Fondue & Nuts", enName:"Assorted Nut Platter", arName:"طبق مكسرات مشكل", price:35, enDesc:"A colorful assortment of mixed nuts, carefully selected to deliver a variety of flavors and textures, perfect for sharing or enjoying solo.", arDesc:"طبق متنوع من المكسرات المشكلة، مختارة بعناية لتقديم مجموعة من النكهات والقوام، مثالية للمشاركة أو الاستمتاع بمفردك.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Nutsplatter.jpg", calories:"180 kcal", dietary:["contains-nuts"] },
@@ -752,7 +772,8 @@ const allItems = [
   { id:"gg2", cat:"From the Grill & Garden", enName:"Turkiana Chicken Burger", arName:"برجر دجاج", price:59, enDesc:"A juicy, well-seasoned chicken fillet served inside a soft bun with fresh toppings and house sauce, paired with crispy fries for a balanced and flavorful bite.", arDesc:"قطعة دجاج متبّلة بعناية وشويها بعصارة، تُقدّم داخل خبز طري مع خضار طازجة وصوص خاص، وتأتي مع بطاطس مقرمشة لوجبة لذيذة ومتكاملة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Burgerchicken.jpg", calories:"850 kcal", dietary:[] },
   { id:"gg3", cat:"From the Grill & Garden", enName:"Fried Potatoes", arName:"بطاطس مقلية", price:29, enDesc:"Perfectly fried golden potatoes with a crisp exterior and a soft, fluffy center, offering a simple yet irresistible side enjoyed by everyone.", arDesc:"بطاطس مقلية ذهبية بقوام مقرمش من الخارج وطري من الداخل، تُقدّم كطبق جانبي بسيط لكنه محبّب لدى الجميع.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Patatas.jpg", calories:"340 kcal", dietary:["vegan","gluten-free"], popular:true },
   { id:"gg4", cat:"From the Grill & Garden", enName:"Caesar Salad", arName:"سلطة سيزر", price:47, enDesc:"Crisp romaine lettuce tossed in creamy Caesar dressing, topped with crunchy croutons and parmesan for a fresh, classic, and satisfying salad.", arDesc:"خس روماني مقرمش يُمزج مع صوص السيزر الكريمي ويُزين بقطع الخبز المحمص وجبن البارميزان، لسلطة كلاسيكية منعشة ومشبعة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Caesar.jpeg", calories:"420 kcal", dietary:["contains-gluten","contains-dairy","vegetarian"] },
-  { id:"gg5", cat:"From the Grill & Garden", enName:"Ottoman Salad", arName:"سلطة عثمانية", price:59, enDesc:"A refreshing traditional salad made with crisp vegetables, fresh herbs, and a light zesty dressing inspired by classic Ottoman flavors.", arDesc:"سلطة تقليدية منعشة محضرة من خضروات مقرمشة وأعشاب طازجة وصلصة خفيفة ومنعشة مستوحاة من النكهات العثمانية.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Salad.jpg", calories:"120 kcal", dietary:["vegetarian"] }
+  { id:"gg5", cat:"BFrom the Grill & Garden", enName:"Ottoman Salad", arName:"سلطة عثمانية", price:59, enDesc:"A refreshing traditional salad made with crisp vegetables, fresh herbs, and a light zesty dressing inspired by classic Ottoman flavors.", arDesc:"سلطة تقليدية منعشة محضرة من خضروات مقرمشة وأعشاب طازجة وصلصة خفيفة ومنعشة مستوحاة من النكهات العثمانية.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Salad.jpg", calories:"120 kcal", dietary:["vegetarian"] }
+
 ];
 
 const categories = [...new Set(allItems.map(item => item.cat))];
