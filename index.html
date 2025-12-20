@@ -3,22 +3,22 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Turkiana Café & Sweets — Qatar National Day 2025</title>
+  <title>Turkiana Café & Sweets — Winter Season 2025</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --bg: #0a0204;
-      --text: #f7f7fb;
-      --muted: rgba(247, 247, 251, 0.65);
-      --accent: #8B0921;
-      --gold: #D4AF37;
+      --bg: #07122a;
+      --text: #f3f7ff;
+      --muted: rgba(243, 247, 255, 0.72);
+      --accent: #4a90e2;
+      --gold: #b8e6ff;
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
       font-family: Inter, sans-serif;
-      background: linear-gradient(180deg, #05010c 0%, #020102 40%, #0c060d 100%);
+      background: linear-gradient(180deg, #0a1a3c 0%, #07122a 45%, #020b1c 100%);
       color: var(--text);
       min-height: 100vh;
       position: relative;
@@ -27,7 +27,7 @@
       content: "";
       position: fixed;
       inset: 0;
-      background: repeating-linear-gradient(135deg, rgba(255,255,255,0.02) 0 10px, rgba(255,255,255,0) 10px 20px);
+      background: repeating-linear-gradient(135deg, rgba(255,255,255,0.05) 0 12px, rgba(255,255,255,0) 12px 24px);
       pointer-events: none;
       opacity: 0.25;
     }
@@ -35,14 +35,14 @@
     header {
       text-align: center;
       padding: 60px 24px 10px;
-      background: linear-gradient(135deg, rgba(139,9,33,0.3) 0%, rgba(212,175,55,0.1) 100%);
-      border-bottom: 2px solid rgba(212,175,55,0.3);
+      background: linear-gradient(135deg, rgba(74,144,226,0.45) 0%, rgba(184,230,255,0.2) 100%);
+      border-bottom: 2px solid rgba(184,230,255,0.4);
     }
     header h1 {
       font-family: "Playfair Display", serif;
       font-size: clamp(2rem, 4vw, 3.4rem);
       margin: 0;
-      background: linear-gradient(130deg, #f7f7fb, #D4AF37);
+      background: linear-gradient(130deg, #f7f7fb, #b8e6ff);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -58,7 +58,7 @@
       font-size: 0.9rem;
       letter-spacing: 0.4em;
       text-transform: uppercase;
-      color: #D4AF37;
+      color: var(--gold);
       font-weight: 600;
     }
     .qatar-banner {
@@ -66,18 +66,18 @@
       padding: 24px;
       max-width: 1100px;
       border-radius: 20px;
-      background: linear-gradient(120deg, rgba(139,9,33,0.95), rgba(14,2,10,0.9));
-      border: 2px solid rgba(212,175,55,0.4);
+      background: linear-gradient(120deg, rgba(74,144,226,0.8), rgba(9,44,88,0.95));
+      border: 2px solid rgba(74,144,226,0.6);
       display: flex;
       flex-wrap: wrap;
       gap: 18px;
       align-items: center;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 8px 32px rgba(139,9,33,0.3);
+      box-shadow: 0 12px 38px rgba(74,144,226,0.35);
     }
     .qatar-banner::after {
-      content: "🇶🇦 2025";
+      content: "❄️ 2025";
       position: absolute;
       inset: 10px;
       opacity: 0.08;
@@ -86,6 +86,7 @@
       letter-spacing: 0.4em;
       font-weight: 700;
       pointer-events: none;
+      color: var(--gold);
     }
     .qatar-banner-content {
       position: relative;
@@ -101,6 +102,7 @@
       position: relative;
       z-index: 2;
       animation: pulse-glow 3s ease-in-out infinite;
+      color: var(--gold);
     }
     .qatar-banner-flag span {
       font-size: 3rem;
@@ -114,7 +116,7 @@
       margin: 0 0 8px 0;
       font-family: "Playfair Display", serif;
       font-size: 1.6rem;
-      color: #D4AF37;
+      color: var(--gold);
     }
     .qatar-banner p {
       margin: 0;
@@ -130,17 +132,17 @@
       width: 100%;
       padding: 14px 18px;
       border-radius: 16px;
-      border: 1px solid rgba(212,175,55,0.3);
-      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(74,144,226,0.5);
+      background: rgba(74,144,226,0.1);
       color: var(--text);
       font-size: 1rem;
       transition: all 0.3s;
     }
     .search-input:focus {
       outline: none;
-      background: rgba(255, 255, 255, 0.1);
-      border-color: rgba(212,175,55,0.6);
-      box-shadow: 0 0 20px rgba(212,175,55,0.2);
+      background: rgba(74,144,226,0.15);
+      border-color: rgba(184,230,255,0.8);
+      box-shadow: 0 0 20px rgba(74,144,226,0.25);
     }
     .filters-bar {
       max-width: 1200px;
@@ -162,12 +164,12 @@
       transition: all 0.25s;
     }
     .filter-btn:hover {
-      border-color: rgba(212,175,55,0.5);
+      border-color: rgba(184,230,255,0.6);
       color: rgba(255, 255, 255, 0.9);
     }
     .filter-btn.active {
-      background: linear-gradient(135deg, rgba(139,9,33,0.5), rgba(212,175,55,0.3));
-      border-color: rgba(212,175,55,0.8);
+      background: linear-gradient(135deg, rgba(74,144,226,0.55), rgba(184,230,255,0.3));
+      border-color: rgba(184,230,255,0.9);
       color: #fff;
     }
     .favorites-toggle {
@@ -185,20 +187,20 @@
       gap: 6px;
     }
     .favorites-toggle:hover {
-      border-color: rgba(212,175,55,0.5);
+      border-color: rgba(184,230,255,0.6);
     }
     .favorites-toggle.active {
-      background: linear-gradient(135deg, rgba(139,9,33,0.5), rgba(212,175,55,0.3));
-      border-color: rgba(212,175,55,1);
+      background: linear-gradient(135deg, rgba(74,144,226,0.55), rgba(184,230,255,0.3));
+      border-color: rgba(184,230,255,1);
       color: #fff;
     }
     .categories-container {
       position: sticky;
       top: 0;
       z-index: 50;
-      background: rgba(2, 4, 13, 0.98);
+      background: rgba(3, 9, 28, 0.95);
       backdrop-filter: blur(18px);
-      border-bottom: 1px solid rgba(212,175,55,0.2);
+      border-bottom: 1px solid rgba(184,230,255,0.2);
       padding: 12px 0;
     }
     .categories-scroll {
@@ -209,7 +211,7 @@
       max-width: 1200px;
       margin: 0 auto;
       scrollbar-width: thin;
-      scrollbar-color: rgba(212,175,55,0.3) transparent;
+      scrollbar-color: rgba(184,230,255,0.3) transparent;
     }
     .categories-scroll::-webkit-scrollbar {
       height: 6px;
@@ -218,7 +220,7 @@
       background: transparent;
     }
     .categories-scroll::-webkit-scrollbar-thumb {
-      background: rgba(212,175,55,0.3);
+      background: rgba(184,230,255,0.3);
       border-radius: 3px;
     }
     .category-pill {
@@ -234,14 +236,14 @@
       white-space: nowrap;
     }
     .category-pill:hover {
-      border-color: rgba(212,175,55,0.5);
-      background: rgba(212,175,55,0.1);
+      border-color: rgba(184,230,255,0.6);
+      background: rgba(184,230,255,0.1);
     }
     .category-pill.active {
-      background: linear-gradient(135deg, rgba(139,9,33,0.8), rgba(212,175,55,0.4));
-      border-color: rgba(212,175,55,0.8);
+      background: linear-gradient(135deg, rgba(74,144,226,0.8), rgba(184,230,255,0.4));
+      border-color: rgba(184,230,255,0.8);
       color: #fff;
-      box-shadow: 0 8px 20px rgba(139,9,33,0.4);
+      box-shadow: 0 8px 20px rgba(74,144,226,0.4);
     }
     main {
       max-width: 1200px;
@@ -269,7 +271,7 @@
       border-radius: 14px;
       overflow: hidden;
       border: 1px solid rgba(255, 255, 255, 0.08);
-      background: rgba(10, 13, 28, 0.9);
+      background: rgba(6, 12, 32, 0.9);
       cursor: pointer;
       transition: all 0.3s;
       position: relative;
@@ -278,7 +280,7 @@
     .dish-card:hover {
       transform: translateY(-8px);
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-      border-color: rgba(212,175,55,0.4);
+      border-color: rgba(74,144,226,0.5);
     }
     .dish-image-wrapper {
       position: relative;
@@ -300,9 +302,9 @@
       padding: 4px 10px;
       border-radius: 20px;
       font-size: 0.65rem;
-      background: rgba(212,175,55,0.2);
-      color: #D4AF37;
-      border: 1px solid rgba(212,175,55,0.5);
+      background: rgba(74,144,226,0.2);
+      color: var(--accent);
+      border: 1px solid rgba(74,144,226,0.5);
       animation: pulse 2s infinite;
     }
     .dish-info {
@@ -333,13 +335,13 @@
       place-items: center;
     }
     .favorite-toggle:hover {
-      border-color: rgba(212,175,55,0.8);
-      background: rgba(212,175,55,0.2);
+      border-color: rgba(74,144,226,0.8);
+      background: rgba(74,144,226,0.2);
     }
     .favorite-toggle.active {
-      background: rgba(139, 9, 33, 0.8);
+      background: rgba(74,144,226,0.8);
       color: #fff;
-      border-color: rgba(212,175,55,0.9);
+      border-color: rgba(184,230,255,0.9);
       animation: heartbeat 0.3s;
     }
     .modal-backdrop {
@@ -359,20 +361,20 @@
       opacity: 1;
     }
     .modal-card {
-      background: linear-gradient(135deg, rgba(10,13,28,0.98) 0%, rgba(20,8,25,0.95) 100%);
+      background: linear-gradient(135deg, rgba(8,17,36,0.98) 0%, rgba(16,12,43,0.95) 100%);
       border-radius: 20px;
-      border: 1px solid rgba(212,175,55,0.3);
+      border: 1px solid rgba(184,230,255,0.3);
       overflow: hidden;
       max-width: 900px;
       width: 100%;
       max-height: 90vh;
       display: flex;
       flex-direction: column;
-      box-shadow: 0 20px 60px rgba(139,9,33,0.5);
+      box-shadow: 0 20px 60px rgba(74,144,226,0.5);
     }
     .modal-header {
       padding: 20px 24px;
-      border-bottom: 1px solid rgba(212,175,55,0.2);
+      border-bottom: 1px solid rgba(184,230,255,0.2);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -381,7 +383,7 @@
       margin: 0;
       font-family: "Playfair Display", serif;
       font-size: 1.8rem;
-      color: #D4AF37;
+      color: var(--gold);
     }
     .modal-header button {
       background: none;
@@ -396,7 +398,7 @@
       place-items: center;
     }
     .modal-header button:hover {
-      color: #D4AF37;
+      color: var(--gold);
     }
     .modal-body {
       display: grid;
@@ -419,7 +421,7 @@
     }
     .modal-info h4 {
       margin: 0;
-      color: #D4AF37;
+      color: var(--gold);
       font-size: 0.9rem;
       text-transform: uppercase;
       letter-spacing: 0.1em;
@@ -432,21 +434,21 @@
     }
     .modal-meta {
       padding: 12px;
-      background: rgba(212,175,55,0.1);
+      background: rgba(184,230,255,0.1);
       border-radius: 8px;
-      border: 1px solid rgba(212,175,55,0.2);
+      border: 1px solid rgba(184,230,255,0.2);
       font-size: 0.85rem;
       color: rgba(255,255,255,0.8);
     }
     .beans-selector {
       padding: 12px;
-      background: rgba(139,9,33,0.2);
+      background: rgba(74,144,226,0.2);
       border-radius: 8px;
-      border: 1px solid rgba(139,9,33,0.4);
+      border: 1px solid rgba(74,144,226,0.4);
     }
     .beans-selector h4 {
       margin: 0 0 10px 0;
-      color: #D4AF37;
+      color: var(--gold);
       font-size: 0.85rem;
     }
     .beans-options {
@@ -467,22 +469,22 @@
       transition: all 0.25s;
     }
     .bean-btn:hover {
-      border-color: rgba(212,175,55,0.5);
-      background: rgba(212,175,55,0.1);
+      border-color: rgba(184,230,255,0.5);
+      background: rgba(184,230,255,0.1);
     }
     .bean-btn.selected {
-      background: linear-gradient(135deg, rgba(139,9,33,0.6), rgba(212,175,55,0.3));
-      border-color: rgba(212,175,55,0.8);
+      background: linear-gradient(135deg, rgba(74,144,226,0.6), rgba(184,230,255,0.3));
+      border-color: rgba(184,230,255,0.8);
       color: #fff;
     }
     .modal-footer {
       padding: 16px 24px;
-      border-top: 1px solid rgba(212,175,55,0.2);
+      border-top: 1px solid rgba(184,230,255,0.2);
       text-align: center;
-      background: rgba(212,175,55,0.05);
+      background: rgba(184,230,255,0.05);
     }
     .modal-footer strong {
-      color: #D4AF37;
+      color: var(--gold);
       font-size: 1.3rem;
     }
     .national-day-panel {
@@ -493,7 +495,7 @@
     .national-day-panel h2 {
       margin: 0 0 10px;
       font-size: 1.4rem;
-      color: #D4AF37;
+      color: var(--gold);
     }
     .national-day-panel p {
       margin: 0 0 18px;
@@ -507,8 +509,8 @@
     }
     .national-day-card {
       border-radius: 18px;
-      border: 2px solid rgba(212,175,55,0.3);
-      background: rgba(139,9,33,0.15);
+      border: 2px solid rgba(74,144,226,0.4);
+      background: rgba(9,26,58,0.35);
       padding: 12px;
       position: relative;
       overflow: hidden;
@@ -517,9 +519,9 @@
     }
     .national-day-card:hover {
       transform: translateY(-6px);
-      border-color: rgba(212,175,55,0.6);
-      background: rgba(139,9,33,0.25);
-      box-shadow: 0 12px 30px rgba(139,9,33,0.3);
+      border-color: rgba(184,230,255,0.8);
+      background: rgba(74,144,226,0.25);
+      box-shadow: 0 12px 30px rgba(74,144,226,0.4);
     }
     .national-day-card img {
       width: 100%;
@@ -533,7 +535,7 @@
     .national-day-card h4 {
       margin: 0 0 4px;
       font-size: 0.95rem;
-      color: #D4AF37;
+      color: var(--gold);
     }
     .national-day-card span {
       display: inline-flex;
@@ -549,7 +551,7 @@
       color: var(--muted);
     }
     .no-results strong {
-      color: #D4AF37;
+      color: var(--gold);
       display: block;
       margin-bottom: 8px;
       font-size: 1.2rem;
@@ -576,18 +578,18 @@
   <div class="page">
     <header>
       <h1>Turkiana Café & Sweets</h1>
-      <div class="subline">Qatar National Day 2025 • December 18</div>
-      <p>Celebrating the warmth of Qatari hospitality with specially curated flavours, maroon pride, and heartfelt greetings in every bite.</p>
+      <div class="subline">Winter Season 2025 • Cozy Comfort</div>
+      <p>Discover soft blankets of warmth, cozy sips, and winter magic curated to elevate every frosty moment.</p>
     </header>
 
     <div class="qatar-banner">
       <div class="qatar-banner-content">
-        <h3>Weaving Qatar into Every Flavour</h3>
-        <p>Enjoy national pride with festive indulgences inspired by maroon sunsets, golden dreams, and Azm ambitions for 2025.</p>
+        <h3>Winter Warm-Up</h3>
+        <p>Embrace the frosty glow with delights that wrap you in comfort, shimmering blues, and gentle sweetness for the season.</p>
       </div>
       <div class="qatar-banner-flag">
-        <span>🇶🇦</span>
-        <span>QND 2025</span>
+        <span>❄️</span>
+        <span>Cozy 2025</span>
       </div>
     </div>
 
@@ -609,8 +611,8 @@
     </div>
 
     <div class="national-day-panel">
-      <h2>✨ Qatar National Day Specials 2025</h2>
-      <p>Exclusive selections celebrating our pride with Turkish Hospitality</p>
+      <h2>✨ Winter Warm-Up Favorites</h2>
+      <p>Signature selections that blend comforting warmth with frosty elegance for the perfect seasonal pause.</p>
       <div class="national-day-grid" id="nationalDayGrid"></div>
     </div>
 
@@ -649,7 +651,6 @@
 
   <script>
 const allItems = [
-  { id:"bak1", cat:"Baklava & Beyond", enName:"Ottoman Salad", arName:"سلطة عثمانية", price:59, enDesc:"A refreshing traditional salad made with crisp vegetables, fresh herbs, and a light zesty dressing inspired by classic Ottoman flavors.", arDesc:"سلطة تقليدية منعشة محضرة من خضروات مقرمشة وأعشاب طازجة وصلصة خفيفة ومنعشة مستوحاة من النكهات العثمانية.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Salad.jpg", calories:"120 kcal", dietary:["vegetarian"] },
   { id:"bak2", cat:"Baklava & Beyond", enName:"Turkish Mix Baklava", arName:"بقلاوة تركية مشكلة", price:65, enDesc:"An exquisite assortment of traditional Turkish baklava, with layers of crisp filo pastry, fragrant syrup, and a medley of finely chopped nuts for a perfect balance of sweetness and texture.", arDesc:"مجموعة فاخرة من البقلاوة التركية التقليدية، بطبقات من عجينة الفيلو المقرمشة، وشراب عطر، ومزيج من المكسرات المفرومة بدقة لتوازن مثالي بين الحلاوة والقوام.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg", calories:"450 kcal", dietary:["contains-nuts"] },
   { id:"bak3", cat:"Baklava & Beyond", enName:"Carrot Slice Baklava", arName:"بقلاوة شريحة الجزر", price:40, enDesc:"Classic Turkish baklava enriched with the subtle sweetness of carrot, layered with delicate filo and brushed with golden syrup for a rich, melt-in-your-mouth experience.", arDesc:"بقلاوة تركية كلاسيكية مع حلاوة خفيفة من الجزر، بطبقات دقيقة من الفيلو ومغطاة بشراب ذهبي لتجربة غنية تذوب في الفم.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Carrot.jpeg", calories:"420 kcal", dietary:["vegetarian","contains-nuts"] },
   { id:"bak4", cat:"Baklava & Beyond", enName:"Carrot Slice Baklava With Ice Cream", arName:"بقلاوة شريحة الجزر مع الآيس كريم", price:51, enDesc:"Warm, crispy carrot baklava paired with a scoop of creamy ice cream, blending textures and temperatures for an indulgent dessert experience.", arDesc:"بقلاوة الجزر الدافئة والمقرمشة تقدم مع كرة من الآيس كريم الكريمي، مزيج من القوام ودرجات الحرارة لتجربة حلوى فاخرة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Carroticecream.jpeg", calories:"620 kcal", dietary:["contains-nuts","contains-dairy"] },
@@ -659,7 +660,7 @@ const allItems = [
   { id:"bak8", cat:"Baklava & Beyond", enName:"Vanilla Cake", arName:"كيك الفانيلا", price:36, enDesc:"A soft and fluffy vanilla cake with a smooth, creamy flavor and a light sweet aroma.", arDesc:"كيك فانيلا ناعم وهش بنكهة كريمية لطيفة ورائحة حلوة خفيفة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Vanillacake.jfif", calories:"410 kcal", dietary:["contains-dairy"], popular:true },
   { id:"bak9", cat:"Baklava & Beyond", enName:"Chocolate Cake", arName:"كيك الشوكولاتة", price:36, enDesc:"A soft medium-sized chocolate cake with a rich cocoa flavor and smooth, moist texture.", arDesc:"كيك شوكولاتة متوسط الحجم بنكهة كاكاو غنية وقوام ناعم ورطب.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Chocolatecake.jfif", calories:"450 kcal", dietary:["contains-dairy"], popular:true },
   { id:"bak10", cat:"Baklava & Beyond", enName:"Kunafa", arName:"كنافة", price:40, enDesc:"Traditional Turkish kunafa with delicate Akawi cheese, baked until golden and soaked in sweet syrup for a perfectly balanced dessert.", arDesc:"كنافة تركية تقليدية مع جبنة عكاوي لطيفة، مخبوزة حتى تصبح ذهبية وتغمر بشراب حلو.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Kunafa.jpeg", calories:"520 kcal", dietary:["contains-dairy"] },
-  { id:"bak11", cat:"Baklava & Beyond", enName:"Chocolate Lava Cake", arName:"كعكة الشوكولاتة", price:40, enDesc:"Rich and moist molten chocolate cake with an intense cocoa flavor.", arDesc:"كعكة شوكولاتة غنية ورطبة بنكهات كاكاو مكثفة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Chocolate.jpg", calories:"480 kcal", dietary:["contains-dairy"], popular:true },
+  { id:"bak11", cat:"Baklava & Beyond", enName:"Chocolate Lava Cake", arName:"كعكة الشكولاتة", price:40, enDesc:"Rich and moist molten chocolate cake with an intense cocoa flavor.", arDesc:"كعكة شوكولاتة غنية ورطبة بنكهات كاكاو مكثفة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Chocolate.jpg", calories:"480 kcal", dietary:["contains-dairy"], popular:true },
   { id:"bak12", cat:"Baklava & Beyond", enName:"Lotus Cake", arName:"كعكة اللوتس", price:40, enDesc:"Soft and moist cake infused with the iconic Lotus Biscoff flavor.", arDesc:"كعكة طرية ورطبة بنكهة بسكوف لوتس الشهيرة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Lutos.jpg", calories:"520 kcal", dietary:["contains-dairy"] },
   { id:"bak13", cat:"Baklava & Beyond", enName:"Brownies", arName:"براونيز", price:45, enDesc:"Fudgy and rich chocolate brownies with a dense texture.", arDesc:"براونيز شوكولاتة غنية وكثيفة بقوام ناعم.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Brown.jpg", calories:"380 kcal", dietary:["contains-dairy"] },
   { id:"bak14", cat:"Baklava & Beyond", enName:"Tiramisu", arName:"تيراميسو", price:42, enDesc:"Classic Italian tiramisu with coffee-soaked sponge layers.", arDesc:"تيراميسو إيطالي كلاسيكي بطبقات إسفنجية منقوعة بالقهوة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Tiramisu.jpg", calories:"420 kcal", dietary:["contains-dairy"] },
@@ -675,7 +676,7 @@ const allItems = [
   { id:"bak24", cat:"Baklava & Beyond", enName:"Fanzuella Sweet", arName:"حلوى فانزويلا", price:45, enDesc:"A delicious Fanzeulla sweet with perfect balance.", arDesc:"حلوى فانزويلا لذيذة بتوازن مثالي.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Fanzuella.webp", calories:"300 kcal", dietary:["vegetarian"] },
   { id:"fd1", cat:"Fondue & Nuts", enName:"Strawberry Fondue", arName:"فوندو بالفراولة", price:40, enDesc:"Juicy, fresh strawberries served with velvety, melted milk chocolate for a luscious, indulgent treat that melts in your mouth.", arDesc:"فراولة طازجة وعصيرية تقدم مع شوكولاتة بالحليب المذابة الناعمة لتجربة فاخرة تذوب في الفم.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Fondue1.jpeg", calories:"320 kcal", dietary:["contains-dairy"] },
   { id:"fd2", cat:"Fondue & Nuts", enName:"Strawberry-Banana Fondue", arName:"فوندو فراولة وموز", price:45, enDesc:"A delightful combination of fresh strawberries and ripe bananas, dipped in smooth, rich chocolate for a perfect harmony of fruity sweetness and creamy indulgence.", arDesc:"مزيج شهي من الفراولة الطازجة والموز الناضج، يغمس في شوكولاتة ناعمة وغنية لتوازن مثالي بين حلاوة الفواكه وكريمة الشوكولاتة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Fondue2.jpeg", calories:"410 kcal", dietary:["contains-dairy"] },
-  { id:"fd3", cat:"Fondue & Nuts", enName:"Turkiana Fondue", arName:"فوندو تركيانا", price:59, enDesc:"Our signature fondue featuring a colorful assortment of fresh fruits, rich chocolate, and bite-sized brownie pieces for a decadent, shareable dessert experience.", arDesc:"الفوندو المميز لدينا مع مجموعة ملونة من الفواكه الطازجة، شوكولاتة غنية وقطع براوني صغيرة لتجربة حلوى فاخرة يمكن مشاركتها.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Fondue3.jpeg", calories:"480 kcal", dietary:[] },
+  { id:"fd3", cat:"Fondue & Nuts", enName:"Turkiana Fondue", arName:"فونду تركيانا", price:59, enDesc:"Our signature fondue featuring a colorful assortment of fresh fruits, rich chocolate, and bite-sized brownie pieces for a decadent, shareable dessert experience.", arDesc:"الفوندو المميز لدينا مع مجموعة ملونة من الفواكه الطازجة، شوكولاتة غنية وقطع براوني صغيرة لتجربة حلوى فاخرة يمكن مشاركتها.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Fondue3.jpeg", calories:"480 kcal", dietary:[] },
   { id:"fd4", cat:"Fondue & Nuts", enName:"Nuts Stand-Tall", arName:"مكسرات ستاند كبير", price:99, enDesc:"A premium selection of mixed nuts, roasted to perfection to enhance their natural flavors and provide a crunchy, satisfying snack.", arDesc:"مجموعة ممتازة من المكسرات المختلطة، محمصة بعناية لتعزيز النكهات الطبيعية وتوفير وجبة خفيفة مقرمشة ومشبعة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Nuts.jpg", calories:"300 kcal", dietary:["contains-nuts"] },
   { id:"fd5", cat:"Fondue & Nuts", enName:"Nuts Stand-Small", arName:"مكسرات ستاند صغير", price:60, enDesc:"A compact selection of mixed nuts, offering the same roasted perfection and flavor in a smaller portion for a quick, satisfying snack.", arDesc:"اختيار صغير من المكسرات المختلطة يقدم نفس الجودة المحمصة والنكهات الغنية بحجم أصغر لتناول خفيف وممتع.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Nutsmall.jpg", calories:"180 kcal", dietary:["contains-nuts"] },
   { id:"fd6", cat:"Fondue & Nuts", enName:"Assorted Nut Platter", arName:"طبق مكسرات مشكل", price:35, enDesc:"A colorful assortment of mixed nuts, carefully selected to deliver a variety of flavors and textures, perfect for sharing or enjoying solo.", arDesc:"طبق متنوع من المكسرات المشكلة، مختارة بعناية لتقديم مجموعة من النكهات والقوام، مثالية للمشاركة أو الاستمتاع بمفردك.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Nutsplatter.jpg", calories:"180 kcal", dietary:["contains-nuts"] },
@@ -750,7 +751,8 @@ const allItems = [
   { id:"gg1", cat:"From the Grill & Garden", enName:"Turkiana Beef Burger", arName:"برجر تركيانا", price:69, enDesc:"A handcrafted premium beef patty grilled to perfection, layered with fresh toppings and signature sauce, served with a generous portion of crispy golden fries for a rich and satisfying meal.", arDesc:"برجر لحم بقري فاخر مشوي بإتقان ومزين بخضار طازجة وصوص مميز، يُقدّم مع كمية سخية من البطاطس الذهبية المقرمشة لوجبة مشبعة وغنية بالنكهات.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Burger.jpeg", calories:"950 kcal", dietary:[] },
   { id:"gg2", cat:"From the Grill & Garden", enName:"Turkiana Chicken Burger", arName:"برجر دجاج", price:59, enDesc:"A juicy, well-seasoned chicken fillet served inside a soft bun with fresh toppings and house sauce, paired with crispy fries for a balanced and flavorful bite.", arDesc:"قطعة دجاج متبّلة بعناية وشويها بعصارة، تُقدّم داخل خبز طري مع خضار طازجة وصوص خاص، وتأتي مع بطاطس مقرمشة لوجبة لذيذة ومتكاملة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Burgerchicken.jpg", calories:"850 kcal", dietary:[] },
   { id:"gg3", cat:"From the Grill & Garden", enName:"Fried Potatoes", arName:"بطاطس مقلية", price:29, enDesc:"Perfectly fried golden potatoes with a crisp exterior and a soft, fluffy center, offering a simple yet irresistible side enjoyed by everyone.", arDesc:"بطاطس مقلية ذهبية بقوام مقرمش من الخارج وطري من الداخل، تُقدّم كطبق جانبي بسيط لكنه محبّب لدى الجميع.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Patatas.jpg", calories:"340 kcal", dietary:["vegan","gluten-free"], popular:true },
-  { id:"gg4", cat:"From the Grill & Garden", enName:"Caesar Salad", arName:"سلطة سيزر", price:47, enDesc:"Crisp romaine lettuce tossed in creamy Caesar dressing, topped with crunchy croutons and parmesan for a fresh, classic, and satisfying salad.", arDesc:"خس روماني مقرمش يُمزج مع صوص السيزر الكريمي ويُزين بقطع الخبز المحمص وجبن البارميزان، لسلطة كلاسيكية منعشة ومشبعة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Caesar.jpeg", calories:"420 kcal", dietary:["contains-gluten","contains-dairy","vegetarian"] }
+  { id:"gg4", cat:"From the Grill & Garden", enName:"Caesar Salad", arName:"سلطة سيزر", price:47, enDesc:"Crisp romaine lettuce tossed in creamy Caesar dressing, topped with crunchy croutons and parmesan for a fresh, classic, and satisfying salad.", arDesc:"خس روماني مقرمش يُمزج مع صوص السيزر الكريمي ويُزين بقطع الخبز المحمص وجبن البارميزان، لسلطة كلاسيكية منعشة ومشبعة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Caesar.jpeg", calories:"420 kcal", dietary:["contains-gluten","contains-dairy","vegetarian"] },
+  { id:"gg5", cat:"From the Grill & Garden", enName:"Ottoman Salad", arName:"سلطة عثمانية", price:59, enDesc:"A refreshing traditional salad made with crisp vegetables, fresh herbs, and a light zesty dressing inspired by classic Ottoman flavors.", arDesc:"سلطة تقليدية منعشة محضرة من خضروات مقرمشة وأعشاب طازجة وصلصة خفيفة ومنعشة مستوحاة من النكهات العثمانية.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Salad.jpg", calories:"120 kcal", dietary:["vegetarian"] }
 ];
 
 const categories = [...new Set(allItems.map(item => item.cat))];
