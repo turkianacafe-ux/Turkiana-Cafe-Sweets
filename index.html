@@ -20,17 +20,31 @@ header p{max-width:680px;margin:16px auto 20px;color:var(--muted);font-size:.95r
 .order-now, .fullscreen-trigger{display:inline-block;padding:12px 28px;background:var(--gold);color:#0a0503;text-decoration:none;border-radius:30px;font-weight:700;transition:0.3s;font-size:0.9rem;border:none;cursor:pointer;}
 .order-now:hover, .fullscreen-trigger:hover{transform:translateY(-3px);box-shadow:0 10px 20px rgba(212,175,55,0.3);background:#fff;}
 
-.search-section{max-width:1200px;margin:40px auto;padding:0 20px;position:relative;z-index:1;}
-.search-input{width:100%;padding:14px 18px;border-radius:12px;border:1px solid rgba(212,175,55,.4);background:rgba(212,175,55,.08);color:var(--text);font-size:1rem;margin-bottom:20px;transition:all .3s;}
+/* STICKY SEARCH AND CATEGORIES CONTAINER */
+.sticky-container {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(12, 4, 6, 0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+    padding: 15px 0;
+    margin-bottom: 20px;
+}
+
+.search-section{max-width:1200px;margin:0 auto;padding:0 20px;position:relative;z-index:1;}
+.search-input{width:100%;padding:14px 18px;border-radius:12px;border:1px solid rgba(212,175,55,.4);background:rgba(212,175,55,.08);color:var(--text);font-size:1rem;margin-bottom:15px;transition:all .3s;}
 .search-input:focus{outline:none;background:rgba(212,175,55,.12);border-color:var(--gold);box-shadow:0 0 20px rgba(212,175,55,.25);}
-.filters{display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
+.filters{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:10px;}
 .filter-btn{padding:8px 16px;border-radius:20px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.03);color:rgba(255,255,255,.7);font-size:.85rem;cursor:pointer;transition:all .25s;}
 .filter-btn:hover{border-color:rgba(212,175,55,.5);color:rgba(255,255,255,.9);}
 .filter-btn.active{background:linear-gradient(135deg, rgba(139,9,33,.5), rgba(212,175,55,.3));border-color:rgba(212,175,55,.8);color:#fff;}
 
-.categories{max-width:1200px;margin:0 auto 30px;padding:12px;display:flex;gap:14px;overflow-x:auto;position:relative;z-index:1;border-radius:40px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.15);box-shadow:0 0 30px rgba(212,175,55,.25);backdrop-filter:blur(18px);}
+.categories{max-width:1200px;margin:0 auto;padding:10px 20px;display:flex;gap:14px;overflow-x:auto;position:relative;z-index:1;border-radius:40px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.15);box-shadow:0 0 30px rgba(212,175,55,.25);backdrop-filter:blur(18px);}
 .categories::before{content:"";position:absolute;inset:6px;border-radius:36px;background:linear-gradient(120deg, rgba(255,110,180,.35), rgba(255,168,76,.35), rgba(72,182,255,.35));filter:blur(8px);z-index:-1;mix-blend-mode:screen;}
-.category-pill{flex-shrink:0;padding:14px 26px;border-radius:999px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.06);color:rgba(255,255,255,.9);font-size:.85rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:transform .3s ease,box-shadow .3s ease,background .3s ease;}
+.category-pill{flex-shrink:0;padding:12px 22px;border-radius:999px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.06);color:rgba(255,255,255,.9);font-size:.85rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:transform .3s ease,box-shadow .3s ease,background .3s ease;}
 .category-pill span{display:block;font-size:.65rem;letter-spacing:.35em;opacity:.6;margin-top:4px;}
 .category-pill:hover{transform:translateY(-4px) scale(1.03);box-shadow:0 12px 28px rgba(255,174,76,.4);}
 .category-pill.active{color:#0a0503;background:linear-gradient(135deg, #ffd771, #ff5f6d, #ffd771);border-color:transparent;box-shadow:0 16px 45px rgba(255,179,71,.5);}
@@ -91,6 +105,19 @@ footer{text-align:center;padding:40px 20px;color:var(--muted);font-size:.8rem;bo
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
+/* Scroll indicator */
+.scroll-indicator {
+    position: absolute;
+    bottom: 5px;
+    right: 20px;
+    color: rgba(212, 175, 55, 0.7);
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: opacity 0.3s;
+}
+
 @keyframes pulse{0%, 100%{transform:scale(1)}50%{transform:scale(1.1)}}
 @keyframes fadeInOut {
     0% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
@@ -107,6 +134,7 @@ footer{text-align:center;padding:40px 20px;color:var(--muted);font-size:.8rem;bo
     .order-now, .fullscreen-trigger{width:100%;max-width:300px;}
     .categories{padding:8px; gap:8px;}
     .category-pill{padding:10px 18px; font-size:.8rem;}
+    .sticky-container{padding:10px 0;}
 }
 </style>
 </head>
@@ -128,16 +156,23 @@ footer{text-align:center;padding:40px 20px;color:var(--muted);font-size:.8rem;bo
   </div>
 </header>
 
-<div class="search-section">
-  <input id="searchInput" class="search-input" type="search" placeholder="Search dishes, coffee, or sweets...">
-  <div class="filters">
-    <button class="filter-btn" data-filter="vegetarian">🌱 Vegetarian</button>
-    <button class="filter-btn" data-filter="vegan">🥬 Vegan</button>
-    <button class="filter-btn" data-filter="dairy-free">🥛 Dairy-Free</button>
-    <button class="filter-btn" data-filter="gluten-free">🌾 Gluten-Free</button>
+<!-- STICKY SEARCH AND CATEGORIES -->
+<div class="sticky-container">
+  <div class="search-section">
+    <input id="searchInput" class="search-input" type="search" placeholder="🔍 Search dishes, coffee, or sweets...">
+    <div class="filters">
+      <button class="filter-btn" data-filter="vegetarian">🌱 Vegetarian</button>
+      <button class="filter-btn" data-filter="vegan">🥬 Vegan</button>
+      <button class="filter-btn" data-filter="dairy-free">🥛 Dairy-Free</button>
+      <button class="filter-btn" data-filter="gluten-free">🌾 Gluten-Free</button>
+    </div>
+  </div>
+  <div class="categories" id="categoriesScroll">
+    <div class="scroll-indicator">
+      <span>Scroll →</span>
+    </div>
   </div>
 </div>
-<div class="categories" id="categoriesScroll"></div>
 
 <div class="section" style="max-width:1200px;margin:0 auto;padding:20px;">
   <h2>☕ Winter Drinks</h2>
@@ -399,6 +434,51 @@ let searchQuery = "";
 let favorites = new Set();
 let activeDietaryFilters = new Set();
 
+// --- HORIZONTAL SCROLL FOR CATEGORIES ---
+function initHorizontalScroll() {
+    const categoriesScroll = document.getElementById('categoriesScroll');
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    categoriesScroll.addEventListener('mousedown', (e) => {
+        isDown = true;
+        categoriesScroll.style.cursor = 'grabbing';
+        startX = e.pageX - categoriesScroll.offsetLeft;
+        scrollLeft = categoriesScroll.scrollLeft;
+    });
+
+    categoriesScroll.addEventListener('mouseleave', () => {
+        isDown = false;
+        categoriesScroll.style.cursor = 'grab';
+    });
+
+    categoriesScroll.addEventListener('mouseup', () => {
+        isDown = false;
+        categoriesScroll.style.cursor = 'grab';
+    });
+
+    categoriesScroll.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - categoriesScroll.offsetLeft;
+        const walk = (x - startX) * 2; // scroll-fast
+        categoriesScroll.scrollLeft = scrollLeft - walk;
+    });
+
+    // Add scroll indicators
+    categoriesScroll.addEventListener('scroll', () => {
+        const indicator = categoriesScroll.querySelector('.scroll-indicator');
+        const maxScroll = categoriesScroll.scrollWidth - categoriesScroll.clientWidth;
+        
+        if (categoriesScroll.scrollLeft >= maxScroll - 10) {
+            indicator.style.opacity = '0';
+        } else {
+            indicator.style.opacity = '1';
+        }
+    });
+}
+
 const updateUI = () => {renderCategories();renderContent();};
 
 const renderCategories = () => {
@@ -416,6 +496,15 @@ const renderCategories = () => {
         btn.onclick = () => { activeCategory = cat; updateUI(); };
         categoriesScroll.appendChild(btn);
     });
+    
+    // Add scroll indicator
+    const scrollIndicator = document.createElement('div');
+    scrollIndicator.className = 'scroll-indicator';
+    scrollIndicator.innerHTML = '<span>Scroll →</span>';
+    categoriesScroll.appendChild(scrollIndicator);
+    
+    // Initialize horizontal scroll
+    initHorizontalScroll();
 };
 
 const matchesDietaryFilters = (item) => {
