@@ -70,6 +70,223 @@ body {
 }
 
 /* ============================================
+   KIOSK MODE STYLES
+============================================ */
+body.kiosk-mode {
+    cursor: none !important;
+}
+
+/* Kiosk Welcome Overlay */
+#kiosk-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(12, 4, 6, 0.95), rgba(59, 15, 23, 0.95));
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--gold);
+    text-align: center;
+    padding: 40px;
+    backdrop-filter: blur(20px);
+    transition: opacity 0.5s ease;
+}
+
+#kiosk-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#kiosk-overlay h2 {
+    font-family: "Playfair Display", serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 20px;
+    background: linear-gradient(130deg, #fff, var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+#kiosk-overlay p {
+    max-width: 600px;
+    margin-bottom: 40px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+#start-experience-btn {
+    background: linear-gradient(135deg, var(--gold), #ffd166);
+    color: var(--bg);
+    border: none;
+    padding: 20px 50px;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+    min-height: 60px;
+    min-width: 200px;
+}
+
+#start-experience-btn:hover,
+#start-experience-btn:active {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(212, 175, 55, 0.6);
+}
+
+/* Kiosk Navigation Bar */
+#kiosk-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(12, 4, 6, 0.98);
+    border-top: 3px solid var(--gold);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.5);
+}
+
+.kiosk-nav-btn {
+    background: rgba(212, 175, 55, 0.15);
+    border: 2px solid rgba(212, 175, 55, 0.4);
+    color: var(--gold);
+    padding: 15px 30px;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 50px;
+    min-width: 120px;
+}
+
+.kiosk-nav-btn:hover,
+.kiosk-nav-btn:active {
+    background: rgba(212, 175, 55, 0.25);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+
+#kiosk-timer {
+    color: var(--muted);
+    font-size: 0.9rem;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+/* Kiosk-optimized cards */
+body.kiosk-mode .card {
+    min-height: 320px;
+    border-width: 3px;
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+body.kiosk-mode .card:active {
+    transform: translateY(-8px) scale(0.98);
+    border-color: rgba(212, 175, 55, 0.6);
+}
+
+body.kiosk-mode .card h3 {
+    font-size: 1.2rem;
+    min-height: 3.2em;
+}
+
+body.kiosk-mode .card-price {
+    font-size: 1.3rem;
+}
+
+body.kiosk-mode .favorite-btn {
+    width: 50px;
+    height: 50px;
+    font-size: 1.4rem;
+}
+
+/* Larger touch targets for kiosk */
+body.kiosk-mode .filter-btn,
+body.kiosk-mode .category-pill,
+body.kiosk-mode .btn {
+    min-height: 55px;
+}
+
+body.kiosk-mode .search-input {
+    padding: 20px 25px;
+    font-size: 1.1rem;
+    min-height: 60px;
+}
+
+/* Auto-hide cursor in kiosk mode */
+@keyframes hideCursor {
+    0% { cursor: default; }
+    99% { cursor: default; }
+    100% { cursor: none; }
+}
+
+body.kiosk-mode {
+    animation: hideCursor 2s forwards;
+}
+
+/* Kiosk idle warning */
+#idle-warning {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(12, 4, 6, 0.95);
+    border: 3px solid var(--gold);
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    z-index: 10001;
+    display: none;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+    max-width: 500px;
+    width: 90%;
+}
+
+#idle-warning h3 {
+    color: var(--gold);
+    font-family: "Playfair Display", serif;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+#idle-warning p {
+    color: var(--muted);
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+#reset-timer-btn {
+    background: linear-gradient(135deg, var(--gold), #ffd166);
+    color: var(--bg);
+    border: none;
+    padding: 15px 40px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    min-height: 50px;
+    min-width: 180px;
+}
+
+/* ============================================
    ACCESSIBILITY
 ============================================ */
 .sr-only {
@@ -122,7 +339,7 @@ body {
 ============================================ */
 .toast {
     position: fixed;
-    bottom: 20px;
+    bottom: 100px;
     left: 50%;
     transform: translateX(-50%);
     background: var(--gold);
@@ -415,6 +632,7 @@ header p {
     max-width: 1200px;
     margin: 0 auto;
     width: 100%;
+    padding-bottom: 80px; /* Space for kiosk nav */
 }
 
 .section {
@@ -1100,6 +1318,39 @@ footer p {
 </script>
 </head>
 <body>
+<!-- Kiosk Welcome Overlay -->
+<div id="kiosk-overlay">
+    <h2>Welcome to Turkiana Café</h2>
+    <p>Experience our winter menu on our interactive tablet kiosk. Browse our selection of Turkish delights, warm beverages, and sweet treats. Touch any item to see details.</p>
+    <button id="start-experience-btn">Start Experience</button>
+    <p style="margin-top: 30px; font-size: 0.9rem; color: rgba(255, 255, 255, 0.5);">
+        Touch anywhere to begin exploring our menu
+    </p>
+</div>
+
+<!-- Kiosk Navigation -->
+<div id="kiosk-nav" style="display: none;">
+    <button class="kiosk-nav-btn" onclick="goHome()">
+        🏠 Home
+    </button>
+    <button class="kiosk-nav-btn" onclick="showFavorites()">
+        ❤️ Favorites
+    </button>
+    <div id="kiosk-timer">
+        Session: <span id="timer-display">05:00</span>
+    </div>
+    <button class="kiosk-nav-btn" onclick="resetSession()">
+        🔄 Restart
+    </button>
+</div>
+
+<!-- Idle Warning -->
+<div id="idle-warning">
+    <h3>Are you still there?</h3>
+    <p>The kiosk will reset to the welcome screen in 30 seconds due to inactivity.</p>
+    <button id="reset-timer-btn">Continue Browsing</button>
+</div>
+
 <!-- Loading Overlay -->
 <div class="loading-overlay" id="loadingOverlay">
     <div class="loading-spinner"></div>
@@ -1221,30 +1472,30 @@ const allItems = [
     { id:"th3", cat:"Tea on the House", enName:"Apple Tea", arName:"شاي التفاح", price:35, enDesc:"Orchard in a cup—sun-ripened apple essence infused with premium black tea, creating harmonious balance between fruity sweetness and tea's natural tannic structure.", arDesc:"بستان في كوب—جوهر التفاح الناضج بالشمس منقوع في شاي أسود فاخر، يخلق توازناً متناغماً بين حلاوة الفواكه والتركيب التناني الطبيعي للشاي.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Appletea.jpg", calories:"2 kcal", dietary:["vegan","dairy-free"] },
     { id:"th4", cat:"Tea on the House", enName:"Mulberry Tea", arName:"شاي التوت", price:35, enDesc:"Silken summer harvest—delicate white mulberry infusion with subtle honey-like sweetness and smooth finish that evokes sunny Anatolian orchards in every gentle sip.", arDesc:"حصاد صيفي حريري—نقيع التوت الأبيض الدقيق بحلاوة تشبه العسل الخفيفة ونهاية ناعمة تستحضر بساتين الأناضول المشمسة في كل رشفة لطيفة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mulberrytea.jpg", calories:"2 kcal", dietary:["vegan","dairy-free"] },
     { id:"th5", cat:"Tea on the House", enName:"Lemon Mint", arName:"شاي بالليمون والنعناع", price:35, enDesc:"Mediterranean revival—zesty lemon wedges and freshly picked mint leaves revitalize premium tea base, creating invigorating clarity and refreshing citrus-herbal harmony.", arDesc:"إحياء متوسطي—شرائح الليمون المنعشة وأوراق النعناع الطازجة المحصودة حديثاً تنعش قاعدة الشاي الفاخر، تخلق وضوحاً منشطاً وتناغماً حمضياً عشبياً منعشاً.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Lemontea.jpg", calories:"2 kcal", dietary:["vegan","dairy-free"] },
-    { id:"th6", cat:"Tea on the House", enName:"Pomegranate Tea", arName:"شاي الرمان", price:35, enDesc:"Ruby elixir—vibrant pomegranate infusion that captures the fruit's perfect sweet-tart duality, offering antioxidant-rich depth and festive crimson hue in every cup.", arDesc:"إكسير ياقوتي—نقيع رمان نابض بالحياة يلتقط الثنائية المثالية للحلو والحامض للفاكهة، يقدم عمقاً غنياً بمضادات الأكسدة ولوناً قرمزياحتفالي في كل كوب.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Romantea.jpg", calories:"2 kcal", dietary:["vegan","dairy-free"] },
+    { id:"th6", cat:"Tea on the House", enName:"Pomegranate Tea", arName:"شاي الرمان", price:35, enDesc:"Ruby elixir—vibrant pomegranate infusion that captures the fruit's perfect sweet-tart duality, offering antioxidant-rich depth and festive crimson hue in every cup.", arDesc:"إكسير ياقوتي—نقيع رمان نابض بالحياة يلتقط الثنائية المثالية للحلو والحامض للفاكهة، يقدم عمقاً غنياً بمضادات الأكسدة ولوناً قرمزيزي احتفالي في كل كوب.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Romantea.jpg", calories:"2 kcal", dietary:["vegan","dairy-free"] },
     { id:"th7", cat:"Tea on the House", enName:"Matcha", arName:"ماتشا", price:36, enDesc:"Zen in motion—ceremonial-grade matcha stone-ground to velvety perfection, delivering concentrated umami, vibrant chlorophyll notes, and sustained calm energy in chilled presentation.", arDesc:"تأمل في حركة—ماتشا درجة طقوسي مطحون بالحجر إلى كمال حريري، يقدم أومامي مركزاً ونفحات كلوروفيل نابضة وطاقة هادئة مستدامة في تقديم بارد.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Matcha.webp", calories:"95 kcal", dietary:["vegan","dairy-free"] },
     { id:"th8", cat:"Tea on the House", enName:"Strawberry Matcha", arName:"ماتشا بالفراولة", price:42, enDesc:"Harmonious fusion—vibrant matcha meets sun-ripened strawberry puree, creating layered experience where green tea's umami depth dances with berry's natural sweetness.", arDesc:"اندماج متناغم—ماتشا نابض يلتقي بهريس فراولة ناضج بالشمس، يخلق تجربة متعددة الطبقات حيث عمق الأومامي في الشاي الأخضر يرقص مع حلاوة التوت الطبيعية.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Strawberrymatcha.webp", calories:"135 kcal", dietary:["vegan","dairy-free"] },
     { id:"th9", cat:"Tea on the House", enName:"Ice Apple Tea", arName:"شاي التفاح مثلج", price:35, enDesc:"Chilled orchard breeze—crisp apple infusion over crystalline ice, maintaining the fruit's natural sweetness while offering thirst-quenching refreshment perfect for warm days.", arDesc:"نسيم بستان بارد—نقيع تفاح منعش فوق ثلج بلوري، يحافظ على حلاوة الفاكهة الطبيعية بينما يقدم انتعاشاً يُروي العطش مثالياً للأيام الدافئة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Appletea.avif", calories:"35 kcal", dietary:["vegan","dairy-free"] },
     { id:"th10", cat:"Tea on the House", enName:"Ice Mulberry Tea", arName:"شاي التوت المثلج", price:35, enDesc:"Frosted silk—delicate mulberry essence chilled to perfection, offering subtle fruity notes and smooth texture that feels like liquid velvet on a summer afternoon.", arDesc:"حرير متجمد—جوهر التوت الدقيق المبرد إلى الكمال، يقدم نفحات فاكهية خفيفة وقواماً ناعماً يشبه المخمل السائل في ظهيرة صيفية.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Blackmulberrytea.png", calories:"35 kcal", dietary:["vegan","dairy-free"] },
     { id:"th11", cat:"Tea on the House", enName:"Ice Pomegranate Tea", arName:"شاي الرمان المثلج", price:35, enDesc:"Jewel-toned refreshment—vibrant pomegranate tea served over hand-carved ice, delivering bold fruity character and antioxidant richness in beautifully chilled presentation.", arDesc:"انتعاش بلون الجواهر—شاي رمان نابض يُقدم فوق ثلج منحوت يدوياً، يقدم شخصية فاكهية جريئة وغنياً بمضادات الأكسدة في تقديم مبرد جميل.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Pomegranatetea.avif", calories:"45 kcal", dietary:["vegan","dairy-free"] },
     { id:"th12", cat:"Tea on the House", enName:"Passion Fruit Tea", arName:"شاي باشن فروت", price:45, enDesc:"Tropical euphoria—exotic passion fruit infusion that balances tangy vibrancy with subtle sweetness, capturing the essence of distant shores in every fragrant sip.", arDesc:"نشوة استوائية—نقيع باشن فروت غريب يوازن بين الحيوية الحامضة والحلاوة الخفيفة، يلتقط جوهر الشواطئ البعيدة في كل رشفة عطرة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Passiontea.webp", calories:"40 kcal", dietary:["vegan","dairy-free"] },
-    { id:"th13", cat:"Tea on the House", enName:"Hibiscus Ice", arName:"الكركديه مثلج", price:28, enDesc:"Ruby glacier—vibrant hibiscus infusion served over ice, offering tangy floral notes, stunning crimson color, and refreshing qualities that invigorate the senses.", arDesc:"جليد ياقوتي—نقيع كركديه نابض يُقدم فوق الثلج، يقدم نفحات زهرية حامضة ولوناً قرمزيابديع وصفات منعشة تنعش الحواس.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Hibiscus.webp", calories:"25 kcal", dietary:["vegan","dairy-free"] },
+    { id:"th13", cat:"Tea on the House", enName:"Hibiscus Ice", arName:"الكركديه مثلج", price:28, enDesc:"Ruby glacier—vibrant hibiscus infusion served over ice, offering tangy floral notes, stunning crimson color, and refreshing qualities that invigorate the senses.", arDesc:"جليد ياقوتي—نقيع كركديه نابض يُقدم فوق الثلج، يقدم نفحات زهرية حامضة ولوناً قرمزيًا بديع وصفات منعشة تنعش الحواس.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Hibiscus.webp", calories:"25 kcal", dietary:["vegan","dairy-free"] },
     { id:"th14", cat:"Tea on the House", enName:"Classic Turkish Coffee", arName:"قهوة تركية كلاسيكية", price:28, enDesc:"Traditional perfection—meticulously prepared Turkish coffee with signature velvety foam and rich depth, served alongside refreshing water to cleanse and prepare the palate.", arDesc:"كمال تقليدي—قهوة تركية محضرة بدقة مع رغوة حريرية مميزة وعمق غني، تُقدم بجانب ماء منعش لتنظيف وإعداد الحنك.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkishcoffee.jpg", calories:"5 kcal", dietary:["vegan","gluten-free","dairy-free"] },
-    { id:"cac15", cat:"Café & Chill", enName:"Ice Tiramisu Latte", arName:"لاتيه تيراميسو مثلج", price:36, enDesc:"Dessert reimagined—layered iced latte capturing tiramisu's essence with espresso, mascarpone-inspired cream, ladyfinger notes, and cocoa dusting for sophisticated indulgence.", arDesc:"حلوى مُعاد تخيلها—لاتيه مثلج متعدد الطبقات يلتقط جوهر التيراميسو مع إسبرسو، كريمة مستوحاة من الماسكاربون، نفحات بسكويت السيدة وذرّ الكاكاو لتناول فاخر راقٍ.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Tiramisulatte.jpg", calories:"210 kcal", dietary:["contains-dairy"] },
+    { id:"cac15", cat:"Café & Chill", enName:"Ice Tiramisu Latte", arName:"لاتيه تيراميسو مثلج", price:36, enDesc:"Dessert reimagined—layered iced latte capturing tiramisu's essence with espresso, mascarpone-inspired cream, ladyfinger notes, and cocoa dusting for sophisticated indulgence.", arDesc:"حلوى مُعاد تخيلها—لاتيه مثلج متعدد الطبقات يلتقط جوهر التيراميسو مع إسبرسو، كريمة مستوحاة من الماسكاربون، نفحات بسكويت السيدة وذرّ الكاكاو لتناول فاخر راقٍ.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Icetiramisu.webp", calories:"210 kcal", dietary:["contains-dairy"] },
     { id:"cac1", cat:"Café & Chill", enName:"Hot Chocolate (Hot/Ice)", arName:"هوت شوكولاتة (ساخن/مثلج)", price:36, enDesc:"Liquid velvet—artisanal blend of single-origin cocoa and steamed milk creating silky richness, crowned with whipped cream for ultimate comfort in warm or chilled version.", arDesc:"مخمل سائل—مزيج حرفي من كاكاو منشأ واحد وحليب مبخر يخلق غنى حريرياً، يتوج بكريمة مخفوقة للراحة القصوى في النسخة الدافئة أو المبردة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Hotchocolate.jfif", calories:"360 kcal", dietary:["contains-dairy"] },
     { id:"cac2", cat:"Café & Chill", enName:"Piccolo", arName:"بيكولو", price:24, enDesc:"Precision in miniature—strong ristretto base harmonized with just enough velvety milk to soften edges while preserving coffee's intense character in elegantly small format.", arDesc:"دقة مصغرة—قاعدة رسترتو قوية متناغمة مع ما يكفي من الحليب الحريري لتليين الحواف مع الحفاظ على شخصية القهوة المكثفة في شكل صغير أنيق.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/cortado.jpg", calories:"120 kcal", dietary:["contains-dairy"] },
-    { id:"cac3", cat:"Café & Chill", enName:"Latte (Hot/Ice)", arName:"لاتيه (ساخن/مثلج)", price:29, enDesc:"The perfect canvas—smooth microfoam over balanced espresso creating creamy harmony, offering comforting warmth or refreshing chill in beautifully layered presentation.", arDesc:"اللوحة المثالية—رغوة دقيقة ناعمة فوق إسبرسو متوازن تخلق تناغماً كريمياً، تقدم دفئاً مريحاً أو برودة منعشة في تقديم جميل متعدد الطبقات.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Latte.jpg", calories:"170 kcal", dietary:["contains-dairy"] },
+    { id:"cac3", cat:"Café & Chill", enName:"Latte (Hot/Ice)", arName:"لاتيه (ساخن/مثلج)", price:29, enDesc:"The perfect canvas—smooth microfoam over balanced espresso creating creamy harmony, offering comforting warmth or refreshing chill in beautifully layered presentation.", arDesc:"اللوحة المثالية—رغوة دقيقة ناعمة فوق إسبرسو متوازن تخلق تناغماً كريمياً، تقدم دفئاً مريحاً أو برودة منعشة في تقديم جميل متعدد الطبقات.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Latteart.webp", calories:"170 kcal", dietary:["contains-dairy"] },
     { id:"cac4", cat:"Café & Chill", enName:"Spanish Latte (Hot/Ice)", arName:"لاتيه إسباني (ساخن ومثلج)", price:32, enDesc:"Iberian sweetness—traditional latte enriched with sweetened condensed milk that caramelizes subtly, creating luxurious texture and nostalgic sweetness in every sip.", arDesc:"حلاوة إيبيرية—لاتيه تقليدي معزز بحليب مكثف محلى يتكرمل بخفة، يخلق قواماً فاخراً وحلاوة حنينية في كل رشفة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Latteart.webp", calories:"220 kcal", dietary:["contains-dairy"] },
     { id:"cac5", cat:"Café & Chill", enName:"Salted Caramel Latte (Hot/Ice)", arName:"لاتيه بالكراميل المملح (ساخن/مثلج)", price:32, enDesc:"Savory-sweet alchemy—house-made caramel with Himalayan salt crystals blended into creamy latte, creating sophisticated balance that tantalizes both sweet and savory cravings.", arDesc:"كيمياء مالحة-حلوة—كراميل منزلي الصنع مع بلورات ملح الهيمالايا ممزوج في لاتيه كريمي، يخلق توازناً راقياً يثير الشهية للحلو والمالح.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Latteart.webp", calories:"230 kcal", dietary:["contains-dairy"] },
-    { id:"cac6", cat:"Café & Chill", enName:"Vanilla Latte (Hot/Ice)", arName:"لاتيه فانيليا (ساخن/مثلج)", price:32, enDesc:"Classic elegance—Madagascar bourbon vanilla bean infusion harmonizing with espresso and steamed milk, creating fragrant sweetness that enhances rather than overwhelms coffee notes.", arDesc:"أناقة كلاسيكية—نقيع فانيليا مدغشقر بوربون متناغم مع الإسبرسو والحليب المبخر، يخلق حلاوة عطرة تعزز نفحات القهوة بدلاً من طغيانها.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Latteart.webp", calories:"220 kcal", dietary:["contains-dairy"] },
+    { id:"cac6", cat:"Café & Chill", enName:"Vanilla Latte (Hot/Ice)", arName:"لاتيه فانيليا (ساخن/مثلج)", price:32, enDesc:"Classic elegance—Madagascar bourbon vanilla bean infusion harmonizing with espresso and steamed milk, creating fragrant sweetness that enhances rather than overwhelms coffee notes.", arDesc:"أناقة كلاسيكية—نقيع فانيليا مدغشقر بوربون متناغم مع الإسبرسو والحليب المبخر، يخلق حلاوة عطرة تعزز نفحات القهوة بدلاً من طغيانها.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Art.webp", calories:"220 kcal", dietary:["contains-dairy"] },
     { id:"cac7", cat:"Café & Chill", enName:"Cappuccino (Hot/Ice)", arName:"كابوتشينو (ساخن/مثلج)", price:29, enDesc:"Textural masterpiece—equal parts espresso, steamed milk, and thick microfoam creating perfect trifecta of strength, creaminess, and airy lightness in traditional Italian style.", arDesc:"تحفة قوامية—أجزاء متساوية من إسبرسو، حليب مبخر، ورغوة دقيقة سميكة تخلق ثلاثية مثالية من القوة والكريمية والخفة الهوائية بالأسلوب الإيطالي التقليدي.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Art.webp", calories:"150 kcal", dietary:["contains-dairy"] },
-    { id:"cac8", cat:"Café & Chill", enName:"White Mocha (Hot/Ice)", arName:"وايت موكا (ساخن/مثلج)", price:32, enDesc:"Ivory indulgence—creamy white chocolate melted into rich espresso and steamed milk, creating decadent sweetness with subtle vanilla notes and luxurious mouthfeel.", arDesc:"تناول عاجي—شوكولاتة بيضاء كريمية ذائبة في إسبرسو غني وحليب مبخر، تخلق حلاوة فاخرة بنفحات فانيليا خفيفة وإحساس فم فاخر.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Art.webp", calories:"260 kcal", dietary:["contains-dairy"] },
+    { id:"cac8", cat:"Café & Chill", enName:"White Mocha (Hot/Ice)", arName:"وايت موكا (ساخن/مثلج)", price:32, enDesc:"Ivory indulgence—creamy white chocolate melted into rich espresso and steamed milk, creating decadent sweetness with subtle vanilla notes and luxurious mouthfeel.", arDesc:"تناول عاجي—شوكولاتة بيضاء كريمية ذائبة في إسبرسو غني وحليب مبخر، تخلق حلاوة فاخرة بنفحات فانيليا خفيفة وإحساس فم فاخر.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Latteart.webp", calories:"260 kcal", dietary:["contains-dairy"] },
     { id:"cac9", cat:"Café & Chill", enName:"Flat White (Hot/Ice)", arName:"فلات وايت (ساخن/مثلج)", price:27, enDesc:"Antipodean precision—strong double ristretto topped with velvety microfoam, emphasizing coffee intensity while providing silky texture that defines this Australian classic.", arDesc:"دقة من نصف الكرة الجنوبي—ريسترتو مزدوج قوي يتوج برغوة دقيقة حريرية، يؤكد على شدة القهوة بينما يوفر قواماً حريرياً يعرّف هذا الكلاسيكي الأسترالي.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Flatwhite.jpg", calories:"140 kcal", dietary:["contains-dairy"] },
     { id:"cac10", cat:"Café & Chill", enName:"Cortado (Hot/Ice)", arName:"كورتادو (ساخن/مثلج)", price:24, enDesc:"Spanish equilibrium—equal parts espresso and warm steamed milk creating perfect balance where neither overpowers, allowing coffee's nuanced flavors to shine through clearly.", arDesc:"توازن إسباني—أجزاء متساوية من إسبرسو وحليب مبخر دافئ تخلق توازناً مثالياً حيث لا يتغلب أي منهما، تسمح لنكهات القهوة الدقيقة بالتألق بوضوح.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/cortado.jpg", calories:"110 kcal", dietary:["contains-dairy"] },
     { id:"cac11", cat:"Café & Chill", enName:"Espresso Single / Double (Hot/Ice)", arName:"إسپريسو مفرد/مزدوج (ساخن/مثلج)", price:21, enDesc:"Coffee in its purest form—concentrated extraction showcasing bean's terroir, with crema crown revealing roasting artistry and brewing precision in intense, aromatic essence.", arDesc:"قهوة في أنقى صورها—استخلاص مركز يعرض تيروار الحبة، مع تاج الكريما يكشف فن التحمير ودقة التحضير في الجوهر المكثف العطري.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Espresso.webp", calories:"5 kcal", dietary:["vegan","gluten-free","dairy-free"] },
     { id:"cac12", cat:"Café & Chill", enName:"Macchiato (Hot/Ice)", arName:"ماكياتو (ساخن/مثلج)", price:24, enDesc:"'Stained' artistry—strong espresso 'marked' with just a dollop of steamed milk foam, creating visual appeal and subtle creaminess that complements rather than dilutes intensity.", arDesc:"فن 'ملطخ'—إسبرسو قوي 'معلّم' بكمية صغيرة فقط من رغوة الحليب المبخر، يخلق جاذبية بصرية وكريمية خفيفة تكمل الشدة بدلاً من تخفيفها.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Machiatto.jpg", calories:"40 kcal", dietary:["contains-dairy"] },
     { id:"cac13", cat:"Café & Chill", enName:"Americano (Hot/Ice)", arName:"أمريكانو (ساخن/مثلج)", price:21, enDesc:"Transatlantic simplicity—espresso extended with hot water to create smooth, approachable strength that maintains coffee's character while offering lighter, sip-friendly experience.", arDesc:"بساطة عبر الأطلسي—إسبرسو ممتد بماء ساخن لخلق قوة ناعمة وسهلة الوصول تحافظ على شخصية القهوة بينما تقدم تجربة أخف وأسهل للرشف.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Americano.jpeg", calories:"5 kcal", dietary:["vegan","gluten-free","dairy-free"] },
-    { id:"cac14", cat:"Café & Chill", enName:"Mocha (Hot/Ice)", arName:"موكا (ساخن/مثلج)", price:32, enDesc:"Chocolate-coffee marriage—rich dark chocolate melted into espresso base, topped with steamed milk and cocoa powder for decadent treat that satisfies both cravings simultaneously.", arDesc:"زواج شوكولاتة-قهوة—شوكولاتة داكنة غنية ذائبة في قاعدة إسبرسو، تتوج بحليب مبخر ومسحوق كاكاو لتناول فاخر يرضي الرغبتين في آن واحد.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Latteart.webp", calories:"260 kcal", dietary:["contains-dairy"] },
+    { id:"cac14", cat:"Café & Chill", enName:"Mocha (Hot/Ice)", arName:"موكا (ساخن/مثلج)", price:32, enDesc:"Chocolate-coffee marriage—rich dark chocolate melted into espresso base, topped with steamed milk and cocoa powder for decadent treat that satisfies both cravings simultaneously.", arDesc:"زواج شوكولاتة-قهوة—شوكولاتة داكنة غنية ذائبة في قاعدة إسبرسو، تتوج بحليب مبخر ومسحوق كاكاو لتناول فاخر يرضي الرغبتين في آن واحد.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Art.webp", calories:"260 kcal", dietary:["contains-dairy"] },
     { id:"sb1", cat:"Specialty Brews", enName:"V60 Pour Over - Ethiopia Beans", arName:"V60 بورت أوفر - حبوب إثيوبيا", price:33, enDesc:"Manual artistry—Ethiopian Yirgacheffe beans hand-poured through ceramic V60, extracting bright floral notes, bergamot hints, and clean finish that showcases terroir with clarity.", arDesc:"فن يدوي—حبوب إثيوبيا يرجاتشيف تُسكب يدوياً عبر V60 سيراميكي، تستخلص نفحات زهرية زاهية، تلميحات برغموت، ونهاية نظيفة تعرض التيروار بوضوح.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/v60.jpg", calories:"2 kcal", dietary:["vegan","dairy-free"] },
     { id:"sb2", cat:"Specialty Brews", enName:"Ice Drip", arName:"آيس دريب", price:35, enDesc:"Slow-motion extraction—coffee grounds slowly dripped with ice-cold water over 8 hours, creating concentrated, smooth elixir with low acidity and complex flavor development.", arDesc:"استخلاص بالحركة البطيئة—بن مطحون يُقطر ببطء بماء مثلج على مدى 8 ساعات، يخلق إكسير مركزاً وناعماً بحموضة منخفضة وتطور نكهة معقد.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Icedrip.jpeg", calories:"2 kcal", dietary:["vegan","dairy-free"] },
     { id:"sb3", cat:"Specialty Brews", enName:"Cold Brew", arName:"كولد برو", price:37, enDesc:"Patience rewarded—coarse grounds steeped in cold water for 18+ hours, producing naturally sweet, low-acid concentrate with chocolatey notes and remarkably smooth character.", arDesc:"صبر مكافأ—بن خشِن منقوع في ماء بارد لأكثر من 18 ساعة، ينتج مركزاً حلوماً طبيعياً ومنخفض الحموضة بنفحات شوكولاتية وشخصية ناعمة بشكل ملحوظ.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Coldbrew.jpg", calories:"2 kcal", dietary:["vegan","dairy-free"] },
@@ -1324,7 +1575,10 @@ const allItems = [
     { id:"amt13", cat:"Anatolian Morning Table", enName:"Turkey Ham Sandwich", arName:"ساندويتش تركي هام", price:30, enDesc:"Light deli option—turkey ham sandwich with fresh vegetables and soft bread, offering approachable choice for those seeking familiar deli flavors in balanced, not-too-heavy presentation.", arDesc:"خيار لحوم بارد خفيف—ساندويتش تركي هام مع خضروات طازجة وخبز طري، يقدم اختياراً سهلاً لمن يبحثون عن نكهات اللحوم الباردة المألوفة في تقديم متوازن وغير ثقيل جداً.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkeyhamsandwich.jpg", calories:"390 kcal", dietary:[] }
 ];
 
-// Global State
+// ============================================
+// 2. GLOBAL STATE & KIOSK MANAGEMENT
+// ============================================
+
 const state = {
     activeCategory: null,
     searchQuery: "",
@@ -1333,11 +1587,212 @@ const state = {
     categories: [...new Set(allItems.map(item => item.cat))],
     currentModalItem: null,
     loadedImages: new Map(),
-    isFullscreen: false
+    isFullscreen: false,
+    isKioskMode: true,
+    sessionTimer: null,
+    idleTimer: null,
+    sessionTime: 300, // 5 minutes in seconds
+    idleWarningTime: 30, // 30 seconds warning
+    isSessionActive: false
 };
 
 // ============================================
-// 2. UTILITY FUNCTIONS
+// 3. KIOSK INITIALIZATION
+// ============================================
+
+function initKioskMode() {
+    // Show kiosk overlay on startup
+    document.getElementById('kiosk-overlay').style.display = 'flex';
+    
+    // Add event listeners for kiosk mode
+    document.getElementById('start-experience-btn').addEventListener('click', startKioskSession);
+    document.getElementById('reset-timer-btn').addEventListener('click', resetIdleTimer);
+    
+    // Touch anywhere to start (for tablets)
+    document.getElementById('kiosk-overlay').addEventListener('click', (e) => {
+        if (e.target.id === 'kiosk-overlay') {
+            startKioskSession();
+        }
+    });
+    
+    // Auto-start after 10 seconds if no interaction
+    setTimeout(() => {
+        if (!state.isSessionActive) {
+            startKioskSession();
+        }
+    }, 10000);
+}
+
+function startKioskSession() {
+    state.isSessionActive = true;
+    document.body.classList.add('kiosk-mode');
+    document.getElementById('kiosk-overlay').classList.add('hidden');
+    document.getElementById('kiosk-nav').style.display = 'flex';
+    
+    // Start session timer
+    startSessionTimer();
+    
+    // Hide loading overlay
+    setTimeout(() => {
+        document.getElementById('loadingOverlay').classList.add('hidden');
+    }, 500);
+    
+    // Initialize the main app
+    initApp();
+    
+    // Show welcome toast
+    showToast("Welcome to Turkiana Café! Browse our winter menu.", "info");
+}
+
+function resetSession() {
+    // Reset to welcome screen
+    document.body.classList.remove('kiosk-mode');
+    document.getElementById('kiosk-overlay').classList.remove('hidden');
+    document.getElementById('kiosk-nav').style.display = 'none';
+    
+    // Clear timers
+    if (state.sessionTimer) clearInterval(state.sessionTimer);
+    if (state.idleTimer) clearTimeout(state.idleTimer);
+    
+    // Reset state
+    state.isSessionActive = false;
+    state.sessionTime = 300;
+    updateTimerDisplay();
+    
+    // Close any open modals
+    closeItemModal();
+    
+    // Reset UI
+    clearFilters();
+    updateUI();
+}
+
+function startSessionTimer() {
+    if (state.sessionTimer) clearInterval(state.sessionTimer);
+    
+    state.sessionTimer = setInterval(() => {
+        state.sessionTime--;
+        updateTimerDisplay();
+        
+        if (state.sessionTime <= 0) {
+            resetSession();
+        } else if (state.sessionTime <= state.idleWarningTime) {
+            showIdleWarning();
+        }
+    }, 1000);
+}
+
+function resetIdleTimer() {
+    state.sessionTime = 300; // Reset to 5 minutes
+    updateTimerDisplay();
+    document.getElementById('idle-warning').style.display = 'none';
+    
+    // Restart the session timer
+    startSessionTimer();
+}
+
+function updateTimerDisplay() {
+    const minutes = Math.floor(state.sessionTime / 60);
+    const seconds = state.sessionTime % 60;
+    document.getElementById('timer-display').textContent = 
+        `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+}
+
+function showIdleWarning() {
+    if (document.getElementById('itemModal').classList.contains('active')) {
+        return; // Don't show warning if modal is open
+    }
+    
+    document.getElementById('idle-warning').style.display = 'block';
+    
+    // Auto-hide warning and reset session after 30 seconds
+    setTimeout(() => {
+        if (document.getElementById('idle-warning').style.display === 'block') {
+            resetSession();
+        }
+    }, 30000);
+}
+
+// ============================================
+// 4. KIOSK NAVIGATION FUNCTIONS
+// ============================================
+
+function goHome() {
+    state.activeCategory = null;
+    state.searchQuery = "";
+    state.activeDietaryFilters.clear();
+    
+    document.getElementById("searchInput").value = "";
+    document.querySelectorAll(".filter-btn").forEach(btn => {
+        btn.classList.remove("active");
+        btn.setAttribute("aria-pressed", "false");
+    });
+    
+    updateUI();
+    showToast("Returned to home");
+    
+    // Scroll to top
+    document.querySelector('.content-container').scrollTop = 0;
+}
+
+function showFavorites() {
+    if (state.favorites.size === 0) {
+        showToast("No favorites yet. Tap ❤️ on items to add them.", "info");
+        return;
+    }
+    
+    // Create a temporary category for favorites
+    const favoriteItems = allItems.filter(item => state.favorites.has(item.id));
+    
+    if (favoriteItems.length > 0) {
+        // Open modal with favorites list
+        const modal = document.getElementById("itemModal");
+        const modalTitle = document.getElementById("modalTitle");
+        const modalBody = document.querySelector(".modal-body");
+        
+        modalTitle.textContent = "Your Favorites";
+        
+        // Clear modal content
+        modalBody.innerHTML = `
+            <div style="padding: 20px; overflow-y: auto;">
+                <h4 style="color: var(--gold); margin-bottom: 20px;">❤️ Your Saved Items</h4>
+                <div style="display: flex; flex-direction: column; gap: 15px;">
+                    ${favoriteItems.map(item => `
+                        <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; border: 1px solid rgba(212,175,55,0.2);">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div>
+                                    <strong style="color: white;">${item.enName}</strong>
+                                    <div style="color: var(--gold); font-size: 1.1rem; margin-top: 5px;">QAR ${formatPrice(item.price)}</div>
+                                </div>
+                                <button onclick="openItemModal(${JSON.stringify(item).replace(/"/g, '&quot;')}); event.stopPropagation();" 
+                                        style="background: var(--gold); color: var(--bg); border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer;">
+                                    View
+                                </button>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+                <button onclick="clearFavorites()" style="margin-top: 20px; background: var(--accent); color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; width: 100%;">
+                    Clear All Favorites
+                </button>
+            </div>
+        `;
+        
+        modal.classList.add("active");
+        modal.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+    }
+}
+
+function clearFavorites() {
+    state.favorites.clear();
+    localStorage.removeItem("turkianaFavorites");
+    showToast("All favorites cleared");
+    closeItemModal();
+}
+
+// ============================================
+// 5. UTILITY FUNCTIONS
 // ============================================
 
 // Toast Notification
@@ -1431,7 +1886,7 @@ function updateFilterStatus() {
 }
 
 // ============================================
-// 3. SNOW ANIMATION (Lightweight)
+// 6. SNOW ANIMATION (Lightweight)
 // ============================================
 
 function initSnowAnimation() {
@@ -1497,7 +1952,7 @@ function initSnowAnimation() {
 }
 
 // ============================================
-// 4. FULLSCREEN MANAGEMENT
+// 7. FULLSCREEN MANAGEMENT
 // ============================================
 
 async function enterFullscreen() {
@@ -1531,20 +1986,8 @@ function exitFullscreen() {
     state.isFullscreen = false;
 }
 
-// Auto-enter fullscreen on load
-function autoFullscreen() {
-    setTimeout(async () => {
-        await enterFullscreen();
-        
-        // Hide loading overlay
-        setTimeout(() => {
-            document.getElementById('loadingOverlay').classList.add('hidden');
-        }, 500);
-    }, 1000);
-}
-
 // ============================================
-// 5. CATEGORIES TOUCH SCROLL
+// 8. CATEGORIES TOUCH SCROLL
 // ============================================
 
 function initTouchScroll() {
@@ -1573,7 +2016,7 @@ function initTouchScroll() {
 }
 
 // ============================================
-// 6. RENDER FUNCTIONS
+// 9. RENDER FUNCTIONS
 // ============================================
 
 function renderCategories() {
@@ -1756,7 +2199,7 @@ function clearFilters() {
 }
 
 // ============================================
-// 7. MODAL FUNCTIONS (Touch Optimized)
+// 10. MODAL FUNCTIONS (Touch Optimized)
 // ============================================
 
 function openItemModal(item) {
@@ -1840,7 +2283,7 @@ function toggleCurrentFavorite() {
 }
 
 // ============================================
-// 8. FAVORITES
+// 11. FAVORITES
 // ============================================
 
 function toggleFavorite(itemId) {
@@ -1857,7 +2300,7 @@ function toggleFavorite(itemId) {
 }
 
 // ============================================
-// 9. UI UPDATE FUNCTION
+// 12. UI UPDATE FUNCTION
 // ============================================
 
 function updateUI() {
@@ -1866,10 +2309,10 @@ function updateUI() {
 }
 
 // ============================================
-// 10. INITIALIZATION
+// 13. MAIN APP INITIALIZATION
 // ============================================
 
-function init() {
+function initApp() {
     // Load saved state
     const savedFavorites = localStorage.getItem("turkianaFavorites");
     if (savedFavorites) {
@@ -1878,7 +2321,6 @@ function init() {
     
     // Initialize components
     initSnowAnimation();
-    autoFullscreen(); // Auto-enter fullscreen on load
     updateUI();
     
     // Event listeners
@@ -1962,24 +2404,20 @@ function init() {
         });
     }
     
-    // Auto-exit fullscreen warning (optional - can be removed)
-    let idleTimer;
-    function resetIdleTimer() {
-        clearTimeout(idleTimer);
-        idleTimer = setTimeout(() => {
-            if (state.isFullscreen) {
-                showToast("Tap to keep fullscreen active", "info");
-            }
-        }, 300000); // 5 minutes
-    }
-    
-    document.addEventListener('touchstart', resetIdleTimer);
-    document.addEventListener('mousemove', resetIdleTimer);
-    resetIdleTimer();
+    // Auto-enter fullscreen for kiosk mode
+    setTimeout(async () => {
+        await enterFullscreen();
+    }, 2000);
 }
 
-// Start the application
-document.addEventListener("DOMContentLoaded", init);
+// ============================================
+// 14. START THE APPLICATION
+// ============================================
+
+document.addEventListener("DOMContentLoaded", () => {
+    // Start with kiosk mode
+    initKioskMode();
+});
 </script>
 </body>
 </html>
