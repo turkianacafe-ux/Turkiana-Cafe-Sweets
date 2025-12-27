@@ -4,6 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Turkiana Café & Sweets — Winter 2025</title>
+
+<!-- PWA Meta Tags -->
+<meta name="theme-color" content="#0c0406">
+<meta name="description" content="A winter haven of sweetness, warmth, and timeless Turkish charm">
+<link rel="manifest" href="manifest.json">
+
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#0c0406;--gold:#d4af37;--text:#f9f7f4;--muted:rgba(255,255,255,.7);--accent:#8b0921;}
@@ -11,14 +17,80 @@
 body{margin:0;font-family:Inter,sans-serif;background:radial-gradient(circle at top, rgba(212,175,55,.12), transparent 45%),linear-gradient(180deg,#1d0509 0%,#0c0406 60%,#030203 100%);color:var(--text);overflow-x:hidden;min-height:100vh;}
 canvas{position:fixed;inset:0;pointer-events:none;z-index:50;}
 
+/* Install Banner */
+.install-banner {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    background: rgba(12, 4, 6, 0.95);
+    border: 1px solid var(--gold);
+    border-radius: 16px;
+    padding: 16px 20px;
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 2000;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 10px 40px rgba(212, 175, 55, 0.2);
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(100px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.banner-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.banner-icon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--accent), var(--gold));
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.2rem;
+}
+
+.banner-text h4 {
+    font-size: 1rem;
+    margin-bottom: 4px;
+    color: var(--text);
+}
+
+.banner-text p {
+    font-size: 0.85rem;
+    color: var(--muted);
+}
+
+.banner-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-sm {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+}
+
+/* Main Styles Continue */
 header{text-align:center;padding:80px 20px 50px;background:linear-gradient(135deg, rgba(59,15,23,.9), rgba(212,175,55,.12));border-bottom:2px solid var(--gold);position:relative;z-index:1;}
 header h1{font-family:"Playfair Display",serif;font-size:clamp(2.5rem,4vw,4rem);margin:0;letter-spacing:.08em;background:linear-gradient(130deg,#fff,var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
 .subline{margin-top:12px;letter-spacing:.45em;font-size:.85rem;text-transform:uppercase;opacity:.9;}
 header p{max-width:680px;margin:16px auto 20px;color:var(--muted);font-size:.95rem;}
 
-.action-bar{display:flex;justify-content:center;gap:15px;margin-bottom:20px;}
+.action-bar{display:flex;justify-content:center;gap:15px;margin-bottom:20px;flex-wrap:wrap;}
 .order-now, .fullscreen-trigger{display:inline-block;padding:12px 28px;background:var(--gold);color:#0a0503;text-decoration:none;border-radius:30px;font-weight:700;transition:0.3s;font-size:0.9rem;border:none;cursor:pointer;}
 .order-now:hover, .fullscreen-trigger:hover{transform:translateY(-3px);box-shadow:0 10px 20px rgba(212,175,55,0.3);background:#fff;}
+.install-btn{display:inline-block;padding:12px 28px;background:linear-gradient(135deg, var(--accent), var(--gold));color:#fff;text-decoration:none;border-radius:30px;font-weight:700;transition:0.3s;font-size:0.9rem;border:none;cursor:pointer;border:1px solid var(--gold);}
+.install-btn:hover{transform:translateY(-3px);box-shadow:0 10px 20px rgba(139,9,33,0.4);}
 
 /* STICKY SEARCH AND CATEGORIES CONTAINER */
 .sticky-container {
@@ -131,10 +203,18 @@ footer{text-align:center;padding:40px 20px;color:var(--muted);font-size:.8rem;bo
     .grid{grid-template-columns:repeat(auto-fill, minmax(150px, 1fr)); gap:15px}
     .filters{justify-content:center}
     .action-bar{flex-direction:column;align-items:center;}
-    .order-now, .fullscreen-trigger{width:100%;max-width:300px;}
+    .order-now, .fullscreen-trigger, .install-btn{width:100%;max-width:300px;}
     .categories{padding:8px; gap:8px;}
     .category-pill{padding:10px 18px; font-size:.8rem;}
     .sticky-container{padding:10px 0;}
+    .install-banner {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    .banner-content {
+        flex-direction: column;
+    }
 }
 </style>
 </head>
@@ -146,12 +226,28 @@ footer{text-align:center;padding:40px 20px;color:var(--muted);font-size:.8rem;bo
     Press F11 for best fullscreen experience
 </div>
 
+<!-- Install Banner -->
+<div class="install-banner" id="installBanner">
+    <div class="banner-content">
+        <div class="banner-icon">☕</div>
+        <div class="banner-text">
+            <h4>Install Turkiana Café App</h4>
+            <p>Get quick access to our menu and order faster</p>
+        </div>
+    </div>
+    <div class="banner-actions">
+        <button class="btn-sm" style="background:transparent;color:var(--muted);border:1px solid var(--gold);border-radius:20px;padding:8px 16px;" onclick="dismissInstallBanner()">Later</button>
+        <button class="btn-sm" style="background:var(--gold);color:#0a0503;border:none;border-radius:20px;padding:8px 16px;font-weight:600;" onclick="installApp()">Install</button>
+    </div>
+</div>
+
 <header>
   <h1>Turkiana Café & Sweets</h1>
   <div class="subline">Winter Season 2025</div>
   <p>"A winter haven of sweetness, warmth, and timeless Turkish charm"</p>
   <div class="action-bar">
       <button class="fullscreen-trigger" onclick="toggleFullScreen()">⛶ Toggle Fullscreen</button>
+      <button class="install-btn" onclick="showInstallPrompt()">📱 Install App</button>
       <a href="https://www.rafeeq.qa" target="_blank" class="order-now">Order via Rafeeq 🚀</a>
   </div>
 </header>
@@ -231,6 +327,154 @@ footer{text-align:center;padding:40px 20px;color:var(--muted);font-size:.8rem;bo
 <footer>© 2025 Turkiana Café & Sweets — Winter Collection</footer>
 
 <script>
+// PWA Installation
+let deferredPrompt;
+
+window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    setTimeout(() => {
+        document.getElementById('installBanner').style.display = 'flex';
+    }, 3000);
+});
+
+function showInstallPrompt() {
+    if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choiceResult) => {
+            if (choiceResult.outcome === 'accepted') {
+                console.log('User accepted the install prompt');
+            }
+            deferredPrompt = null;
+        });
+    } else {
+        document.getElementById('installBanner').style.display = 'flex';
+    }
+}
+
+function installApp() {
+    if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choiceResult) => {
+            if (choiceResult.outcome === 'accepted') {
+                console.log('User accepted the install prompt');
+            }
+            deferredPrompt = null;
+        });
+    }
+    dismissInstallBanner();
+}
+
+function dismissInstallBanner() {
+    document.getElementById('installBanner').style.display = 'none';
+}
+
+// Register Service Worker
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        const swUrl = `
+            self.addEventListener('install', event => {
+                console.log('Service Worker installing.');
+            });
+            
+            self.addEventListener('activate', event => {
+                console.log('Service Worker activating.');
+            });
+            
+            self.addEventListener('fetch', event => {
+                console.log('Fetching:', event.request.url);
+            });
+        `;
+        
+        const blob = new Blob([swUrl], { type: 'application/javascript' });
+        const swURL = URL.createObjectURL(blob);
+        
+        navigator.serviceWorker.register(swURL).then(registration => {
+            console.log('ServiceWorker registered:', registration);
+        }).catch(error => {
+            console.log('ServiceWorker registration failed:', error);
+        });
+    });
+}
+
+// --- AUTO FULLSCREEN FUNCTIONALITY ---
+function enterFullScreen() {
+    const elem = document.documentElement;
+    if (elem.requestFullscreen) {
+        elem.requestFullscreen();
+    } else if (elem.webkitRequestFullscreen) {
+        elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) {
+        elem.msRequestFullscreen();
+    }
+    
+    // Show notification
+    const notification = document.getElementById('fullscreenNotification');
+    notification.style.display = 'block';
+    setTimeout(() => {
+        notification.style.display = 'none';
+    }, 3000);
+}
+
+// --- AUTO FULLSCREEN ON PAGE LOAD ---
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        enterFullScreen();
+    }, 1000);
+});
+
+// --- FULLSCREEN TOGGLE LOGIC ---
+function toggleFullScreen() {
+    if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {
+        enterFullScreen();
+    } else {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+        }
+    }
+}
+
+// Listen for ESC key to exit fullscreen
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' || e.key === 'F11') {
+        if (document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
+            const notification = document.getElementById('fullscreenNotification');
+            notification.textContent = 'Press F11 to re-enter fullscreen';
+            notification.style.display = 'block';
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 2000);
+        }
+    }
+    
+    // F11 key support
+    if (e.key === 'F11') {
+        e.preventDefault();
+        toggleFullScreen();
+    }
+});
+
+// --- SNOW ANIMATION ---
+const canvas = document.getElementById("snow");
+const ctx = canvas.getContext("2d");
+let w, h;
+function resize(){w = canvas.width = window.innerWidth;h = canvas.height = window.innerHeight;}
+resize();
+window.addEventListener("resize", resize);
+const flakes = [];
+const FLAKE_COUNT = Math.min(180, window.innerWidth / 4);
+for(let i=0;i<FLAKE_COUNT;i++){flakes.push({x: Math.random()*w,y: Math.random()*h,r: Math.random()*2.2 + 0.6,d: Math.random()*1 + 0.4,vx: Math.random()*0.4 - 0.2,vy: Math.random()*1.2 + 0.6});}
+function draw(){ctx.clearRect(0,0,w,h);ctx.fillStyle="rgba(255,255,255,.9)";ctx.beginPath();for(const f of flakes){ctx.moveTo(f.x,f.y);ctx.arc(f.x,f.y,f.r,0,Math.PI*2,true);}ctx.fill();move();}
+let wind = 0;
+function move(){wind += 0.001;for(const f of flakes){f.y += f.vy;f.x += f.vx + Math.sin(wind)*0.3;if(f.y > h){f.y = -5;f.x = Math.random()*w;}if(f.x > w) f.x = 0;if(f.x < 0) f.x = w;}}
+function animate(){draw();requestAnimationFrame(animate);}
+animate();
+
+// --- MENU FUNCTIONALITY ---
 const allItems = [
   { id:"bak2", cat:"Baklava & Beyond", enName:"Turkish Mix Baklava", arName:"بقلاوة تركية مشكلة", price:65, enDesc:"An exquisite assortment of traditional Turkish baklava, with layers of crisp filo pastry, fragrant syrup, and a medley of finely chopped nuts for a perfect balance of sweetness and texture.", arDesc:"مجموعة فاخرة من البقلاوة التركية التقليدية، بطبقات من عجينة الفيلو المقرمشة، وشراب عطر، ومزيج من المكسرات المفرومة بدقة لتوازن مثالي بين الحلاوة والقوام.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg", calories:"450 kcal", dietary:["contains-nuts"] },
   { id:"bak3", cat:"Baklava & Beyond", enName:"Carrot Slice Baklava", arName:"بقلاوة شريحة الجزر", price:40, enDesc:"Classic Turkish baklava enriched with the subtle sweetness of carrot, layered with delicate filo and brushed with golden syrup for a rich, melt-in-your-mouth experience.", arDesc:"بقلاوة تركية كلاسيكية مع حلاوة خفيفة من الجزر، بطبقات دقيقة من الفيلو ومغطاة بشراب ذهبي لتجربة غنية تذوب في الفم.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Carrot.jpeg", calories:"420 kcal", dietary:["vegetarian","contains-nuts"] },
@@ -350,84 +594,6 @@ const allItems = [
   { id:"snd10", cat:"Sandwiches", enName:"Turkey Ham Sandwich", arName:"ساندويتش تركي هام", price:30, enDesc:"Turkey ham sandwich with fresh vegetables and soft bread.", arDesc:"ساندويتش تركي هام مع خضروات طازجة وخبز طري.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkeyhamsandwich.jpg", calories:"390 kcal", dietary:[] }
 ];
 
-// --- AUTO FULLSCREEN FUNCTIONALITY ---
-function enterFullScreen() {
-    const elem = document.documentElement;
-    if (elem.requestFullscreen) {
-        elem.requestFullscreen();
-    } else if (elem.webkitRequestFullscreen) {
-        elem.webkitRequestFullscreen();
-    } else if (elem.msRequestFullscreen) {
-        elem.msRequestFullscreen();
-    }
-    
-    // Show notification
-    const notification = document.getElementById('fullscreenNotification');
-    notification.style.display = 'block';
-    setTimeout(() => {
-        notification.style.display = 'none';
-    }, 3000);
-}
-
-// --- AUTO FULLSCREEN ON PAGE LOAD ---
-window.addEventListener('load', () => {
-    setTimeout(() => {
-        enterFullScreen();
-    }, 1000);
-});
-
-// --- FULLSCREEN TOGGLE LOGIC ---
-function toggleFullScreen() {
-    if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {
-        enterFullScreen();
-    } else {
-        if (document.exitFullscreen) {
-            document.exitFullscreen();
-        } else if (document.webkitExitFullscreen) {
-            document.webkitExitFullscreen();
-        } else if (document.msExitFullscreen) {
-            document.msExitFullscreen();
-        }
-    }
-}
-
-// Listen for ESC key to exit fullscreen
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' || e.key === 'F11') {
-        if (document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
-            const notification = document.getElementById('fullscreenNotification');
-            notification.textContent = 'Press F11 to re-enter fullscreen';
-            notification.style.display = 'block';
-            setTimeout(() => {
-                notification.style.display = 'none';
-            }, 2000);
-        }
-    }
-    
-    // F11 key support
-    if (e.key === 'F11') {
-        e.preventDefault();
-        toggleFullScreen();
-    }
-});
-
-// --- SNOW ANIMATION ---
-const canvas = document.getElementById("snow");
-const ctx = canvas.getContext("2d");
-let w, h;
-function resize(){w = canvas.width = window.innerWidth;h = canvas.height = window.innerHeight;}
-resize();
-window.addEventListener("resize", resize);
-const flakes = [];
-const FLAKE_COUNT = Math.min(180, window.innerWidth / 4);
-for(let i=0;i<FLAKE_COUNT;i++){flakes.push({x: Math.random()*w,y: Math.random()*h,r: Math.random()*2.2 + 0.6,d: Math.random()*1 + 0.4,vx: Math.random()*0.4 - 0.2,vy: Math.random()*1.2 + 0.6});}
-function draw(){ctx.clearRect(0,0,w,h);ctx.fillStyle="rgba(255,255,255,.9)";ctx.beginPath();for(const f of flakes){ctx.moveTo(f.x,f.y);ctx.arc(f.x,f.y,f.r,0,Math.PI*2,true);}ctx.fill();move();}
-let wind = 0;
-function move(){wind += 0.001;for(const f of flakes){f.y += f.vy;f.x += f.vx + Math.sin(wind)*0.3;if(f.y > h){f.y = -5;f.x = Math.random()*w;}if(f.x > w) f.x = 0;if(f.x < 0) f.x = w;}}
-function animate(){draw();requestAnimationFrame(animate);}
-animate();
-
-// --- MENU FUNCTIONALITY ---
 const categories = [...new Set(allItems.map(item => item.cat))];
 let activeCategory = null;
 let searchQuery = "";
@@ -462,11 +628,10 @@ function initHorizontalScroll() {
         if (!isDown) return;
         e.preventDefault();
         const x = e.pageX - categoriesScroll.offsetLeft;
-        const walk = (x - startX) * 2; // scroll-fast
+        const walk = (x - startX) * 2;
         categoriesScroll.scrollLeft = scrollLeft - walk;
     });
 
-    // Add scroll indicators
     categoriesScroll.addEventListener('scroll', () => {
         const indicator = categoriesScroll.querySelector('.scroll-indicator');
         const maxScroll = categoriesScroll.scrollWidth - categoriesScroll.clientWidth;
@@ -497,13 +662,11 @@ const renderCategories = () => {
         categoriesScroll.appendChild(btn);
     });
     
-    // Add scroll indicator
     const scrollIndicator = document.createElement('div');
     scrollIndicator.className = 'scroll-indicator';
     scrollIndicator.innerHTML = '<span>Scroll →</span>';
     categoriesScroll.appendChild(scrollIndicator);
     
-    // Initialize horizontal scroll
     initHorizontalScroll();
 };
 
