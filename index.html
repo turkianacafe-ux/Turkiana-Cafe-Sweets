@@ -8,9 +8,23 @@
 <!-- PWA Meta Tags -->
 <meta name="theme-color" content="#0c0406">
 <meta name="description" content="A winter haven of sweetness, warmth, and timeless Turkish charm">
+<link rel="manifest" href="/manifest.json">
 
+<!-- SEO & Structured Data -->
+<meta property="og:title" content="Turkiana Café & Sweets — Winter 2025">
+<meta property="og:description" content="Explore our winter menu featuring Turkish coffee, sweets, and warm specialties">
+<meta property="og:image" content="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkishcoffee.jpg">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+<!-- Styles -->
 <style>
+/* ============================================
+   CSS VARIABLES & RESET
+============================================ */
 :root {
     --bg: #0c0406;
     --gold: #d4af37;
@@ -19,6 +33,9 @@
     --accent: #8b0921;
     --success: #4caf50;
     --warning: #ff9800;
+    --skeleton-light: #1d0509;
+    --skeleton-dark: #2a080d;
+    --overlay: rgba(0, 0, 0, 0.85);
 }
 
 * {
@@ -37,17 +54,50 @@ body {
     background: radial-gradient(circle at top, rgba(212, 175, 55, 0.12), transparent 45%),
                 linear-gradient(180deg, #1d0509 0%, #0c0406 60%, #030203 100%);
     color: var(--text);
-    overflow: hidden;
+    overflow-x: hidden;
     min-height: 100vh;
     line-height: 1.6;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    position: relative;
 }
 
-/* Canvas for Snow Animation */
+/* ============================================
+   ACCESSIBILITY
+============================================ */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.skip-to-content {
+    position: absolute;
+    top: -40px;
+    left: 10px;
+    background: var(--gold);
+    color: var(--bg);
+    padding: 12px 24px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    z-index: 10000;
+    transition: top 0.3s ease;
+}
+
+.skip-to-content:focus {
+    top: 10px;
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+}
+
+/* ============================================
+   SNOW ANIMATION
+============================================ */
 #snow {
     position: fixed;
     top: 0;
@@ -58,25 +108,9 @@ body {
     z-index: 50;
 }
 
-/* Skip to Content for Accessibility */
-.skip-to-content {
-    position: absolute;
-    top: -40px;
-    left: 10px;
-    background: var(--gold);
-    color: var(--bg);
-    padding: 8px 16px;
-    border-radius: 4px;
-    text-decoration: none;
-    font-weight: 600;
-    z-index: 10000;
-}
-
-.skip-to-content:focus {
-    top: 10px;
-}
-
-/* Toast Notifications */
+/* ============================================
+   NOTIFICATIONS & LOADING
+============================================ */
 .toast {
     position: fixed;
     bottom: 20px;
@@ -84,20 +118,64 @@ body {
     transform: translateX(-50%);
     background: var(--gold);
     color: var(--bg);
-    padding: 12px 24px;
-    border-radius: 8px;
+    padding: 16px 32px;
+    border-radius: 12px;
     font-weight: 600;
     z-index: 2000;
     display: none;
     animation: slideUp 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
     min-width: 300px;
+    max-width: 90vw;
     text-align: center;
+    backdrop-filter: blur(10px);
 }
 
 .toast.error {
     background: var(--accent);
     color: var(--text);
+}
+
+.toast.info {
+    background: #2196f3;
+    color: white;
+}
+
+.install-prompt {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, var(--gold), #ffd166);
+    color: var(--bg);
+    padding: 16px 24px;
+    border-radius: 12px;
+    font-weight: 600;
+    z-index: 1999;
+    display: none;
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.install-prompt:hover {
+    transform: translateY(-2px);
+}
+
+.loading {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: var(--gold);
+    animation: spin 1s ease-in-out infinite;
+}
+
+.skeleton {
+    background: linear-gradient(90deg, var(--skeleton-light) 25%, var(--skeleton-dark) 50%, var(--skeleton-light) 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
 }
 
 @keyframes slideUp {
@@ -111,22 +189,22 @@ body {
     }
 }
 
-/* Loading States */
-.loading {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    border: 3px solid rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    border-top-color: var(--gold);
-    animation: spin 1s ease-in-out infinite;
-}
-
 @keyframes spin {
     to { transform: rotate(360deg); }
 }
 
-/* Header Styles */
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* ============================================
+   HEADER
+============================================ */
 header {
     text-align: center;
     padding: 30px 20px 20px;
@@ -164,7 +242,9 @@ header p {
     line-height: 1.6;
 }
 
-/* Sticky Search and Categories */
+/* ============================================
+   STICKY NAVIGATION
+============================================ */
 .sticky-container {
     position: sticky;
     top: 0;
@@ -185,18 +265,19 @@ header p {
 
 .search-input {
     width: 100%;
-    padding: 12px 16px;
+    padding: 14px 20px;
     border-radius: 12px;
     border: 1px solid rgba(212, 175, 55, 0.4);
     background: rgba(212, 175, 55, 0.08);
     color: var(--text);
     font-size: 1rem;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     transition: all 0.3s;
+    font-family: 'Inter', sans-serif;
 }
 
 .search-input:focus {
-    outline: none;
+    outline: 2px solid var(--gold);
     background: rgba(212, 175, 55, 0.12);
     border-color: var(--gold);
     box-shadow: 0 0 20px rgba(212, 175, 55, 0.25);
@@ -204,37 +285,44 @@ header p {
 
 .filters {
     display: flex;
-    gap: 8px;
+    gap: 10px;
     flex-wrap: wrap;
     align-items: center;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
 }
 
 .filter-btn {
     display: flex;
     align-items: center;
-    gap: 6px;
-    padding: 6px 12px;
+    gap: 8px;
+    padding: 10px 16px;
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.15);
     background: rgba(255, 255, 255, 0.03);
     color: rgba(255, 255, 255, 0.7);
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     cursor: pointer;
     transition: all 0.25s;
+    font-family: 'Inter', sans-serif;
+    min-height: 44px;
 }
 
 .filter-btn:hover {
     border-color: rgba(212, 175, 55, 0.5);
     color: rgba(255, 255, 255, 0.9);
+    transform: translateY(-2px);
 }
 
 .filter-btn.active {
     background: linear-gradient(135deg, rgba(139, 9, 33, 0.5), rgba(212, 175, 55, 0.3));
     border-color: rgba(212, 175, 55, 0.8);
     color: #fff;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
 }
 
+/* ============================================
+   CATEGORIES
+============================================ */
 .categories-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -244,11 +332,16 @@ header p {
 
 .categories {
     display: flex;
-    gap: 10px;
+    gap: 12px;
     overflow-x: auto;
-    padding: 8px 0;
+    padding: 12px 0;
     scrollbar-width: none;
     -ms-overflow-style: none;
+    cursor: grab;
+}
+
+.categories:active {
+    cursor: grabbing;
 }
 
 .categories::-webkit-scrollbar {
@@ -257,12 +350,12 @@ header p {
 
 .category-pill {
     flex-shrink: 0;
-    padding: 10px 18px;
+    padding: 12px 24px;
     border-radius: 999px;
     border: 1px solid rgba(255, 255, 255, 0.25);
     background: rgba(255, 255, 255, 0.06);
     color: rgba(255, 255, 255, 0.9);
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -270,6 +363,8 @@ header p {
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    min-height: 44px;
+    font-family: 'Inter', sans-serif;
 }
 
 .category-pill::before {
@@ -306,15 +401,20 @@ header p {
     top: 50%;
     transform: translateY(-50%);
     color: rgba(212, 175, 55, 0.7);
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     display: flex;
     align-items: center;
     gap: 5px;
     pointer-events: none;
     transition: opacity 0.3s;
+    background: rgba(12, 4, 6, 0.8);
+    padding: 8px 12px;
+    border-radius: 20px;
 }
 
-/* Main Content Container */
+/* ============================================
+   MAIN CONTENT
+============================================ */
 .content-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -326,30 +426,44 @@ header p {
 }
 
 .section {
-    margin-bottom: 30px;
+    margin-bottom: 40px;
     scroll-margin-top: 100px;
 }
 
 .section h2 {
     font-family: "Playfair Display", serif;
-    font-size: 1.5rem;
-    margin: 0 0 15px;
+    font-size: 1.75rem;
+    margin: 0 0 20px;
     color: #fff;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 2px;
+    background: var(--gold);
 }
 
 .section p {
-    margin: 0 0 15px;
+    margin: 0 0 20px;
     color: var(--muted);
-    font-size: 0.8rem;
+    font-size: 0.9rem;
 }
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 15px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
 }
 
-/* Cards */
+/* ============================================
+   CARDS
+============================================ */
 .card {
     border-radius: 16px;
     overflow: hidden;
@@ -359,11 +473,12 @@ header p {
     cursor: pointer;
     transition: all 0.3s;
     position: relative;
+    min-height: 280px;
 }
 
 .card:focus-within {
-    outline: 2px solid var(--gold);
-    outline-offset: 2px;
+    outline: 3px solid var(--gold);
+    outline-offset: 3px;
 }
 
 .card:hover {
@@ -377,85 +492,97 @@ header p {
     height: 150px;
     object-fit: cover;
     transition: transform 0.3s;
-    background: linear-gradient(90deg, #1d0509 0%, #2a080d 50%, #1d0509 100%);
-    background-size: 200% 200%;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
 }
 
-.card.loading .card-image {
+.card-image.loading {
+    background: linear-gradient(90deg, var(--skeleton-light) 25%, var(--skeleton-dark) 50%, var(--skeleton-light) 75%);
+    background-size: 200% 100%;
     animation: loading 1.5s infinite;
 }
 
-.card:hover .card-image {
+.card:hover .card-image:not(.loading) {
     transform: scale(1.08);
 }
 
 .card-badge {
     position: absolute;
-    top: 8px;
-    right: 8px;
-    padding: 3px 8px;
+    top: 12px;
+    right: 12px;
+    padding: 6px 12px;
     border-radius: 20px;
-    font-size: 0.6rem;
-    background: rgba(212, 175, 55, 0.2);
-    color: var(--gold);
-    border: 1px solid rgba(212, 175, 55, 0.5);
+    font-size: 0.7rem;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.9), rgba(139, 9, 33, 0.9));
+    color: white;
+    border: 1px solid rgba(212, 175, 55, 0.9);
     animation: pulse 2s infinite;
+    font-weight: 600;
+    letter-spacing: 0.5px;
 }
 
 .card-body {
-    padding: 12px;
+    padding: 16px;
     text-align: center;
 }
 
 .card h3 {
     margin: 0;
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: 600;
     color: #fff;
-    line-height: 1.3;
+    line-height: 1.4;
+    min-height: 2.8em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .card-price {
     display: block;
     color: var(--gold);
-    padding-top: 8px;
-    font-weight: 600;
-    font-size: 0.85rem;
+    padding-top: 12px;
+    font-weight: 700;
+    font-size: 1.1rem;
 }
 
 .favorite-btn {
     position: absolute;
-    bottom: 10px;
-    right: 10px;
-    width: 32px;
-    height: 32px;
+    bottom: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    background: rgba(0, 0, 0, 0.6);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    background: rgba(0, 0, 0, 0.7);
     color: rgba(255, 255, 255, 0.9);
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 1.2rem;
     transition: all 0.3s;
     display: grid;
     place-items: center;
+    backdrop-filter: blur(5px);
 }
 
 .favorite-btn:hover {
     border-color: rgba(212, 175, 55, 0.8);
-    background: rgba(212, 175, 55, 0.2);
+    background: rgba(212, 175, 55, 0.3);
+    transform: scale(1.1);
 }
 
 .favorite-btn.active {
-    background: rgba(139, 9, 33, 0.8);
+    background: linear-gradient(135deg, rgba(139, 9, 33, 0.9), rgba(212, 175, 55, 0.9));
     color: #fff;
     border-color: rgba(212, 175, 55, 0.9);
 }
 
-/* Modals */
+/* ============================================
+   MODALS
+============================================ */
 .modal-backdrop {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.85);
+    background: var(--overlay);
     display: none;
     align-items: center;
     justify-content: center;
@@ -463,6 +590,7 @@ header p {
     padding: 20px;
     opacity: 0;
     transition: opacity 0.3s;
+    backdrop-filter: blur(10px);
 }
 
 .modal-backdrop.active {
@@ -481,35 +609,51 @@ header p {
     display: flex;
     flex-direction: column;
     box-shadow: 0 20px 60px rgba(139, 9, 33, 0.5);
+    animation: modalSlideUp 0.3s ease;
+}
+
+@keyframes modalSlideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 .modal-header {
-    padding: 16px 20px;
+    padding: 20px 24px;
     border-bottom: 1px solid rgba(212, 175, 55, 0.2);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background: rgba(0, 0, 0, 0.3);
 }
 
 .modal-header h3 {
     margin: 0;
     font-family: "Playfair Display", serif;
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     color: var(--gold);
+    flex: 1;
 }
 
 .modal-close {
     background: none;
     border: none;
     color: rgba(255, 255, 255, 0.7);
-    font-size: 1.8rem;
+    font-size: 2rem;
     cursor: pointer;
     transition: all 0.3s;
-    width: 36px;
-    height: 36px;
+    width: 44px;
+    height: 44px;
     display: grid;
     place-items: center;
     border-radius: 50%;
+    flex-shrink: 0;
+    margin-left: 20px;
 }
 
 .modal-close:hover {
@@ -529,94 +673,200 @@ header p {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    min-height: 250px;
+    min-height: 300px;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
 }
 
 .modal-info {
-    padding: 20px;
+    padding: 24px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 16px;
 }
 
 .modal-info h4 {
     margin: 0;
     color: var(--gold);
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 0.1em;
+    font-weight: 600;
 }
 
 .modal-info p {
     margin: 0;
     color: rgba(255, 255, 255, 0.85);
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     line-height: 1.6;
 }
 
 .modal-meta {
-    padding: 10px;
+    padding: 16px;
     background: rgba(212, 175, 55, 0.1);
-    border-radius: 8px;
+    border-radius: 12px;
     border: 1px solid rgba(212, 175, 55, 0.2);
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     color: rgba(255, 255, 255, 0.8);
+    line-height: 1.5;
 }
 
-/* No Results */
+.modal-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 12px 24px;
+    border-radius: 8px;
+    border: none;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 44px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--gold), #ffd166);
+    color: var(--bg);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.modal-footer {
+    padding: 20px 24px;
+    border-top: 1px solid rgba(212, 175, 55, 0.2);
+    text-align: center;
+    background: rgba(212, 175, 55, 0.05);
+    font-size: 1.1rem;
+}
+
+.modal-footer strong {
+    color: var(--gold);
+    font-size: 1.3rem;
+    margin: 0 5px;
+}
+
+/* ============================================
+   NO RESULTS
+============================================ */
 .no-results {
     grid-column: 1 / -1;
     text-align: center;
-    padding: 40px 20px;
+    padding: 60px 20px;
     color: var(--muted);
 }
 
 .no-results strong {
     color: var(--gold);
     display: block;
-    margin-bottom: 8px;
-    font-size: 1rem;
+    margin-bottom: 12px;
+    font-size: 1.2rem;
+    font-family: "Playfair Display", serif;
 }
 
-/* Footer */
+.no-results p {
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+/* ============================================
+   FOOTER
+============================================ */
 footer {
     text-align: center;
-    padding: 15px 20px;
+    padding: 20px;
     color: var(--muted);
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     border-top: 1px solid rgba(212, 175, 55, 0.25);
     position: relative;
     z-index: 1;
+    background: rgba(12, 4, 6, 0.9);
 }
 
-/* Animations */
+footer p {
+    margin: 4px 0;
+}
+
+/* ============================================
+   ANIMATIONS
+============================================ */
 @keyframes pulse {
     0%, 100% {
         transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7);
     }
     50% {
-        transform: scale(1.1);
+        transform: scale(1.05);
+        box-shadow: 0 0 0 10px rgba(212, 175, 55, 0);
     }
 }
 
-@keyframes loading {
-    0% {
-        background-position: 200% 0;
-    }
-    100% {
-        background-position: -200% 0;
+/* ============================================
+   SCROLLBAR STYLING
+============================================ */
+.content-container::-webkit-scrollbar {
+    width: 10px;
+}
+
+.content-container::-webkit-scrollbar-track {
+    background: rgba(12, 4, 6, 0.5);
+    border-radius: 5px;
+}
+
+.content-container::-webkit-scrollbar-thumb {
+    background: linear-gradient(var(--gold), #ffd166);
+    border-radius: 5px;
+    border: 2px solid var(--bg);
+}
+
+.content-container::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(#ffd166, var(--gold));
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+============================================ */
+@media (max-width: 1024px) {
+    .grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     }
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
     .modal-body {
         grid-template-columns: 1fr;
     }
     
+    .modal-image {
+        height: 250px;
+    }
+    
     .grid {
-        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-        gap: 12px;
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 16px;
     }
     
     .filters {
@@ -624,12 +874,12 @@ footer {
     }
     
     .categories {
-        gap: 6px;
+        gap: 8px;
     }
     
     .category-pill {
-        padding: 8px 14px;
-        font-size: 0.75rem;
+        padding: 10px 20px;
+        font-size: 0.8rem;
     }
     
     .sticky-container {
@@ -639,6 +889,10 @@ footer {
     .content-container {
         height: calc(100vh - 160px);
     }
+    
+    .card {
+        min-height: 260px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -647,42 +901,48 @@ footer {
     }
     
     .section h2 {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
+    }
+    
+    .grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 12px;
     }
     
     .card-badge {
-        font-size: 0.55rem;
-        padding: 2px 6px;
+        font-size: 0.65rem;
+        padding: 4px 10px;
     }
     
     .modal-header h3 {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
+    }
+    
+    .modal-info {
+        padding: 20px;
     }
     
     .content-container {
         height: calc(100vh - 150px);
     }
+    
+    .card {
+        min-height: 240px;
+    }
+    
+    .card h3 {
+        font-size: 0.9rem;
+    }
+    
+    .modal-actions {
+        flex-direction: column;
+    }
+    
+    .btn {
+        width: 100%;
+    }
 }
 
-/* Hide scrollbar but keep functionality */
-.content-container::-webkit-scrollbar {
-    width: 8px;
-}
-
-.content-container::-webkit-scrollbar-track {
-    background: rgba(12, 4, 6, 0.5);
-}
-
-.content-container::-webkit-scrollbar-thumb {
-    background: var(--gold);
-    border-radius: 4px;
-}
-
-.content-container::-webkit-scrollbar-thumb:hover {
-    background: #fff;
-}
-
-/* Fullscreen optimization */
 @media (display-mode: fullscreen) {
     body {
         cursor: none;
@@ -692,22 +952,78 @@ footer {
         transform: translateY(-5px);
     }
 }
+
+/* ============================================
+   TOUCH DEVICE OPTIMIZATIONS
+============================================ */
+@media (hover: none) and (pointer: coarse) {
+    .card:hover {
+        transform: none;
+    }
+    
+    .category-pill:hover {
+        transform: none;
+    }
+    
+    .filter-btn:hover {
+        transform: none;
+    }
+    
+    .favorite-btn:hover {
+        transform: none;
+    }
+}
 </style>
+
+<!-- Structured Data for SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Menu",
+  "name": "Turkiana Café & Sweets Winter 2025 Menu",
+  "description": "A winter haven of sweetness, warmth, and timeless Turkish charm",
+  "offers": {
+    "@type": "Offer",
+    "availability": "https://schema.org/InStock",
+    "priceCurrency": "QAR"
+  },
+  "hasMenuSection": [
+    {
+      "@type": "MenuSection",
+      "name": "Brewed on Arabic & Turkish Way",
+      "description": "Traditional Turkish and Arabic coffee preparations"
+    },
+    {
+      "@type": "MenuSection",
+      "name": "Tea on the House",
+      "description": "Traditional and specialty teas"
+    }
+  ]
+}
+</script>
 </head>
 <body>
+<!-- Accessibility -->
 <a href="#mainContent" class="skip-to-content">Skip to Content</a>
+<div aria-live="polite" aria-atomic="true" class="sr-only">
+  <span id="filter-status"></span>
+</div>
 
+<!-- Snow Animation -->
 <canvas id="snow"></canvas>
 
-<!-- Toast Notification -->
+<!-- Notifications -->
 <div class="toast" id="toast"></div>
+<button class="install-prompt" id="installPrompt" style="display: none;">
+  📲 Install App
+</button>
 
 <!-- Item Modal -->
 <div id="itemModal" class="modal-backdrop" aria-hidden="true">
-    <div class="modal-card" role="dialog" aria-modal="true">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
         <div class="modal-header">
             <h3 id="modalTitle"></h3>
-            <button class="modal-close" aria-label="Close">&times;</button>
+            <button class="modal-close" aria-label="Close modal">&times;</button>
         </div>
         <div class="modal-body">
             <img id="modalImage" class="modal-image" src="" alt="">
@@ -722,18 +1038,21 @@ footer {
                 </div>
                 <div class="modal-meta">
                     <div id="modalCalories"></div>
-                    <div id="modalDietary" style="margin-top:6px"></div>
+                    <div id="modalDietary" style="margin-top:8px"></div>
                 </div>
                 
                 <!-- Action Buttons -->
-                <div style="margin-top: 16px; text-align: center;">
-                    <button class="btn btn-primary" onclick="shareItem()" style="padding: 10px 24px; border-radius: 30px; background: var(--gold); color: var(--bg); border: none; font-weight: 600; cursor: pointer; transition: all 0.3s;">
-                        Share Item
+                <div class="modal-actions">
+                    <button class="btn btn-primary" onclick="shareItem()">
+                        <span>📤 Share Item</span>
+                    </button>
+                    <button class="btn btn-secondary" onclick="toggleCurrentFavorite()">
+                        <span id="modalFavoriteText">❤️ Add to Favorites</span>
                     </button>
                 </div>
             </div>
         </div>
-        <div class="modal-footer" style="padding: 16px 20px; border-top: 1px solid rgba(212,175,55,.2); text-align: center; background: rgba(212,175,55,.05);">
+        <div class="modal-footer">
             <span>Price · </span><strong id="modalPrice"></strong><span> QAR</span>
         </div>
     </div>
@@ -748,16 +1067,16 @@ footer {
 <!-- STICKY SEARCH AND CATEGORIES -->
 <div class="sticky-container">
     <div class="search-section">
-        <input id="searchInput" class="search-input" type="search" placeholder="🔍 Search dishes, coffee, or sweets...">
+        <input id="searchInput" class="search-input" type="search" placeholder="🔍 Search dishes, coffee, or sweets..." aria-label="Search menu items">
         <div class="filters">
-            <button class="filter-btn" data-filter="vegetarian">🌱 Vegetarian</button>
-            <button class="filter-btn" data-filter="vegan">🥬 Vegan</button>
-            <button class="filter-btn" data-filter="dairy-free">🥛 Dairy-Free</button>
-            <button class="filter-btn" data-filter="gluten-free">🌾 Gluten-Free</button>
+            <button class="filter-btn" data-filter="vegetarian" aria-pressed="false">🌱 Vegetarian</button>
+            <button class="filter-btn" data-filter="vegan" aria-pressed="false">🥬 Vegan</button>
+            <button class="filter-btn" data-filter="dairy-free" aria-pressed="false">🥛 Dairy-Free</button>
+            <button class="filter-btn" data-filter="gluten-free" aria-pressed="false">🌾 Gluten-Free</button>
         </div>
     </div>
     <div class="categories-container">
-        <div class="categories" id="categoriesScroll"></div>
+        <div class="categories" id="categoriesScroll" aria-label="Menu categories"></div>
         <div class="scroll-indicator">
             <span>Scroll →</span>
         </div>
@@ -765,14 +1084,17 @@ footer {
 </div>
 
 <!-- Main Content Container -->
-<div class="content-container" id="mainContent">
+<main class="content-container" id="mainContent" role="main">
     <!-- Content will be generated by JavaScript -->
-</div>
+</main>
 
 <footer>
     <p>© 2025 Turkiana Café & Sweets — Winter Collection</p>
     <p style="margin-top: 8px; font-size: 0.7rem; opacity: 0.6;">
         Designed with ❤️ for the best café experience
+    </p>
+    <p style="margin-top: 4px; font-size: 0.6rem; opacity: 0.5;">
+        Press F11 for fullscreen experience
     </p>
 </footer>
 
@@ -781,9 +1103,9 @@ footer {
 // 1. INITIALIZATION & DATA
 // ============================================
 
-// Menu Data
+// Menu Data (same as original)
 const allItems = [
-    { id:"batw1", cat:"Brewed on Arabic & Turkish Way", enName:"Classic Turkish Coffee", arName:"قهوة تركية كلاسيكية", price:28, enDesc:"Rich and aromatic Turkish coffee, perfectly brewed to bring out its deep, bold flavors in every sip.", arDesc:"قهوة تركية غنية وعطرية، مُحضرة بعناية لتبرز نكهاتها العميقة والجريئة في كل رشفة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkishcoffee.jpg", calories:"5 kcal", dietary:["vegan","gluten-free","dairy-free"] },
+     { id:"batw1", cat:"Brewed on Arabic & Turkish Way", enName:"Classic Turkish Coffee", arName:"قهوة تركية كلاسيكية", price:28, enDesc:"Rich and aromatic Turkish coffee, perfectly brewed to bring out its deep, bold flavors in every sip.", arDesc:"قهوة تركية غنية وعطرية، مُحضرة بعناية لتبرز نكهاتها العميقة والجريئة في كل رشفة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkishcoffee.jpg", calories:"5 kcal", dietary:["vegan","gluten-free","dairy-free"] },
     { id:"batw2", cat:"Brewed on Arabic & Turkish Way", enName:"Double Turkish Coffee", arName:"قهوة تركية مزدوجة", price:40, enDesc:"Intense double-shot Turkish coffee for lovers of a stronger, bolder coffee experience.", arDesc:"قهوة تركية مزدوجة القوة لعشاق النكهة الغنية والجريئة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkishcoffee.jpg", calories:"10 kcal", dietary:["vegan","gluten-free","dairy-free"] },
     { id:"batw3", cat:"Brewed on Arabic & Turkish Way", enName:"Ottoman Coffee with Mastic", arName:"قهوة عثمانية بالمستيك", price:28, enDesc:"Fragrant Ottoman coffee infused with mastic, offering a unique resinous aroma and delicate taste.", arDesc:"قهوة عثمانية عطرية ممزوجة بالمستيك، تقدم نكهة فريدة ورائحة راتنجية مميزة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Ottomanmastica.jpg", calories:"5 kcal", dietary:["vegan","gluten-free","dairy-free"] },
     { id:"batw4", cat:"Brewed on Arabic & Turkish Way", enName:"Ottoman Coffee with Hazelnuts", arName:"قهوة عثمانية بالبندق", price:28, enDesc:"Smooth Ottoman coffee enriched with finely ground hazelnuts for a nutty, aromatic twist.", arDesc:"قهوة عثمانية ناعمة مع البندق المطحون لتجربة غنية بنكهة الجوز والعطرية.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Ottomanhazelnut.jpg", calories:"20 kcal", dietary:["contains-nuts"] },
@@ -899,7 +1221,6 @@ const allItems = [
     { id:"amt12", cat:"Anatolian Morning Table", enName:"Tuna Sandwich", arName:"ساندويتش تونا", price:37, enDesc:"Classic tuna sandwich with a smooth and savory filling.", arDesc:"ساندويتش تونا كلاسيكي بحشوة غنية ولذيذة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Tunasandwich.jpg", calories:"400 kcal", dietary:[] },
     { id:"amt13", cat:"Anatolian Morning Table", enName:"Turkey Ham Sandwich", arName:"ساندويتش تركي هام", price:30, enDesc:"Turkey ham sandwich with fresh vegetables and soft bread.", arDesc:"ساندويتش تركي هام مع خضروات طازجة وخبز طري.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkeyhamsandwich.jpg", calories:"390 kcal", dietary:[] }
 ];
-
 // Global State
 const state = {
     activeCategory: null,
@@ -907,7 +1228,9 @@ const state = {
     favorites: new Set(),
     activeDietaryFilters: new Set(),
     categories: [...new Set(allItems.map(item => item.cat))],
-    currentModalItem: null
+    currentModalItem: null,
+    deferredPrompt: null,
+    loadedImages: new Map()
 };
 
 // ============================================
@@ -926,16 +1249,55 @@ function showToast(message, type = "success") {
     }, 3000);
 }
 
-// Load images with error handling
-function loadImage(url) {
-    return new Promise((resolve, reject) => {
+// Sanitize input
+function sanitizeInput(input) {
+    const div = document.createElement('div');
+    div.textContent = input;
+    return div.innerHTML;
+}
+
+// Format price
+function formatPrice(price) {
+    return typeof price === 'number' ? price.toFixed(2) : '0.00';
+}
+
+// Load images with error handling and caching
+async function loadImage(url) {
+    if (state.loadedImages.has(url)) {
+        return state.loadedImages.get(url);
+    }
+    
+    return new Promise((resolve) => {
         const img = new Image();
-        img.onload = () => resolve(img);
+        img.onload = () => {
+            state.loadedImages.set(url, img);
+            resolve(img);
+        };
         img.onerror = () => {
-            console.error(`Failed to load image: ${url}`);
-            resolve(null);
+            console.warn(`Failed to load image: ${url}`);
+            // Fallback to a gradient placeholder
+            const canvas = document.createElement('canvas');
+            canvas.width = 300;
+            canvas.height = 200;
+            const ctx = canvas.getContext('2d');
+            const gradient = ctx.createLinearGradient(0, 0, 300, 200);
+            gradient.addColorStop(0, '#1d0509');
+            gradient.addColorStop(1, '#2a080d');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 300, 200);
+            
+            ctx.fillStyle = 'rgba(212, 175, 55, 0.1)';
+            ctx.font = '16px Inter';
+            ctx.textAlign = 'center';
+            ctx.fillText('Image', 150, 100);
+            
+            const fallbackImg = new Image();
+            fallbackImg.src = canvas.toDataURL();
+            state.loadedImages.set(url, fallbackImg);
+            resolve(fallbackImg);
         };
         img.src = url;
+        img.crossOrigin = 'anonymous';
     });
 }
 
@@ -950,6 +1312,25 @@ function debounce(func, wait) {
         clearTimeout(timeout);
         timeout = setTimeout(later, wait);
     };
+}
+
+// Update filter status for screen readers
+function updateFilterStatus() {
+    const statusEl = document.getElementById('filter-status');
+    if (!statusEl) return;
+    
+    let status = '';
+    if (state.searchQuery) {
+        status += `Search results for "${state.searchQuery}". `;
+    }
+    if (state.activeDietaryFilters.size > 0) {
+        status += `Active filters: ${Array.from(state.activeDietaryFilters).join(', ')}. `;
+    }
+    if (state.activeCategory) {
+        status += `Category: ${state.activeCategory}. `;
+    }
+    
+    statusEl.textContent = status || 'Showing all items';
 }
 
 // ============================================
@@ -1067,6 +1448,25 @@ function initHorizontalScroll() {
             indicator.style.opacity = "1";
         }
     });
+    
+    // Touch support for mobile
+    categoriesScroll.addEventListener("touchstart", (e) => {
+        isDown = true;
+        startX = e.touches[0].pageX - categoriesScroll.offsetLeft;
+        scrollLeft = categoriesScroll.scrollLeft;
+    });
+    
+    categoriesScroll.addEventListener("touchend", () => {
+        isDown = false;
+    });
+    
+    categoriesScroll.addEventListener("touchmove", (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.touches[0].pageX - categoriesScroll.offsetLeft;
+        const walk = (x - startX) * 2;
+        categoriesScroll.scrollLeft = scrollLeft - walk;
+    });
 }
 
 // ============================================
@@ -1086,6 +1486,7 @@ function renderCategories() {
         updateUI();
     };
     allBtn.setAttribute("aria-label", "Show all categories");
+    allBtn.setAttribute("aria-pressed", !state.activeCategory);
     categoriesScroll.appendChild(allBtn);
     
     // Category buttons
@@ -1098,6 +1499,7 @@ function renderCategories() {
             updateUI();
         };
         btn.setAttribute("aria-label", `Show ${cat} category`);
+        btn.setAttribute("aria-pressed", state.activeCategory === cat);
         categoriesScroll.appendChild(btn);
     });
     
@@ -1146,7 +1548,10 @@ async function renderContent() {
         mainContent.innerHTML = `
             <div class="no-results">
                 <strong>No items found</strong>
-                <p>Try adjusting your filters or search</p>
+                <p>Try adjusting your filters or search terms</p>
+                <button class="btn btn-primary" onclick="clearFilters()" style="margin-top: 20px;">
+                    Clear All Filters
+                </button>
             </div>
         `;
         return;
@@ -1169,29 +1574,34 @@ async function renderContent() {
         const grid = document.createElement("div");
         grid.className = "grid";
         
+        // Preload first 4 images for better UX
+        const itemsToPreload = items.slice(0, 4);
+        await Promise.all(itemsToPreload.map(item => loadImage(item.image)));
+        
         for (const item of items) {
             const card = document.createElement("div");
             card.className = "card";
             card.tabIndex = 0;
             card.setAttribute("role", "button");
-            card.setAttribute("aria-label", `View details for ${item.enName}`);
+            card.setAttribute("aria-label", `View details for ${item.enName}, price ${item.price} QAR`);
             
-            // Preload image
             const img = await loadImage(item.image);
             
             card.innerHTML = `
-                <img src="${img ? item.image : ''}" 
+                <img src="${img.src}" 
                      alt="${item.enName}" 
                      class="card-image" 
                      loading="lazy"
-                     ${!img ? 'style="display: none;"' : ''}>
+                     width="300"
+                     height="200">
                 <div class="card-body">
                     <h3>${item.enName}</h3>
-                    <span class="card-price">QAR ${item.price}</span>
+                    <span class="card-price">QAR ${formatPrice(item.price)}</span>
                 </div>
-                ${item.popular ? '<div class="card-badge">Chef\'s Pick</div>' : ''}
+                ${item.popular ? '<div class="card-badge" aria-label="Chef\'s Pick">Chef\'s Pick</div>' : ''}
                 <button class="favorite-btn ${state.favorites.has(item.id) ? 'active' : ''}" 
-                        aria-label="${state.favorites.has(item.id) ? 'Remove from favorites' : 'Add to favorites'}">
+                        aria-label="${state.favorites.has(item.id) ? 'Remove from favorites' : 'Add to favorites'}"
+                        data-item-id="${item.id}">
                     ❤
                 </button>
             `;
@@ -1220,6 +1630,20 @@ async function renderContent() {
         section.appendChild(grid);
         mainContent.appendChild(section);
     }
+    
+    updateFilterStatus();
+}
+
+function clearFilters() {
+    state.searchQuery = "";
+    state.activeCategory = null;
+    state.activeDietaryFilters.clear();
+    
+    document.getElementById("searchInput").value = "";
+    document.querySelectorAll(".filter-btn").forEach(btn => btn.classList.remove("active"));
+    
+    updateUI();
+    showToast("All filters cleared");
 }
 
 // ============================================
@@ -1237,19 +1661,24 @@ function openItemModal(item) {
     const modalCalories = document.getElementById("modalCalories");
     const modalDietary = document.getElementById("modalDietary");
     const modalPrice = document.getElementById("modalPrice");
+    const modalFavoriteText = document.getElementById("modalFavoriteText");
     
     modalTitle.textContent = item.enName;
     modalImage.src = item.image;
     modalImage.alt = item.enName;
-    modalDescEn.textContent = item.enDesc;
-    modalDescAr.textContent = item.arDesc;
+    modalDescEn.textContent = sanitizeInput(item.enDesc);
+    modalDescAr.textContent = sanitizeInput(item.arDesc);
     modalCalories.textContent = "☕ " + item.calories;
     modalDietary.textContent = item.dietary.length ? "🏷️ " + item.dietary.join(" • ") : "House Selection";
-    modalPrice.textContent = item.price;
+    modalPrice.textContent = formatPrice(item.price);
+    modalFavoriteText.textContent = state.favorites.has(item.id) ? "❤️ Remove from Favorites" : "❤️ Add to Favorites";
     
     modal.classList.add("active");
     modal.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
+    
+    // Preload modal image
+    loadImage(item.image);
     
     // Focus on close button for accessibility
     setTimeout(() => {
@@ -1266,23 +1695,74 @@ function closeItemModal() {
 }
 
 function shareItem() {
-    if (!state.currentModalItem || !navigator.share) {
-        showToast("Share feature not available in this browser", "error");
-        return;
-    }
+    if (!state.currentModalItem) return;
     
     const item = state.currentModalItem;
     
-    navigator.share({
-        title: item.enName,
-        text: `Check out ${item.enName} at Turkiana Café & Sweets - QAR ${item.price}`,
-        url: window.location.href
-    }).then(() => {
-        showToast("Item shared successfully");
-    }).catch(error => {
-        console.error("Error sharing:", error);
-        showToast("Failed to share item", "error");
-    });
+    if (navigator.share) {
+        navigator.share({
+            title: `${item.enName} at Turkiana Café & Sweets`,
+            text: `Check out ${item.enName} - ${item.enDesc.slice(0, 100)}... Price: QAR ${item.price}`,
+            url: window.location.href
+        }).then(() => {
+            showToast("Item shared successfully");
+        }).catch(error => {
+            console.error("Error sharing:", error);
+            fallbackShare(item);
+        });
+    } else {
+        fallbackShare(item);
+    }
+}
+
+function fallbackShare(item) {
+    const text = `Check out ${item.enName} at Turkiana Café & Sweets - QAR ${item.price}\n${window.location.href}`;
+    
+    if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(() => {
+            showToast("Link copied to clipboard!");
+        }).catch(err => {
+            console.error("Failed to copy: ", err);
+            showToast("Share feature not available", "error");
+        });
+    } else {
+        // Fallback for older browsers
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        
+        try {
+            document.execCommand('copy');
+            showToast("Link copied to clipboard!");
+        } catch (err) {
+            console.error("Failed to copy: ", err);
+            showToast("Share feature not available", "error");
+        }
+        
+        document.body.removeChild(textArea);
+    }
+}
+
+function toggleCurrentFavorite() {
+    if (!state.currentModalItem) return;
+    
+    toggleFavorite(state.currentModalItem.id);
+    
+    // Update modal button text
+    const modalFavoriteText = document.getElementById("modalFavoriteText");
+    modalFavoriteText.textContent = state.favorites.has(state.currentModalItem.id) 
+        ? "❤️ Remove from Favorites" 
+        : "❤️ Add to Favorites";
+    
+    // Update card button if visible
+    const cardBtn = document.querySelector(`.favorite-btn[data-item-id="${state.currentModalItem.id}"]`);
+    if (cardBtn) {
+        cardBtn.classList.toggle("active");
+        cardBtn.setAttribute("aria-label", 
+            state.favorites.has(state.currentModalItem.id) ? "Remove from favorites" : "Add to favorites");
+    }
 }
 
 // ============================================
@@ -1298,8 +1778,11 @@ function toggleFavorite(itemId) {
         showToast("Added to favorites");
     }
     
-    // Save to localStorage
-    localStorage.setItem("turkianaFavorites", JSON.stringify([...state.favorites]));
+    // Save to localStorage with debouncing
+    clearTimeout(state.saveTimeout);
+    state.saveTimeout = setTimeout(() => {
+        localStorage.setItem("turkianaFavorites", JSON.stringify([...state.favorites]));
+    }, 500);
 }
 
 // ============================================
@@ -1313,17 +1796,77 @@ function enterFullscreen() {
         if (elem.requestFullscreen) {
             elem.requestFullscreen().catch(err => {
                 console.log(`Error attempting to enable fullscreen: ${err.message}`);
+                showToast("Fullscreen not available", "error");
             });
         } else if (elem.webkitRequestFullscreen) {
             elem.webkitRequestFullscreen();
         } else if (elem.msRequestFullscreen) {
             elem.msRequestFullscreen();
         }
+    } else {
+        exitFullscreen();
+    }
+}
+
+function exitFullscreen() {
+    if (document.exitFullscreen) {
+        document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
     }
 }
 
 // ============================================
-// 9. UI UPDATE FUNCTION
+// 9. PWA INSTALL PROMPT
+// ============================================
+
+function initPWA() {
+    // Listen for beforeinstallprompt event
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        state.deferredPrompt = e;
+        
+        // Show install button
+        const installBtn = document.getElementById('installPrompt');
+        installBtn.style.display = 'block';
+        
+        installBtn.onclick = async () => {
+            if (!state.deferredPrompt) return;
+            
+            state.deferredPrompt.prompt();
+            const { outcome } = await state.deferredPrompt.userChoice;
+            
+            if (outcome === 'accepted') {
+                showToast('App installed successfully!');
+                installBtn.style.display = 'none';
+            }
+            
+            state.deferredPrompt = null;
+        };
+    });
+    
+    // Check if app is already installed
+    window.addEventListener('appinstalled', () => {
+        state.deferredPrompt = null;
+        document.getElementById('installPrompt').style.display = 'none';
+    });
+    
+    // Register service worker
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js').then(registration => {
+                console.log('ServiceWorker registered: ', registration);
+            }).catch(error => {
+                console.log('ServiceWorker registration failed: ', error);
+            });
+        });
+    }
+}
+
+// ============================================
+// 10. UI UPDATE FUNCTION
 // ============================================
 
 function updateUI() {
@@ -1332,7 +1875,68 @@ function updateUI() {
 }
 
 // ============================================
-// 10. INITIALIZATION
+// 11. KEYBOARD NAVIGATION
+// ============================================
+
+function initKeyboardNavigation() {
+    let currentCardIndex = 0;
+    let cards = [];
+    
+    function updateCards() {
+        cards = Array.from(document.querySelectorAll('.card'));
+        currentCardIndex = 0;
+    }
+    
+    function focusCard(index) {
+        if (cards[index]) {
+            cards[index].focus();
+            currentCardIndex = index;
+        }
+    }
+    
+    document.addEventListener('keydown', (e) => {
+        // ESC to close modal
+        if (e.key === 'Escape') {
+            if (document.getElementById('itemModal').classList.contains('active')) {
+                closeItemModal();
+                e.preventDefault();
+            }
+        }
+        
+        // F11 for fullscreen
+        if (e.key === 'F11') {
+            e.preventDefault();
+            enterFullscreen();
+        }
+        
+        // Arrow navigation between cards
+        if (document.activeElement.classList.contains('card')) {
+            updateCards();
+            const currentIndex = cards.indexOf(document.activeElement);
+            
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                e.preventDefault();
+                focusCard((currentIndex + 1) % cards.length);
+            } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                e.preventDefault();
+                focusCard((currentIndex - 1 + cards.length) % cards.length);
+            }
+        }
+        
+        // Search focus shortcut (Ctrl+K or Cmd+K)
+        if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+            e.preventDefault();
+            document.getElementById('searchInput').focus();
+        }
+    });
+    
+    // Update cards when content changes
+    const observer = new MutationObserver(updateCards);
+    observer.observe(document.getElementById('mainContent'), { childList: true, subtree: true });
+}
+
+// ============================================
+// 12. INITIALIZATION
 // ============================================
 
 function init() {
@@ -1344,19 +1948,16 @@ function init() {
     
     // Initialize components
     initSnowAnimation();
+    initPWA();
+    initKeyboardNavigation();
     updateUI();
-    
-    // Enter fullscreen automatically
-    setTimeout(() => {
-        enterFullscreen();
-    }, 500);
     
     // Event listeners
     const searchInput = document.getElementById("searchInput");
     const debouncedSearch = debounce((e) => {
-        state.searchQuery = e.target.value.toLowerCase();
+        state.searchQuery = e.target.value.toLowerCase().trim();
         renderContent();
-    }, 300);
+    }, 500);
     
     searchInput.addEventListener("input", debouncedSearch);
     
@@ -1368,9 +1969,11 @@ function init() {
             if (state.activeDietaryFilters.has(filter)) {
                 state.activeDietaryFilters.delete(filter);
                 btn.classList.remove("active");
+                btn.setAttribute("aria-pressed", "false");
             } else {
                 state.activeDietaryFilters.add(filter);
                 btn.classList.add("active");
+                btn.setAttribute("aria-pressed", "true");
             }
             
             renderContent();
@@ -1387,44 +1990,103 @@ function init() {
         }
     });
     
-    // Keyboard shortcuts
-    document.addEventListener("keydown", (e) => {
-        // ESC to close modal
-        if (e.key === "Escape") {
-            if (document.getElementById("itemModal").classList.contains("active")) {
-                closeItemModal();
-            }
-        }
-        
-        // F11 for fullscreen
-        if (e.key === "F11") {
-            e.preventDefault();
-            enterFullscreen();
-        }
-    });
-    
-    // Focus management for accessibility
-    setTimeout(() => {
-        searchInput.focus();
-    }, 800);
-    
     // Handle fullscreen changes
     document.addEventListener("fullscreenchange", () => {
         if (!document.fullscreenElement) {
-            // Automatically re-enter fullscreen if user exits
-            setTimeout(() => {
-                enterFullscreen();
-            }, 1000);
+            showToast("Press F11 to return to fullscreen", "info");
         }
     });
     
     // Online/offline detection
     window.addEventListener("online", () => {
         showToast("You are back online");
+        // Refresh images that might have failed
+        state.loadedImages.clear();
+        renderContent();
     });
     
     window.addEventListener("offline", () => {
-        showToast("You are offline. Some images may not load.", "error");
+        showToast("You are offline. Some features may be limited.", "warning");
+    });
+    
+    // Focus management for accessibility
+    setTimeout(() => {
+        searchInput.focus();
+    }, 1000);
+    
+    // Periodic save of favorites
+    setInterval(() => {
+        if (state.favorites.size > 0) {
+            localStorage.setItem("turkianaFavorites", JSON.stringify([...state.favorites]));
+        }
+    }, 30000); // Every 30 seconds
+    
+    // Check for URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const categoryParam = urlParams.get('category');
+    if (categoryParam && state.categories.includes(categoryParam)) {
+        state.activeCategory = categoryParam;
+        updateUI();
+    }
+    
+    // Update URL when category changes
+    const originalUpdateUI = updateUI;
+    updateUI = function() {
+        originalUpdateUI();
+        if (state.activeCategory) {
+            const url = new URL(window.location);
+            url.searchParams.set('category', state.activeCategory);
+            window.history.replaceState({}, '', url);
+        } else {
+            const url = new URL(window.location);
+            url.searchParams.delete('category');
+            window.history.replaceState({}, '', url);
+        }
+    };
+    
+    // Show fullscreen suggestion after delay
+    setTimeout(() => {
+        if (!document.fullscreenElement) {
+            showToast("Press F11 for fullscreen experience", "info");
+        }
+    }, 5000);
+}
+
+// ============================================
+// 13. SERVICE WORKER (Inlined for simplicity)
+// ============================================
+// In a real app, this would be in a separate sw.js file
+const serviceWorkerCode = `
+self.addEventListener('install', (event) => {
+    event.waitUntil(
+        caches.open('turkiana-v1').then((cache) => {
+            return cache.addAll([
+                '/',
+                '/index.html',
+                '/manifest.json'
+            ]);
+        })
+    );
+});
+
+self.addEventListener('fetch', (event) => {
+    event.respondWith(
+        caches.match(event.request).then((response) => {
+            return response || fetch(event.request);
+        })
+    );
+});
+`;
+
+// Create a Blob URL for the service worker
+if ('serviceWorker' in navigator) {
+    const blob = new Blob([serviceWorkerCode], { type: 'application/javascript' });
+    const swURL = URL.createObjectURL(blob);
+    
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register(swURL).catch(error => {
+            console.log('Service Worker registration failed:', error);
+        });
     });
 }
 
