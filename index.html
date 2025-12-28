@@ -409,7 +409,7 @@ body.kiosk-mode {
 }
 
 /* ============================================
-   HEADER (NOT STICKY - Scrolls away)
+   HEADER (Scrolls away)
 ============================================ */
 header {
     text-align: center;
@@ -418,6 +418,7 @@ header {
     border-bottom: 2px solid var(--gold);
     position: relative;
     z-index: 1;
+    /* Header will scroll away naturally */
 }
 
 header h1 {
@@ -449,9 +450,9 @@ header p {
 }
 
 /* ============================================
-   STICKY NAVIGATION (Categories & Search only)
+   STICKY NAVIGATION (Categories & Search only - Stays on top)
 ============================================ */
-.sticky-container {
+.sticky-nav {
     position: sticky;
     top: 0;
     z-index: 100;
@@ -784,20 +785,20 @@ header p {
 }
 
 /* ============================================
-   MODALS (Full Screen for Tablets)
+   MODALS (Fixed normal size, not full screen)
 ============================================ */
 .modal-backdrop {
     position: fixed;
     inset: 0;
-    background: var(--overlay);
+    background: rgba(0, 0, 0, 0.85);
     display: none;
-    align-items: stretch;
-    justify-content: stretch;
+    align-items: center;
+    justify-content: center;
     z-index: 1000;
     opacity: 0;
     transition: opacity 0.3s;
-    backdrop-filter: blur(20px);
-    padding: 0;
+    backdrop-filter: blur(10px);
+    padding: 20px;
 }
 
 .modal-backdrop.active {
@@ -807,19 +808,22 @@ header p {
 
 .modal-card {
     background: linear-gradient(135deg, rgba(12, 4, 6, 0.98) 0%, rgba(30, 5, 10, 0.98) 100%);
-    border: 2px solid rgba(212, 175, 55, 0.3);
+    border: 2px solid rgba(212, 175, 55, 0.5);
+    border-radius: 20px;
     overflow: hidden;
-    width: 100%;
-    height: 100%;
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh;
     display: flex;
     flex-direction: column;
     animation: modalSlideUp 0.3s ease;
     position: relative;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8);
 }
 
 @keyframes modalSlideUp {
     from {
-        transform: translateY(100%);
+        transform: translateY(30px);
         opacity: 0;
     }
     to {
@@ -851,16 +855,17 @@ header p {
     background: rgba(212, 175, 55, 0.1);
     border: 2px solid rgba(212, 175, 55, 0.3);
     color: rgba(255, 255, 255, 0.9);
-    font-size: 2rem;
+    font-size: 1.8rem;
     cursor: pointer;
     transition: all 0.3s;
-    width: 50px;
-    height: 50px;
+    width: 44px;
+    height: 44px;
     display: grid;
     place-items: center;
     border-radius: 50%;
     flex-shrink: 0;
     -webkit-tap-highlight-color: transparent;
+    line-height: 1;
 }
 
 .modal-close:active {
@@ -878,8 +883,9 @@ header p {
 }
 
 .modal-image-container {
-    flex: 0 0 40%;
-    min-height: 300px;
+    flex: 0 0 250px;
+    min-height: 250px;
+    max-height: 300px;
     position: relative;
     overflow: hidden;
 }
@@ -912,7 +918,7 @@ header p {
 .modal-info p {
     margin: 0;
     color: rgba(255, 255, 255, 0.85);
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     line-height: 1.6;
 }
 
@@ -934,19 +940,19 @@ header p {
 }
 
 .btn {
-    padding: 16px;
+    padding: 14px;
     border-radius: 12px;
     border: none;
     font-family: 'Inter', sans-serif;
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 0.95rem;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    min-height: 52px;
+    min-height: 48px;
     -webkit-tap-highlight-color: transparent;
 }
 
@@ -1083,7 +1089,8 @@ footer p {
     }
     
     .modal-image-container {
-        flex: 0 0 50%;
+        flex: 0 0 40%;
+        min-height: 300px;
     }
     
     .modal-actions {
@@ -1122,11 +1129,17 @@ footer p {
     }
     
     .modal-image-container {
-        flex: 0 0 300px;
+        flex: 0 0 250px;
+        min-height: 250px;
     }
     
     .modal-actions {
         grid-template-columns: 1fr;
+    }
+    
+    .modal-card {
+        width: 95%;
+        max-height: 85vh;
     }
 }
 
@@ -1153,7 +1166,12 @@ footer p {
     }
     
     .modal-image-container {
-        flex: 0 0 250px;
+        flex: 0 0 200px;
+        min-height: 200px;
+    }
+    
+    .modal-actions {
+        grid-template-columns: 1fr;
     }
 }
 
@@ -1165,12 +1183,14 @@ footer p {
         flex-direction: row;
     }
     
-    .sticky-container {
+    .sticky-nav {
         flex: 0 0 300px;
         height: 100vh;
         overflow-y: auto;
         border-right: 2px solid rgba(212, 175, 55, 0.3);
         border-bottom: none;
+        position: relative;
+        top: 0;
     }
     
     .content-container {
@@ -1205,7 +1225,8 @@ footer p {
     }
     
     .modal-image-container {
-        flex: 0 0 50%;
+        flex: 0 0 40%;
+        min-height: 300px;
     }
 }
 
@@ -1428,8 +1449,8 @@ footer p {
         <p>"A winter haven of sweetness, warmth, and timeless Turkish charm"</p>
     </header>
 
-    <!-- STICKY NAVIGATION (Categories & Search only) -->
-    <div class="sticky-container">
+    <!-- STICKY NAVIGATION (Categories & Search only - stays on top when scrolling) -->
+    <div class="sticky-nav">
         <div class="search-section">
             <input id="searchInput" class="search-input" type="search" 
                    placeholder="🔍 Search dishes, coffee, or sweets..." 
@@ -1465,7 +1486,7 @@ footer p {
 // 1. INITIALIZATION & DATA
 // ============================================
 
-// Menu Data (complete)
+// Menu Data (complete - all 146 items)
 const allItems = [
     { id:"batw1", cat:"Brewed on Arabic & Turkish Way", enName:"Classic Turkish Coffee", arName:"قهوة تركية كلاسيكية", price:28, enDesc:"A timeless Turkish tradition—finely ground coffee brewed in a cezve with meticulous attention to foam formation, delivering intense aromas and rich, unfiltered flavors in every velvety sip.", arDesc:"تقليد تركي خالد—قهوة مطحونة ناعماً تُحضر في إبريق نحاسي بعناية فائقة لتكوين رغوة مثالية، تقدم عبقاً قوياً ونكهات غنية غير مصفاة في كل رشفة حريرية.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkishcoffee.jpg", calories:"5 kcal", dietary:["vegan","gluten-free","dairy-free"] },
     { id:"batw2", cat:"Brewed on Arabic & Turkish Way", enName:"Double Turkish Coffee", arName:"قهوة تركية مزدوجة", price:40, enDesc:"For the bold-hearted—double the intensity with concentrated brewing that amplifies coffee's robust character, creating a powerful, full-bodied experience with lingering depth.", arDesc:"للمحبين للقوة—ضعف التركيز بتحضير مركز يعزز شخصية القهوة الجريئة، يخلق تجربة قوية وكاملة الجسم بعمق دائم.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkishcoffee.jpg", calories:"10 kcal", dietary:["vegan","gluten-free","dairy-free"] },
@@ -2136,7 +2157,7 @@ function clearFilters() {
 }
 
 // ============================================
-// 9. MODAL FUNCTIONS
+// 9. MODAL FUNCTIONS (Fixed size, not full screen)
 // ============================================
 
 function openItemModal(item) {
