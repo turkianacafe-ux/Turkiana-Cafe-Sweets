@@ -21,7 +21,7 @@
 <meta name="twitter:card" content="summary_large_image">
 
 <!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 
 <!-- Styles -->
 <style>
@@ -364,28 +364,32 @@ header {
 }
 
 /* ============================================
-   FLOATING CATEGORY NAVIGATION
+   FLOATING CATEGORY NAVIGATION (ALWAYS VISIBLE)
 ============================================ */
 .floating-categories {
     position: fixed;
     top: 20px;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(12, 4, 6, 0.95);
-    backdrop-filter: blur(20px);
-    border: 2px solid rgba(212, 175, 55, 0.3);
+    background: rgba(12, 4, 6, 0.98);
+    backdrop-filter: blur(25px);
+    border: 3px solid rgba(212, 175, 55, 0.5);
     border-radius: 50px;
-    padding: 12px 20px;
+    padding: 18px 30px;
     z-index: 100;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.9);
     display: flex;
-    gap: 10px;
-    max-width: 90vw;
+    gap: 15px;
+    max-width: 96vw;
     overflow-x: auto;
     scrollbar-width: none;
     -ms-overflow-style: none;
     -webkit-overflow-scrolling: touch;
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transition: all 0.3s ease;
+    min-height: 75px;
+    align-items: center;
 }
 
 .floating-categories::-webkit-scrollbar {
@@ -393,45 +397,55 @@ header {
 }
 
 .floating-categories.hidden {
-    transform: translateX(-50%) translateY(-100px);
-    opacity: 0;
+    transform: translateX(-50%) translateY(0) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
 .floating-category {
     flex-shrink: 0;
-    padding: 12px 24px;
-    border-radius: 30px;
-    border: 2px solid rgba(255, 255, 255, 0.25);
-    background: rgba(255, 255, 255, 0.06);
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 0.9rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
+    padding: 16px 32px;
+    border-radius: 40px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    min-height: 48px;
+    min-height: 65px;
     font-family: 'Inter', sans-serif;
     -webkit-tap-highlight-color: transparent;
     white-space: nowrap;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 1.2;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
 }
 
 .floating-category::before {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(120deg, rgba(255, 110, 180, 0.35), rgba(255, 168, 76, 0.35), rgba(72, 182, 255, 0.35));
-    filter: blur(8px);
+    background: linear-gradient(120deg, rgba(255, 110, 180, 0.4), rgba(255, 168, 76, 0.4), rgba(72, 182, 255, 0.4));
+    filter: blur(10px);
     z-index: -1;
     mix-blend-mode: screen;
     opacity: 0;
     transition: opacity 0.3s;
+    border-radius: 40px;
 }
 
 .floating-category:hover,
 .floating-category:active {
-    transform: translateY(-4px) scale(1.03);
-    box-shadow: 0 12px 28px rgba(255, 174, 76, 0.4);
+    transform: translateY(-5px) scale(1.06);
+    box-shadow: 0 18px 40px rgba(255, 174, 76, 0.7);
+    border-color: rgba(212, 175, 55, 0.7);
 }
 
 .floating-category:hover::before {
@@ -442,32 +456,58 @@ header {
     color: #0a0503;
     background: linear-gradient(135deg, #ffd771, #ff5f6d, #ffd771);
     border-color: transparent;
-    box-shadow: 0 16px 45px rgba(255, 179, 71, 0.5);
+    box-shadow: 0 25px 60px rgba(255, 179, 71, 0.8);
+    transform: translateY(-3px) scale(1.06);
+    font-weight: 900;
+    border: 3px solid rgba(255, 255, 255, 0.4);
+    animation: pulse-active 2s infinite;
+}
+
+@keyframes pulse-active {
+    0%, 100% {
+        box-shadow: 0 25px 60px rgba(255, 179, 71, 0.8);
+    }
+    50% {
+        box-shadow: 0 25px 80px rgba(255, 179, 71, 1);
+    }
 }
 
 /* Category indicator */
 .current-category-indicator {
     position: fixed;
-    top: 90px;
+    top: 110px;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(212, 175, 55, 0.9);
+    background: rgba(212, 175, 55, 0.95);
     color: var(--bg);
-    padding: 8px 20px;
-    border-radius: 20px;
-    font-weight: 600;
-    font-size: 0.9rem;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-weight: 800;
+    font-size: 1.1rem;
     z-index: 99;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.2em;
     transition: opacity 0.3s;
     opacity: 0;
+    border: 3px solid rgba(212, 175, 55, 0.7);
 }
 
 .current-category-indicator.visible {
     opacity: 1;
+    animation: slide-down 0.3s ease;
+}
+
+@keyframes slide-down {
+    from {
+        transform: translateX(-50%) translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+    }
 }
 
 /* ============================================
@@ -490,7 +530,7 @@ header {
     flex: 1;
     overflow-y: auto;
     overflow-x: hidden;
-    padding: 120px 20px 40px; /* Space for floating categories */
+    padding: 150px 20px 40px;
     max-width: 1400px;
     margin: 0 auto;
     width: 100%;
@@ -498,17 +538,17 @@ header {
 }
 
 .section {
-    margin-bottom: 40px;
-    scroll-margin-top: 140px;
+    margin-bottom: 50px;
+    scroll-margin-top: 160px;
 }
 
 .section h2 {
     font-family: "Playfair Display", serif;
-    font-size: 2rem;
-    margin: 0 0 20px;
+    font-size: 2.2rem;
+    margin: 0 0 25px;
     color: #fff;
     position: relative;
-    padding-bottom: 12px;
+    padding-bottom: 15px;
     text-align: center;
 }
 
@@ -518,15 +558,15 @@ header {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 100px;
-    height: 3px;
+    width: 120px;
+    height: 4px;
     background: var(--gold);
 }
 
 .section p {
-    margin: 0 0 25px;
+    margin: 0 0 30px;
     color: var(--muted);
-    font-size: 1rem;
+    font-size: 1.1rem;
     text-align: center;
     max-width: 800px;
     margin-left: auto;
@@ -536,35 +576,35 @@ header {
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 25px;
+    gap: 30px;
 }
 
 /* ============================================
    CARDS (Touch Optimized)
 ============================================ */
 .card {
-    border-radius: 20px;
+    border-radius: 25px;
     overflow: hidden;
     background: linear-gradient(135deg, rgba(12, 4, 6, 0.95), rgba(59, 15, 23, 0.85));
-    border: 2px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8);
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
-    min-height: 350px;
+    min-height: 380px;
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
 }
 
 .card:active {
-    transform: translateY(-4px) scale(0.98);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.9);
-    border-color: rgba(212, 175, 55, 0.4);
+    transform: translateY(-5px) scale(0.98);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 1);
+    border-color: rgba(212, 175, 55, 0.5);
 }
 
 .card-image {
     width: 100%;
-    height: 200px;
+    height: 220px;
     object-fit: cover;
     transition: transform 0.3s ease;
     image-rendering: -webkit-optimize-contrast;
@@ -578,57 +618,58 @@ header {
 }
 
 .card:active .card-image:not(.loading) {
-    transform: scale(1.05);
+    transform: scale(1.06);
 }
 
 .card-badge {
     position: absolute;
-    top: 15px;
-    right: 15px;
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    background: linear-gradient(135deg, rgba(212, 175, 55, 0.9), rgba(139, 9, 33, 0.9));
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.95), rgba(139, 9, 33, 0.95));
     color: white;
-    border: 2px solid rgba(212, 175, 55, 0.9);
+    border: 3px solid rgba(212, 175, 55, 0.9);
     animation: pulse 2s infinite;
-    font-weight: 600;
-    letter-spacing: 0.5px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
     z-index: 2;
 }
 
 .card-body {
-    padding: 20px;
+    padding: 25px;
     text-align: center;
 }
 
 .card h3 {
-    margin: 0 0 10px;
-    font-size: 1.2rem;
-    font-weight: 700;
+    margin: 0 0 15px;
+    font-size: 1.3rem;
+    font-weight: 800;
     color: #fff;
     line-height: 1.4;
-    min-height: 3em;
+    min-height: 3.2em;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 4px;
+    padding: 0 8px;
 }
 
 .card-ar-name {
     color: var(--muted);
-    font-size: 0.9rem;
-    margin-bottom: 15px;
-    min-height: 2em;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    min-height: 2.2em;
     font-style: italic;
 }
 
 .card-price {
     display: block;
     color: var(--gold);
-    font-weight: 800;
-    font-size: 1.4rem;
-    margin-top: 10px;
+    font-weight: 900;
+    font-size: 1.6rem;
+    margin-top: 15px;
+    text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
 }
 
 /* ============================================
@@ -637,14 +678,14 @@ header {
 .modal-backdrop {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.85);
+    background: rgba(0, 0, 0, 0.9);
     display: none;
     align-items: center;
     justify-content: center;
     z-index: 1000;
     opacity: 0;
     transition: opacity 0.3s;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px);
     padding: 20px;
 }
 
@@ -655,8 +696,8 @@ header {
 
 .modal-card {
     background: linear-gradient(135deg, rgba(12, 4, 6, 0.98) 0%, rgba(30, 5, 10, 0.98) 100%);
-    border: 2px solid rgba(212, 175, 55, 0.5);
-    border-radius: 20px;
+    border: 3px solid rgba(212, 175, 55, 0.6);
+    border-radius: 25px;
     overflow: hidden;
     width: 90%;
     max-width: 800px;
@@ -665,7 +706,7 @@ header {
     flex-direction: column;
     animation: modalSlideUp 0.3s ease;
     position: relative;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.9);
 }
 
 @keyframes modalSlideUp {
@@ -680,44 +721,45 @@ header {
 }
 
 .modal-header {
-    padding: 20px;
-    border-bottom: 2px solid rgba(212, 175, 55, 0.2);
+    padding: 25px;
+    border-bottom: 3px solid rgba(212, 175, 55, 0.3);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.6);
     flex-shrink: 0;
 }
 
 .modal-header h3 {
     margin: 0;
     font-family: "Playfair Display", serif;
-    font-size: 1.8rem;
+    font-size: 2rem;
     color: var(--gold);
     flex: 1;
-    padding-right: 20px;
+    padding-right: 25px;
 }
 
 .modal-close {
-    background: rgba(212, 175, 55, 0.1);
-    border: 2px solid rgba(212, 175, 55, 0.3);
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 2rem;
+    background: rgba(212, 175, 55, 0.15);
+    border: 3px solid rgba(212, 175, 55, 0.4);
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 2.5rem;
     cursor: pointer;
     transition: all 0.3s;
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     display: grid;
     place-items: center;
     border-radius: 50%;
     flex-shrink: 0;
     -webkit-tap-highlight-color: transparent;
     line-height: 1;
+    font-weight: 300;
 }
 
 .modal-close:active {
     color: var(--gold);
-    background: rgba(212, 175, 55, 0.2);
+    background: rgba(212, 175, 55, 0.3);
     transform: scale(0.95);
 }
 
@@ -730,9 +772,9 @@ header {
 }
 
 .modal-image-container {
-    flex: 0 0 300px;
-    min-height: 300px;
-    max-height: 350px;
+    flex: 0 0 350px;
+    min-height: 350px;
+    max-height: 400px;
     position: relative;
     overflow: hidden;
 }
@@ -746,52 +788,53 @@ header {
 }
 
 .modal-info {
-    padding: 25px;
+    padding: 30px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 25px;
     flex: 1;
 }
 
 .modal-info h4 {
-    margin: 0 0 8px;
+    margin: 0 0 12px;
     color: var(--gold);
-    font-size: 1rem;
+    font-size: 1.1rem;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-weight: 600;
+    letter-spacing: 0.15em;
+    font-weight: 800;
 }
 
 .modal-info p {
     margin: 0;
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 1rem;
-    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 1.1rem;
+    line-height: 1.7;
 }
 
 .modal-meta {
-    padding: 20px;
-    background: rgba(212, 175, 55, 0.1);
-    border-radius: 12px;
-    border: 2px solid rgba(212, 175, 55, 0.2);
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.8);
-    line-height: 1.5;
+    padding: 25px;
+    background: rgba(212, 175, 55, 0.15);
+    border-radius: 15px;
+    border: 3px solid rgba(212, 175, 55, 0.3);
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
 }
 
 .modal-footer {
-    padding: 25px;
-    border-top: 2px solid rgba(212, 175, 55, 0.2);
+    padding: 30px;
+    border-top: 3px solid rgba(212, 175, 55, 0.3);
     text-align: center;
-    background: rgba(212, 175, 55, 0.05);
-    font-size: 1.4rem;
+    background: rgba(212, 175, 55, 0.08);
+    font-size: 1.6rem;
     flex-shrink: 0;
 }
 
 .modal-footer strong {
     color: var(--gold);
-    font-size: 2rem;
-    margin: 0 5px;
+    font-size: 2.5rem;
+    margin: 0 8px;
+    text-shadow: 0 2px 15px rgba(212, 175, 55, 0.4);
 }
 
 /* ============================================
@@ -800,20 +843,20 @@ header {
 .no-results {
     grid-column: 1 / -1;
     text-align: center;
-    padding: 80px 20px;
+    padding: 100px 20px;
     color: var(--muted);
 }
 
 .no-results strong {
     color: var(--gold);
     display: block;
-    margin-bottom: 20px;
-    font-size: 1.5rem;
+    margin-bottom: 25px;
+    font-size: 1.8rem;
     font-family: "Playfair Display", serif;
 }
 
 .no-results p {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     opacity: 0.8;
 }
 
@@ -833,8 +876,8 @@ footer {
         box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7);
     }
     50% {
-        transform: scale(1.05);
-        box-shadow: 0 0 0 10px rgba(212, 175, 55, 0);
+        transform: scale(1.08);
+        box-shadow: 0 0 0 15px rgba(212, 175, 55, 0);
     }
 }
 
@@ -842,18 +885,18 @@ footer {
    SCROLLBAR STYLING
 ============================================ */
 .content-container::-webkit-scrollbar {
-    width: 10px;
+    width: 12px;
 }
 
 .content-container::-webkit-scrollbar-track {
-    background: rgba(12, 4, 6, 0.5);
-    border-radius: 5px;
+    background: rgba(12, 4, 6, 0.6);
+    border-radius: 6px;
 }
 
 .content-container::-webkit-scrollbar-thumb {
     background: linear-gradient(var(--gold), #ffd166);
-    border-radius: 5px;
-    border: 2px solid var(--bg);
+    border-radius: 6px;
+    border: 3px solid var(--bg);
 }
 
 .content-container::-webkit-scrollbar-thumb:active {
@@ -866,11 +909,11 @@ footer {
 @media (min-width: 768px) and (max-width: 1024px) {
     .grid {
         grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-        gap: 20px;
+        gap: 25px;
     }
     
     .card {
-        min-height: 320px;
+        min-height: 350px;
     }
     
     .modal-body {
@@ -884,35 +927,43 @@ footer {
     
     .floating-categories {
         top: 15px;
-        padding: 10px 15px;
+        padding: 16px 25px;
+        min-height: 70px;
     }
     
     .floating-category {
-        padding: 10px 20px;
-        font-size: 0.8rem;
+        padding: 14px 28px;
+        font-size: 1rem;
+        min-height: 60px;
+    }
+    
+    .current-category-indicator {
+        top: 105px;
+        font-size: 1rem;
+        padding: 10px 25px;
     }
 }
 
 @media (max-width: 767px) {
     .grid {
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        gap: 15px;
+        gap: 20px;
     }
     
     .card {
-        min-height: 280px;
+        min-height: 320px;
     }
     
     .card h3 {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
     }
     
     .card-ar-name {
-        font-size: 0.8rem;
+        font-size: 0.9rem;
     }
     
     .card-price {
-        font-size: 1.2rem;
+        font-size: 1.4rem;
     }
     
     .modal-body {
@@ -920,8 +971,8 @@ footer {
     }
     
     .modal-image-container {
-        flex: 0 0 250px;
-        min-height: 250px;
+        flex: 0 0 280px;
+        min-height: 280px;
     }
     
     .modal-card {
@@ -931,63 +982,74 @@ footer {
     
     .floating-categories {
         top: 10px;
-        padding: 8px 12px;
+        padding: 12px 20px;
+        min-height: 65px;
         border-radius: 40px;
+        border-width: 2px;
     }
     
     .floating-category {
-        padding: 8px 16px;
-        font-size: 0.75rem;
-        min-height: 42px;
+        padding: 12px 22px;
+        font-size: 0.9rem;
+        min-height: 55px;
+        font-weight: 700;
     }
     
     .current-category-indicator {
-        top: 70px;
-        font-size: 0.8rem;
-        padding: 6px 16px;
+        top: 90px;
+        font-size: 0.9rem;
+        padding: 10px 22px;
     }
     
     .content-container {
-        padding: 100px 15px 30px;
+        padding: 140px 15px 30px;
     }
     
     .section h2 {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
     }
 }
 
 @media (max-width: 480px) {
     .grid {
         grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-        gap: 12px;
+        gap: 15px;
     }
     
     .card {
-        min-height: 250px;
+        min-height: 280px;
     }
     
     .card-image {
-        height: 150px;
+        height: 180px;
     }
     
     .modal-header h3 {
-        font-size: 1.3rem;
+        font-size: 1.5rem;
     }
     
     .modal-image-container {
-        flex: 0 0 200px;
-        min-height: 200px;
+        flex: 0 0 220px;
+        min-height: 220px;
     }
     
     .floating-categories {
-        top: 5px;
-        padding: 6px 10px;
+        top: 8px;
+        padding: 10px 16px;
+        min-height: 60px;
     }
     
     .floating-category {
-        padding: 6px 12px;
-        font-size: 0.7rem;
-        min-height: 38px;
+        padding: 10px 18px;
+        font-size: 0.8rem;
+        min-height: 50px;
+        font-weight: 700;
+    }
+    
+    .current-category-indicator {
+        top: 85px;
+        font-size: 0.8rem;
+        padding: 8px 18px;
     }
 }
 
@@ -997,39 +1059,40 @@ footer {
 @media (orientation: landscape) and (max-height: 600px) {
     .floating-categories {
         top: 10px;
-        padding: 6px 10px;
+        padding: 12px 20px;
+        min-height: 60px;
     }
     
     .floating-category {
-        padding: 6px 12px;
-        font-size: 0.75rem;
-        min-height: 36px;
+        padding: 10px 20px;
+        font-size: 0.9rem;
+        min-height: 50px;
     }
     
     .content-container {
-        padding-top: 80px;
+        padding-top: 120px;
     }
     
     .current-category-indicator {
-        top: 60px;
-        font-size: 0.8rem;
-        padding: 4px 12px;
+        top: 85px;
+        font-size: 0.9rem;
+        padding: 8px 20px;
     }
     
     .section {
-        margin-bottom: 20px;
-        scroll-margin-top: 100px;
+        margin-bottom: 25px;
+        scroll-margin-top: 130px;
     }
     
     .section h2 {
-        font-size: 1.3rem;
-        margin-bottom: 10px;
-        padding-bottom: 8px;
+        font-size: 1.6rem;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
     }
     
     .section h2::after {
-        width: 60px;
-        height: 2px;
+        width: 80px;
+        height: 3px;
     }
 }
 
@@ -1064,7 +1127,7 @@ footer {
     }
     
     .card:active {
-        transform: translateY(-2px) scale(0.99);
+        transform: translateY(-3px) scale(0.99);
     }
 }
 
@@ -1089,20 +1152,20 @@ footer {
 }
 
 .loading-spinner {
-    width: 60px;
-    height: 60px;
-    border: 4px solid rgba(212, 175, 55, 0.1);
+    width: 70px;
+    height: 70px;
+    border: 5px solid rgba(212, 175, 55, 0.15);
     border-top-color: var(--gold);
     border-radius: 50%;
     animation: spin 1s linear infinite;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 .loading-text {
     color: var(--gold);
-    font-size: 1.2rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
 }
 
 /* ============================================
@@ -1125,10 +1188,10 @@ footer {
     top: 0;
     left: 0;
     right: 0;
-    height: 150px;
+    height: 180px;
     background: linear-gradient(to bottom, 
         rgba(12, 4, 6, 1) 0%, 
-        rgba(12, 4, 6, 0.8) 50%, 
+        rgba(12, 4, 6, 0.85) 50%, 
         rgba(12, 4, 6, 0) 100%);
     pointer-events: none;
     z-index: 98;
@@ -1139,10 +1202,10 @@ footer {
     bottom: 0;
     left: 0;
     right: 0;
-    height: 100px;
+    height: 120px;
     background: linear-gradient(to top, 
         rgba(12, 4, 6, 1) 0%, 
-        rgba(12, 4, 6, 0.8) 50%, 
+        rgba(12, 4, 6, 0.85) 50%, 
         rgba(12, 4, 6, 0) 100%);
     pointer-events: none;
     z-index: 98;
@@ -1326,7 +1389,7 @@ const allItems = [
     { id:"bak11", cat:"Baklava & Beyond", enName:"Chocolate Cake", arName:"كعكة الشكولاتة", price:40, enDesc:"Decadent foundation—deep, moist chocolate cake with intense cocoa flavor, versatile enough for standalone enjoyment or as base for further dessert customization and pairing.", arDesc:"أساس فاخر—كعكة شوكولاتة عميقة ورطبة بنكهة كاكاو مكثفة، متعددة الاستخدامات بما يكفي للاستمتاع المنفرد أو كقاعدة لمزيد من تخصيص الحلوى والقرينة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Chocolate.jpg", calories:"480 kcal", dietary:["contains-dairy"], popular:true },
     { id:"bak13", cat:"Baklava & Beyond", enName:"Brownies", arName:"براونيز", price:45, enDesc:"Fudgy perfection—dense, rich brownies with crackly top and gooey center, balancing deep chocolate intensity with just enough sweetness to satisfy without overwhelming.", arDesc:"كمال فادج—براونيز كثيفة وغنية بقمة متشققة ومركز لزج، توازن بين شدة الشوكولاتة العميقة وما يكفي من الحلاوة للإشباع دون طغيان.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Brown.jpg", calories:"380 kcal", dietary:["contains-dairy"] },
     { id:"bak14", cat:"Baklava & Beyond", enName:"Tiramisu", arName:"تيراميسو", price:50, enDesc:"Italian masterpiece—ladyfinger layers soaked in espresso and Marsala, alternating with mascarpone cream and dusted with cocoa, creating sophisticated coffee dessert that improves with time.", arDesc:"تحفة إيطالية—طبقات بسكويت السيدة منقوعة في إسبرسو ومارسالا، تتبادل مع كريمة الماسكاربون وتُذرّ بالكاكاو، تخلق حلوى قهوة راقية تتحسن مع الوقت.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Tiramisu.jpg", calories:"420 kcal", dietary:["contains-dairy"] },
-    { id:"bak15", cat:"Baklava & Beyond", enName:"Almond Chocolate Cake", arName:"كعكة الشوكولاتة باللوز", price:40, enDesc:"Nutty sophistication—moist chocolate cake with almond meal integrated into batter and toasted almond garnish, creating textural contrast and flavor harmony between cocoa and nuts.", arDesc:"رقة جوزية—كعكة شوكولاتة رطبة مع طحين اللوز المدمج في الخليط وتزيين لوز محمص، تخلق تبايناً قوامياً وتناغماً نكهياً بين الكاكاو والمكسرات.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Almond.jpg", calories:"490 kcal", dietary:["contains-nuts"] },
+    { id:"bak15", cat:"Baklava & Beyond", enName:"Almond Chocolate Cake", arName:"كعكة الشوكولاتة باللوز", price:40, enDesc:"Nutty sophistication—moist chocolate cake with almond meal integrated into batter and toasted almond garnish, creating textural contrast and flavor harmony between cocoa and nuts.", arDesc:"رقة جوزية—كعكة شوكولاتة رطبة مع طحين اللوز المدمج في الخليط وتزيين لوز محمص، يخلق تبايناً قوامياً وتناغماً نكهياً بين الكاكاو والمكسرات.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Almond.jpg", calories:"490 kcal", dietary:["contains-nuts"] },
     { id:"bak17", cat:"Baklava & Beyond", enName:"Chocolate Pistachio Cake", arName:"كعكة الشوكولاتة والفستق", price:40, enDesc:"Green luxury—rich chocolate cake adorned with crushed pistachios that provide vibrant color contrast, subtle saltiness, and elegant crunch against smooth chocolate background.", arDesc:"فخامة خضراء—كعكة شوكولاتة غنية مزينة بفستق مفتت يوفر تباين لوني نابض، ملوحة خفيفة، وقرمشة أنيقة ضد خلفية الشوكولاتة الناعمة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Chocolate_pistachio.jpg", calories:"510 kcal", dietary:["contains-nuts"] },
     { id:"bak18", cat:"Baklava & Beyond", enName:"Strawberry Cake", arName:"كعكة الفراولة", price:45, enDesc:"Spring celebration—light sponge cake layered with fresh strawberry slices and cream, capturing fruit's natural sweetness and floral notes in visually stunning, seasonally inspired dessert.", arDesc:"احتفال ربيعي—كعكة إسفنجية خفيفة مطبقة بشرائح فراولة طازجة وكريمة، تلتقط حلاوة الفاكهة الطبيعية ونفحاتها الزهرية في حلوى مذهلة بصرياً ومستوحاة من الموسم.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Strawberry.jpg", calories:"470 kcal", dietary:["contains-dairy"] },
     { id:"bak19", cat:"Baklava & Beyond", enName:"White Almond Cake", arName:"كعكة اللوز البيضاء", price:42, enDesc:"Elegant simplicity—delicate almond-flavored cake with fine crumb and subtle sweetness, often enjoyed with tea or as light dessert that highlights almond's sophisticated character.", arDesc:"بساطة أنيقة—كعكة بنكهة اللوز الدقيقة بفتات ناعم وحلاوة خفيفة، غالباً ما تُستمتع مع الشاي أو كحلوى خفيفة تسلط الضوء على شخصية اللوز الراقية.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/White.jpg", calories:"500 kcal", dietary:["contains-nuts"] },
@@ -1634,7 +1697,7 @@ function initSnowAnimation() {
 }
 
 // ============================================
-// 7. FLOATING CATEGORY NAVIGATION
+// 7. FLOATING CATEGORY NAVIGATION (ALWAYS VISIBLE)
 // ============================================
 
 function renderFloatingCategories() {
@@ -1706,7 +1769,6 @@ function scrollToTop() {
 }
 
 function handleScroll() {
-    const floatingCategories = document.getElementById("floatingCategories");
     const currentCategoryIndicator = document.getElementById("currentCategoryIndicator");
     const container = document.querySelector('.content-container');
     
@@ -1714,14 +1776,7 @@ function handleScroll() {
     
     state.isScrolling = true;
     
-    // Show/hide floating categories based on scroll direction
-    const currentScroll = container.scrollTop;
-    if (currentScroll > state.lastScrollPosition && currentScroll > 100) {
-        floatingCategories.classList.add('hidden');
-    } else {
-        floatingCategories.classList.remove('hidden');
-    }
-    state.lastScrollPosition = currentScroll;
+    // REMOVED: Code that hides floating categories on scroll
     
     // Update current category indicator
     const sections = document.querySelectorAll('.section');
@@ -1976,6 +2031,9 @@ async function enterFullscreen() {
 document.addEventListener("DOMContentLoaded", () => {
     initKioskMode();
 });
+
+// Make openItemModal available globally
+window.openItemModal = openItemModal;
 </script>
 </body>
 </html>
