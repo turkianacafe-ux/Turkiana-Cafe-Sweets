@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>Turkiana Café & Sweets — Winter 2025</title>
 
 <!-- PWA Meta Tags -->
@@ -67,171 +67,6 @@ body {
     right: 0;
     bottom: 0;
     touch-action: manipulation;
-}
-
-/* ============================================
-   KIOSK MODE STYLES (SIMPLIFIED)
-============================================ */
-body.kiosk-mode {
-    cursor: none !important;
-}
-
-/* Kiosk Welcome Overlay */
-#kiosk-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(12, 4, 6, 0.95), rgba(59, 15, 23, 0.95));
-    z-index: 10000;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: var(--gold);
-    text-align: center;
-    padding: 40px;
-    backdrop-filter: blur(20px);
-    transition: opacity 0.5s ease;
-}
-
-#kiosk-overlay.hidden {
-    opacity: 0;
-    pointer-events: none;
-}
-
-#kiosk-overlay h2 {
-    font-family: "Playfair Display", serif;
-    font-size: clamp(2rem, 5vw, 3rem);
-    margin-bottom: 20px;
-    background: linear-gradient(130deg, #fff, var(--gold));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-#kiosk-overlay p {
-    max-width: 600px;
-    margin-bottom: 40px;
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 1.1rem;
-    line-height: 1.6;
-}
-
-#start-experience-btn {
-    background: linear-gradient(135deg, var(--gold), #ffd166);
-    color: var(--bg);
-    border: none;
-    padding: 20px 50px;
-    border-radius: 12px;
-    font-size: 1.2rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s;
-    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
-    min-height: 60px;
-    min-width: 200px;
-}
-
-#start-experience-btn:hover,
-#start-experience-btn:active {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 30px rgba(212, 175, 55, 0.6);
-}
-
-/* Kiosk Navigation Bar (REMOVED) */
-#kiosk-nav {
-    display: none !important;
-}
-
-/* Kiosk-optimized cards */
-body.kiosk-mode .card {
-    min-height: 320px;
-    border-width: 3px;
-    border-color: rgba(255, 255, 255, 0.15);
-}
-
-body.kiosk-mode .card:active {
-    transform: translateY(-8px) scale(0.98);
-    border-color: rgba(212, 175, 55, 0.6);
-}
-
-body.kiosk-mode .card h3 {
-    font-size: 1.2rem;
-    min-height: 3.2em;
-}
-
-body.kiosk-mode .card-price {
-    font-size: 1.3rem;
-}
-
-/* Larger touch targets for kiosk */
-body.kiosk-mode .category-pill,
-body.kiosk-mode .btn {
-    min-height: 55px;
-}
-
-body.kiosk-mode .search-input {
-    padding: 20px 25px;
-    font-size: 1.1rem;
-    min-height: 60px;
-}
-
-/* Auto-hide cursor in kiosk mode */
-@keyframes hideCursor {
-    0% { cursor: default; }
-    99% { cursor: default; }
-    100% { cursor: none; }
-}
-
-body.kiosk-mode {
-    animation: hideCursor 2s forwards;
-}
-
-/* Kiosk idle warning */
-#idle-warning {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(12, 4, 6, 0.95);
-    border: 3px solid var(--gold);
-    border-radius: 20px;
-    padding: 40px;
-    text-align: center;
-    z-index: 10001;
-    display: none;
-    backdrop-filter: blur(20px);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
-    max-width: 500px;
-    width: 90%;
-}
-
-#idle-warning h3 {
-    color: var(--gold);
-    font-family: "Playfair Display", serif;
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-}
-
-#idle-warning p {
-    color: var(--muted);
-    margin-bottom: 30px;
-    line-height: 1.6;
-}
-
-#reset-timer-btn {
-    background: linear-gradient(135deg, var(--gold), #ffd166);
-    color: var(--bg);
-    border: none;
-    padding: 15px 40px;
-    border-radius: 10px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    cursor: pointer;
-    min-height: 50px;
-    min-width: 180px;
 }
 
 /* ============================================
@@ -364,7 +199,7 @@ header {
 }
 
 /* ============================================
-   FLOATING CATEGORY NAVIGATION (ALWAYS VISIBLE)
+   FLOATING CATEGORY NAVIGATION (ALWAYS VISIBLE WITH ENHANCEMENTS)
 ============================================ */
 .floating-categories {
     position: fixed;
@@ -390,6 +225,18 @@ header {
     transition: all 0.3s ease;
     min-height: 75px;
     align-items: center;
+    animation: subtle-pulse 8s infinite ease-in-out;
+}
+
+@keyframes subtle-pulse {
+    0%, 100% { 
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.9); 
+        border-color: rgba(212, 175, 55, 0.5);
+    }
+    50% { 
+        box-shadow: 0 20px 50px rgba(212, 175, 55, 0.4); 
+        border-color: rgba(212, 175, 55, 0.8);
+    }
 }
 
 .floating-categories::-webkit-scrollbar {
@@ -414,8 +261,9 @@ header {
     letter-spacing: 0.12em;
     text-transform: uppercase;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     min-height: 65px;
+    min-width: 100px;
     font-family: 'Inter', sans-serif;
     -webkit-tap-highlight-color: transparent;
     white-space: nowrap;
@@ -426,6 +274,28 @@ header {
     text-align: center;
     line-height: 1.2;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* Category count badges */
+.floating-category::after {
+    content: attr(data-count);
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: var(--accent);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 900;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--gold);
+    z-index: 2;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
 }
 
 .floating-category::before {
@@ -439,6 +309,34 @@ header {
     opacity: 0;
     transition: opacity 0.3s;
     border-radius: 40px;
+}
+
+/* Loading shimmer effect */
+.floating-category.loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255,255,255,0.1) 50%, 
+        transparent 100%);
+    animation: shimmer 1.5s infinite;
+    border-radius: inherit;
+    border: none;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Accessibility focus states */
+.floating-category:focus {
+    outline: 3px solid var(--gold);
+    outline-offset: 3px;
 }
 
 .floating-category:hover,
@@ -461,6 +359,7 @@ header {
     font-weight: 900;
     border: 3px solid rgba(255, 255, 255, 0.4);
     animation: pulse-active 2s infinite;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
 }
 
 @keyframes pulse-active {
@@ -472,7 +371,7 @@ header {
     }
 }
 
-/* Category indicator */
+/* Category indicator with enhancements */
 .current-category-indicator {
     position: fixed;
     top: 110px;
@@ -492,6 +391,30 @@ header {
     transition: opacity 0.3s;
     opacity: 0;
     border: 3px solid rgba(212, 175, 55, 0.7);
+    position: relative;
+}
+
+/* Arrow pointing to active category */
+.current-category-indicator::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid rgba(212, 175, 55, 0.95);
+}
+
+/* Item count in indicator */
+.current-category-indicator::after {
+    content: ' • ' attr(data-count) ' items';
+    font-size: 0.8rem;
+    opacity: 0.9;
+    margin-left: 10px;
+    font-weight: 700;
 }
 
 .current-category-indicator.visible {
@@ -580,7 +503,7 @@ header {
 }
 
 /* ============================================
-   CARDS (Touch Optimized)
+   CARDS (Touch Optimized with Accessibility)
 ============================================ */
 .card {
     border-radius: 25px;
@@ -589,7 +512,7 @@ header {
     border: 3px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     position: relative;
     min-height: 380px;
     touch-action: manipulation;
@@ -600,6 +523,13 @@ header {
     transform: translateY(-5px) scale(0.98);
     box-shadow: 0 30px 60px rgba(0, 0, 0, 1);
     border-color: rgba(212, 175, 55, 0.5);
+}
+
+/* Accessibility focus state */
+.card:focus {
+    outline: 3px solid var(--gold);
+    outline-offset: 5px;
+    transform: translateY(-3px);
 }
 
 .card-image {
@@ -904,8 +834,17 @@ footer {
 }
 
 /* ============================================
-   RESPONSIVE DESIGN FOR TABLETS
+   RESPONSIVE DESIGN WITH IMPROVEMENTS
 ============================================ */
+@media (min-width: 1600px) {
+    .floating-categories {
+        max-width: 1400px;
+        margin: 0 auto;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
 @media (min-width: 768px) and (max-width: 1024px) {
     .grid {
         grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -1054,7 +993,7 @@ footer {
 }
 
 /* ============================================
-   LANDSCAPE ORIENTATION
+   LANDSCAPE ORIENTATION IMPROVEMENTS
 ============================================ */
 @media (orientation: landscape) and (max-height: 600px) {
     .floating-categories {
@@ -1093,6 +1032,50 @@ footer {
     .section h2::after {
         width: 80px;
         height: 3px;
+    }
+}
+
+@media (orientation: landscape) and (max-height: 500px) {
+    .floating-categories {
+        top: 5px;
+        padding: 8px 15px;
+        min-height: 50px;
+    }
+    
+    .floating-category {
+        padding: 6px 12px;
+        font-size: 0.75rem;
+        min-height: 40px;
+    }
+    
+    .content-container {
+        padding-top: 90px;
+    }
+    
+    .current-category-indicator {
+        top: 70px;
+        font-size: 0.8rem;
+        padding: 6px 15px;
+    }
+}
+
+/* ============================================
+   BATTERY-FRIENDLY ANIMATIONS
+============================================ */
+@media (prefers-reduced-motion: reduce) {
+    .floating-category,
+    .card,
+    .modal-card,
+    .floating-categories,
+    .current-category-indicator,
+    .card-badge,
+    .toast {
+        transition: none !important;
+        animation: none !important;
+    }
+    
+    #snow {
+        display: none;
     }
 }
 
@@ -1240,13 +1223,7 @@ footer {
 </script>
 </head>
 <body>
-<!-- Kiosk Welcome Overlay -->
-<div id="kiosk-overlay">
-    <h2>Turkiana Café & Sweets</h2>
-    <p>Winter 2025 Menu - A winter haven of sweetness, warmth, and timeless Turkish charm</p>
-    <p>Touch anywhere to explore our menu</p>
-    <button id="start-experience-btn">Start Browsing</button>
-</div>
+<!-- Removed kiosk overlay entirely -->
 
 <!-- Floating Category Navigation -->
 <div class="floating-categories" id="floatingCategories"></div>
@@ -1255,13 +1232,6 @@ footer {
 <!-- Visual Fades -->
 <div class="visual-fade"></div>
 <div class="visual-bottom-fade"></div>
-
-<!-- Idle Warning -->
-<div id="idle-warning">
-    <h3>Are you still browsing?</h3>
-    <p>The menu will reset to the welcome screen in 30 seconds due to inactivity.</p>
-    <button id="reset-timer-btn">Continue Browsing</button>
-</div>
 
 <!-- Loading Overlay -->
 <div class="loading-overlay hidden" id="loadingOverlay">
@@ -1322,7 +1292,7 @@ footer {
 
 // Menu Data (complete - all 146 items)
 const allItems = [
-    { id:"batw1", cat:"Brewed on Arabic & Turkish Way", enName:"Classic Turkish Coffee", arName:"قهوة تركية كلاسيكية", price:28, enDesc:"A timeless Turkish tradition—finely ground coffee brewed in a cezve with meticulous attention to foam formation, delivering intense aromas and rich, unfiltered flavors in every velvety sip.", arDesc:"تقليد تركي خالد—قهوة مطحونة ناعماً تُحضر في إبريق نحاسي بعناية فائقة لتكوين رغوة مثالية، تقدم عبقاً قوياً ونكهات غنية غير مصفاة في كل رشفة حريرية.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkishcoffee.jpg", calories:"5 kcal", dietary:["vegan","gluten-free","dairy-free"] },
+ { id:"batw1", cat:"Brewed on Arabic & Turkish Way", enName:"Classic Turkish Coffee", arName:"قهوة تركية كلاسيكية", price:28, enDesc:"A timeless Turkish tradition—finely ground coffee brewed in a cezve with meticulous attention to foam formation, delivering intense aromas and rich, unfiltered flavors in every velvety sip.", arDesc:"تقليد تركي خالد—قهوة مطحونة ناعماً تُحضر في إبريق نحاسي بعناية فائقة لتكوين رغوة مثالية، تقدم عبقاً قوياً ونكهات غنية غير مصفاة في كل رشفة حريرية.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkishcoffee.jpg", calories:"5 kcal", dietary:["vegan","gluten-free","dairy-free"] },
     { id:"batw2", cat:"Brewed on Arabic & Turkish Way", enName:"Double Turkish Coffee", arName:"قهوة تركية مزدوجة", price:40, enDesc:"For the bold-hearted—double the intensity with concentrated brewing that amplifies coffee's robust character, creating a powerful, full-bodied experience with lingering depth.", arDesc:"للمحبين للقوة—ضعف التركيز بتحضير مركز يعزز شخصية القهوة الجريئة، يخلق تجربة قوية وكاملة الجسم بعمق دائم.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkishcoffee.jpg", calories:"10 kcal", dietary:["vegan","gluten-free","dairy-free"] },
     { id:"batw3", cat:"Brewed on Arabic & Turkish Way", enName:"Ottoman Coffee with Mastic", arName:"قهوة عثمانية بالمستيك", price:28, enDesc:"A royal Ottoman heritage—premium coffee enhanced with rare Chios mastic resin, imparting distinctive pine-like notes and smooth sophistication that transports you to imperial courts.", arDesc:"تراث عثماني ملكي—قهوة فاخرة معززة بمستيك شيوس النادر، تمنح نفحات شبيهة بالصنوبر ونعومة راقية تنقلك إلى بلاط السلاطين.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Ottomanmastica.jpg", calories:"5 kcal", dietary:["vegan","gluten-free","dairy-free"] },
     { id:"batw4", cat:"Brewed on Arabic & Turkish Way", enName:"Ottoman Coffee with Hazelnuts", arName:"قهوة عثمانية بالبندق", price:28, enDesc:"Creamy indulgence from the Black Sea region—delicately blended with finely ground premium hazelnuts that lend velvety texture and subtle nutty sweetness to traditional brew.", arDesc:"تناول كريمي من منطقة البحر الأسود—ممزوجة بدقة مع بندق فاخر مطحون ناعماً يعطي قواماً حريرياً وحلاوة جوزية خفيفة للتحضير التقليدي.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Ottomanhazelnut.jpg", calories:"20 kcal", dietary:["contains-nuts"] },
@@ -1439,8 +1409,9 @@ const allItems = [
     { id:"amt13", cat:"Anatolian Morning Table", enName:"Turkey Ham Sandwich", arName:"ساندويتش تركي هام", price:30, enDesc:"Light deli option—turkey ham sandwich with fresh vegetables and soft bread, offering approachable choice for those seeking familiar deli flavors in balanced, not-too-heavy presentation.", arDesc:"خيار لحوم بارد خفيف—ساندويتش تركي هام مع خضروات طازجة وخبز طري، يقدم اختياراً سهلاً لمن يبحثون عن نكهات اللحوم الباردة المألوفة في تقديم متوازن وغير ثقيل جداً.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkeyhamsandwich.jpg", calories:"390 kcal", dietary:[] }
 ];
 
+
 // ============================================
-// 2. GLOBAL STATE & KIOSK MANAGEMENT
+// 2. GLOBAL STATE
 // ============================================
 
 const state = {
@@ -1450,18 +1421,22 @@ const state = {
     currentModalItem: null,
     loadedImages: new Map(),
     isFullscreen: false,
-    isKioskMode: true,
-    sessionTimer: null,
-    idleTimer: null,
-    sessionTime: 300,
-    idleWarningTime: 30,
-    isSessionActive: false,
     lastScrollPosition: 0,
-    isScrolling: false
+    isScrolling: false,
+    categoryCounts: {}
 };
 
+// Calculate category counts
+function calculateCategoryCounts() {
+    state.categoryCounts = {};
+    state.categories.forEach(cat => {
+        state.categoryCounts[cat] = allItems.filter(item => item.cat === cat).length;
+    });
+    state.categoryCounts["All"] = allItems.length;
+}
+
 // ============================================
-// 3. FAST IMAGE LOADING WITH LAZY LOADING
+// 3. FAST IMAGE LOADING WITH LAZY LOADING AND ERROR HANDLING
 // ============================================
 
 const imageCache = new Map();
@@ -1478,7 +1453,7 @@ async function loadImageFast(url) {
             resolve(img);
         };
         img.onerror = () => {
-            // Create fallback
+            // Create fallback with better error handling
             const canvas = document.createElement('canvas');
             canvas.width = 300;
             canvas.height = 200;
@@ -1489,8 +1464,8 @@ async function loadImageFast(url) {
             ctx.fillStyle = gradient;
             ctx.fillRect(0, 0, 300, 200);
             
-            ctx.fillStyle = 'rgba(212, 175, 55, 0.2)';
-            ctx.font = '16px Inter';
+            ctx.fillStyle = 'rgba(212, 175, 55, 0.3)';
+            ctx.font = 'bold 16px Inter';
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
             ctx.fillText('Turkiana Café', 150, 100);
@@ -1504,114 +1479,48 @@ async function loadImageFast(url) {
     });
 }
 
-// ============================================
-// 4. KIOSK INITIALIZATION
-// ============================================
-
-function initKioskMode() {
-    document.getElementById('kiosk-overlay').style.display = 'flex';
-    
-    document.getElementById('start-experience-btn').addEventListener('click', startKioskSession);
-    document.getElementById('reset-timer-btn').addEventListener('click', resetIdleTimer);
-    
-    document.getElementById('kiosk-overlay').addEventListener('click', (e) => {
-        if (e.target.id === 'kiosk-overlay') {
-            startKioskSession();
-        }
-    });
-    
-    setTimeout(() => {
-        if (!state.isSessionActive) {
-            startKioskSession();
-        }
-    }, 10000);
-}
-
-function startKioskSession() {
-    state.isSessionActive = true;
-    document.body.classList.add('kiosk-mode');
-    document.getElementById('kiosk-overlay').classList.add('hidden');
-    
-    startSessionTimer();
-    
-    setTimeout(() => {
-        document.getElementById('loadingOverlay').classList.add('hidden');
-    }, 500);
-    
-    initApp();
-}
-
-function resetSession() {
-    document.body.classList.remove('kiosk-mode');
-    document.getElementById('kiosk-overlay').classList.remove('hidden');
-    
-    if (state.sessionTimer) clearInterval(state.sessionTimer);
-    if (state.idleTimer) clearTimeout(state.idleTimer);
-    
-    state.isSessionActive = false;
-    state.sessionTime = 300;
-    updateTimerDisplay();
-    
-    closeItemModal();
-    clearFilters();
-    updateUI();
-}
-
-function startSessionTimer() {
-    if (state.sessionTimer) clearInterval(state.sessionTimer);
-    
-    state.sessionTimer = setInterval(() => {
-        state.sessionTime--;
-        updateTimerDisplay();
-        
-        if (state.sessionTime <= 0) {
-            resetSession();
-        } else if (state.sessionTime <= state.idleWarningTime) {
-            showIdleWarning();
-        }
-    }, 1000);
-}
-
-function resetIdleTimer() {
-    state.sessionTime = 300;
-    updateTimerDisplay();
-    document.getElementById('idle-warning').style.display = 'none';
-    startSessionTimer();
-}
-
-function updateTimerDisplay() {
-    const minutes = Math.floor(state.sessionTime / 60);
-    const seconds = state.sessionTime % 60;
-    return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-}
-
-function showIdleWarning() {
-    if (document.getElementById('itemModal').classList.contains('active')) {
-        return;
+// Image preloading for faster category switching
+function preloadCategoryImages(category) {
+    try {
+        const categoryItems = category === "All" ? allItems : allItems.filter(item => item.cat === category);
+        categoryItems.slice(0, 8).forEach(item => { // Preload first 8 items
+            if (!imageCache.has(item.image)) {
+                const img = new Image();
+                img.src = item.image;
+                img.onload = () => imageCache.set(item.image, img);
+                img.onerror = () => {
+                    // Use fallback image
+                    const fallback = `data:image/svg+xml;base64,${btoa('<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" fill="#1d0509"/><text x="50%" y="50%" font-family="Inter" font-size="16" fill="#d4af37" text-anchor="middle" dy=".3em">Turkiana Café</text></svg>')}`;
+                    const fallbackImg = new Image();
+                    fallbackImg.src = fallback;
+                    imageCache.set(item.image, fallbackImg);
+                };
+            }
+        });
+    } catch (error) {
+        console.warn("Image preloading error:", error);
     }
-    
-    document.getElementById('idle-warning').style.display = 'block';
-    
-    setTimeout(() => {
-        if (document.getElementById('idle-warning').style.display === 'block') {
-            resetSession();
-        }
-    }, 30000);
 }
 
 // ============================================
-// 5. UTILITY FUNCTIONS
+// 4. UTILITY FUNCTIONS WITH ENHANCEMENTS
 // ============================================
 
 function showToast(message, type = "success") {
-    const toast = document.getElementById("toast");
-    toast.textContent = message;
-    toast.className = `toast ${type}`;
-    toast.style.display = "block";
-    
-    setTimeout(() => {
-        toast.style.display = "none";
-    }, 2000);
+    try {
+        const toast = document.getElementById("toast");
+        if (!toast) return;
+        
+        toast.textContent = message;
+        toast.className = `toast ${type}`;
+        toast.style.display = "block";
+        
+        setTimeout(() => {
+            toast.style.display = "none";
+        }, 2000);
+    } catch (error) {
+        console.warn("Toast error:", error);
+    }
 }
 
 function formatPrice(price) {
@@ -1631,167 +1540,245 @@ function debounce(func, wait) {
 }
 
 // ============================================
-// 6. SNOW ANIMATION
+// 5. SNOW ANIMATION (BATTERY AWARE)
 // ============================================
 
 function initSnowAnimation() {
-    const canvas = document.getElementById("snow");
-    const ctx = canvas.getContext("2d");
-    
-    function resize() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+    // Check if user prefers reduced motion
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        return;
     }
     
-    resize();
-    window.addEventListener("resize", resize);
-    
-    const flakes = [];
-    const FLAKE_COUNT = 60;
-    
-    for (let i = 0; i < FLAKE_COUNT; i++) {
-        flakes.push({
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            r: Math.random() * 1.2 + 0.5,
-            d: Math.random() * 0.8 + 0.3,
-            vx: Math.random() * 0.1 - 0.05,
-            vy: Math.random() * 0.6 + 0.2
-        });
-    }
-    
-    function draw() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
+    try {
+        const canvas = document.getElementById("snow");
+        const ctx = canvas.getContext("2d");
         
-        for (const flake of flakes) {
-            ctx.beginPath();
-            ctx.arc(flake.x, flake.y, flake.r, 0, Math.PI * 2);
-            ctx.fill();
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
         }
         
-        move();
-    }
-    
-    function move() {
-        for (const flake of flakes) {
-            flake.y += flake.vy;
-            flake.x += flake.vx;
+        resize();
+        window.addEventListener("resize", debounce(resize, 250));
+        
+        const flakes = [];
+        const FLAKE_COUNT = 60;
+        
+        for (let i = 0; i < FLAKE_COUNT; i++) {
+            flakes.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                r: Math.random() * 1.2 + 0.5,
+                d: Math.random() * 0.8 + 0.3,
+                vx: Math.random() * 0.1 - 0.05,
+                vy: Math.random() * 0.6 + 0.2
+            });
+        }
+        
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
             
-            if (flake.y > canvas.height) {
-                flake.y = -5;
-                flake.x = Math.random() * canvas.width;
+            for (const flake of flakes) {
+                ctx.beginPath();
+                ctx.arc(flake.x, flake.y, flake.r, 0, Math.PI * 2);
+                ctx.fill();
             }
             
-            if (flake.x > canvas.width) flake.x = 0;
-            if (flake.x < 0) flake.x = canvas.width;
+            move();
         }
+        
+        function move() {
+            for (const flake of flakes) {
+                flake.y += flake.vy;
+                flake.x += flake.vx;
+                
+                if (flake.y > canvas.height) {
+                    flake.y = -5;
+                    flake.x = Math.random() * canvas.width;
+                }
+                
+                if (flake.x > canvas.width) flake.x = 0;
+                if (flake.x < 0) flake.x = canvas.width;
+            }
+        }
+        
+        function animate() {
+            draw();
+            requestAnimationFrame(animate);
+        }
+        
+        animate();
+    } catch (error) {
+        console.warn("Snow animation error:", error);
     }
-    
-    function animate() {
-        draw();
-        requestAnimationFrame(animate);
-    }
-    
-    animate();
 }
 
 // ============================================
-// 7. FLOATING CATEGORY NAVIGATION (ALWAYS VISIBLE)
+// 6. FLOATING CATEGORY NAVIGATION WITH ALL ENHANCEMENTS
 // ============================================
 
 function renderFloatingCategories() {
-    const floatingCategories = document.getElementById("floatingCategories");
-    floatingCategories.innerHTML = "";
-    
-    const allBtn = document.createElement("button");
-    allBtn.className = "floating-category" + (!state.activeCategory ? " active" : "");
-    allBtn.innerHTML = "✨ All";
-    allBtn.onclick = () => {
-        state.activeCategory = null;
-        updateUI();
-        scrollToTop();
-    };
-    floatingCategories.appendChild(allBtn);
-    
-    state.categories.forEach(cat => {
-        const btn = document.createElement("button");
-        btn.className = "floating-category" + (state.activeCategory === cat ? " active" : "");
-        btn.innerHTML = cat;
-        btn.onclick = () => {
-            state.activeCategory = cat;
+    try {
+        const floatingCategories = document.getElementById("floatingCategories");
+        if (!floatingCategories) {
+            console.error("Floating categories container not found");
+            return;
+        }
+        
+        floatingCategories.innerHTML = "";
+        
+        // All button
+        const allBtn = document.createElement("button");
+        allBtn.className = "floating-category" + (!state.activeCategory ? " active" : "");
+        allBtn.innerHTML = "✨ All";
+        allBtn.setAttribute("data-count", state.categoryCounts["All"] || 0);
+        allBtn.onclick = () => {
+            state.activeCategory = null;
             updateUI();
-            scrollToCategory(cat);
+            scrollToTop();
+            preloadCategoryImages("All");
         };
-        floatingCategories.appendChild(btn);
-    });
-    
-    initCategoryScroll();
+        floatingCategories.appendChild(allBtn);
+        
+        // Category buttons
+        state.categories.forEach(cat => {
+            const btn = document.createElement("button");
+            btn.className = "floating-category" + (state.activeCategory === cat ? " active" : "");
+            btn.innerHTML = cat;
+            btn.setAttribute("data-count", state.categoryCounts[cat] || 0);
+            btn.onclick = () => {
+                state.activeCategory = cat;
+                updateUI();
+                scrollToCategory(cat);
+                preloadCategoryImages(cat);
+            };
+            floatingCategories.appendChild(btn);
+        });
+        
+        initCategoryScroll();
+        
+    } catch (error) {
+        console.error("Error rendering categories:", error);
+        showToast("Navigation error. Please refresh.", "error");
+    }
 }
 
 function initCategoryScroll() {
-    const floatingCategories = document.getElementById("floatingCategories");
-    let isDragging = false;
-    let startX;
-    let scrollLeft;
-    
-    floatingCategories.addEventListener('touchstart', (e) => {
-        isDragging = true;
-        startX = e.touches[0].pageX - floatingCategories.offsetLeft;
-        scrollLeft = floatingCategories.scrollLeft;
-    });
-    
-    floatingCategories.addEventListener('touchmove', (e) => {
-        if (!isDragging) return;
-        e.preventDefault();
-        const x = e.touches[0].pageX - floatingCategories.offsetLeft;
-        const walk = (x - startX) * 1.5;
-        floatingCategories.scrollLeft = scrollLeft - walk;
-    });
-    
-    floatingCategories.addEventListener('touchend', () => {
-        isDragging = false;
-    });
+    try {
+        const floatingCategories = document.getElementById("floatingCategories");
+        if (!floatingCategories) return;
+        
+        let isDragging = false;
+        let startX;
+        let scrollLeft;
+        
+        // Touch swipe gestures
+        floatingCategories.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            startX = e.touches[0].pageX - floatingCategories.offsetLeft;
+            scrollLeft = floatingCategories.scrollLeft;
+        });
+        
+        floatingCategories.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+            const x = e.touches[0].pageX - floatingCategories.offsetLeft;
+            const walk = (x - startX) * 1.5;
+            floatingCategories.scrollLeft = scrollLeft - walk;
+        });
+        
+        floatingCategories.addEventListener('touchend', () => {
+            isDragging = false;
+        });
+        
+        // Mouse drag support
+        floatingCategories.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startX = e.pageX - floatingCategories.offsetLeft;
+            scrollLeft = floatingCategories.scrollLeft;
+        });
+        
+        floatingCategories.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+            const x = e.pageX - floatingCategories.offsetLeft;
+            const walk = (x - startX) * 1.5;
+            floatingCategories.scrollLeft = scrollLeft - walk;
+        });
+        
+        floatingCategories.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+        
+        floatingCategories.addEventListener('mouseleave', () => {
+            isDragging = false;
+        });
+        
+    } catch (error) {
+        console.warn("Category scroll initialization error:", error);
+    }
 }
 
 function scrollToCategory(cat) {
-    const section = document.getElementById(`section-${cat.replace(/\s+/g, "-").toLowerCase()}`);
-    if (section) {
-        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    try {
+        const section = document.getElementById(`section-${cat.replace(/\s+/g, "-").toLowerCase()}`);
+        if (section) {
+            section.scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'start',
+                inline: 'nearest'
+            });
+        }
+    } catch (error) {
+        console.warn("Scroll to category error:", error);
     }
 }
 
 function scrollToTop() {
-    document.querySelector('.content-container').scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
+    try {
+        document.querySelector('.content-container').scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    } catch (error) {
+        console.warn("Scroll to top error:", error);
+    }
 }
+
+// ============================================
+// 7. HANDLE SCROLL WITH IMPROVEMENTS
+// ============================================
 
 function handleScroll() {
     const currentCategoryIndicator = document.getElementById("currentCategoryIndicator");
     const container = document.querySelector('.content-container');
     
-    if (state.isScrolling) return;
+    if (state.isScrolling || !container) return;
     
     state.isScrolling = true;
-    
-    // REMOVED: Code that hides floating categories on scroll
     
     // Update current category indicator
     const sections = document.querySelectorAll('.section');
     let currentSection = null;
+    let currentItemCount = 0;
     
     sections.forEach(section => {
         const rect = section.getBoundingClientRect();
         if (rect.top <= 150 && rect.bottom >= 150) {
             currentSection = section;
+            // Get item count for this category
+            const categoryName = section.querySelector('h2').textContent;
+            currentItemCount = categoryName === "All" ? 
+                allItems.length : 
+                allItems.filter(item => item.cat === categoryName).length;
         }
     });
     
     if (currentSection) {
         const categoryName = currentSection.querySelector('h2').textContent;
         currentCategoryIndicator.textContent = categoryName;
+        currentCategoryIndicator.setAttribute("data-count", currentItemCount);
         currentCategoryIndicator.classList.add('visible');
         
         // Update active category button
@@ -1819,11 +1806,12 @@ function handleScroll() {
 }
 
 // ============================================
-// 8. RENDER FUNCTIONS (OPTIMIZED)
+// 8. RENDER FUNCTIONS (OPTIMIZED WITH ERROR HANDLING)
 // ============================================
 
 async function renderContent() {
     const mainContent = document.getElementById("mainContent");
+    if (!mainContent) return;
     
     // Show loading indicator
     mainContent.innerHTML = `
@@ -1833,84 +1821,104 @@ async function renderContent() {
         </div>
     `;
     
-    // Filter items
-    const filtered = allItems.filter(item => {
-        const matchCat = !state.activeCategory || item.cat === state.activeCategory;
-        const matchSearch = !state.searchQuery || 
-            item.enName.toLowerCase().includes(state.searchQuery) || 
-            item.arName.includes(state.searchQuery);
-        return matchCat && matchSearch;
-    });
-    
-    // No results
-    if (filtered.length === 0) {
-        setTimeout(() => {
-            mainContent.innerHTML = `
-                <div class="no-results">
-                    <strong>No items found</strong>
-                    <p>Try adjusting your search terms</p>
-                </div>
-            `;
-        }, 100);
-        return;
-    }
-    
-    // Group by category
-    const grouped = {};
-    filtered.forEach(item => {
-        if (!grouped[item.cat]) grouped[item.cat] = [];
-        grouped[item.cat].push(item);
-    });
-    
-    // Render sections
-    let html = '';
-    for (const [cat, items] of Object.entries(grouped)) {
-        html += `
-            <div class="section" id="section-${cat.replace(/\s+/g, "-").toLowerCase()}">
-                <h2>${cat}</h2>
-                <p>Touch any item for details</p>
-                <div class="grid">
-        `;
-        
-        // Create cards
-        items.forEach(item => {
-            html += `
-                <div class="card" tabindex="0" role="button" aria-label="${item.enName}, ${item.price} QAR" onclick="openItemModal(${JSON.stringify(item).replace(/"/g, '&quot;')})">
-                    <img src="${item.image}" 
-                         alt="${item.enName}" 
-                         class="card-image lazy-image" 
-                         loading="lazy"
-                         width="300"
-                         height="200"
-                         onload="this.classList.add('loaded')">
-                    <div class="card-body">
-                        <h3>${item.enName}</h3>
-                        <div class="card-ar-name">${item.arName}</div>
-                        <span class="card-price">QAR ${formatPrice(item.price)}</span>
-                    </div>
-                    ${item.popular ? '<div class="card-badge" aria-label="Chef\'s Pick">Chef\'s Pick</div>' : ''}
-                </div>
-            `;
+    try {
+        // Filter items
+        const filtered = allItems.filter(item => {
+            const matchCat = !state.activeCategory || item.cat === state.activeCategory;
+            const matchSearch = !state.searchQuery || 
+                item.enName.toLowerCase().includes(state.searchQuery) || 
+                item.arName.includes(state.searchQuery);
+            return matchCat && matchSearch;
         });
         
-        html += `
+        // No results
+        if (filtered.length === 0) {
+            setTimeout(() => {
+                mainContent.innerHTML = `
+                    <div class="no-results">
+                        <strong>No items found</strong>
+                        <p>Try adjusting your search terms or select a different category</p>
+                    </div>
+                `;
+            }, 100);
+            return;
+        }
+        
+        // Group by category
+        const grouped = {};
+        filtered.forEach(item => {
+            if (!grouped[item.cat]) grouped[item.cat] = [];
+            grouped[item.cat].push(item);
+        });
+        
+        // If "All" is selected or activeCategory is null, show all categories
+        const categoriesToShow = !state.activeCategory ? state.categories : [state.activeCategory];
+        
+        // Render sections
+        let html = '';
+        for (const cat of categoriesToShow) {
+            const items = grouped[cat] || filtered.filter(item => item.cat === cat);
+            if (items.length === 0) continue;
+            
+            html += `
+                <div class="section" id="section-${cat.replace(/\s+/g, "-").toLowerCase()}">
+                    <h2>${cat}</h2>
+                    <p>Touch any item for details • ${items.length} items</p>
+                    <div class="grid">
+            `;
+            
+            // Create cards with error handling
+            items.forEach(item => {
+                const safeImage = item.image || `data:image/svg+xml;base64,${btoa('<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" fill="#1d0509"/><text x="50%" y="50%" font-family="Inter" font-size="16" fill="#d4af37" text-anchor="middle" dy=".3em">Turkiana Café</text></svg>')}`;
+                
+                html += `
+                    <div class="card" tabindex="0" role="button" aria-label="${item.enName}, ${item.price} QAR" onclick="openItemModal(${JSON.stringify(item).replace(/"/g, '&quot;').replace(/'/g, "\\'")})">
+                        <img src="${safeImage}" 
+                             alt="${item.enName}" 
+                             class="card-image lazy-image" 
+                             loading="lazy"
+                             width="300"
+                             height="200"
+                             onload="this.classList.add('loaded')"
+                             onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMWQwNTA5Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJJbnRlciIgZm9udC1zaXplPSIxNnB4IiBmaWxsPSIjZDRhZjM3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+VHVya2lhbmEgQ2FmZTwvdGV4dD48L3N2Zz4='; this.classList.add('loaded')">
+                        <div class="card-body">
+                            <h3>${item.enName}</h3>
+                            <div class="card-ar-name">${item.arName}</div>
+                            <span class="card-price">QAR ${formatPrice(item.price)}</span>
+                        </div>
+                        ${item.popular ? '<div class="card-badge" aria-label="Chef\'s Pick">Chef\'s Pick</div>' : ''}
+                    </div>
+                `;
+            });
+            
+            html += `
+                    </div>
                 </div>
+            `;
+        }
+        
+        // Update content
+        setTimeout(() => {
+            mainContent.innerHTML = html;
+            
+            // Add lazy loading for images
+            const lazyImages = document.querySelectorAll('.lazy-image');
+            lazyImages.forEach(img => {
+                if (img.complete) {
+                    img.classList.add('loaded');
+                }
+            });
+        }, 50);
+        
+    } catch (error) {
+        console.error("Content rendering error:", error);
+        mainContent.innerHTML = `
+            <div class="no-results">
+                <strong>Loading Error</strong>
+                <p>Please refresh the page or try again later</p>
             </div>
         `;
     }
-    
-    // Update content
-    setTimeout(() => {
-        mainContent.innerHTML = html;
-        
-        // Add lazy loading for images
-        const lazyImages = document.querySelectorAll('.lazy-image');
-        lazyImages.forEach(img => {
-            if (img.complete) {
-                img.classList.add('loaded');
-            }
-        });
-    }, 50);
 }
 
 function clearFilters() {
@@ -1922,45 +1930,60 @@ function clearFilters() {
 }
 
 // ============================================
-// 9. MODAL FUNCTIONS (Fixed size, not full screen)
+// 9. MODAL FUNCTIONS WITH ENHANCEMENTS
 // ============================================
 
 function openItemModal(item) {
-    state.currentModalItem = item;
-    
-    const modal = document.getElementById("itemModal");
-    const modalTitle = document.getElementById("modalTitle");
-    const modalImage = document.getElementById("modalImage");
-    const modalDescEn = document.getElementById("modalDescEn");
-    const modalDescAr = document.getElementById("modalDescAr");
-    const modalCalories = document.getElementById("modalCalories");
-    const modalDietary = document.getElementById("modalDietary");
-    const modalPrice = document.getElementById("modalPrice");
-    
-    modalTitle.textContent = item.enName;
-    modalImage.src = item.image;
-    modalImage.alt = item.enName;
-    modalDescEn.textContent = item.enDesc;
-    modalDescAr.textContent = item.arDesc;
-    modalCalories.textContent = "☕ " + item.calories;
-    modalDietary.textContent = item.dietary.length ? "🏷️ " + item.dietary.join(" • ") : "House Selection";
-    modalPrice.textContent = formatPrice(item.price);
-    
-    modal.classList.add("active");
-    modal.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
-    
-    setTimeout(() => {
-        modal.querySelector(".modal-close").focus();
-    }, 100);
+    try {
+        state.currentModalItem = item;
+        
+        const modal = document.getElementById("itemModal");
+        const modalTitle = document.getElementById("modalTitle");
+        const modalImage = document.getElementById("modalImage");
+        const modalDescEn = document.getElementById("modalDescEn");
+        const modalDescAr = document.getElementById("modalDescAr");
+        const modalCalories = document.getElementById("modalCalories");
+        const modalDietary = document.getElementById("modalDietary");
+        const modalPrice = document.getElementById("modalPrice");
+        
+        if (!modal || !modalTitle) {
+            showToast("Modal error. Please try again.", "error");
+            return;
+        }
+        
+        modalTitle.textContent = item.enName;
+        modalImage.src = item.image;
+        modalImage.alt = item.enName;
+        modalDescEn.textContent = item.enDesc;
+        modalDescAr.textContent = item.arDesc;
+        modalCalories.textContent = "☕ " + item.calories;
+        modalDietary.textContent = item.dietary.length ? "🏷️ " + item.dietary.join(" • ") : "House Selection";
+        modalPrice.textContent = formatPrice(item.price);
+        
+        modal.classList.add("active");
+        modal.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+        
+        // Focus trap for accessibility
+        setTimeout(() => {
+            const closeBtn = modal.querySelector(".modal-close");
+            if (closeBtn) closeBtn.focus();
+        }, 100);
+        
+    } catch (error) {
+        console.error("Modal open error:", error);
+        showToast("Could not open item details", "error");
+    }
 }
 
 function closeItemModal() {
     const modal = document.getElementById("itemModal");
-    modal.classList.remove("active");
-    modal.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "";
-    state.currentModalItem = null;
+    if (modal) {
+        modal.classList.remove("active");
+        modal.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+        state.currentModalItem = null;
+    }
 }
 
 // ============================================
@@ -1973,67 +1996,155 @@ function updateUI() {
 }
 
 // ============================================
-// 11. MAIN APP INITIALIZATION
+// 11. MAIN APP INITIALIZATION WITH ERROR BOUNDARIES
 // ============================================
 
 function initApp() {
-    initSnowAnimation();
-    renderFloatingCategories();
-    renderContent();
-    
-    const container = document.querySelector('.content-container');
-    container.addEventListener('scroll', debounce(handleScroll, 50));
-    
-    document.querySelector(".modal-close").addEventListener("click", closeItemModal);
-    
-    document.getElementById("itemModal").addEventListener("click", (e) => {
-        if (e.target === document.getElementById("itemModal")) {
-            closeItemModal();
-        }
-    });
-    
-    document.addEventListener("fullscreenchange", () => {
-        state.isFullscreen = !!document.fullscreenElement;
-    });
-    
-    window.addEventListener("orientationchange", () => {
-        setTimeout(() => {
-            renderFloatingCategories();
-            renderContent();
-        }, 300);
-    });
-    
-    enterFullscreen();
-}
-
-async function enterFullscreen() {
     try {
-        const elem = document.documentElement;
+        // Initialize components with error handling
+        initSnowAnimation();
+        renderFloatingCategories();
+        renderContent();
         
-        if (elem.requestFullscreen) {
-            await elem.requestFullscreen();
-        } else if (elem.webkitRequestFullscreen) {
-            await elem.webkitRequestFullscreen();
-        } else if (elem.msRequestFullscreen) {
-            await elem.msRequestFullscreen();
+        const container = document.querySelector('.content-container');
+        if (container) {
+            container.addEventListener('scroll', debounce(handleScroll, 50));
         }
         
-        state.isFullscreen = true;
-    } catch (err) {
-        console.log("Fullscreen error:", err);
+        const modalCloseBtn = document.querySelector(".modal-close");
+        if (modalCloseBtn) {
+            modalCloseBtn.addEventListener("click", closeItemModal);
+        }
+        
+        const modalBackdrop = document.getElementById("itemModal");
+        if (modalBackdrop) {
+            modalBackdrop.addEventListener("click", (e) => {
+                if (e.target === modalBackdrop) {
+                    closeItemModal();
+                }
+            });
+        }
+        
+        // Handle ESC key to close modal
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && document.getElementById("itemModal").classList.contains("active")) {
+                closeItemModal();
+            }
+        });
+        
+        document.addEventListener("fullscreenchange", () => {
+            state.isFullscreen = !!document.fullscreenElement;
+        });
+        
+        window.addEventListener("orientationchange", debounce(() => {
+            setTimeout(() => {
+                renderFloatingCategories();
+                renderContent();
+            }, 300);
+        }, 250));
+        
+        // Hide loading overlay after content loads
+        setTimeout(() => {
+            document.getElementById('loadingOverlay').classList.add('hidden');
+        }, 500);
+        
+        showToast("Welcome to Turkiana Café & Sweets", "success");
+        
+    } catch (error) {
+        console.error("App initialization error:", error);
+        showToast("Application error. Please refresh.", "error");
     }
 }
 
 // ============================================
-// 12. START THE APPLICATION
+// 12. TOUCH GESTURE IMPROVEMENTS
+// ============================================
+
+function initTouchGestures() {
+    // Add swipe gestures for category navigation
+    let touchStartX = 0;
+    let touchEndX = 0;
+    let touchStartY = 0;
+    let touchEndY = 0;
+    
+    document.addEventListener('touchstart', e => {
+        touchStartX = e.changedTouches[0].screenX;
+        touchStartY = e.changedTouches[0].screenY;
+    }, { passive: true });
+    
+    document.addEventListener('touchend', e => {
+        touchEndX = e.changedTouches[0].screenX;
+        touchEndY = e.changedTouches[0].screenY;
+        handleSwipe();
+    }, { passive: true });
+    
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        const verticalThreshold = 100;
+        const diffX = touchStartX - touchEndX;
+        const diffY = touchStartY - touchEndY;
+        
+        // Only process horizontal swipes if they're not mostly vertical
+        if (Math.abs(diffX) > swipeThreshold && Math.abs(diffY) < verticalThreshold) {
+            const floatingCategories = document.getElementById("floatingCategories");
+            if (floatingCategories) {
+                if (diffX > 0) {
+                    // Swipe left - scroll categories right
+                    floatingCategories.scrollLeft += 200;
+                } else {
+                    // Swipe right - scroll categories left
+                    floatingCategories.scrollLeft -= 200;
+                }
+            }
+        }
+    }
+}
+
+// ============================================
+// 13. START THE APPLICATION
 // ============================================
 
 document.addEventListener("DOMContentLoaded", () => {
-    initKioskMode();
+    // Add error boundary for entire app
+    try {
+        // Calculate category counts
+        calculateCategoryCounts();
+        
+        // Initialize the app immediately
+        initApp();
+        initTouchGestures();
+        
+        // Preload "All" category images
+        preloadCategoryImages("All");
+        
+        // Add online/offline detection
+        window.addEventListener('online', () => {
+            showToast("Back online", "info");
+        });
+        
+        window.addEventListener('offline', () => {
+            showToast("No internet connection", "error");
+        });
+        
+    } catch (error) {
+        console.error("Fatal application error:", error);
+        document.body.innerHTML = `
+            <div style="display: flex; justify-content: center; align-items: center; height: 100vh; background: var(--bg); color: var(--gold); text-align: center; padding: 20px;">
+                <div>
+                    <h2 style="font-family: 'Playfair Display'; margin-bottom: 20px;">Application Error</h2>
+                    <p style="margin-bottom: 30px;">Please refresh the page or contact support.</p>
+                    <button onclick="location.reload()" style="background: var(--gold); color: var(--bg); border: none; padding: 15px 30px; border-radius: 8px; font-weight: bold; cursor: pointer;">
+                        Refresh Page
+                    </button>
+                </div>
+            </div>
+        `;
+    }
 });
 
-// Make openItemModal available globally
+// Make functions available globally
 window.openItemModal = openItemModal;
+window.closeItemModal = closeItemModal;
 </script>
 </body>
 </html>
