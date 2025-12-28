@@ -70,7 +70,7 @@ body {
 }
 
 /* ============================================
-   KIOSK MODE STYLES
+   KIOSK MODE STYLES (SIMPLIFIED)
 ============================================ */
 body.kiosk-mode {
     cursor: none !important;
@@ -140,54 +140,9 @@ body.kiosk-mode {
     box-shadow: 0 12px 30px rgba(212, 175, 55, 0.6);
 }
 
-/* Kiosk Navigation Bar */
+/* Kiosk Navigation Bar (REMOVED) */
 #kiosk-nav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: rgba(12, 4, 6, 0.98);
-    border-top: 3px solid var(--gold);
-    padding: 15px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 1000;
-    backdrop-filter: blur(20px);
-    box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.5);
-}
-
-.kiosk-nav-btn {
-    background: rgba(212, 175, 55, 0.15);
-    border: 2px solid rgba(212, 175, 55, 0.4);
-    color: var(--gold);
-    padding: 15px 30px;
-    border-radius: 10px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    min-height: 50px;
-    min-width: 120px;
-}
-
-.kiosk-nav-btn:hover,
-.kiosk-nav-btn:active {
-    background: rgba(212, 175, 55, 0.25);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-}
-
-#kiosk-timer {
-    color: var(--muted);
-    font-size: 0.9rem;
-    padding: 10px 20px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 8px;
-    border: 1px solid rgba(212, 175, 55, 0.2);
+    display: none !important;
 }
 
 /* Kiosk-optimized cards */
@@ -211,14 +166,7 @@ body.kiosk-mode .card-price {
     font-size: 1.3rem;
 }
 
-body.kiosk-mode .favorite-btn {
-    width: 50px;
-    height: 50px;
-    font-size: 1.4rem;
-}
-
 /* Larger touch targets for kiosk */
-body.kiosk-mode .filter-btn,
 body.kiosk-mode .category-pill,
 body.kiosk-mode .btn {
     min-height: 55px;
@@ -409,176 +357,66 @@ body.kiosk-mode {
 }
 
 /* ============================================
-   HEADER (Scrolls away)
+   HEADER (HIDDEN)
 ============================================ */
 header {
-    text-align: center;
-    padding: 25px 20px 20px;
-    background: linear-gradient(135deg, rgba(59, 15, 23, 0.9), rgba(212, 175, 55, 0.12));
-    border-bottom: 2px solid var(--gold);
-    position: relative;
-    z-index: 1;
-    /* Header will scroll away naturally */
-}
-
-header h1 {
-    font-family: "Playfair Display", serif;
-    font-size: clamp(2rem, 5vw, 3rem);
-    margin: 0;
-    letter-spacing: 0.08em;
-    background: linear-gradient(130deg, #fff, var(--gold));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.subline {
-    margin-top: 8px;
-    letter-spacing: 0.45em;
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    opacity: 0.9;
-    color: var(--muted);
-}
-
-header p {
-    max-width: 680px;
-    margin: 12px auto 15px;
-    color: var(--muted);
-    font-size: 0.8rem;
-    line-height: 1.6;
+    display: none !important;
 }
 
 /* ============================================
-   STICKY NAVIGATION (Categories & Search only - Stays on top)
+   FLOATING CATEGORY NAVIGATION
 ============================================ */
-.sticky-nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(12, 4, 6, 0.98);
+.floating-categories {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(12, 4, 6, 0.95);
     backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
-    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
-    padding: 12px 0;
-    margin-bottom: 10px;
-}
-
-.search-section {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.search-input {
-    width: 100%;
-    padding: 16px 20px;
-    border-radius: 12px;
-    border: 2px solid rgba(212, 175, 55, 0.4);
-    background: rgba(212, 175, 55, 0.08);
-    color: var(--text);
-    font-size: 1rem;
-    margin-bottom: 12px;
-    transition: all 0.3s;
-    font-family: 'Inter', sans-serif;
-    -webkit-appearance: none;
-    appearance: none;
-}
-
-.search-input:focus {
-    outline: none;
-    background: rgba(212, 175, 55, 0.12);
-    border-color: var(--gold);
-    box-shadow: 0 0 20px rgba(212, 175, 55, 0.25);
-}
-
-.filters {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    align-items: center;
-    margin-bottom: 12px;
-    justify-content: center;
-}
-
-.filter-btn {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    padding: 10px 16px;
-    border-radius: 20px;
-    border: 2px solid rgba(255, 255, 255, 0.15);
-    background: rgba(255, 255, 255, 0.03);
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 0.8rem;
-    cursor: pointer;
-    transition: all 0.25s;
-    font-family: 'Inter', sans-serif;
-    min-height: 44px;
-    flex: 1;
-    min-width: 120px;
-    justify-content: center;
-}
-
-.filter-btn:hover,
-.filter-btn:active {
-    border-color: rgba(212, 175, 55, 0.5);
-    color: rgba(255, 255, 255, 0.9);
-    transform: translateY(-2px);
-}
-
-.filter-btn.active {
-    background: linear-gradient(135deg, rgba(139, 9, 33, 0.5), rgba(212, 175, 55, 0.3));
-    border-color: rgba(212, 175, 55, 0.8);
-    color: #fff;
-    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-}
-
-/* ============================================
-   CATEGORIES
-============================================ */
-.categories-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-    position: relative;
-}
-
-.categories {
+    border: 2px solid rgba(212, 175, 55, 0.3);
+    border-radius: 50px;
+    padding: 12px 20px;
+    z-index: 100;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
     display: flex;
     gap: 10px;
+    max-width: 90vw;
     overflow-x: auto;
-    padding: 12px 0;
     scrollbar-width: none;
     -ms-overflow-style: none;
     -webkit-overflow-scrolling: touch;
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-.categories::-webkit-scrollbar {
+.floating-categories::-webkit-scrollbar {
     display: none;
 }
 
-.category-pill {
+.floating-categories.hidden {
+    transform: translateX(-50%) translateY(-100px);
+    opacity: 0;
+}
+
+.floating-category {
     flex-shrink: 0;
     padding: 12px 24px;
-    border-radius: 999px;
+    border-radius: 30px;
     border: 2px solid rgba(255, 255, 255, 0.25);
     background: rgba(255, 255, 255, 0.06);
     color: rgba(255, 255, 255, 0.9);
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-    min-height: 44px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    min-height: 48px;
     font-family: 'Inter', sans-serif;
     -webkit-tap-highlight-color: transparent;
+    white-space: nowrap;
 }
 
-.category-pill::before {
+.floating-category::before {
     content: "";
     position: absolute;
     inset: 0;
@@ -590,21 +428,46 @@ header p {
     transition: opacity 0.3s;
 }
 
-.category-pill:hover,
-.category-pill:active {
+.floating-category:hover,
+.floating-category:active {
     transform: translateY(-4px) scale(1.03);
     box-shadow: 0 12px 28px rgba(255, 174, 76, 0.4);
 }
 
-.category-pill:hover::before {
+.floating-category:hover::before {
     opacity: 1;
 }
 
-.category-pill.active {
+.floating-category.active {
     color: #0a0503;
     background: linear-gradient(135deg, #ffd771, #ff5f6d, #ffd771);
     border-color: transparent;
     box-shadow: 0 16px 45px rgba(255, 179, 71, 0.5);
+}
+
+/* Category indicator */
+.current-category-indicator {
+    position: fixed;
+    top: 90px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(212, 175, 55, 0.9);
+    color: var(--bg);
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    z-index: 99;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: opacity 0.3s;
+    opacity: 0;
+}
+
+.current-category-indicator.visible {
+    opacity: 1;
 }
 
 /* ============================================
@@ -627,54 +490,60 @@ header p {
     flex: 1;
     overflow-y: auto;
     overflow-x: hidden;
-    padding: 20px;
-    max-width: 1200px;
+    padding: 120px 20px 40px; /* Space for floating categories */
+    max-width: 1400px;
     margin: 0 auto;
     width: 100%;
-    padding-bottom: 80px; /* Space for kiosk nav */
+    -webkit-overflow-scrolling: touch;
 }
 
 .section {
-    margin-bottom: 30px;
-    scroll-margin-top: 100px;
+    margin-bottom: 40px;
+    scroll-margin-top: 140px;
 }
 
 .section h2 {
     font-family: "Playfair Display", serif;
-    font-size: 1.5rem;
-    margin: 0 0 15px;
+    font-size: 2rem;
+    margin: 0 0 20px;
     color: #fff;
     position: relative;
-    padding-bottom: 8px;
+    padding-bottom: 12px;
+    text-align: center;
 }
 
 .section h2::after {
     content: '';
     position: absolute;
     bottom: 0;
-    left: 0;
-    width: 60px;
-    height: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
     background: var(--gold);
 }
 
 .section p {
-    margin: 0 0 15px;
+    margin: 0 0 25px;
     color: var(--muted);
-    font-size: 0.85rem;
+    font-size: 1rem;
+    text-align: center;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
 }
 
 /* ============================================
    CARDS (Touch Optimized)
 ============================================ */
 .card {
-    border-radius: 16px;
+    border-radius: 20px;
     overflow: hidden;
     background: linear-gradient(135deg, rgba(12, 4, 6, 0.95), rgba(59, 15, 23, 0.85));
     border: 2px solid rgba(255, 255, 255, 0.08);
@@ -682,7 +551,7 @@ header p {
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
-    min-height: 280px;
+    min-height: 350px;
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
 }
@@ -695,7 +564,7 @@ header p {
 
 .card-image {
     width: 100%;
-    height: 150px;
+    height: 200px;
     object-fit: cover;
     transition: transform 0.3s ease;
     image-rendering: -webkit-optimize-contrast;
@@ -714,74 +583,52 @@ header p {
 
 .card-badge {
     position: absolute;
-    top: 12px;
-    right: 12px;
-    padding: 6px 12px;
+    top: 15px;
+    right: 15px;
+    padding: 8px 16px;
     border-radius: 20px;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     background: linear-gradient(135deg, rgba(212, 175, 55, 0.9), rgba(139, 9, 33, 0.9));
     color: white;
     border: 2px solid rgba(212, 175, 55, 0.9);
     animation: pulse 2s infinite;
     font-weight: 600;
     letter-spacing: 0.5px;
+    z-index: 2;
 }
 
 .card-body {
-    padding: 16px;
+    padding: 20px;
     text-align: center;
 }
 
 .card h3 {
-    margin: 0;
-    font-size: 1rem;
-    font-weight: 600;
+    margin: 0 0 10px;
+    font-size: 1.2rem;
+    font-weight: 700;
     color: #fff;
     line-height: 1.4;
-    min-height: 2.8em;
+    min-height: 3em;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0 4px;
 }
 
+.card-ar-name {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    min-height: 2em;
+    font-style: italic;
+}
+
 .card-price {
     display: block;
     color: var(--gold);
-    padding-top: 12px;
-    font-weight: 700;
-    font-size: 1.1rem;
-}
-
-.favorite-btn {
-    position: absolute;
-    bottom: 16px;
-    right: 16px;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    border: 2px solid rgba(255, 255, 255, 0.5);
-    background: rgba(0, 0, 0, 0.7);
-    color: rgba(255, 255, 255, 0.9);
-    cursor: pointer;
-    font-size: 1.2rem;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    display: grid;
-    place-items: center;
-    backdrop-filter: blur(5px);
-    -webkit-tap-highlight-color: transparent;
-}
-
-.favorite-btn:active {
-    border-color: rgba(212, 175, 55, 0.8);
-    background: rgba(212, 175, 55, 0.3);
-    transform: scale(1.1);
-}
-
-.favorite-btn.active {
-    background: linear-gradient(135deg, rgba(139, 9, 33, 0.9), rgba(212, 175, 55, 0.9));
-    color: #fff;
-    border-color: rgba(212, 175, 55, 0.9);
+    font-weight: 800;
+    font-size: 1.4rem;
+    margin-top: 10px;
 }
 
 /* ============================================
@@ -845,7 +692,7 @@ header p {
 .modal-header h3 {
     margin: 0;
     font-family: "Playfair Display", serif;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     color: var(--gold);
     flex: 1;
     padding-right: 20px;
@@ -855,11 +702,11 @@ header p {
     background: rgba(212, 175, 55, 0.1);
     border: 2px solid rgba(212, 175, 55, 0.3);
     color: rgba(255, 255, 255, 0.9);
-    font-size: 1.8rem;
+    font-size: 2rem;
     cursor: pointer;
     transition: all 0.3s;
-    width: 44px;
-    height: 44px;
+    width: 50px;
+    height: 50px;
     display: grid;
     place-items: center;
     border-radius: 50%;
@@ -883,9 +730,9 @@ header p {
 }
 
 .modal-image-container {
-    flex: 0 0 250px;
-    min-height: 250px;
-    max-height: 300px;
+    flex: 0 0 300px;
+    min-height: 300px;
+    max-height: 350px;
     position: relative;
     overflow: hidden;
 }
@@ -899,17 +746,17 @@ header p {
 }
 
 .modal-info {
-    padding: 20px;
+    padding: 25px;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 20px;
     flex: 1;
 }
 
 .modal-info h4 {
-    margin: 0;
+    margin: 0 0 8px;
     color: var(--gold);
-    font-size: 0.9rem;
+    font-size: 1rem;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     font-weight: 600;
@@ -917,80 +764,33 @@ header p {
 
 .modal-info p {
     margin: 0;
-    color: rgba(255, 255, 255, 0.85);
-    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
     line-height: 1.6;
 }
 
 .modal-meta {
-    padding: 16px;
+    padding: 20px;
     background: rgba(212, 175, 55, 0.1);
     border-radius: 12px;
     border: 2px solid rgba(212, 175, 55, 0.2);
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     color: rgba(255, 255, 255, 0.8);
     line-height: 1.5;
 }
 
-.modal-actions {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-top: 20px;
-}
-
-.btn {
-    padding: 14px;
-    border-radius: 12px;
-    border: none;
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-    font-size: 0.95rem;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    min-height: 48px;
-    -webkit-tap-highlight-color: transparent;
-}
-
-.btn:active {
-    transform: translateY(-2px);
-}
-
-.btn-primary {
-    background: linear-gradient(135deg, var(--gold), #ffd166);
-    color: var(--bg);
-}
-
-.btn-primary:active {
-    box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
-}
-
-.btn-secondary {
-    background: rgba(255, 255, 255, 0.1);
-    color: var(--text);
-    border: 2px solid rgba(255, 255, 255, 0.2);
-}
-
-.btn-secondary:active {
-    background: rgba(255, 255, 255, 0.2);
-}
-
 .modal-footer {
-    padding: 20px;
+    padding: 25px;
     border-top: 2px solid rgba(212, 175, 55, 0.2);
     text-align: center;
     background: rgba(212, 175, 55, 0.05);
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     flex-shrink: 0;
 }
 
 .modal-footer strong {
     color: var(--gold);
-    font-size: 1.4rem;
+    font-size: 2rem;
     margin: 0 5px;
 }
 
@@ -1000,39 +800,28 @@ header p {
 .no-results {
     grid-column: 1 / -1;
     text-align: center;
-    padding: 60px 20px;
+    padding: 80px 20px;
     color: var(--muted);
 }
 
 .no-results strong {
     color: var(--gold);
     display: block;
-    margin-bottom: 12px;
-    font-size: 1.2rem;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
     font-family: "Playfair Display", serif;
 }
 
 .no-results p {
-    font-size: 1rem;
+    font-size: 1.1rem;
     opacity: 0.8;
 }
 
 /* ============================================
-   FOOTER (Minimal for Tablets)
+   FOOTER (Hidden)
 ============================================ */
 footer {
-    text-align: center;
-    padding: 15px 20px;
-    color: var(--muted);
-    font-size: 0.7rem;
-    border-top: 2px solid rgba(212, 175, 55, 0.25);
-    position: relative;
-    z-index: 1;
-    background: rgba(12, 4, 6, 0.95);
-}
-
-footer p {
-    margin: 4px 0;
+    display: none !important;
 }
 
 /* ============================================
@@ -1053,17 +842,17 @@ footer p {
    SCROLLBAR STYLING
 ============================================ */
 .content-container::-webkit-scrollbar {
-    width: 8px;
+    width: 10px;
 }
 
 .content-container::-webkit-scrollbar-track {
     background: rgba(12, 4, 6, 0.5);
-    border-radius: 4px;
+    border-radius: 5px;
 }
 
 .content-container::-webkit-scrollbar-thumb {
     background: linear-gradient(var(--gold), #ffd166);
-    border-radius: 4px;
+    border-radius: 5px;
     border: 2px solid var(--bg);
 }
 
@@ -1076,12 +865,12 @@ footer p {
 ============================================ */
 @media (min-width: 768px) and (max-width: 1024px) {
     .grid {
-        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-        gap: 14px;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 20px;
     }
     
     .card {
-        min-height: 260px;
+        min-height: 320px;
     }
     
     .modal-body {
@@ -1090,38 +879,40 @@ footer p {
     
     .modal-image-container {
         flex: 0 0 40%;
-        min-height: 300px;
+        min-height: 350px;
     }
     
-    .modal-actions {
-        grid-template-columns: 1fr;
+    .floating-categories {
+        top: 15px;
+        padding: 10px 15px;
+    }
+    
+    .floating-category {
+        padding: 10px 20px;
+        font-size: 0.8rem;
     }
 }
 
 @media (max-width: 767px) {
     .grid {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-        gap: 12px;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 15px;
     }
     
     .card {
-        min-height: 240px;
+        min-height: 280px;
     }
     
     .card h3 {
-        font-size: 0.9rem;
+        font-size: 1.1rem;
+    }
+    
+    .card-ar-name {
+        font-size: 0.8rem;
     }
     
     .card-price {
-        font-size: 1rem;
-    }
-    
-    .filters {
-        justify-content: stretch;
-    }
-    
-    .filter-btn {
-        min-width: calc(50% - 8px);
+        font-size: 1.2rem;
     }
     
     .modal-body {
@@ -1133,36 +924,54 @@ footer p {
         min-height: 250px;
     }
     
-    .modal-actions {
-        grid-template-columns: 1fr;
-    }
-    
     .modal-card {
         width: 95%;
         max-height: 85vh;
+    }
+    
+    .floating-categories {
+        top: 10px;
+        padding: 8px 12px;
+        border-radius: 40px;
+    }
+    
+    .floating-category {
+        padding: 8px 16px;
+        font-size: 0.75rem;
+        min-height: 42px;
+    }
+    
+    .current-category-indicator {
+        top: 70px;
+        font-size: 0.8rem;
+        padding: 6px 16px;
+    }
+    
+    .content-container {
+        padding: 100px 15px 30px;
+    }
+    
+    .section h2 {
+        font-size: 1.5rem;
     }
 }
 
 @media (max-width: 480px) {
     .grid {
-        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-        gap: 10px;
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 12px;
     }
     
     .card {
-        min-height: 220px;
+        min-height: 250px;
     }
     
     .card-image {
-        height: 120px;
-    }
-    
-    .filter-btn {
-        min-width: 100%;
+        height: 150px;
     }
     
     .modal-header h3 {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
     }
     
     .modal-image-container {
@@ -1170,8 +979,15 @@ footer p {
         min-height: 200px;
     }
     
-    .modal-actions {
-        grid-template-columns: 1fr;
+    .floating-categories {
+        top: 5px;
+        padding: 6px 10px;
+    }
+    
+    .floating-category {
+        padding: 6px 12px;
+        font-size: 0.7rem;
+        min-height: 38px;
     }
 }
 
@@ -1179,54 +995,41 @@ footer p {
    LANDSCAPE ORIENTATION
 ============================================ */
 @media (orientation: landscape) and (max-height: 600px) {
-    .app-container {
-        flex-direction: row;
+    .floating-categories {
+        top: 10px;
+        padding: 6px 10px;
     }
     
-    .sticky-nav {
-        flex: 0 0 300px;
-        height: 100vh;
-        overflow-y: auto;
-        border-right: 2px solid rgba(212, 175, 55, 0.3);
-        border-bottom: none;
-        position: relative;
-        top: 0;
+    .floating-category {
+        padding: 6px 12px;
+        font-size: 0.75rem;
+        min-height: 36px;
     }
     
     .content-container {
-        height: 100vh;
+        padding-top: 80px;
     }
     
-    header {
-        padding: 15px 20px;
+    .current-category-indicator {
+        top: 60px;
+        font-size: 0.8rem;
+        padding: 4px 12px;
     }
     
-    header h1 {
-        font-size: 1.5rem;
+    .section {
+        margin-bottom: 20px;
+        scroll-margin-top: 100px;
     }
     
-    .search-input {
-        padding: 12px 16px;
-        font-size: 0.9rem;
+    .section h2 {
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+        padding-bottom: 8px;
     }
     
-    .categories {
-        flex-direction: column;
-        gap: 8px;
-    }
-    
-    .category-pill {
-        width: 100%;
-        text-align: center;
-    }
-    
-    .modal-body {
-        flex-direction: row;
-    }
-    
-    .modal-image-container {
-        flex: 0 0 40%;
-        min-height: 300px;
+    .section h2::after {
+        width: 60px;
+        height: 2px;
     }
 }
 
@@ -1247,8 +1050,7 @@ footer p {
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .card,
     .modal-card,
-    .filter-btn,
-    .category-pill {
+    .floating-category {
         border-width: 1.5px;
     }
 }
@@ -1263,10 +1065,6 @@ footer p {
     
     .card:active {
         transform: translateY(-2px) scale(0.99);
-    }
-    
-    .search-input {
-        font-size: 16px; /* Prevents zoom on focus */
     }
 }
 
@@ -1318,6 +1116,37 @@ footer p {
 .lazy-image.loaded {
     opacity: 1;
 }
+
+/* ============================================
+   VISUAL ENHANCEMENTS
+============================================ */
+.visual-fade {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 150px;
+    background: linear-gradient(to bottom, 
+        rgba(12, 4, 6, 1) 0%, 
+        rgba(12, 4, 6, 0.8) 50%, 
+        rgba(12, 4, 6, 0) 100%);
+    pointer-events: none;
+    z-index: 98;
+}
+
+.visual-bottom-fade {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: linear-gradient(to top, 
+        rgba(12, 4, 6, 1) 0%, 
+        rgba(12, 4, 6, 0.8) 50%, 
+        rgba(12, 4, 6, 0) 100%);
+    pointer-events: none;
+    z-index: 98;
+}
 </style>
 
 <!-- Structured Data for SEO -->
@@ -1350,47 +1179,31 @@ footer p {
 <body>
 <!-- Kiosk Welcome Overlay -->
 <div id="kiosk-overlay">
-    <h2>Welcome to Turkiana Café</h2>
-    <p>Experience our winter menu on our interactive tablet kiosk. Browse our selection of Turkish delights, warm beverages, and sweet treats. Touch any item to see details.</p>
-    <button id="start-experience-btn">Start Experience</button>
-    <p style="margin-top: 30px; font-size: 0.9rem; color: rgba(255, 255, 255, 0.5);">
-        Touch anywhere to begin exploring our menu
-    </p>
+    <h2>Turkiana Café & Sweets</h2>
+    <p>Winter 2025 Menu - A winter haven of sweetness, warmth, and timeless Turkish charm</p>
+    <p>Touch anywhere to explore our menu</p>
+    <button id="start-experience-btn">Start Browsing</button>
 </div>
 
-<!-- Kiosk Navigation -->
-<div id="kiosk-nav" style="display: none;">
-    <button class="kiosk-nav-btn" onclick="goHome()">
-        🏠 Home
-    </button>
-    <button class="kiosk-nav-btn" onclick="showFavorites()">
-        ❤️ Favorites
-    </button>
-    <div id="kiosk-timer">
-        Session: <span id="timer-display">05:00</span>
-    </div>
-    <button class="kiosk-nav-btn" onclick="resetSession()">
-        🔄 Restart
-    </button>
-</div>
+<!-- Floating Category Navigation -->
+<div class="floating-categories" id="floatingCategories"></div>
+<div class="current-category-indicator" id="currentCategoryIndicator"></div>
+
+<!-- Visual Fades -->
+<div class="visual-fade"></div>
+<div class="visual-bottom-fade"></div>
 
 <!-- Idle Warning -->
 <div id="idle-warning">
-    <h3>Are you still there?</h3>
-    <p>The kiosk will reset to the welcome screen in 30 seconds due to inactivity.</p>
+    <h3>Are you still browsing?</h3>
+    <p>The menu will reset to the welcome screen in 30 seconds due to inactivity.</p>
     <button id="reset-timer-btn">Continue Browsing</button>
 </div>
 
 <!-- Loading Overlay -->
 <div class="loading-overlay hidden" id="loadingOverlay">
     <div class="loading-spinner"></div>
-    <div class="loading-text">Turkiana Café</div>
-</div>
-
-<!-- Accessibility -->
-<a href="#mainContent" class="skip-to-content">Skip to Content</a>
-<div aria-live="polite" aria-atomic="true" class="sr-only">
-  <span id="filter-status"></span>
+    <div class="loading-text">Loading Menu</div>
 </div>
 
 <!-- Snow Animation -->
@@ -1423,16 +1236,6 @@ footer p {
                     <div id="modalCalories"></div>
                     <div id="modalDietary" style="margin-top:8px"></div>
                 </div>
-                
-                <!-- Action Buttons -->
-                <div class="modal-actions">
-                    <button class="btn btn-primary" onclick="shareItem()">
-                        <span>📤 Share Item</span>
-                    </button>
-                    <button class="btn btn-secondary" onclick="toggleCurrentFavorite()">
-                        <span id="modalFavoriteText">❤️ Add to Favorites</span>
-                    </button>
-                </div>
             </div>
         </div>
         <div class="modal-footer">
@@ -1443,42 +1246,10 @@ footer p {
 
 <!-- App Container -->
 <div class="app-container">
-    <header>
-        <h1>Turkiana Café & Sweets</h1>
-        <div class="subline">Winter Season 2025</div>
-        <p>"A winter haven of sweetness, warmth, and timeless Turkish charm"</p>
-    </header>
-
-    <!-- STICKY NAVIGATION (Categories & Search only - stays on top when scrolling) -->
-    <div class="sticky-nav">
-        <div class="search-section">
-            <input id="searchInput" class="search-input" type="search" 
-                   placeholder="🔍 Search dishes, coffee, or sweets..." 
-                   aria-label="Search menu items"
-                   autocomplete="off">
-            <div class="filters">
-                <button class="filter-btn" data-filter="vegetarian" aria-pressed="false">🌱 Vegetarian</button>
-                <button class="filter-btn" data-filter="vegan" aria-pressed="false">🥬 Vegan</button>
-                <button class="filter-btn" data-filter="dairy-free" aria-pressed="false">🥛 Dairy-Free</button>
-                <button class="filter-btn" data-filter="gluten-free" aria-pressed="false">🌾 Gluten-Free</button>
-            </div>
-        </div>
-        <div class="categories-container">
-            <div class="categories" id="categoriesScroll" aria-label="Menu categories"></div>
-        </div>
-    </div>
-
     <!-- Main Content Container -->
     <main class="content-container" id="mainContent" role="main">
         <!-- Content will be generated by JavaScript -->
     </main>
-
-    <footer>
-        <p>© 2025 Turkiana Café & Sweets — Winter Collection</p>
-        <p style="margin-top: 8px; font-size: 0.6rem; opacity: 0.6;">
-            Designed with ❤️ for the best café experience
-        </p>
-    </footer>
 </div>
 
 <script>
@@ -1612,8 +1383,6 @@ const allItems = [
 const state = {
     activeCategory: null,
     searchQuery: "",
-    favorites: new Set(),
-    activeDietaryFilters: new Set(),
     categories: [...new Set(allItems.map(item => item.cat))],
     currentModalItem: null,
     loadedImages: new Map(),
@@ -1623,7 +1392,9 @@ const state = {
     idleTimer: null,
     sessionTime: 300,
     idleWarningTime: 30,
-    isSessionActive: false
+    isSessionActive: false,
+    lastScrollPosition: 0,
+    isScrolling: false
 };
 
 // ============================================
@@ -1697,7 +1468,6 @@ function startKioskSession() {
     state.isSessionActive = true;
     document.body.classList.add('kiosk-mode');
     document.getElementById('kiosk-overlay').classList.add('hidden');
-    document.getElementById('kiosk-nav').style.display = 'flex';
     
     startSessionTimer();
     
@@ -1706,13 +1476,11 @@ function startKioskSession() {
     }, 500);
     
     initApp();
-    showToast("Welcome to Turkiana Café! Browse our winter menu.", "info");
 }
 
 function resetSession() {
     document.body.classList.remove('kiosk-mode');
     document.getElementById('kiosk-overlay').classList.remove('hidden');
-    document.getElementById('kiosk-nav').style.display = 'none';
     
     if (state.sessionTimer) clearInterval(state.sessionTimer);
     if (state.idleTimer) clearTimeout(state.idleTimer);
@@ -1751,8 +1519,7 @@ function resetIdleTimer() {
 function updateTimerDisplay() {
     const minutes = Math.floor(state.sessionTime / 60);
     const seconds = state.sessionTime % 60;
-    document.getElementById('timer-display').textContent = 
-        `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 }
 
 function showIdleWarning() {
@@ -1770,80 +1537,7 @@ function showIdleWarning() {
 }
 
 // ============================================
-// 5. KIOSK NAVIGATION FUNCTIONS
-// ============================================
-
-function goHome() {
-    state.activeCategory = null;
-    state.searchQuery = "";
-    state.activeDietaryFilters.clear();
-    
-    document.getElementById("searchInput").value = "";
-    document.querySelectorAll(".filter-btn").forEach(btn => {
-        btn.classList.remove("active");
-        btn.setAttribute("aria-pressed", "false");
-    });
-    
-    updateUI();
-    showToast("Returned to home");
-    document.querySelector('.content-container').scrollTop = 0;
-}
-
-function showFavorites() {
-    if (state.favorites.size === 0) {
-        showToast("No favorites yet. Tap ❤️ on items to add them.", "info");
-        return;
-    }
-    
-    const favoriteItems = allItems.filter(item => state.favorites.has(item.id));
-    
-    if (favoriteItems.length > 0) {
-        const modal = document.getElementById("itemModal");
-        const modalTitle = document.getElementById("modalTitle");
-        const modalBody = document.querySelector(".modal-body");
-        
-        modalTitle.textContent = "Your Favorites";
-        
-        modalBody.innerHTML = `
-            <div style="padding: 20px; overflow-y: auto;">
-                <h4 style="color: var(--gold); margin-bottom: 20px;">❤️ Your Saved Items</h4>
-                <div style="display: flex; flex-direction: column; gap: 15px;">
-                    ${favoriteItems.map(item => `
-                        <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; border: 1px solid rgba(212,175,55,0.2);">
-                            <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <div>
-                                    <strong style="color: white;">${item.enName}</strong>
-                                    <div style="color: var(--gold); font-size: 1.1rem; margin-top: 5px;">QAR ${formatPrice(item.price)}</div>
-                                </div>
-                                <button onclick="openItemModal(${JSON.stringify(item).replace(/"/g, '&quot;')}); event.stopPropagation();" 
-                                        style="background: var(--gold); color: var(--bg); border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer;">
-                                    View
-                                </button>
-                            </div>
-                        </div>
-                    `).join('')}
-                </div>
-                <button onclick="clearFavorites()" style="margin-top: 20px; background: var(--accent); color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; width: 100%;">
-                    Clear All Favorites
-                </button>
-            </div>
-        `;
-        
-        modal.classList.add("active");
-        modal.setAttribute("aria-hidden", "false");
-        document.body.style.overflow = "hidden";
-    }
-}
-
-function clearFavorites() {
-    state.favorites.clear();
-    localStorage.removeItem("turkianaFavorites");
-    showToast("All favorites cleared");
-    closeItemModal();
-}
-
-// ============================================
-// 6. UTILITY FUNCTIONS
+// 5. UTILITY FUNCTIONS
 // ============================================
 
 function showToast(message, type = "success") {
@@ -1873,26 +1567,8 @@ function debounce(func, wait) {
     };
 }
 
-function updateFilterStatus() {
-    const statusEl = document.getElementById('filter-status');
-    if (!statusEl) return;
-    
-    let status = '';
-    if (state.searchQuery) {
-        status += `Search results for "${state.searchQuery}". `;
-    }
-    if (state.activeDietaryFilters.size > 0) {
-        status += `Active filters: ${Array.from(state.activeDietaryFilters).join(', ')}. `;
-    }
-    if (state.activeCategory) {
-        status += `Category: ${state.activeCategory}. `;
-    }
-    
-    statusEl.textContent = status || 'Showing all items';
-}
-
 // ============================================
-// 7. SNOW ANIMATION
+// 6. SNOW ANIMATION
 // ============================================
 
 function initSnowAnimation() {
@@ -1958,87 +1634,138 @@ function initSnowAnimation() {
 }
 
 // ============================================
-// 8. RENDER FUNCTIONS (OPTIMIZED)
+// 7. FLOATING CATEGORY NAVIGATION
 // ============================================
 
-function renderCategories() {
-    const categoriesScroll = document.getElementById("categoriesScroll");
-    categoriesScroll.innerHTML = "";
+function renderFloatingCategories() {
+    const floatingCategories = document.getElementById("floatingCategories");
+    floatingCategories.innerHTML = "";
     
     const allBtn = document.createElement("button");
-    allBtn.className = "category-pill" + (!state.activeCategory ? " active" : "");
+    allBtn.className = "floating-category" + (!state.activeCategory ? " active" : "");
     allBtn.innerHTML = "✨ All";
     allBtn.onclick = () => {
         state.activeCategory = null;
         updateUI();
+        scrollToTop();
     };
-    allBtn.setAttribute("aria-label", "Show all categories");
-    allBtn.setAttribute("aria-pressed", !state.activeCategory);
-    categoriesScroll.appendChild(allBtn);
+    floatingCategories.appendChild(allBtn);
     
     state.categories.forEach(cat => {
         const btn = document.createElement("button");
-        btn.className = "category-pill" + (state.activeCategory === cat ? " active" : "");
-        btn.innerHTML = `${cat}`;
+        btn.className = "floating-category" + (state.activeCategory === cat ? " active" : "");
+        btn.innerHTML = cat;
         btn.onclick = () => {
             state.activeCategory = cat;
             updateUI();
+            scrollToCategory(cat);
         };
-        btn.setAttribute("aria-label", `Show ${cat} category`);
-        btn.setAttribute("aria-pressed", state.activeCategory === cat);
-        categoriesScroll.appendChild(btn);
+        floatingCategories.appendChild(btn);
     });
     
-    initTouchScroll();
+    initCategoryScroll();
 }
 
-function initTouchScroll() {
-    const categoriesScroll = document.getElementById("categoriesScroll");
+function initCategoryScroll() {
+    const floatingCategories = document.getElementById("floatingCategories");
     let isDragging = false;
     let startX;
     let scrollLeft;
     
-    categoriesScroll.addEventListener('touchstart', (e) => {
+    floatingCategories.addEventListener('touchstart', (e) => {
         isDragging = true;
-        startX = e.touches[0].pageX - categoriesScroll.offsetLeft;
-        scrollLeft = categoriesScroll.scrollLeft;
+        startX = e.touches[0].pageX - floatingCategories.offsetLeft;
+        scrollLeft = floatingCategories.scrollLeft;
     });
     
-    categoriesScroll.addEventListener('touchmove', (e) => {
+    floatingCategories.addEventListener('touchmove', (e) => {
         if (!isDragging) return;
         e.preventDefault();
-        const x = e.touches[0].pageX - categoriesScroll.offsetLeft;
+        const x = e.touches[0].pageX - floatingCategories.offsetLeft;
         const walk = (x - startX) * 1.5;
-        categoriesScroll.scrollLeft = scrollLeft - walk;
+        floatingCategories.scrollLeft = scrollLeft - walk;
     });
     
-    categoriesScroll.addEventListener('touchend', () => {
+    floatingCategories.addEventListener('touchend', () => {
         isDragging = false;
     });
 }
 
-function matchesDietaryFilters(item) {
-    if (state.activeDietaryFilters.size === 0) return true;
+function scrollToCategory(cat) {
+    const section = document.getElementById(`section-${cat.replace(/\s+/g, "-").toLowerCase()}`);
+    if (section) {
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+}
+
+function scrollToTop() {
+    document.querySelector('.content-container').scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
+
+function handleScroll() {
+    const floatingCategories = document.getElementById("floatingCategories");
+    const currentCategoryIndicator = document.getElementById("currentCategoryIndicator");
+    const container = document.querySelector('.content-container');
     
-    for (const filter of state.activeDietaryFilters) {
-        switch (filter) {
-            case "vegetarian":
-                if (!item.dietary.includes("vegetarian")) return false;
-                break;
-            case "vegan":
-                if (!item.dietary.includes("vegan")) return false;
-                break;
-            case "dairy-free":
-                if (!item.dietary.includes("dairy-free")) return false;
-                break;
-            case "gluten-free":
-                if (!item.dietary.includes("gluten-free")) return false;
-                break;
+    if (state.isScrolling) return;
+    
+    state.isScrolling = true;
+    
+    // Show/hide floating categories based on scroll direction
+    const currentScroll = container.scrollTop;
+    if (currentScroll > state.lastScrollPosition && currentScroll > 100) {
+        floatingCategories.classList.add('hidden');
+    } else {
+        floatingCategories.classList.remove('hidden');
+    }
+    state.lastScrollPosition = currentScroll;
+    
+    // Update current category indicator
+    const sections = document.querySelectorAll('.section');
+    let currentSection = null;
+    
+    sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= 150 && rect.bottom >= 150) {
+            currentSection = section;
         }
+    });
+    
+    if (currentSection) {
+        const categoryName = currentSection.querySelector('h2').textContent;
+        currentCategoryIndicator.textContent = categoryName;
+        currentCategoryIndicator.classList.add('visible');
+        
+        // Update active category button
+        document.querySelectorAll('.floating-category').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        
+        if (categoryName !== 'All') {
+            const activeBtn = Array.from(document.querySelectorAll('.floating-category')).find(btn => 
+                btn.textContent === categoryName
+            );
+            if (activeBtn) {
+                activeBtn.classList.add('active');
+            }
+        } else {
+            document.querySelector('.floating-category:first-child').classList.add('active');
+        }
+    } else {
+        currentCategoryIndicator.classList.remove('visible');
     }
     
-    return true;
+    setTimeout(() => {
+        state.isScrolling = false;
+    }, 100);
 }
+
+// ============================================
+// 8. RENDER FUNCTIONS (OPTIMIZED)
+// ============================================
 
 async function renderContent() {
     const mainContent = document.getElementById("mainContent");
@@ -2057,8 +1784,7 @@ async function renderContent() {
         const matchSearch = !state.searchQuery || 
             item.enName.toLowerCase().includes(state.searchQuery) || 
             item.arName.includes(state.searchQuery);
-        const matchDietary = matchesDietaryFilters(item);
-        return matchCat && matchSearch && matchDietary;
+        return matchCat && matchSearch;
     });
     
     // No results
@@ -2067,10 +1793,7 @@ async function renderContent() {
             mainContent.innerHTML = `
                 <div class="no-results">
                     <strong>No items found</strong>
-                    <p>Try adjusting your filters or search terms</p>
-                    <button class="btn btn-primary" onclick="clearFilters()" style="margin-top: 20px;">
-                        Clear All Filters
-                    </button>
+                    <p>Try adjusting your search terms</p>
                 </div>
             `;
         }, 100);
@@ -2090,7 +1813,7 @@ async function renderContent() {
         html += `
             <div class="section" id="section-${cat.replace(/\s+/g, "-").toLowerCase()}">
                 <h2>${cat}</h2>
-                <p>Tap any item for details</p>
+                <p>Touch any item for details</p>
                 <div class="grid">
         `;
         
@@ -2107,15 +1830,10 @@ async function renderContent() {
                          onload="this.classList.add('loaded')">
                     <div class="card-body">
                         <h3>${item.enName}</h3>
+                        <div class="card-ar-name">${item.arName}</div>
                         <span class="card-price">QAR ${formatPrice(item.price)}</span>
                     </div>
                     ${item.popular ? '<div class="card-badge" aria-label="Chef\'s Pick">Chef\'s Pick</div>' : ''}
-                    <button class="favorite-btn ${state.favorites.has(item.id) ? 'active' : ''}" 
-                            aria-label="${state.favorites.has(item.id) ? 'Remove from favorites' : 'Add to favorites'}"
-                            data-item-id="${item.id}"
-                            onclick="event.stopPropagation(); toggleFavorite('${item.id}'); this.classList.toggle('active');">
-                        ❤
-                    </button>
                 </div>
             `;
         });
@@ -2129,7 +1847,6 @@ async function renderContent() {
     // Update content
     setTimeout(() => {
         mainContent.innerHTML = html;
-        updateFilterStatus();
         
         // Add lazy loading for images
         const lazyImages = document.querySelectorAll('.lazy-image');
@@ -2144,16 +1861,9 @@ async function renderContent() {
 function clearFilters() {
     state.searchQuery = "";
     state.activeCategory = null;
-    state.activeDietaryFilters.clear();
-    
-    document.getElementById("searchInput").value = "";
-    document.querySelectorAll(".filter-btn").forEach(btn => {
-        btn.classList.remove("active");
-        btn.setAttribute("aria-pressed", "false");
-    });
     
     updateUI();
-    showToast("All filters cleared");
+    scrollToTop();
 }
 
 // ============================================
@@ -2171,7 +1881,6 @@ function openItemModal(item) {
     const modalCalories = document.getElementById("modalCalories");
     const modalDietary = document.getElementById("modalDietary");
     const modalPrice = document.getElementById("modalPrice");
-    const modalFavoriteText = document.getElementById("modalFavoriteText");
     
     modalTitle.textContent = item.enName;
     modalImage.src = item.image;
@@ -2181,7 +1890,6 @@ function openItemModal(item) {
     modalCalories.textContent = "☕ " + item.calories;
     modalDietary.textContent = item.dietary.length ? "🏷️ " + item.dietary.join(" • ") : "House Selection";
     modalPrice.textContent = formatPrice(item.price);
-    modalFavoriteText.textContent = state.favorites.has(item.id) ? "❤️ Remove from Favorites" : "❤️ Add to Favorites";
     
     modal.classList.add("active");
     modal.setAttribute("aria-hidden", "false");
@@ -2200,107 +1908,26 @@ function closeItemModal() {
     state.currentModalItem = null;
 }
 
-function shareItem() {
-    if (!state.currentModalItem || !navigator.share) {
-        showToast("Sharing not available", "error");
-        return;
-    }
-    
-    const item = state.currentModalItem;
-    
-    navigator.share({
-        title: `${item.enName} at Turkiana Café & Sweets`,
-        text: `Check out ${item.enName} - ${item.enDesc.slice(0, 80)}...`,
-        url: window.location.href
-    }).then(() => {
-        showToast("Shared successfully");
-    }).catch(() => {
-        showToast("Share cancelled", "info");
-    });
-}
-
-function toggleCurrentFavorite() {
-    if (!state.currentModalItem) return;
-    
-    toggleFavorite(state.currentModalItem.id);
-    
-    const modalFavoriteText = document.getElementById("modalFavoriteText");
-    modalFavoriteText.textContent = state.favorites.has(state.currentModalItem.id) 
-        ? "❤️ Remove from Favorites" 
-        : "❤️ Add to Favorites";
-    
-    const cardBtn = document.querySelector(`.favorite-btn[data-item-id="${state.currentModalItem.id}"]`);
-    if (cardBtn) {
-        cardBtn.classList.toggle("active");
-        cardBtn.setAttribute("aria-label", 
-            state.favorites.has(state.currentModalItem.id) ? "Remove from favorites" : "Add to favorites");
-    }
-}
-
 // ============================================
-// 10. FAVORITES
-// ============================================
-
-function toggleFavorite(itemId) {
-    if (state.favorites.has(itemId)) {
-        state.favorites.delete(itemId);
-        showToast("Removed from favorites");
-    } else {
-        state.favorites.add(itemId);
-        showToast("Added to favorites");
-    }
-    
-    localStorage.setItem("turkianaFavorites", JSON.stringify([...state.favorites]));
-}
-
-// ============================================
-// 11. UI UPDATE FUNCTION
+// 10. UI UPDATE FUNCTION
 // ============================================
 
 function updateUI() {
-    renderCategories();
+    renderFloatingCategories();
     renderContent();
 }
 
 // ============================================
-// 12. MAIN APP INITIALIZATION
+// 11. MAIN APP INITIALIZATION
 // ============================================
 
 function initApp() {
-    const savedFavorites = localStorage.getItem("turkianaFavorites");
-    if (savedFavorites) {
-        state.favorites = new Set(JSON.parse(savedFavorites));
-    }
-    
     initSnowAnimation();
-    updateUI();
+    renderFloatingCategories();
+    renderContent();
     
-    const searchInput = document.getElementById("searchInput");
-    const debouncedSearch = debounce((e) => {
-        state.searchQuery = e.target.value.toLowerCase().trim();
-        renderContent();
-    }, 300);
-    
-    searchInput.addEventListener("input", debouncedSearch);
-    
-    document.querySelectorAll(".filter-btn").forEach(btn => {
-        btn.addEventListener("click", (e) => {
-            e.preventDefault();
-            const filter = btn.dataset.filter;
-            
-            if (state.activeDietaryFilters.has(filter)) {
-                state.activeDietaryFilters.delete(filter);
-                btn.classList.remove("active");
-                btn.setAttribute("aria-pressed", "false");
-            } else {
-                state.activeDietaryFilters.add(filter);
-                btn.classList.add("active");
-                btn.setAttribute("aria-pressed", "true");
-            }
-            
-            renderContent();
-        });
-    });
+    const container = document.querySelector('.content-container');
+    container.addEventListener('scroll', debounce(handleScroll, 50));
     
     document.querySelector(".modal-close").addEventListener("click", closeItemModal);
     
@@ -2315,36 +1942,11 @@ function initApp() {
     });
     
     window.addEventListener("orientationchange", () => {
-        setTimeout(updateUI, 300);
+        setTimeout(() => {
+            renderFloatingCategories();
+            renderContent();
+        }, 300);
     });
-    
-    setTimeout(() => {
-        if (!state.currentModalItem) {
-            searchInput.focus();
-        }
-    }, 1500);
-    
-    setInterval(() => {
-        if (state.favorites.size > 0) {
-            localStorage.setItem("turkianaFavorites", JSON.stringify([...state.favorites]));
-        }
-    }, 30000);
-    
-    document.addEventListener('contextmenu', (e) => {
-        if (e.target.closest('.card') || e.target.closest('.modal-card')) {
-            e.preventDefault();
-        }
-    });
-    
-    if (window.history && window.history.pushState) {
-        window.history.pushState(null, null, window.location.href);
-        window.addEventListener('popstate', () => {
-            if (document.getElementById('itemModal').classList.contains('active')) {
-                closeItemModal();
-                window.history.pushState(null, null, window.location.href);
-            }
-        });
-    }
     
     enterFullscreen();
 }
@@ -2368,7 +1970,7 @@ async function enterFullscreen() {
 }
 
 // ============================================
-// 13. START THE APPLICATION
+// 12. START THE APPLICATION
 // ============================================
 
 document.addEventListener("DOMContentLoaded", () => {
