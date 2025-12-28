@@ -3,1327 +3,262 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<title>Turkiana Café & Sweets — Winter 2025</title>
-
-<!-- PWA Meta Tags -->
-<meta name="theme-color" content="#0c0406">
-<meta name="description" content="A winter haven of sweetness, warmth, and timeless Turkish charm">
+<title>Turkiana Café & Sweets</title>
+<meta name="theme-color" content="#2c1810">
+<meta name="description" content="Authentic Turkish coffee, traditional sweets, and artisanal pastries in Doha, Qatar.">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-title" content="Turkiana Café">
 <link rel="manifest" href="/manifest.json">
-
-<!-- SEO & Structured Data -->
-<meta property="og:title" content="Turkiana Café & Sweets — Winter 2025">
-<meta property="og:description" content="Explore our winter menu featuring Turkish coffee, sweets, and warm specialties">
+<link rel="apple-touch-icon" href="/icon-192.png">
+<meta property="og:title" content="Turkiana Café & Sweets">
+<meta property="og:description" content="Authentic Turkish coffee, sweets, and artisanal pastries">
 <meta property="og:image" content="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkishcoffee.jpg">
 <meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://turkianacafe-ux.github.io">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:wght@700&display=swap" crossorigin>
 
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-
-<!-- Critical CSS -->
 <style>
-/* ============================================
-   CSS VARIABLES & RESET
-============================================ */
-:root {
-    --bg: #0c0406;
-    --gold: #d4af37;
-    --text: #f9f7f4;
-    --muted: rgba(255, 255, 255, 0.85);
-    --accent: #8b0921;
-    --success: #4caf50;
-    --warning: #ff9800;
-    --skeleton-light: #1d0509;
-    --skeleton-dark: #2a080d;
-    --overlay: rgba(0, 0, 0, 0.95);
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    -webkit-tap-highlight-color: transparent;
-}
-
-html, body {
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-}
-
-body {
-    font-family: 'Inter', sans-serif;
-    background: radial-gradient(circle at top, rgba(212, 175, 55, 0.12), transparent 45%),
-                linear-gradient(180deg, #1d0509 0%, #0c0406 60%, #030203 100%);
-    color: var(--text);
-    min-height: 100vh;
-    line-height: 1.6;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    touch-action: manipulation;
-}
-
-/* ============================================
-   ACCESSIBILITY
-============================================ */
-.sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-}
-
-.skip-to-content {
-    position: absolute;
-    top: -40px;
-    left: 10px;
-    background: var(--gold);
-    color: var(--bg);
-    padding: 12px 24px;
-    border-radius: 4px;
-    text-decoration: none;
-    font-weight: 600;
-    z-index: 10000;
-    transition: top 0.3s ease;
-}
-
-.skip-to-content:focus {
-    top: 10px;
-    outline: 2px solid var(--gold);
-    outline-offset: 2px;
-}
-
-/* Focus styles for accessibility */
-:focus-visible {
-    outline: 3px solid var(--gold);
-    outline-offset: 3px;
-}
-
-/* ============================================
-   SNOW ANIMATION (Lightweight for tablets)
-============================================ */
-#snow {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 50;
-}
-
-/* ============================================
-   NOTIFICATIONS & LOADING
-============================================ */
-.toast {
-    position: fixed;
-    bottom: 100px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--gold);
-    color: var(--bg);
-    padding: 14px 28px;
-    border-radius: 12px;
-    font-weight: 600;
-    z-index: 2000;
-    display: none;
-    animation: slideUp 0.3s ease;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-    min-width: 280px;
-    max-width: 90vw;
-    text-align: center;
-    backdrop-filter: blur(10px);
-    border: 2px solid rgba(255, 255, 255, 0.1);
-}
-
-.toast.error {
-    background: var(--accent);
-    color: var(--text);
-}
-
-.toast.info {
-    background: #2196f3;
-    color: white;
-}
-
-.toast.warning {
-    background: var(--warning);
-    color: var(--bg);
-}
-
-.loading {
-    display: inline-block;
-    width: 24px;
-    height: 24px;
-    border: 3px solid rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    border-top-color: var(--gold);
-    animation: spin 1s ease-in-out infinite;
-}
-
-.skeleton {
-    background: linear-gradient(90deg, var(--skeleton-light) 25%, var(--skeleton-dark) 50%, var(--skeleton-light) 75%);
-    background-size: 200% 100%;
-    animation: loading 1.5s infinite;
-}
-
-@keyframes slideUp {
-    from {
-        transform: translateX(-50%) translateY(100px);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(-50%) translateY(0);
-        opacity: 1;
-    }
-}
-
-@keyframes spin {
-    to { transform: rotate(360deg); }
-}
-
-@keyframes loading {
-    0% {
-        background-position: 200% 0;
-    }
-    100% {
-        background-position: -200% 0;
-    }
-}
-
-/* ============================================
-   SEARCH BAR
-============================================ */
-.search-container {
-    position: fixed;
-    top: 120px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
-    max-width: 600px;
-    z-index: 98;
-    padding: 0 20px;
-    display: flex;
-    gap: 10px;
-}
-
-#menuSearch {
-    flex: 1;
-    padding: 18px 25px;
-    border-radius: 50px;
-    border: 3px solid rgba(212, 175, 55, 0.4);
-    background: rgba(12, 4, 6, 0.95);
-    color: var(--text);
-    font-size: 1.1rem;
-    font-family: 'Inter', sans-serif;
-    backdrop-filter: blur(20px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
-    transition: all 0.3s ease;
-}
-
-#menuSearch:focus {
-    outline: none;
-    border-color: var(--gold);
-    box-shadow: 0 10px 40px rgba(212, 175, 55, 0.4);
-}
-
-#menuSearch::placeholder {
-    color: rgba(255, 255, 255, 0.5);
-}
-
-#clearSearch {
-    background: rgba(212, 175, 55, 0.15);
-    border: 3px solid rgba(212, 175, 55, 0.4);
-    color: rgba(255, 255, 255, 0.95);
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    display: grid;
-    place-items: center;
-    cursor: pointer;
-    font-size: 1.5rem;
-    transition: all 0.3s;
-    backdrop-filter: blur(20px);
-    flex-shrink: 0;
-}
-
-#clearSearch:hover {
-    background: rgba(212, 175, 55, 0.3);
-    transform: scale(1.05);
-}
-
-/* ============================================
-   FLOATING CATEGORY NAVIGATION
-============================================ */
-.floating-categories {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(12, 4, 6, 0.98);
-    backdrop-filter: blur(25px);
-    border: 3px solid rgba(212, 175, 55, 0.5);
-    border-radius: 50px;
-    padding: 18px 30px;
-    z-index: 100;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.9);
-    display: flex;
-    gap: 15px;
-    max-width: 96vw;
-    overflow-x: auto;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    -webkit-overflow-scrolling: touch;
-    opacity: 1 !important;
-    visibility: visible !important;
-    transition: all 0.3s ease;
-    min-height: 75px;
-    align-items: center;
-    animation: subtle-pulse 8s infinite ease-in-out;
-}
-
-@keyframes subtle-pulse {
-    0%, 100% { 
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.9); 
-        border-color: rgba(212, 175, 55, 0.5);
-    }
-    50% { 
-        box-shadow: 0 20px 50px rgba(212, 175, 55, 0.4); 
-        border-color: rgba(212, 175, 55, 0.8);
-    }
-}
-
-.floating-categories::-webkit-scrollbar {
-    display: none;
-}
-
-.floating-category {
-    flex-shrink: 0;
-    padding: 16px 32px;
-    border-radius: 40px;
-    border: 3px solid rgba(255, 255, 255, 0.3);
-    background: rgba(255, 255, 255, 0.08);
-    color: rgba(255, 255, 255, 0.95);
-    font-size: 1.1rem;
-    font-weight: 800;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    min-height: 65px;
-    min-width: 100px;
-    font-family: 'Inter', sans-serif;
-    white-space: nowrap;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    line-height: 1.2;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
-}
-
-.floating-category::after {
-    content: attr(data-count);
-    position: absolute;
-    top: -8px;
-    right: -8px;
-    background: var(--accent);
-    color: white;
-    font-size: 0.7rem;
-    font-weight: 900;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid var(--gold);
-    z-index: 2;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
-}
-
-.floating-category:hover,
-.floating-category:active {
-    transform: translateY(-5px) scale(1.06);
-    box-shadow: 0 18px 40px rgba(255, 174, 76, 0.7);
-    border-color: rgba(212, 175, 55, 0.7);
-}
-
-.floating-category.active {
-    color: #0a0503;
-    background: linear-gradient(135deg, #ffd771, #ff5f6d, #ffd771);
-    border-color: transparent;
-    box-shadow: 0 25px 60px rgba(255, 179, 71, 0.8);
-    transform: translateY(-3px) scale(1.06);
-    font-weight: 900;
-    border: 3px solid rgba(255, 255, 255, 0.4);
-    animation: pulse-active 2s infinite;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
-}
-
-@keyframes pulse-active {
-    0%, 100% {
-        box-shadow: 0 25px 60px rgba(255, 179, 71, 0.8);
-    }
-    50% {
-        box-shadow: 0 25px 80px rgba(255, 179, 71, 1);
-    }
-}
-
-.current-category-indicator {
-    position: fixed;
-    top: 110px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(212, 175, 55, 0.95);
-    color: var(--bg);
-    padding: 12px 30px;
-    border-radius: 30px;
-    font-weight: 800;
-    font-size: 1.1rem;
-    z-index: 99;
-    backdrop-filter: blur(15px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    transition: opacity 0.3s;
-    opacity: 0;
-    border: 3px solid rgba(212, 175, 55, 0.7);
-    position: relative;
-}
-
-.current-category-indicator::before {
-    content: '';
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 0;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-bottom: 10px solid rgba(212, 175, 55, 0.95);
-}
-
-.current-category-indicator::after {
-    content: ' • ' attr(data-count) ' items';
-    font-size: 0.8rem;
-    opacity: 0.9;
-    margin-left: 10px;
-    font-weight: 700;
-}
-
-.current-category-indicator.visible {
-    opacity: 1;
-    animation: slide-down 0.3s ease;
-}
-
-@keyframes slide-down {
-    from {
-        transform: translateX(-50%) translateY(-20px);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(-50%) translateY(0);
-        opacity: 1;
-    }
-}
-
-/* ============================================
-   MAIN LAYOUT
-============================================ */
-.app-container {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    width: 100vw;
-    position: fixed;
-    top: 0;
-    left: 0;
-}
-
-/* ============================================
-   MAIN CONTENT AREA
-============================================ */
-.content-container {
-    flex: 1;
-    overflow-y: auto;
-    overflow-x: hidden;
-    padding: 200px 20px 40px;
-    max-width: 1400px;
-    margin: 0 auto;
-    width: 100%;
-    -webkit-overflow-scrolling: touch;
-}
-
-.section {
-    margin-bottom: 50px;
-    scroll-margin-top: 210px;
-}
-
-.section h2 {
-    font-family: "Playfair Display", serif;
-    font-size: 2.2rem;
-    margin: 0 0 25px;
-    color: #fff;
-    position: relative;
-    padding-bottom: 15px;
-    text-align: center;
-}
-
-.section h2::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 120px;
-    height: 4px;
-    background: var(--gold);
-}
-
-.section p {
-    margin: 0 0 30px;
-    color: var(--muted);
-    font-size: 1.1rem;
-    text-align: center;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 30px;
-}
-
-/* ============================================
-   CARDS
-============================================ */
-.card {
-    border-radius: 25px;
-    overflow: hidden;
-    background: linear-gradient(135deg, rgba(12, 4, 6, 0.95), rgba(59, 15, 23, 0.85));
-    border: 3px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    position: relative;
-    min-height: 380px;
-    touch-action: manipulation;
-    -webkit-tap-highlight-color: transparent;
-}
-
-.card:active {
-    transform: translateY(-5px) scale(0.98);
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 1);
-    border-color: rgba(212, 175, 55, 0.5);
-}
-
-.card-image {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
-    background: linear-gradient(90deg, var(--skeleton-light) 25%, var(--skeleton-dark) 50%, var(--skeleton-light) 75%);
-    background-size: 200% 100%;
-}
-
-.card-badge {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    padding: 10px 20px;
-    border-radius: 25px;
-    font-size: 0.9rem;
-    background: linear-gradient(135deg, rgba(212, 175, 55, 0.95), rgba(139, 9, 33, 0.95));
-    color: white;
-    border: 3px solid rgba(212, 175, 55, 0.9);
-    animation: pulse 2s infinite;
-    font-weight: 700;
-    letter-spacing: 0.8px;
-    z-index: 2;
-}
-
-.card-body {
-    padding: 25px;
-    text-align: center;
-}
-
-.card h3 {
-    margin: 0 0 15px;
-    font-size: 1.3rem;
-    font-weight: 800;
-    color: #fff;
-    line-height: 1.4;
-    min-height: 3.2em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 8px;
-}
-
-.card-ar-name {
-    color: var(--muted);
-    font-size: 1rem;
-    margin-bottom: 20px;
-    min-height: 2.2em;
-    font-style: italic;
-}
-
-.card-price {
-    display: block;
-    color: var(--gold);
-    font-weight: 900;
-    font-size: 1.6rem;
-    margin-top: 15px;
-    text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
-}
-
-/* ============================================
-   FILTER TAGS
-============================================ */
-.filter-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    margin-bottom: 30px;
-    padding: 0 20px;
-}
-
-.filter-tag {
-    padding: 10px 20px;
-    border-radius: 25px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 2px solid rgba(212, 175, 55, 0.3);
-    color: var(--text);
-    font-size: 0.9rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.filter-tag:hover {
-    background: rgba(212, 175, 55, 0.2);
-    transform: translateY(-2px);
-}
-
-.filter-tag.active {
-    background: var(--gold);
-    color: var(--bg);
-    border-color: var(--gold);
-    font-weight: 700;
-}
-
-/* ============================================
-   MODALS
-============================================ */
-.modal-backdrop {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.9);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-    opacity: 0;
-    transition: opacity 0.3s;
-    backdrop-filter: blur(15px);
-    padding: 20px;
-}
-
-.modal-backdrop.active {
-    display: flex;
-    opacity: 1;
-}
-
-.modal-card {
-    background: linear-gradient(135deg, rgba(12, 4, 6, 0.98) 0%, rgba(30, 5, 10, 0.98) 100%);
-    border: 3px solid rgba(212, 175, 55, 0.6);
-    border-radius: 25px;
-    overflow: hidden;
-    width: 90%;
-    max-width: 800px;
-    max-height: 90vh;
-    display: flex;
-    flex-direction: column;
-    animation: modalSlideUp 0.3s ease;
-    position: relative;
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.9);
-}
-
-@keyframes modalSlideUp {
-    from {
-        transform: translateY(30px);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-.modal-header {
-    padding: 25px;
-    border-bottom: 3px solid rgba(212, 175, 55, 0.3);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(0, 0, 0, 0.6);
-    flex-shrink: 0;
-}
-
-.modal-header h3 {
-    margin: 0;
-    font-family: "Playfair Display", serif;
-    font-size: 2rem;
-    color: var(--gold);
-    flex: 1;
-    padding-right: 25px;
-}
-
-.modal-close {
-    background: rgba(212, 175, 55, 0.15);
-    border: 3px solid rgba(212, 175, 55, 0.4);
-    color: rgba(255, 255, 255, 0.95);
-    font-size: 2.5rem;
-    cursor: pointer;
-    transition: all 0.3s;
-    width: 60px;
-    height: 60px;
-    display: grid;
-    place-items: center;
-    border-radius: 50%;
-    flex-shrink: 0;
-    -webkit-tap-highlight-color: transparent;
-    line-height: 1;
-    font-weight: 300;
-}
-
-.modal-close:active {
-    color: var(--gold);
-    background: rgba(212, 175, 55, 0.3);
-    transform: scale(0.95);
-}
-
-.modal-body {
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
-    flex: 1;
-    padding: 0;
-}
-
-.modal-image-container {
-    flex: 0 0 350px;
-    min-height: 350px;
-    max-height: 400px;
-    position: relative;
-    overflow: hidden;
-}
-
-.modal-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
-}
-
-.modal-info {
-    padding: 30px;
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-    flex: 1;
-}
-
-.modal-info h4 {
-    margin: 0 0 12px;
-    color: var(--gold);
-    font-size: 1.1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    font-weight: 800;
-}
-
-.modal-info p {
-    margin: 0;
-    color: rgba(255, 255, 255, 0.95);
-    font-size: 1.1rem;
-    line-height: 1.7;
-}
-
-.modal-meta {
-    padding: 25px;
-    background: rgba(212, 175, 55, 0.15);
-    border-radius: 15px;
-    border: 3px solid rgba(212, 175, 55, 0.3);
-    font-size: 1rem;
-    color: rgba(255, 255, 255, 0.9);
-    line-height: 1.6;
-}
-
-.modal-footer {
-    padding: 30px;
-    border-top: 3px solid rgba(212, 175, 55, 0.3);
-    text-align: center;
-    background: rgba(212, 175, 55, 0.08);
-    font-size: 1.6rem;
-    flex-shrink: 0;
-}
-
-.modal-footer strong {
-    color: var(--gold);
-    font-size: 2.5rem;
-    margin: 0 8px;
-    text-shadow: 0 2px 15px rgba(212, 175, 55, 0.4);
-}
-
-/* ============================================
-   NO RESULTS
-============================================ */
-.no-results {
-    grid-column: 1 / -1;
-    text-align: center;
-    padding: 100px 20px;
-    color: var(--muted);
-}
-
-.no-results strong {
-    color: var(--gold);
-    display: block;
-    margin-bottom: 25px;
-    font-size: 1.8rem;
-    font-family: "Playfair Display", serif;
-}
-
-.no-results p {
-    font-size: 1.2rem;
-    opacity: 0.8;
-}
-
-/* ============================================
-   ANIMATIONS
-============================================ */
-@keyframes pulse {
-    0%, 100% {
-        transform: scale(1);
-        box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7);
-    }
-    50% {
-        transform: scale(1.08);
-        box-shadow: 0 0 0 15px rgba(212, 175, 55, 0);
-    }
-}
-
-/* ============================================
-   SCROLLBAR STYLING
-============================================ */
-.content-container::-webkit-scrollbar {
-    width: 12px;
-}
-
-.content-container::-webkit-scrollbar-track {
-    background: rgba(12, 4, 6, 0.6);
-    border-radius: 6px;
-}
-
-.content-container::-webkit-scrollbar-thumb {
-    background: linear-gradient(var(--gold), #ffd166);
-    border-radius: 6px;
-    border: 3px solid var(--bg);
-}
-
-.content-container::-webkit-scrollbar-thumb:active {
-    background: linear-gradient(#ffd166, var(--gold));
-}
-
-/* ============================================
-   RESPONSIVE DESIGN
-============================================ */
-@media (min-width: 1600px) {
-    .floating-categories {
-        max-width: 1400px;
-        margin: 0 auto;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-}
-
-@media (min-width: 768px) and (max-width: 1024px) {
-    .grid {
-        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-        gap: 25px;
-    }
-    
-    .card {
-        min-height: 350px;
-    }
-    
-    .modal-body {
-        flex-direction: row;
-    }
-    
-    .modal-image-container {
-        flex: 0 0 40%;
-        min-height: 350px;
-    }
-    
-    .floating-categories {
-        top: 15px;
-        padding: 16px 25px;
-        min-height: 70px;
-    }
-    
-    .floating-category {
-        padding: 14px 28px;
-        font-size: 1rem;
-        min-height: 60px;
-        min-width: 120px;
-    }
-    
-    .current-category-indicator {
-        top: 105px;
-        font-size: 1rem;
-        padding: 10px 25px;
-    }
-    
-    .search-container {
-        top: 110px;
-    }
-}
-
-@media (max-width: 767px) {
-    .grid {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        gap: 20px;
-    }
-    
-    .card {
-        min-height: 320px;
-    }
-    
-    .card h3 {
-        font-size: 1.2rem;
-    }
-    
-    .card-ar-name {
-        font-size: 0.9rem;
-    }
-    
-    .card-price {
-        font-size: 1.4rem;
-    }
-    
-    .modal-body {
-        flex-direction: column;
-    }
-    
-    .modal-image-container {
-        flex: 0 0 280px;
-        min-height: 280px;
-    }
-    
-    .modal-card {
-        width: 95%;
-        max-height: 85vh;
-    }
-    
-    .floating-categories {
-        top: 10px;
-        padding: 12px 20px;
-        min-height: 65px;
-        border-radius: 40px;
-        border-width: 2px;
-    }
-    
-    .floating-category {
-        padding: 12px 22px;
-        font-size: 0.9rem;
-        min-height: 55px;
-        min-width: 120px;
-        font-weight: 700;
-    }
-    
-    .current-category-indicator {
-        top: 90px;
-        font-size: 0.9rem;
-        padding: 10px 22px;
-    }
-    
-    .search-container {
-        top: 100px;
-        padding: 0 15px;
-    }
-    
-    #menuSearch {
-        padding: 16px 20px;
-        font-size: 1rem;
-    }
-    
-    #clearSearch {
-        width: 55px;
-        height: 55px;
-    }
-    
-    .content-container {
-        padding: 180px 15px 30px;
-    }
-    
-    .section {
-        scroll-margin-top: 190px;
-    }
-    
-    .section h2 {
-        font-size: 1.8rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .grid {
-        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-        gap: 15px;
-    }
-    
-    .card {
-        min-height: 280px;
-    }
-    
-    .card-image {
-        height: 180px;
-    }
-    
-    .modal-header h3 {
-        font-size: 1.5rem;
-    }
-    
-    .modal-image-container {
-        flex: 0 0 220px;
-        min-height: 220px;
-    }
-    
-    .floating-categories {
-        top: 8px;
-        padding: 10px 16px;
-        min-height: 60px;
-    }
-    
-    .floating-category {
-        padding: 10px 18px;
-        font-size: 0.8rem;
-        min-height: 50px;
-        min-width: 100px;
-        font-weight: 700;
-    }
-    
-    .current-category-indicator {
-        top: 85px;
-        font-size: 0.8rem;
-        padding: 8px 18px;
-    }
-    
-    .search-container {
-        top: 90px;
-    }
-}
-
-/* ============================================
-   LANDSCAPE ORIENTATION IMPROVEMENTS
-============================================ */
-@media (orientation: landscape) and (max-height: 600px) {
-    .floating-categories {
-        top: 10px;
-        padding: 12px 20px;
-        min-height: 60px;
-    }
-    
-    .floating-category {
-        padding: 10px 20px;
-        font-size: 0.9rem;
-        min-height: 50px;
-    }
-    
-    .search-container {
-        top: 85px;
-    }
-    
-    .content-container {
-        padding-top: 160px;
-    }
-    
-    .current-category-indicator {
-        top: 85px;
-        font-size: 0.9rem;
-        padding: 8px 20px;
-    }
-    
-    .section {
-        margin-bottom: 25px;
-        scroll-margin-top: 170px;
-    }
-    
-    .section h2 {
-        font-size: 1.6rem;
-        margin-bottom: 15px;
-        padding-bottom: 10px;
-    }
-    
-    .section h2::after {
-        width: 80px;
-        height: 3px;
-    }
-}
-
-/* ============================================
-   BATTERY-FRIENDLY ANIMATIONS
-============================================ */
-@media (prefers-reduced-motion: reduce) {
-    .floating-category,
-    .card,
-    .modal-card,
-    .floating-categories,
-    .current-category-indicator,
-    .card-badge,
-    .toast {
-        transition: none !important;
-        animation: none !important;
-    }
-    
-    #snow {
-        display: none;
-    }
-}
-
-/* ============================================
-   PRINT STYLES
-============================================ */
-@media print {
-    .floating-categories,
-    .current-category-indicator,
-    .search-container,
-    #snow,
-    .visual-fade,
-    .visual-bottom-fade,
-    .toast,
-    .modal-backdrop,
-    .card-badge {
-        display: none !important;
-    }
-    
-    body {
-        background: white !important;
-        color: black !important;
-        position: static;
-        overflow: visible;
-        height: auto;
-    }
-    
-    .app-container {
-        position: static;
-        height: auto;
-    }
-    
-    .content-container {
-        padding: 20px !important;
-        overflow: visible;
-        height: auto;
-    }
-    
-    .grid {
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)) !important;
-        gap: 20px;
-    }
-    
-    .card {
-        break-inside: avoid;
-        box-shadow: none !important;
-        border: 1px solid #ccc !important;
-        background: white !important;
-        color: black !important;
-        min-height: auto;
-    }
-    
-    .card h3 {
-        color: black !important;
-    }
-    
-    .card-ar-name {
-        color: #666 !important;
-    }
-    
-    .card-price {
-        color: #333 !important;
-    }
-    
-    .card-image {
-        filter: grayscale(100%);
-    }
-}
-
-/* ============================================
-   LOADING STATE
-============================================ */
-.loading-overlay {
-    position: fixed;
-    inset: 0;
-    background: var(--bg);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    z-index: 10000;
-    transition: opacity 0.5s ease, visibility 0.5s ease;
-}
-
-.loading-overlay.hidden {
-    opacity: 0;
-    visibility: hidden;
-}
-
-.loading-spinner {
-    width: 70px;
-    height: 70px;
-    border: 5px solid rgba(212, 175, 55, 0.15);
-    border-top-color: var(--gold);
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    margin-bottom: 25px;
-}
-
-.loading-text {
-    color: var(--gold);
-    font-size: 1.3rem;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-}
-
-/* ============================================
-   VISUAL ENHANCEMENTS
-============================================ */
-.visual-fade {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 180px;
-    background: linear-gradient(to bottom, 
-        rgba(12, 4, 6, 1) 0%, 
-        rgba(12, 4, 6, 0.85) 50%, 
-        rgba(12, 4, 6, 0) 100%);
-    pointer-events: none;
-    z-index: 98;
-}
-
-.visual-bottom-fade {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 120px;
-    background: linear-gradient(to top, 
-        rgba(12, 4, 6, 1) 0%, 
-        rgba(12, 4, 6, 0.85) 50%, 
-        rgba(12, 4, 6, 0) 100%);
-    pointer-events: none;
-    z-index: 98;
-}
+:root{
+  --bg: #2c1810;
+  --gold: #d4af37;
+  --text: #f9f7f4;
+  --muted: rgba(255,255,255,.85);
+  --accent: #8b4513;
+  --light-bg: #3d2619;
+  --card-bg: linear-gradient(135deg, rgba(44,24,16,.95), rgba(61,38,25,.85));
+}
+
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;width:100%;overflow:hidden;touch-action:manipulation}
+body{
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  position:fixed;
+  inset:0;
+  line-height:1.6;
+  background-image: 
+    radial-gradient(circle at 20% 80%, rgba(212,175,55,0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(139,69,19,0.03) 0%, transparent 50%);
+}
+
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0)}
+.skip-to-content{position:absolute;top:-40px;left:10px;background:var(--gold);color:var(--bg);padding:12px 24px;border-radius:4px;text-decoration:none;font-weight:600;z-index:10000}
+.skip-to-content:focus{top:10px}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+
+.loading-overlay{position:fixed;inset:0;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:10000;transition:opacity .5s}
+.loading-overlay.hidden{opacity:0;visibility:hidden}
+.loading-spinner{width:70px;height:70px;border:5px solid rgba(212,175,55,.15);border-top-color:var(--gold);border-radius:50%;animation:spin 1s linear infinite;margin-bottom:25px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.floating-categories{
+  position:fixed;
+  top:20px;
+  left:50%;
+  transform:translateX(-50%);
+  background:rgba(44,24,16,.98);
+  backdrop-filter:blur(25px);
+  border:3px solid rgba(212,175,55,.5);
+  border-radius:50px;
+  padding:18px 30px;
+  z-index:100;
+  box-shadow:0 20px 40px rgba(0,0,0,.9);
+  display:flex;
+  gap:15px;
+  max-width:96vw;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  min-height:75px;
+  align-items:center
+}
+.floating-categories::-webkit-scrollbar{display:none}
+.floating-category{
+  flex-shrink:0;
+  padding:16px 32px;
+  border-radius:40px;
+  border:3px solid rgba(212,175,55,.3);
+  background:rgba(212,175,55,.08);
+  color:rgba(255,255,255,.95);
+  font-size:1.1rem;
+  font-weight:800;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  cursor:pointer;
+  transition:all .4s;
+  min-height:65px;
+  min-width:100px;
+  white-space:nowrap;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 6px 20px rgba(0,0,0,.4)
+}
+.floating-category:active{transform:translateY(-5px) scale(1.06);box-shadow:0 18px 40px rgba(212,175,55,.7)}
+.floating-category.active{
+  color:#2c1810;
+  background:linear-gradient(135deg,#ffd771,#d4af37);
+  border-color:transparent;
+  box-shadow:0 25px 60px rgba(212,175,55,.8);
+  transform:translateY(-3px) scale(1.06);
+  font-weight:900;
+  animation:pulse-active 2s infinite
+}
+@keyframes pulse-active{0%,100%{box-shadow:0 25px 60px rgba(212,175,55,.8)}50%{box-shadow:0 25px 80px rgba(212,175,55,1)}}
+
+.search-container{position:fixed;top:120px;left:50%;transform:translateX(-50%);width:90%;max-width:600px;z-index:98;padding:0 20px;display:flex;gap:10px}
+#menuSearch{flex:1;padding:18px 25px;border-radius:50px;border:3px solid rgba(212,175,55,.4);background:rgba(44,24,16,.95);color:var(--text);font-size:1.1rem;backdrop-filter:blur(20px);box-shadow:0 10px 30px rgba(0,0,0,.7);transition:all .3s}
+#menuSearch:focus{outline:none;border-color:var(--gold);box-shadow:0 10px 40px rgba(212,175,55,.4)}
+#menuSearch::placeholder{color:rgba(255,255,255,.5)}
+#clearSearch{background:rgba(212,175,55,.2);border:3px solid rgba(212,175,55,.5);color:var(--gold);padding:16px 20px;border-radius:50px;font-size:1.3rem;cursor:pointer;transition:all .3s;font-weight:700}
+#clearSearch:hover{background:rgba(212,175,55,.4);transform:scale(1.05)}
+
+.app-container{display:flex;flex-direction:column;height:100vh;position:fixed;top:0;left:0;width:100%}
+.content-container{flex:1;overflow-y:auto;padding:200px 20px 40px;max-width:1400px;margin:0 auto;width:100%;-webkit-overflow-scrolling:touch}
+.content-container::-webkit-scrollbar{width:12px}
+.content-container::-webkit-scrollbar-thumb{background:linear-gradient(var(--gold),#ffd166);border-radius:6px;border:3px solid var(--bg)}
+
+.section{margin-bottom:50px;scroll-margin-top:210px}
+.section h2{font-family:"Playfair Display",serif;font-size:2.2rem;margin:0 0 25px;color:#fff;position:relative;padding-bottom:15px;text-align:center}
+.section h2:after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:120px;height:4px;background:var(--gold)}
+.section > p{text-align:center;color:var(--muted);margin-bottom:30px;font-size:.95rem}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:30px}
+.card{
+  border-radius:25px;
+  overflow:hidden;
+  background:var(--card-bg);
+  border:3px solid rgba(212,175,55,.15);
+  box-shadow:0 20px 50px rgba(0,0,0,.9);
+  cursor:pointer;
+  transition:all .3s;
+  position:relative;
+  min-height:380px
+}
+.card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 30px 60px rgba(212,175,55,.3);
+  border-color:rgba(212,175,55,.7)
+}
+.card-image{width:100%;height:220px;object-fit:cover;display:block;background:linear-gradient(90deg,#3d2619 25%,#4a2f1f 50%,#3d2619 75%);background-size:200%100%}
+.card-image.loading{animation:skeleton 1s infinite}
+@keyframes skeleton{0%,100%{background-position:200% 0}50%{background-position:-200% 0}}
+.card-body{padding:25px;text-align:center}
+.card h3{margin:0 0 15px;font-size:1.3rem;font-weight:800;color:#fff;line-height:1.4;min-height:3.2em;display:flex;align-items:center;justify-content:center}
+.card-ar-name{color:var(--muted);font-size:1rem;margin-bottom:20px;font-style:italic}
+.card-price{display:block;color:var(--gold);font-weight:900;font-size:1.6rem;margin-top:15px}
+.card-badge{position:absolute;top:20px;right:20px;padding:10px 20px;border-radius:25px;font-size:.9rem;background:linear-gradient(135deg,rgba(212,175,55,.95),rgba(139,69,19,.95));color:white;border:3px solid rgba(212,175,55,.9);animation:pulse 2s infinite;font-weight:700}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+
+.filter-tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:30px;padding:0 20px}
+.filter-tag{padding:10px 20px;border-radius:25px;background:rgba(255,255,255,.1);border:2px solid rgba(212,175,55,.3);color:var(--text);font-size:.9rem;font-weight:600;cursor:pointer;transition:all .3s}
+.filter-tag:hover{background:rgba(212,175,55,.1);transform:translateY(-2px)}
+.filter-tag.active{background:var(--gold);color:var(--bg);border-color:var(--gold);font-weight:700}
+
+.modal-backdrop{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.9);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:1000;
+  opacity:0;
+  transition:opacity .3s;
+  backdrop-filter:blur(15px);
+  padding:20px
+}
+.modal-backdrop.active{display:flex;opacity:1}
+.modal-card{
+  background:var(--card-bg);
+  border:3px solid rgba(212,175,55,.6);
+  border-radius:25px;
+  overflow:hidden;
+  width:90%;
+  max-width:800px;
+  max-height:90vh;
+  display:flex;
+  flex-direction:column;
+  animation:modalUp .3s ease;
+  box-shadow:0 30px 60px rgba(0,0,0,.9)
+}
+@keyframes modalUp{from{transform:translateY(30px);opacity:0}to{transform:translateY(0);opacity:1}}
+.modal-header{padding:30px 25px;border-bottom:3px solid rgba(212,175,55,.3);display:flex;justify-content:space-between;align-items:center}
+.modal-header h3{font-family:"Playfair Display",serif;font-size:2rem;color:var(--text);margin:0}
+.modal-close{background:rgba(212,175,55,.15);border:3px solid rgba(212,175,55,.4);color:rgba(255,255,255,.95);font-size:2.5rem;cursor:pointer;transition:all .3s;width:60px;height:60px;display:grid;place-items:center;border-radius:50%;flex-shrink:0}
+.modal-close:hover{background:rgba(212,175,55,.3);transform:scale(1.1)}
+.modal-body{flex:1;overflow-y:auto;padding:30px;display:grid;grid-template-columns:1fr 1fr;gap:30px}
+.modal-image-container{border-radius:15px;overflow:hidden;box-shadow:0 15px 40px rgba(0,0,0,.7)}
+.modal-image{width:100%;height:auto;display:block;object-fit:cover}
+.modal-info{display:flex;flex-direction:column;gap:25px}
+.modal-info > div{padding:20px;background:rgba(255,255,255,.05);border-radius:12px;border-left:4px solid var(--gold)}
+.modal-info h4{color:var(--gold);margin:0 0 12px 0;font-size:1.1rem;text-transform:uppercase;letter-spacing:.1em}
+.modal-info p{color:var(--muted);margin:0;line-height:1.6}
+.modal-meta{display:flex;gap:15px;font-size:.95rem;color:var(--muted);flex-wrap:wrap}
+.modal-footer{padding:20px 30px;border-top:3px solid rgba(212,175,55,.3);background:rgba(212,175,55,.08);text-align:center;color:var(--muted)}
+.modal-footer strong{color:var(--gold);font-size:1.3rem}
+
+.toast{position:fixed;bottom:40px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--bg);padding:16px 32px;border-radius:8px;font-weight:600;z-index:2000;display:none;animation:slideUp .3s;box-shadow:0 10px 30px rgba(0,0,0,.5);max-width:90%;text-align:center}
+.toast.success{background:linear-gradient(135deg,var(--gold),#ffd166)}
+.toast.error{background:#d32f2f;color:#fff}
+.toast.warning{background:#f57c00;color:#fff}
+.toast.info{background:#1976d2;color:#fff}
+@keyframes slideUp{from{transform:translateX(-50%) translateY(20px);opacity:0}to{transform:translateX(-50%) translateY(0);opacity:1}}
+
+.no-results{grid-column:1/-1;text-align:center;padding:100px 20px;color:var(--muted)}
+.no-results strong{color:var(--gold);display:block;margin-bottom:25px;font-size:1.8rem;font-family:"Playfair Display",serif}
+
+.current-category-indicator{position:fixed;top:110px;left:50%;transform:translateX(-50%);background:rgba(212,175,55,.95);color:var(--bg);padding:12px 30px;border-radius:30px;font-weight:800;font-size:1.1rem;z-index:99;backdrop-filter:blur(15px);box-shadow:0 10px 30px rgba(0,0,0,.5);text-transform:uppercase;letter-spacing:.2em;transition:opacity .3s;opacity:0;border:3px solid rgba(212,175,55,.7)}
+.current-category-indicator.visible{opacity:1;animation:slideDown .3s}
+@keyframes slideDown{from{transform:translateX(-50%) translateY(-20px);opacity:0}to{transform:translateX(-50%) translateY(0);opacity:1}}
+
+.visual-fade{position:fixed;top:0;left:0;right:0;height:180px;background:linear-gradient(to bottom,var(--bg),rgba(44,24,16,0));pointer-events:none;z-index:98}
+.visual-bottom-fade{position:fixed;bottom:0;left:0;right:0;height:120px;background:linear-gradient(to top,var(--bg),rgba(44,24,16,0));pointer-events:none;z-index:98}
+
+@media (max-width:1024px){.grid{grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:25px}.card{min-height:350px}}
+@media (max-width:767px){.grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:20px}.card{min-height:320px}.floating-categories{top:10px;padding:12px 20px}.search-container{top:100px}.content-container{padding:180px 15px 30px}.modal-body{grid-template-columns:1fr;gap:20px}}
+@media (max-width:480px){.grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:15px}.floating-category{padding:10px 18px;font-size:.8rem;min-height:50px;min-width:100px}.modal-card{width:95%;max-height:95vh}.modal-header{padding:20px 15px}.modal-header h3{font-size:1.5rem}.modal-body{padding:20px}.modal-info > div{padding:15px}}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 </style>
-
-<!-- Non-critical CSS (deferred) -->
-<link rel="stylesheet" href="deferred-styles.css" media="print" onload="this.media='all'">
-
-<!-- Structured Data for SEO -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Restaurant",
   "name": "Turkiana Café & Sweets",
-  "description": "A winter haven of sweetness, warmth, and timeless Turkish charm",
+  "image": "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkishcoffee.jpg",
+  "description": "Authentic Turkish coffee, sweets, and pastries",
   "address": {
     "@type": "PostalAddress",
-    "addressCountry": "QA"
+    "addressCountry": "QA",
+    "addressLocality": "Doha"
   },
   "menu": "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/",
-  "servesCuisine": ["Turkish", "Arabic", "Middle Eastern"],
+  "servesCuisine": ["Turkish", "Arabic"],
   "priceRange": "$$",
-  "openingHours": "Mo-Su 08:00-23:00",
-  "hasMenu": {
-    "@type": "Menu",
-    "name": "Winter 2025 Menu",
-    "description": "Winter menu featuring Turkish coffee, sweets, and warm specialties",
-    "hasMenuSection": [
-      {
-        "@type": "MenuSection",
-        "name": "Brewed on Arabic & Turkish Way",
-        "description": "Traditional Turkish and Arabic coffee preparations"
-      },
-      {
-        "@type": "MenuSection",
-        "name": "Tea on the House",
-        "description": "Traditional and specialty teas"
-      },
-      {
-        "@type": "MenuSection",
-        "name": "Baklava & Beyond",
-        "description": "Traditional Turkish sweets and pastries"
-      }
-    ]
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+    "opens": "08:00",
+    "closes": "23:00"
   }
 }
 </script>
 </head>
 <body>
-<!-- Skip to content link for accessibility -->
 <a href="#mainContent" class="skip-to-content">Skip to main content</a>
-
-<!-- Floating Category Navigation -->
-<div class="floating-categories" id="floatingCategories"></div>
+<nav aria-label="Category navigation"><div class="floating-categories" id="floatingCategories"></div></nav>
 <div class="current-category-indicator" id="currentCategoryIndicator"></div>
-
-<!-- Search Bar -->
 <div class="search-container" id="searchContainer">
     <input type="search" id="menuSearch" placeholder="Search menu items..." autocomplete="off" aria-label="Search menu items">
     <button id="clearSearch" aria-label="Clear search">✕</button>
 </div>
-
-<!-- Dietary Filter Tags -->
-<div class="filter-tags" id="filterTags"></div>
-
-<!-- Visual Fades -->
+<aside aria-label="Dietary filters"><div class="filter-tags" id="filterTags"></div></aside>
 <div class="visual-fade"></div>
 <div class="visual-bottom-fade"></div>
-
-<!-- Loading Overlay -->
-<div class="loading-overlay hidden" id="loadingOverlay">
-    <div class="loading-spinner"></div>
-    <div class="loading-text">Loading Menu</div>
-</div>
-
-<!-- Snow Animation -->
-<canvas id="snow"></canvas>
-
-<!-- Notifications -->
-<div class="toast" id="toast"></div>
-
-<!-- Item Modal -->
+<div class="loading-overlay" id="loadingOverlay"><div class="loading-spinner"></div><div class="loading-text">Loading Menu</div></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 <div id="itemModal" class="modal-backdrop" aria-hidden="true">
     <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
         <div class="modal-header">
@@ -1331,1098 +266,140 @@ body {
             <button class="modal-close" aria-label="Close modal">&times;</button>
         </div>
         <div class="modal-body">
-            <div class="modal-image-container">
-                <picture>
-                    <source id="modalImageWebp" type="image/webp">
-                    <img id="modalImage" class="modal-image" src="" alt="">
-                </picture>
-            </div>
+            <div class="modal-image-container"><img id="modalImage" class="modal-image" src="" alt=""></div>
             <div class="modal-info">
-                <div>
-                    <h4>Description</h4>
-                    <p id="modalDescEn"></p>
-                </div>
-                <div>
-                    <h4>الوصف</h4>
-                    <p id="modalDescAr"></p>
-                </div>
-                <div class="modal-meta">
-                    <div id="modalCalories"></div>
-                    <div id="modalDietary" style="margin-top:8px"></div>
-                </div>
+                <div><h4>Description</h4><p id="modalDescEn"></p></div>
+                <div><h4>الوصف</h4><p id="modalDescAr"></p></div>
+                <div class="modal-meta"><div id="modalCalories"></div><div id="modalDietary"></div></div>
             </div>
         </div>
-        <div class="modal-footer">
-            <span>Price · </span><strong id="modalPrice"></strong><span> QAR</span>
-        </div>
+        <div class="modal-footer"><span>Price · </span><strong id="modalPrice"></strong><span> QAR</span></div>
     </div>
 </div>
-
-<!-- App Container -->
-<div class="app-container">
-    <!-- Main Content Container -->
-    <main class="content-container" id="mainContent" role="main">
-        <!-- Content will be generated by JavaScript -->
-    </main>
-</div>
-
-<!-- Service Worker Registration -->
-<script>
-// Register service worker for PWA functionality
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js').then(registration => {
-            console.log('ServiceWorker registered: ', registration.scope);
-        }).catch(error => {
-            console.log('ServiceWorker registration failed: ', error);
-        });
-    });
-}
-</script>
+<div class="app-container"><main class="content-container" id="mainContent" role="main" aria-label="Menu items"></main></div>
 
 <script>
-// ============================================
-// 1. INITIALIZATION & DATA
-// ============================================
-
-// Menu Data (complete - all 146 items)
-const allItems = [
-    { id:"batw1", cat:"Brewed on Arabic & Turkish Way", enName:"Classic Turkish Coffee", arName:"قهوة تركية كلاسيكية", price:28, enDesc:"A timeless Turkish tradition—finely ground coffee brewed in a cezve with meticulous attention to foam formation, delivering intense aromas and rich, unfiltered flavors in every velvety sip.", arDesc:"تقليد تركي خالد—قهوة مطحونة ناعماً تُحضر في إبريق نحاسي بعناية فائقة لتكوين رغوة مثالية، تقدم عبقاً قوياً ونكهات غنية غير مصفاة في كل رشفة حريرية.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkishcoffee.jpg", calories:"5 kcal", dietary:["vegan","gluten-free","dairy-free"] },
-    { id:"batw2", cat:"Brewed on Arabic & Turkish Way", enName:"Double Turkish Coffee", arName:"قهوة تركية مزدوجة", price:40, enDesc:"For the bold-hearted—double the intensity with concentrated brewing that amplifies coffee's robust character, creating a powerful, full-bodied experience with lingering depth.", arDesc:"للمحبين للقوة—ضعف التركيز بتحضير مركز يعزز شخصية القهوة الجريئة، يخلق تجربة قوية وكاملة الجسم بعمق دائم.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkishcoffee.jpg", calories:"10 kcal", dietary:["vegan","gluten-free","dairy-free"] },
-    { id:"batw3", cat:"Brewed on Arabic & Turkish Way", enName:"Ottoman Coffee with Mastic", arName:"قهوة عثمانية بالمستيك", price:28, enDesc:"A royal Ottoman heritage—premium coffee enhanced with rare Chios mastic resin, imparting distinctive pine-like notes and smooth sophistication that transports you to imperial courts.", arDesc:"تراث عثماني ملكي—قهوة فاخرة معززة بمستيك شيوس النادر، تمنح نفحات شبيهة بالصنوبر ونعومة راقية تنقلك إلى بلاط السلاطين.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Ottomanmastica.jpg", calories:"5 kcal", dietary:["vegan","gluten-free","dairy-free"] },
-    { id:"batw4", cat:"Brewed on Arabic & Turkish Way", enName:"Ottoman Coffee with Hazelnuts", arName:"قهوة عثمانية بالبندق", price:28, enDesc:"Creamy indulgence from the Black Sea region—delicately blended with finely ground premium hazelnuts that lend velvety texture and subtle nutty sweetness to traditional brew.", arDesc:"تناول كريمي من منطقة البحر الأسود—ممزوجة بدقة مع بندق فاخر مطحون ناعماً يعطي قواماً حريرياً وحلاوة جوزية خفيفة للتحضير التقليدي.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Ottomanhazelnut.jpg", calories:"20 kcal", dietary:["contains-nuts"] },
-    { id:"batw5", cat:"Brewed on Arabic & Turkish Way", enName:"Turkish Coffee with Cardamom", arName:"قهوة تركية بالهيل", price:28, enDesc:"Spiced elegance—traditional Turkish coffee artfully infused with aromatic green cardamom pods, creating warm, fragrant layers that complement coffee's natural intensity.", arDesc:"أناقة متبّلة—قهوة تركية تقليدية معززة بمهارة بحبات الهيل الأخضر العطري، تخلق طبقات دافئة عطرة تكمل شدة القهوة الطبيعية.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Ottomancardamom.jpg", calories:"5 kcal", dietary:["vegan","gluten-free","dairy-free"] },
-    { id:"batw6", cat:"Brewed on Arabic & Turkish Way", enName:"Sahlep", arName:"شلهب", price:38, enDesc:"Winter's velvet embrace—ancient Anatolian comfort drink made from wild orchid tubers, slowly simmered to creamy perfection and crowned with cinnamon for nostalgic warmth.", arDesc:"احتواء الشتاء المخملي—شراب أناضولي قديم مريح مصنوع من درنات الأوركيد البرية، يُطهى ببطء إلى الكريمية المثالية ويتوج بالقرفة للدفء الحنيني.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Sahlep.jpg", calories:"200 kcal", dietary:["contains-dairy"] },
-    { id:"batw7", cat:"Brewed on Arabic & Turkish Way", enName:"Arabic Coffee in a Full Dalla", arName:"قهوة عربية بالدلة الكاملة", price:90, enDesc:"The ceremonial centerpiece—generously brewed in traditional brass dalla with cardamom, saffron, and cloves, embodying centuries of Arabian hospitality and shared conversation.", arDesc:"محور الاحتفالية—مُحضرة بسخاء في دلة نحاسية تقليدية مع الهيل والزعفران والقرنفل، تجسد قروناً من الضيافة العربية والمحادثات المشتركة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Arabic.jpg", calories:"10 kcal", dietary:["vegan","gluten-free","dairy-free"] },
-    { id:"batw8", cat:"Brewed on Arabic & Turkish Way", enName:"Arabic Coffee in a Half Dalla", arName:"قهوة عربية بنصف دلة", price:50, enDesc:"Intimate gathering brew—perfectly portioned traditional Arabic coffee maintaining the same delicate spice balance and aromatic depth for smaller, meaningful moments.", arDesc:"تحضير لللقاءات الحميمة—قهوة عربية تقليدية بحجم مثالي تحافظ على نفس التوازن الدقيق للتوابل والعمق العطري لللحظات الأصغر والأكثر معنى.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Arabic.jpg", calories:"10 kcal", dietary:["vegan","gluten-free","dairy-free"] },
-    { id:"batw9", cat:"Brewed on Arabic & Turkish Way", enName:"Arabic Coffee in a Cup", arName:"قهوة عربية في فنجان", price:35, enDesc:"A personal journey—single serving of authentic Arabic coffee that captures the essence of desert hospitality with every fragrant, spice-infused sip of tradition.", arDesc:"رحلة شخصية—وجبة فردية من القهوة العربية الأصيلة تلتقط جوهر ضيافة الصحراء مع كل رشفة عطرة ومشبعة بالتقاليد.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Arabiccup.jpeg", calories:"10 kcal", dietary:["vegan","gluten-free","dairy-free"] },
-    { id:"th1", cat:"Tea on the House", enName:"Turkish Tea", arName:"شاي تركي", price:15, enDesc:"The heartbeat of Turkish culture—deep amber Rize tea double-brewed to perfection, served in iconic tulip glasses that concentrate aromas and warmth in every comforting sip.", arDesc:"نبض الثقافة التركية—شاي ريزه الكهرماني العميق يُحضر مزدوجاً إلى الكمال، يُقدم في أكواب التوليب الأيقونية التي تركز العطور والدفء في كل رشفة مريحة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Tea.jpg", calories:"2 kcal", dietary:["vegan","dairy-free"], popular:true },
-    { id:"th2", cat:"Tea on the House", enName:"Turkish Tea in a Pot", arName:"شاي تركي في إبريق", price:45, enDesc:"Shared tradition in brass—generous pot of aromatic Turkish tea that embodies communal warmth, inviting extended conversations and lasting connections over refilled cups.", arDesc:"تقليد مشترك من النحاس—إبريق سخي من الشاي التركي العطري يجسد الدفء الجماعي، يدعو لمحادثات مطولة وروابط دائمة فوق الأكواب المعادة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkishteapot.jpeg", calories:"0 kcal", dietary:["vegan","gluten-free","dairy-free"] },
-    { id:"th3", cat:"Tea on the House", enName:"Apple Tea", arName:"شاي التفاح", price:35, enDesc:"Orchard in a cup—sun-ripened apple essence infused with premium black tea, creating harmonious balance between fruity sweetness and tea's natural tannic structure.", arDesc:"بستان في كوب—جوهر التفاح الناضج بالشمس منقوع في شاي أسود فاخر، يخلق توازناً متناغماً بين حلاوة الفواكه والتركيب التناني الطبيعي للشاي.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Appletea.jpg", calories:"2 kcal", dietary:["vegan","dairy-free"] },
-    { id:"th4", cat:"Tea on the House", enName:"Mulberry Tea", arName:"شاي التوت", price:35, enDesc:"Silken summer harvest—delicate white mulberry infusion with subtle honey-like sweetness and smooth finish that evokes sunny Anatolian orchards in every gentle sip.", arDesc:"حصاد صيفي حريري—نقيع التوت الأبيض الدقيق بحلاوة تشبه العسل الخفيفة ونهاية ناعمة تستحضر بساتين الأناضول المشمسة في كل رشفة لطيفة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mulberrytea.jpg", calories:"2 kcal", dietary:["vegan","dairy-free"] },
-    { id:"th5", cat:"Tea on the House", enName:"Lemon Mint", arName:"شاي بالليمون والنعناع", price:35, enDesc:"Mediterranean revival—zesty lemon wedges and freshly picked mint leaves revitalize premium tea base, creating invigorating clarity and refreshing citrus-herbal harmony.", arDesc:"إحياء متوسطي—شرائح الليمون المنعشة وأوراق النعناع الطازجة المحصودة حديثاً تنعش قاعدة الشاي الفاخر، تخلق وضوحاً منشطاً وتناغماً حمضياً عشبياً منعشاً.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Lemontea.jpg", calories:"2 kcal", dietary:["vegan","dairy-free"] },
-    { id:"th6", cat:"Tea on the House", enName:"Pomegranate Tea", arName:"شاي الرمان", price:35, enDesc:"Ruby elixir—vibrant pomegranate infusion that captures the fruit's perfect sweet-tart duality, offering antioxidant-rich depth and festive crimson hue in every cup.", arDesc:"إكسير ياقوتي—نقيع رمان نابض بالحياة يلتقط الثنائية المثالية للحلو والحامض للفاكهة، يقدم عمقاً غنياً بمضادات الأكسدة ولوناً قرمزيزي احتفالي في كل كوب.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Romantea.jpg", calories:"2 kcal", dietary:["vegan","dairy-free"] },
-    { id:"th7", cat:"Tea on the House", enName:"Matcha", arName:"ماتشا", price:36, enDesc:"Zen in motion—ceremonial-grade matcha stone-ground to velvety perfection, delivering concentrated umami, vibrant chlorophyll notes, and sustained calm energy in chilled presentation.", arDesc:"تأمل في حركة—ماتشا درجة طقوسي مطحون بالحجر إلى كمال حريري، يقدم أومامي مركزاً ونفحات كلوروفيل نابضة وطاقة هادئة مستدامة في تقديم بارد.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Matcha.webp", calories:"95 kcal", dietary:["vegan","dairy-free"] },
-    { id:"th8", cat:"Tea on the House", enName:"Strawberry Matcha", arName:"ماتشا بالفراولة", price:42, enDesc:"Harmonious fusion—vibrant matcha meets sun-ripened strawberry puree, creating layered experience where green tea's umami depth dances with berry's natural sweetness.", arDesc:"اندماج متناغم—ماتشا نابض يلتقي بهريس فراولة ناضج بالشمس، يخلق تجربة متعددة الطبقات حيث عمق الأومامي في الشاي الأخضر يرقص مع حلاوة التوت الطبيعية.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Strawberrymatcha.webp", calories:"135 kcal", dietary:["vegan","dairy-free"] },
-    { id:"th9", cat:"Tea on the House", enName:"Ice Apple Tea", arName:"شاي التفاح مثلج", price:35, enDesc:"Chilled orchard breeze—crisp apple infusion over crystalline ice, maintaining the fruit's natural sweetness while offering thirst-quenching refreshment perfect for warm days.", arDesc:"نسيم بستان بارد—نقيع تفاح منعش فوق ثلج بلوري، يحافظ على حلاوة الفاكهة الطبيعية بينما يقدم انتعاشاً يُروي العطش مثالياً للأيام الدافئة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Appletea.avif", calories:"35 kcal", dietary:["vegan","dairy-free"] },
-    { id:"th10", cat:"Tea on the House", enName:"Ice Mulberry Tea", arName:"شاي التوت المثلج", price:35, enDesc:"Frosted silk—delicate mulberry essence chilled to perfection, offering subtle fruity notes and smooth texture that feels like liquid velvet on a summer afternoon.", arDesc:"حرير متجمد—جوهر التوت الدقيق المبرد إلى الكمال، يقدم نفحات فاكهية خفيفة وقواماً ناعماً يشبه المخمل السائل في ظهيرة صيفية.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Blackmulberrytea.png", calories:"35 kcal", dietary:["vegan","dairy-free"] },
-    { id:"th11", cat:"Tea on the House", enName:"Ice Pomegranate Tea", arName:"شاي الرمان المثلج", price:35, enDesc:"Jewel-toned refreshment—vibrant pomegranate tea served over hand-carved ice, delivering bold fruity character and antioxidant richness in beautifully chilled presentation.", arDesc:"انتعاش بلون الجواهر—شاي رمان نابض يُقدم فوق ثلج منحوت يدوياً، يقدم شخصية فاكهية جريئة وغنياً بمضادات الأكسدة في تقديم مبرد جميل.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Pomegranatetea.avif", calories:"45 kcal", dietary:["vegan","dairy-free"] },
-    { id:"th12", cat:"Tea on the House", enName:"Passion Fruit Tea", arName:"شاي باشن فروت", price:45, enDesc:"Tropical euphoria—exotic passion fruit infusion that balances tangy vibrancy with subtle sweetness, capturing the essence of distant shores in every fragrant sip.", arDesc:"نشوة استوائية—نقيع باشن فروت غريب يوازن بين الحيوية الحامضة والحلاوة الخفيفة، يلتقط جوهر الشواطئ البعيدة في كل رشفة عطرة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Passiontea.webp", calories:"40 kcal", dietary:["vegan","dairy-free"] },
-    { id:"th13", cat:"Tea on the House", enName:"Hibiscus Ice", arName:"الكركديه مثلج", price:28, enDesc:"Ruby glacier—vibrant hibiscus infusion served over ice, offering tangy floral notes, stunning crimson color, and refreshing qualities that invigorate the senses.", arDesc:"جليد ياقوتي—نقيع كركديه نابض يُقدم فوق الثلج، يقدم نفحات زهرية حامضة ولوناً قرمزيًا بديع وصفات منعشة تنعش الحواس.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Hibiscus.webp", calories:"25 kcal", dietary:["vegan","dairy-free"] },
-    { id:"th14", cat:"Tea on the House", enName:"Classic Turkish Coffee", arName:"قهوة تركية كلاسيكية", price:28, enDesc:"Traditional perfection—meticulously prepared Turkish coffee with signature velvety foam and rich depth, served alongside refreshing water to cleanse and prepare the palate.", arDesc:"كمال تقليدي—قهوة تركية محضرة بدقة مع رغوة حريرية مميزة وعمق غني، تُقدم بجانب ماء منعش لتنظيف وإعداد الحنك.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkishcoffee.jpg", calories:"5 kcal", dietary:["vegan","gluten-free","dairy-free"] },
-    { id:"cac15", cat:"Café & Chill", enName:"Ice Tiramisu Latte", arName:"لاتيه تيراميسو مثلج", price:36, enDesc:"Dessert reimagined—layered iced latte capturing tiramisu's essence with espresso, mascarpone-inspired cream, ladyfinger notes, and cocoa dusting for sophisticated indulgence.", arDesc:"حلوى مُعاد تخيلها—لاتيه مثلج متعدد الطبقات يلتقط جوهر التيراميسو مع إسبرسو، كريمة مستوحاة من الماسكاربون، نفحات بسكويت السيدة وذرّ الكاكاو لتناول فاخر راقٍ.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Icetiramisu.webp", calories:"210 kcal", dietary:["contains-dairy"] },
-    { id:"cac1", cat:"Café & Chill", enName:"Hot Chocolate (Hot/Ice)", arName:"هوت شوكولاتة (ساخن/مثلج)", price:36, enDesc:"Liquid velvet—artisanal blend of single-origin cocoa and steamed milk creating silky richness, crowned with whipped cream for ultimate comfort in warm or chilled version.", arDesc:"مخمل سائل—مزيج حرفي من كاكاو منشأ واحد وحليب مبخر يخلق غنى حريرياً، يتوج بكريمة مخفوقة للراحة القصوى في النسخة الدافئة أو المبردة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Hotchocolate.jfif", calories:"360 kcal", dietary:["contains-dairy"] },
-    { id:"cac2", cat:"Café & Chill", enName:"Piccolo Latte", arName:"بيكولو", price:24, enDesc:"Precision in miniature—strong ristretto base harmonized with just enough velvety milk to soften edges while preserving coffee's intense character in elegantly small format.", arDesc:"دقة مصغرة—قاعدة رسترتو قوية متناغمة مع ما يكفي من الحليب الحريري لتليين الحواف مع الحفاظ على شخصية القهوة المكثفة في شكل صغير أنيق.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Piccololatte.jpg", calories:"120 kcal", dietary:["contains-dairy"] },
-    { id:"cac3", cat:"Café & Chill", enName:"Latte (Hot/Ice)", arName:"لاتيه (ساخن/مثلج)", price:29, enDesc:"The perfect canvas—smooth microfoam over balanced espresso creating creamy harmony, offering comforting warmth or refreshing chill in beautifully layered presentation.", arDesc:"اللوحة المثالية—رغوة دقيقة ناعمة فوق إسبرسو متوازن تخلق تناغماً كريمياً، تقدم دفئاً مريحاً أو برودة منعشة في تقديم جميل متعدد الطبقات.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Latteart.webp", calories:"170 kcal", dietary:["contains-dairy"] },
-    { id:"cac4", cat:"Café & Chill", enName:"Spanish Latte (Hot/Ice)", arName:"لاتيه إسباني (ساخن ومثلج)", price:32, enDesc:"Iberian sweetness—traditional latte enriched with sweetened condensed milk that caramelizes subtly, creating luxurious texture and nostalgic sweetness in every sip.", arDesc:"حلاوة إيبيرية—لاتيه تقليدي معزز بحليب مكثف محلى يتكرمل بخفة، يخلق قواماً فاخراً وحلاوة حنينية في كل رشفة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Latteart.webp", calories:"220 kcal", dietary:["contains-dairy"] },
-    { id:"cac5", cat:"Café & Chill", enName:"Salted Caramel Latte (Hot/Ice)", arName:"لاتيه بالكراميل المملح (ساخن/مثلج)", price:32, enDesc:"Savory-sweet alchemy—house-made caramel with Himalayan salt crystals blended into creamy latte, creating sophisticated balance that tantalizes both sweet and savory cravings.", arDesc:"كيمياء مالحة-حلوة—كراميل منزلي الصنع مع بلورات ملح الهيمالايا ممزوج في لاتيه كريمي، يخلق توازناً راقياً يثير الشهية للحلو والمالح.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Latteart.webp", calories:"230 kcal", dietary:["contains-dairy"] },
-    { id:"cac6", cat:"Café & Chill", enName:"Vanilla Latte (Hot/Ice)", arName:"لاتيه فانيليا (ساخن/مثلج)", price:32, enDesc:"Classic elegance—Madagascar bourbon vanilla bean infusion harmonizing with espresso and steamed milk, creating fragrant sweetness that enhances rather than overwhelms coffee notes.", arDesc:"أناقة كلاسيكية—نقيع فانيليا مدغشقر بوربون متناغم مع الإسبرسو والحليب المبخر، يخلق حلاوة عطرة تعزز نفحات القهوة بدلاً من طغيانها.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Art.webp", calories:"220 kcal", dietary:["contains-dairy"] },
-    { id:"cac7", cat:"Café & Chill", enName:"Cappuccino (Hot/Ice)", arName:"كابوتشينو (ساخن/مثلج)", price:29, enDesc:"Textural masterpiece—equal parts espresso, steamed milk, and thick microfoam creating perfect trifecta of strength, creaminess, and airy lightness in traditional Italian style.", arDesc:"تحفة قوامية—أجزاء متساوية من إسبرسو، حليب مبخر، ورغوة دقيقة سميكة تخلق ثلاثية مثالية من القوة والكريمية والخفة الهوائية بالأسلوب الإيطالي التقليدي.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Art.webp", calories:"150 kcal", dietary:["contains-dairy"] },
-    { id:"cac8", cat:"Café & Chill", enName:"White Mocha (Hot/Ice)", arName:"وايت موكا (ساخن/مثلج)", price:32, enDesc:"Ivory indulgence—creamy white chocolate melted into rich espresso and steamed milk, creating decadent sweetness with subtle vanilla notes and luxurious mouthfeel.", arDesc:"تناول عاجي—شوكولاتة بيضاء كريمية ذائبة في إسبرسو غني وحليب مبخر، تخلق حلاوة فاخرة بنفحات فانيليا خفيفة وإحساس فم فاخر.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Latteart.webp", calories:"260 kcal", dietary:["contains-dairy"] },
-    { id:"cac9", cat:"Café & Chill", enName:"Flat White (Hot/Ice)", arName:"فلات وايت (ساخن/مثلج)", price:27, enDesc:"Antipodean precision—strong double ristretto topped with velvety microfoam, emphasizing coffee intensity while providing silky texture that defines this Australian classic.", arDesc:"دقة من نصف الكرة الجنوبي—ريسترتو مزدوج قوي يتوج برغوة دقيقة حريرية، يؤكد على شدة القهوة بينما يوفر قواماً حريرياً يعرّف هذا الكلاسيكي الأسترالي.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Flatwhite.webp", calories:"140 kcal", dietary:["contains-dairy"] },
-    { id:"cac10", cat:"Café & Chill", enName:"Cortado (Hot/Ice)", arName:"كورتادو (ساخن/مثلج)", price:24, enDesc:"Spanish equilibrium—equal parts espresso and warm steamed milk creating perfect balance where neither overpowers, allowing coffee's nuanced flavors to shine through clearly.", arDesc:"توازن إسباني—أجزاء متساوية من إسبرسو وحليب مبخر دافئ تخلق توازناً مثالياً حيث لا يتغلب أي منهما، تسمح لنكهات القهوة الدقيقة بالتألق بوضوح.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Cortado.webp", calories:"110 kcal", dietary:["contains-dairy"] },
-    { id:"cac11", cat:"Café & Chill", enName:"Espresso Single / Double (Hot/Ice)", arName:"إسپريسو مفرد/مزدوج (ساخن/مثلج)", price:21, enDesc:"Coffee in its purest form—concentrated extraction showcasing bean's terroir, with crema crown revealing roasting artistry and brewing precision in intense, aromatic essence.", arDesc:"قهوة في أنقى صورها—استخلاص مركز يعرض تيروار الحبة، مع تاج الكريما يكشف فن التحمير ودقة التحضير في الجوهر المكثف العطري.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Espresso.webp", calories:"5 kcal", dietary:["vegan","gluten-free","dairy-free"] },
-    { id:"cac12", cat:"Café & Chill", enName:"Macchiato (Hot/Ice)", arName:"ماكياتو (ساخن/مثلج)", price:24, enDesc:"'Stained' artistry—strong espresso 'marked' with just a dollop of steamed milk foam, creating visual appeal and subtle creaminess that complements rather than dilutes intensity.", arDesc:"فن 'ملطخ'—إسبرسو قوي 'معلّم' بكمية صغيرة فقط من رغوة الحليب المبخر، يخلق جاذبية بصرية وكريمية خفيفة تكمل الشدة بدلاً من تخفيفها.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Machiatto.jpg", calories:"40 kcal", dietary:["contains-dairy"] },
-    { id:"cac13", cat:"Café & Chill", enName:"Americano (Hot/Ice)", arName:"أمريكانو (ساخن/مثلج)", price:21, enDesc:"Transatlantic simplicity—espresso extended with hot water to create smooth, approachable strength that maintains coffee's character while offering lighter, sip-friendly experience.", arDesc:"بساطة عبر الأطلسي—إسبرسو ممتد بماء ساخن لخلق قوة ناعمة وسهلة الوصول تحافظ على شخصية القهوة بينما تقدم تجربة أخف وأسهل للرشف.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Americano.webp", calories:"5 kcal", dietary:["vegan","gluten-free","dairy-free"] },
-    { id:"cac14", cat:"Café & Chill", enName:"Mocha (Hot/Ice)", arName:"موكا (ساخن/مثلج)", price:32, enDesc:"Chocolate-coffee marriage—rich dark chocolate melted into espresso base, topped with steamed milk and cocoa powder for decadent treat that satisfies both cravings simultaneously.", arDesc:"زواج شوكولاتة-قهوة—شوكولاتة داكنة غنية ذائبة في قاعدة إسبرسو، تتوج بحليب مبخر ومسحوق كاكاو لتناول فاخر يرضي الرغبتين في آن واحد.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Art.webp", calories:"260 kcal", dietary:["contains-dairy"] },
-    { id:"sb1", cat:"Specialty Brews", enName:"V60 Pour Over - Ethiopia Beans", arName:"V60 بورت أوفر - حبوب إثيوبيا", price:33, enDesc:"Manual artistry—Ethiopian Yirgacheffe beans hand-poured through ceramic V60, extracting bright floral notes, bergamot hints, and clean finish that showcases terroir with clarity.", arDesc:"فن يدوي—حبوب إثيوبيا يرجاتشيف تُسكب يدوياً عبر V60 سيراميكي، تستخلص نفحات زهرية زاهية، تلميحات برغموت، ونهاية نظيفة تعرض التيروار بوضوح.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/V60.webp", calories:"2 kcal", dietary:["vegan","dairy-free"] },
-    { id:"sb2", cat:"Specialty Brews", enName:"Ice Drip", arName:"آيس دريب", price:35, enDesc:"Slow-motion extraction—coffee grounds slowly dripped with ice-cold water over 8 hours, creating concentrated, smooth elixir with low acidity and complex flavor development.", arDesc:"استخلاص بالحركة البطيئة—بن مطحون يُقطر ببطء بماء مثلج على مدى 8 ساعات، يخلق إكسير مركزاً وناعماً بحموضة منخفضة وتطور نكهة معقد.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Drip.jpg", calories:"2 kcal", dietary:["vegan","dairy-free"] },
-    { id:"sb3", cat:"Specialty Brews", enName:"Cold Brew", arName:"كولد برو", price:37, enDesc:"Patience rewarded—coarse grounds steeped in cold water for 18+ hours, producing naturally sweet, low-acid concentrate with chocolatey notes and remarkably smooth character.", arDesc:"صبر مكافأ—بن خشِن منقوع في ماء بارد لأكثر من 18 ساعة، ينتج مركزاً حلوماً طبيعياً ومنخفض الحموضة بنفحات شوكولاتية وشخصية ناعمة بشكل ملحوظ.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Coldbrew.webp", calories:"2 kcal", dietary:["vegan","dairy-free"] },
-    { id:"rf1", cat:"Refreshers", enName:"Lemonade", arName:"ليموناضة", price:37, enDesc:"Sunshine in glass—freshly squeezed Sicilian lemons balanced with pure cane sugar, creating perfect sweet-tart harmony that quenches thirst while brightening the spirit.", arDesc:"شمس في كوب—ليمون صقلي معصور طازجاً متوازن مع سكر قصب نقي، يخلق تناغماً حلو-حامض مثالي يُروي العطش بينما يضيء الروح.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Lemonade.jpg", calories:"120 kcal", dietary:["vegan","dairy-free"] },
-    { id:"rf2", cat:"Refreshers", enName:"Fresh Orange Juice", arName:"عصير برتقال طازج", price:37, enDesc:"Morning sun captured—Valencia oranges freshly pressed to order, preserving natural pulp, vibrant color, and vitamin C richness for revitalizing, unprocessed vitality.", arDesc:"شمس الصباح محتجزة—برتقال فالنسيا معصور طازجاً حسب الطلب، يحفظ اللب الطبيعي، اللون النابض، وغنى فيتامين سي للنشاط المنعش وغير المعالج.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Orange.jpeg", calories:"140 kcal", dietary:["vegan","dairy-free"] },
-    { id:"rf3", cat:"Refreshers", enName:"Orange Earl Grey Tea", arName:"شاي البرتقال إيرل جراي", price:47, enDesc:"Citrus-bergamot duet—premium Earl Grey kissed with orange zest and juice, creating sophisticated layers where citrus brightness enhances tea's floral bergamot character.", arDesc:"دويو حمضي-برغموتي—شاي إيرل جراي فاخر مُقبّل بقشر البرتقال وعصيره، يخلق طبقات راقية حيث إشراق الحمضيات يعزز شخصية البرغموت الزهرية للشاي.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Earl.jpeg", calories:"2 kcal", dietary:["vegan","dairy-free"] },
-    { id:"rf4", cat:"Refreshers", enName:"Strawberry Mojito", arName:"موهيتو بالفراولة", price:42, enDesc:"Berry-crusted classic—fresh strawberries muddled with mint, lime, and cane sugar, topped with soda for vibrant, fruity twist on traditional Cuban refreshment.", arDesc:"كلاسيكي مطلي بالتوت—فراولة طازجة تُهرس مع النعناع والليمون الحامض وسكر القصب، تتوج بمياه غازية لنسخة نابضة وفاكهية من المنعش الكوبي التقليدي.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Strawberrymojito.jpg", calories:"160 kcal", dietary:[] },
-    { id:"rf5", cat:"Refreshers", enName:"Passion Fruit Mojito", arName:"موهيتو فاكهة العاطفة", price:42, enDesc:"Tropical reinvention—exotic passion fruit pulp blended with traditional mojito elements, creating vibrant, tangy-sweet celebration of Caribbean flavors with floral undertones.", arDesc:"إعادة اختراع استوائية—لب باشن فروت غريب يُخلط مع عناصر الموهيتو التقليدية، يخلق احتفالاً نابضاً وحامضاً-حلوماً بنكهات الكاريبي مع نغمات زهرية.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Passionfruit.webp", calories:"170 kcal", dietary:[] },
-    { id:"rf6", cat:"Refreshers", enName:"Blueberry Mojito", arName:"موهيتو التوت الأزرق", price:38, enDesc:"Antioxidant refreshment—wild blueberries muddled with fresh ingredients, creating deep purple hue and complex berry notes that elevate traditional mojito to new dimensions.", arDesc:"انتعاش مضاد للأكسدة—توت أزرق بري يُهرس مع مكونات طازجة، يخلق لوناً أرجوانياً عميقاً ونفحات توت معقدة ترفع الموهيتو التقليدي إلى أبعاد جديدة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Blueberrymojito.webp", calories:"150 kcal", dietary:[] },
-    { id:"rf7", cat:"Refreshers", enName:"Black Mulberry Mojito", arName:"موهيتو التوت", price:40, enDesc:"Deep berry elegance—rich black mulberries imparting sophisticated sweetness and jewel-toned color to classic mojito, creating luxurious twist with antioxidant benefits.", arDesc:"أناقة توتية عميقة—توت أسود غني يمنح حلاوة راقية ولوناً جوهراً للموهيتو الكلاسيكي، يخلق نسخة فاخرة بفوائد مضادات الأكسدة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mulberrymojito.jpg", calories:"170 kcal", dietary:[] },
-    { id:"rf8", cat:"Refreshers", enName:"Mix Berries Mojito", arName:"موهيتو التوت المختلط", price:47, enDesc:"Berry symphony—orchestral blend of strawberries, raspberries, blackberries, and blueberries creating complex flavor profile where each berry contributes distinct notes to harmonious whole.", arDesc:"سمفونية توتية—مزيج أوركستري من الفراولة، التوت الأحمر، التوت الأسود، والتوت الأزرق يخلق ملف نكهة معقد حيث يساهم كل توت بنفحات مميزة للكل المتناغم.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mixberriesmojito.webp", calories:"176 kcal", dietary:[] },
-    { id:"rf9", cat:"Refreshers", enName:"Cooling Breeze", arName:"نسيم بارد", price:38, enDesc:"Sensory revival—fresh mint and lime essence combined with sparkling water, creating zero-alcohol refreshment that cleanses palate and revitalizes senses with herbal clarity.", arDesc:"إحياء حسي—جوهر النعناع الطازج والليمون الحامض مجتمع مع مياه غازية، يخلق انتعاشاً خالياً من الكحول ينظف الحنك وينعش الحواس بوضوح عشبي.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Coolingbreeze.jpg", calories:"110 kcal", dietary:[] },
-    { id:"rf10", cat:"Refreshers", enName:"Still Water (Small)", arName:"مياه عادية (صغير)", price:11, enDesc:"Pure hydration—crisp, filtered still water in convenient small bottle, perfect accompaniment to coffee or standalone refreshment for everyday vitality.", arDesc:"ترطيب نقي—مياه عادية منعشة ومصفاة في زجاجة صغيرة ملائمة، مرافق مثالي للقهوة أو انتعاش مستقل للنشاط اليومي.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/WaterBig.jpg", calories:"0 kcal", dietary:["vegan","dairy-free"] },
-    { id:"rf11", cat:"Refreshers", enName:"Still Water (Big)", arName:"مياه عادية (كبير)", price:21, enDesc:"Ample purity—larger bottle of premium still water for sharing or extended enjoyment, maintaining crisp, clean taste that complements any meal or beverage.", arDesc:"نقاء وافر—زجاجة أكبر من المياه العادية الفاخرة للمشاركة أو الاستمتاع الممتد، تحافظ على الطعم المنعش والنظيف الذي يكمل أي وجبة أو مشروب.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Watersmall.jpg", calories:"0 kcal", dietary:["vegan","dairy-free"] },
-    { id:"rf12", cat:"Refreshers", enName:"Sparkling Water", arName:"مياه غازية", price:21, enDesc:"Effervescent cleanse—naturally carbonated water with fine bubbles that refresh palate, aid digestion, and provide elegant alternative to still water with lively mouthfeel.", arDesc:"تنظيف فوار—مياه متفحمة طبيعياً بفقاعات ناعمة تنعش الحنك، تساعد الهضم، وتقدم بديلاً أنيقاً للمياه العادية بإحساس فم حيوي.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Sparkling.jpg", calories:"0 kcal", dietary:["vegan","dairy-free"] },
-    { id:"rf13", cat:"Refreshers", enName:"Kinza Cola", arName:"كينزا كولا", price:17, enDesc:"Classic refreshment—signature cola with balanced sweetness and familiar effervescence, offering nostalgic comfort and perfect pairing with savory dishes or solo enjoyment.", arDesc:"انتعاش كلاسيكي—كولا مميزة بحلاوة متوازنة وفحمية مألوفة، تقدم راحة حنينية وقرينة مثالية مع الأطباق المالحة أو الاستمتاع المنفرد.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Cola.jpg", calories:"150 kcal", dietary:[] },
-    { id:"rf14", cat:"Refreshers", enName:"Kinza Cola Zero", arName:"كينزا كولا زيرو", price:17, enDesc:"Guilt-free fizz—sugar-free cola maintaining classic flavor profile with zero calories, offering same satisfying refreshment without compromising on taste experience.", arDesc:"فحم خالٍ من الذنب—كولا خالية من السكر تحافظ على ملف النكهة الكلاسيكي بصفر سعرات، تقدم نفس الانتعاش المرضي دون المساس بتجربة التذوق.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Zero.jpg", calories:"0 kcal", dietary:[] },
-    { id:"bak2", cat:"Baklava & Beyond", enName:"Turkish Mix Baklava", arName:"بقلاوة تركية مشكلة", price:65, enDesc:"Artisanal assortment—carefully curated selection of Gaziantep's finest baklava varieties, featuring multiple nut fillings, syrup saturation levels, and pastry techniques in one exquisite box.", arDesc:"تشكيلة حرفية—اختيار مدقق بعناية من أفضل أنواع بقلاوة غازي عنتاب، يضم حشوات مكسرات متعددة، مستويات تشريب بالشراب، وتقنيات عجين في صندوق واحد فاخر.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg", calories:"450 kcal", dietary:["contains-nuts"] },
-    { id:"bak3", cat:"Baklava & Beyond", enName:"Carrot Slice Baklava", arName:"بقلاوة شريحة الجزر", price:40, enDesc:"Innovative tradition—classic baklava enriched with carrot puree that adds natural sweetness and moist texture, layered with pistachios and bathed in rose-orange blossom syrup.", arDesc:"تقليد مبتكر—بقلاوة كلاسيكية معززة بهريس الجزر الذي يضيف حلاوة طبيعية وقواماً رطباً، مطبقة بالفستق ومغمورة بشراب ماء الورد-زهر البرتقال.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Carrot.jpeg", calories:"420 kcal", dietary:["vegetarian","contains-nuts"] },
-    { id:"bak4", cat:"Baklava & Beyond", enName:"Carrot Slice Baklava With Ice Cream", arName:"بقلاوة شريحة الجزر مع الآيس كريم", price:51, enDesc:"Temperature contrast—warm carrot baklava paired with cool vanilla bean ice cream, creating delightful interplay of crispy pastry, sweet syrup, and creamy cold that elevates both elements.", arDesc:"تباين درجات الحرارة—بقلاوة جزر دافئة مقترنة بآيس كريم فانيليا بارد، تخلق تفاعلاً مسلياً بين العجين المقرمش، الشراب الحلو، والكريمية الباردة التي ترفع كلا العنصرين.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Carroticecream.jpeg", calories:"620 kcal", dietary:["contains-nuts","contains-dairy"] },
-    { id:"bak5", cat:"Baklava & Beyond", enName:"Trio Baklava", arName:"تريو بقلاوة", price:45, enDesc:"Trinity of textures—three distinct baklava styles showcasing different techniques: rolled, open-faced, and diamond-cut, each highlighting unique aspects of this pastry art form.", arDesc:"ثالوث القوام—ثلاثة أنماط بقلاوة مميزة تعرض تقنيات مختلفة: ملفوف، مكشوف، ومقطع بشكل الماس، كل منها يسلط الضوء على جوانب فريدة من هذا الفن المعجني.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/TrioBaklava.jpeg", calories:"480 kcal", dietary:["contains-nuts"] },
-    { id:"bak6", cat:"Baklava & Beyond", enName:"Fruit Cake", arName:"كيك الفواكه", price:36, enDesc:"Celebratory classic—moist cake studded with candied citrus peel, raisins, and nuts, soaked in fruit juice for tender crumb and festive flavor that improves with each day.", arDesc:"كلاسيكي احتفالي—كيك رطب مرصّع بقشور الحمضيات المسكرة، الزبيب، والمكسرات، منقوع في عصير فواكه للفتات الطري والنكهة الاحتفالية التي تتحسن مع كل يوم.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Fruitcake.jfif", calories:"420 kcal", dietary:["contains-dairy"], popular:true },
-    { id:"bak7", cat:"Baklava & Beyond", enName:"Honey Cake", arName:"كيك العسل", price:40, enDesc:"Layered sweetness—multiple thin cake layers alternating with honey cream, creating moist, tender dessert where floral honey notes develop complexity with each delicate bite.", arDesc:"حلاوة متعددة الطبقات—طبقات كيك رقيقة متعددة تتبادل مع كريمة العسل، تخلق حلوى رطبة وطرية حيث تتطور نفحات العسل الزهرية إلى تعقيد مع كل قضمة دقيقة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Honeycake.jfif", calories:"430 kcal", dietary:["contains-dairy"], popular:true },
-    { id:"bak8", cat:"Baklava & Beyond", enName:"Vanilla Cake", arName:"كيك الفانيلا", price:36, enDesc:"Timeless simplicity—fluffy cake with pure Madagascar vanilla bean infusion, offering clean, aromatic sweetness that serves as perfect canvas for coffee pairing or standalone enjoyment.", arDesc:"بساطة خالدة—كيك منفوش بنقيع فانيليا مدغشقر نقية، يقدم حلاوة نظيفة وعطرة تعمل كلوحة مثالية لقرينة القهوة أو الاستمتاع المنفرد.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Vanillacake.jfif", calories:"410 kcal", dietary:["contains-dairy"], popular:true },
-    { id:"bak9", cat:"Baklava & Beyond", enName:"Chocolate Fruit Cake", arName:"كيك الشوكولاتة", price:36, enDesc:"Dual decadence—rich chocolate cake interwoven with rum-soaked dried fruits and nuts, creating sophisticated dessert where cocoa depth meets festive fruit complexity.", arDesc:"فخامة مزدوجة—كيك شوكولاتة غني منسوج مع فواكه مجففة منقوعة بالروم ومكسرات، يخلق حلوى راقية حيث يلتقي عمق الكاكاو بتعقيد الفواكه الاحتفالي.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Chocolatecake.jfif", calories:"450 kcal", dietary:["contains-dairy"], popular:true },
-    { id:"bak10", cat:"Baklava & Beyond", enName:"Kunafa", arName:"كنافة", price:40, enDesc:"Cheese perfection—shredded kataifi pastry baked with Akkawi cheese until golden, soaked in rose-scented syrup, creating perfect balance of salty cheese, sweet syrup, and crispy texture.", arDesc:"كمال الجبن—عجينة الكنافة المفتولة تُخبز مع جبنة عكاوي حتى تصبح ذهبية، تنقع في شراب معطر بماء الورد، تخلق توازناً مثالياً بين الجبن المالح، الشراب الحلو، والقوام المقرمش.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Kunafa.jpeg", calories:"520 kcal", dietary:["contains-dairy"] },
-    { id:"bak11", cat:"Baklava & Beyond", enName:"Chocolate Cake", arName:"كعكة الشكولاتة", price:40, enDesc:"Decadent foundation—deep, moist chocolate cake with intense cocoa flavor, versatile enough for standalone enjoyment or as base for further dessert customization and pairing.", arDesc:"أساس فاخر—كعكة شوكولاتة عميقة ورطبة بنكهة كاكاو مكثفة، متعددة الاستخدامات بما يكفي للاستمتاع المنفرد أو كقاعدة لمزيد من تخصيص الحلوى والقرينة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Chocolate.jpg", calories:"480 kcal", dietary:["contains-dairy"], popular:true },
-    { id:"bak13", cat:"Baklava & Beyond", enName:"Brownies", arName:"براونيز", price:45, enDesc:"Fudgy perfection—dense, rich brownies with crackly top and gooey center, balancing deep chocolate intensity with just enough sweetness to satisfy without overwhelming.", arDesc:"كمال فادج—براونيز كثيفة وغنية بقمة متشققة ومركز لزج، توازن بين شدة الشوكولاتة العميقة وما يكفي من الحلاوة للإشباع دون طغيان.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Brown.jpg", calories:"380 kcal", dietary:["contains-dairy"] },
-    { id:"bak14", cat:"Baklava & Beyond", enName:"Tiramisu", arName:"تيراميسو", price:50, enDesc:"Italian masterpiece—ladyfinger layers soaked in espresso and Marsala, alternating with mascarpone cream and dusted with cocoa, creating sophisticated coffee dessert that improves with time.", arDesc:"تحفة إيطالية—طبقات بسكويت السيدة منقوعة في إسبرسو ومارسالا، تتبادل مع كريمة الماسكاربون وتُذرّ بالكاكاو، تخلق حلوى قهوة راقية تتحسن مع الوقت.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Tiramisu.jpg", calories:"420 kcal", dietary:["contains-dairy"] },
-    { id:"bak15", cat:"Baklava & Beyond", enName:"Almond Chocolate Cake", arName:"كعكة الشوكولاتة باللوز", price:40, enDesc:"Nutty sophistication—moist chocolate cake with almond meal integrated into batter and toasted almond garnish, creating textural contrast and flavor harmony between cocoa and nuts.", arDesc:"رقة جوزية—كعكة شوكولاتة رطبة مع طحين اللوز المدمج في الخليط وتزيين لوز محمص، يخلق تبايناً قوامياً وتناغماً نكهياً بين الكاكاو والمكسرات.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Almond.jpg", calories:"490 kcal", dietary:["contains-nuts"] },
-    { id:"bak17", cat:"Baklava & Beyond", enName:"Chocolate Pistachio Cake", arName:"كعكة الشوكولاتة والفستق", price:40, enDesc:"Green luxury—rich chocolate cake adorned with crushed pistachios that provide vibrant color contrast, subtle saltiness, and elegant crunch against smooth chocolate background.", arDesc:"فخامة خضراء—كعكة شوكولاتة غنية مزينة بفستق مفتت يوفر تباين لوني نابض، ملوحة خفيفة، وقرمشة أنيقة ضد خلفية الشوكولاتة الناعمة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Chocolate_pistachio.jpg", calories:"510 kcal", dietary:["contains-nuts"] },
-    { id:"bak18", cat:"Baklava & Beyond", enName:"Strawberry Cake", arName:"كعكة الفراولة", price:45, enDesc:"Spring celebration—light sponge cake layered with fresh strawberry slices and cream, capturing fruit's natural sweetness and floral notes in visually stunning, seasonally inspired dessert.", arDesc:"احتفال ربيعي—كعكة إسفنجية خفيفة مطبقة بشرائح فراولة طازجة وكريمة، تلتقط حلاوة الفاكهة الطبيعية ونفحاتها الزهرية في حلوى مذهلة بصرياً ومستوحاة من الموسم.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Strawberry.jpg", calories:"470 kcal", dietary:["contains-dairy"] },
-    { id:"bak19", cat:"Baklava & Beyond", enName:"White Almond Cake", arName:"كعكة اللوز البيضاء", price:42, enDesc:"Elegant simplicity—delicate almond-flavored cake with fine crumb and subtle sweetness, often enjoyed with tea or as light dessert that highlights almond's sophisticated character.", arDesc:"بساطة أنيقة—كعكة بنكهة اللوز الدقيقة بفتات ناعم وحلاوة خفيفة، غالباً ما تُستمتع مع الشاي أو كحلوى خفيفة تسلط الضوء على شخصية اللوز الراقية.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/White.jpg", calories:"500 kcal", dietary:["contains-nuts"] },
-    { id:"bak20", cat:"Baklava & Beyond", enName:"Trileche With Milk", arName:"تريليتش باللبن", price:42, enDesc:"Triple moisture—sponge cake soaked in three-milk blend (evaporated, condensed, and cream), creating incredibly moist dessert with rich, creamy texture and caramelized notes.", arDesc:"رطوبة ثلاثية—كعكة إسفنجية منقوعة في مزيج ثلاثي الحليب (مبخر، مكثف، وكريمة)، تخلق حلوى رطبة بشكل لا يصدق بقوام غني كريمي ونفحات مكرملة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Trileche.jpg", calories:"540 kcal", dietary:["contains-dairy"] },
-    { id:"bak21", cat:"Baklava & Beyond", enName:"San Sebastian Cheesecake", arName:"تشيز كيك سان سيباستيان", price:42, enDesc:"Basque perfection—cream-centered cheesecake with caramelized top and creamy, almost liquid interior, intentionally underbaked to create unique texture contrast and rich flavor.", arDesc:"كمال باسكي—تشيز كيك مركز الكريمة بقمة مكرملة وداخل كريمي شبه سائل، يُخبز عمداً بشكل غير كامل لخلق تباين قوام فريد ونكهة غنية.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Sebastian.jpg", calories:"520 kcal", dietary:["contains-dairy"] },
-    { id:"bak22", cat:"Baklava & Beyond", enName:"Cheesecake", arName:"تشيز كيك", price:42, enDesc:"Classic foundation—creamy New York-style cheesecake with graham cracker crust, serving as perfect canvas for various toppings or enjoyed in its pure, unadorned perfection.", arDesc:"أساس كلاسيكي—تشيز كيك كريمي على الطريقة النيويوركية بقشرة بسكويت غراهام، يعمل كلوحة مثالية للطبقات المختلفة أو يُستمتع به في كماله النقي غير المزين.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/cheesecake.webp", calories:"500 kcal", dietary:["contains-dairy"] },
-    { id:"bak23", cat:"Baklava & Beyond", enName:"Pecan Cake", arName:"كيك البقان", price:45, enDesc:"Southern elegance—moist cake loaded with toasted pecans, often with caramel or maple notes, creating rich, nutty dessert that celebrates this distinctive nut's buttery character.", arDesc:"أناقة جنوبية—كعكة رطبة محشوة ببقان محمص، غالباً بنفحات كراميل أو قيقب، تخلق حلوى جوزية غنية تحتفظ بالشخصية الزبدية لهذا الجوز المميز.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Pecan.jpg", calories:"350 kcal", dietary:["vegetarian"] },
-    { id:"bak24", cat:"Baklava & Beyond", enName:"Fanzuella Sweet", arName:"حلوى فانزويلا", price:45, enDesc:"Exotic delight—traditional Venezuelan sweet with unique texture and flavor profile, offering cultural dessert experience that combines local ingredients in balanced, memorable treat.", arDesc:"لذة غريبة—حلوى فانزويلية تقليدية بقوام فريد وملف نكهة، تقدم تجربة حلوى ثقافية تجمع مكونات محلية في تناول متوازن لا يُنسى.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Fanzuella.webp", calories:"300 kcal", dietary:["vegetarian"] },
-    { id:"fd1", cat:"Fondue & Nuts", enName:"Strawberry Fondue", arName:"فوندو بالفراولة", price:40, enDesc:"Ruby indulgence—plump, ripe strawberries served with warm milk chocolate fondue, creating interactive dessert where fruit's natural acidity cuts through chocolate's richness perfectly.", arDesc:"تناول ياقوتي—فراولة ممتلئة وناضجة تُقدم مع فوندو شوكولاتة حليب دافئ، تخلق حلوى تفاعلية حيث حمضية الفاكهة الطبيعية تقطع غنى الشوكولاتة بشكل مثالي.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Fondue1.jpeg", calories:"320 kcal", dietary:["contains-dairy"] },
-    { id:"fd2", cat:"Fondue & Nuts", enName:"Strawberry-Banana Fondue", arName:"فوندو فراولة وموز", price:45, enDesc:"Tropical duo—fresh strawberries and ripe banana slices paired with chocolate fondue, offering textural contrast between berry firmness and banana creaminess against smooth chocolate coating.", arDesc:"ثنائي استوائي—فراولة طازجة وشرائح موز ناضجة مقترنة بفوندو شوكولاتة، تقدم تبايناً قوامياً بين متانة التوت وكريمية الموز ضد طلاء الشوكولاتة الناعم.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Fondue2.jpeg", calories:"410 kcal", dietary:["contains-dairy"] },
-    { id:"fd3", cat:"Fondue & Nuts", enName:"Turkiana Fondue", arName:"فوندو تركيانا", price:59, enDesc:"Signature extravaganza—assortment of fresh fruits, brownie pieces, and marshmallows with both dark and milk chocolate fondues, creating shareable dessert experience for memorable gatherings.", arDesc:"تباهي مميز—تشكيلة من فواكه طازجة، قطع براوني، ومرشملو مع فوندو شوكولاتة داكنة وحليب، تخلق تجربة حلوى قابلة للمشاركة للجمعات التي لا تُنسى.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Fondue3.jpeg", calories:"480 kcal", dietary:[] },
-    { id:"fd4", cat:"Fondue & Nuts", enName:"Nuts Stand-Tall", arName:"مكسرات ستاند كبير", price:99, enDesc:"Premium tower—generous assortment of roasted nuts including almonds, walnuts, pistachios, and cashews, presented in elegant stand for sophisticated snacking or elegant accompaniment to drinks.", arDesc:"برج فاخر—تشكيلة سخية من مكسرات محمصة تشمل اللوز، الجوز، الفستق، والكاجو، مُقدمة في حامل أنيق للتناول الراقي أو المرافق الأنيق للمشروبات.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Nuts.jpg", calories:"300 kcal", dietary:["contains-nuts"] },
-    { id:"fd5", cat:"Fondue & Nuts", enName:"Nuts Stand-Small", arName:"مكسرات ستاند صغير", price:60, enDesc:"Petite selection—curated mix of premium roasted nuts in smaller presentation, offering same quality and variety for individual enjoyment or intimate sharing moments.", arDesc:"اختيار صغير—مزيج مدقق من مكسرات محمصة فاخرة في تقديم أصغر، يقدم نفس الجودة والتنوع للاستمتاع الفردي أو لحظات المشاركة الحميمة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Nutsmall.jpg", calories:"180 kcal", dietary:["contains-nuts"] },
-    { id:"fd6", cat:"Fondue & Nuts", enName:"Assorted Nut Platter", arName:"طبق مكسرات مشكل", price:35, enDesc:"Textural journey—artfully arranged selection of various nuts showcasing different roasting levels and seasoning approaches, creating exploration of flavors and crunch variations.", arDesc:"رحلة قوامية—اختيار مرتب بفنية من مكسرات متنوعة تعرض مستويات تحميص مختلفة ومناهج تتبيل، تخلق استكشافاً للنكهات وتباينات القرمشة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Nutsplatter.jpg", calories:"180 kcal", dietary:["contains-nuts"] },
-    { id:"cc1", cat:"Croissant Creations", enName:"Croissant Beef Ribs", arName:"كرواسون أضلاع اللحم", price:45, enDesc:"Savory masterpiece—flaky croissant generously filled with slow-braised beef ribs, melted cheddar, kasfar cheese, and fresh pesto, creating hearty sandwich that redefines breakfast possibilities.", arDesc:"تحفة مالحة—كرواسون هش محشو بسخاء بأضلاع لحم مطهوة ببطء، شيدر مذاب، جبن كاسفار، وبيستو طازج، يخلق ساندويتش مشبعاً يعيد تعريف احتمالات الفطور.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Ribs.jpg", calories:"720 kcal", dietary:[] },
-    { id:"cc2", cat:"Croissant Creations", enName:"Avocado Croissant", arName:"كرواسون الأفوكادو", price:42, enDesc:"California-Turkish fusion—buttery croissant layered with creamy avocado and soft scrambled eggs, offering healthy indulgence where rich textures meet fresh, vibrant flavors.", arDesc:"اندماج كاليفورني-تركي—كرواسون زبدي مطبق بأفوكادو كريمي وبيض مخفوق طري، يقدم تناولاً صحياً حيث تلتقي القوام الغنية بالنكهات الطازجة النابضة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Avocado.jpg", calories:"610 kcal", dietary:["vegetarian"] },
-    { id:"cc3", cat:"Croissant Creations", enName:"Smoked Beef Croissant", arName:"كرواسون لحم مدخن", price:45, enDesc:"Smoky sophistication—freshly baked croissant filled with delicate eggs and premium smoked beef slices, where pastry's buttery layers complement meat's rich, aromatic smokiness.", arDesc:"رقة دخانية—كرواسون طازج محشو ببيض دقيق وشرائح لحم مدخن فاخر، حيث تكمل طبقات العجين الزبدية دخانية اللحم الغنية العطرية.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/5.jpg", calories:"630 kcal", dietary:[] },
-    { id:"cc4", cat:"Croissant Creations", enName:"Butter & Jam Croissant", arName:"كرواسون زبدة ومربى", price:40, enDesc:"Sweet-savory harmony—warm croissant served with cherry jam, roasted olives, and creamy feta, creating Mediterranean-inspired combination that celebrates contrasting flavors in perfect balance.", arDesc:"تناغم حلو-مالح—كرواسون دافئ يُقدم مع مربى الكرز، زيتون محمص، وفيتا كريمي، يخلق مزيجاً مستوحى من البحر المتوسط يحتفل بالنكهات المتباينة في توازن مثالي.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/4.jpg", calories:"540 kcal", dietary:["vegetarian"] },
-    { id:"cc5", cat:"Croissant Creations", enName:"Croissant Scrambled Eggs", arName:"كرواسون بالبيض المخفوق", price:37, enDesc:"Morning classic elevated—light croissant generously filled with soft scrambled eggs and fresh arugula, creating satisfying breakfast where French pastry meets Turkish breakfast tradition.", arDesc:"كلاسيكي الصباح المرفوع—كرواسون خفيف محشو بسخاء ببيض مخفوق طري وجرجير طازج، يخلق فطوراً مشبعاً حيث يلتقي المعجنات الفرنسية بتقليد الفطور التركي.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/1.jpg", calories:"520 kcal", dietary:["vegetarian"] },
-    { id:"cc6", cat:"Croissant Creations", enName:"Plain Butter Croissant", arName:"كرواسون زبدة", price:20, enDesc:"Parisian perfection—classic butter croissant with crisp, flaky exterior and tender, layered interior, showcasing pure craftsmanship where quality ingredients speak for themselves.", arDesc:"كمال باريسي—كرواسون زبدة كلاسيكي بقشرة مقرمشة هشة وداخل طري متعدد الطبقات، يعرض الحرفية النقية حيث تتحدث المكونات عالية الجودة عن نفسها.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Plain.webp", calories:"320 kcal", dietary:["vegetarian"] },
-    { id:"cc7", cat:"Croissant Creations", enName:"Cheese Butter Croissant", arName:"كرواسون زبدة بالجبنة", price:20, enDesc:"Melty satisfaction—buttery croissant with cheese filling that creates gooey, savory center, offering simple pleasure where quality cheese transforms classic pastry into comforting treat.", arDesc:"إشباع ذائب—كرواسون زبدي بحشوة جبنة تخلق مركزاً لزجاً مالحاً، يقدم متعة بسيطة حيث يحول الجبن عالي الجودة المعجنات الكلاسيكية إلى تناول مريح.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Cheese.jpg", calories:"360 kcal", dietary:["vegetarian"] },
-    { id:"cc8", cat:"Croissant Creations", enName:"Chocolate Butter Croissant", arName:"كرواسون زبدة بالشوكولاتة", price:20, enDesc:"Parisian pain au chocolat—butter croissant with two dark chocolate batons baked inside, creating perfect marriage where flaky pastry melts around chocolate's rich intensity.", arDesc:"بان أو شوكولا باريسي—كرواسون زبدي بعصاتين من الشوكولاتة الداكنة مخبوزتين داخل، يخلق زواجاً مثالياً حيث تذوب المعجنات الهشة حول شدة الشوكولاتة الغنية.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Chocolatecroissant.jpg", calories:"380 kcal", dietary:["vegetarian"] },
-    { id:"cc9", cat:"Croissant Creations", enName:"Almond Butter Croissant", arName:"كرواسون زبدة باللوز", price:20, enDesc:"Parisian-Californian hybrid—butter croissant filled with almond cream and topped with sliced almonds, offering double almond experience with contrasting textures and intensified flavor.", arDesc:"هجين باريسي-كاليفورني—كرواسون زبدي محشو بكريمة اللوز ومغطى بشرائح لوز، يقدم تجربة لوز مزدوجة بقوام متباين ونكهة مكثفة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Almondcroissant.jpg", calories:"400 kcal", dietary:["vegetarian"] },
-    { id:"cc10", cat:"Croissant Creations", enName:"Cinnamon Danish", arName:"دانش بالقرفة", price:20, enDesc:"Spiced swirl—flaky Danish pastry with cinnamon-sugar spiral, creating aromatic layers where spice warmth complements butter richness in perfectly balanced morning pastry.", arDesc:"دوامة متبّلة—معجنات دانش هشة بحلزون قرفة-سكر، تخلق طبقات عطرية حيث دفء التوابل يكمل غنى الزبد في معجنات صباحية متوازنة بشكل مثالي.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Cinnamon.jpg", calories:"390 kcal", dietary:["vegetarian"] },
-    { id:"cc11", cat:"Croissant Creations", enName:"Danish Shell", arName:"دانش شِل", price:20, enDesc:"Scandinavian classic—shell-shaped Danish pastry with delicate layers and light sweetness, often filled with custard or fruit preserves for added dimension to buttery foundation.", arDesc:"كلاسيكي إسكندنافي—معجنات دانش بشكل الصدفة بطبقات دقيقة وحلاوة خفيفة، غالباً ما تُحشو بالكاسترد أو محافظ الفواكه لبعد إضافي للأساس الزبدي.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Danish.jpg", calories:"380 kcal", dietary:["vegetarian"] },
-    { id:"cc12", cat:"Croissant Creations", enName:"Raisins Danish", arName:"دانش بالزبيب", price:20, enDesc:"Fruited elegance—Danish pastry studded with plump raisins that add natural sweetness and chewy texture, creating sophisticated contrast against flaky, buttery pastry layers.", arDesc:"أناقة مفروزة—معجنات دانش مرصعة بزبيب ممتلئ يضيف حلاوة طبيعية وقواماً مطاطياً، يخلق تبايناً راقياً ضد طبقات المعجنات الهشة الزبدية.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Raisin.jpg", calories:"390 kcal", dietary:["vegetarian"] },
-    { id:"gg1", cat:"From the Grill & Garden", enName:"Turkiana Beef Burger", arName:"برجر تركيانا", price:69, enDesc:"Signature masterpiece—premium beef patty with secret seasoning blend, grilled to juicy perfection and served with fresh vegetables, special sauce, and golden fries in definitive burger experience.", arDesc:"تحفة مميزة—قطعة برجر بقري فاخرة بمزيج تتبيل سري، مشوية إلى عصرية مثالية وتُقدم مع خضروات طازجة، صوص خاص، وبطاطس ذهبية في تجربة برجر حاسمة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Burger.jpeg", calories:"950 kcal", dietary:[] },
-    { id:"gg2", cat:"From the Grill & Garden", enName:"Turkiana Chicken Burger", arName:"برجر دجاج", price:59, enDesc:"Poultry perfection—marinated chicken fillet grilled with expertise, served in soft bun with crisp vegetables and house sauce, accompanied by fries for satisfying poultry alternative.", arDesc:"كمال الدواجن—قطعة دجاج متبلة تُشوى بخبرة، تُقدم في خبز طري مع خضروات مقرمشة وصوص البيت، يرافقها بطاطس لبديل دواجن مشبع.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Burgerchicken.jpg", calories:"850 kcal", dietary:[] },
-    { id:"gg3", cat:"From the Grill & Garden", enName:"Fried Potatoes", arName:"بطاطس مقلية", price:29, enDesc:"Universal comfort—golden potato fries with crisp exterior and fluffy interior, seasoned with just enough salt to enhance natural potato flavor in timeless side dish everyone loves.", arDesc:"راحة عالمية—بطاطس مقلية ذهبية بقشرة مقرمشة وداخل منفوش، متبلة بما يكفي من الملح لتعزيز نكهة البطاطس الطبيعية في طبق جانبي خالد يحبه الجميع.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Patatas.jpg", calories:"340 kcal", dietary:["vegan","gluten-free"], popular:true },
-    { id:"gg4", cat:"From the Grill & Garden", enName:"Potato Wedges", arName:"بطاطس ويدجز", price:32, enDesc:"Rustic alternative—thick potato wedges with seasoned skin left on, offering heartier texture and more substantial potato flavor than traditional fries, perfect for dipping and sharing.", arDesc:"بديل ريفي—إسفين بطاطس سميك بقشرة متبلة باقية، يقدم قواماً أكثر متانة ونكهة بطاطس أكثر جوهرية من البطاطس المقلية التقليدية، مثالي للغمس والمشاركة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Wedges.webp", calories:"380 kcal", dietary:["vegetarian","gluten-free"], popular:false },
-    { id:"gg5", cat:"From the Grill & Garden", enName:"Fried Sweet Potato", arName:"بطاطس حلوة مقلية", price:32, enDesc:"Natural sweetness—sweet potato fries with caramelized edges and soft centers, offering healthier alternative with lower glycemic index and rich beta-carotene content in vibrant orange hue.", arDesc:"حلاوة طبيعية—بطاطس حلوة مقلية بحواف مكرملة ومراكز طرية، تقدم بديلاً صحياً بمؤشر جلايسيمي أقل ومحتوى بيتا كاروتين غني بلون برتقالي نابض.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Sweetpotato.jpg", calories:"360 kcal", dietary:["vegan","gluten-free"], popular:false },
-    { id:"gg6", cat:"From the Grill & Garden", enName:"Caesar Salad", arName:"سلطة سيزر", price:47, enDesc:"Roman classic—crisp romaine lettuce with Caesar dressing, Parmesan cheese, and croutons, creating balanced salad where creamy, garlicky dressing complements fresh greens perfectly.", arDesc:"كلاسيكي روماني—خس روماني مقرمش مع تتبيلة سيزر، جبن بارميزان، وكراوتون، يخلق سلطة متوازنة حيث تكمل التتبيلة الكريمية الثومية الخضروات الطازجة بشكل مثالي.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Caesar.jpeg", calories:"420 kcal", dietary:["contains-gluten","contains-dairy","vegetarian"] },
-    { id:"gg7", cat:"From the Grill & Garden", enName:"Ottoman Salad", arName:"سلطة عثمانية", price:59, enDesc:"Imperial freshness—traditional salad with crisp vegetables, fresh herbs, and light dressing inspired by Ottoman palace kitchens, offering refreshing accompaniment that cleanses palate.", arDesc:"نضارة إمبراطورية—سلطة تقليدية مع خضروات مقرمشة، أعشاب طازجة، وتتبيلة خفيفة مستوحاة من مطابخ القصر العثماني، تقدم مرافقاً منعشاً ينظف الحنك.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Salad.jpg", calories:"120 kcal", dietary:["vegetarian"] },
-    { id:"gg8", cat:"From the Grill & Garden", enName:"Avocado Salad", arName:"سلطة الأفوكادو", price:49, enDesc:"Creamy freshness—ripe avocado combined with crisp vegetables and lemon dressing, creating rich salad where avocado's buttery texture balances with acidic dressing and crunchy elements.", arDesc:"نضارة كريمية—أفوكادو ناضج مجتمع مع خضروات مقرمشة وتتبيلة ليمون، يخلق سلطة غنية حيث يوازن قوام الأفوكادو الزبدي مع التتبيلة الحامضة والعناصر المقرمشة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Saladavocado.jpg", calories:"180 kcal", dietary:["vegetarian"] },
-    { id:"amt1", cat:"Anatolian Morning Table", enName:"Turkish Classic Breakfast", arName:"فطور تركي كلاسيكي", price:65, enDesc:"Cultural immersion—traditional Turkish breakfast spread featuring fresh bread, assorted cheeses, olives, tomatoes, cucumbers, honey, clotted cream, and tea, creating leisurely morning ritual.", arDesc:"انغماس ثقافي—مائدة فطور تركية تقليدية تضم خبزاً طازجاً، أجبان متنوعة، زيتون، طماطم، خيار، عسل، قشطة، وشاي، تخلق طقساً صباحياً مريحاً.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Breakfast.jpg", calories:"680 kcal", dietary:["vegetarian","contains-dairy"], popular:true },
-    { id:"amt2", cat:"Anatolian Morning Table", enName:"Turkish Breakfast for 2", arName:"فطور تركي لشخصين", price:179, enDesc:"Shared abundance—lavish Turkish breakfast platter for two with extensive selection of cheeses, olives, vegetables, eggs, honey, jams, and bread, designed for extended, celebratory mornings.", arDesc:"وفرة مشتركة—صحن فطور تركي فاخر لشخصين باختيار واسع من الأجبان، الزيتون، الخضروات، البيض، العسل، المربى، والخبز، مصمم للصباحات الممتدة الاحتفالية.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Breakfast2.jpg", calories:"1200 kcal", dietary:["vegetarian"] },
-    { id:"amt3", cat:"Anatolian Morning Table", enName:"Turkish Menemen", arName:"مينمن تركي", price:45, enDesc:"Homestyle comfort—soft scrambled eggs cooked with tomatoes, green peppers, and spices in traditional Turkish style, served in pan for rustic, satisfying breakfast that feels like home.", arDesc:"رحة منزلية—بيض مخفوق طري مطهو مع طماطم، فلفل أخضر، وتوابل على الطريقة التركية التقليدية، يُقدم في مقلاة لفطور ريفي مشبع يشبه البيت.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Menemen.jpg", calories:"360 kcal", dietary:["gluten-free","contains-dairy"] },
-    { id:"amt4", cat:"Anatolian Morning Table", enName:"Plain Omelette", arName:"أومليت عادي", price:25, enDesc:"Simple perfection—light, tender omelette cooked to golden perfection, showcasing egg's natural flavor and texture without distractions, perfect for purists or as protein foundation.", arDesc:"كمال بسيط—أومليت خفيف طري مطهو إلى الكمال الذهبي، يعرض نكهة البيض الطبيعية وقوامه دون تشتيت، مثالي للأصوليين أو كأساس بروتيني.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Omellet.jpg", calories:"220 kcal", dietary:["gluten-free","contains-dairy"] },
-    { id:"amt5", cat:"Anatolian Morning Table", enName:"Afternoon Sandwich", arName:"ساندويتش بعد الظهر", price:36, enDesc:"Light refreshment—delicate sandwich perfect for afternoon pause, offering satisfying yet not overwhelming option that provides energy without weighing down before evening.", arDesc:"انتعاش خفيف—ساندويتش دقيق مثالي لاستراحة بعد الظهر، يقدم خياراً مشبعاً لكن غير طاغٍ يوفر الطاقة دون إثقال قبل المساء.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Afternoonsandwich.jpg", calories:"320 kcal", dietary:["vegetarian"] },
-    { id:"amt6", cat:"Anatolian Morning Table", enName:"Chicken Sandwich", arName:"ساندويتش دجاج", price:38, enDesc:"Poultry satisfaction—juicy chicken sandwich with fresh vegetables and sauce, creating balanced meal where protein, crunch, and flavor come together in handheld convenience.", arDesc:"إشباع دواجن—ساندويتش دجاج طري مع خضروات طازجة وصوص، يخلق وجبة متوازنة حيث يجتمع البروتين، القرمشة، والنكهة في راحة محمولة باليد.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Chickensandwich.jpg", calories:"420 kcal", dietary:[] },
-    { id:"amt7", cat:"Anatolian Morning Table", enName:"Cold Healthy Cheese Sandwich", arName:"ساندويتش جبن صحي بارد", price:29, enDesc:"Fresh simplicity—cold sandwich with healthy cheese and light ingredients, offering refreshing option for warm days or those preferring cooler, lighter meal alternatives.", arDesc:"بساطة طازجة—ساندويتش بارد بجبن صحي ومكونات خفيفة، يقدم خياراً منعشاً للأيام الدافئة أو لمن يفضلون بدائل وجبات أبرد وأخف.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Cold Healthy Cheese Sandwich 0.jpg", calories:"290 kcal", dietary:["vegetarian"] },
-    { id:"amt8", cat:"Anatolian Morning Table", enName:"Cucumber Labneh Sandwich", arName:"ساندويتش لبنة بالخيار", price:32, enDesc:"Levantine freshness—labneh and cucumber sandwich that captures Middle Eastern breakfast essence, offering cooling combination perfect for warm climates or light morning start.", arDesc:"نضارة شامية—ساندويتش لبنة وخيار يلتقط جوهر الفطور الشرق أوسطي، يقدم مزيجاً مبرداً مثالياً للمناخات الدافئة أو بداية صباحية خفيفة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Cucumberlabnah.jpg", calories:"260 kcal", dietary:["vegetarian"] },
-    { id:"amt9", cat:"Anatolian Morning Table", enName:"Egg & Cheese Sandwich", arName:"ساندويتش بيض وجبن", price:33, enDesc:"Protein classic—warm egg and cheese sandwich that satisfies morning hunger with familiar comfort, offering versatile option suitable for breakfast, lunch, or any-time craving.", arDesc:"كلاسيكي بروتيني—ساندويتش بيض وجبن دافئ يشبع جوع الصباح براحة مألوفة، يقدم خياراً متعدد الاستخدامات مناسباً للفطور، الغداء، أو أي رغبة في أي وقت.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Eggcheese.jpg", calories:"380 kcal", dietary:["vegetarian"] },
-    { id:"amt10", cat:"Anatolian Morning Table", enName:"Smoked Turkey Sandwich", arName:"ساندويتش ديك رومي مدخن", price:49, enDesc:"Smoked sophistication—sandwich with premium smoked turkey, fresh bread, and balanced accompaniments, offering lighter protein option with distinctive flavor profile for discerning palates.", arDesc:"رقة مدخنة—ساندويتش بديك رومي مدخن فاخر، خبز طازج، ومرافقات متوازنة، يقدم خيار بروتيني أخف بملف نكهة مميز للأذواق المتذوقة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Smokedturkey.jpg", calories:"410 kcal", dietary:[] },
-    { id:"amt11", cat:"Anatolian Morning Table", enName:"Tuna & Avocado Sandwich", arName:"ساندويتش تونا بالأفوكادو", price:47, enDesc:"Oceanic creaminess—tuna paired with creamy avocado in sandwich that combines protein richness with healthy fats, creating satisfying, nutritionally balanced option for conscious eaters.", arDesc:"كريمية محيطية—تونا مقترنة بأفوكادو كريمي في ساندويتش يجمع غنى البروتين بالدهون الصحية، يخلق خياراً مشبعاً ومتوازناً غذائياً للأكَلَة الواعية.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Tunacado.jpg", calories:"430 kcal", dietary:[] },
-    { id:"amt12", cat:"Anatolian Morning Table", enName:"Tuna Sandwich", arName:"ساندويتش تونا", price:37, enDesc:"Classic protein—traditional tuna sandwich with smooth filling, offering reliable favorite that satisfies with familiar flavors and substantial protein content in convenient format.", arDesc:"بروتين كلاسيكي—ساندويتش تونا تقليدي بحشوة ناعمة، يقدم المفضل الموثوق الذي يشبع بنكهات مألوفة ومحتوى بروتيني جوهري في شكل ملائم.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Tunasandwich.jpg", calories:"400 kcal", dietary:[] },
-    { id:"amt13", cat:"Anatolian Morning Table", enName:"Turkey Ham Sandwich", arName:"ساندويتش تركي هام", price:30, enDesc:"Light deli option—turkey ham sandwich with fresh vegetables and soft bread, offering approachable choice for those seeking familiar deli flavors in balanced, not-too-heavy presentation.", arDesc:"خيار لحوم بارد خفيف—ساندويتش تركي هام مع خضروات طازجة وخبز طري، يقدم اختياراً سهلاً لمن يبحثون عن نكهات اللحوم الباردة المألوفة في تقديم متوازن وغير ثقيل جداً.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkeyhamsandwich.jpg", calories:"390 kcal", dietary:[] }
+'use strict';
+const state={activeCategory:null,searchQuery:"",activeDietaryFilter:null,categories:[],categoryCounts:{},isScrolling:false};
+const menuData=[
+{id:"batw1",cat:"Brewed on Arabic & Turkish Way",enName:"Classic Turkish Coffee",arName:"قهوة تركية كلاسيكية",price:28,enDesc:"Finely ground coffee brewed in a cezve with meticulous attention to foam formation.",arDesc:"قهوة مطحونة ناعماً تُحضر في إبريق نحاسي بعناية فائقة.",image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkishcoffee.jpg",calories:"5 kcal",dietary:["vegan","gluten-free","dairy-free"]},
+{id:"batw2",cat:"Brewed on Arabic & Turkish Way",enName:"Double Turkish Coffee",arName:"قهوة تركية مزدوجة",price:40,enDesc:"Double intensity with concentrated brewing.",arDesc:"ضعف التركيز بتحضير مركز.",image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkishcoffee.jpg",calories:"10 kcal",dietary:["vegan","gluten-free","dairy-free"]},
+{id:"batw3",cat:"Brewed on Arabic & Turkish Way",enName:"Ottoman Coffee with Mastic",arName:"قهوة عثمانية بالمستيك",price:28,enDesc:"Premium coffee enhanced with rare Chios mastic resin.",arDesc:"قهوة فاخرة معززة بمستيك.",image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Ottomanmastica.jpg",calories:"5 kcal",dietary:["vegan","gluten-free","dairy-free"]},
+{id:"batw4",cat:"Brewed on Arabic & Turkish Way",enName:"Arabic Coffee with Cardamom",arName:"قهوة عربية بالهيل",price:25,enDesc:"Aromatic cardamom-infused coffee in traditional cups.",arDesc:"قهوة معطرة بالهيل في فناجين تقليدية.",image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkishcoffee.jpg",calories:"8 kcal",dietary:["vegan","gluten-free","dairy-free"]},
+{id:"th1",cat:"Tea on the House",enName:"Turkish Tea",arName:"شاي تركي",price:15,enDesc:"Deep amber Rize tea double-brewed to perfection.",arDesc:"شاي ريزه الكهرماني العميق.",image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Tea.jpg",calories:"2 kcal",dietary:["vegan","gluten-free","dairy-free"],popular:true},
+{id:"th2",cat:"Tea on the House",enName:"Turkish Tea Pot",arName:"شاي تركي في إبريق",price:45,enDesc:"Generous pot of aromatic Turkish tea for sharing.",arDesc:"إبريق سخي من الشاي التركي.",image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkishteapot.jpeg",calories:"0 kcal",dietary:["vegan","gluten-free","dairy-free"]},
+{id:"th3",cat:"Tea on the House",enName:"Apple Tea",arName:"شاي التفاح",price:35,enDesc:"Sun-ripened apple essence with premium black tea.",arDesc:"جوهر التفاح مع شاي أسود فاخر.",image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Appletea.jpg",calories:"2 kcal",dietary:["vegan","gluten-free","dairy-free"]},
+{id:"cac1",cat:"Café & Chill",enName:"Hot Chocolate",arName:"هوت شوكولاتة",price:36,enDesc:"Artisanal blend of single-origin cocoa and steamed milk.",arDesc:"مزيج حرفي من كاكاو ومحليب مبخر.",image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Hotchocolate.jfif",calories:"360 kcal",dietary:["contains-dairy"]},
+{id:"cac2",cat:"Café & Chill",enName:"Piccolo Latte",arName:"بيكولو",price:24,enDesc:"Strong ristretto base with velvety milk.",arDesc:"قاعدة رسترتو قوية مع حليب حريري.",image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Piccololatte.jpg",calories:"120 kcal",dietary:["contains-dairy"]},
+{id:"cac3",cat:"Café & Chill",enName:"Latte",arName:"لاتيه",price:29,enDesc:"Smooth microfoam over balanced espresso.",arDesc:"رغوة دقيقة ناعمة فوق إسبرسو متوازن.",image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Latteart.webp",calories:"170 kcal",dietary:["contains-dairy"]},
+{id:"bak1",cat:"Baklava & Beyond",enName:"Turkish Mix Baklava",arName:"بقلاوة تركية مشكلة",price:65,enDesc:"Artisanal assortment of Gaziantep's finest baklava varieties.",arDesc:"تشكيلة حرفية من أفضل أنواع البقلاوة.",image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg",calories:"450 kcal",dietary:["contains-nuts"]},
+{id:"bak2",cat:"Baklava & Beyond",enName:"Carrot Slice Baklava",arName:"بقلاوة شريحة الجزر",price:40,enDesc:"Classic baklava enriched with carrot puree.",arDesc:"بقلاوة كلاسيكية معززة بهريس الجزر.",image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Carrot.jpeg",calories:"420 kcal",dietary:["vegetarian","contains-nuts"]},
+{id:"bak3",cat:"Baklava & Beyond",enName:"Fruit Cake",arName:"كيك الفواكه",price:36,enDesc:"Moist cake with candied citrus peel and nuts.",arDesc:"كيك رطب مع قشور الحمضيات والمكسرات.",image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Fruitcake.jfif",calories:"420 kcal",dietary:["contains-dairy"],popular:true},
+{id:"bak4",cat:"Baklava & Beyond",enName:"Pistachio Baklava",arName:"بقلاوة فستق",price:55,enDesc:"Delicate layers with roasted pistachio filling.",arDesc:"طبقات دقيقة مع حشوة فستق محمصة.",image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg",calories:"480 kcal",dietary:["vegetarian","contains-nuts"]},
 ];
- // ... (same menu data as before, unchanged)
-    // Due to character limit, including the full data would exceed limits
-    // The menu data remains exactly as in the original
+state.categories=[...new Set(menuData.map(i=>i.cat))];
+const dietaryFilters=[{id:"all",label:"All Items"},{id:"vegan",label:"🌱 Vegan"},{id:"vegetarian",label:"🥗 Vegetarian"},{id:"gluten-free",label:"🌾 Gluten Free"},{id:"dairy-free",label:"🥛 Dairy Free"},{id:"contains-nuts",label:"⚠️ Contains Nuts"}];
 
+function debounce(f,w){let t;return function(...a){clearTimeout(t);t=setTimeout(()=>f(...a),w)}}
+function showToast(m,t="success"){const e=document.getElementById("toast");if(!e)return;e.textContent=m;e.className=`toast ${t}`;e.style.display="block";setTimeout(()=>{e.style.display="none"},2000)}
+function formatPrice(p){return typeof p==='number'?p.toFixed(2):'0.00'}
+function calculateCategoryCounts(){state.categoryCounts={};state.categories.forEach(c=>{state.categoryCounts[c]=menuData.filter(i=>i.cat===c).length});state.categoryCounts["All"]=menuData.length}
+function filterItems(){return menuData.filter(i=>{if(state.activeCategory&&i.cat!==state.activeCategory)return false;if(state.searchQuery){const q=state.searchQuery.toLowerCase();if(!i.enName.toLowerCase().includes(q)&&!i.arName.includes(q))return false}if(state.activeDietaryFilter&&state.activeDietaryFilter!=='all'){if(state.activeDietaryFilter==='vegetarian'){if(!i.dietary.includes('vegetarian')&&!i.dietary.includes('vegan'))return false}else if(!i.dietary.includes(state.activeDietaryFilter))return false}return true})}
 
-// ============================================
-// 2. GLOBAL STATE WITH ENHANCEMENTS
-// ============================================
+class RenderEngine{constructor(){this.cache=new Map()}renderFloatingCategories(){const c=document.getElementById("floatingCategories");if(!c)return;let h='<button class="floating-category'+(state.activeCategory?'':' active')+'" data-category="all" aria-pressed="'+(state.activeCategory?'false':'true')+'">✨ All ('+state.categoryCounts["All"]+') </button>';state.categories.forEach(cat=>{const a=state.activeCategory===cat;h+='<button class="floating-category'+(a?' active':'')+'" data-category="'+cat+'" aria-pressed="'+a+'">'+cat+' ('+state.categoryCounts[cat]+') </button>'});c.innerHTML=h;c.querySelectorAll('.floating-category').forEach(b=>{b.addEventListener('click',()=>{state.activeCategory=b.dataset.category==='all'?null:b.dataset.category;this.updateUI();this.scrollToCategory(state.activeCategory)})})}renderFilterTags(){const c=document.getElementById("filterTags");if(!c)return;let h='';dietaryFilters.forEach(f=>{const a=state.activeDietaryFilter===f.id;h+='<button class="filter-tag'+(a?' active':'')+'" data-filter="'+f.id+'" aria-pressed="'+a+'">'+f.label+'</button>'});c.innerHTML=h;c.querySelectorAll('.filter-tag').forEach(b=>{b.addEventListener('click',()=>{state.activeDietaryFilter=b.dataset.filter==='all'?null:b.dataset.filter;this.updateUI()})})}renderContent(){const c=document.getElementById("mainContent");if(!c)return;const f=filterItems();if(f.length===0){c.innerHTML='<div class="no-results"><strong>No items found</strong><p>'+(state.searchQuery?'Try different search terms':'Try another category')+' </p></div>';return}const g={};f.forEach(i=>{if(!g[i.cat])g[i.cat]=[];g[i.cat].push(i)});const s=state.activeCategory?[state.activeCategory]:state.categories;const frag=document.createDocumentFragment();s.forEach(cat=>{const items=g[cat];if(!items||items.length===0)return;const sec=document.createElement('div');sec.className='section';sec.id='section-'+cat.replace(/\s+/g,"-").toLowerCase();let html='';items.slice(0,50).forEach(i=>{html+='<div class="card" tabindex="0" role="button" onclick="openItemModal(\''+i.id+'\')" onkeydown="if(event.key===\'Enter\') openItemModal(\''+i.id+'\')"><img src="'+i.image+'" alt="'+i.enName+'" class="card-image"><div class="card-body"><h3>'+i.enName+'</h3><div class="card-ar-name">'+i.arName+'</div><span class="card-price">QAR '+formatPrice(i.price)+'</span></div>'+(i.popular?'<div class="card-badge">Chef\'s Pick</div>':'')+'</div>'});sec.innerHTML='<h2>'+cat+'</h2><p>Touch any item for details • '+items.length+' items</p><div class="grid">'+html+'</div>';frag.appendChild(sec)});c.innerHTML='';c.appendChild(frag)}updateUI(){this.renderFloatingCategories();this.renderFilterTags();this.renderContent();this.updateCategoryIndicator()}updateCategoryIndicator(){const i=document.getElementById("currentCategoryIndicator");if(!i)return;if(state.activeCategory){i.textContent=state.activeCategory;i.classList.add('visible')}else{i.classList.remove('visible')}}scrollToCategory(cat){if(!cat){document.querySelector('.content-container').scrollTo({top:0,behavior:'smooth'});return}const s=document.getElementById('section-'+cat.replace(/\s+/g,"-").toLowerCase());if(s)s.scrollIntoView({behavior:'smooth',block:'start'})}}
+const re=new RenderEngine();
+function openItemModal(id){const i=menuData.find(x=>x.id===id);if(!i)return;const m=document.getElementById("itemModal");document.getElementById("modalTitle").textContent=i.enName;document.getElementById("modalImage").src=i.image;document.getElementById("modalImage").alt=i.enName;document.getElementById("modalDescEn").textContent=i.enDesc;document.getElementById("modalDescAr").textContent=i.arDesc;document.getElementById("modalCalories").textContent='☕ '+i.calories;document.getElementById("modalDietary").textContent='🏷️ '+i.dietary.join(' • ');document.getElementById("modalPrice").textContent=formatPrice(i.price);m.classList.add("active");m.setAttribute("aria-hidden","false");document.body.style.overflow="hidden";setTimeout(()=>{m.querySelector(".modal-close").focus()},100)}
+function closeItemModal(){const m=document.getElementById("itemModal");m.classList.remove("active");m.setAttribute("aria-hidden","true");document.body.style.overflow=""}
 
-const state = {
-    activeCategory: null,
-    searchQuery: "",
-    activeDietaryFilter: null,
-    categories: [...new Set(allItems.map(item => item.cat))],
-    currentModalItem: null,
-    isFullscreen: false,
-    lastScrollPosition: 0,
-    isScrolling: false,
-    categoryCounts: {},
-    performance: {
-        startTime: performance.now(),
-        loadTime: null
-    }
-};
-
-// Dietary filter options
-const dietaryFilters = [
-    { id: "all", label: "All Items" },
-    { id: "vegan", label: "🌱 Vegan" },
-    { id: "vegetarian", label: "🥗 Vegetarian" },
-    { id: "gluten-free", label: "🌾 Gluten Free" },
-    { id: "dairy-free", label: "🥛 Dairy Free" },
-    { id: "contains-nuts", label: "⚠️ Contains Nuts" }
-];
-
-// ============================================
-// 3. IMAGE OPTIMIZATION WITH WEBP SUPPORT
-// ============================================
-
-const imageCache = new Map();
-const supportsWebP = (() => {
-    const elem = document.createElement('canvas');
-    if (!!(elem.getContext && elem.getContext('2d'))) {
-        return elem.toDataURL('image/webp').indexOf('data:image/webp') === 0;
-    }
-    return false;
-})();
-
-function getOptimizedImageUrl(originalUrl) {
-    if (!originalUrl) return '';
-    
-    // In a real implementation, you would have WebP versions
-    // For now, return the original URL
-    return originalUrl;
-}
-
-async function loadImageFast(url) {
-    const optimizedUrl = getOptimizedImageUrl(url);
-    
-    if (imageCache.has(optimizedUrl)) {
-        return imageCache.get(optimizedUrl);
-    }
-    
-    return new Promise((resolve) => {
-        const img = new Image();
-        img.onload = () => {
-            imageCache.set(optimizedUrl, img);
-            resolve(img);
-        };
-        img.onerror = () => {
-            // Create fallback
-            const canvas = document.createElement('canvas');
-            canvas.width = 300;
-            canvas.height = 200;
-            const ctx = canvas.getContext('2d');
-            const gradient = ctx.createLinearGradient(0, 0, 300, 200);
-            gradient.addColorStop(0, '#1d0509');
-            gradient.addColorStop(1, '#2a080d');
-            ctx.fillStyle = gradient;
-            ctx.fillRect(0, 0, 300, 200);
-            
-            ctx.fillStyle = 'rgba(212, 175, 55, 0.3)';
-            ctx.font = 'bold 16px Inter';
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            ctx.fillText('Turkiana Café', 150, 100);
-            
-            const fallbackImg = new Image();
-            fallbackImg.src = canvas.toDataURL();
-            imageCache.set(optimizedUrl, fallbackImg);
-            resolve(fallbackImg);
-        };
-        img.src = optimizedUrl;
+function initApp(){
+  calculateCategoryCounts();
+  re.updateUI();
+  
+  // Initialize search functionality
+  const s=document.getElementById('menuSearch');
+  const btn=document.getElementById('clearSearch');
+  if(s&&btn){
+    s.addEventListener('input',debounce((e)=>{
+      state.searchQuery=e.target.value.toLowerCase().trim();
+      re.updateUI();
+    },300));
+    btn.addEventListener('click',()=>{
+      s.value='';
+      state.searchQuery='';
+      re.updateUI();
+      s.focus();
     });
-}
-
-// Intersection Observer for lazy loading
-let imageObserver;
-function initLazyLoading() {
-    if ('IntersectionObserver' in window) {
-        imageObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    const src = img.getAttribute('data-src');
-                    if (src) {
-                        img.src = src;
-                        img.classList.add('loaded');
-                        img.removeAttribute('data-src');
-                        imageObserver.unobserve(img);
-                    }
-                }
-            });
-        }, {
-            rootMargin: '50px 0px',
-            threshold: 0.1
-        });
-    }
-}
-
-// ============================================
-// 4. UTILITY FUNCTIONS WITH ANALYTICS
-// ============================================
-
-function showToast(message, type = "success") {
-    try {
-        const toast = document.getElementById("toast");
-        if (!toast) return;
-        
-        toast.textContent = message;
-        toast.className = `toast ${type}`;
-        toast.style.display = "block";
-        
-        setTimeout(() => {
-            toast.style.display = "none";
-        }, 2000);
-        
-        // Track toast events
-        trackEvent('UI', 'toast_shown', type);
-    } catch (error) {
-        console.warn("Toast error:", error);
-    }
-}
-
-function formatPrice(price) {
-    return typeof price === 'number' ? price.toFixed(2) : '0.00';
-}
-
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
-// Performance tracking
-function trackPerformance() {
-    state.performance.loadTime = performance.now() - state.performance.startTime;
-    console.log(`Page loaded in ${state.performance.loadTime}ms`);
-    
-    // Send to analytics if available
-    if (typeof gtag !== 'undefined') {
-        gtag('event', 'timing_complete', {
-            'name': 'page_load',
-            'value': Math.round(state.performance.loadTime),
-            'event_category': 'Performance'
-        });
-    }
-}
-
-// Analytics event tracking
-function trackEvent(category, action, label) {
-    console.log(`Event: ${category} - ${action} - ${label}`);
-    
-    // Google Analytics
-    if (typeof gtag !== 'undefined') {
-        gtag('event', action, {
-            'event_category': category,
-            'event_label': label
-        });
-    }
-    
-    // Custom tracking
-    const events = JSON.parse(localStorage.getItem('menu_events') || '[]');
-    events.push({
-        timestamp: new Date().toISOString(),
-        category,
-        action,
-        label
+    s.addEventListener('keydown',(e)=>{
+      if(e.key==='Enter'&&state.searchQuery){
+        const f=filterItems();
+        if(f.length>0) openItemModal(f[0].id);
+      }
     });
-    localStorage.setItem('menu_events', JSON.stringify(events.slice(-100))); // Keep last 100 events
-}
-
-// Calculate category counts
-function calculateCategoryCounts() {
-    state.categoryCounts = {};
-    state.categories.forEach(cat => {
-        state.categoryCounts[cat] = allItems.filter(item => item.cat === cat).length;
-    });
-    state.categoryCounts["All"] = allItems.length;
-}
-
-// ============================================
-// 5. SNOW ANIMATION (BATTERY AWARE)
-// ============================================
-
-function initSnowAnimation() {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        return;
+  }
+  
+  // Modal functionality
+  document.querySelector('.modal-close').addEventListener('click',closeItemModal);
+  document.getElementById('itemModal').addEventListener('click',(e)=>{
+    if(e.target===e.currentTarget) closeItemModal();
+  });
+  
+  // Keyboard shortcuts
+  document.addEventListener('keydown',(e)=>{
+    if(e.key==='Escape'&&document.getElementById('itemModal').classList.contains('active')){
+      closeItemModal();
     }
-    
-    try {
-        const canvas = document.getElementById("snow");
-        const ctx = canvas.getContext("2d");
-        
-        function resize() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        
-        resize();
-        window.addEventListener("resize", debounce(resize, 250));
-        
-        const flakes = [];
-        const FLAKE_COUNT = window.innerWidth < 768 ? 30 : 60;
-        
-        for (let i = 0; i < FLAKE_COUNT; i++) {
-            flakes.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                r: Math.random() * 1.2 + 0.5,
-                d: Math.random() * 0.8 + 0.3,
-                vx: Math.random() * 0.1 - 0.05,
-                vy: Math.random() * 0.6 + 0.2
-            });
-        }
-        
-        function draw() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
-            
-            for (const flake of flakes) {
-                ctx.beginPath();
-                ctx.arc(flake.x, flake.y, flake.r, 0, Math.PI * 2);
-                ctx.fill();
-            }
-            
-            move();
-        }
-        
-        function move() {
-            for (const flake of flakes) {
-                flake.y += flake.vy;
-                flake.x += flake.vx;
-                
-                if (flake.y > canvas.height) {
-                    flake.y = -5;
-                    flake.x = Math.random() * canvas.width;
-                }
-                
-                if (flake.x > canvas.width) flake.x = 0;
-                if (flake.x < 0) flake.x = canvas.width;
-            }
-        }
-        
-        function animate() {
-            draw();
-            requestAnimationFrame(animate);
-        }
-        
-        animate();
-    } catch (error) {
-        console.warn("Snow animation error:", error);
-    }
+  });
+  
+  // Initial load
+  window.addEventListener('load',()=>{
+    setTimeout(()=>{
+      document.getElementById('loadingOverlay').classList.add('hidden');
+      showToast("Welcome to Turkiana!","success");
+    },500);
+  });
+  
+  // Network status
+  window.addEventListener('online',()=>{
+    showToast('Back online','info');
+  });
+  window.addEventListener('offline',()=>{
+    showToast('No internet','warning');
+  });
+  
+  // Service Worker
+  if('serviceWorker' in navigator){
+    navigator.serviceWorker.register('/sw.js').catch(console.error);
+  }
 }
 
-// ============================================
-// 6. SEARCH & FILTER FUNCTIONS
-// ============================================
-
-function initSearch() {
-    const searchInput = document.getElementById('menuSearch');
-    const clearSearchBtn = document.getElementById('clearSearch');
-    
-    if (!searchInput) return;
-    
-    // Search input handler
-    searchInput.addEventListener('input', debounce((e) => {
-        state.searchQuery = e.target.value.toLowerCase().trim();
-        updateUI();
-        trackEvent('Search', 'query', state.searchQuery);
-    }, 300));
-    
-    // Clear search handler
-    clearSearchBtn.addEventListener('click', () => {
-        searchInput.value = '';
-        state.searchQuery = '';
-        updateUI();
-        searchInput.focus();
-        trackEvent('Search', 'cleared');
-    });
-    
-    // Enter key to open first result
-    searchInput.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' && state.searchQuery) {
-            const filtered = filterItems();
-            if (filtered.length > 0) {
-                openItemModal(filtered[0]);
-                trackEvent('Search', 'open_first_result');
-            }
-        }
-    });
-}
-
-function renderFilterTags() {
-    const filterTagsContainer = document.getElementById('filterTags');
-    if (!filterTagsContainer) return;
-    
-    let html = '';
-    dietaryFilters.forEach(filter => {
-        const isActive = state.activeDietaryFilter === filter.id;
-        html += `
-            <button class="filter-tag ${isActive ? 'active' : ''}" 
-                    data-filter="${filter.id}"
-                    aria-label="${filter.label}"
-                    aria-pressed="${isActive}">
-                ${filter.label}
-            </button>
-        `;
-    });
-    
-    filterTagsContainer.innerHTML = html;
-    
-    // Add event listeners
-    document.querySelectorAll('.filter-tag').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const filterId = btn.getAttribute('data-filter');
-            state.activeDietaryFilter = filterId === 'all' ? null : filterId;
-            updateUI();
-            trackEvent('Filter', 'dietary', filterId);
-        });
-    });
-}
-
-function filterItems() {
-    return allItems.filter(item => {
-        // Category filter
-        const matchCat = !state.activeCategory || item.cat === state.activeCategory;
-        
-        // Search filter
-        const matchSearch = !state.searchQuery || 
-            item.enName.toLowerCase().includes(state.searchQuery) || 
-            item.arName.includes(state.searchQuery);
-        
-        // Dietary filter
-        let matchDietary = true;
-        if (state.activeDietaryFilter) {
-            if (state.activeDietaryFilter === 'vegan') {
-                matchDietary = item.dietary.includes('vegan');
-            } else if (state.activeDietaryFilter === 'vegetarian') {
-                matchDietary = item.dietary.includes('vegetarian');
-            } else if (state.activeDietaryFilter === 'gluten-free') {
-                matchDietary = item.dietary.includes('gluten-free');
-            } else if (state.activeDietaryFilter === 'dairy-free') {
-                matchDietary = item.dietary.includes('dairy-free');
-            } else if (state.activeDietaryFilter === 'contains-nuts') {
-                matchDietary = item.dietary.includes('contains-nuts');
-            }
-        }
-        
-        return matchCat && matchSearch && matchDietary;
-    });
-}
-
-// ============================================
-// 7. RENDER FUNCTIONS
-// ============================================
-
-function renderFloatingCategories() {
-    try {
-        const floatingCategories = document.getElementById("floatingCategories");
-        if (!floatingCategories) return;
-        
-        floatingCategories.innerHTML = "";
-        
-        // All button
-        const allBtn = document.createElement("button");
-        allBtn.className = "floating-category" + (!state.activeCategory ? " active" : "");
-        allBtn.innerHTML = "✨ All";
-        allBtn.setAttribute("data-count", state.categoryCounts["All"] || 0);
-        allBtn.setAttribute("aria-label", "Show all items");
-        allBtn.setAttribute("aria-pressed", !state.activeCategory ? "true" : "false");
-        allBtn.onclick = () => {
-            state.activeCategory = null;
-            updateUI();
-            scrollToTop();
-            trackEvent('Navigation', 'category_selected', 'All');
-        };
-        floatingCategories.appendChild(allBtn);
-        
-        // Category buttons
-        state.categories.forEach(cat => {
-            const btn = document.createElement("button");
-            btn.className = "floating-category" + (state.activeCategory === cat ? " active" : "");
-            btn.innerHTML = cat;
-            btn.setAttribute("data-count", state.categoryCounts[cat] || 0);
-            btn.setAttribute("aria-label", `Show ${cat} items`);
-            btn.setAttribute("aria-pressed", state.activeCategory === cat ? "true" : "false");
-            btn.onclick = () => {
-                state.activeCategory = cat;
-                updateUI();
-                scrollToCategory(cat);
-                trackEvent('Navigation', 'category_selected', cat);
-            };
-            floatingCategories.appendChild(btn);
-        });
-        
-        initCategoryScroll();
-        
-    } catch (error) {
-        console.error("Error rendering categories:", error);
-        showToast("Navigation error. Please refresh.", "error");
-    }
-}
-
-async function renderContent() {
-    const mainContent = document.getElementById("mainContent");
-    if (!mainContent) return;
-    
-    try {
-        const filtered = filterItems();
-        
-        // No results
-        if (filtered.length === 0) {
-            setTimeout(() => {
-                mainContent.innerHTML = `
-                    <div class="no-results">
-                        <strong>No items found</strong>
-                        <p>${state.searchQuery ? 'Try adjusting your search terms' : 'Try selecting a different category or filter'}</p>
-                    </div>
-                `;
-            }, 100);
-            return;
-        }
-        
-        // Group by category
-        const grouped = {};
-        filtered.forEach(item => {
-            if (!grouped[item.cat]) grouped[item.cat] = [];
-            grouped[item.cat].push(item);
-        });
-        
-        const categoriesToShow = !state.activeCategory ? state.categories : [state.activeCategory];
-        
-        let html = '';
-        for (const cat of categoriesToShow) {
-            const items = grouped[cat] || filtered.filter(item => item.cat === cat);
-            if (items.length === 0) continue;
-            
-            html += `
-                <div class="section" id="section-${cat.replace(/\s+/g, "-").toLowerCase()}">
-                    <h2>${cat}</h2>
-                    <p>Touch any item for details • ${items.length} items</p>
-                    <div class="grid">
-            `;
-            
-            items.forEach(item => {
-                const safeImage = item.image || '';
-                const optimizedImage = getOptimizedImageUrl(safeImage);
-                
-                html += `
-                    <div class="card" tabindex="0" role="button" 
-                         aria-label="${item.enName}, ${item.price} QAR" 
-                         onclick="openItemModal(${JSON.stringify(item).replace(/"/g, '&quot;').replace(/'/g, "\\'")})"
-                         onkeydown="if(event.key === 'Enter') openItemModal(${JSON.stringify(item).replace(/"/g, '&quot;').replace(/'/g, "\\'")})">
-                        <img data-src="${optimizedImage}" 
-                             alt="${item.enName}" 
-                             class="card-image lazy-image" 
-                             loading="lazy"
-                             width="300"
-                             height="200">
-                        <div class="card-body">
-                            <h3>${item.enName}</h3>
-                            <div class="card-ar-name">${item.arName}</div>
-                            <span class="card-price">QAR ${formatPrice(item.price)}</span>
-                        </div>
-                        ${item.popular ? '<div class="card-badge" aria-label="Chef\'s Pick">Chef\'s Pick</div>' : ''}
-                    </div>
-                `;
-            });
-            
-            html += `
-                    </div>
-                </div>
-            `;
-        }
-        
-        // Update content
-        setTimeout(() => {
-            mainContent.innerHTML = html;
-            
-            // Initialize lazy loading for new images
-            if (imageObserver) {
-                document.querySelectorAll('.lazy-image[data-src]').forEach(img => {
-                    imageObserver.observe(img);
-                });
-            }
-        }, 50);
-        
-    } catch (error) {
-        console.error("Content rendering error:", error);
-        mainContent.innerHTML = `
-            <div class="no-results">
-                <strong>Loading Error</strong>
-                <p>Please refresh the page or try again later</p>
-            </div>
-        `;
-    }
-}
-
-// ============================================
-// 8. MODAL FUNCTIONS
-// ============================================
-
-function openItemModal(item) {
-    try {
-        state.currentModalItem = item;
-        
-        const modal = document.getElementById("itemModal");
-        const modalTitle = document.getElementById("modalTitle");
-        const modalImage = document.getElementById("modalImage");
-        const modalImageWebp = document.getElementById("modalImageWebp");
-        const modalDescEn = document.getElementById("modalDescEn");
-        const modalDescAr = document.getElementById("modalDescAr");
-        const modalCalories = document.getElementById("modalCalories");
-        const modalDietary = document.getElementById("modalDietary");
-        const modalPrice = document.getElementById("modalPrice");
-        
-        modalTitle.textContent = item.enName;
-        
-        // Set up WebP and fallback
-        const webpUrl = item.image.replace(/\.(jpg|jpeg|png)$/i, '.webp');
-        if (supportsWebP) {
-            modalImageWebp.srcset = webpUrl;
-        }
-        modalImage.src = item.image;
-        modalImage.alt = item.enName;
-        
-        modalDescEn.textContent = item.enDesc;
-        modalDescAr.textContent = item.arDesc;
-        modalCalories.textContent = "☕ " + item.calories;
-        modalDietary.textContent = item.dietary.length ? "🏷️ " + item.dietary.join(" • ") : "House Selection";
-        modalPrice.textContent = formatPrice(item.price);
-        
-        modal.classList.add("active");
-        modal.setAttribute("aria-hidden", "false");
-        document.body.style.overflow = "hidden";
-        
-        // Focus trap
-        setTimeout(() => {
-            const closeBtn = modal.querySelector(".modal-close");
-            if (closeBtn) closeBtn.focus();
-        }, 100);
-        
-        trackEvent('Content', 'item_opened', item.enName);
-        
-    } catch (error) {
-        console.error("Modal open error:", error);
-        showToast("Could not open item details", "error");
-    }
-}
-
-function closeItemModal() {
-    const modal = document.getElementById("itemModal");
-    if (modal) {
-        modal.classList.remove("active");
-        modal.setAttribute("aria-hidden", "true");
-        document.body.style.overflow = "";
-        state.currentModalItem = null;
-        trackEvent('Content', 'item_closed');
-    }
-}
-
-// ============================================
-// 9. SCROLL & NAVIGATION
-// ============================================
-
-function initCategoryScroll() {
-    try {
-        const floatingCategories = document.getElementById("floatingCategories");
-        if (!floatingCategories) return;
-        
-        let isDragging = false;
-        let startX, scrollLeft;
-        
-        // Touch swipe gestures
-        floatingCategories.addEventListener('touchstart', (e) => {
-            isDragging = true;
-            startX = e.touches[0].pageX - floatingCategories.offsetLeft;
-            scrollLeft = floatingCategories.scrollLeft;
-        }, { passive: true });
-        
-        floatingCategories.addEventListener('touchmove', (e) => {
-            if (!isDragging) return;
-            e.preventDefault();
-            const x = e.touches[0].pageX - floatingCategories.offsetLeft;
-            const walk = (x - startX) * 1.5;
-            floatingCategories.scrollLeft = scrollLeft - walk;
-        });
-        
-        floatingCategories.addEventListener('touchend', () => {
-            isDragging = false;
-        });
-        
-    } catch (error) {
-        console.warn("Category scroll initialization error:", error);
-    }
-}
-
-function scrollToCategory(cat) {
-    try {
-        const section = document.getElementById(`section-${cat.replace(/\s+/g, "-").toLowerCase()}`);
-        if (section) {
-            section.scrollIntoView({ 
-                behavior: 'smooth', 
-                block: 'start',
-                inline: 'nearest'
-            });
-        }
-    } catch (error) {
-        console.warn("Scroll to category error:", error);
-    }
-}
-
-function scrollToTop() {
-    try {
-        document.querySelector('.content-container').scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    } catch (error) {
-        console.warn("Scroll to top error:", error);
-    }
-}
-
-function handleScroll() {
-    const currentCategoryIndicator = document.getElementById("currentCategoryIndicator");
-    const container = document.querySelector('.content-container');
-    
-    if (state.isScrolling || !container) return;
-    
-    state.isScrolling = true;
-    
-    const sections = document.querySelectorAll('.section');
-    let currentSection = null;
-    let currentItemCount = 0;
-    
-    sections.forEach(section => {
-        const rect = section.getBoundingClientRect();
-        if (rect.top <= 150 && rect.bottom >= 150) {
-            currentSection = section;
-            const categoryName = section.querySelector('h2').textContent;
-            currentItemCount = categoryName === "All" ? 
-                allItems.length : 
-                allItems.filter(item => item.cat === categoryName).length;
-        }
-    });
-    
-    if (currentSection) {
-        const categoryName = currentSection.querySelector('h2').textContent;
-        currentCategoryIndicator.textContent = categoryName;
-        currentCategoryIndicator.setAttribute("data-count", currentItemCount);
-        currentCategoryIndicator.classList.add('visible');
-        
-        document.querySelectorAll('.floating-category').forEach(btn => {
-            btn.classList.remove('active');
-            btn.setAttribute('aria-pressed', 'false');
-        });
-        
-        if (categoryName !== 'All') {
-            const activeBtn = Array.from(document.querySelectorAll('.floating-category')).find(btn => 
-                btn.textContent === categoryName
-            );
-            if (activeBtn) {
-                activeBtn.classList.add('active');
-                activeBtn.setAttribute('aria-pressed', 'true');
-            }
-        } else {
-            const allBtn = document.querySelector('.floating-category:first-child');
-            if (allBtn) {
-                allBtn.classList.add('active');
-                allBtn.setAttribute('aria-pressed', 'true');
-            }
-        }
-    } else {
-        currentCategoryIndicator.classList.remove('visible');
-    }
-    
-    setTimeout(() => {
-        state.isScrolling = false;
-    }, 100);
-}
-
-// ============================================
-// 10. UI UPDATE FUNCTION
-// ============================================
-
-function updateUI() {
-    renderFloatingCategories();
-    renderFilterTags();
-    renderContent();
-    
-    // Update search input visibility
-    const searchContainer = document.getElementById('searchContainer');
-    const filtered = filterItems();
-    if (searchContainer && filtered.length > 0) {
-        searchContainer.style.display = 'flex';
-    }
-}
-
-// ============================================
-// 11. ERROR HANDLING & ANALYTICS
-// ============================================
-
-// Global error handler
-window.addEventListener('error', function(e) {
-    console.error('Global error:', e.error);
-    trackEvent('Error', 'global_error', e.message);
-    
-    // Don't show toast for all errors to avoid spamming user
-    if (e.error && e.error.message && e.error.message.includes('network')) {
-        showToast('Network error. Please check your connection.', 'error');
-    }
+// Error handling
+window.addEventListener('error',(e)=>{
+  console.error('Error:',e);
+  showToast('Something went wrong','error');
 });
+document.addEventListener('error',(e)=>{
+  if(e.target.tagName==='IMG'){
+    e.target.src='data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="300" height="200"%3E%3Crect fill="%233d2619" width="300" height="200"/%3E%3Ctext x="50%" y="50%" text-anchor="middle" dy=".3em" fill="%23d4af37"%3EImage unavailable%3C/text%3E%3C/svg%3E';
+    e.target.classList.add('error');
+  }
+},true);
 
-// Unhandled promise rejection handler
-window.addEventListener('unhandledrejection', function(e) {
-    console.error('Unhandled promise rejection:', e.reason);
-    trackEvent('Error', 'promise_rejection', e.reason?.message || 'Unknown');
-});
-
-// Online/offline detection
-window.addEventListener('online', () => {
-    showToast('Back online', 'info');
-    trackEvent('Network', 'online');
-});
-
-window.addEventListener('offline', () => {
-    showToast('No internet connection', 'warning');
-    trackEvent('Network', 'offline');
-});
-
-// ============================================
-// 12. MAIN APP INITIALIZATION
-// ============================================
-
-function initApp() {
-    try {
-        // Calculate category counts
-        calculateCategoryCounts();
-        
-        // Initialize components
-        initSnowAnimation();
-        initLazyLoading();
-        initSearch();
-        updateUI();
-        
-        // Scroll handling
-        const container = document.querySelector('.content-container');
-        if (container) {
-            container.addEventListener('scroll', debounce(handleScroll, 50));
-        }
-        
-        // Modal handlers
-        const modalCloseBtn = document.querySelector(".modal-close");
-        if (modalCloseBtn) {
-            modalCloseBtn.addEventListener("click", closeItemModal);
-        }
-        
-        const modalBackdrop = document.getElementById("itemModal");
-        if (modalBackdrop) {
-            modalBackdrop.addEventListener("click", (e) => {
-                if (e.target === modalBackdrop) {
-                    closeItemModal();
-                }
-            });
-        }
-        
-        // ESC key to close modal
-        document.addEventListener("keydown", (e) => {
-            if (e.key === "Escape" && document.getElementById("itemModal").classList.contains("active")) {
-                closeItemModal();
-            }
-        });
-        
-        // Performance tracking
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                trackPerformance();
-                document.getElementById('loadingOverlay').classList.add('hidden');
-            }, 500);
-        });
-        
-        // Orientation change handling
-        window.addEventListener("orientationchange", debounce(() => {
-            setTimeout(() => {
-                renderFloatingCategories();
-                renderContent();
-            }, 300);
-        }, 250));
-        
-        // Welcome message
-        setTimeout(() => {
-            showToast("Welcome to Turkiana Café & Sweets", "success");
-            trackEvent('App', 'loaded');
-        }, 1000);
-        
-    } catch (error) {
-        console.error("App initialization error:", error);
-        showToast("Application error. Please refresh.", "error");
-        trackEvent('Error', 'init_error', error.message);
-    }
+// PWA installation
+if('beforeinstallprompt' in window){
+  let dIP;
+  window.addEventListener('beforeinstallprompt',(e)=>{
+    e.preventDefault();
+    dIP=e;
+  });
+  window.addEventListener('appinstalled',()=>{
+    showToast('App installed!','success');
+    dIP=null;
+  });
 }
 
-// ============================================
-// 13. TOUCH GESTURE IMPROVEMENTS
-// ============================================
-
-function initTouchGestures() {
-    let touchStartX = 0;
-    let touchStartY = 0;
-    
-    document.addEventListener('touchstart', e => {
-        touchStartX = e.changedTouches[0].screenX;
-        touchStartY = e.changedTouches[0].screenY;
-    }, { passive: true });
-    
-    document.addEventListener('touchend', e => {
-        const touchEndX = e.changedTouches[0].screenX;
-        const touchEndY = e.changedTouches[0].screenY;
-        const diffX = touchStartX - touchEndX;
-        const diffY = touchStartY - touchEndY;
-        
-        // Swipe left/right for category navigation
-        if (Math.abs(diffX) > 50 && Math.abs(diffY) < 100) {
-            const floatingCategories = document.getElementById("floatingCategories");
-            if (floatingCategories) {
-                if (diffX > 0) {
-                    floatingCategories.scrollLeft += 200;
-                } else {
-                    floatingCategories.scrollLeft -= 200;
-                }
-                trackEvent('Gesture', 'swipe', diffX > 0 ? 'left' : 'right');
-            }
-        }
-    }, { passive: true });
-}
-
-// ============================================
-// 14. START THE APPLICATION
-// ============================================
-
-document.addEventListener("DOMContentLoaded", () => {
-    try {
-        // Initialize the app
-        initApp();
-        initTouchGestures();
-        
-        // Set up deferred loading for non-critical resources
-        setTimeout(() => {
-            // Preload next category images
-            if (state.activeCategory) {
-                const categoryIndex = state.categories.indexOf(state.activeCategory);
-                const nextCategory = state.categories[categoryIndex + 1];
-                if (nextCategory) {
-                    // Preload function would go here
-                }
-            }
-        }, 2000);
-        
-        // Track page view
-        trackEvent('Page', 'view', 'menu');
-        
-    } catch (error) {
-        console.error("Fatal application error:", error);
-        document.body.innerHTML = `
-            <div style="display: flex; justify-content: center; align-items: center; height: 100vh; background: var(--bg); color: var(--gold); text-align: center; padding: 20px;">
-                <div>
-                    <h2 style="font-family: 'Playfair Display'; margin-bottom: 20px;">Application Error</h2>
-                    <p style="margin-bottom: 30px;">Please refresh the page or contact support.</p>
-                    <button onclick="location.reload()" style="background: var(--gold); color: var(--bg); border: none; padding: 15px 30px; border-radius: 8px; font-weight: bold; cursor: pointer;">
-                        Refresh Page
-                    </button>
-                </div>
-            </div>
-        `;
-        trackEvent('Error', 'fatal_error', error.message);
-    }
-});
-
-// Make functions available globally
-window.openItemModal = openItemModal;
-window.closeItemModal = closeItemModal;
-</script>
-
-<!-- Deferred non-critical CSS (example structure) -->
-<script>
-// Dynamically load non-critical CSS
-setTimeout(() => {
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = 'non-critical.css';
-    link.media = 'all';
-    document.head.appendChild(link);
-}, 3000);
+document.addEventListener('DOMContentLoaded',initApp);
+window.openItemModal=openItemModal;
+window.closeItemModal=closeItemModal;
 </script>
 </body>
 </html>
