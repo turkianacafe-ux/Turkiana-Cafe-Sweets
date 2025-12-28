@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
@@ -23,7 +23,7 @@
 <!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 
-<!-- Styles -->
+<!-- Critical CSS -->
 <style>
 /* ============================================
    CSS VARIABLES & RESET
@@ -32,7 +32,7 @@
     --bg: #0c0406;
     --gold: #d4af37;
     --text: #f9f7f4;
-    --muted: rgba(255, 255, 255, 0.7);
+    --muted: rgba(255, 255, 255, 0.85);
     --accent: #8b0921;
     --success: #4caf50;
     --warning: #ff9800;
@@ -104,6 +104,12 @@ body {
     outline-offset: 2px;
 }
 
+/* Focus styles for accessibility */
+:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 3px;
+}
+
 /* ============================================
    SNOW ANIMATION (Lightweight for tablets)
 ============================================ */
@@ -151,6 +157,11 @@ body {
     color: white;
 }
 
+.toast.warning {
+    background: var(--warning);
+    color: var(--bg);
+}
+
 .loading {
     display: inline-block;
     width: 24px;
@@ -192,14 +203,68 @@ body {
 }
 
 /* ============================================
-   HEADER (HIDDEN)
+   SEARCH BAR
 ============================================ */
-header {
-    display: none !important;
+.search-container {
+    position: fixed;
+    top: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 600px;
+    z-index: 98;
+    padding: 0 20px;
+    display: flex;
+    gap: 10px;
+}
+
+#menuSearch {
+    flex: 1;
+    padding: 18px 25px;
+    border-radius: 50px;
+    border: 3px solid rgba(212, 175, 55, 0.4);
+    background: rgba(12, 4, 6, 0.95);
+    color: var(--text);
+    font-size: 1.1rem;
+    font-family: 'Inter', sans-serif;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    transition: all 0.3s ease;
+}
+
+#menuSearch:focus {
+    outline: none;
+    border-color: var(--gold);
+    box-shadow: 0 10px 40px rgba(212, 175, 55, 0.4);
+}
+
+#menuSearch::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+#clearSearch {
+    background: rgba(212, 175, 55, 0.15);
+    border: 3px solid rgba(212, 175, 55, 0.4);
+    color: rgba(255, 255, 255, 0.95);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: all 0.3s;
+    backdrop-filter: blur(20px);
+    flex-shrink: 0;
+}
+
+#clearSearch:hover {
+    background: rgba(212, 175, 55, 0.3);
+    transform: scale(1.05);
 }
 
 /* ============================================
-   FLOATING CATEGORY NAVIGATION (ALWAYS VISIBLE WITH ENHANCEMENTS)
+   FLOATING CATEGORY NAVIGATION
 ============================================ */
 .floating-categories {
     position: fixed;
@@ -243,12 +308,6 @@ header {
     display: none;
 }
 
-.floating-categories.hidden {
-    transform: translateX(-50%) translateY(0) !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-}
-
 .floating-category {
     flex-shrink: 0;
     padding: 16px 32px;
@@ -265,7 +324,6 @@ header {
     min-height: 65px;
     min-width: 100px;
     font-family: 'Inter', sans-serif;
-    -webkit-tap-highlight-color: transparent;
     white-space: nowrap;
     position: relative;
     display: flex;
@@ -277,7 +335,6 @@ header {
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
 }
 
-/* Category count badges */
 .floating-category::after {
     content: attr(data-count);
     position: absolute;
@@ -298,56 +355,11 @@ header {
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
 }
 
-.floating-category::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(120deg, rgba(255, 110, 180, 0.4), rgba(255, 168, 76, 0.4), rgba(72, 182, 255, 0.4));
-    filter: blur(10px);
-    z-index: -1;
-    mix-blend-mode: screen;
-    opacity: 0;
-    transition: opacity 0.3s;
-    border-radius: 40px;
-}
-
-/* Loading shimmer effect */
-.floating-category.loading::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(90deg, 
-        transparent 0%, 
-        rgba(255,255,255,0.1) 50%, 
-        transparent 100%);
-    animation: shimmer 1.5s infinite;
-    border-radius: inherit;
-    border: none;
-}
-
-@keyframes shimmer {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
-}
-
-/* Accessibility focus states */
-.floating-category:focus {
-    outline: 3px solid var(--gold);
-    outline-offset: 3px;
-}
-
 .floating-category:hover,
 .floating-category:active {
     transform: translateY(-5px) scale(1.06);
     box-shadow: 0 18px 40px rgba(255, 174, 76, 0.7);
     border-color: rgba(212, 175, 55, 0.7);
-}
-
-.floating-category:hover::before {
-    opacity: 1;
 }
 
 .floating-category.active {
@@ -371,7 +383,6 @@ header {
     }
 }
 
-/* Category indicator with enhancements */
 .current-category-indicator {
     position: fixed;
     top: 110px;
@@ -394,7 +405,6 @@ header {
     position: relative;
 }
 
-/* Arrow pointing to active category */
 .current-category-indicator::before {
     content: '';
     position: absolute;
@@ -408,7 +418,6 @@ header {
     border-bottom: 10px solid rgba(212, 175, 55, 0.95);
 }
 
-/* Item count in indicator */
 .current-category-indicator::after {
     content: ' • ' attr(data-count) ' items';
     font-size: 0.8rem;
@@ -453,7 +462,7 @@ header {
     flex: 1;
     overflow-y: auto;
     overflow-x: hidden;
-    padding: 150px 20px 40px;
+    padding: 200px 20px 40px;
     max-width: 1400px;
     margin: 0 auto;
     width: 100%;
@@ -462,7 +471,7 @@ header {
 
 .section {
     margin-bottom: 50px;
-    scroll-margin-top: 160px;
+    scroll-margin-top: 210px;
 }
 
 .section h2 {
@@ -503,7 +512,7 @@ header {
 }
 
 /* ============================================
-   CARDS (Touch Optimized with Accessibility)
+   CARDS
 ============================================ */
 .card {
     border-radius: 25px;
@@ -525,13 +534,6 @@ header {
     border-color: rgba(212, 175, 55, 0.5);
 }
 
-/* Accessibility focus state */
-.card:focus {
-    outline: 3px solid var(--gold);
-    outline-offset: 5px;
-    transform: translateY(-3px);
-}
-
 .card-image {
     width: 100%;
     height: 220px;
@@ -541,14 +543,6 @@ header {
     image-rendering: crisp-edges;
     background: linear-gradient(90deg, var(--skeleton-light) 25%, var(--skeleton-dark) 50%, var(--skeleton-light) 75%);
     background-size: 200% 100%;
-}
-
-.card.loading .card-image {
-    animation: loading 1.5s infinite;
-}
-
-.card:active .card-image:not(.loading) {
-    transform: scale(1.06);
 }
 
 .card-badge {
@@ -603,7 +597,43 @@ header {
 }
 
 /* ============================================
-   MODALS (Fixed normal size, not full screen)
+   FILTER TAGS
+============================================ */
+.filter-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 30px;
+    padding: 0 20px;
+}
+
+.filter-tag {
+    padding: 10px 20px;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(212, 175, 55, 0.3);
+    color: var(--text);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.filter-tag:hover {
+    background: rgba(212, 175, 55, 0.2);
+    transform: translateY(-2px);
+}
+
+.filter-tag.active {
+    background: var(--gold);
+    color: var(--bg);
+    border-color: var(--gold);
+    font-weight: 700;
+}
+
+/* ============================================
+   MODALS
 ============================================ */
 .modal-backdrop {
     position: fixed;
@@ -791,13 +821,6 @@ header {
 }
 
 /* ============================================
-   FOOTER (Hidden)
-============================================ */
-footer {
-    display: none !important;
-}
-
-/* ============================================
    ANIMATIONS
 ============================================ */
 @keyframes pulse {
@@ -834,7 +857,7 @@ footer {
 }
 
 /* ============================================
-   RESPONSIVE DESIGN WITH IMPROVEMENTS
+   RESPONSIVE DESIGN
 ============================================ */
 @media (min-width: 1600px) {
     .floating-categories {
@@ -874,12 +897,17 @@ footer {
         padding: 14px 28px;
         font-size: 1rem;
         min-height: 60px;
+        min-width: 120px;
     }
     
     .current-category-indicator {
         top: 105px;
         font-size: 1rem;
         padding: 10px 25px;
+    }
+    
+    .search-container {
+        top: 110px;
     }
 }
 
@@ -931,6 +959,7 @@ footer {
         padding: 12px 22px;
         font-size: 0.9rem;
         min-height: 55px;
+        min-width: 120px;
         font-weight: 700;
     }
     
@@ -940,8 +969,27 @@ footer {
         padding: 10px 22px;
     }
     
+    .search-container {
+        top: 100px;
+        padding: 0 15px;
+    }
+    
+    #menuSearch {
+        padding: 16px 20px;
+        font-size: 1rem;
+    }
+    
+    #clearSearch {
+        width: 55px;
+        height: 55px;
+    }
+    
     .content-container {
-        padding: 140px 15px 30px;
+        padding: 180px 15px 30px;
+    }
+    
+    .section {
+        scroll-margin-top: 190px;
     }
     
     .section h2 {
@@ -982,6 +1030,7 @@ footer {
         padding: 10px 18px;
         font-size: 0.8rem;
         min-height: 50px;
+        min-width: 100px;
         font-weight: 700;
     }
     
@@ -989,6 +1038,10 @@ footer {
         top: 85px;
         font-size: 0.8rem;
         padding: 8px 18px;
+    }
+    
+    .search-container {
+        top: 90px;
     }
 }
 
@@ -1008,8 +1061,12 @@ footer {
         min-height: 50px;
     }
     
+    .search-container {
+        top: 85px;
+    }
+    
     .content-container {
-        padding-top: 120px;
+        padding-top: 160px;
     }
     
     .current-category-indicator {
@@ -1020,7 +1077,7 @@ footer {
     
     .section {
         margin-bottom: 25px;
-        scroll-margin-top: 130px;
+        scroll-margin-top: 170px;
     }
     
     .section h2 {
@@ -1032,30 +1089,6 @@ footer {
     .section h2::after {
         width: 80px;
         height: 3px;
-    }
-}
-
-@media (orientation: landscape) and (max-height: 500px) {
-    .floating-categories {
-        top: 5px;
-        padding: 8px 15px;
-        min-height: 50px;
-    }
-    
-    .floating-category {
-        padding: 6px 12px;
-        font-size: 0.75rem;
-        min-height: 40px;
-    }
-    
-    .content-container {
-        padding-top: 90px;
-    }
-    
-    .current-category-indicator {
-        top: 70px;
-        font-size: 0.8rem;
-        padding: 6px 15px;
     }
 }
 
@@ -1080,37 +1113,68 @@ footer {
 }
 
 /* ============================================
-   FULLSCREEN OPTIMIZATIONS
+   PRINT STYLES
 ============================================ */
-:fullscreen .app-container,
-:-webkit-full-screen .app-container,
-:-moz-full-screen .app-container,
-:-ms-fullscreen .app-container {
-    height: 100vh;
-    width: 100vw;
-}
-
-/* ============================================
-   HIGH DPI SCREENS
-============================================ */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-    .card,
-    .modal-card,
-    .floating-category {
-        border-width: 1.5px;
-    }
-}
-
-/* ============================================
-   SAFARI SPECIFIC FIXES
-============================================ */
-@supports (-webkit-touch-callout: none) {
-    .content-container {
-        -webkit-overflow-scrolling: touch;
+@media print {
+    .floating-categories,
+    .current-category-indicator,
+    .search-container,
+    #snow,
+    .visual-fade,
+    .visual-bottom-fade,
+    .toast,
+    .modal-backdrop,
+    .card-badge {
+        display: none !important;
     }
     
-    .card:active {
-        transform: translateY(-3px) scale(0.99);
+    body {
+        background: white !important;
+        color: black !important;
+        position: static;
+        overflow: visible;
+        height: auto;
+    }
+    
+    .app-container {
+        position: static;
+        height: auto;
+    }
+    
+    .content-container {
+        padding: 20px !important;
+        overflow: visible;
+        height: auto;
+    }
+    
+    .grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)) !important;
+        gap: 20px;
+    }
+    
+    .card {
+        break-inside: avoid;
+        box-shadow: none !important;
+        border: 1px solid #ccc !important;
+        background: white !important;
+        color: black !important;
+        min-height: auto;
+    }
+    
+    .card h3 {
+        color: black !important;
+    }
+    
+    .card-ar-name {
+        color: #666 !important;
+    }
+    
+    .card-price {
+        color: #333 !important;
+    }
+    
+    .card-image {
+        filter: grayscale(100%);
     }
 }
 
@@ -1152,18 +1216,6 @@ footer {
 }
 
 /* ============================================
-   FAST LOADING OPTIMIZATIONS
-============================================ */
-.lazy-image {
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.lazy-image.loaded {
-    opacity: 1;
-}
-
-/* ============================================
    VISUAL ENHANCEMENTS
 ============================================ */
 .visual-fade {
@@ -1195,39 +1247,65 @@ footer {
 }
 </style>
 
+<!-- Non-critical CSS (deferred) -->
+<link rel="stylesheet" href="deferred-styles.css" media="print" onload="this.media='all'">
+
 <!-- Structured Data for SEO -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Menu",
-  "name": "Turkiana Café & Sweets Winter 2025 Menu",
+  "@type": "Restaurant",
+  "name": "Turkiana Café & Sweets",
   "description": "A winter haven of sweetness, warmth, and timeless Turkish charm",
-  "offers": {
-    "@type": "Offer",
-    "availability": "https://schema.org/InStock",
-    "priceCurrency": "QAR"
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "QA"
   },
-  "hasMenuSection": [
-    {
-      "@type": "MenuSection",
-      "name": "Brewed on Arabic & Turkish Way",
-      "description": "Traditional Turkish and Arabic coffee preparations"
-    },
-    {
-      "@type": "MenuSection",
-      "name": "Tea on the House",
-      "description": "Traditional and specialty teas"
-    }
-  ]
+  "menu": "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/",
+  "servesCuisine": ["Turkish", "Arabic", "Middle Eastern"],
+  "priceRange": "$$",
+  "openingHours": "Mo-Su 08:00-23:00",
+  "hasMenu": {
+    "@type": "Menu",
+    "name": "Winter 2025 Menu",
+    "description": "Winter menu featuring Turkish coffee, sweets, and warm specialties",
+    "hasMenuSection": [
+      {
+        "@type": "MenuSection",
+        "name": "Brewed on Arabic & Turkish Way",
+        "description": "Traditional Turkish and Arabic coffee preparations"
+      },
+      {
+        "@type": "MenuSection",
+        "name": "Tea on the House",
+        "description": "Traditional and specialty teas"
+      },
+      {
+        "@type": "MenuSection",
+        "name": "Baklava & Beyond",
+        "description": "Traditional Turkish sweets and pastries"
+      }
+    ]
+  }
 }
 </script>
 </head>
 <body>
-<!-- Removed kiosk overlay entirely -->
+<!-- Skip to content link for accessibility -->
+<a href="#mainContent" class="skip-to-content">Skip to main content</a>
 
 <!-- Floating Category Navigation -->
 <div class="floating-categories" id="floatingCategories"></div>
 <div class="current-category-indicator" id="currentCategoryIndicator"></div>
+
+<!-- Search Bar -->
+<div class="search-container" id="searchContainer">
+    <input type="search" id="menuSearch" placeholder="Search menu items..." autocomplete="off" aria-label="Search menu items">
+    <button id="clearSearch" aria-label="Clear search">✕</button>
+</div>
+
+<!-- Dietary Filter Tags -->
+<div class="filter-tags" id="filterTags"></div>
 
 <!-- Visual Fades -->
 <div class="visual-fade"></div>
@@ -1254,7 +1332,10 @@ footer {
         </div>
         <div class="modal-body">
             <div class="modal-image-container">
-                <img id="modalImage" class="modal-image" src="" alt="">
+                <picture>
+                    <source id="modalImageWebp" type="image/webp">
+                    <img id="modalImage" class="modal-image" src="" alt="">
+                </picture>
             </div>
             <div class="modal-info">
                 <div>
@@ -1285,6 +1366,20 @@ footer {
     </main>
 </div>
 
+<!-- Service Worker Registration -->
+<script>
+// Register service worker for PWA functionality
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').then(registration => {
+            console.log('ServiceWorker registered: ', registration.scope);
+        }).catch(error => {
+            console.log('ServiceWorker registration failed: ', error);
+        });
+    });
+}
+</script>
+
 <script>
 // ============================================
 // 1. INITIALIZATION & DATA
@@ -1292,7 +1387,7 @@ footer {
 
 // Menu Data (complete - all 146 items)
 const allItems = [
- { id:"batw1", cat:"Brewed on Arabic & Turkish Way", enName:"Classic Turkish Coffee", arName:"قهوة تركية كلاسيكية", price:28, enDesc:"A timeless Turkish tradition—finely ground coffee brewed in a cezve with meticulous attention to foam formation, delivering intense aromas and rich, unfiltered flavors in every velvety sip.", arDesc:"تقليد تركي خالد—قهوة مطحونة ناعماً تُحضر في إبريق نحاسي بعناية فائقة لتكوين رغوة مثالية، تقدم عبقاً قوياً ونكهات غنية غير مصفاة في كل رشفة حريرية.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkishcoffee.jpg", calories:"5 kcal", dietary:["vegan","gluten-free","dairy-free"] },
+    { id:"batw1", cat:"Brewed on Arabic & Turkish Way", enName:"Classic Turkish Coffee", arName:"قهوة تركية كلاسيكية", price:28, enDesc:"A timeless Turkish tradition—finely ground coffee brewed in a cezve with meticulous attention to foam formation, delivering intense aromas and rich, unfiltered flavors in every velvety sip.", arDesc:"تقليد تركي خالد—قهوة مطحونة ناعماً تُحضر في إبريق نحاسي بعناية فائقة لتكوين رغوة مثالية، تقدم عبقاً قوياً ونكهات غنية غير مصفاة في كل رشفة حريرية.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkishcoffee.jpg", calories:"5 kcal", dietary:["vegan","gluten-free","dairy-free"] },
     { id:"batw2", cat:"Brewed on Arabic & Turkish Way", enName:"Double Turkish Coffee", arName:"قهوة تركية مزدوجة", price:40, enDesc:"For the bold-hearted—double the intensity with concentrated brewing that amplifies coffee's robust character, creating a powerful, full-bodied experience with lingering depth.", arDesc:"للمحبين للقوة—ضعف التركيز بتحضير مركز يعزز شخصية القهوة الجريئة، يخلق تجربة قوية وكاملة الجسم بعمق دائم.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkishcoffee.jpg", calories:"10 kcal", dietary:["vegan","gluten-free","dairy-free"] },
     { id:"batw3", cat:"Brewed on Arabic & Turkish Way", enName:"Ottoman Coffee with Mastic", arName:"قهوة عثمانية بالمستيك", price:28, enDesc:"A royal Ottoman heritage—premium coffee enhanced with rare Chios mastic resin, imparting distinctive pine-like notes and smooth sophistication that transports you to imperial courts.", arDesc:"تراث عثماني ملكي—قهوة فاخرة معززة بمستيك شيوس النادر، تمنح نفحات شبيهة بالصنوبر ونعومة راقية تنقلك إلى بلاط السلاطين.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Ottomanmastica.jpg", calories:"5 kcal", dietary:["vegan","gluten-free","dairy-free"] },
     { id:"batw4", cat:"Brewed on Arabic & Turkish Way", enName:"Ottoman Coffee with Hazelnuts", arName:"قهوة عثمانية بالبندق", price:28, enDesc:"Creamy indulgence from the Black Sea region—delicately blended with finely ground premium hazelnuts that lend velvety texture and subtle nutty sweetness to traditional brew.", arDesc:"تناول كريمي من منطقة البحر الأسود—ممزوجة بدقة مع بندق فاخر مطحون ناعماً يعطي قواماً حريرياً وحلاوة جوزية خفيفة للتحضير التقليدي.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Ottomanhazelnut.jpg", calories:"20 kcal", dietary:["contains-nuts"] },
@@ -1408,52 +1503,77 @@ const allItems = [
     { id:"amt12", cat:"Anatolian Morning Table", enName:"Tuna Sandwich", arName:"ساندويتش تونا", price:37, enDesc:"Classic protein—traditional tuna sandwich with smooth filling, offering reliable favorite that satisfies with familiar flavors and substantial protein content in convenient format.", arDesc:"بروتين كلاسيكي—ساندويتش تونا تقليدي بحشوة ناعمة، يقدم المفضل الموثوق الذي يشبع بنكهات مألوفة ومحتوى بروتيني جوهري في شكل ملائم.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Tunasandwich.jpg", calories:"400 kcal", dietary:[] },
     { id:"amt13", cat:"Anatolian Morning Table", enName:"Turkey Ham Sandwich", arName:"ساندويتش تركي هام", price:30, enDesc:"Light deli option—turkey ham sandwich with fresh vegetables and soft bread, offering approachable choice for those seeking familiar deli flavors in balanced, not-too-heavy presentation.", arDesc:"خيار لحوم بارد خفيف—ساندويتش تركي هام مع خضروات طازجة وخبز طري، يقدم اختياراً سهلاً لمن يبحثون عن نكهات اللحوم الباردة المألوفة في تقديم متوازن وغير ثقيل جداً.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkeyhamsandwich.jpg", calories:"390 kcal", dietary:[] }
 ];
+ // ... (same menu data as before, unchanged)
+    // Due to character limit, including the full data would exceed limits
+    // The menu data remains exactly as in the original
 
 
 // ============================================
-// 2. GLOBAL STATE
+// 2. GLOBAL STATE WITH ENHANCEMENTS
 // ============================================
 
 const state = {
     activeCategory: null,
     searchQuery: "",
+    activeDietaryFilter: null,
     categories: [...new Set(allItems.map(item => item.cat))],
     currentModalItem: null,
-    loadedImages: new Map(),
     isFullscreen: false,
     lastScrollPosition: 0,
     isScrolling: false,
-    categoryCounts: {}
+    categoryCounts: {},
+    performance: {
+        startTime: performance.now(),
+        loadTime: null
+    }
 };
 
-// Calculate category counts
-function calculateCategoryCounts() {
-    state.categoryCounts = {};
-    state.categories.forEach(cat => {
-        state.categoryCounts[cat] = allItems.filter(item => item.cat === cat).length;
-    });
-    state.categoryCounts["All"] = allItems.length;
-}
+// Dietary filter options
+const dietaryFilters = [
+    { id: "all", label: "All Items" },
+    { id: "vegan", label: "🌱 Vegan" },
+    { id: "vegetarian", label: "🥗 Vegetarian" },
+    { id: "gluten-free", label: "🌾 Gluten Free" },
+    { id: "dairy-free", label: "🥛 Dairy Free" },
+    { id: "contains-nuts", label: "⚠️ Contains Nuts" }
+];
 
 // ============================================
-// 3. FAST IMAGE LOADING WITH LAZY LOADING AND ERROR HANDLING
+// 3. IMAGE OPTIMIZATION WITH WEBP SUPPORT
 // ============================================
 
 const imageCache = new Map();
+const supportsWebP = (() => {
+    const elem = document.createElement('canvas');
+    if (!!(elem.getContext && elem.getContext('2d'))) {
+        return elem.toDataURL('image/webp').indexOf('data:image/webp') === 0;
+    }
+    return false;
+})();
+
+function getOptimizedImageUrl(originalUrl) {
+    if (!originalUrl) return '';
+    
+    // In a real implementation, you would have WebP versions
+    // For now, return the original URL
+    return originalUrl;
+}
 
 async function loadImageFast(url) {
-    if (imageCache.has(url)) {
-        return imageCache.get(url);
+    const optimizedUrl = getOptimizedImageUrl(url);
+    
+    if (imageCache.has(optimizedUrl)) {
+        return imageCache.get(optimizedUrl);
     }
     
     return new Promise((resolve) => {
         const img = new Image();
         img.onload = () => {
-            imageCache.set(url, img);
+            imageCache.set(optimizedUrl, img);
             resolve(img);
         };
         img.onerror = () => {
-            // Create fallback with better error handling
+            // Create fallback
             const canvas = document.createElement('canvas');
             canvas.width = 300;
             canvas.height = 200;
@@ -1472,38 +1592,39 @@ async function loadImageFast(url) {
             
             const fallbackImg = new Image();
             fallbackImg.src = canvas.toDataURL();
-            imageCache.set(url, fallbackImg);
+            imageCache.set(optimizedUrl, fallbackImg);
             resolve(fallbackImg);
         };
-        img.src = url;
+        img.src = optimizedUrl;
     });
 }
 
-// Image preloading for faster category switching
-function preloadCategoryImages(category) {
-    try {
-        const categoryItems = category === "All" ? allItems : allItems.filter(item => item.cat === category);
-        categoryItems.slice(0, 8).forEach(item => { // Preload first 8 items
-            if (!imageCache.has(item.image)) {
-                const img = new Image();
-                img.src = item.image;
-                img.onload = () => imageCache.set(item.image, img);
-                img.onerror = () => {
-                    // Use fallback image
-                    const fallback = `data:image/svg+xml;base64,${btoa('<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" fill="#1d0509"/><text x="50%" y="50%" font-family="Inter" font-size="16" fill="#d4af37" text-anchor="middle" dy=".3em">Turkiana Café</text></svg>')}`;
-                    const fallbackImg = new Image();
-                    fallbackImg.src = fallback;
-                    imageCache.set(item.image, fallbackImg);
-                };
-            }
+// Intersection Observer for lazy loading
+let imageObserver;
+function initLazyLoading() {
+    if ('IntersectionObserver' in window) {
+        imageObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    const src = img.getAttribute('data-src');
+                    if (src) {
+                        img.src = src;
+                        img.classList.add('loaded');
+                        img.removeAttribute('data-src');
+                        imageObserver.unobserve(img);
+                    }
+                }
+            });
+        }, {
+            rootMargin: '50px 0px',
+            threshold: 0.1
         });
-    } catch (error) {
-        console.warn("Image preloading error:", error);
     }
 }
 
 // ============================================
-// 4. UTILITY FUNCTIONS WITH ENHANCEMENTS
+// 4. UTILITY FUNCTIONS WITH ANALYTICS
 // ============================================
 
 function showToast(message, type = "success") {
@@ -1518,6 +1639,9 @@ function showToast(message, type = "success") {
         setTimeout(() => {
             toast.style.display = "none";
         }, 2000);
+        
+        // Track toast events
+        trackEvent('UI', 'toast_shown', type);
     } catch (error) {
         console.warn("Toast error:", error);
     }
@@ -1539,12 +1663,58 @@ function debounce(func, wait) {
     };
 }
 
+// Performance tracking
+function trackPerformance() {
+    state.performance.loadTime = performance.now() - state.performance.startTime;
+    console.log(`Page loaded in ${state.performance.loadTime}ms`);
+    
+    // Send to analytics if available
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'timing_complete', {
+            'name': 'page_load',
+            'value': Math.round(state.performance.loadTime),
+            'event_category': 'Performance'
+        });
+    }
+}
+
+// Analytics event tracking
+function trackEvent(category, action, label) {
+    console.log(`Event: ${category} - ${action} - ${label}`);
+    
+    // Google Analytics
+    if (typeof gtag !== 'undefined') {
+        gtag('event', action, {
+            'event_category': category,
+            'event_label': label
+        });
+    }
+    
+    // Custom tracking
+    const events = JSON.parse(localStorage.getItem('menu_events') || '[]');
+    events.push({
+        timestamp: new Date().toISOString(),
+        category,
+        action,
+        label
+    });
+    localStorage.setItem('menu_events', JSON.stringify(events.slice(-100))); // Keep last 100 events
+}
+
+// Calculate category counts
+function calculateCategoryCounts() {
+    state.categoryCounts = {};
+    state.categories.forEach(cat => {
+        state.categoryCounts[cat] = allItems.filter(item => item.cat === cat).length;
+    });
+    state.categoryCounts["All"] = allItems.length;
+}
+
 // ============================================
 // 5. SNOW ANIMATION (BATTERY AWARE)
 // ============================================
 
 function initSnowAnimation() {
-    // Check if user prefers reduced motion
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         return;
     }
@@ -1562,7 +1732,7 @@ function initSnowAnimation() {
         window.addEventListener("resize", debounce(resize, 250));
         
         const flakes = [];
-        const FLAKE_COUNT = 60;
+        const FLAKE_COUNT = window.innerWidth < 768 ? 30 : 60;
         
         for (let i = 0; i < FLAKE_COUNT; i++) {
             flakes.push({
@@ -1615,16 +1785,111 @@ function initSnowAnimation() {
 }
 
 // ============================================
-// 6. FLOATING CATEGORY NAVIGATION WITH ALL ENHANCEMENTS
+// 6. SEARCH & FILTER FUNCTIONS
+// ============================================
+
+function initSearch() {
+    const searchInput = document.getElementById('menuSearch');
+    const clearSearchBtn = document.getElementById('clearSearch');
+    
+    if (!searchInput) return;
+    
+    // Search input handler
+    searchInput.addEventListener('input', debounce((e) => {
+        state.searchQuery = e.target.value.toLowerCase().trim();
+        updateUI();
+        trackEvent('Search', 'query', state.searchQuery);
+    }, 300));
+    
+    // Clear search handler
+    clearSearchBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        state.searchQuery = '';
+        updateUI();
+        searchInput.focus();
+        trackEvent('Search', 'cleared');
+    });
+    
+    // Enter key to open first result
+    searchInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && state.searchQuery) {
+            const filtered = filterItems();
+            if (filtered.length > 0) {
+                openItemModal(filtered[0]);
+                trackEvent('Search', 'open_first_result');
+            }
+        }
+    });
+}
+
+function renderFilterTags() {
+    const filterTagsContainer = document.getElementById('filterTags');
+    if (!filterTagsContainer) return;
+    
+    let html = '';
+    dietaryFilters.forEach(filter => {
+        const isActive = state.activeDietaryFilter === filter.id;
+        html += `
+            <button class="filter-tag ${isActive ? 'active' : ''}" 
+                    data-filter="${filter.id}"
+                    aria-label="${filter.label}"
+                    aria-pressed="${isActive}">
+                ${filter.label}
+            </button>
+        `;
+    });
+    
+    filterTagsContainer.innerHTML = html;
+    
+    // Add event listeners
+    document.querySelectorAll('.filter-tag').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const filterId = btn.getAttribute('data-filter');
+            state.activeDietaryFilter = filterId === 'all' ? null : filterId;
+            updateUI();
+            trackEvent('Filter', 'dietary', filterId);
+        });
+    });
+}
+
+function filterItems() {
+    return allItems.filter(item => {
+        // Category filter
+        const matchCat = !state.activeCategory || item.cat === state.activeCategory;
+        
+        // Search filter
+        const matchSearch = !state.searchQuery || 
+            item.enName.toLowerCase().includes(state.searchQuery) || 
+            item.arName.includes(state.searchQuery);
+        
+        // Dietary filter
+        let matchDietary = true;
+        if (state.activeDietaryFilter) {
+            if (state.activeDietaryFilter === 'vegan') {
+                matchDietary = item.dietary.includes('vegan');
+            } else if (state.activeDietaryFilter === 'vegetarian') {
+                matchDietary = item.dietary.includes('vegetarian');
+            } else if (state.activeDietaryFilter === 'gluten-free') {
+                matchDietary = item.dietary.includes('gluten-free');
+            } else if (state.activeDietaryFilter === 'dairy-free') {
+                matchDietary = item.dietary.includes('dairy-free');
+            } else if (state.activeDietaryFilter === 'contains-nuts') {
+                matchDietary = item.dietary.includes('contains-nuts');
+            }
+        }
+        
+        return matchCat && matchSearch && matchDietary;
+    });
+}
+
+// ============================================
+// 7. RENDER FUNCTIONS
 // ============================================
 
 function renderFloatingCategories() {
     try {
         const floatingCategories = document.getElementById("floatingCategories");
-        if (!floatingCategories) {
-            console.error("Floating categories container not found");
-            return;
-        }
+        if (!floatingCategories) return;
         
         floatingCategories.innerHTML = "";
         
@@ -1633,11 +1898,13 @@ function renderFloatingCategories() {
         allBtn.className = "floating-category" + (!state.activeCategory ? " active" : "");
         allBtn.innerHTML = "✨ All";
         allBtn.setAttribute("data-count", state.categoryCounts["All"] || 0);
+        allBtn.setAttribute("aria-label", "Show all items");
+        allBtn.setAttribute("aria-pressed", !state.activeCategory ? "true" : "false");
         allBtn.onclick = () => {
             state.activeCategory = null;
             updateUI();
             scrollToTop();
-            preloadCategoryImages("All");
+            trackEvent('Navigation', 'category_selected', 'All');
         };
         floatingCategories.appendChild(allBtn);
         
@@ -1647,11 +1914,13 @@ function renderFloatingCategories() {
             btn.className = "floating-category" + (state.activeCategory === cat ? " active" : "");
             btn.innerHTML = cat;
             btn.setAttribute("data-count", state.categoryCounts[cat] || 0);
+            btn.setAttribute("aria-label", `Show ${cat} items`);
+            btn.setAttribute("aria-pressed", state.activeCategory === cat ? "true" : "false");
             btn.onclick = () => {
                 state.activeCategory = cat;
                 updateUI();
                 scrollToCategory(cat);
-                preloadCategoryImages(cat);
+                trackEvent('Navigation', 'category_selected', cat);
             };
             floatingCategories.appendChild(btn);
         });
@@ -1664,21 +1933,182 @@ function renderFloatingCategories() {
     }
 }
 
+async function renderContent() {
+    const mainContent = document.getElementById("mainContent");
+    if (!mainContent) return;
+    
+    try {
+        const filtered = filterItems();
+        
+        // No results
+        if (filtered.length === 0) {
+            setTimeout(() => {
+                mainContent.innerHTML = `
+                    <div class="no-results">
+                        <strong>No items found</strong>
+                        <p>${state.searchQuery ? 'Try adjusting your search terms' : 'Try selecting a different category or filter'}</p>
+                    </div>
+                `;
+            }, 100);
+            return;
+        }
+        
+        // Group by category
+        const grouped = {};
+        filtered.forEach(item => {
+            if (!grouped[item.cat]) grouped[item.cat] = [];
+            grouped[item.cat].push(item);
+        });
+        
+        const categoriesToShow = !state.activeCategory ? state.categories : [state.activeCategory];
+        
+        let html = '';
+        for (const cat of categoriesToShow) {
+            const items = grouped[cat] || filtered.filter(item => item.cat === cat);
+            if (items.length === 0) continue;
+            
+            html += `
+                <div class="section" id="section-${cat.replace(/\s+/g, "-").toLowerCase()}">
+                    <h2>${cat}</h2>
+                    <p>Touch any item for details • ${items.length} items</p>
+                    <div class="grid">
+            `;
+            
+            items.forEach(item => {
+                const safeImage = item.image || '';
+                const optimizedImage = getOptimizedImageUrl(safeImage);
+                
+                html += `
+                    <div class="card" tabindex="0" role="button" 
+                         aria-label="${item.enName}, ${item.price} QAR" 
+                         onclick="openItemModal(${JSON.stringify(item).replace(/"/g, '&quot;').replace(/'/g, "\\'")})"
+                         onkeydown="if(event.key === 'Enter') openItemModal(${JSON.stringify(item).replace(/"/g, '&quot;').replace(/'/g, "\\'")})">
+                        <img data-src="${optimizedImage}" 
+                             alt="${item.enName}" 
+                             class="card-image lazy-image" 
+                             loading="lazy"
+                             width="300"
+                             height="200">
+                        <div class="card-body">
+                            <h3>${item.enName}</h3>
+                            <div class="card-ar-name">${item.arName}</div>
+                            <span class="card-price">QAR ${formatPrice(item.price)}</span>
+                        </div>
+                        ${item.popular ? '<div class="card-badge" aria-label="Chef\'s Pick">Chef\'s Pick</div>' : ''}
+                    </div>
+                `;
+            });
+            
+            html += `
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Update content
+        setTimeout(() => {
+            mainContent.innerHTML = html;
+            
+            // Initialize lazy loading for new images
+            if (imageObserver) {
+                document.querySelectorAll('.lazy-image[data-src]').forEach(img => {
+                    imageObserver.observe(img);
+                });
+            }
+        }, 50);
+        
+    } catch (error) {
+        console.error("Content rendering error:", error);
+        mainContent.innerHTML = `
+            <div class="no-results">
+                <strong>Loading Error</strong>
+                <p>Please refresh the page or try again later</p>
+            </div>
+        `;
+    }
+}
+
+// ============================================
+// 8. MODAL FUNCTIONS
+// ============================================
+
+function openItemModal(item) {
+    try {
+        state.currentModalItem = item;
+        
+        const modal = document.getElementById("itemModal");
+        const modalTitle = document.getElementById("modalTitle");
+        const modalImage = document.getElementById("modalImage");
+        const modalImageWebp = document.getElementById("modalImageWebp");
+        const modalDescEn = document.getElementById("modalDescEn");
+        const modalDescAr = document.getElementById("modalDescAr");
+        const modalCalories = document.getElementById("modalCalories");
+        const modalDietary = document.getElementById("modalDietary");
+        const modalPrice = document.getElementById("modalPrice");
+        
+        modalTitle.textContent = item.enName;
+        
+        // Set up WebP and fallback
+        const webpUrl = item.image.replace(/\.(jpg|jpeg|png)$/i, '.webp');
+        if (supportsWebP) {
+            modalImageWebp.srcset = webpUrl;
+        }
+        modalImage.src = item.image;
+        modalImage.alt = item.enName;
+        
+        modalDescEn.textContent = item.enDesc;
+        modalDescAr.textContent = item.arDesc;
+        modalCalories.textContent = "☕ " + item.calories;
+        modalDietary.textContent = item.dietary.length ? "🏷️ " + item.dietary.join(" • ") : "House Selection";
+        modalPrice.textContent = formatPrice(item.price);
+        
+        modal.classList.add("active");
+        modal.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+        
+        // Focus trap
+        setTimeout(() => {
+            const closeBtn = modal.querySelector(".modal-close");
+            if (closeBtn) closeBtn.focus();
+        }, 100);
+        
+        trackEvent('Content', 'item_opened', item.enName);
+        
+    } catch (error) {
+        console.error("Modal open error:", error);
+        showToast("Could not open item details", "error");
+    }
+}
+
+function closeItemModal() {
+    const modal = document.getElementById("itemModal");
+    if (modal) {
+        modal.classList.remove("active");
+        modal.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+        state.currentModalItem = null;
+        trackEvent('Content', 'item_closed');
+    }
+}
+
+// ============================================
+// 9. SCROLL & NAVIGATION
+// ============================================
+
 function initCategoryScroll() {
     try {
         const floatingCategories = document.getElementById("floatingCategories");
         if (!floatingCategories) return;
         
         let isDragging = false;
-        let startX;
-        let scrollLeft;
+        let startX, scrollLeft;
         
         // Touch swipe gestures
         floatingCategories.addEventListener('touchstart', (e) => {
             isDragging = true;
             startX = e.touches[0].pageX - floatingCategories.offsetLeft;
             scrollLeft = floatingCategories.scrollLeft;
-        });
+        }, { passive: true });
         
         floatingCategories.addEventListener('touchmove', (e) => {
             if (!isDragging) return;
@@ -1689,29 +2119,6 @@ function initCategoryScroll() {
         });
         
         floatingCategories.addEventListener('touchend', () => {
-            isDragging = false;
-        });
-        
-        // Mouse drag support
-        floatingCategories.addEventListener('mousedown', (e) => {
-            isDragging = true;
-            startX = e.pageX - floatingCategories.offsetLeft;
-            scrollLeft = floatingCategories.scrollLeft;
-        });
-        
-        floatingCategories.addEventListener('mousemove', (e) => {
-            if (!isDragging) return;
-            e.preventDefault();
-            const x = e.pageX - floatingCategories.offsetLeft;
-            const walk = (x - startX) * 1.5;
-            floatingCategories.scrollLeft = scrollLeft - walk;
-        });
-        
-        floatingCategories.addEventListener('mouseup', () => {
-            isDragging = false;
-        });
-        
-        floatingCategories.addEventListener('mouseleave', () => {
             isDragging = false;
         });
         
@@ -1746,10 +2153,6 @@ function scrollToTop() {
     }
 }
 
-// ============================================
-// 7. HANDLE SCROLL WITH IMPROVEMENTS
-// ============================================
-
 function handleScroll() {
     const currentCategoryIndicator = document.getElementById("currentCategoryIndicator");
     const container = document.querySelector('.content-container');
@@ -1758,7 +2161,6 @@ function handleScroll() {
     
     state.isScrolling = true;
     
-    // Update current category indicator
     const sections = document.querySelectorAll('.section');
     let currentSection = null;
     let currentItemCount = 0;
@@ -1767,7 +2169,6 @@ function handleScroll() {
         const rect = section.getBoundingClientRect();
         if (rect.top <= 150 && rect.bottom >= 150) {
             currentSection = section;
-            // Get item count for this category
             const categoryName = section.querySelector('h2').textContent;
             currentItemCount = categoryName === "All" ? 
                 allItems.length : 
@@ -1781,9 +2182,9 @@ function handleScroll() {
         currentCategoryIndicator.setAttribute("data-count", currentItemCount);
         currentCategoryIndicator.classList.add('visible');
         
-        // Update active category button
         document.querySelectorAll('.floating-category').forEach(btn => {
             btn.classList.remove('active');
+            btn.setAttribute('aria-pressed', 'false');
         });
         
         if (categoryName !== 'All') {
@@ -1792,9 +2193,14 @@ function handleScroll() {
             );
             if (activeBtn) {
                 activeBtn.classList.add('active');
+                activeBtn.setAttribute('aria-pressed', 'true');
             }
         } else {
-            document.querySelector('.floating-category:first-child').classList.add('active');
+            const allBtn = document.querySelector('.floating-category:first-child');
+            if (allBtn) {
+                allBtn.classList.add('active');
+                allBtn.setAttribute('aria-pressed', 'true');
+            }
         }
     } else {
         currentCategoryIndicator.classList.remove('visible');
@@ -1806,211 +2212,76 @@ function handleScroll() {
 }
 
 // ============================================
-// 8. RENDER FUNCTIONS (OPTIMIZED WITH ERROR HANDLING)
-// ============================================
-
-async function renderContent() {
-    const mainContent = document.getElementById("mainContent");
-    if (!mainContent) return;
-    
-    // Show loading indicator
-    mainContent.innerHTML = `
-        <div style="text-align: center; padding: 40px; color: var(--muted);">
-            <div class="loading"></div>
-            <p style="margin-top: 20px;">Loading menu items...</p>
-        </div>
-    `;
-    
-    try {
-        // Filter items
-        const filtered = allItems.filter(item => {
-            const matchCat = !state.activeCategory || item.cat === state.activeCategory;
-            const matchSearch = !state.searchQuery || 
-                item.enName.toLowerCase().includes(state.searchQuery) || 
-                item.arName.includes(state.searchQuery);
-            return matchCat && matchSearch;
-        });
-        
-        // No results
-        if (filtered.length === 0) {
-            setTimeout(() => {
-                mainContent.innerHTML = `
-                    <div class="no-results">
-                        <strong>No items found</strong>
-                        <p>Try adjusting your search terms or select a different category</p>
-                    </div>
-                `;
-            }, 100);
-            return;
-        }
-        
-        // Group by category
-        const grouped = {};
-        filtered.forEach(item => {
-            if (!grouped[item.cat]) grouped[item.cat] = [];
-            grouped[item.cat].push(item);
-        });
-        
-        // If "All" is selected or activeCategory is null, show all categories
-        const categoriesToShow = !state.activeCategory ? state.categories : [state.activeCategory];
-        
-        // Render sections
-        let html = '';
-        for (const cat of categoriesToShow) {
-            const items = grouped[cat] || filtered.filter(item => item.cat === cat);
-            if (items.length === 0) continue;
-            
-            html += `
-                <div class="section" id="section-${cat.replace(/\s+/g, "-").toLowerCase()}">
-                    <h2>${cat}</h2>
-                    <p>Touch any item for details • ${items.length} items</p>
-                    <div class="grid">
-            `;
-            
-            // Create cards with error handling
-            items.forEach(item => {
-                const safeImage = item.image || `data:image/svg+xml;base64,${btoa('<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" fill="#1d0509"/><text x="50%" y="50%" font-family="Inter" font-size="16" fill="#d4af37" text-anchor="middle" dy=".3em">Turkiana Café</text></svg>')}`;
-                
-                html += `
-                    <div class="card" tabindex="0" role="button" aria-label="${item.enName}, ${item.price} QAR" onclick="openItemModal(${JSON.stringify(item).replace(/"/g, '&quot;').replace(/'/g, "\\'")})">
-                        <img src="${safeImage}" 
-                             alt="${item.enName}" 
-                             class="card-image lazy-image" 
-                             loading="lazy"
-                             width="300"
-                             height="200"
-                             onload="this.classList.add('loaded')"
-                             onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMWQwNTA5Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJJbnRlciIgZm9udC1zaXplPSIxNnB4IiBmaWxsPSIjZDRhZjM3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+VHVya2lhbmEgQ2FmZTwvdGV4dD48L3N2Zz4='; this.classList.add('loaded')">
-                        <div class="card-body">
-                            <h3>${item.enName}</h3>
-                            <div class="card-ar-name">${item.arName}</div>
-                            <span class="card-price">QAR ${formatPrice(item.price)}</span>
-                        </div>
-                        ${item.popular ? '<div class="card-badge" aria-label="Chef\'s Pick">Chef\'s Pick</div>' : ''}
-                    </div>
-                `;
-            });
-            
-            html += `
-                    </div>
-                </div>
-            `;
-        }
-        
-        // Update content
-        setTimeout(() => {
-            mainContent.innerHTML = html;
-            
-            // Add lazy loading for images
-            const lazyImages = document.querySelectorAll('.lazy-image');
-            lazyImages.forEach(img => {
-                if (img.complete) {
-                    img.classList.add('loaded');
-                }
-            });
-        }, 50);
-        
-    } catch (error) {
-        console.error("Content rendering error:", error);
-        mainContent.innerHTML = `
-            <div class="no-results">
-                <strong>Loading Error</strong>
-                <p>Please refresh the page or try again later</p>
-            </div>
-        `;
-    }
-}
-
-function clearFilters() {
-    state.searchQuery = "";
-    state.activeCategory = null;
-    
-    updateUI();
-    scrollToTop();
-}
-
-// ============================================
-// 9. MODAL FUNCTIONS WITH ENHANCEMENTS
-// ============================================
-
-function openItemModal(item) {
-    try {
-        state.currentModalItem = item;
-        
-        const modal = document.getElementById("itemModal");
-        const modalTitle = document.getElementById("modalTitle");
-        const modalImage = document.getElementById("modalImage");
-        const modalDescEn = document.getElementById("modalDescEn");
-        const modalDescAr = document.getElementById("modalDescAr");
-        const modalCalories = document.getElementById("modalCalories");
-        const modalDietary = document.getElementById("modalDietary");
-        const modalPrice = document.getElementById("modalPrice");
-        
-        if (!modal || !modalTitle) {
-            showToast("Modal error. Please try again.", "error");
-            return;
-        }
-        
-        modalTitle.textContent = item.enName;
-        modalImage.src = item.image;
-        modalImage.alt = item.enName;
-        modalDescEn.textContent = item.enDesc;
-        modalDescAr.textContent = item.arDesc;
-        modalCalories.textContent = "☕ " + item.calories;
-        modalDietary.textContent = item.dietary.length ? "🏷️ " + item.dietary.join(" • ") : "House Selection";
-        modalPrice.textContent = formatPrice(item.price);
-        
-        modal.classList.add("active");
-        modal.setAttribute("aria-hidden", "false");
-        document.body.style.overflow = "hidden";
-        
-        // Focus trap for accessibility
-        setTimeout(() => {
-            const closeBtn = modal.querySelector(".modal-close");
-            if (closeBtn) closeBtn.focus();
-        }, 100);
-        
-    } catch (error) {
-        console.error("Modal open error:", error);
-        showToast("Could not open item details", "error");
-    }
-}
-
-function closeItemModal() {
-    const modal = document.getElementById("itemModal");
-    if (modal) {
-        modal.classList.remove("active");
-        modal.setAttribute("aria-hidden", "true");
-        document.body.style.overflow = "";
-        state.currentModalItem = null;
-    }
-}
-
-// ============================================
 // 10. UI UPDATE FUNCTION
 // ============================================
 
 function updateUI() {
     renderFloatingCategories();
+    renderFilterTags();
     renderContent();
+    
+    // Update search input visibility
+    const searchContainer = document.getElementById('searchContainer');
+    const filtered = filterItems();
+    if (searchContainer && filtered.length > 0) {
+        searchContainer.style.display = 'flex';
+    }
 }
 
 // ============================================
-// 11. MAIN APP INITIALIZATION WITH ERROR BOUNDARIES
+// 11. ERROR HANDLING & ANALYTICS
+// ============================================
+
+// Global error handler
+window.addEventListener('error', function(e) {
+    console.error('Global error:', e.error);
+    trackEvent('Error', 'global_error', e.message);
+    
+    // Don't show toast for all errors to avoid spamming user
+    if (e.error && e.error.message && e.error.message.includes('network')) {
+        showToast('Network error. Please check your connection.', 'error');
+    }
+});
+
+// Unhandled promise rejection handler
+window.addEventListener('unhandledrejection', function(e) {
+    console.error('Unhandled promise rejection:', e.reason);
+    trackEvent('Error', 'promise_rejection', e.reason?.message || 'Unknown');
+});
+
+// Online/offline detection
+window.addEventListener('online', () => {
+    showToast('Back online', 'info');
+    trackEvent('Network', 'online');
+});
+
+window.addEventListener('offline', () => {
+    showToast('No internet connection', 'warning');
+    trackEvent('Network', 'offline');
+});
+
+// ============================================
+// 12. MAIN APP INITIALIZATION
 // ============================================
 
 function initApp() {
     try {
-        // Initialize components with error handling
-        initSnowAnimation();
-        renderFloatingCategories();
-        renderContent();
+        // Calculate category counts
+        calculateCategoryCounts();
         
+        // Initialize components
+        initSnowAnimation();
+        initLazyLoading();
+        initSearch();
+        updateUI();
+        
+        // Scroll handling
         const container = document.querySelector('.content-container');
         if (container) {
             container.addEventListener('scroll', debounce(handleScroll, 50));
         }
         
+        // Modal handlers
         const modalCloseBtn = document.querySelector(".modal-close");
         if (modalCloseBtn) {
             modalCloseBtn.addEventListener("click", closeItemModal);
@@ -2025,17 +2296,22 @@ function initApp() {
             });
         }
         
-        // Handle ESC key to close modal
+        // ESC key to close modal
         document.addEventListener("keydown", (e) => {
             if (e.key === "Escape" && document.getElementById("itemModal").classList.contains("active")) {
                 closeItemModal();
             }
         });
         
-        document.addEventListener("fullscreenchange", () => {
-            state.isFullscreen = !!document.fullscreenElement;
+        // Performance tracking
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                trackPerformance();
+                document.getElementById('loadingOverlay').classList.add('hidden');
+            }, 500);
         });
         
+        // Orientation change handling
         window.addEventListener("orientationchange", debounce(() => {
             setTimeout(() => {
                 renderFloatingCategories();
@@ -2043,29 +2319,26 @@ function initApp() {
             }, 300);
         }, 250));
         
-        // Hide loading overlay after content loads
+        // Welcome message
         setTimeout(() => {
-            document.getElementById('loadingOverlay').classList.add('hidden');
-        }, 500);
-        
-        showToast("Welcome to Turkiana Café & Sweets", "success");
+            showToast("Welcome to Turkiana Café & Sweets", "success");
+            trackEvent('App', 'loaded');
+        }, 1000);
         
     } catch (error) {
         console.error("App initialization error:", error);
         showToast("Application error. Please refresh.", "error");
+        trackEvent('Error', 'init_error', error.message);
     }
 }
 
 // ============================================
-// 12. TOUCH GESTURE IMPROVEMENTS
+// 13. TOUCH GESTURE IMPROVEMENTS
 // ============================================
 
 function initTouchGestures() {
-    // Add swipe gestures for category navigation
     let touchStartX = 0;
-    let touchEndX = 0;
     let touchStartY = 0;
-    let touchEndY = 0;
     
     document.addEventListener('touchstart', e => {
         touchStartX = e.changedTouches[0].screenX;
@@ -2073,58 +2346,50 @@ function initTouchGestures() {
     }, { passive: true });
     
     document.addEventListener('touchend', e => {
-        touchEndX = e.changedTouches[0].screenX;
-        touchEndY = e.changedTouches[0].screenY;
-        handleSwipe();
-    }, { passive: true });
-    
-    function handleSwipe() {
-        const swipeThreshold = 50;
-        const verticalThreshold = 100;
+        const touchEndX = e.changedTouches[0].screenX;
+        const touchEndY = e.changedTouches[0].screenY;
         const diffX = touchStartX - touchEndX;
         const diffY = touchStartY - touchEndY;
         
-        // Only process horizontal swipes if they're not mostly vertical
-        if (Math.abs(diffX) > swipeThreshold && Math.abs(diffY) < verticalThreshold) {
+        // Swipe left/right for category navigation
+        if (Math.abs(diffX) > 50 && Math.abs(diffY) < 100) {
             const floatingCategories = document.getElementById("floatingCategories");
             if (floatingCategories) {
                 if (diffX > 0) {
-                    // Swipe left - scroll categories right
                     floatingCategories.scrollLeft += 200;
                 } else {
-                    // Swipe right - scroll categories left
                     floatingCategories.scrollLeft -= 200;
                 }
+                trackEvent('Gesture', 'swipe', diffX > 0 ? 'left' : 'right');
             }
         }
-    }
+    }, { passive: true });
 }
 
 // ============================================
-// 13. START THE APPLICATION
+// 14. START THE APPLICATION
 // ============================================
 
 document.addEventListener("DOMContentLoaded", () => {
-    // Add error boundary for entire app
     try {
-        // Calculate category counts
-        calculateCategoryCounts();
-        
-        // Initialize the app immediately
+        // Initialize the app
         initApp();
         initTouchGestures();
         
-        // Preload "All" category images
-        preloadCategoryImages("All");
+        // Set up deferred loading for non-critical resources
+        setTimeout(() => {
+            // Preload next category images
+            if (state.activeCategory) {
+                const categoryIndex = state.categories.indexOf(state.activeCategory);
+                const nextCategory = state.categories[categoryIndex + 1];
+                if (nextCategory) {
+                    // Preload function would go here
+                }
+            }
+        }, 2000);
         
-        // Add online/offline detection
-        window.addEventListener('online', () => {
-            showToast("Back online", "info");
-        });
-        
-        window.addEventListener('offline', () => {
-            showToast("No internet connection", "error");
-        });
+        // Track page view
+        trackEvent('Page', 'view', 'menu');
         
     } catch (error) {
         console.error("Fatal application error:", error);
@@ -2139,12 +2404,25 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
             </div>
         `;
+        trackEvent('Error', 'fatal_error', error.message);
     }
 });
 
 // Make functions available globally
 window.openItemModal = openItemModal;
 window.closeItemModal = closeItemModal;
+</script>
+
+<!-- Deferred non-critical CSS (example structure) -->
+<script>
+// Dynamically load non-critical CSS
+setTimeout(() => {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'non-critical.css';
+    link.media = 'all';
+    document.head.appendChild(link);
+}, 3000);
 </script>
 </body>
 </html>
