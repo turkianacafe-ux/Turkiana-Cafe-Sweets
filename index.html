@@ -27,6 +27,7 @@
             --text-light: #666666;
             --shadow: 0 5px 15px rgba(0,0,0,0.1);
             --transition: all 0.3s ease;
+            --success: #28a745;
         }
 
         html {
@@ -134,6 +135,16 @@
             color: var(--secondary);
         }
 
+        .btn-success {
+            background: var(--success);
+            border-color: var(--success);
+        }
+
+        .btn-success:hover {
+            background: transparent;
+            color: var(--success);
+        }
+
         /* Header & Navigation */
         header {
             background-color: rgba(255, 255, 255, 0.95);
@@ -177,6 +188,7 @@
         .nav-links {
             display: flex;
             gap: 30px;
+            align-items: center;
         }
 
         .nav-links a {
@@ -234,6 +246,43 @@
         .lang-btn.active {
             background: var(--primary);
             color: white;
+        }
+
+        /* Cart Badge */
+        .cart-badge {
+            position: relative;
+            background: var(--primary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-left: 20px;
+        }
+
+        .cart-badge:hover {
+            transform: scale(1.1);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--accent);
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 600;
         }
 
         /* Hero Section */
@@ -350,6 +399,7 @@
             overflow: hidden;
             box-shadow: var(--shadow);
             transition: var(--transition);
+            position: relative;
         }
 
         .menu-item:hover {
@@ -398,6 +448,7 @@
             color: var(--text-light);
             font-size: 0.95rem;
             margin-bottom: 15px;
+            min-height: 60px;
         }
 
         .menu-item-details {
@@ -438,6 +489,197 @@
             border-radius: 15px;
             font-size: 0.8rem;
             font-weight: 600;
+        }
+
+        .add-to-cart-btn {
+            width: 100%;
+            padding: 10px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+            margin-top: 10px;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .add-to-cart-btn:hover {
+            background: var(--dark);
+        }
+
+        /* Cart Modal */
+        .cart-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .cart-modal.active {
+            display: flex;
+        }
+
+        .cart-modal-content {
+            background: white;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .cart-modal-header {
+            padding: 20px;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 15px 15px 0 0;
+        }
+
+        .cart-modal-header h3 {
+            color: white;
+            margin: 0;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .cart-modal-body {
+            padding: 20px;
+        }
+
+        .cart-items {
+            margin-bottom: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-item-info h4 {
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--light);
+            border-radius: 20px;
+            padding: 5px 15px;
+        }
+
+        .quantity-btn {
+            background: none;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+
+        .quantity {
+            font-weight: 600;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .remove-item {
+            background: none;
+            border: none;
+            color: var(--accent);
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .cart-item-subtotal {
+            color: var(--secondary);
+            font-weight: 600;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+            font-size: 1.3rem;
+            font-weight: 600;
+            padding-top: 20px;
+            border-top: 2px solid var(--primary);
+        }
+
+        .cart-actions {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .cart-actions .btn {
+            flex: 1;
+        }
+
+        .order-comment {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .order-comment textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Cairo', sans-serif;
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .order-comment textarea:focus {
+            outline: none;
+            border-color: var(--primary);
         }
 
         /* Gallery Section */
@@ -697,8 +939,11 @@
                 margin-bottom: 20px;
             }
             
-            .lang-toggle {
+            .lang-toggle, .cart-badge {
                 margin-left: 0;
+            }
+            
+            .lang-toggle {
                 justify-content: center;
                 margin-top: 20px;
             }
@@ -718,6 +963,14 @@
             
             .section-title h2 {
                 font-size: 2rem;
+            }
+            
+            .cart-modal-content {
+                margin: 10px;
+            }
+            
+            .cart-actions {
+                flex-direction: column;
             }
         }
 
@@ -770,10 +1023,44 @@
                             <button class="lang-btn" data-lang="ar">AR</button>
                         </div>
                     </li>
+                    <li>
+                        <div class="cart-badge" id="cart-badge">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count" id="cart-count">0</span>
+                        </div>
+                    </li>
                 </ul>
             </nav>
         </div>
     </header>
+
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cart-modal">
+        <div class="cart-modal-content">
+            <div class="cart-modal-header">
+                <h3 data-en="Order Summary" data-ar="ملخص الطلب">Order Summary</h3>
+                <button class="close-modal" id="close-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="cart-modal-body">
+                <div class="cart-items" id="cart-items">
+                    <!-- Cart items will be loaded here -->
+                </div>
+                <div class="cart-total">
+                    <span data-en="Total:" data-ar="الإجمالي:">Total:</span>
+                    <span id="cart-total">0.00 QR</span>
+                </div>
+                <div class="order-comment">
+                    <textarea id="order-comment" placeholder="Add special instructions for your order..." data-en="Add special instructions for your order..." data-ar="أضف تعليمات خاصة لطلبك..."></textarea>
+                </div>
+                <div class="cart-actions">
+                    <button class="btn btn-success" id="print-order" data-en="Print Order" data-ar="طباعة الطلب">Print Order</button>
+                    <button class="btn" id="clear-cart" data-en="Clear Cart" data-ar="تفريغ السلة">Clear Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
@@ -825,7 +1112,7 @@
                 <!-- Categories will be populated by JavaScript -->
             </div>
             
-            <div class="menu-items" id="menu-items">
+            <div class="menu-items" id="menu-items-container">
                 <!-- Menu items will be populated by JavaScript -->
             </div>
         </div>
@@ -1057,7 +1344,7 @@
             });
             
             // Update input placeholders
-            document.querySelectorAll('input[placeholder], select').forEach(input => {
+            document.querySelectorAll('input[placeholder], select, textarea').forEach(input => {
                 if(input.hasAttribute('data-en') && input.hasAttribute('data-ar')) {
                     input.placeholder = lang === 'en' ? input.getAttribute('data-en') : input.getAttribute('data-ar');
                 }
@@ -1123,7 +1410,7 @@
             { id:"th3", cat:"Tea on the House", enName:"Apple Tea", arName:"شاي التفاح", price:35, enDesc:"Orchard in a cup—sun-ripened apple essence infused with premium black tea, creating harmonious balance between fruity sweetness and tea's natural tannic structure.", arDesc:"بستان في كوب—جوهر التفاح الناضج بالشمس منقوع في شاي أسود فاخر، يخلق توازناً متناغماً بين حلاوة الفواكه والتركيب التناني الطبيعي للشاي.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Appletea.jpg", calories:"2 kcal", dietary:["vegan","dairy-free"] },
             { id:"th4", cat:"Tea on the House", enName:"Mulberry Tea", arName:"شاي التوت", price:35, enDesc:"Silken summer harvest—delicate white mulberry infusion with subtle honey-like sweetness and smooth finish that evokes sunny Anatolian orchards in every gentle sip.", arDesc:"حصاد صيفي حريري—نقيع التوت الأبيض الدقيق بحلاوة تشبه العسل الخفيفة ونهاية ناعمة تستحضر بساتين الأناضول المشمسة في كل رشفة لطيفة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mulberrytea.jpg", calories:"2 kcal", dietary:["vegan","dairy-free"] },
             { id:"th5", cat:"Tea on the House", enName:"Lemon Mint", arName:"شاي بالليمون والنعناع", price:35, enDesc:"Mediterranean revival—zesty lemon wedges and freshly picked mint leaves revitalize premium tea base, creating invigorating clarity and refreshing citrus-herbal harmony.", arDesc:"إحياء متوسطي—شرائح الليمون المنعشة وأوراق النعناع الطازجة المحصودة حديثاً تنعش قاعدة الشاي الفاخر، تخلق وضوحاً منشطاً وتناغماً حمضياً عشبياً منعشاً.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Lemontea.jpg", calories:"2 kcal", dietary:["vegan","dairy-free"] },
-            { id:"th6", cat:"Tea on the House", enName:"Pomegranate Tea", arName:"شاي الرمان", price:35, enDesc:"Ruby elixir—vibrant pomegranate infusion that captures the fruit's perfect sweet-tart duality, offering antioxidant-rich depth and festive crimson hue in every cup.", arDesc:"إكسير ياقوتي—نقيع رمان نابض بالحياة يلتقط الثنائية المثالية للحلو والحامض للفاكهة، يقدم عمقاً غنياً بمضادات الأكسدة ولوناً قرمزيزي احتفالي في كل كوب.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Romantea.jpg", calories:"2 kcal", dietary:["vegan","dairy-free"] },
+            { id:"th6", cat:"Tea on the House", enName:"Pomegranate Tea", arName:"شاي الرمان", price:35, enDesc:"Ruby elixir—vibrant pomegranate infusion that captures the fruit's perfect sweet-tart duality, offering antioxidant-rich depth and festive crimson hue in every cup.", arDesc:"إكسير ياقوتي—نقيع رمان نابض بالحياة يلتقط الثنائية المثالية للحلو والحامض للفاكهة، يقدم عمقاً غنياً بمضادات الأكسدة ولوناً قرمزي احتفالي في كل كوب.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Romantea.jpg", calories:"2 kcal", dietary:["vegan","dairy-free"] },
             { id:"th7", cat:"Tea on the House", enName:"Matcha", arName:"ماتشا", price:36, enDesc:"Zen in motion—ceremonial-grade matcha stone-ground to velvety perfection, delivering concentrated umami, vibrant chlorophyll notes, and sustained calm energy in chilled presentation.", arDesc:"تأمل في حركة—ماتشا درجة طقوسي مطحون بالحجر إلى كمال حريري، يقدم أومامي مركزاً ونفحات كلوروفيل نابضة وطاقة هادئة مستدامة في تقديم بارد.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Matcha.webp", calories:"95 kcal", dietary:["vegan","dairy-free"] },
             { id:"th8", cat:"Tea on the House", enName:"Strawberry Matcha", arName:"ماتشا بالفراولة", price:42, enDesc:"Harmonious fusion—vibrant matcha meets sun-ripened strawberry puree, creating layered experience where green tea's umami depth dances with berry's natural sweetness.", arDesc:"اندماج متناغم—ماتشا نابض يلتقي بهريس فراولة ناضج بالشمس، يخلق تجربة متعددة الطبقات حيث عمق الأومامي في الشاي الأخضر يرقص مع حلاوة التوت الطبيعية.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Strawberrymatcha.webp", calories:"135 kcal", dietary:["vegan","dairy-free"] },
             { id:"th9", cat:"Tea on the House", enName:"Ice Apple Tea", arName:"شاي التفاح مثلج", price:35, enDesc:"Chilled orchard breeze—crisp apple infusion over crystalline ice, maintaining the fruit's natural sweetness while offering thirst-quenching refreshment perfect for warm days.", arDesc:"نسيم بستان بارد—نقيع تفاح منعش فوق ثلج بلوري، يحافظ على حلاوة الفاكهة الطبيعية بينما يقدم انتعاشاً يُروي العطش مثالياً للأيام الدافئة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Appletea.avif", calories:"35 kcal", dietary:["vegan","dairy-free"] },
@@ -1242,6 +1529,10 @@
             { id:"amt13", cat:"Anatolian Morning Table", enName:"Turkey Ham Sandwich", arName:"ساندويتش تركي هام", price:30, enDesc:"Light deli option—turkey ham sandwich with fresh vegetables and soft bread, offering approachable choice for those seeking familiar deli flavors in balanced, not-too-heavy presentation.", arDesc:"خيار لحوم بارد خفيف—ساندويتش تركي هام مع خضروات طازجة وخبز طري، يقدم اختياراً سهلاً لمن يبحثون عن نكهات اللحوم الباردة المألوفة في تقديم متوازن وغير ثقيل جداً.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkeyhamsandwich.jpg", calories:"390 kcal", dietary:[] }
         ];
         
+        // Cart Management
+        let cart = JSON.parse(localStorage.getItem('turkiana_cart')) || [];
+        let orderComment = localStorage.getItem('turkiana_order_comment') || '';
+        
         // Get unique categories
         const categories = [...new Set(menuItems.map(item => item.cat))];
         
@@ -1265,7 +1556,7 @@
         });
         
         // Display menu items
-        const menuContainer = document.getElementById('menu-items');
+        const menuContainer = document.getElementById('menu-items-container');
         const categoryButtons = document.querySelectorAll('.category-btn');
         
         function displayMenuItems(category = 'all') {
@@ -1279,6 +1570,7 @@
                 const menuItem = document.createElement('div');
                 menuItem.className = 'menu-item';
                 menuItem.setAttribute('data-category', item.cat);
+                menuItem.setAttribute('data-id', item.id);
                 
                 // Check if item is popular
                 if (item.popular) {
@@ -1305,7 +1597,7 @@
                 
                 menuItem.innerHTML = `
                     <div class="menu-item-img">
-                        <img src="${item.image}" alt="${item.enName}">
+                        <img src="${item.image}" alt="${item.enName}" loading="lazy">
                     </div>
                     <div class="menu-item-content">
                         <div class="menu-item-header">
@@ -1321,6 +1613,9 @@
                                 ${dietaryTags}
                             </div>
                         </div>
+                        <button class="add-to-cart-btn" data-id="${item.id}">
+                            Add to Cart
+                        </button>
                     </div>
                 `;
                 
@@ -1334,17 +1629,315 @@
         function updateMenuLanguage() {
             const isArabic = currentLang === 'ar';
             
-            document.querySelectorAll('.en-name, .ar-name, .en-desc, .ar-desc').forEach(element => {
+            document.querySelectorAll('.en-name, .ar-name, .en-desc, .ar-desc, .add-to-cart-btn').forEach(element => {
                 if (element.classList.contains('en-name') || element.classList.contains('en-desc')) {
                     element.style.display = isArabic ? 'none' : 'block';
                 } else if (element.classList.contains('ar-name') || element.classList.contains('ar-desc')) {
                     element.style.display = isArabic ? 'block' : 'none';
+                } else if (element.classList.contains('add-to-cart-btn')) {
+                    element.textContent = isArabic ? 'أضف إلى السلة' : 'Add to Cart';
                 }
             });
         }
         
+        // Update Cart Display
+        function updateCartDisplay() {
+            const cartItems = document.getElementById('cart-items');
+            const cartCount = document.getElementById('cart-count');
+            const cartTotal = document.getElementById('cart-total');
+            const orderCommentTextarea = document.getElementById('order-comment');
+
+            // Update count
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
+
+            // Update total
+            const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            cartTotal.textContent = totalAmount.toFixed(2) + ' QR';
+
+            // Update comment
+            orderCommentTextarea.value = orderComment;
+
+            // Update items
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p style="text-align: center; color: var(--text-light); padding: 20px;">Your cart is empty</p>';
+            } else {
+                cartItems.innerHTML = cart.map(item => `
+                    <div class="cart-item">
+                        <div class="cart-item-info">
+                            <h4>${currentLang === 'ar' ? item.arName : item.enName}</h4>
+                            <div class="cart-item-controls">
+                                <div class="quantity-control">
+                                    <button class="quantity-btn decrease" data-id="${item.id}">-</button>
+                                    <span class="quantity">${item.quantity}</span>
+                                    <button class="quantity-btn increase" data-id="${item.id}">+</button>
+                                </div>
+                                <button class="remove-item" data-id="${item.id}">${currentLang === 'ar' ? 'إزالة' : 'Remove'}</button>
+                            </div>
+                        </div>
+                        <div class="cart-item-subtotal">
+                            ${(item.price * item.quantity).toFixed(2)} QR
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            // Save to localStorage
+            localStorage.setItem('turkiana_cart', JSON.stringify(cart));
+            localStorage.setItem('turkiana_order_comment', orderComment);
+        }
+
+        // Add to Cart
+        function addToCart(itemId) {
+            const item = menuItems.find(i => i.id === itemId);
+            if (!item) return;
+
+            const existing = cart.find(i => i.id === itemId);
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                cart.push({ 
+                    id: item.id,
+                    enName: item.enName,
+                    arName: item.arName,
+                    price: item.price, 
+                    quantity: 1 
+                });
+            }
+
+            updateCartDisplay();
+            document.getElementById('cart-modal').classList.add('active');
+            
+            // Show notification
+            showNotification(currentLang === 'ar' ? 'تمت الإضافة إلى السلة' : 'Added to cart');
+        }
+
+        // Remove from Cart
+        function removeFromCart(itemId) {
+            cart = cart.filter(item => item.id !== itemId);
+            updateCartDisplay();
+        }
+
+        // Update Quantity
+        function updateQuantity(itemId, change) {
+            const item = cart.find(i => i.id === itemId);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity < 1) {
+                    removeFromCart(itemId);
+                } else {
+                    updateCartDisplay();
+                }
+            }
+        }
+
+        // Clear Cart
+        function clearCart() {
+            if (confirm(currentLang === 'ar' ? 'هل تريد تفريغ السلة؟' : 'Clear all items from cart?')) {
+                cart = [];
+                orderComment = '';
+                updateCartDisplay();
+            }
+        }
+
+        // Print Order - FIXED VERSION
+        function printOrder() {
+            if (cart.length === 0) {
+                alert(currentLang === 'ar' ? 'السلة فارغة' : 'Your cart is empty');
+                return;
+            }
+
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const date = new Date().toLocaleString('en-US', { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+
+            const comment = document.getElementById('order-comment').value;
+            orderComment = comment;
+            localStorage.setItem('turkiana_order_comment', comment);
+
+            const printContent = `
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>Turkiana Cafe Order</title>
+                    <meta charset="UTF-8">
+                    <style>
+                        body { 
+                            font-family: 'Cairo', 'Arial', sans-serif; 
+                            padding: 20px; 
+                            max-width: 400px;
+                            margin: 0 auto;
+                            direction: ${currentLang === 'ar' ? 'rtl' : 'ltr'};
+                        }
+                        @page { 
+                            margin: 0; 
+                            size: auto;
+                        }
+                        .header { 
+                            text-align: center; 
+                            margin-bottom: 20px; 
+                            padding-bottom: 15px;
+                            border-bottom: 2px solid #8B4513;
+                        }
+                        .logo { 
+                            font-size: 24px; 
+                            font-weight: bold; 
+                            color: #8B4513; 
+                            margin-bottom: 5px;
+                        }
+                        .logo span { 
+                            color: #D4AF37; 
+                        }
+                        .order-info { 
+                            margin-bottom: 15px;
+                            font-size: 14px;
+                            color: #666;
+                        }
+                        table { 
+                            width: 100%; 
+                            border-collapse: collapse; 
+                            margin: 15px 0; 
+                            font-size: 14px;
+                        }
+                        th { 
+                            background: #8B4513; 
+                            color: white; 
+                            padding: 8px 5px; 
+                            text-align: left; 
+                            font-weight: 600;
+                        }
+                        td { 
+                            padding: 8px 5px; 
+                            border-bottom: 1px solid #ddd; 
+                        }
+                        .item-name { 
+                            max-width: 150px; 
+                            word-wrap: break-word;
+                        }
+                        .total-row { 
+                            font-weight: bold; 
+                            font-size: 16px; 
+                            padding-top: 15px; 
+                            border-top: 2px solid #8B4513;
+                        }
+                        .comment-box { 
+                            margin-top: 20px; 
+                            padding: 10px; 
+                            background: #f8f4e9; 
+                            border-radius: 5px;
+                            border-left: 3px solid #D4AF37;
+                            font-size: 14px;
+                        }
+                        .comment-label { 
+                            font-weight: bold; 
+                            color: #8B4513; 
+                            margin-bottom: 5px;
+                        }
+                        .footer { 
+                            text-align: center; 
+                            margin-top: 20px; 
+                            padding-top: 15px;
+                            border-top: 1px solid #ddd;
+                            font-size: 12px;
+                            color: #666;
+                        }
+                        .total-amount {
+                            font-size: 18px;
+                            color: #D4AF37;
+                            font-weight: bold;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="header">
+                        <div class="logo">Turkiana<span>Cafe</span> & Sweets</div>
+                        <div class="order-info">${date}</div>
+                        <div class="order-info">7GPG+Q2R, Al Kahraba St, Doha, Qatar</div>
+                        <div class="order-info">Tel: +974 5186 6671</div>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>${currentLang === 'ar' ? 'الصنف' : 'Item'}</th>
+                                <th>${currentLang === 'ar' ? 'الكمية' : 'Qty'}</th>
+                                <th>${currentLang === 'ar' ? 'السعر' : 'Price'}</th>
+                                <th>${currentLang === 'ar' ? 'المجموع' : 'Total'}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${cart.map(item => `
+                                <tr>
+                                    <td class="item-name">${currentLang === 'ar' ? item.arName : item.enName}</td>
+                                    <td>${item.quantity}</td>
+                                    <td>${item.price} QR</td>
+                                    <td>${(item.price * item.quantity).toFixed(2)} QR</td>
+                                </tr>
+                            `).join('')}
+                            <tr class="total-row">
+                                <td colspan="3">${currentLang === 'ar' ? 'الإجمالي:' : 'Total:'}</td>
+                                <td class="total-amount">${total.toFixed(2)} QR</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    ${comment ? `
+                    <div class="comment-box">
+                        <div class="comment-label">${currentLang === 'ar' ? 'تعليمات خاصة:' : 'Special Instructions:'}</div>
+                        <div>${comment}</div>
+                    </div>
+                    ` : ''}
+                    <div class="footer">
+                        ${currentLang === 'ar' ? 'شكراً لزيارتكم - نتمنى لكم يومًا سعيدًا' : 'Thank you for visiting - Have a wonderful day!'}
+                    </div>
+                </body>
+                </html>
+            `;
+
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write(printContent);
+            printWindow.document.close();
+            
+            // Wait for content to load before printing
+            setTimeout(() => {
+                printWindow.print();
+                printWindow.close();
+            }, 250);
+        }
+        
+        // Show notification
+        function showNotification(message) {
+            // Remove existing notification
+            const existingNotification = document.querySelector('.notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+            
+            // Create notification
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.innerHTML = `
+                <div style="position: fixed; top: 100px; right: 20px; background: var(--success); color: white; padding: 15px 20px; border-radius: 5px; box-shadow: var(--shadow); z-index: 3000; animation: slideIn 0.3s ease;">
+                    <i class="fas fa-check-circle" style="margin-right: 10px;"></i>
+                    ${message}
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Remove notification after 3 seconds
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+        
         // Initial display
         displayMenuItems();
+        updateCartDisplay();
         
         // Category filtering
         categoryButtons.forEach(button => {
@@ -1357,29 +1950,65 @@
                 // Filter items
                 const category = button.getAttribute('data-category');
                 displayMenuItems(category);
+                
+                // Scroll to menu section if not already there
+                if (window.scrollY < document.getElementById('menu').offsetTop - 100) {
+                    document.getElementById('menu').scrollIntoView({ behavior: 'smooth' });
+                }
             });
         });
         
-        // Footer category links
-        document.querySelectorAll('.footer-links a[data-category]').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const category = link.getAttribute('data-category');
-                
-                // Update menu category buttons
-                categoryButtons.forEach(btn => {
-                    btn.classList.remove('active');
-                    if(btn.getAttribute('data-category') === category) {
-                        btn.classList.add('active');
-                    }
-                });
-                
-                // Display filtered items
-                displayMenuItems(category);
-                
-                // Scroll to menu section
-                document.getElementById('menu').scrollIntoView({ behavior: 'smooth' });
-            });
+        // Add to cart buttons
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('add-to-cart-btn')) {
+                const itemId = e.target.dataset.id;
+                addToCart(itemId);
+            }
+        });
+
+        // Cart badge click
+        document.getElementById('cart-badge').addEventListener('click', () => {
+            document.getElementById('cart-modal').classList.add('active');
+        });
+
+        // Close modal
+        document.getElementById('close-modal').addEventListener('click', () => {
+            document.getElementById('cart-modal').classList.remove('active');
+        });
+
+        // Cart item controls
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('increase')) {
+                const itemId = e.target.dataset.id;
+                updateQuantity(itemId, 1);
+            }
+            if (e.target.classList.contains('decrease')) {
+                const itemId = e.target.dataset.id;
+                updateQuantity(itemId, -1);
+            }
+            if (e.target.classList.contains('remove-item')) {
+                const itemId = e.target.dataset.id;
+                removeFromCart(itemId);
+            }
+        });
+
+        // Clear cart
+        document.getElementById('clear-cart').addEventListener('click', clearCart);
+
+        // Print order
+        document.getElementById('print-order').addEventListener('click', printOrder);
+        
+        // Update comment when typing
+        document.getElementById('order-comment').addEventListener('input', (e) => {
+            orderComment = e.target.value;
+            localStorage.setItem('turkiana_order_comment', orderComment);
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('cart-modal').addEventListener('click', (e) => {
+            if (e.target.id === 'cart-modal') {
+                document.getElementById('cart-modal').classList.remove('active');
+            }
         });
         
         // Form submission
@@ -1445,12 +2074,29 @@
         // Update language when language changes
         const observer = new MutationObserver(() => {
             updateMenuLanguage();
+            updateCartDisplay();
         });
         
         observer.observe(document.body, { 
             attributes: true, 
             attributeFilter: ['class'] 
         });
+        
+        // Add CSS for notification animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>
