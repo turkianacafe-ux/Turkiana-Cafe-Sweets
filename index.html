@@ -137,6 +137,16 @@
             color: var(--secondary);
         }
 
+        .btn-success {
+            background: var(--success);
+            border-color: var(--success);
+        }
+
+        .btn-success:hover {
+            background: transparent;
+            color: var(--success);
+        }
+
         /* Header & Navigation */
         header {
             background-color: rgba(255, 255, 255, 0.95);
@@ -240,22 +250,34 @@
             color: white;
         }
 
-        /* Hero Section */
+        /* FIXED: Hero Section with Video Background */
         .hero {
             padding-top: 120px;
-            background: linear-gradient(rgba(44, 24, 16, 0.7), rgba(44, 24, 16, 0.7)), url('https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkishcoffee.jpg');
-            background-size: cover;
-            background-position: center;
             color: white;
             text-align: center;
             min-height: 100vh;
             display: flex;
             align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(44, 24, 16, 0.7);
+            z-index: 1;
         }
 
         .hero-content {
             max-width: 800px;
             margin: 0 auto;
+            position: relative;
+            z-index: 2;
         }
 
         .hero h1 {
@@ -276,6 +298,28 @@
             gap: 20px;
             justify-content: center;
             margin-top: 30px;
+        }
+
+        /* Video Container */
+        .video-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: cover;
         }
 
         /* About Section */
@@ -313,28 +357,24 @@
             color: var(--primary);
         }
 
-        /* Menu Section - UPDATED FOR 4-COLUMN GRID AND PROMINENT CATEGORIES */
-        .menu {
-            background-color: var(--light);
-            position: relative;
-        }
-
-        /* UPDATED: Prominent sticky categories */
+        /* UPDATED: Menu Categories - Floating Categories */
         .menu-categories-container {
             position: sticky;
             top: 80px;
-            background: var(--darker);
+            background: linear-gradient(to right, var(--darker), #2C1810);
             padding: 20px 0;
             z-index: 100;
             box-shadow: var(--shadow-heavy);
             margin-bottom: 40px;
             border-bottom: 3px solid var(--secondary);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
 
         .menu-categories {
             display: flex;
             justify-content: flex-start;
-            gap: 15px;
+            gap: 10px;
             flex-wrap: nowrap;
             overflow-x: auto;
             padding: 5px 0 15px;
@@ -356,16 +396,16 @@
             border-radius: 4px;
         }
 
-        /* UPDATED: Larger category buttons with shine effect */
+        /* UPDATED: Compact category buttons for better fitting */
         .category-btn {
-            padding: 16px 28px;
+            padding: 12px 20px;
             background: var(--darker);
-            border-radius: 12px;
+            border-radius: 10px;
             font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
             border: 2px solid transparent;
-            font-size: 1.05rem;
+            font-size: 0.9rem;
             color: white;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -407,16 +447,17 @@
             box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
         }
 
-        /* UPDATED: Always 4 columns grid */
+        /* UPDATED: ALWAYS 4 COLUMNS - Optimized for Tablet */
         .menu-items {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 25px;
+            gap: 20px;
         }
 
+        /* UPDATED: Optimized menu items for 4-column tablet view */
         .menu-item {
             background: white;
-            border-radius: 12px;
+            border-radius: 10px;
             overflow: hidden;
             box-shadow: var(--shadow);
             transition: var(--transition);
@@ -429,12 +470,12 @@
         }
 
         .menu-item:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
         }
 
         .menu-item-img {
-            height: 180px;
+            height: 160px;
             overflow: hidden;
         }
 
@@ -446,11 +487,11 @@
         }
 
         .menu-item:hover .menu-item-img img {
-            transform: scale(1.15);
+            transform: scale(1.1);
         }
 
         .menu-item-content {
-            padding: 20px;
+            padding: 15px;
             flex-grow: 1;
             display: flex;
             flex-direction: column;
@@ -460,90 +501,93 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
+            gap: 8px;
         }
 
         .menu-item-name {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: var(--primary);
-            line-height: 1.3;
+            line-height: 1.2;
             flex: 1;
             font-weight: 600;
         }
 
-        /* UPDATED: Price tags with background */
+        /* UPDATED: Compact price tags */
         .menu-item-price {
             color: white;
             font-weight: 700;
-            font-size: 1.1rem;
-            margin-left: 10px;
+            font-size: 0.9rem;
             white-space: nowrap;
             background: var(--primary);
-            padding: 5px 12px;
-            border-radius: 20px;
-            min-width: 70px;
+            padding: 4px 10px;
+            border-radius: 15px;
+            min-width: 55px;
             text-align: center;
             box-shadow: 0 3px 8px rgba(139, 69, 19, 0.3);
+            flex-shrink: 0;
         }
 
         .menu-item-desc {
             color: var(--text-light);
-            font-size: 0.9rem;
-            margin-bottom: 12px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
             display: -webkit-box;
-            -webkit-line-clamp: 3;
+            -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
             flex-grow: 1;
-            line-height: 1.5;
+            line-height: 1.4;
         }
 
         .menu-item-details {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 15px;
-            padding-top: 15px;
+            margin-top: 10px;
+            padding-top: 10px;
             border-top: 1px solid #eee;
+            font-size: 0.75rem;
         }
 
         .calories {
             color: var(--text-light);
-            font-size: 0.85rem;
             background: var(--light);
-            padding: 4px 10px;
-            border-radius: 12px;
+            padding: 3px 8px;
+            border-radius: 10px;
+            white-space: nowrap;
         }
 
         .dietary-tags {
             display: flex;
-            gap: 5px;
+            gap: 3px;
             flex-wrap: wrap;
             justify-content: flex-end;
         }
 
         .dietary-tag {
             background: var(--light);
-            padding: 3px 10px;
-            border-radius: 12px;
-            font-size: 0.75rem;
+            padding: 2px 6px;
+            border-radius: 8px;
+            font-size: 0.7rem;
             color: var(--text-light);
             border: 1px solid #eee;
+            white-space: nowrap;
         }
 
-        /* UPDATED: Pulsing animation for popular badge */
+        /* UPDATED: Compact popular badge */
         .popular-badge {
             position: absolute;
-            top: 12px;
-            right: 12px;
+            top: 8px;
+            right: 8px;
             background: var(--accent);
             color: white;
-            padding: 6px 15px;
-            border-radius: 15px;
-            font-size: 0.75rem;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.7rem;
             font-weight: 700;
             z-index: 1;
-            box-shadow: 0 4px 10px rgba(196, 30, 58, 0.3);
+            box-shadow: 0 3px 8px rgba(196, 30, 58, 0.3);
             animation: pulse 2s infinite;
             letter-spacing: 0.5px;
         }
@@ -553,7 +597,7 @@
                 box-shadow: 0 0 0 0 rgba(196, 30, 58, 0.7);
             }
             70% {
-                box-shadow: 0 0 0 8px rgba(196, 30, 58, 0);
+                box-shadow: 0 0 0 5px rgba(196, 30, 58, 0);
             }
             100% {
                 box-shadow: 0 0 0 0 rgba(196, 30, 58, 0);
@@ -805,6 +849,64 @@
             border-color: var(--primary);
         }
 
+        /* Reservation Success Modal */
+        .reservation-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .reservation-modal.active {
+            display: flex;
+        }
+
+        .reservation-modal-content {
+            background: white;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 100%;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .reservation-modal-icon {
+            font-size: 4rem;
+            color: var(--success);
+            margin-bottom: 20px;
+        }
+
+        .reservation-modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: var(--text);
+            transition: var(--transition);
+        }
+
+        .reservation-modal-close:hover {
+            background: var(--light);
+            color: var(--accent);
+        }
+
         /* Footer */
         footer {
             background-color: var(--dark);
@@ -886,47 +988,58 @@
             font-size: 0.9rem;
         }
 
-        /* Responsive Design - UPDATED FOR 4-COLUMN GRID ADJUSTMENTS */
-        @media (max-width: 1200px) {
-            .menu-items {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 20px;
-            }
-            
-            .menu-item-img {
-                height: 170px;
-            }
-            
-            .menu-item-content {
-                padding: 18px;
-            }
-            
-            .category-btn {
-                padding: 14px 24px;
-                font-size: 1rem;
-            }
+        /* WhatsApp Button */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            z-index: 999;
+            transition: var(--transition);
+            text-decoration: none;
         }
 
-        @media (max-width: 1100px) {
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        /* Responsive Design - OPTIMIZED FOR 4-COLUMN TABLET VIEW */
+        /* Large screens */
+        @media (max-width: 1200px) {
             .menu-items {
                 grid-template-columns: repeat(4, 1fr);
                 gap: 18px;
             }
             
             .menu-item-img {
-                height: 160px;
+                height: 150px;
+            }
+            
+            .menu-item-content {
+                padding: 14px;
             }
             
             .menu-item-name {
-                font-size: 1.05rem;
+                font-size: 0.95rem;
             }
             
-            .menu-item-price {
-                font-size: 1rem;
-                padding: 4px 10px;
+            .category-btn {
+                padding: 10px 18px;
+                font-size: 0.85rem;
             }
         }
 
+        /* Tablet screens - FORCE 4 COLUMNS */
         @media (max-width: 992px) {
             .about-content, .contact-container {
                 grid-template-columns: 1fr;
@@ -940,14 +1053,47 @@
                 font-size: 2.8rem;
             }
             
-            /* Switch to 2 columns on medium screens */
+            /* IMPORTANT: Keep 4 columns on tablet */
             .menu-items {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 15px;
             }
             
             .menu-item-img {
-                height: 180px;
+                height: 140px;
+            }
+            
+            .menu-item-content {
+                padding: 12px;
+            }
+            
+            .menu-item-name {
+                font-size: 0.85rem;
+            }
+            
+            .menu-item-price {
+                font-size: 0.8rem;
+                padding: 3px 8px;
+                min-width: 45px;
+            }
+            
+            .menu-item-desc {
+                display: none; /* Hide description on tablet for space */
+            }
+            
+            .menu-item-details {
+                margin-top: 8px;
+                padding-top: 8px;
+                font-size: 0.7rem;
+            }
+            
+            .calories {
+                padding: 2px 6px;
+            }
+            
+            .dietary-tag {
+                padding: 1px 4px;
+                font-size: 0.65rem;
             }
             
             .item-modal-content {
@@ -964,11 +1110,17 @@
             }
             
             .category-btn {
-                padding: 14px 22px;
-                font-size: 0.95rem;
+                padding: 8px 14px;
+                font-size: 0.75rem;
+            }
+            
+            .popular-badge {
+                padding: 3px 8px;
+                font-size: 0.65rem;
             }
         }
 
+        /* Mobile screens - switch to 2 columns */
         @media (max-width: 768px) {
             .mobile-toggle {
                 display: block;
@@ -1019,80 +1171,10 @@
                 font-size: 2rem;
             }
             
+            /* On mobile, switch to 2 columns */
             .menu-items {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 16px;
-            }
-            
-            .menu-item-img {
-                height: 160px;
-            }
-            
-            .menu-item-content {
-                padding: 16px;
-            }
-            
-            .menu-item-desc {
-                display: none; /* Hide descriptions on mobile for space */
-            }
-            
-            .menu-item-header {
-                margin-bottom: 8px;
-            }
-            
-            .menu-item-name {
-                font-size: 1rem;
-            }
-            
-            .menu-item-price {
-                font-size: 0.95rem;
-                padding: 4px 8px;
-                min-width: 60px;
-            }
-            
-            .menu-item-details {
-                margin-top: 10px;
-                padding-top: 10px;
-            }
-            
-            .calories {
-                font-size: 0.8rem;
-                padding: 3px 8px;
-            }
-            
-            .dietary-tag {
-                font-size: 0.7rem;
-                padding: 2px 8px;
-            }
-            
-            .item-modal-content {
-                padding: 20px;
-                margin: 10px;
-            }
-            
-            .menu-categories-container {
-                padding: 15px 0;
-            }
-            
-            .category-btn {
-                padding: 12px 20px;
-                font-size: 0.9rem;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .footer-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            /* On very small screens, keep 2 columns but adjust spacing */
-            .menu-items {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 12px;
+                gap: 15px;
             }
             
             .menu-item-img {
@@ -1104,41 +1186,146 @@
             }
             
             .menu-item-name {
-                font-size: 0.95rem;
+                font-size: 0.9rem;
             }
             
             .menu-item-price {
-                font-size: 0.9rem;
+                font-size: 0.85rem;
                 padding: 3px 8px;
-                min-width: 55px;
             }
             
-            .menu-categories {
-                gap: 10px;
-                padding-bottom: 10px;
+            .menu-item-details {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+            
+            .dietary-tags {
+                justify-content: flex-start;
+                width: 100%;
             }
             
             .category-btn {
-                padding: 10px 16px;
-                font-size: 0.85rem;
-            }
-            
-            .popular-badge {
-                top: 8px;
-                right: 8px;
-                padding: 4px 10px;
+                padding: 7px 12px;
                 font-size: 0.7rem;
             }
         }
 
+        /* Small mobile screens */
+        @media (max-width: 576px) {
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            /* On mobile, use 2 columns with adjusted sizing */
+            .menu-items {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            
+            .menu-item-img {
+                height: 110px;
+            }
+            
+            .menu-item-content {
+                padding: 8px;
+            }
+            
+            .menu-item-name {
+                font-size: 0.8rem;
+            }
+            
+            .menu-item-price {
+                font-size: 0.75rem;
+                padding: 2px 6px;
+                min-width: 40px;
+            }
+            
+            .menu-item-details {
+                font-size: 0.65rem;
+            }
+            
+            .calories {
+                padding: 1px 4px;
+            }
+            
+            .dietary-tag {
+                font-size: 0.6rem;
+                padding: 1px 3px;
+            }
+            
+            .menu-categories {
+                gap: 8px;
+                padding-bottom: 8px;
+            }
+            
+            .category-btn {
+                padding: 6px 10px;
+                font-size: 0.65rem;
+            }
+            
+            .popular-badge {
+                top: 5px;
+                right: 5px;
+                padding: 2px 6px;
+                font-size: 0.6rem;
+            }
+            
+            .whatsapp-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+
+        /* Very small screens */
         @media (max-width: 400px) {
+            .menu-items {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+            
+            .menu-item-img {
+                height: 100px;
+            }
+            
+            .menu-item-name {
+                font-size: 0.75rem;
+            }
+            
+            .menu-item-price {
+                font-size: 0.7rem;
+            }
+            
+            .category-btn {
+                padding: 5px 8px;
+                font-size: 0.6rem;
+            }
+        }
+
+        /* For very very small screens, fall back to 1 column */
+        @media (max-width: 350px) {
             .menu-items {
                 grid-template-columns: 1fr;
                 gap: 15px;
             }
             
             .menu-item-img {
-                height: 180px;
+                height: 140px;
+            }
+            
+            .menu-item-name {
+                font-size: 0.9rem;
+            }
+            
+            .menu-item-price {
+                font-size: 0.85rem;
             }
         }
     </style>
@@ -1199,8 +1386,40 @@
         </div>
     </div>
 
-    <!-- Hero Section -->
+    <!-- Reservation Success Modal -->
+    <div class="reservation-modal" id="reservation-modal">
+        <div class="reservation-modal-content">
+            <button class="reservation-modal-close" id="reservation-modal-close">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="reservation-modal-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3 class="en-message" id="reservation-success-en">Reservation Successful!</h3>
+            <h3 class="ar-message" id="reservation-success-ar" style="display: none;">تم الحجز بنجاح!</h3>
+            <p class="en-message" id="reservation-details-en">Your reservation has been confirmed. Check your WhatsApp for confirmation message.</p>
+            <p class="ar-message" id="reservation-details-ar" style="display: none;">تم تأكيد حجزك. تحقق من واتساب للحصول على رسالة التأكيد.</p>
+            <div class="whatsapp-open-container" style="margin-top: 20px;">
+                <a href="#" class="btn btn-success" id="open-whatsapp-btn">
+                    <i class="fab fa-whatsapp"></i>
+                    <span class="en-message">Open WhatsApp</span>
+                    <span class="ar-message" style="display: none;">فتح واتساب</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section with Video Background -->
     <section class="hero" id="home">
+        <div class="video-container">
+            <!-- Using proper video element -->
+            <video autoplay muted loop playsinline class="hero-video">
+                <source src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Video.mp4" type="video/mp4">
+                <!-- Fallback image in case video doesn't load -->
+                <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg" alt="Turkiana Cafe Background">
+            </video>
+        </div>
+        
         <div class="container">
             <div class="hero-content">
                 <h1 data-en="Experience Authentic Turkish & Arabic Delights" data-ar="استمتع بألذ المشروبات والحلويات التركية والعربية">Experience Authentic Turkish & Arabic Delights</h1>
@@ -1441,6 +1660,11 @@
         </div>
     </footer>
 
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/97451866671" class="whatsapp-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
     <!-- JavaScript -->
     <script>
         // Language Management
@@ -1469,11 +1693,17 @@
             if(lang === 'ar') {
                 document.body.classList.add('rtl');
                 // Adjust category container for RTL
-                document.querySelector('.menu-categories').style.justifyContent = 'flex-end';
+                const categoriesContainer = document.querySelector('.menu-categories');
+                if (categoriesContainer) {
+                    categoriesContainer.style.justifyContent = 'flex-end';
+                }
             } else {
                 document.body.classList.remove('rtl');
                 // Adjust category container for LTR
-                document.querySelector('.menu-categories').style.justifyContent = 'flex-start';
+                const categoriesContainer = document.querySelector('.menu-categories');
+                if (categoriesContainer) {
+                    categoriesContainer.style.justifyContent = 'flex-start';
+                }
             }
             
             // Update all elements with data-en and data-ar attributes
@@ -1506,36 +1736,43 @@
             
             // Update modal language if open
             updateModalLanguage();
+            
+            // Update reservation modal
+            updateReservationModalLanguage();
         }
         
         // Mobile Navigation Toggle
         const mobileToggle = document.getElementById('mobile-toggle');
         const navLinks = document.getElementById('nav-links');
         
-        mobileToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            mobileToggle.innerHTML = navLinks.classList.contains('active') 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
-        });
-        
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+        if (mobileToggle && navLinks) {
+            mobileToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                mobileToggle.innerHTML = navLinks.classList.contains('active') 
+                    ? '<i class="fas fa-times"></i>' 
+                    : '<i class="fas fa-bars"></i>';
             });
-        });
+            
+            // Close mobile menu when clicking on a link
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                });
+            });
+        }
         
         // Header scroll effect
         window.addEventListener('scroll', () => {
             const header = document.getElementById('header');
-            if (window.scrollY > 100) {
-                header.style.padding = '5px 0';
-                header.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
-            } else {
-                header.style.padding = '15px 0';
-                header.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
+            if (header) {
+                if (window.scrollY > 100) {
+                    header.style.padding = '5px 0';
+                    header.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
+                } else {
+                    header.style.padding = '15px 0';
+                    header.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
+                }
             }
         });
         
@@ -1693,7 +1930,7 @@
         const allButton = document.createElement('button');
         allButton.className = 'category-btn active';
         allButton.setAttribute('data-category', 'all');
-        allButton.textContent = 'All Items';
+        allButton.innerHTML = '<i class="fas fa-star"></i> All Items';
         categoriesContainer.appendChild(allButton);
         
         // Create category buttons
@@ -1701,7 +1938,21 @@
             const button = document.createElement('button');
             button.className = 'category-btn';
             button.setAttribute('data-category', category);
-            button.textContent = category;
+            
+            // Add icons based on category
+            let icon = 'fas fa-utensils';
+            if (category.includes('Coffee') || category.includes('Brewed')) icon = 'fas fa-mug-hot';
+            if (category.includes('Tea')) icon = 'fas fa-mug-saucer';
+            if (category.includes('Café')) icon = 'fas fa-coffee';
+            if (category.includes('Refreshers')) icon = 'fas fa-glass-water';
+            if (category.includes('Baklava')) icon = 'fas fa-cookie-bite';
+            if (category.includes('Fondue')) icon = 'fas fa-fire';
+            if (category.includes('Croissant')) icon = 'fas fa-bread-slice';
+            if (category.includes('Grill')) icon = 'fas fa-fire-burner';
+            if (category.includes('Breakfast') || category.includes('Morning')) icon = 'fas fa-egg';
+            if (category.includes('Specialty')) icon = 'fas fa-flask';
+            
+            button.innerHTML = `<i class="${icon}"></i> ${category}`;
             categoriesContainer.appendChild(button);
         });
         
@@ -1710,6 +1961,9 @@
         const categoryButtons = document.querySelectorAll('.category-btn');
         const itemModal = document.getElementById('item-modal');
         const modalClose = document.getElementById('item-modal-close');
+        const reservationModal = document.getElementById('reservation-modal');
+        const reservationModalClose = document.getElementById('reservation-modal-close');
+        const openWhatsAppBtn = document.getElementById('open-whatsapp-btn');
         
         function displayMenuItems(category = 'all') {
             menuContainer.innerHTML = '';
@@ -1728,7 +1982,7 @@
                 if (item.popular) {
                     const popularBadge = document.createElement('div');
                     popularBadge.className = 'popular-badge';
-                    popularBadge.textContent = '★ Popular';
+                    popularBadge.innerHTML = '<i class="fas fa-fire"></i> Popular';
                     menuItem.appendChild(popularBadge);
                 }
                 
@@ -1736,13 +1990,13 @@
                 const dietaryTags = item.dietary ? item.dietary.map(tag => {
                     let displayTag = tag;
                     switch(tag) {
-                        case 'vegan': displayTag = 'Vegan'; break;
-                        case 'vegetarian': displayTag = 'Vegetarian'; break;
-                        case 'gluten-free': displayTag = 'Gluten Free'; break;
-                        case 'dairy-free': displayTag = 'Dairy Free'; break;
-                        case 'contains-dairy': displayTag = 'Contains Dairy'; break;
-                        case 'contains-nuts': displayTag = 'Contains Nuts'; break;
-                        case 'contains-gluten': displayTag = 'Contains Gluten'; break;
+                        case 'vegan': displayTag = '<i class="fas fa-leaf"></i> Vegan'; break;
+                        case 'vegetarian': displayTag = '<i class="fas fa-seedling"></i> Vegetarian'; break;
+                        case 'gluten-free': displayTag = '<i class="fas fa-wheat-awn"></i> Gluten Free'; break;
+                        case 'dairy-free': displayTag = '<i class="fas fa-cow"></i> Dairy Free'; break;
+                        case 'contains-dairy': displayTag = '<i class="fas fa-cow"></i> Dairy'; break;
+                        case 'contains-nuts': displayTag = '<i class="fas fa-peanut"></i> Nuts'; break;
+                        case 'contains-gluten': displayTag = '<i class="fas fa-wheat-awn"></i> Gluten'; break;
                     }
                     return `<span class="dietary-tag">${displayTag}</span>`;
                 }).join('') : '';
@@ -1812,6 +2066,20 @@
             }
         }
         
+        function updateReservationModalLanguage() {
+            if (!reservationModal.classList.contains('active')) return;
+            
+            const isArabic = currentLang === 'ar';
+            
+            document.querySelectorAll('.en-message, .ar-message').forEach(element => {
+                if (element.classList.contains('en-message')) {
+                    element.style.display = isArabic ? 'none' : 'block';
+                } else if (element.classList.contains('ar-message')) {
+                    element.style.display = isArabic ? 'block' : 'none';
+                }
+            });
+        }
+        
         function showItemModal(item) {
             const modalImage = document.getElementById('modal-image');
             const modalNameEn = document.getElementById('modal-name-en');
@@ -1838,17 +2106,17 @@
                 item.dietary.forEach(tag => {
                     let displayTag = tag;
                     switch(tag) {
-                        case 'vegan': displayTag = 'Vegan'; break;
-                        case 'vegetarian': displayTag = 'Vegetarian'; break;
-                        case 'gluten-free': displayTag = 'Gluten Free'; break;
-                        case 'dairy-free': displayTag = 'Dairy Free'; break;
-                        case 'contains-dairy': displayTag = 'Contains Dairy'; break;
-                        case 'contains-nuts': displayTag = 'Contains Nuts'; break;
-                        case 'contains-gluten': displayTag = 'Contains Gluten'; break;
+                        case 'vegan': displayTag = '<i class="fas fa-leaf"></i> Vegan'; break;
+                        case 'vegetarian': displayTag = '<i class="fas fa-seedling"></i> Vegetarian'; break;
+                        case 'gluten-free': displayTag = '<i class="fas fa-wheat-awn"></i> Gluten Free'; break;
+                        case 'dairy-free': displayTag = '<i class="fas fa-cow"></i> Dairy Free'; break;
+                        case 'contains-dairy': displayTag = '<i class="fas fa-cow"></i> Contains Dairy'; break;
+                        case 'contains-nuts': displayTag = '<i class="fas fa-peanut"></i> Contains Nuts'; break;
+                        case 'contains-gluten': displayTag = '<i class="fas fa-wheat-awn"></i> Contains Gluten'; break;
                     }
                     const tagElement = document.createElement('span');
                     tagElement.className = 'item-modal-dietary-tag';
-                    tagElement.textContent = displayTag;
+                    tagElement.innerHTML = displayTag;
                     modalDietary.appendChild(tagElement);
                 });
             }
@@ -1860,15 +2128,25 @@
             itemModal.classList.add('active');
         }
         
-        // Close modal
+        // Close modals
         modalClose.addEventListener('click', () => {
             itemModal.classList.remove('active');
+        });
+        
+        reservationModalClose.addEventListener('click', () => {
+            reservationModal.classList.remove('active');
         });
         
         // Close modal when clicking outside
         itemModal.addEventListener('click', (e) => {
             if (e.target === itemModal) {
                 itemModal.classList.remove('active');
+            }
+        });
+        
+        reservationModal.addEventListener('click', (e) => {
+            if (e.target === reservationModal) {
+                reservationModal.classList.remove('active');
             }
         });
         
@@ -1894,33 +2172,65 @@
             });
         });
         
-        // Form submission
+        // Form submission with WhatsApp integration
         const reservationForm = document.getElementById('reservation-form');
         
-        reservationForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            // Get form values
-            const name = document.getElementById('name').value;
-            const phone = document.getElementById('phone').value;
-            const date = document.getElementById('date').value;
-            
-            // Simple form validation
-            if(!name || !phone || !date) {
-                alert(currentLang === 'en' ? 'Please fill in all required fields.' : 'الرجاء ملء جميع الحقول المطلوبة.');
-                return;
-            }
-            
-            // In a real application, you would send this data to a server
-            if(currentLang === 'en') {
-                alert(`Thank you, ${name}! Your reservation request for ${date} has been received. We will contact you at ${phone} to confirm.`);
-            } else {
-                alert(`شكراً لك، ${name}! تم استلام طلب حجزك لتاريخ ${date}. سنتصل بك على ${phone} للتأكيد.`);
-            }
-            
-            // Reset form
-            reservationForm.reset();
-        });
+        if (reservationForm) {
+            reservationForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                // Get form values
+                const name = document.getElementById('name').value;
+                const phone = document.getElementById('phone').value;
+                const date = document.getElementById('date').value;
+                const time = document.getElementById('time').value;
+                const guests = document.getElementById('guests').value;
+                
+                // Simple form validation
+                if(!name || !phone || !date || !time || !guests) {
+                    alert(currentLang === 'en' ? 'Please fill in all required fields.' : 'الرجاء ملء جميع الحقول المطلوبة.');
+                    return;
+                }
+                
+                // Format date for display
+                const formattedDate = new Date(date).toLocaleDateString(currentLang === 'en' ? 'en-US' : 'ar-SA', {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+                
+                // Format time for display
+                const timeDisplay = time.includes('00') ? time.replace(':00', '') : time;
+                const formattedTime = timeDisplay + (parseInt(timeDisplay) < 12 ? ' AM' : ' PM');
+                
+                // Create WhatsApp message
+                const whatsappMessage = currentLang === 'en' 
+                    ? `New Reservation Request%0A%0AName: ${name}%0APhone: ${phone}%0ADate: ${formattedDate}%0ATime: ${formattedTime}%0AGuests: ${guests}%0A%0ARestaurant: Turkiana Cafe & Sweets%0ALocation: 7GPG+Q2R, Al Kahraba St, Doha%0A%0APlease confirm this reservation.`
+                    : `طلب حجز جديد%0A%0Aالاسم: ${name}%0Aالهاتف: ${phone}%0Aالتاريخ: ${formattedDate}%0Aالوقت: ${formattedTime}%0Aعدد الأشخاص: ${guests}%0A%0Aالمطعم: تركيانا كافيه & سوييتس%0Aالموقع: 7GPG+Q2R، شارع الكهرباء، الدوحة%0A%0Aيرجى تأكيد هذا الحجز.`;
+                
+                // Set WhatsApp link
+                const whatsappNumber = '97451866671';
+                const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+                
+                // Set the WhatsApp button link
+                openWhatsAppBtn.href = whatsappLink;
+                
+                // Show success modal
+                reservationModal.classList.add('active');
+                updateReservationModalLanguage();
+                
+                // Reset form
+                reservationForm.reset();
+                
+                // Auto-close modal after 10 seconds
+                setTimeout(() => {
+                    if (reservationModal.classList.contains('active')) {
+                        reservationModal.classList.remove('active');
+                    }
+                }, 10000);
+            });
+        }
         
         // Gallery item click
         document.querySelectorAll('.gallery-item').forEach(item => {
@@ -1958,6 +2268,7 @@
         const observer = new MutationObserver(() => {
             updateMenuLanguage();
             updateModalLanguage();
+            updateReservationModalLanguage();
         });
         
         observer.observe(document.body, { 
