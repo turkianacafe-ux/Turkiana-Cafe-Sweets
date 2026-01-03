@@ -135,16 +135,6 @@
             color: var(--secondary);
         }
 
-        .btn-success {
-            background: var(--success);
-            border-color: var(--success);
-        }
-
-        .btn-success:hover {
-            background: transparent;
-            color: var(--success);
-        }
-
         /* Header & Navigation */
         header {
             background-color: rgba(255, 255, 255, 0.95);
@@ -248,43 +238,6 @@
             color: white;
         }
 
-        /* Cart Badge */
-        .cart-badge {
-            position: relative;
-            background: var(--primary);
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            cursor: pointer;
-            transition: var(--transition);
-            margin-left: 20px;
-        }
-
-        .cart-badge:hover {
-            transform: scale(1.1);
-        }
-
-        .cart-count {
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            background: var(--accent);
-            color: white;
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
         /* Hero Section */
         .hero {
             padding-top: 120px;
@@ -361,24 +314,35 @@
         /* Menu Section */
         .menu {
             background-color: var(--light);
+            position: relative;
+        }
+
+        .menu-categories-container {
+            position: sticky;
+            top: 80px;
+            background: white;
+            padding: 15px 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
         }
 
         .menu-categories {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin-bottom: 40px;
+            gap: 10px;
             flex-wrap: wrap;
         }
 
         .category-btn {
-            padding: 10px 25px;
+            padding: 8px 20px;
             background: white;
             border-radius: 30px;
             font-weight: 500;
             cursor: pointer;
             transition: var(--transition);
             border: 2px solid transparent;
+            font-size: 0.9rem;
         }
 
         .category-btn.active, .category-btn:hover {
@@ -389,8 +353,8 @@
 
         .menu-items {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
         }
 
         .menu-item {
@@ -400,14 +364,19 @@
             box-shadow: var(--shadow);
             transition: var(--transition);
             position: relative;
+            cursor: pointer;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
 
         .menu-item:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
         }
 
         .menu-item-img {
-            height: 200px;
+            height: 160px;
             overflow: hidden;
         }
 
@@ -423,59 +392,71 @@
         }
 
         .menu-item-content {
-            padding: 20px;
+            padding: 15px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .menu-item-header {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
+            align-items: flex-start;
+            margin-bottom: 8px;
         }
 
         .menu-item-name {
-            font-size: 1.3rem;
+            font-size: 1rem;
             color: var(--primary);
+            line-height: 1.3;
+            flex: 1;
         }
 
         .menu-item-price {
             color: var(--secondary);
             font-weight: 600;
-            font-size: 1.2rem;
+            font-size: 1rem;
+            margin-left: 10px;
+            white-space: nowrap;
         }
 
         .menu-item-desc {
             color: var(--text-light);
-            font-size: 0.95rem;
-            margin-bottom: 15px;
-            min-height: 60px;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            flex-grow: 1;
         }
 
         .menu-item-details {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 15px;
-            padding-top: 15px;
+            margin-top: 10px;
+            padding-top: 10px;
             border-top: 1px solid #eee;
         }
 
         .calories {
             color: var(--text-light);
-            font-size: 0.9rem;
+            font-size: 0.8rem;
         }
 
         .dietary-tags {
             display: flex;
             gap: 5px;
             flex-wrap: wrap;
+            justify-content: flex-end;
         }
 
         .dietary-tag {
             background: var(--light);
-            padding: 3px 10px;
-            border-radius: 15px;
-            font-size: 0.8rem;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
             color: var(--text-light);
         }
 
@@ -485,32 +466,15 @@
             right: 10px;
             background: var(--accent);
             color: white;
-            padding: 5px 15px;
-            border-radius: 15px;
-            font-size: 0.8rem;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.7rem;
             font-weight: 600;
+            z-index: 1;
         }
 
-        .add-to-cart-btn {
-            width: 100%;
-            padding: 10px;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: var(--transition);
-            margin-top: 10px;
-            font-family: 'Cairo', sans-serif;
-        }
-
-        .add-to-cart-btn:hover {
-            background: var(--dark);
-        }
-
-        /* Cart Modal */
-        .cart-modal {
+        /* Item Modal */
+        .item-modal {
             display: none;
             position: fixed;
             top: 0;
@@ -524,39 +488,30 @@
             padding: 20px;
         }
 
-        .cart-modal.active {
+        .item-modal.active {
             display: flex;
         }
 
-        .cart-modal-content {
+        .item-modal-content {
             background: white;
             border-radius: 15px;
-            max-width: 500px;
+            max-width: 800px;
             width: 100%;
-            max-height: 80vh;
+            max-height: 90vh;
             overflow-y: auto;
             position: relative;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            padding: 30px;
         }
 
-        .cart-modal-header {
-            padding: 20px;
-            background: var(--primary);
-            color: white;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-radius: 15px 15px 0 0;
-        }
-
-        .cart-modal-header h3 {
-            color: white;
-            margin: 0;
-        }
-
-        .close-modal {
+        .item-modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
             background: none;
             border: none;
-            color: white;
             font-size: 1.5rem;
             cursor: pointer;
             width: 40px;
@@ -565,121 +520,72 @@
             align-items: center;
             justify-content: center;
             border-radius: 50%;
+            color: var(--text);
+            transition: var(--transition);
         }
 
-        .cart-modal-body {
-            padding: 20px;
-        }
-
-        .cart-items {
-            margin-bottom: 20px;
-        }
-
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        .cart-item:last-child {
-            border-bottom: none;
-        }
-
-        .cart-item-info h4 {
-            font-size: 1rem;
-            margin-bottom: 5px;
-        }
-
-        .cart-item-controls {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        .quantity-control {
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        .item-modal-close:hover {
             background: var(--light);
-            border-radius: 20px;
-            padding: 5px 15px;
-        }
-
-        .quantity-btn {
-            background: none;
-            border: none;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 1.2rem;
-            color: var(--primary);
-        }
-
-        .quantity {
-            font-weight: 600;
-            min-width: 30px;
-            text-align: center;
-        }
-
-        .remove-item {
-            background: none;
-            border: none;
             color: var(--accent);
-            cursor: pointer;
-            font-size: 0.9rem;
         }
 
-        .cart-item-subtotal {
+        .item-modal-img {
+            border-radius: 10px;
+            overflow: hidden;
+            height: 300px;
+        }
+
+        .item-modal-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .item-modal-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .item-modal-name {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .item-modal-price {
+            font-size: 1.5rem;
             color: var(--secondary);
             font-weight: 600;
-        }
-
-        .cart-total {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 20px 0;
-            font-size: 1.3rem;
-            font-weight: 600;
-            padding-top: 20px;
-            border-top: 2px solid var(--primary);
-        }
-
-        .cart-actions {
-            display: flex;
-            gap: 10px;
             margin-bottom: 20px;
         }
 
-        .cart-actions .btn {
-            flex: 1;
+        .item-modal-desc {
+            color: var(--text);
+            margin-bottom: 20px;
+            line-height: 1.6;
         }
 
-        .order-comment {
-            width: 100%;
-            margin-top: 20px;
+        .item-modal-details {
+            margin-top: auto;
         }
 
-        .order-comment textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-family: 'Cairo', sans-serif;
-            resize: vertical;
-            min-height: 80px;
+        .item-modal-calories {
+            color: var(--text-light);
+            margin-bottom: 10px;
         }
 
-        .order-comment textarea:focus {
-            outline: none;
-            border-color: var(--primary);
+        .item-modal-dietary {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .item-modal-dietary-tag {
+            background: var(--light);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            color: var(--text-light);
         }
 
         /* Gallery Section */
@@ -894,6 +800,12 @@
         }
 
         /* Responsive Design */
+        @media (max-width: 1200px) {
+            .menu-items {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
         @media (max-width: 992px) {
             .about-content, .contact-container {
                 grid-template-columns: 1fr;
@@ -908,7 +820,16 @@
             }
             
             .menu-items {
-                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .item-modal-content {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+            }
+            
+            .item-modal-img {
+                height: 200px;
             }
         }
 
@@ -939,11 +860,8 @@
                 margin-bottom: 20px;
             }
             
-            .lang-toggle, .cart-badge {
-                margin-left: 0;
-            }
-            
             .lang-toggle {
+                margin-left: 0;
                 justify-content: center;
                 margin-top: 20px;
             }
@@ -965,12 +883,18 @@
                 font-size: 2rem;
             }
             
-            .cart-modal-content {
-                margin: 10px;
+            .menu-categories-container {
+                top: 70px;
             }
             
-            .cart-actions {
-                flex-direction: column;
+            .menu-items {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .item-modal-content {
+                padding: 20px;
+                margin: 10px;
             }
         }
 
@@ -983,14 +907,17 @@
                 font-size: 2rem;
             }
             
-            .menu-items {
-                grid-template-columns: 1fr;
-            }
-            
             .menu-categories {
                 justify-content: flex-start;
                 overflow-x: auto;
                 padding-bottom: 10px;
+                gap: 8px;
+            }
+            
+            .category-btn {
+                padding: 6px 15px;
+                font-size: 0.8rem;
+                white-space: nowrap;
             }
         }
     </style>
@@ -1023,40 +950,29 @@
                             <button class="lang-btn" data-lang="ar">AR</button>
                         </div>
                     </li>
-                    <li>
-                        <div class="cart-badge" id="cart-badge">
-                            <i class="fas fa-shopping-cart"></i>
-                            <span class="cart-count" id="cart-count">0</span>
-                        </div>
-                    </li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Cart Modal -->
-    <div class="cart-modal" id="cart-modal">
-        <div class="cart-modal-content">
-            <div class="cart-modal-header">
-                <h3 data-en="Order Summary" data-ar="ملخص الطلب">Order Summary</h3>
-                <button class="close-modal" id="close-modal">
-                    <i class="fas fa-times"></i>
-                </button>
+    <!-- Item Modal -->
+    <div class="item-modal" id="item-modal">
+        <div class="item-modal-content">
+            <button class="item-modal-close" id="item-modal-close">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="item-modal-img">
+                <img id="modal-image" src="" alt="">
             </div>
-            <div class="cart-modal-body">
-                <div class="cart-items" id="cart-items">
-                    <!-- Cart items will be loaded here -->
-                </div>
-                <div class="cart-total">
-                    <span data-en="Total:" data-ar="الإجمالي:">Total:</span>
-                    <span id="cart-total">0.00 QR</span>
-                </div>
-                <div class="order-comment">
-                    <textarea id="order-comment" placeholder="Add special instructions for your order..." data-en="Add special instructions for your order..." data-ar="أضف تعليمات خاصة لطلبك..."></textarea>
-                </div>
-                <div class="cart-actions">
-                    <button class="btn btn-success" id="print-order" data-en="Print Order" data-ar="طباعة الطلب">Print Order</button>
-                    <button class="btn" id="clear-cart" data-en="Clear Cart" data-ar="تفريغ السلة">Clear Cart</button>
+            <div class="item-modal-info">
+                <h3 class="item-modal-name en-name" id="modal-name-en"></h3>
+                <h3 class="item-modal-name ar-name" id="modal-name-ar" style="display: none;"></h3>
+                <div class="item-modal-price" id="modal-price"></div>
+                <p class="item-modal-desc en-desc" id="modal-desc-en"></p>
+                <p class="item-modal-desc ar-desc" id="modal-desc-ar" style="display: none;"></p>
+                <div class="item-modal-details">
+                    <div class="item-modal-calories" id="modal-calories"></div>
+                    <div class="item-modal-dietary" id="modal-dietary"></div>
                 </div>
             </div>
         </div>
@@ -1108,8 +1024,10 @@
                 <h2 data-en="Our Menu" data-ar="قائمتنا">Our Menu</h2>
             </div>
             
-            <div class="menu-categories" id="menu-categories">
-                <!-- Categories will be populated by JavaScript -->
+            <div class="menu-categories-container">
+                <div class="menu-categories" id="menu-categories">
+                    <!-- Categories will be populated by JavaScript -->
+                </div>
             </div>
             
             <div class="menu-items" id="menu-items-container">
@@ -1199,7 +1117,6 @@
                     </div>
                     
                     <div class="map-container">
-                        <!-- Simple map representation - in production, use Google Maps embed -->
                         <div style="background: #ddd; height: 200px; display: flex; align-items: center; justify-content: center; border-radius: 10px;">
                             <p data-en="Map: 7GPG+Q2R, Al Kahraba St, Doha" data-ar="الخريطة: 7GPG+Q2R، شارع الكهرباء، الدوحة">Map: 7GPG+Q2R, Al Kahraba St, Doha</p>
                         </div>
@@ -1358,6 +1275,12 @@
                     option.textContent = option.getAttribute('data-ar');
                 }
             });
+            
+            // Update menu items language
+            updateMenuLanguage();
+            
+            // Update modal language if open
+            updateModalLanguage();
         }
         
         // Mobile Navigation Toggle
@@ -1407,6 +1330,10 @@
             // Tea on the House (14 items)
             { id:"th1", cat:"Tea on the House", enName:"Turkish Tea", arName:"شاي تركي", price:15, enDesc:"The heartbeat of Turkish culture—deep amber Rize tea double-brewed to perfection, served in iconic tulip glasses that concentrate aromas and warmth in every comforting sip.", arDesc:"نبض الثقافة التركية—شاي ريزه الكهرماني العميق يُحضر مزدوجاً إلى الكمال، يُقدم في أكواب التوليب الأيقونية التي تركز العطور والدفء في كل رشفة مريحة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Tea.jpg", calories:"2 kcal", dietary:["vegan","dairy-free"], popular:true },
             { id:"th2", cat:"Tea on the House", enName:"Turkish Tea in a Pot", arName:"شاي تركي في إبريق", price:45, enDesc:"Shared tradition in brass—generous pot of aromatic Turkish tea that embodies communal warmth, inviting extended conversations and lasting connections over refilled cups.", arDesc:"تقليد مشترك من النحاس—إبريق سخي من الشاي التركي العطري يجسد الدفء الجماعي، يدعو لمحادثات مطولة وروابط دائمة فوق الأكواب المعادة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkishteapot.jpeg", calories:"0 kcal", dietary:["vegan","gluten-free","dairy-free"] },
+            { id:"th14", cat:"Tea on the House", enName:"Hibiscus Tea", arName:"شاي الكركديه", price:36, enDesc:"A soothing hot hibiscus infusion with gentle tangy notes and a naturally vibrant ruby color.", arDesc:"نقيع كركديه ساخن ومهدئ بنكهة حامضة خفيفة ولون ياقوتي طبيعي.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Hibiscustea.webp", calories:"25 kcal", dietary:["vegan","dairy-free"] },
+            { id:"th15", cat:"Tea on the House", enName:"Winter Tea", arName:"شاي الشتاء", price:38, enDesc:"A warming seasonal blend of herbs and spices, crafted to comfort and energize during cold days.", arDesc:"مزيج شتوي دافئ من الأعشاب والتوابل يمنح الدفء والراحة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Wintertea.webp", calories:"30 kcal", dietary:["vegan","dairy-free"] },
+            { id:"th16", cat:"Tea on the House", enName:"Chamomile Tea", arName:"شاي البابونج", price:36, enDesc:"A calming chamomile infusion with soft floral notes, perfect for relaxation.", arDesc:"شاي بابونج مهدئ بنفحات زهرية ناعمة مثالي للاسترخاء.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Chamomiletea.webp", calories:"0 kcal", dietary:["vegan","dairy-free"] },
+            { id:"th17", cat:"Tea on the House", enName:"Green Tea", arName:"شاي أخضر", price:36, enDesc:"Pure green tea with a clean, balanced taste and refreshing finish.", arDesc:"شاي أخضر نقي بطعم متوازن ونهاية منعشة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Greentea.jpg", calories:"0 kcal", dietary:["vegan","dairy-free"] },
             { id:"th3", cat:"Tea on the House", enName:"Apple Tea", arName:"شاي التفاح", price:35, enDesc:"Orchard in a cup—sun-ripened apple essence infused with premium black tea, creating harmonious balance between fruity sweetness and tea's natural tannic structure.", arDesc:"بستان في كوب—جوهر التفاح الناضج بالشمس منقوع في شاي أسود فاخر، يخلق توازناً متناغماً بين حلاوة الفواكه والتركيب التناني الطبيعي للشاي.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Appletea.jpg", calories:"2 kcal", dietary:["vegan","dairy-free"] },
             { id:"th4", cat:"Tea on the House", enName:"Mulberry Tea", arName:"شاي التوت", price:35, enDesc:"Silken summer harvest—delicate white mulberry infusion with subtle honey-like sweetness and smooth finish that evokes sunny Anatolian orchards in every gentle sip.", arDesc:"حصاد صيفي حريري—نقيع التوت الأبيض الدقيق بحلاوة تشبه العسل الخفيفة ونهاية ناعمة تستحضر بساتين الأناضول المشمسة في كل رشفة لطيفة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mulberrytea.jpg", calories:"2 kcal", dietary:["vegan","dairy-free"] },
             { id:"th5", cat:"Tea on the House", enName:"Lemon Mint", arName:"شاي بالليمون والنعناع", price:35, enDesc:"Mediterranean revival—zesty lemon wedges and freshly picked mint leaves revitalize premium tea base, creating invigorating clarity and refreshing citrus-herbal harmony.", arDesc:"إحياء متوسطي—شرائح الليمون المنعشة وأوراق النعناع الطازجة المحصودة حديثاً تنعش قاعدة الشاي الفاخر، تخلق وضوحاً منشطاً وتناغماً حمضياً عشبياً منعشاً.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Lemontea.jpg", calories:"2 kcal", dietary:["vegan","dairy-free"] },
@@ -1418,8 +1345,7 @@
             { id:"th11", cat:"Tea on the House", enName:"Ice Pomegranate Tea", arName:"شاي الرمان المثلج", price:35, enDesc:"Jewel-toned refreshment—vibrant pomegranate tea served over hand-carved ice, delivering bold fruity character and antioxidant richness in beautifully chilled presentation.", arDesc:"انتعاش بلون الجواهر—شاي رمان نابض يُقدم فوق ثلج منحوت يدوياً، يقدم شخصية فاكهية جريئة وغنياً بمضادات الأكسدة في تقديم مبرد جميل.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Pomegranatetea.avif", calories:"45 kcal", dietary:["vegan","dairy-free"] },
             { id:"th12", cat:"Tea on the House", enName:"Passion Fruit Tea", arName:"شاي باشن فروت", price:45, enDesc:"Tropical euphoria—exotic passion fruit infusion that balances tangy vibrancy with subtle sweetness, capturing the essence of distant shores in every fragrant sip.", arDesc:"نشوة استوائية—نقيع باشن فروت غريب يوازن بين الحيوية الحامضة والحلاوة الخفيفة، يلتقط جوهر الشواطئ البعيدة في كل رشفة عطرة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Passiontea.webp", calories:"40 kcal", dietary:["vegan","dairy-free"] },
             { id:"th13", cat:"Tea on the House", enName:"Hibiscus Ice", arName:"الكركديه مثلج", price:28, enDesc:"Ruby glacier—vibrant hibiscus infusion served over ice, offering tangy floral notes, stunning crimson color, and refreshing qualities that invigorate the senses.", arDesc:"جليد ياقوتي—نقيع كركديه نابض يُقدم فوق الثلج، يقدم نفحات زهرية حامضة ولوناً قرمزيًا بديع وصفات منعشة تنعش الحواس.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Hibiscus.webp", calories:"25 kcal", dietary:["vegan","dairy-free"] },
-            { id:"th14", cat:"Tea on the House", enName:"Classic Turkish Coffee", arName:"قهوة تركية كلاسيكية", price:28, enDesc:"Traditional perfection—meticulously prepared Turkish coffee with signature velvety foam and rich depth, served alongside refreshing water to cleanse and prepare the palate.", arDesc:"كمال تقليدي—قهوة تركية محضرة بدقة مع رغوة حريرية مميزة وعمق غني، تُقدم بجانب ماء منعش لتنظيف وإعداد الحنك.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkishcoffee.jpg", calories:"5 kcal", dietary:["vegan","gluten-free","dairy-free"] },
-            
+           
             // Café & Chill (15 items - including cac15)
             { id:"cac15", cat:"Café & Chill", enName:"Ice Tiramisu Latte", arName:"لاتيه تيراميسو مثلج", price:36, enDesc:"Dessert reimagined—layered iced latte capturing tiramisu's essence with espresso, mascarpone-inspired cream, ladyfinger notes, and cocoa dusting for sophisticated indulgence.", arDesc:"حلوى مُعاد تخيلها—لاتيه مثلج متعدد الطبقات يلتقط جوهر التيراميسو مع إسبرسو، كريمة مستوحاة من الماسكاربون، نفحات بسكويت السيدة وذرّ الكاكاو لتناول فاخر راقٍ.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Icetiramisu.webp", calories:"210 kcal", dietary:["contains-dairy"] },
             { id:"cac1", cat:"Café & Chill", enName:"Hot Chocolate (Hot/Ice)", arName:"هوت شوكولاتة (ساخن/مثلج)", price:36, enDesc:"Liquid velvet—artisanal blend of single-origin cocoa and steamed milk creating silky richness, crowned with whipped cream for ultimate comfort in warm or chilled version.", arDesc:"مخمل سائل—مزيج حرفي من كاكاو منشأ واحد وحليب مبخر يخلق غنى حريرياً، يتوج بكريمة مخفوقة للراحة القصوى في النسخة الدافئة أو المبردة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Hotchocolate.jfif", calories:"360 kcal", dietary:["contains-dairy"] },
@@ -1474,6 +1400,7 @@
             { id:"bak15", cat:"Baklava & Beyond", enName:"Almond Chocolate Cake", arName:"كعكة الشوكولاتة باللوز", price:40, enDesc:"Nutty sophistication—moist chocolate cake with almond meal integrated into batter and toasted almond garnish, creating textural contrast and flavor harmony between cocoa and nuts.", arDesc:"رقة جوزية—كعكة شوكولاتة رطبة مع طحين اللوز المدمج في الخليط وتزيين لوز محمص، يخلق تبايناً قوامياً وتناغماً نكهياً بين الكاكاو والمكسرات.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Almond.jpg", calories:"490 kcal", dietary:["contains-nuts"] },
             { id:"bak17", cat:"Baklava & Beyond", enName:"Chocolate Pistachio Cake", arName:"كعكة الشوكولاتة والفستق", price:40, enDesc:"Green luxury—rich chocolate cake adorned with crushed pistachios that provide vibrant color contrast, subtle saltiness, and elegant crunch against smooth chocolate background.", arDesc:"فخامة خضراء—كعكة شوكولاتة غنية مزينة بفستق مفتت يوفر تباين لوني نابض، ملوحة خفيفة، وقرمشة أنيقة ضد خلفية الشوكولاتة الناعمة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Chocolate_pistachio.jpg", calories:"510 kcal", dietary:["contains-nuts"] },
             { id:"bak18", cat:"Baklava & Beyond", enName:"Strawberry Cake", arName:"كعكة الفراولة", price:45, enDesc:"Spring celebration—light sponge cake layered with fresh strawberry slices and cream, capturing fruit's natural sweetness and floral notes in visually stunning, seasonally inspired dessert.", arDesc:"احتفال ربيعي—كعكة إسفنجية خفيفة مطبقة بشرائح فراولة طازجة وكريمة، تلتقط حلاوة الفاكهة الطبيعية ونفحاتها الزهرية في حلوى مذهلة بصرياً ومستوحاة من الموسم.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Strawberry.jpg", calories:"470 kcal", dietary:["contains-dairy"] },
+            { id:"bak19", cat:"Baklava & Beyond", enName:"White Almond Cake", arName:"كعكة اللوز البيضاء", price:42, enDesc:"Elegant simplicity—delicate almond-flavored cake with fine crumb and subtle sweetness, often enjoyed with tea or as light dessert that highlights almond's sophisticated character.", arDesc:"بساطة أنيقة—كعكة بنكهة اللوز الدقيقة بفتات ناعم وحلاوة خفيفة، غالباً ما تُستمتع مع الشاي أو كحلوى خفيفة تسلط الضوء على شخصية اللوز الراقية.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/White.jpg", calories:"500 kcal", dietary:["contains-nuts"] },
             { id:"bak20", cat:"Baklava & Beyond", enName:"Trileche With Milk", arName:"تريليتش باللبن", price:42, enDesc:"Triple moisture—sponge cake soaked in three-milk blend (evaporated, condensed, and cream), creating incredibly moist dessert with rich, creamy texture and caramelized notes.", arDesc:"رطوبة ثلاثية—كعكة إسفنجية منقوعة في مزيج ثلاثي الحليب (مبخر، مكثف، وكريمة)، تخلق حلوى رطبة بشكل لا يصدق بقوام غني كريمي ونفحات مكرملة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Trileche.jpg", calories:"540 kcal", dietary:["contains-dairy"] },
             { id:"bak21", cat:"Baklava & Beyond", enName:"San Sebastian Cheesecake", arName:"تشيز كيك سان سيباستيان", price:42, enDesc:"Basque perfection—cream-centered cheesecake with caramelized top and creamy, almost liquid interior, intentionally underbaked to create unique texture contrast and rich flavor.", arDesc:"كمال باسكي—تشيز كيك مركز الكريمة بقمة مكرملة وداخل كريمي شبه سائل، يُخبز عمداً بشكل غير كامل لخلق تباين قوام فريد ونكهة غنية.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Sebastian.jpg", calories:"520 kcal", dietary:["contains-dairy"] },
             { id:"bak22", cat:"Baklava & Beyond", enName:"Cheesecake", arName:"تشيز كيك", price:42, enDesc:"Classic foundation—creamy New York-style cheesecake with graham cracker crust, serving as perfect canvas for various toppings or enjoyed in its pure, unadorned perfection.", arDesc:"أساس كلاسيكي—تشيز كيك كريمي على الطريقة النيويوركية بقشرة بسكويت غراهام، يعمل كلوحة مثالية للطبقات المختلفة أو يُستمتع به في كماله النقي غير المزين.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/cheesecake.webp", calories:"500 kcal", dietary:["contains-dairy"] },
@@ -1528,10 +1455,6 @@
             { id:"amt13", cat:"Anatolian Morning Table", enName:"Turkey Ham Sandwich", arName:"ساندويتش تركي هام", price:30, enDesc:"Light deli option—turkey ham sandwich with fresh vegetables and soft bread, offering approachable choice for those seeking familiar deli flavors in balanced, not-too-heavy presentation.", arDesc:"خيار لحوم بارد خفيف—ساندويتش تركي هام مع خضروات طازجة وخبز طري، يقدم اختياراً سهلاً لمن يبحثون عن نكهات اللحوم الباردة المألوفة في تقديم متوازن وغير ثقيل جداً.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkeyhamsandwich.jpg", calories:"390 kcal", dietary:[] }
         ];
         
-        // Cart Management
-        let cart = JSON.parse(localStorage.getItem('turkiana_cart')) || [];
-        let orderComment = localStorage.getItem('turkiana_order_comment') || '';
-        
         // Get unique categories
         const categories = [...new Set(menuItems.map(item => item.cat))];
         
@@ -1557,6 +1480,8 @@
         // Display menu items
         const menuContainer = document.getElementById('menu-items-container');
         const categoryButtons = document.querySelectorAll('.category-btn');
+        const itemModal = document.getElementById('item-modal');
+        const modalClose = document.getElementById('item-modal-close');
         
         function displayMenuItems(category = 'all') {
             menuContainer.innerHTML = '';
@@ -1612,11 +1537,13 @@
                                 ${dietaryTags}
                             </div>
                         </div>
-                        <button class="add-to-cart-btn" data-id="${item.id}">
-                            Add to Cart
-                        </button>
                     </div>
                 `;
+                
+                // Add click event to show modal
+                menuItem.addEventListener('click', () => {
+                    showItemModal(item);
+                });
                 
                 menuContainer.appendChild(menuItem);
             });
@@ -1628,315 +1555,97 @@
         function updateMenuLanguage() {
             const isArabic = currentLang === 'ar';
             
-            document.querySelectorAll('.en-name, .ar-name, .en-desc, .ar-desc, .add-to-cart-btn').forEach(element => {
+            document.querySelectorAll('.en-name, .ar-name, .en-desc, .ar-desc').forEach(element => {
                 if (element.classList.contains('en-name') || element.classList.contains('en-desc')) {
                     element.style.display = isArabic ? 'none' : 'block';
                 } else if (element.classList.contains('ar-name') || element.classList.contains('ar-desc')) {
                     element.style.display = isArabic ? 'block' : 'none';
-                } else if (element.classList.contains('add-to-cart-btn')) {
-                    element.textContent = isArabic ? 'أضف إلى السلة' : 'Add to Cart';
                 }
             });
         }
         
-        // Update Cart Display
-        function updateCartDisplay() {
-            const cartItems = document.getElementById('cart-items');
-            const cartCount = document.getElementById('cart-count');
-            const cartTotal = document.getElementById('cart-total');
-            const orderCommentTextarea = document.getElementById('order-comment');
-
-            // Update count
-            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-            cartCount.textContent = totalItems;
-
-            // Update total
-            const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            cartTotal.textContent = totalAmount.toFixed(2) + ' QR';
-
-            // Update comment
-            orderCommentTextarea.value = orderComment;
-
-            // Update items
-            if (cart.length === 0) {
-                cartItems.innerHTML = '<p style="text-align: center; color: var(--text-light); padding: 20px;">Your cart is empty</p>';
-            } else {
-                cartItems.innerHTML = cart.map(item => `
-                    <div class="cart-item">
-                        <div class="cart-item-info">
-                            <h4>${currentLang === 'ar' ? item.arName : item.enName}</h4>
-                            <div class="cart-item-controls">
-                                <div class="quantity-control">
-                                    <button class="quantity-btn decrease" data-id="${item.id}">-</button>
-                                    <span class="quantity">${item.quantity}</span>
-                                    <button class="quantity-btn increase" data-id="${item.id}">+</button>
-                                </div>
-                                <button class="remove-item" data-id="${item.id}">${currentLang === 'ar' ? 'إزالة' : 'Remove'}</button>
-                            </div>
-                        </div>
-                        <div class="cart-item-subtotal">
-                            ${(item.price * item.quantity).toFixed(2)} QR
-                        </div>
-                    </div>
-                `).join('');
+        function updateModalLanguage() {
+            if (!itemModal.classList.contains('active')) return;
+            
+            const isArabic = currentLang === 'ar';
+            const modalNameEn = document.getElementById('modal-name-en');
+            const modalNameAr = document.getElementById('modal-name-ar');
+            const modalDescEn = document.getElementById('modal-desc-en');
+            const modalDescAr = document.getElementById('modal-desc-ar');
+            
+            if (modalNameEn && modalNameAr) {
+                modalNameEn.style.display = isArabic ? 'none' : 'block';
+                modalNameAr.style.display = isArabic ? 'block' : 'none';
             }
-
-            // Save to localStorage
-            localStorage.setItem('turkiana_cart', JSON.stringify(cart));
-            localStorage.setItem('turkiana_order_comment', orderComment);
+            
+            if (modalDescEn && modalDescAr) {
+                modalDescEn.style.display = isArabic ? 'none' : 'block';
+                modalDescAr.style.display = isArabic ? 'block' : 'none';
+            }
         }
-
-        // Add to Cart
-        function addToCart(itemId) {
-            const item = menuItems.find(i => i.id === itemId);
-            if (!item) return;
-
-            const existing = cart.find(i => i.id === itemId);
-            if (existing) {
-                existing.quantity += 1;
-            } else {
-                cart.push({ 
-                    id: item.id,
-                    enName: item.enName,
-                    arName: item.arName,
-                    price: item.price, 
-                    quantity: 1 
+        
+        function showItemModal(item) {
+            const modalImage = document.getElementById('modal-image');
+            const modalNameEn = document.getElementById('modal-name-en');
+            const modalNameAr = document.getElementById('modal-name-ar');
+            const modalPrice = document.getElementById('modal-price');
+            const modalDescEn = document.getElementById('modal-desc-en');
+            const modalDescAr = document.getElementById('modal-desc-ar');
+            const modalCalories = document.getElementById('modal-calories');
+            const modalDietary = document.getElementById('modal-dietary');
+            
+            // Set modal content
+            modalImage.src = item.image;
+            modalImage.alt = item.enName;
+            modalNameEn.textContent = item.enName;
+            modalNameAr.textContent = item.arName;
+            modalPrice.textContent = `${item.price} QR`;
+            modalDescEn.textContent = item.enDesc;
+            modalDescAr.textContent = item.arDesc;
+            modalCalories.textContent = item.calories;
+            
+            // Create dietary tags
+            modalDietary.innerHTML = '';
+            if (item.dietary) {
+                item.dietary.forEach(tag => {
+                    let displayTag = tag;
+                    switch(tag) {
+                        case 'vegan': displayTag = 'Vegan'; break;
+                        case 'vegetarian': displayTag = 'Vegetarian'; break;
+                        case 'gluten-free': displayTag = 'Gluten Free'; break;
+                        case 'dairy-free': displayTag = 'Dairy Free'; break;
+                        case 'contains-dairy': displayTag = 'Contains Dairy'; break;
+                        case 'contains-nuts': displayTag = 'Contains Nuts'; break;
+                        case 'contains-gluten': displayTag = 'Contains Gluten'; break;
+                    }
+                    const tagElement = document.createElement('span');
+                    tagElement.className = 'item-modal-dietary-tag';
+                    tagElement.textContent = displayTag;
+                    modalDietary.appendChild(tagElement);
                 });
             }
-
-            updateCartDisplay();
-            document.getElementById('cart-modal').classList.add('active');
             
-            // Show notification
-            showNotification(currentLang === 'ar' ? 'تمت الإضافة إلى السلة' : 'Added to cart');
-        }
-
-        // Remove from Cart
-        function removeFromCart(itemId) {
-            cart = cart.filter(item => item.id !== itemId);
-            updateCartDisplay();
-        }
-
-        // Update Quantity
-        function updateQuantity(itemId, change) {
-            const item = cart.find(i => i.id === itemId);
-            if (item) {
-                item.quantity += change;
-                if (item.quantity < 1) {
-                    removeFromCart(itemId);
-                } else {
-                    updateCartDisplay();
-                }
-            }
-        }
-
-        // Clear Cart
-        function clearCart() {
-            if (confirm(currentLang === 'ar' ? 'هل تريد تفريغ السلة؟' : 'Clear all items from cart?')) {
-                cart = [];
-                orderComment = '';
-                updateCartDisplay();
-            }
-        }
-
-        // Print Order - FIXED VERSION
-        function printOrder() {
-            if (cart.length === 0) {
-                alert(currentLang === 'ar' ? 'السلة فارغة' : 'Your cart is empty');
-                return;
-            }
-
-            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const date = new Date().toLocaleString('en-US', { 
-                weekday: 'long', 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit'
-            });
-
-            const comment = document.getElementById('order-comment').value;
-            orderComment = comment;
-            localStorage.setItem('turkiana_order_comment', comment);
-
-            const printContent = `
-                <!DOCTYPE html>
-                <html>
-                <head>
-                    <title>Turkiana Cafe Order</title>
-                    <meta charset="UTF-8">
-                    <style>
-                        body { 
-                            font-family: 'Cairo', 'Arial', sans-serif; 
-                            padding: 20px; 
-                            max-width: 400px;
-                            margin: 0 auto;
-                            direction: ${currentLang === 'ar' ? 'rtl' : 'ltr'};
-                        }
-                        @page { 
-                            margin: 0; 
-                            size: auto;
-                        }
-                        .header { 
-                            text-align: center; 
-                            margin-bottom: 20px; 
-                            padding-bottom: 15px;
-                            border-bottom: 2px solid #8B4513;
-                        }
-                        .logo { 
-                            font-size: 24px; 
-                            font-weight: bold; 
-                            color: #8B4513; 
-                            margin-bottom: 5px;
-                        }
-                        .logo span { 
-                            color: #D4AF37; 
-                        }
-                        .order-info { 
-                            margin-bottom: 15px;
-                            font-size: 14px;
-                            color: #666;
-                        }
-                        table { 
-                            width: 100%; 
-                            border-collapse: collapse; 
-                            margin: 15px 0; 
-                            font-size: 14px;
-                        }
-                        th { 
-                            background: #8B4513; 
-                            color: white; 
-                            padding: 8px 5px; 
-                            text-align: left; 
-                            font-weight: 600;
-                        }
-                        td { 
-                            padding: 8px 5px; 
-                            border-bottom: 1px solid #ddd; 
-                        }
-                        .item-name { 
-                            max-width: 150px; 
-                            word-wrap: break-word;
-                        }
-                        .total-row { 
-                            font-weight: bold; 
-                            font-size: 16px; 
-                            padding-top: 15px; 
-                            border-top: 2px solid #8B4513;
-                        }
-                        .comment-box { 
-                            margin-top: 20px; 
-                            padding: 10px; 
-                            background: #f8f4e9; 
-                            border-radius: 5px;
-                            border-left: 3px solid #D4AF37;
-                            font-size: 14px;
-                        }
-                        .comment-label { 
-                            font-weight: bold; 
-                            color: #8B4513; 
-                            margin-bottom: 5px;
-                        }
-                        .footer { 
-                            text-align: center; 
-                            margin-top: 20px; 
-                            padding-top: 15px;
-                            border-top: 1px solid #ddd;
-                            font-size: 12px;
-                            color: #666;
-                        }
-                        .total-amount {
-                            font-size: 18px;
-                            color: #D4AF37;
-                            font-weight: bold;
-                        }
-                    </style>
-                </head>
-                <body>
-                    <div class="header">
-                        <div class="logo">Turkiana<span>Cafe</span> & Sweets</div>
-                        <div class="order-info">${date}</div>
-                        <div class="order-info">7GPG+Q2R, Al Kahraba St, Doha, Qatar</div>
-                        <div class="order-info">Tel: +974 5186 6671</div>
-                    </div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>${currentLang === 'ar' ? 'الصنف' : 'Item'}</th>
-                                <th>${currentLang === 'ar' ? 'الكمية' : 'Qty'}</th>
-                                <th>${currentLang === 'ar' ? 'السعر' : 'Price'}</th>
-                                <th>${currentLang === 'ar' ? 'المجموع' : 'Total'}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            ${cart.map(item => `
-                                <tr>
-                                    <td class="item-name">${currentLang === 'ar' ? item.arName : item.enName}</td>
-                                    <td>${item.quantity}</td>
-                                    <td>${item.price} QR</td>
-                                    <td>${(item.price * item.quantity).toFixed(2)} QR</td>
-                                </tr>
-                            `).join('')}
-                            <tr class="total-row">
-                                <td colspan="3">${currentLang === 'ar' ? 'الإجمالي:' : 'Total:'}</td>
-                                <td class="total-amount">${total.toFixed(2)} QR</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    ${comment ? `
-                    <div class="comment-box">
-                        <div class="comment-label">${currentLang === 'ar' ? 'تعليمات خاصة:' : 'Special Instructions:'}</div>
-                        <div>${comment}</div>
-                    </div>
-                    ` : ''}
-                    <div class="footer">
-                        ${currentLang === 'ar' ? 'شكراً لزيارتكم - نتمنى لكم يومًا سعيدًا' : 'Thank you for visiting - Have a wonderful day!'}
-                    </div>
-                </body>
-                </html>
-            `;
-
-            const printWindow = window.open('', '_blank');
-            printWindow.document.write(printContent);
-            printWindow.document.close();
+            // Update language display
+            updateModalLanguage();
             
-            // Wait for content to load before printing
-            setTimeout(() => {
-                printWindow.print();
-                printWindow.close();
-            }, 250);
+            // Show modal
+            itemModal.classList.add('active');
         }
         
-        // Show notification
-        function showNotification(message) {
-            // Remove existing notification
-            const existingNotification = document.querySelector('.notification');
-            if (existingNotification) {
-                existingNotification.remove();
+        // Close modal
+        modalClose.addEventListener('click', () => {
+            itemModal.classList.remove('active');
+        });
+        
+        // Close modal when clicking outside
+        itemModal.addEventListener('click', (e) => {
+            if (e.target === itemModal) {
+                itemModal.classList.remove('active');
             }
-            
-            // Create notification
-            const notification = document.createElement('div');
-            notification.className = 'notification';
-            notification.innerHTML = `
-                <div style="position: fixed; top: 100px; right: 20px; background: var(--success); color: white; padding: 15px 20px; border-radius: 5px; box-shadow: var(--shadow); z-index: 3000; animation: slideIn 0.3s ease;">
-                    <i class="fas fa-check-circle" style="margin-right: 10px;"></i>
-                    ${message}
-                </div>
-            `;
-            
-            document.body.appendChild(notification);
-            
-            // Remove notification after 3 seconds
-            setTimeout(() => {
-                notification.remove();
-            }, 3000);
-        }
+        });
         
         // Initial display
         displayMenuItems();
-        updateCartDisplay();
         
         // Category filtering
         categoryButtons.forEach(button => {
@@ -1955,59 +1664,6 @@
                     document.getElementById('menu').scrollIntoView({ behavior: 'smooth' });
                 }
             });
-        });
-        
-        // Add to cart buttons
-        document.addEventListener('click', (e) => {
-            if (e.target.classList.contains('add-to-cart-btn')) {
-                const itemId = e.target.dataset.id;
-                addToCart(itemId);
-            }
-        });
-
-        // Cart badge click
-        document.getElementById('cart-badge').addEventListener('click', () => {
-            document.getElementById('cart-modal').classList.add('active');
-        });
-
-        // Close modal
-        document.getElementById('close-modal').addEventListener('click', () => {
-            document.getElementById('cart-modal').classList.remove('active');
-        });
-
-        // Cart item controls
-        document.addEventListener('click', (e) => {
-            if (e.target.classList.contains('increase')) {
-                const itemId = e.target.dataset.id;
-                updateQuantity(itemId, 1);
-            }
-            if (e.target.classList.contains('decrease')) {
-                const itemId = e.target.dataset.id;
-                updateQuantity(itemId, -1);
-            }
-            if (e.target.classList.contains('remove-item')) {
-                const itemId = e.target.dataset.id;
-                removeFromCart(itemId);
-            }
-        });
-
-        // Clear cart
-        document.getElementById('clear-cart').addEventListener('click', clearCart);
-
-        // Print order
-        document.getElementById('print-order').addEventListener('click', printOrder);
-        
-        // Update comment when typing
-        document.getElementById('order-comment').addEventListener('input', (e) => {
-            orderComment = e.target.value;
-            localStorage.setItem('turkiana_order_comment', orderComment);
-        });
-
-        // Close modal when clicking outside
-        document.getElementById('cart-modal').addEventListener('click', (e) => {
-            if (e.target.id === 'cart-modal') {
-                document.getElementById('cart-modal').classList.remove('active');
-            }
         });
         
         // Form submission
@@ -2038,7 +1694,7 @@
             reservationForm.reset();
         });
         
-        // Gallery modal functionality (simplified)
+        // Gallery item click
         document.querySelectorAll('.gallery-item').forEach(item => {
             item.addEventListener('click', () => {
                 // In a real implementation, this would open a lightbox/modal
@@ -2073,29 +1729,13 @@
         // Update language when language changes
         const observer = new MutationObserver(() => {
             updateMenuLanguage();
-            updateCartDisplay();
+            updateModalLanguage();
         });
         
         observer.observe(document.body, { 
             attributes: true, 
             attributeFilter: ['class'] 
         });
-        
-        // Add CSS for notification animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes slideIn {
-                from {
-                    transform: translateX(100%);
-                    opacity: 0;
-                }
-                to {
-                    transform: translateX(0);
-                    opacity: 1;
-                }
-            }
-        `;
-        document.head.appendChild(style);
     </script>
 </body>
 </html>
