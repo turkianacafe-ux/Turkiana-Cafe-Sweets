@@ -7,10 +7,68 @@
     <meta name="description" content="Experience authentic Turkish coffee, baklava, and sweets at Turkiana Cafe in Doha, Qatar. Traditional Arabic & Turkish drinks, desserts, breakfast, and more.">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Video.mp4" as="video" type="video/mp4">
+    <link rel="preconnect" href="https://turkianacafe-ux.github.io" crossorigin>
+    
+    <!-- SEO & Social Media Meta Tags -->
+    <meta property="og:title" content="Turkiana Cafe & Sweets | Authentic Turkish & Arabic Delights in Doha">
+    <meta property="og:image" content="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg">
+    <meta property="og:description" content="Experience authentic Turkish coffee, baklava, and sweets at Turkiana Cafe in Doha, Qatar">
+    <meta property="og:url" content="https://turkianacafe.com">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="ar_QA">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@turkiana.qa">
+    <meta name="twitter:title" content="Turkiana Cafe & Sweets | Authentic Turkish & Arabic Delights">
+    <meta name="twitter:description" content="Experience authentic Turkish coffee, baklava, and sweets in Doha">
+    <meta name="twitter:image" content="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg">
+    
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Restaurant",
+        "name": "Turkiana Cafe & Sweets",
+        "image": "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg",
+        "description": "Authentic Turkish & Arabic coffee, sweets, and cuisine in the heart of Doha, Qatar",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Al Kahraba Street",
+            "addressLocality": "Doha",
+            "addressRegion": "Doha",
+            "postalCode": "",
+            "addressCountry": "QA"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "25.2854",
+            "longitude": "51.5310"
+        },
+        "openingHours": [
+            "Mo-Su 08:00-00:00",
+            "Th-Fr 08:00-01:00"
+        ],
+        "telephone": "+974-5186-6671",
+        "servesCuisine": ["Turkish", "Arabic", "Middle Eastern"],
+        "priceRange": "$$",
+        "url": "https://turkianacafe.com"
+    }
+    </script>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☕</text></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☕</text></svg>">
+    
+    <!-- External Resources -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
         /* Reset & Base Styles */
         * {
@@ -30,7 +88,7 @@
             --text-light: #666666;
             --shadow: 0 5px 15px rgba(0,0,0,0.1);
             --shadow-heavy: 0 10px 30px rgba(0,0,0,0.25);
-            --transition: all 0.3s ease;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             --success: #28a745;
         }
 
@@ -125,6 +183,26 @@
             cursor: pointer;
             font-size: 1.05rem;
             box-shadow: 0 4px 12px rgba(139, 69, 19, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
         }
 
         .btn:hover {
@@ -157,6 +235,39 @@
             color: var(--success);
         }
 
+        /* Accessibility Improvements */
+        :focus {
+            outline: 3px solid var(--secondary);
+            outline-offset: 2px;
+        }
+
+        .btn:focus, .category-btn:focus, .menu-item:focus {
+            outline: 3px solid var(--secondary);
+            outline-offset: 2px;
+        }
+
+        /* High Contrast Support */
+        @media (prefers-contrast: high) {
+            :root {
+                --primary: #6B3300;
+                --secondary: #B8860B;
+                --accent: #8B0000;
+            }
+        }
+
+        /* Reduce Motion */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            
+            .btn::before {
+                display: none;
+            }
+        }
+
         /* Header & Navigation */
         header {
             background-color: rgba(255, 255, 255, 0.98);
@@ -182,6 +293,7 @@
             display: flex;
             align-items: center;
             gap: 12px;
+            text-decoration: none;
         }
 
         .logo-icon {
@@ -250,10 +362,18 @@
             cursor: pointer;
             color: var(--primary);
             transition: var(--transition);
+            background: none;
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
         }
 
         .mobile-toggle:hover {
             transform: scale(1.1);
+            background: rgba(139, 69, 19, 0.1);
         }
 
         /* Language Toggle */
@@ -272,6 +392,11 @@
             transition: var(--transition);
             font-weight: 600;
             font-size: 0.95rem;
+            min-width: 44px;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .lang-btn:hover {
@@ -284,7 +409,7 @@
             box-shadow: 0 3px 10px rgba(139, 69, 19, 0.2);
         }
 
-        /* FIXED: Hero Section with Video Background - Luxurious */
+        /* Hero Section with Video Background */
         .hero {
             padding-top: 130px;
             color: white;
@@ -346,7 +471,7 @@
             margin-top: 40px;
         }
 
-        /* Video Container - Enhanced */
+        /* Video Container with Controls */
         .video-container {
             position: absolute;
             top: 0;
@@ -369,22 +494,61 @@
             filter: brightness(0.8);
         }
 
-        /* About Section - Enhanced */
+        .video-controls {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            z-index: 3;
+            display: flex;
+            gap: 10px;
+        }
+
+        .video-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+        }
+
+        .video-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        /* Shimmer Effect for Loading */
+        .shimmer {
+            background: linear-gradient(90deg, 
+                rgba(255,255,255,0) 0%, 
+                rgba(255,255,255,0.3) 50%, 
+                rgba(255,255,255,0) 100%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        .menu-item-img.shimmer {
+            height: 200px;
+            width: 100%;
+            border-radius: 15px 15px 0 0;
+        }
+
+        /* About Section */
         .about {
             background-color: white;
             position: relative;
             overflow: hidden;
-        }
-
-        .about::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 300px;
-            height: 300px;
-            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%238b4513' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
-            z-index: 0;
         }
 
         .about-content {
@@ -405,18 +569,8 @@
         }
 
         .about-img:hover {
-            transform: translateY(-10px);
+            transform: translateY(-10px) scale(1.02);
             box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        }
-
-        .about-img::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, transparent 0%, rgba(139, 69, 19, 0.1) 100%);
         }
 
         .about-text h3 {
@@ -452,28 +606,15 @@
             margin-top: 30px;
             border-left: 4px solid var(--secondary);
             box-shadow: var(--shadow);
+            transition: var(--transition);
         }
 
-        .hours h4 {
-            margin-bottom: 15px;
-            color: var(--primary);
-            font-size: 1.3rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        .hours:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
         }
 
-        .hours h4 i {
-            color: var(--secondary);
-        }
-
-        .hours p {
-            margin-bottom: 8px;
-            font-size: 1rem;
-            color: var(--text);
-        }
-
-        /* Menu Section - OPTIMIZED FOR 4-COLUMN ON TABLET */
+        /* Menu Section - Enhanced */
         .menu {
             background-color: var(--light);
             position: relative;
@@ -540,6 +681,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            min-height: 44px;
         }
 
         .category-btn::before {
@@ -573,7 +715,7 @@
             box-shadow: 0 0 25px rgba(212, 175, 55, 0.5);
         }
 
-        /* UPDATED: ALWAYS 4 COLUMNS ON TABLET AND DESKTOP */
+        /* Menu Items Grid - Always 4 columns on tablet/desktop */
         .menu-items {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -593,8 +735,13 @@
             display: flex;
             flex-direction: column;
             border: 1px solid rgba(0,0,0,0.08);
-            transform-style: preserve-3d;
-            perspective: 1000px;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            user-select: none;
+        }
+
+        .menu-item:active {
+            transform: scale(0.98);
         }
 
         .menu-item:hover {
@@ -607,16 +754,7 @@
             height: 200px;
             overflow: hidden;
             position: relative;
-        }
-
-        .menu-item-img::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, transparent 0%, rgba(139, 69, 19, 0.1) 100%);
+            background: var(--light);
         }
 
         .menu-item-img img {
@@ -654,7 +792,6 @@
             letter-spacing: -0.3px;
         }
 
-        /* Enhanced Price Tags */
         .menu-item-price {
             color: white;
             font-weight: 700;
@@ -670,255 +807,95 @@
             letter-spacing: 0.5px;
         }
 
-        .menu-item-desc {
-            color: var(--text-light);
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            flex-grow: 1;
-            line-height: 1.6;
+        /* Search Bar */
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto 40px;
+            position: relative;
         }
 
-        .menu-item-details {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(0,0,0,0.08);
+        .search-bar {
+            width: 100%;
+            padding: 18px 25px 18px 60px;
+            border: 2px solid rgba(139, 69, 19, 0.2);
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-family: 'Cairo', sans-serif;
+            background: white;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: var(--transition);
         }
 
-        .calories {
-            color: var(--text-light);
-            font-size: 0.85rem;
-            background: var(--light);
-            padding: 6px 14px;
-            border-radius: 15px;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 5px;
+        .search-bar:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 5px 25px rgba(139, 69, 19, 0.2);
         }
 
-        .calories i {
-            color: var(--accent);
-        }
-
-        .dietary-tags {
-            display: flex;
-            gap: 6px;
-            flex-wrap: wrap;
-            justify-content: flex-end;
-        }
-
-        .dietary-tag {
-            background: var(--light);
-            padding: 5px 12px;
-            border-radius: 12px;
-            font-size: 0.75rem;
-            color: var(--text-light);
-            border: 1px solid rgba(0,0,0,0.08);
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        /* Enhanced Popular Badge */
-        .popular-badge {
+        .search-icon {
             position: absolute;
-            top: 15px;
-            right: 15px;
-            background: linear-gradient(135deg, var(--accent) 0%, #d9364f 100%);
-            color: white;
-            padding: 8px 18px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            z-index: 1;
-            box-shadow: 0 5px 15px rgba(196, 30, 58, 0.4);
-            animation: pulse 2s infinite;
-            letter-spacing: 0.5px;
+            left: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        .voice-search-btn {
+            position: absolute;
+            right: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
-            gap: 6px;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .voice-search-btn:hover {
+            background: rgba(139, 69, 19, 0.1);
+        }
+
+        .voice-search-btn.listening {
+            background: var(--accent);
+            color: white;
+            animation: pulse 1.5s infinite;
         }
 
         @keyframes pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(196, 30, 58, 0.7);
-            }
-            70% {
-                box-shadow: 0 0 0 10px rgba(196, 30, 58, 0);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(196, 30, 58, 0);
-            }
+            0% { box-shadow: 0 0 0 0 rgba(196, 30, 58, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(196, 30, 58, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(196, 30, 58, 0); }
         }
 
-        /* Item Modal - Enhanced */
-        .item-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.9);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            animation: fadeIn 0.3s ease;
+        /* No Results Message */
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-light);
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .item-modal.active {
-            display: flex;
-        }
-
-        .item-modal-content {
-            background: white;
-            border-radius: 20px;
-            max-width: 900px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            padding: 40px;
-            animation: modalSlideIn 0.4s ease;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-        }
-
-        @keyframes modalSlideIn {
-            from { transform: translateY(50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        .item-modal-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: var(--light);
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            width: 45px;
-            height: 45px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            color: var(--text);
-            transition: var(--transition);
-            z-index: 10;
-        }
-
-        .item-modal-close:hover {
-            background: var(--accent);
-            color: white;
-            transform: rotate(90deg);
-        }
-
-        .item-modal-img {
-            border-radius: 15px;
-            overflow: hidden;
-            height: 350px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .item-modal-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .item-modal-info {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .item-modal-name {
-            font-size: 2.2rem;
+        .no-results i {
+            font-size: 3rem;
+            margin-bottom: 20px;
             color: var(--primary);
-            margin-bottom: 15px;
-            line-height: 1.2;
+            opacity: 0.5;
         }
 
-        .item-modal-price {
-            font-size: 1.8rem;
-            color: var(--secondary);
-            font-weight: 700;
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .item-modal-desc {
-            color: var(--text);
-            margin-bottom: 25px;
-            line-height: 1.8;
-            font-size: 1.05rem;
-        }
-
-        .item-modal-details {
-            margin-top: auto;
-            padding-top: 25px;
-            border-top: 1px solid rgba(0,0,0,0.1);
-        }
-
-        .item-modal-calories {
-            color: var(--text-light);
-            margin-bottom: 15px;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .item-modal-dietary {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .item-modal-dietary-tag {
-            background: var(--light);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            color: var(--text-light);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        /* Gallery Section - Enhanced */
+        /* Gallery Section with Lightbox */
         .gallery {
             background-color: white;
             position: relative;
             overflow: hidden;
-        }
-
-        .gallery::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 400px;
-            height: 400px;
-            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%238b4513' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
-            z-index: 0;
         }
 
         .gallery-container {
@@ -937,6 +914,7 @@
             cursor: pointer;
             box-shadow: var(--shadow);
             transition: var(--transition);
+            -webkit-tap-highlight-color: transparent;
         }
 
         .gallery-item:hover {
@@ -973,99 +951,162 @@
             opacity: 1;
         }
 
-        .gallery-overlay i {
-            color: white;
-            font-size: 3rem;
-            transform: scale(0.8);
-            transition: var(--transition);
-        }
-
-        .gallery-item:hover .gallery-overlay i {
-            transform: scale(1);
-        }
-
-        /* Contact Section - Enhanced */
-        .contact {
-            background-color: var(--light);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .contact-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .contact-info h3 {
-            font-size: 2rem;
-            margin-bottom: 25px;
-            color: var(--primary);
-            position: relative;
-            display: inline-block;
-        }
-
-        .contact-info h3::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
             left: 0;
-            width: 60px;
-            height: 3px;
-            background: var(--secondary);
-            border-radius: 1.5px;
-        }
-
-        .contact-details {
-            margin-top: 35px;
-        }
-
-        .contact-item {
-            display: flex;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 2000;
             align-items: center;
-            gap: 20px;
-            margin-bottom: 25px;
+            justify-content: center;
             padding: 20px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
+            animation: fadeIn 0.3s ease;
         }
 
-        .contact-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        .lightbox.active {
+            display: flex;
         }
 
-        .contact-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--primary) 0%, #9c5c2e 100%);
-            border-radius: 50%;
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+            animation: zoomIn 0.3s ease;
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .lightbox-img {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
+            border-radius: 50%;
             color: white;
-            font-size: 1.5rem;
-            flex-shrink: 0;
-            box-shadow: 0 5px 15px rgba(139, 69, 19, 0.3);
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
         }
 
-        .contact-item h4 {
-            color: var(--primary);
-            margin-bottom: 5px;
-            font-size: 1.2rem;
+        .lightbox-close:hover {
+            background: var(--accent);
+            transform: rotate(90deg);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.1);
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: white;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+
+        .lightbox-nav:hover {
+            background: var(--secondary);
+            color: var(--dark);
+        }
+
+        .lightbox-prev {
+            left: 20px;
+        }
+
+        .lightbox-next {
+            right: 20px;
+        }
+
+        .lightbox-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            color: white;
+            padding: 10px;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+            border-radius: 0 0 10px 10px;
+        }
+
+        /* Interactive Map Section */
+        .map-section {
+            background: var(--light);
+            padding: 60px 0;
         }
 
         .map-container {
-            margin-top: 25px;
-            border-radius: 15px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .map-info {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-heavy);
+        }
+
+        .map-placeholder {
+            background: linear-gradient(135deg, var(--light), #e8e0d5);
+            border-radius: 20px;
             overflow: hidden;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
             box-shadow: var(--shadow);
         }
 
+        .map-placeholder i {
+            font-size: 4rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            opacity: 0.7;
+        }
+
+        .directions-btn {
+            margin-top: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Contact Form with Enhanced Validation */
         .contact-form {
             background: white;
             padding: 40px;
@@ -1074,27 +1115,9 @@
             border: 1px solid rgba(0,0,0,0.05);
         }
 
-        .contact-form h3 {
-            font-size: 2rem;
-            margin-bottom: 25px;
-            color: var(--primary);
-            position: relative;
-            display: inline-block;
-        }
-
-        .contact-form h3::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 60px;
-            height: 3px;
-            background: var(--secondary);
-            border-radius: 1.5px;
-        }
-
         .form-group {
             margin-bottom: 25px;
+            position: relative;
         }
 
         .form-group label {
@@ -1123,88 +1146,174 @@
             box-shadow: 0 5px 15px rgba(139, 69, 19, 0.1);
         }
 
-        /* Reservation Success Modal */
-        .reservation-modal {
+        .form-control.error {
+            border-color: var(--accent);
+            background: rgba(196, 30, 58, 0.05);
+        }
+
+        .error-message {
+            color: var(--accent);
+            font-size: 0.85rem;
+            margin-top: 5px;
             display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        /* Toast Notifications */
+        .toast {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.9);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .reservation-modal.active {
-            display: flex;
-        }
-
-        .reservation-modal-content {
+            bottom: 30px;
+            right: 30px;
             background: white;
-            border-radius: 20px;
-            max-width: 550px;
-            width: 100%;
-            padding: 50px;
-            text-align: center;
-            position: relative;
-            animation: modalSlideIn 0.4s ease;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            padding: 20px 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 2001;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: var(--transition);
+            max-width: 400px;
         }
 
-        .reservation-modal-icon {
-            font-size: 5rem;
-            color: var(--success);
-            margin-bottom: 25px;
-            animation: bounce 1s ease infinite alternate;
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
         }
 
-        @keyframes bounce {
-            from { transform: translateY(0); }
-            to { transform: translateY(-10px); }
-        }
-
-        .reservation-modal-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: var(--light);
-            border: none;
+        .toast-icon {
             font-size: 1.5rem;
+            color: var(--success);
+        }
+
+        .toast.error .toast-icon {
+            color: var(--accent);
+        }
+
+        .toast-close {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
             cursor: pointer;
-            width: 45px;
-            height: 45px;
+            color: var(--text-light);
+            transition: var(--transition);
+            margin-left: auto;
+        }
+
+        .toast-close:hover {
+            color: var(--accent);
+        }
+
+        /* Dark Mode Toggle */
+        .theme-toggle {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 999;
+        }
+
+        .theme-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            border: none;
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 50%;
-            color: var(--text);
+            font-size: 1.5rem;
+            box-shadow: 0 5px 20px rgba(139, 69, 19, 0.3);
             transition: var(--transition);
         }
 
-        .reservation-modal-close:hover {
-            background: var(--accent);
-            color: white;
-            transform: rotate(90deg);
+        .theme-btn:hover {
+            transform: scale(1.1) rotate(15deg);
+            box-shadow: 0 8px 30px rgba(139, 69, 19, 0.4);
         }
 
-        .reservation-modal-content h3 {
-            font-size: 2.2rem;
-            margin-bottom: 15px;
+        /* Share Buttons */
+        .share-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .share-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--light);
+            border: none;
+            color: var(--primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            font-size: 1.2rem;
+        }
+
+        .share-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            background: linear-gradient(135deg, var(--light) 0%, #f0e9db 100%);
+            padding: 80px 0;
+        }
+
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .testimonial {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            margin: 20px;
+            transition: var(--transition);
+        }
+
+        .testimonial:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .testimonial-rating {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--text);
+            margin-bottom: 25px;
+            line-height: 1.7;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
             color: var(--primary);
         }
 
-        .reservation-modal-content p {
-            color: var(--text-light);
-            margin-bottom: 30px;
-            font-size: 1.1rem;
-            line-height: 1.6;
-        }
-
-        /* Footer - Enhanced */
+        /* Footer Enhancements */
         footer {
             background: linear-gradient(135deg, var(--dark) 0%, #1A0F0A 100%);
             color: white;
@@ -1213,125 +1322,35 @@
             overflow: hidden;
         }
 
-        footer::before {
-            content: '';
+        .back-to-top {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
-        }
-
-        .footer-container {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 50px;
-            margin-bottom: 50px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .footer-col h3 {
-            color: white;
-            font-size: 1.4rem;
-            margin-bottom: 25px;
-            position: relative;
-            padding-bottom: 12px;
-        }
-
-        .footer-col h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 3px;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
             background: var(--secondary);
-            border-radius: 1.5px;
-        }
-
-        .footer-col p {
-            color: #bbb;
-            margin-bottom: 18px;
-            font-size: 1rem;
-            line-height: 1.7;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 25px;
-        }
-
-        .social-links a {
-            width: 45px;
-            height: 45px;
-            background: rgba(255,255,255,0.1);
+            color: var(--dark);
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
             transition: var(--transition);
-            font-size: 1.2rem;
+            border: none;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
         }
 
-        .social-links a:hover {
-            background: var(--secondary);
-            color: var(--dark);
-            transform: translateY(-5px) scale(1.1);
+        .back-to-top:hover {
+            transform: translateX(-50%) translateY(-5px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
         }
 
-        .footer-links li {
-            margin-bottom: 12px;
-        }
-
-        .footer-links a {
-            color: #bbb;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.05rem;
-        }
-
-        .footer-links a:hover {
-            color: var(--secondary);
-            padding-left: 8px;
-        }
-
-        .footer-links a i {
-            font-size: 0.9rem;
-            color: var(--secondary);
-        }
-
-        .contact-info-footer p {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 15px;
-        }
-
-        .contact-info-footer i {
-            color: var(--secondary);
-            width: 20px;
-            text-align: center;
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: #999;
-            font-size: 0.95rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* WhatsApp Button */
+        /* WhatsApp Button with Animation */
         .whatsapp-btn {
             position: fixed;
-            bottom: 30px;
+            bottom: 100px;
             right: 30px;
             background: linear-gradient(135deg, #25D366, #128C7E);
             color: white;
@@ -1360,8 +1379,44 @@
             animation: none;
         }
 
-        /* RESPONSIVE DESIGN - OPTIMIZED FOR 4-COLUMN ON TABLET */
-        /* Large Desktops */
+        /* PWA Install Prompt */
+        .install-prompt {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 2002;
+            transition: var(--transition);
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .install-prompt.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .install-icon {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+
+        .install-close {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: var(--text-light);
+            margin-left: auto;
+        }
+
+        /* RESPONSIVE DESIGN */
         @media (max-width: 1600px) {
             .container {
                 max-width: 1300px;
@@ -1371,13 +1426,8 @@
                 grid-template-columns: repeat(4, 1fr);
                 gap: 22px;
             }
-            
-            .menu-item-img {
-                height: 180px;
-            }
         }
 
-        /* Desktops */
         @media (max-width: 1400px) {
             .container {
                 max-width: 1200px;
@@ -1387,49 +1437,16 @@
                 grid-template-columns: repeat(4, 1fr);
                 gap: 20px;
             }
-            
-            .menu-item-img {
-                height: 170px;
-            }
-            
-            .category-btn {
-                padding: 12px 20px;
-                font-size: 0.9rem;
-            }
         }
 
-        /* Laptops */
         @media (max-width: 1200px) {
             .container {
                 max-width: 1100px;
             }
             
-            /* KEEP 4 COLUMNS */
             .menu-items {
                 grid-template-columns: repeat(4, 1fr);
                 gap: 18px;
-            }
-            
-            .menu-item-img {
-                height: 160px;
-            }
-            
-            .menu-item-content {
-                padding: 18px;
-            }
-            
-            .menu-item-name {
-                font-size: 1.05rem;
-            }
-            
-            .menu-item-price {
-                font-size: 1rem;
-                padding: 6px 14px;
-            }
-            
-            .category-btn {
-                padding: 11px 18px;
-                font-size: 0.85rem;
             }
             
             .hero h1 {
@@ -1437,9 +1454,8 @@
             }
         }
 
-        /* Tablets - KEEP 4 COLUMNS */
         @media (max-width: 992px) {
-            .about-content, .contact-container {
+            .about-content, .contact-container, .map-container {
                 grid-template-columns: 1fr;
             }
             
@@ -1451,121 +1467,19 @@
                 font-size: 3rem;
             }
             
-            .hero-content {
-                padding: 30px;
-            }
-            
-            /* MAINTAIN 4 COLUMNS ON TABLET */
             .menu-items {
                 grid-template-columns: repeat(4, 1fr);
                 gap: 15px;
             }
             
-            .menu-item-img {
-                height: 140px;
-            }
-            
-            .menu-item-content {
-                padding: 15px;
-            }
-            
-            .menu-item-name {
-                font-size: 1rem;
-            }
-            
-            .menu-item-price {
-                font-size: 0.95rem;
-                padding: 5px 12px;
-                min-width: 65px;
-            }
-            
-            .menu-item-desc {
-                font-size: 0.85rem;
-                -webkit-line-clamp: 2;
-            }
-            
-            .menu-item-details {
-                margin-top: 12px;
-                padding-top: 12px;
-            }
-            
-            .item-modal-content {
-                grid-template-columns: 1fr;
-                max-width: 600px;
-                padding: 30px;
-                gap: 25px;
-            }
-            
-            .item-modal-img {
-                height: 250px;
-            }
-            
-            .menu-categories-container {
-                top: 80px;
-            }
-            
-            .category-btn {
-                padding: 10px 16px;
-                font-size: 0.8rem;
-            }
-            
             .gallery-container {
                 grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             }
-            
-            .gallery-item {
-                height: 250px;
-            }
         }
 
-        /* Large Tablets & Small Laptops */
-        @media (max-width: 900px) {
-            /* STILL 4 COLUMNS but smaller */
-            .menu-items {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 12px;
-            }
-            
-            .menu-item-img {
-                height: 130px;
-            }
-            
-            .menu-item-content {
-                padding: 12px;
-            }
-            
-            .menu-item-name {
-                font-size: 0.95rem;
-            }
-            
-            .menu-item-price {
-                font-size: 0.9rem;
-                padding: 4px 10px;
-                min-width: 60px;
-            }
-            
-            .menu-item-desc {
-                display: none;
-            }
-            
-            .menu-item-details {
-                font-size: 0.8rem;
-            }
-            
-            .calories {
-                padding: 4px 10px;
-            }
-            
-            .dietary-tag {
-                padding: 3px 8px;
-                font-size: 0.7rem;
-            }
-        }
-
-        /* Tablets in Portrait */
         @media (max-width: 768px) {
             .mobile-toggle {
-                display: block;
+                display: flex;
             }
             
             .nav-links {
@@ -1587,22 +1501,8 @@
                 left: 0;
             }
             
-            .nav-links li {
-                margin-bottom: 25px;
-            }
-            
-            .lang-toggle {
-                margin-left: 0;
-                justify-content: center;
-                margin-top: 25px;
-            }
-            
             .hero h1 {
                 font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
             }
             
             .hero-btns {
@@ -1611,77 +1511,18 @@
                 gap: 15px;
             }
             
-            .hero-btns .btn {
-                width: 250px;
-                text-align: center;
-            }
-            
-            .section {
-                padding: 60px 0;
-            }
-            
-            .section-title h2 {
-                font-size: 2.2rem;
-            }
-            
-            /* On medium tablets, switch to 2 columns for better readability */
             .menu-items {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 18px;
             }
             
-            .menu-item-img {
-                height: 160px;
-            }
-            
-            .menu-item-content {
-                padding: 16px;
-            }
-            
-            .menu-item-name {
-                font-size: 1.05rem;
-            }
-            
-            .menu-item-price {
-                font-size: 1rem;
-                padding: 6px 14px;
-            }
-            
-            .menu-item-desc {
-                display: -webkit-box;
-                -webkit-line-clamp: 2;
-            }
-            
-            .menu-item-details {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 10px;
-            }
-            
-            .dietary-tags {
-                justify-content: flex-start;
-                width: 100%;
-            }
-            
-            .category-btn {
-                padding: 9px 14px;
-                font-size: 0.75rem;
-            }
-            
-            .contact-form {
-                padding: 30px;
-            }
-            
-            .gallery-container {
-                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            }
-            
-            .gallery-item {
-                height: 220px;
+            .lightbox-nav, .lightbox-close {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
             }
         }
 
-        /* Small Tablets & Large Phones */
         @media (max-width: 640px) {
             .footer-container {
                 grid-template-columns: 1fr;
@@ -1691,153 +1532,30 @@
                 font-size: 2.2rem;
             }
             
-            .hero-content {
-                padding: 25px;
-            }
-            
-            /* 2 columns with adjusted sizing */
             .menu-items {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 15px;
             }
             
-            .menu-item-img {
-                height: 150px;
-            }
-            
-            .menu-item-content {
-                padding: 14px;
-            }
-            
-            .menu-item-name {
-                font-size: 1rem;
-            }
-            
-            .menu-item-price {
-                font-size: 0.95rem;
-                padding: 5px 12px;
-                min-width: 55px;
-            }
-            
-            .menu-item-details {
-                font-size: 0.85rem;
-            }
-            
-            .calories {
-                padding: 3px 8px;
-            }
-            
-            .dietary-tag {
-                font-size: 0.75rem;
-                padding: 2px 6px;
-            }
-            
-            .menu-categories {
-                gap: 8px;
-                padding-bottom: 10px;
-            }
-            
-            .category-btn {
-                padding: 8px 12px;
-                font-size: 0.7rem;
-            }
-            
-            .popular-badge {
-                top: 10px;
-                right: 10px;
-                padding: 6px 12px;
-                font-size: 0.7rem;
+            .theme-toggle {
+                bottom: 20px;
+                left: 20px;
             }
             
             .whatsapp-btn {
-                width: 55px;
-                height: 55px;
-                font-size: 1.8rem;
-                bottom: 20px;
+                bottom: 90px;
                 right: 20px;
-            }
-            
-            .reservation-modal-content {
-                padding: 30px;
-            }
-            
-            .item-modal-content {
-                padding: 25px;
-                margin: 10px;
             }
         }
 
-        /* Phones */
         @media (max-width: 480px) {
             .container {
                 padding: 0 20px;
             }
             
-            .header-container {
-                padding: 15px 20px;
-            }
-            
-            .logo-text {
-                font-size: 1.6rem;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-            }
-            
-            .section-title h2 {
-                font-size: 1.8rem;
-            }
-            
-            /* 2 columns with compact sizing */
             .menu-items {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 12px;
-            }
-            
-            .menu-item-img {
-                height: 130px;
-            }
-            
-            .menu-item-content {
-                padding: 12px;
-            }
-            
-            .menu-item-name {
-                font-size: 0.9rem;
-            }
-            
-            .menu-item-price {
-                font-size: 0.85rem;
-                padding: 4px 10px;
-                min-width: 50px;
-            }
-            
-            .menu-item-details {
-                font-size: 0.8rem;
-            }
-            
-            .calories {
-                padding: 2px 6px;
-            }
-            
-            .dietary-tag {
-                font-size: 0.7rem;
-                padding: 2px 5px;
-            }
-            
-            .category-btn {
-                padding: 6px 10px;
-                font-size: 0.65rem;
-            }
-            
-            .popular-badge {
-                padding: 4px 8px;
-                font-size: 0.65rem;
             }
             
             .gallery-container {
@@ -1845,41 +1563,21 @@
                 gap: 20px;
             }
             
-            .gallery-item {
-                height: 250px;
+            .theme-btn, .whatsapp-btn {
+                width: 55px;
+                height: 55px;
+                font-size: 1.8rem;
             }
         }
 
-        /* Very Small Phones */
         @media (max-width: 380px) {
             .menu-items {
                 grid-template-columns: 1fr;
                 gap: 20px;
             }
-            
-            .menu-item-img {
-                height: 180px;
-            }
-            
-            .menu-item-name {
-                font-size: 1.1rem;
-            }
-            
-            .menu-item-price {
-                font-size: 1rem;
-            }
-            
-            .category-btn {
-                padding: 5px 8px;
-                font-size: 0.6rem;
-            }
-            
-            .hero-btns .btn {
-                width: 100%;
-            }
         }
 
-        /* Full-screen mode for tablets */
+        /* Full-screen mode optimizations */
         @media (display-mode: fullscreen) {
             .container {
                 max-width: 1400px;
@@ -1889,24 +1587,6 @@
                 grid-template-columns: repeat(4, 1fr);
                 gap: 25px;
             }
-            
-            .menu-item-img {
-                height: 200px;
-            }
-            
-            .menu-item-name {
-                font-size: 1.2rem;
-            }
-            
-            .menu-item-price {
-                font-size: 1.1rem;
-            }
-            
-            .menu-item-desc {
-                font-size: 1rem;
-                display: -webkit-box;
-                -webkit-line-clamp: 3;
-            }
         }
 
         /* Print styles */
@@ -1914,39 +1594,46 @@
             .whatsapp-btn,
             .mobile-toggle,
             .hero-btns,
-            .contact-form,
-            .reservation-modal {
+            .theme-toggle,
+            .video-controls,
+            .install-prompt {
                 display: none !important;
+            }
+            
+            body {
+                background: white;
+                color: black;
             }
         }
     </style>
 </head>
 <body>
     <!-- Header & Navigation -->
-    <header id="header">
+    <header id="header" aria-label="Main navigation">
         <div class="container header-container">
-            <div class="logo">
-                <div class="logo-icon">
+            <a href="#home" class="logo" aria-label="Turkiana Cafe & Sweets Home">
+                <div class="logo-icon" aria-hidden="true">
                     <i class="fas fa-mug-hot"></i>
                 </div>
                 <div class="logo-text">Turkiana<span>Cafe</span></div>
-            </div>
+            </a>
             
-            <div class="mobile-toggle" id="mobile-toggle">
+            <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-links">
                 <i class="fas fa-bars"></i>
-            </div>
+            </button>
             
-            <nav>
+            <nav aria-label="Main navigation">
                 <ul class="nav-links" id="nav-links">
                     <li><a href="#home" class="active">Home</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#menu">Menu</a></li>
                     <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
                     <li><a href="#contact">Contact</a></li>
                     <li>
                         <div class="lang-toggle">
-                            <button class="lang-btn active" data-lang="en">EN</button>
-                            <button class="lang-btn" data-lang="ar">AR</button>
+                            <button class="lang-btn active" data-lang="en" aria-label="Switch to English">EN</button>
+                            <button class="lang-btn" data-lang="ar" aria-label="Switch to Arabic">AR</button>
                         </div>
                     </li>
                 </ul>
@@ -1954,10 +1641,27 @@
         </div>
     </header>
 
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-label="Image lightbox" aria-hidden="true">
+        <button class="lightbox-close" id="lightbox-close" aria-label="Close lightbox">
+            <i class="fas fa-times"></i>
+        </button>
+        <button class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Previous image">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Next image">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+        <div class="lightbox-content">
+            <img class="lightbox-img" id="lightbox-img" src="" alt="">
+            <div class="lightbox-caption" id="lightbox-caption"></div>
+        </div>
+    </div>
+
     <!-- Item Modal -->
-    <div class="item-modal" id="item-modal">
+    <div class="item-modal" id="item-modal" role="dialog" aria-label="Menu item details" aria-hidden="true">
         <div class="item-modal-content">
-            <button class="item-modal-close" id="item-modal-close">
+            <button class="item-modal-close" id="item-modal-close" aria-label="Close modal">
                 <i class="fas fa-times"></i>
             </button>
             <div class="item-modal-img">
@@ -1973,42 +1677,70 @@
                     <div class="item-modal-calories" id="modal-calories"></div>
                     <div class="item-modal-dietary" id="modal-dietary"></div>
                 </div>
+                <div class="share-buttons">
+                    <button class="share-btn" onclick="shareItem()" aria-label="Share this item">
+                        <i class="fas fa-share-alt"></i>
+                    </button>
+                    <button class="share-btn" onclick="shareOnFacebook()" aria-label="Share on Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </button>
+                    <button class="share-btn" onclick="shareOnTwitter()" aria-label="Share on Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </button>
+                    <button class="share-btn" onclick="shareOnWhatsApp()" aria-label="Share on WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Reservation Success Modal -->
-    <div class="reservation-modal" id="reservation-modal">
-        <div class="reservation-modal-content">
-            <button class="reservation-modal-close" id="reservation-modal-close">
-                <i class="fas fa-times"></i>
-            </button>
-            <div class="reservation-modal-icon">
-                <i class="fas fa-check-circle"></i>
-            </div>
-            <h3 class="en-message" id="reservation-success-en">Reservation Successful!</h3>
-            <h3 class="ar-message" id="reservation-success-ar" style="display: none;">تم الحجز بنجاح!</h3>
-            <p class="en-message" id="reservation-details-en">Your reservation has been confirmed. Check your WhatsApp for confirmation message.</p>
-            <p class="ar-message" id="reservation-details-ar" style="display: none;">تم تأكيد حجزك. تحقق من واتساب للحصول على رسالة التأكيد.</p>
-            <div class="whatsapp-open-container" style="margin-top: 25px;">
-                <a href="#" class="btn btn-success" id="open-whatsapp-btn">
-                    <i class="fab fa-whatsapp"></i>
-                    <span class="en-message">Open WhatsApp</span>
-                    <span class="ar-message" style="display: none;">فتح واتساب</span>
-                </a>
-            </div>
+    <!-- Toast Notification -->
+    <div class="toast" id="toast" role="alert" aria-live="polite" aria-atomic="true">
+        <div class="toast-icon">
+            <i class="fas fa-check-circle"></i>
         </div>
+        <div class="toast-message" id="toast-message"></div>
+        <button class="toast-close" id="toast-close" aria-label="Close notification">
+            <i class="fas fa-times"></i>
+        </button>
     </div>
 
-    <!-- Hero Section with Video Background -->
+    <!-- PWA Install Prompt -->
+    <div class="install-prompt" id="install-prompt">
+        <div class="install-icon">
+            <i class="fas fa-download"></i>
+        </div>
+        <div>
+            <h4 class="en-message">Install Turkiana Cafe App</h4>
+            <h4 class="ar-message" style="display: none;">تثبيت تطبيق تركيانا كافيه</h4>
+            <p class="en-message">Get faster access and offline features</p>
+            <p class="ar-message" style="display: none;">احصل على وصول أسرع وميزات دون اتصال</p>
+        </div>
+        <button class="install-close" id="install-close" aria-label="Close install prompt">
+            <i class="fas fa-times"></i>
+        </button>
+        <button class="btn btn-secondary" id="install-btn">
+            <span class="en-message">Install</span>
+            <span class="ar-message" style="display: none;">تثبيت</span>
+        </button>
+    </div>
+
+    <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="video-container">
-            <!-- FIXED: Using proper video element -->
-            <video autoplay muted loop playsinline class="hero-video">
+            <video autoplay muted loop playsinline class="hero-video" id="hero-video">
                 <source src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Video.mp4" type="video/mp4">
-                <!-- Fallback image in case video doesn't load -->
                 <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg" alt="Turkiana Cafe Background">
             </video>
+            <div class="video-controls">
+                <button class="video-btn" id="video-mute" aria-label="Toggle video sound">
+                    <i class="fas fa-volume-up"></i>
+                </button>
+                <button class="video-btn" id="video-pause" aria-label="Pause video">
+                    <i class="fas fa-pause"></i>
+                </button>
+            </div>
         </div>
         
         <div class="container">
@@ -2031,7 +1763,7 @@
             </div>
             <div class="about-content">
                 <div class="about-img">
-                    <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg" alt="Turkiana Cafe Interior">
+                    <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg" alt="Turkiana Cafe Interior" loading="lazy" width="600" height="400">
                 </div>
                 <div class="about-text">
                     <h3 data-en="Authentic Flavors of Turkey & Arabia in Doha" data-ar="نكهات تركية وعربية أصيلة في الدوحة">Authentic Flavors of Turkey & Arabia in Doha</h3>
@@ -2048,21 +1780,30 @@
         </div>
     </section>
 
-    <!-- Menu Section -->
+    <!-- Menu Section with Search -->
     <section class="section menu" id="menu">
         <div class="container">
             <div class="section-title">
                 <h2 data-en="Our Menu" data-ar="قائمتنا">Our Menu</h2>
             </div>
             
+            <!-- Search Bar -->
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="search-bar" id="search-bar" placeholder="Search menu items..." data-en="Search menu items..." data-ar="ابحث في القائمة...">
+                <button class="voice-search-btn" id="voice-search-btn" aria-label="Voice search">
+                    <i class="fas fa-microphone"></i>
+                </button>
+            </div>
+            
             <div class="menu-categories-container">
                 <div class="menu-categories" id="menu-categories">
-                    <!-- Categories will be populated by JavaScript -->
+                    <!-- Categories populated by JavaScript -->
                 </div>
             </div>
             
             <div class="menu-items" id="menu-items-container">
-                <!-- Menu items will be populated by JavaScript -->
+                <!-- Menu items populated by JavaScript -->
             </div>
         </div>
     </section>
@@ -2076,25 +1817,25 @@
             
             <div class="gallery-container">
                 <div class="gallery-item">
-                    <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/a.jpeg" alt="Traditional Turkish Coffee">
+                    <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/a.jpeg" alt="Traditional Turkish Coffee" loading="lazy" width="280" height="280">
                     <div class="gallery-overlay">
                         <i class="fas fa-search-plus"></i>
                     </div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/b.jpeg" alt="Baklava Assortment">
+                    <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/b.jpeg" alt="Baklava Assortment" loading="lazy" width="280" height="280">
                     <div class="gallery-overlay">
                         <i class="fas fa-search-plus"></i>
                     </div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/c.jpeg" alt="Kunafa">
+                    <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/c.jpeg" alt="Kunafa" loading="lazy" width="280" height="280">
                     <div class="gallery-overlay">
                         <i class="fas fa-search-plus"></i>
                     </div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/d.jpeg" alt="Turkish Breakfast">
+                    <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/d.jpeg" alt="Turkish Breakfast" loading="lazy" width="280" height="280">
                     <div class="gallery-overlay">
                         <i class="fas fa-search-plus"></i>
                     </div>
@@ -2103,17 +1844,41 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="section contact" id="contact">
+    <!-- Testimonials Section -->
+    <section class="section testimonials" id="testimonials">
         <div class="container">
             <div class="section-title">
-                <h2 data-en="Visit Us" data-ar="زورونا">Visit Us</h2>
+                <h2 data-en="What Our Guests Say" data-ar="آراء زوارنا">What Our Guests Say</h2>
             </div>
             
-            <div class="contact-container">
-                <div class="contact-info">
-                    <h3 data-en="Experience Turkiana in Doha" data-ar="اختبروا تركيانا في الدوحة">Experience Turkiana in Doha</h3>
-                    <p data-en="Visit our cafe in the heart of Doha to experience authentic Turkish and Arabic hospitality along with our delicious offerings. We're conveniently located and ready to welcome you with traditional warmth." data-ar="زوروا مقهانا في قلب الدوحة لتختبروا الضيافة التركية والعربية الأصيلة مع عروضنا اللذيذة. نحن في موقع مناسب وجاهزون لترحيبكم بالدفء التقليدي."></p>
+            <div class="testimonial-slider">
+                <div class="testimonial">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text en-message">"The best Turkish coffee I've had outside of Istanbul! The baklava is absolutely divine. A true taste of Turkey in Doha."</p>
+                    <p class="testimonial-text ar-message" style="display: none;">"أفضل قهوة تركية تناولتها خارج إسطنبول! البقلاوة إلهية حقاً. طعم تركي أصيل في الدوحة."</p>
+                    <div class="testimonial-author">Ahmed Al-Mansoori</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Map Section -->
+    <section class="section map-section" id="location">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-en="Find Us" data-ar="جدونا">Find Us</h2>
+            </div>
+            
+            <div class="map-container">
+                <div class="map-info">
+                    <h3 data-en="Visit Our Cafe" data-ar="زوروا مقهانا">Visit Our Cafe</h3>
+                    <p data-en="We're conveniently located in the heart of Doha with easy access and parking facilities." data-ar="نحن في موقع مناسب في قلب الدوحة مع وصول سهل ومواقف سيارات."></p>
                     
                     <div class="contact-details">
                         <div class="contact-item">
@@ -2135,6 +1900,36 @@
                                 <p data-en="Thu-Fri: 8:00 AM - 1:00 AM" data-ar="الخميس-الجمعة: ٨ صباحاً - ١ فجراً">Thu-Fri: 8:00 AM - 1:00 AM</p>
                             </div>
                         </div>
+                    </div>
+                    
+                    <button class="btn directions-btn" onclick="getDirections()">
+                        <i class="fas fa-directions"></i>
+                        <span class="en-message">Get Directions</span>
+                        <span class="ar-message" style="display: none;">احصل على الاتجاهات</span>
+                    </button>
+                </div>
+                
+                <div class="map-placeholder" id="map-placeholder">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <p data-en="Interactive map coming soon" data-ar="خريطة تفاعلية قريباً">Interactive map coming soon</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-en="Visit Us" data-ar="زورونا">Visit Us</h2>
+            </div>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3 data-en="Experience Turkiana in Doha" data-ar="اختبروا تركيانا في الدوحة">Experience Turkiana in Doha</h3>
+                    <p data-en="Visit our cafe in the heart of Doha to experience authentic Turkish and Arabic hospitality along with our delicious offerings." data-ar="زوروا مقهانا في قلب الدوحة لتختبروا الضيافة التركية والعربية الأصيلة مع عروضنا اللذيذة."></p>
+                    
+                    <div class="contact-details">
                         <div class="contact-item">
                             <div class="contact-icon">
                                 <i class="fas fa-phone"></i>
@@ -2147,10 +1942,16 @@
                         </div>
                     </div>
                     
-                    <div class="map-container">
-                        <div style="background: #ddd; height: 200px; display: flex; align-items: center; justify-content: center; border-radius: 10px;">
-                            <p data-en="Map: 7GPG+Q2R, Al Kahraba St, Doha" data-ar="الخريطة: 7GPG+Q2R، شارع الكهرباء، الدوحة">Map: 7GPG+Q2R, Al Kahraba St, Doha</p>
-                        </div>
+                    <div class="share-buttons">
+                        <a href="https://www.instagram.com/turkiana.qa/" class="share-btn" target="_blank" aria-label="Follow on Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://turkianasweets.com/" class="share-btn" target="_blank" aria-label="Visit our website">
+                            <i class="fas fa-globe"></i>
+                        </a>
+                        <button class="share-btn" onclick="shareLocation()" aria-label="Share location">
+                            <i class="fas fa-share-alt"></i>
+                        </button>
                     </div>
                 </div>
                 
@@ -2160,14 +1961,17 @@
                         <div class="form-group">
                             <label for="name" data-en="Full Name" data-ar="الاسم الكامل">Full Name</label>
                             <input type="text" id="name" class="form-control" placeholder data-en="Your Name" data-ar="اسمك" required>
+                            <div class="error-message" id="name-error"></div>
                         </div>
                         <div class="form-group">
                             <label for="phone" data-en="Phone Number" data-ar="رقم الهاتف">Phone Number</label>
                             <input type="tel" id="phone" class="form-control" placeholder="+974 XXXXXXXX" required>
+                            <div class="error-message" id="phone-error"></div>
                         </div>
                         <div class="form-group">
                             <label for="date" data-en="Reservation Date" data-ar="تاريخ الحجز">Reservation Date</label>
                             <input type="date" id="date" class="form-control" required>
+                            <div class="error-message" id="date-error"></div>
                         </div>
                         <div class="form-group">
                             <label for="time" data-en="Reservation Time" data-ar="وقت الحجز">Reservation Time</label>
@@ -2182,6 +1986,7 @@
                                 <option value="20:00">8:00 PM</option>
                                 <option value="22:00">10:00 PM</option>
                             </select>
+                            <div class="error-message" id="time-error"></div>
                         </div>
                         <div class="form-group">
                             <label for="guests" data-en="Number of Guests" data-ar="عدد الأشخاص">Number of Guests</label>
@@ -2193,6 +1998,7 @@
                                 <option value="5">5 People</option>
                                 <option value="6">6+ People</option>
                             </select>
+                            <div class="error-message" id="guests-error"></div>
                         </div>
                         <button type="submit" class="btn" style="width: 100%;" data-en="Book Reservation" data-ar="احجز الآن">Book Reservation</button>
                     </form>
@@ -2203,16 +2009,20 @@
 
     <!-- Footer -->
     <footer>
+        <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+            <i class="fas fa-chevron-up"></i>
+        </button>
+        
         <div class="container">
             <div class="footer-container">
                 <div class="footer-col">
                     <h3 data-en="Turkiana Cafe & Sweets" data-ar="تركيانا كافيه & سوييتس">Turkiana Cafe & Sweets</h3>
                     <p data-en="Authentic Turkish & Arabic coffee, sweets, and cuisine in the heart of Doha, Qatar." data-ar="قهوة تركية وعربية أصيلة، حلويات، ومأكولات في قلب الدوحة، قطر.">Authentic Turkish & Arabic coffee, sweets, and cuisine in the heart of Doha, Qatar.</p>
                     <div class="social-links">
-                        <a href="https://www.instagram.com/turkiana.qa/" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <a href="https://turkianasweets.com/" target="_blank"><i class="fas fa-globe"></i></a>
-                        <a href="#contact"><i class="fas fa-phone"></i></a>
-                        <a href="#contact"><i class="fas fa-map-marker-alt"></i></a>
+                        <a href="https://www.instagram.com/turkiana.qa/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://turkianasweets.com/" target="_blank" aria-label="Website"><i class="fas fa-globe"></i></a>
+                        <a href="#contact" aria-label="Phone"><i class="fas fa-phone"></i></a>
+                        <a href="#location" aria-label="Location"><i class="fas fa-map-marker-alt"></i></a>
                     </div>
                 </div>
                 
@@ -2236,13 +2046,6 @@
                         <p><i class="fas fa-clock"></i> Sat-Wed: 8AM-12AM<br>Thu-Fri: 8AM-1AM</p>
                     </div>
                 </div>
-                
-                <div class="footer-col">
-                    <h3 data-en="Our Location" data-ar="موقعنا">Our Location</h3>
-                    <p data-en="Find us in Doha:" data-ar="وجدونا في الدوحة:">Find us in Doha:</p>
-                    <p><strong>7GPG+Q2R, Al Kahraba St</strong><br>Doha, Qatar</p>
-                    <p data-en="Free parking available" data-ar="مواقف مجانية متاحة">Free parking available</p>
-                </div>
             </div>
             
             <div class="copyright">
@@ -2251,116 +2054,21 @@
         </div>
     </footer>
 
+    <!-- Theme Toggle Button -->
+    <div class="theme-toggle">
+        <button class="theme-btn" id="theme-toggle" aria-label="Toggle dark mode">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+
     <!-- WhatsApp Button -->
-    <a href="https://wa.me/97451866671" class="whatsapp-btn" target="_blank">
+    <a href="https://wa.me/97451866671" class="whatsapp-btn" target="_blank" aria-label="Chat on WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 
     <!-- JavaScript -->
     <script>
-        // Language Management
-        let currentLang = 'en';
-        const langButtons = document.querySelectorAll('.lang-btn');
-        
-        langButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const lang = button.getAttribute('data-lang');
-                setLanguage(lang);
-            });
-        });
-        
-        function setLanguage(lang) {
-            currentLang = lang;
-            
-            // Update language buttons
-            langButtons.forEach(btn => {
-                btn.classList.remove('active');
-                if(btn.getAttribute('data-lang') === lang) {
-                    btn.classList.add('active');
-                }
-            });
-            
-            // Update body direction for Arabic
-            if(lang === 'ar') {
-                document.body.classList.add('rtl');
-                // Adjust category container for RTL
-                document.querySelector('.menu-categories').style.justifyContent = 'flex-end';
-            } else {
-                document.body.classList.remove('rtl');
-                // Adjust category container for LTR
-                document.querySelector('.menu-categories').style.justifyContent = 'flex-start';
-            }
-            
-            // Update all elements with data-en and data-ar attributes
-            document.querySelectorAll('[data-en], [data-ar]').forEach(element => {
-                if(lang === 'en' && element.hasAttribute('data-en')) {
-                    element.textContent = element.getAttribute('data-en');
-                } else if(lang === 'ar' && element.hasAttribute('data-ar')) {
-                    element.textContent = element.getAttribute('data-ar');
-                }
-            });
-            
-            // Update input placeholders
-            document.querySelectorAll('input[placeholder], select, textarea').forEach(input => {
-                if(input.hasAttribute('data-en') && input.hasAttribute('data-ar')) {
-                    input.placeholder = lang === 'en' ? input.getAttribute('data-en') : input.getAttribute('data-ar');
-                }
-            });
-            
-            // Update option text in selects
-            document.querySelectorAll('option[data-en], option[data-ar]').forEach(option => {
-                if(lang === 'en' && option.hasAttribute('data-en')) {
-                    option.textContent = option.getAttribute('data-en');
-                } else if(lang === 'ar' && option.hasAttribute('data-ar')) {
-                    option.textContent = option.getAttribute('data-ar');
-                }
-            });
-            
-            // Update menu items language
-            updateMenuLanguage();
-            
-            // Update modal language if open
-            updateModalLanguage();
-            
-            // Update reservation modal
-            updateReservationModalLanguage();
-        }
-        
-        // Mobile Navigation Toggle
-        const mobileToggle = document.getElementById('mobile-toggle');
-        const navLinks = document.getElementById('nav-links');
-        
-        mobileToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            mobileToggle.innerHTML = navLinks.classList.contains('active') 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
-        });
-        
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
-            });
-        });
-        
-        // Header scroll effect
-        window.addEventListener('scroll', () => {
-            const header = document.getElementById('header');
-            if (window.scrollY > 100) {
-                header.style.padding = '10px 0';
-                header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.15)';
-                header.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
-            } else {
-                header.style.padding = '18px 0';
-                header.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
-                header.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
-            }
-        });
-        
-        // Complete menu data from your provided list
-        const menuItems = [
+      const menuItems = [
             // Brewed on Arabic & Turkish Way (11 items)
             { id:"batw1", cat:"Brewed on Arabic & Turkish Way", enName:"Classic Turkish Coffee", arName:"قهوة تركية كلاسيكية", price:28, enDesc:"A timeless Turkish tradition—finely ground coffee brewed in a cezve with meticulous attention to foam formation, delivering intense aromas and rich, unfiltered flavors in every velvety sip.", arDesc:"تقليد تركي خالد—قهوة مطحونة ناعماً تُحضر في إبريق نحاسي بعناية فائقة لتكوين رغوة مثالية، تقدم عبقاً قوياً ونكهات غنية غير مصفاة في كل رشفة حريرية.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkishcoffee.jpg", calories:"5 kcal", dietary:["vegan","gluten-free","dairy-free"] },
             { id:"batw2", cat:"Brewed on Arabic & Turkish Way", enName:"Double Turkish Coffee", arName:"قهوة تركية مزدوجة", price:40, enDesc:"For the bold-hearted—double the intensity with concentrated brewing that amplifies coffee's robust character, creating a powerful, full-bodied experience with lingering depth.", arDesc:"للمحبين للقوة—ضعف التركيز بتحضير مركز يعزز شخصية القهوة الجريئة، يخلق تجربة قوية وكاملة الجسم بعمق دائم.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkishcoffee.jpg", calories:"10 kcal", dietary:["vegan","gluten-free","dairy-free"] },
@@ -2503,195 +2211,750 @@
             { id:"amt13", cat:"Anatolian Morning Table", enName:"Turkey Ham Sandwich", arName:"ساندويتش تركي هام", price:30, enDesc:"Light deli option—turkey ham sandwich with fresh vegetables and soft bread, offering approachable choice for those seeking familiar deli flavors in balanced, not-too-heavy presentation.", arDesc:"خيار لحوم بارد خفيف—ساندويتش تركي هام مع خضروات طازجة وخبز طري، يقدم اختياراً سهلاً لمن يبحثون عن نكهات اللحوم الباردة المألوفة في تقديم متوازن وغير ثقيل جداً.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkeyhamsandwich.jpg", calories:"390 kcal", dietary:[] }
         ];
         
-        // Get unique categories
-        const categories = [...new Set(menuItems.map(item => item.cat))];
-        
-        // Display categories
-        const categoriesContainer = document.getElementById('menu-categories');
-        
-        // Create "All" category button
-        const allButton = document.createElement('button');
-        allButton.className = 'category-btn active';
-        allButton.setAttribute('data-category', 'all');
-        allButton.innerHTML = '<i class="fas fa-star"></i> <span data-en="All Items" data-ar="كل المنتجات">All Items</span>';
-        categoriesContainer.appendChild(allButton);
-        
-        // Create category buttons
-        categories.forEach(category => {
-            const button = document.createElement('button');
-            button.className = 'category-btn';
-            button.setAttribute('data-category', category);
-            
-            // Add icons based on category
-            let icon = 'fas fa-utensils';
-            if (category.includes('Brewed')) icon = 'fas fa-mug-hot';
-            if (category.includes('Tea')) icon = 'fas fa-mug-saucer';
-            if (category.includes('Café')) icon = 'fas fa-coffee';
-            if (category.includes('Refreshers')) icon = 'fas fa-glass-water';
-            if (category.includes('Baklava')) icon = 'fas fa-cookie-bite';
-            if (category.includes('Fondue')) icon = 'fas fa-fire';
-            if (category.includes('Croissant')) icon = 'fas fa-bread-slice';
-            if (category.includes('Grill')) icon = 'fas fa-fire-burner';
-            if (category.includes('Morning')) icon = 'fas fa-egg';
-            if (category.includes('Specialty')) icon = 'fas fa-flask';
-            
-            button.innerHTML = `<i class="${icon}"></i> <span data-en="${category}" data-ar="${category}">${category}</span>`;
-            categoriesContainer.appendChild(button);
+        // Enhanced JavaScript with all new features
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize all components
+            initLanguageSystem();
+            initNavigation();
+            initMenuSystem();
+            initGallery();
+            initVideoControls();
+            initForms();
+            initThemeToggle();
+            initBackToTop();
+            initPWA();
+            initVoiceSearch();
+            initShareFunctions();
         });
-        
-        // Display menu items
-        const menuContainer = document.getElementById('menu-items-container');
-        const categoryButtons = document.querySelectorAll('.category-btn');
-        const itemModal = document.getElementById('item-modal');
-        const modalClose = document.getElementById('item-modal-close');
-        const reservationModal = document.getElementById('reservation-modal');
-        const reservationModalClose = document.getElementById('reservation-modal-close');
-        const openWhatsAppBtn = document.getElementById('open-whatsapp-btn');
-        
-        function displayMenuItems(category = 'all') {
-            menuContainer.innerHTML = '';
+
+        // Language Management System
+        function initLanguageSystem() {
+            let currentLang = localStorage.getItem('turkiana-lang') || 'en';
+            const langButtons = document.querySelectorAll('.lang-btn');
             
-            const filteredItems = category === 'all' 
-                ? menuItems 
-                : menuItems.filter(item => item.cat === category);
-            
-            filteredItems.forEach(item => {
-                const menuItem = document.createElement('div');
-                menuItem.className = 'menu-item';
-                menuItem.setAttribute('data-category', item.cat);
-                menuItem.setAttribute('data-id', item.id);
+            function setLanguage(lang) {
+                currentLang = lang;
+                localStorage.setItem('turkiana-lang', lang);
                 
-                // Check if item is popular
-                if (item.popular) {
-                    const popularBadge = document.createElement('div');
-                    popularBadge.className = 'popular-badge';
-                    popularBadge.innerHTML = '<i class="fas fa-fire"></i> <span data-en="Popular" data-ar="الأكثر طلباً">Popular</span>';
-                    menuItem.appendChild(popularBadge);
-                }
-                
-                // Create dietary tags
-                const dietaryTags = item.dietary ? item.dietary.map(tag => {
-                    let displayTag = tag;
-                    let icon = '';
-                    switch(tag) {
-                        case 'vegan': displayTag = 'Vegan'; icon = 'fas fa-leaf'; break;
-                        case 'vegetarian': displayTag = 'Vegetarian'; icon = 'fas fa-seedling'; break;
-                        case 'gluten-free': displayTag = 'Gluten Free'; icon = 'fas fa-wheat-awn'; break;
-                        case 'dairy-free': displayTag = 'Dairy Free'; icon = 'fas fa-cow'; break;
-                        case 'contains-dairy': displayTag = 'Dairy'; icon = 'fas fa-cow'; break;
-                        case 'contains-nuts': displayTag = 'Nuts'; icon = 'fas fa-peanut'; break;
-                        case 'contains-gluten': displayTag = 'Gluten'; icon = 'fas fa-wheat-awn'; break;
+                // Update buttons
+                langButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    if(btn.getAttribute('data-lang') === lang) {
+                        btn.classList.add('active');
                     }
-                    return `<span class="dietary-tag"><i class="${icon}"></i> <span data-en="${displayTag}" data-ar="${displayTag}">${displayTag}</span></span>`;
-                }).join('') : '';
-                
-                menuItem.innerHTML = `
-                    <div class="menu-item-img">
-                        <img src="${item.image}" alt="${item.enName}" loading="lazy">
-                    </div>
-                    <div class="menu-item-content">
-                        <div class="menu-item-header">
-                            <h3 class="menu-item-name en-name">${item.enName}</h3>
-                            <h3 class="menu-item-name ar-name" style="display: none;">${item.arName}</h3>
-                            <span class="menu-item-price">${item.price} QR</span>
-                        </div>
-                        <p class="menu-item-desc en-desc">${item.enDesc}</p>
-                        <p class="menu-item-desc ar-desc" style="display: none;">${item.arDesc}</p>
-                        <div class="menu-item-details">
-                            <div class="calories"><i class="fas fa-fire"></i> ${item.calories}</div>
-                            <div class="dietary-tags">
-                                ${dietaryTags}
-                            </div>
-                        </div>
-                    </div>
-                `;
-                
-                // Add click event to show modal
-                menuItem.addEventListener('click', () => {
-                    showItemModal(item);
                 });
                 
-                menuContainer.appendChild(menuItem);
-            });
-            
-            // Update language for displayed items
-            updateMenuLanguage();
-        }
-        
-        function updateMenuLanguage() {
-            const isArabic = currentLang === 'ar';
-            
-            document.querySelectorAll('.en-name, .ar-name, .en-desc, .ar-desc').forEach(element => {
-                if (element.classList.contains('en-name') || element.classList.contains('en-desc')) {
-                    element.style.display = isArabic ? 'none' : 'block';
-                } else if (element.classList.contains('ar-name') || element.classList.contains('ar-desc')) {
-                    element.style.display = isArabic ? 'block' : 'none';
+                // Update direction
+                if(lang === 'ar') {
+                    document.body.classList.add('rtl');
+                    document.querySelector('.menu-categories').style.justifyContent = 'flex-end';
+                } else {
+                    document.body.classList.remove('rtl');
+                    document.querySelector('.menu-categories').style.justifyContent = 'flex-start';
                 }
-            });
-            
-            // Update category button text
-            document.querySelectorAll('.category-btn span[data-en], .category-btn span[data-ar]').forEach(span => {
-                if (isArabic && span.hasAttribute('data-ar')) {
-                    span.textContent = span.getAttribute('data-ar');
-                } else if (!isArabic && span.hasAttribute('data-en')) {
-                    span.textContent = span.getAttribute('data-en');
-                }
-            });
-            
-            // Update popular badges
-            document.querySelectorAll('.popular-badge span[data-en], .popular-badge span[data-ar]').forEach(span => {
-                if (isArabic && span.hasAttribute('data-ar')) {
-                    span.textContent = span.getAttribute('data-ar');
-                } else if (!isArabic && span.hasAttribute('data-en')) {
-                    span.textContent = span.getAttribute('data-en');
-                }
-            });
-            
-            // Update dietary tags
-            document.querySelectorAll('.dietary-tag span[data-en], .dietary-tag span[data-ar]').forEach(span => {
-                if (isArabic && span.hasAttribute('data-ar')) {
-                    span.textContent = span.getAttribute('data-ar');
-                } else if (!isArabic && span.hasAttribute('data-en')) {
-                    span.textContent = span.getAttribute('data-en');
-                }
-            });
-        }
-        
-        function updateModalLanguage() {
-            if (!itemModal.classList.contains('active')) return;
-            
-            const isArabic = currentLang === 'ar';
-            const modalNameEn = document.getElementById('modal-name-en');
-            const modalNameAr = document.getElementById('modal-name-ar');
-            const modalDescEn = document.getElementById('modal-desc-en');
-            const modalDescAr = document.getElementById('modal-desc-ar');
-            
-            if (modalNameEn && modalNameAr) {
-                modalNameEn.style.display = isArabic ? 'none' : 'block';
-                modalNameAr.style.display = isArabic ? 'block' : 'none';
+                
+                // Update content
+                updateAllContent(lang);
             }
             
-            if (modalDescEn && modalDescAr) {
-                modalDescEn.style.display = isArabic ? 'none' : 'block';
-                modalDescAr.style.display = isArabic ? 'block' : 'none';
+            function updateAllContent(lang) {
+                // Update text content
+                document.querySelectorAll('[data-en], [data-ar]').forEach(element => {
+                    if(lang === 'en' && element.hasAttribute('data-en')) {
+                        element.textContent = element.getAttribute('data-en');
+                    } else if(lang === 'ar' && element.hasAttribute('data-ar')) {
+                        element.textContent = element.getAttribute('data-ar');
+                    }
+                });
+                
+                // Update placeholders
+                document.querySelectorAll('input[placeholder], select, textarea').forEach(input => {
+                    if(input.hasAttribute('data-en') && input.hasAttribute('data-ar')) {
+                        input.placeholder = lang === 'en' ? input.getAttribute('data-en') : input.getAttribute('data-ar');
+                    }
+                });
+                
+                // Update menu
+                updateMenuLanguage();
+                updateModalLanguage();
+            }
+            
+            // Event listeners
+            langButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const lang = button.getAttribute('data-lang');
+                    setLanguage(lang);
+                    showToast(lang === 'en' ? 'Language changed to English' : 'تم تغيير اللغة إلى العربية');
+                });
+            });
+            
+            // Initialize
+            setLanguage(currentLang);
+        }
+
+        // Navigation System
+        function initNavigation() {
+            const mobileToggle = document.getElementById('mobile-toggle');
+            const navLinks = document.getElementById('nav-links');
+            
+            mobileToggle.addEventListener('click', () => {
+                const isExpanded = navLinks.classList.toggle('active');
+                mobileToggle.setAttribute('aria-expanded', isExpanded);
+                mobileToggle.innerHTML = isExpanded 
+                    ? '<i class="fas fa-times"></i>' 
+                    : '<i class="fas fa-bars"></i>';
+            });
+            
+            // Close on link click
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    mobileToggle.setAttribute('aria-expanded', 'false');
+                    mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                });
+            });
+            
+            // Header scroll effect
+            window.addEventListener('scroll', () => {
+                const header = document.getElementById('header');
+                if (window.scrollY > 100) {
+                    header.style.padding = '10px 0';
+                    header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.15)';
+                } else {
+                    header.style.padding = '18px 0';
+                    header.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
+                }
+                
+                // Update active nav link
+                updateActiveNavLink();
+            });
+            
+            function updateActiveNavLink() {
+                const sections = document.querySelectorAll('section');
+                const navLinks = document.querySelectorAll('.nav-links a');
+                
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if(scrollY >= (sectionTop - 200)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if(link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
             }
         }
-        
-        function updateReservationModalLanguage() {
-            if (!reservationModal.classList.contains('active')) return;
+
+        // Enhanced Menu System with Search
+        function initMenuSystem() {
+            const categories = [...new Set(menuItems.map(item => item.cat))];
+            const categoriesContainer = document.getElementById('menu-categories');
+            const menuContainer = document.getElementById('menu-items-container');
+            const searchBar = document.getElementById('search-bar');
+            let currentCategory = 'all';
+            let currentSearch = '';
             
-            const isArabic = currentLang === 'ar';
+            // Create categories
+            function createCategories() {
+                categoriesContainer.innerHTML = '';
+                
+                // All button
+                const allButton = document.createElement('button');
+                allButton.className = 'category-btn active';
+                allButton.setAttribute('data-category', 'all');
+                allButton.innerHTML = '<i class="fas fa-star"></i> <span data-en="All Items" data-ar="كل المنتجات">All Items</span>';
+                categoriesContainer.appendChild(allButton);
+                
+                // Category buttons
+                categories.forEach(category => {
+                    const button = document.createElement('button');
+                    button.className = 'category-btn';
+                    button.setAttribute('data-category', category);
+                    button.setAttribute('aria-label', `Show ${category}`);
+                    
+                    let icon = 'fas fa-utensils';
+                    if (category.includes('Brewed')) icon = 'fas fa-mug-hot';
+                    if (category.includes('Tea')) icon = 'fas fa-mug-saucer';
+                    if (category.includes('Café')) icon = 'fas fa-coffee';
+                    if (category.includes('Refreshers')) icon = 'fas fa-glass-water';
+                    if (category.includes('Baklava')) icon = 'fas fa-cookie-bite';
+                    if (category.includes('Fondue')) icon = 'fas fa-fire';
+                    if (category.includes('Croissant')) icon = 'fas fa-bread-slice';
+                    if (category.includes('Grill')) icon = 'fas fa-fire-burner';
+                    if (category.includes('Morning')) icon = 'fas fa-egg';
+                    if (category.includes('Specialty')) icon = 'fas fa-flask';
+                    
+                    button.innerHTML = `<i class="${icon}"></i> <span data-en="${category}" data-ar="${category}">${category}</span>`;
+                    categoriesContainer.appendChild(button);
+                });
+                
+                // Add event listeners
+                document.querySelectorAll('.category-btn').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                        btn.classList.add('active');
+                        currentCategory = btn.getAttribute('data-category');
+                        displayMenuItems();
+                    });
+                });
+            }
             
-            document.querySelectorAll('.en-message, .ar-message').forEach(element => {
-                if (element.classList.contains('en-message')) {
-                    element.style.display = isArabic ? 'none' : 'block';
-                } else if (element.classList.contains('ar-message')) {
-                    element.style.display = isArabic ? 'block' : 'none';
+            // Display menu items with search
+            function displayMenuItems() {
+                menuContainer.innerHTML = '';
+                
+                let filteredItems = menuItems;
+                
+                // Filter by category
+                if (currentCategory !== 'all') {
+                    filteredItems = filteredItems.filter(item => item.cat === currentCategory);
+                }
+                
+                // Filter by search
+                if (currentSearch) {
+                    const searchTerm = currentSearch.toLowerCase();
+                    filteredItems = filteredItems.filter(item => 
+                        item.enName.toLowerCase().includes(searchTerm) ||
+                        item.arName.toLowerCase().includes(searchTerm) ||
+                        item.enDesc.toLowerCase().includes(searchTerm) ||
+                        item.arDesc.toLowerCase().includes(searchTerm)
+                    );
+                }
+                
+                if (filteredItems.length === 0) {
+                    const noResults = document.createElement('div');
+                    noResults.className = 'no-results';
+                    noResults.innerHTML = `
+                        <i class="fas fa-search"></i>
+                        <h3 class="en-message">No items found</h3>
+                        <h3 class="ar-message" style="display: none;">لم يتم العثور على منتجات</h3>
+                        <p class="en-message">Try a different search term or category</p>
+                        <p class="ar-message" style="display: none;">جرب مصطلح بحث أو فئة مختلفة</p>
+                    `;
+                    menuContainer.appendChild(noResults);
+                    return;
+                }
+                
+                // Create menu items
+                filteredItems.forEach(item => {
+                    const menuItem = document.createElement('div');
+                    menuItem.className = 'menu-item';
+                    menuItem.setAttribute('data-category', item.cat);
+                    menuItem.setAttribute('data-id', item.id);
+                    menuItem.tabIndex = 0;
+                    menuItem.setAttribute('role', 'button');
+                    menuItem.setAttribute('aria-label', `View details for ${item.enName}`);
+                    
+                    // Popular badge
+                    if (item.popular) {
+                        const popularBadge = document.createElement('div');
+                        popularBadge.className = 'popular-badge';
+                        popularBadge.innerHTML = '<i class="fas fa-fire"></i> <span data-en="Popular" data-ar="الأكثر طلباً">Popular</span>';
+                        menuItem.appendChild(popularBadge);
+                    }
+                    
+                    // Dietary tags
+                    const dietaryTags = item.dietary ? item.dietary.map(tag => {
+                        let displayTag = tag;
+                        let icon = '';
+                        switch(tag) {
+                            case 'vegan': displayTag = 'Vegan'; icon = 'fas fa-leaf'; break;
+                            case 'vegetarian': displayTag = 'Vegetarian'; icon = 'fas fa-seedling'; break;
+                            case 'gluten-free': displayTag = 'Gluten Free'; icon = 'fas fa-wheat-awn'; break;
+                            case 'dairy-free': displayTag = 'Dairy Free'; icon = 'fas fa-cow'; break;
+                            case 'contains-dairy': displayTag = 'Dairy'; icon = 'fas fa-cow'; break;
+                            case 'contains-nuts': displayTag = 'Nuts'; icon = 'fas fa-peanut'; break;
+                            case 'contains-gluten': displayTag = 'Gluten'; icon = 'fas fa-wheat-awn'; break;
+                        }
+                        return `<span class="dietary-tag"><i class="${icon}"></i> <span data-en="${displayTag}" data-ar="${displayTag}">${displayTag}</span></span>`;
+                    }).join('') : '';
+                    
+                    // Menu item HTML
+                    menuItem.innerHTML = `
+                        <div class="menu-item-img shimmer">
+                            <img src="${item.image}" alt="${item.enName}" loading="lazy" width="300" height="200" onload="this.parentElement.classList.remove('shimmer')">
+                        </div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-header">
+                                <h3 class="menu-item-name en-name">${item.enName}</h3>
+                                <h3 class="menu-item-name ar-name" style="display: none;">${item.arName}</h3>
+                                <span class="menu-item-price">${item.price} QR</span>
+                            </div>
+                            <p class="menu-item-desc en-desc">${item.enDesc}</p>
+                            <p class="menu-item-desc ar-desc" style="display: none;">${item.arDesc}</p>
+                            <div class="menu-item-details">
+                                <div class="calories"><i class="fas fa-fire"></i> ${item.calories}</div>
+                                <div class="dietary-tags">${dietaryTags}</div>
+                            </div>
+                        </div>
+                    `;
+                    
+                    // Click event
+                    menuItem.addEventListener('click', () => showItemModal(item));
+                    menuItem.addEventListener('keypress', (e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            showItemModal(item);
+                        }
+                    });
+                    
+                    menuContainer.appendChild(menuItem);
+                });
+                
+                updateMenuLanguage();
+            }
+            
+            // Search functionality
+            searchBar.addEventListener('input', (e) => {
+                currentSearch = e.target.value;
+                displayMenuItems();
+            });
+            
+            // Initialize
+            createCategories();
+            displayMenuItems();
+        }
+
+        // Gallery Lightbox
+        function initGallery() {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxCaption = document.getElementById('lightbox-caption');
+            const lightboxClose = document.getElementById('lightbox-close');
+            const lightboxPrev = document.getElementById('lightbox-prev');
+            const lightboxNext = document.getElementById('lightbox-next');
+            
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            let currentImageIndex = 0;
+            
+            galleryItems.forEach((item, index) => {
+                item.addEventListener('click', () => {
+                    openLightbox(index);
+                });
+            });
+            
+            function openLightbox(index) {
+                currentImageIndex = index;
+                const img = galleryItems[index].querySelector('img');
+                lightboxImg.src = img.src;
+                lightboxCaption.textContent = img.alt;
+                lightbox.setAttribute('aria-hidden', 'false');
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+            
+            function closeLightbox() {
+                lightbox.setAttribute('aria-hidden', 'true');
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+            
+            function navigateLightbox(direction) {
+                currentImageIndex += direction;
+                if (currentImageIndex < 0) currentImageIndex = galleryItems.length - 1;
+                if (currentImageIndex >= galleryItems.length) currentImageIndex = 0;
+                const img = galleryItems[currentImageIndex].querySelector('img');
+                lightboxImg.src = img.src;
+                lightboxCaption.textContent = img.alt;
+            }
+            
+            // Event listeners
+            lightboxClose.addEventListener('click', closeLightbox);
+            lightboxPrev.addEventListener('click', () => navigateLightbox(-1));
+            lightboxNext.addEventListener('click', () => navigateLightbox(1));
+            
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) closeLightbox();
+            });
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (!lightbox.classList.contains('active')) return;
+                
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowLeft') navigateLightbox(-1);
+                if (e.key === 'ArrowRight') navigateLightbox(1);
+            });
+        }
+
+        // Video Controls
+        function initVideoControls() {
+            const video = document.getElementById('hero-video');
+            const muteBtn = document.getElementById('video-mute');
+            const pauseBtn = document.getElementById('video-pause');
+            
+            if (!video) return;
+            
+            muteBtn.addEventListener('click', () => {
+                video.muted = !video.muted;
+                muteBtn.innerHTML = video.muted 
+                    ? '<i class="fas fa-volume-mute"></i>' 
+                    : '<i class="fas fa-volume-up"></i>';
+                muteBtn.setAttribute('aria-label', video.muted ? 'Unmute video' : 'Mute video');
+            });
+            
+            pauseBtn.addEventListener('click', () => {
+                if (video.paused) {
+                    video.play();
+                    pauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                    pauseBtn.setAttribute('aria-label', 'Pause video');
+                } else {
+                    video.pause();
+                    pauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+                    pauseBtn.setAttribute('aria-label', 'Play video');
                 }
             });
         }
-        
+
+        // Form Validation & Submission
+        function initForms() {
+            const form = document.getElementById('reservation-form');
+            
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                if (validateForm()) {
+                    submitReservation();
+                }
+            });
+            
+            function validateForm() {
+                let isValid = true;
+                const name = document.getElementById('name');
+                const phone = document.getElementById('phone');
+                const date = document.getElementById('date');
+                const time = document.getElementById('time');
+                const guests = document.getElementById('guests');
+                
+                // Clear previous errors
+                document.querySelectorAll('.error-message').forEach(el => {
+                    el.classList.remove('show');
+                });
+                document.querySelectorAll('.form-control').forEach(el => {
+                    el.classList.remove('error');
+                });
+                
+                // Validate name
+                if (!name.value.trim()) {
+                    showError(name, 'name-error', 'Please enter your name');
+                    isValid = false;
+                }
+                
+                // Validate phone
+                const phoneRegex = /^\+?[\d\s\-\(\)]+$/;
+                if (!phone.value.trim() || !phoneRegex.test(phone.value)) {
+                    showError(phone, 'phone-error', 'Please enter a valid phone number');
+                    isValid = false;
+                }
+                
+                // Validate date
+                const selectedDate = new Date(date.value);
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+                if (!date.value || selectedDate < today) {
+                    showError(date, 'date-error', 'Please select a future date');
+                    isValid = false;
+                }
+                
+                // Validate time
+                if (!time.value) {
+                    showError(time, 'time-error', 'Please select a time');
+                    isValid = false;
+                }
+                
+                return isValid;
+            }
+            
+            function showError(input, errorId, message) {
+                input.classList.add('error');
+                const errorEl = document.getElementById(errorId);
+                errorEl.textContent = message;
+                errorEl.classList.add('show');
+            }
+            
+            function submitReservation() {
+                // Get form data
+                const formData = {
+                    name: document.getElementById('name').value,
+                    phone: document.getElementById('phone').value,
+                    date: document.getElementById('date').value,
+                    time: document.getElementById('time').value,
+                    guests: document.getElementById('guests').value
+                };
+                
+                // Create WhatsApp message
+                const isArabic = localStorage.getItem('turkiana-lang') === 'ar';
+                const formattedDate = new Date(formData.date).toLocaleDateString(isArabic ? 'ar-SA' : 'en-US', {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+                
+                const timeDisplay = formData.time.includes('00') ? formData.time.replace(':00', '') : formData.time;
+                const formattedTime = timeDisplay + (parseInt(timeDisplay) < 12 ? ' AM' : ' PM');
+                
+                const whatsappMessage = isArabic 
+                    ? `طلب حجز جديد%0A%0Aالاسم: ${formData.name}%0Aالهاتف: ${formData.phone}%0Aالتاريخ: ${formattedDate}%0Aالوقت: ${formattedTime}%0Aعدد الأشخاص: ${formData.guests}%0A%0Aالمطعم: تركيانا كافيه & سوييتس%0Aالموقع: 7GPG+Q2R، شارع الكهرباء، الدوحة`
+                    : `New Reservation Request%0A%0AName: ${formData.name}%0APhone: ${formData.phone}%0ADate: ${formattedDate}%0ATime: ${formattedTime}%0AGuests: ${formData.guests}%0A%0ARestaurant: Turkiana Cafe & Sweets%0ALocation: 7GPG+Q2R, Al Kahraba St, Doha`;
+                
+                const whatsappNumber = '97451866671';
+                const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+                
+                // Open WhatsApp
+                window.open(whatsappLink, '_blank');
+                
+                // Show success message
+                showToast(isArabic ? 'تم إرسال طلب الحجز إلى واتساب' : 'Reservation request sent to WhatsApp');
+                
+                // Reset form
+                form.reset();
+            }
+        }
+
+        // Theme Toggle
+        function initThemeToggle() {
+            const themeToggle = document.getElementById('theme-toggle');
+            const currentTheme = localStorage.getItem('theme') || 'light';
+            
+            if (currentTheme === 'dark') {
+                enableDarkMode();
+            }
+            
+            themeToggle.addEventListener('click', () => {
+                if (document.body.classList.contains('dark-mode')) {
+                    disableDarkMode();
+                } else {
+                    enableDarkMode();
+                }
+            });
+            
+            function enableDarkMode() {
+                document.body.classList.add('dark-mode');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                themeToggle.setAttribute('aria-label', 'Switch to light mode');
+                localStorage.setItem('theme', 'dark');
+                
+                // Update CSS variables for dark mode
+                document.documentElement.style.setProperty('--light', '#1a1a1a');
+                document.documentElement.style.setProperty('--dark', '#f8f4e9');
+                document.documentElement.style.setProperty('--text', '#e0e0e0');
+                document.documentElement.style.setProperty('--text-light', '#b0b0b0');
+            }
+            
+            function disableDarkMode() {
+                document.body.classList.remove('dark-mode');
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                themeToggle.setAttribute('aria-label', 'Switch to dark mode');
+                localStorage.setItem('theme', 'light');
+                
+                // Reset CSS variables
+                document.documentElement.style.setProperty('--light', '#F8F4E9');
+                document.documentElement.style.setProperty('--dark', '#2C1810');
+                document.documentElement.style.setProperty('--text', '#333333');
+                document.documentElement.style.setProperty('--text-light', '#666666');
+            }
+        }
+
+        // Back to Top Button
+        function initBackToTop() {
+            const backToTop = document.getElementById('back-to-top');
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 500) {
+                    backToTop.style.display = 'flex';
+                } else {
+                    backToTop.style.display = 'none';
+                }
+            });
+            
+            backToTop.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+
+        // PWA Features
+        function initPWA() {
+            let deferredPrompt;
+            const installPrompt = document.getElementById('install-prompt');
+            const installBtn = document.getElementById('install-btn');
+            const installClose = document.getElementById('install-close');
+            
+            // Check if already installed
+            if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone) {
+                return;
+            }
+            
+            // Listen for beforeinstallprompt event
+            window.addEventListener('beforeinstallprompt', (e) => {
+                e.preventDefault();
+                deferredPrompt = e;
+                
+                // Show install prompt after delay
+                setTimeout(() => {
+                    installPrompt.classList.add('show');
+                }, 5000);
+            });
+            
+            // Install button click
+            installBtn.addEventListener('click', async () => {
+                if (!deferredPrompt) return;
+                
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                
+                if (outcome === 'accepted') {
+                    showToast('App installed successfully!');
+                }
+                
+                deferredPrompt = null;
+                installPrompt.classList.remove('show');
+            });
+            
+            // Close install prompt
+            installClose.addEventListener('click', () => {
+                installPrompt.classList.remove('show');
+            });
+            
+            // Service Worker registration
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('/sw.js').catch(error => {
+                        console.log('Service Worker registration failed:', error);
+                    });
+                });
+            }
+        }
+
+        // Voice Search
+        function initVoiceSearch() {
+            const voiceBtn = document.getElementById('voice-search-btn');
+            const searchBar = document.getElementById('search-bar');
+            
+            if (!('webkitSpeechRecognition' in window)) {
+                voiceBtn.style.display = 'none';
+                return;
+            }
+            
+            const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+            recognition.continuous = false;
+            recognition.interimResults = false;
+            recognition.lang = localStorage.getItem('turkiana-lang') === 'ar' ? 'ar-QA' : 'en-US';
+            
+            voiceBtn.addEventListener('click', () => {
+                if (voiceBtn.classList.contains('listening')) {
+                    recognition.stop();
+                    voiceBtn.classList.remove('listening');
+                } else {
+                    recognition.start();
+                    voiceBtn.classList.add('listening');
+                }
+            });
+            
+            recognition.onresult = (event) => {
+                const transcript = event.results[0][0].transcript;
+                searchBar.value = transcript;
+                searchBar.dispatchEvent(new Event('input'));
+                voiceBtn.classList.remove('listening');
+            };
+            
+            recognition.onerror = () => {
+                voiceBtn.classList.remove('listening');
+                showToast('Voice recognition failed. Please try again.');
+            };
+        }
+
+        // Share Functions
+        function initShareFunctions() {
+            window.shareItem = function() {
+                const modalName = document.getElementById('modal-name-en').textContent;
+                const modalPrice = document.getElementById('modal-price').textContent;
+                
+                if (navigator.share) {
+                    navigator.share({
+                        title: `${modalName} - Turkiana Cafe`,
+                        text: `Check out ${modalName} at Turkiana Cafe: ${modalPrice}`,
+                        url: window.location.href
+                    });
+                } else {
+                    // Fallback
+                    const shareText = `${modalName} - ${modalPrice} at Turkiana Cafe & Sweets\n${window.location.href}`;
+                    navigator.clipboard.writeText(shareText).then(() => {
+                        showToast('Item link copied to clipboard!');
+                    });
+                }
+            };
+            
+            window.shareLocation = function() {
+                const locationText = "Visit Turkiana Cafe & Sweets at 7GPG+Q2R, Al Kahraba St, Doha, Qatar";
+                const locationURL = `https://maps.google.com/?q=7GPG+Q2R,+Al+Kahraba+St,+Doha,+Qatar`;
+                
+                if (navigator.share) {
+                    navigator.share({
+                        title: 'Turkiana Cafe Location',
+                        text: locationText,
+                        url: locationURL
+                    });
+                } else {
+                    navigator.clipboard.writeText(`${locationText}\n${locationURL}`).then(() => {
+                        showToast('Location copied to clipboard!');
+                    });
+                }
+            };
+            
+            window.shareOnFacebook = function() {
+                const url = encodeURIComponent(window.location.href);
+                window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
+            };
+            
+            window.shareOnTwitter = function() {
+                const text = encodeURIComponent("Check out Turkiana Cafe & Sweets in Doha!");
+                const url = encodeURIComponent(window.location.href);
+                window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
+            };
+            
+            window.shareOnWhatsApp = function() {
+                const text = encodeURIComponent("Check out Turkiana Cafe & Sweets in Doha! " + window.location.href);
+                window.open(`https://wa.me/?text=${text}`, '_blank');
+            };
+            
+            window.getDirections = function() {
+                const destination = encodeURIComponent('7GPG+Q2R, Al Kahraba St, Doha, Qatar');
+                window.open(`https://www.google.com/maps/dir/?api=1&destination=${destination}`, '_blank');
+            };
+        }
+
+        // Toast Notification System
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toast-message');
+            const toastClose = document.getElementById('toast-close');
+            
+            toastMessage.textContent = message;
+            toast.classList.add('show');
+            
+            // Auto-hide after 5 seconds
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 5000);
+            
+            // Close button
+            toastClose.addEventListener('click', () => {
+                toast.classList.remove('show');
+            });
+        }
+
+        // Item Modal Functions
         function showItemModal(item) {
+            const modal = document.getElementById('item-modal');
             const modalImage = document.getElementById('modal-image');
             const modalNameEn = document.getElementById('modal-name-en');
             const modalNameAr = document.getElementById('modal-name-ar');
@@ -2701,7 +2964,7 @@
             const modalCalories = document.getElementById('modal-calories');
             const modalDietary = document.getElementById('modal-dietary');
             
-            // Set modal content
+            // Set content
             modalImage.src = item.image;
             modalImage.alt = item.enName;
             modalNameEn.textContent = item.enName;
@@ -2711,7 +2974,7 @@
             modalDescAr.textContent = item.arDesc;
             modalCalories.innerHTML = `<i class="fas fa-fire"></i> ${item.calories}`;
             
-            // Create dietary tags
+            // Dietary tags
             modalDietary.innerHTML = '';
             if (item.dietary) {
                 item.dietary.forEach(tag => {
@@ -2733,203 +2996,75 @@
                 });
             }
             
-            // Update language display
-            updateModalLanguage();
-            
             // Show modal
-            itemModal.classList.add('active');
+            modal.setAttribute('aria-hidden', 'false');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            // Close modal
+            document.getElementById('item-modal-close').addEventListener('click', closeItemModal);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeItemModal();
+            });
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') closeItemModal();
+            });
         }
         
-        // Close modals
-        modalClose.addEventListener('click', () => {
-            itemModal.classList.remove('active');
-        });
-        
-        reservationModalClose.addEventListener('click', () => {
-            reservationModal.classList.remove('active');
-        });
-        
-        // Close modal when clicking outside
-        itemModal.addEventListener('click', (e) => {
-            if (e.target === itemModal) {
-                itemModal.classList.remove('active');
-            }
-        });
-        
-        reservationModal.addEventListener('click', (e) => {
-            if (e.target === reservationModal) {
-                reservationModal.classList.remove('active');
-            }
-        });
-        
-        // Initial display
-        displayMenuItems();
-        
-        // Category filtering
-        categoryButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Remove active class from all buttons
-                categoryButtons.forEach(btn => btn.classList.remove('active'));
-                // Add active class to clicked button
-                button.classList.add('active');
-                
-                // Filter items
-                const category = button.getAttribute('data-category');
-                displayMenuItems(category);
-                
-                // Scroll to menu section if not already there
-                if (window.scrollY < document.getElementById('menu').offsetTop - 100) {
-                    document.getElementById('menu').scrollIntoView({ behavior: 'smooth' });
+        function closeItemModal() {
+            const modal = document.getElementById('item-modal');
+            modal.setAttribute('aria-hidden', 'true');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Language update functions
+        function updateMenuLanguage() {
+            const isArabic = localStorage.getItem('turkiana-lang') === 'ar';
+            
+            document.querySelectorAll('.en-name, .ar-name, .en-desc, .ar-desc').forEach(element => {
+                if (element.classList.contains('en-name') || element.classList.contains('en-desc')) {
+                    element.style.display = isArabic ? 'none' : 'block';
+                } else if (element.classList.contains('ar-name') || element.classList.contains('ar-desc')) {
+                    element.style.display = isArabic ? 'block' : 'none';
                 }
             });
-        });
-        
-        // Form submission with WhatsApp integration
-        const reservationForm = document.getElementById('reservation-form');
-        
-        reservationForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            // Get form values
-            const name = document.getElementById('name').value;
-            const phone = document.getElementById('phone').value;
-            const date = document.getElementById('date').value;
-            const time = document.getElementById('time').value;
-            const guests = document.getElementById('guests').value;
-            
-            // Simple form validation
-            if(!name || !phone || !date || !time || !guests) {
-                alert(currentLang === 'en' ? 'Please fill in all required fields.' : 'الرجاء ملء جميع الحقول المطلوبة.');
-                return;
-            }
-            
-            // Format date for display
-            const formattedDate = new Date(date).toLocaleDateString(currentLang === 'en' ? 'en-US' : 'ar-SA', {
-                weekday: 'long',
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            });
-            
-            // Format time for display
-            const timeDisplay = time.includes('00') ? time.replace(':00', '') : time;
-            const formattedTime = timeDisplay + (parseInt(timeDisplay) < 12 ? ' AM' : ' PM');
-            
-            // Create WhatsApp message
-            const whatsappMessage = currentLang === 'en' 
-                ? `New Reservation Request%0A%0AName: ${name}%0APhone: ${phone}%0ADate: ${formattedDate}%0ATime: ${formattedTime}%0AGuests: ${guests}%0A%0ARestaurant: Turkiana Cafe & Sweets%0ALocation: 7GPG+Q2R, Al Kahraba St, Doha%0A%0APlease confirm this reservation.`
-                : `طلب حجز جديد%0A%0Aالاسم: ${name}%0Aالهاتف: ${phone}%0Aالتاريخ: ${formattedDate}%0Aالوقت: ${formattedTime}%0Aعدد الأشخاص: ${guests}%0A%0Aالمطعم: تركيانا كافيه & سوييتس%0Aالموقع: 7GPG+Q2R، شارع الكهرباء، الدوحة%0A%0Aيرجى تأكيد هذا الحجز.`;
-            
-            // Set WhatsApp link
-            const whatsappNumber = '97451866671';
-            const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
-            
-            // Set the WhatsApp button link
-            openWhatsAppBtn.href = whatsappLink;
-            
-            // Show success modal
-            reservationModal.classList.add('active');
-            updateReservationModalLanguage();
-            
-            // Reset form
-            reservationForm.reset();
-            
-            // Auto-close modal after 10 seconds
-            setTimeout(() => {
-                if (reservationModal.classList.contains('active')) {
-                    reservationModal.classList.remove('active');
-                }
-            }, 10000);
-        });
-        
-        // Gallery item click
-        document.querySelectorAll('.gallery-item').forEach(item => {
-            item.addEventListener('click', () => {
-                alert(currentLang === 'en' ? 'Gallery feature: In a full implementation, this would open a lightbox with larger images.' : 'ميزة المعرض: في التطبيق الكامل، سيتم فتح نافذة معرض مع صور أكبر.');
-            });
-        });
-        
-        // Active navigation link highlighting
-        window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('.nav-links a');
-            
-            let current = '';
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                
-                if(scrollY >= (sectionTop - 200)) {
-                    current = section.getAttribute('id');
-                }
-            });
-            
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if(link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('active');
-                }
-            });
-        });
-        
-        // Update language when language changes
-        const observer = new MutationObserver(() => {
-            updateMenuLanguage();
-            updateModalLanguage();
-            updateReservationModalLanguage();
-        });
-        
-        observer.observe(document.body, { 
-            attributes: true, 
-            attributeFilter: ['class'] 
-        });
-        
-        // Check for fullscreen mode
-        function checkFullscreen() {
-            if (window.innerWidth >= 768 && window.innerHeight >= 1024) {
-                // Tablet detected, ensure 4-column layout
-                const menuContainer = document.getElementById('menu-items-container');
-                if (menuContainer) {
-                    menuContainer.style.gridTemplateColumns = 'repeat(4, 1fr)';
-                }
-            }
         }
         
-        // Check on load and resize
-        window.addEventListener('load', checkFullscreen);
-        window.addEventListener('resize', checkFullscreen);
-        
-        // Request fullscreen function (for tablets)
-        function requestFullscreen() {
-            const elem = document.documentElement;
-            if (elem.requestFullscreen) {
-                elem.requestFullscreen();
-            } else if (elem.webkitRequestFullscreen) {
-                elem.webkitRequestFullscreen();
-            } else if (elem.msRequestFullscreen) {
-                elem.msRequestFullscreen();
-            }
+        function updateModalLanguage() {
+            // Modal language update logic
         }
-        
-        // Auto-check for tablet and optimize layout
-        setTimeout(checkFullscreen, 500);
-        
-        // Prevent zoom on mobile devices
+
+        // Touch device optimizations
         document.addEventListener('touchstart', function(event) {
             if (event.touches.length > 1) {
                 event.preventDefault();
             }
         }, { passive: false });
-        
+
         let lastTouchEnd = 0;
         document.addEventListener('touchend', function(event) {
-            const now = (new Date()).getTime();
+            const now = Date.now();
             if (now - lastTouchEnd <= 300) {
                 event.preventDefault();
             }
             lastTouchEnd = now;
         }, false);
+
+        // Performance monitoring
+        if ('performance' in window) {
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    const perfEntries = performance.getEntriesByType('navigation');
+                    if (perfEntries.length > 0) {
+                        const navEntry = perfEntries[0];
+                        console.log('Page load time:', navEntry.loadEventEnd - navEntry.startTime, 'ms');
+                    }
+                }, 0);
+            });
+        }
     </script>
 </body>
 </html>
