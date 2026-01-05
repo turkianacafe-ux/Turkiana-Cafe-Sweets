@@ -3,28 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Turkiana Cafe & Sweets | Authentic Turkish & Arabic Delights in Doha</title>
-    <meta name="description" content="Experience authentic Turkish coffee, baklava, and sweets at Turkiana Cafe in Doha, Qatar. Traditional Arabic & Turkish drinks, desserts, breakfast, and more.">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Turkiana Cafe & Sweets | Premium Turkish & Arabic Experience in Doha</title>
+    <meta name="description" content="Luxury Turkish coffee, authentic baklava, and premium Arabic delights at Turkiana Cafe in Doha, Qatar. Experience opulence in every sip and bite.">
     
     <!-- Preload critical resources -->
     <link rel="preload" href="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Video.mp4" as="video" type="video/mp4">
-    <link rel="preconnect" href="https://turkianacafe-ux.github.io" crossorigin>
     
     <!-- SEO & Social Media Meta Tags -->
-    <meta property="og:title" content="Turkiana Cafe & Sweets | Authentic Turkish & Arabic Delights in Doha">
+    <meta property="og:title" content="Turkiana Cafe & Sweets | Luxury Turkish & Arabic Experience">
     <meta property="og:image" content="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg">
-    <meta property="og:description" content="Experience authentic Turkish coffee, baklava, and sweets at Turkiana Cafe in Doha, Qatar">
+    <meta property="og:description" content="Luxury Turkish coffee and authentic Arabic sweets in the heart of Doha">
     <meta property="og:url" content="https://turkianacafe.com">
     <meta property="og:type" content="website">
-    <meta property="og:locale" content="en_US">
-    <meta property="og:locale:alternate" content="ar_QA">
     
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@turkiana.qa">
-    <meta name="twitter:title" content="Turkiana Cafe & Sweets | Authentic Turkish & Arabic Delights">
-    <meta name="twitter:description" content="Experience authentic Turkish coffee, baklava, and sweets in Doha">
+    <meta name="twitter:title" content="Turkiana Cafe & Sweets | Luxury Turkish Experience">
+    <meta name="twitter:description" content="Premium Turkish coffee and authentic sweets in Doha">
     <meta name="twitter:image" content="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg">
     
     <!-- Schema.org Structured Data -->
@@ -34,88 +28,101 @@
         "@type": "Restaurant",
         "name": "Turkiana Cafe & Sweets",
         "image": "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg",
-        "description": "Authentic Turkish & Arabic coffee, sweets, and cuisine in the heart of Doha, Qatar",
+        "description": "Luxury Turkish & Arabic coffee, sweets, and cuisine in Doha, Qatar",
         "address": {
             "@type": "PostalAddress",
             "streetAddress": "Al Kahraba Street",
             "addressLocality": "Doha",
-            "addressRegion": "Doha",
-            "postalCode": "",
             "addressCountry": "QA"
         },
-        "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": "25.2854",
-            "longitude": "51.5310"
-        },
-        "openingHours": [
-            "Mo-Su 08:00-00:00",
-            "Th-Fr 08:00-01:00"
-        ],
-        "telephone": "+974-5186-6671",
-        "servesCuisine": ["Turkish", "Arabic", "Middle Eastern"],
-        "priceRange": "$$",
-        "url": "https://turkianacafe.com"
+        "priceRange": "$$$",
+        "servesCuisine": ["Turkish", "Arabic", "Premium"],
+        "telephone": "+974-5186-6671"
     }
     </script>
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☕</text></svg>">
-    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☕</text></svg>">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👑</text></svg>">
     
     <!-- External Resources -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700&family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* Reset & Base Styles */
+        /* ===== ROOT VARIABLES ===== */
+        :root {
+            /* Luxury Color Palette */
+            --burgundy: #800020;
+            --gold: #D4AF37;
+            --cream: #F8F4E9;
+            --dark: #1A0F0A;
+            --black: #0A0A0A;
+            --white: #FFFFFF;
+            
+            /* Accent Colors */
+            --light-gold: #E8D49C;
+            --dark-burgundy: #600018;
+            --light-cream: #FFFCF5;
+            
+            /* Functional Colors */
+            --success: #28a745;
+            --error: #C41E3A;
+            --warning: #ffc107;
+            
+            /* Shadows */
+            --shadow-light: 0 4px 12px rgba(128, 0, 32, 0.1);
+            --shadow-medium: 0 8px 24px rgba(128, 0, 32, 0.15);
+            --shadow-heavy: 0 16px 48px rgba(128, 0, 32, 0.2);
+            --shadow-gold: 0 8px 32px rgba(212, 175, 55, 0.3);
+            
+            /* Transitions */
+            --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-fast: all 0.2s ease;
+            
+            /* Border Radius */
+            --radius-small: 8px;
+            --radius-medium: 16px;
+            --radius-large: 24px;
+            --radius-full: 50px;
+            
+            /* Typography */
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Montserrat', sans-serif;
+            --font-arabic: 'Cairo', sans-serif;
+        }
+
+        /* ===== RESET & BASE STYLES ===== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        :root {
-            --primary: #8B4513; /* Turkish coffee brown */
-            --secondary: #D4AF37; /* Gold */
-            --accent: #C41E3A; /* Turkish red */
-            --light: #F8F4E9; /* Cream */
-            --dark: #2C1810; /* Dark brown */
-            --darker: #1A0F0A; /* Darker brown for categories */
-            --text: #333333;
-            --text-light: #666666;
-            --shadow: 0 5px 15px rgba(0,0,0,0.1);
-            --shadow-heavy: 0 10px 30px rgba(0,0,0,0.25);
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            --success: #28a745;
-        }
-
         html {
             scroll-behavior: smooth;
-            height: 100%;
             overflow-x: hidden;
         }
 
         body {
-            font-family: 'Cairo', sans-serif;
-            line-height: 1.6;
-            color: var(--text);
-            background-color: var(--light);
+            font-family: var(--font-body);
+            line-height: 1.7;
+            color: var(--dark);
+            background-color: var(--cream);
             overflow-x: hidden;
             min-height: 100vh;
-            direction: ltr;
         }
 
         .rtl {
+            font-family: var(--font-arabic);
             direction: rtl;
             text-align: right;
         }
 
-        h1, h2, h3, h4, h5 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 600;
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 700;
             line-height: 1.3;
             color: var(--dark);
         }
@@ -139,24 +146,27 @@
             width: 100%;
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 25px;
+            padding: 0 2rem;
         }
 
         .section {
-            padding: 80px 0;
+            padding: 6rem 0;
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 50px;
-            position: relative;
+            margin-bottom: 4rem;
         }
 
         .section-title h2 {
-            font-size: 2.8rem;
+            font-size: 3.5rem;
             display: inline-block;
             position: relative;
-            padding-bottom: 15px;
+            padding-bottom: 1rem;
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--dark-burgundy) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .section-title h2::after {
@@ -167,169 +177,118 @@
             transform: translateX(-50%);
             width: 100px;
             height: 4px;
-            background: var(--secondary);
+            background: linear-gradient(90deg, var(--gold), var(--light-gold));
             border-radius: 2px;
         }
 
+        /* ===== BUTTONS ===== */
         .btn {
-            display: inline-block;
-            padding: 14px 32px;
-            background: var(--primary);
-            color: white;
-            border-radius: 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--dark-burgundy) 100%);
+            color: var(--white);
+            border: none;
+            border-radius: var(--radius-full);
             font-weight: 600;
-            transition: var(--transition);
-            border: 2px solid var(--primary);
-            cursor: pointer;
             font-size: 1.05rem;
-            box-shadow: 0 4px 12px rgba(139, 69, 19, 0.2);
+            cursor: pointer;
+            transition: var(--transition-smooth);
             position: relative;
             overflow: hidden;
+            box-shadow: var(--shadow-light);
         }
 
         .btn::before {
             content: '';
             position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: var(--transition-smooth);
         }
 
         .btn:hover::before {
-            width: 300px;
-            height: 300px;
+            left: 100%;
         }
 
         .btn:hover {
-            background: transparent;
-            color: var(--primary);
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(139, 69, 19, 0.3);
+            box-shadow: var(--shadow-medium);
         }
 
-        .btn-secondary {
-            background: var(--secondary);
-            border-color: var(--secondary);
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--light-gold) 100%);
             color: var(--dark);
-            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
         }
 
-        .btn-secondary:hover {
+        .btn-outline {
             background: transparent;
-            color: var(--secondary);
-            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+            border: 2px solid var(--burgundy);
+            color: var(--burgundy);
         }
 
-        .btn-success {
-            background: var(--success);
-            border-color: var(--success);
+        .btn-outline:hover {
+            background: var(--burgundy);
+            color: var(--white);
         }
 
-        .btn-success:hover {
-            background: transparent;
-            color: var(--success);
-        }
-
-        /* Accessibility Improvements */
-        :focus {
-            outline: 3px solid var(--secondary);
-            outline-offset: 2px;
-        }
-
-        .btn:focus, .category-btn:focus, .menu-item:focus {
-            outline: 3px solid var(--secondary);
-            outline-offset: 2px;
-        }
-
-        /* High Contrast Support */
-        @media (prefers-contrast: high) {
-            :root {
-                --primary: #6B3300;
-                --secondary: #B8860B;
-                --accent: #8B0000;
-            }
-        }
-
-        /* Reduce Motion */
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-            
-            .btn::before {
-                display: none;
-            }
-        }
-
-        /* Header & Navigation */
+        /* ===== HEADER ===== */
         header {
-            background-color: rgba(255, 255, 255, 0.98);
-            box-shadow: var(--shadow);
             position: fixed;
-            width: 100%;
             top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 252, 245, 0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
             z-index: 1000;
-            transition: var(--transition);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(139, 69, 19, 0.1);
+            transition: var(--transition-smooth);
+            padding: 1rem 0;
         }
 
         .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 18px 25px;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            gap: 12px;
-            text-decoration: none;
+            gap: 0.75rem;
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--burgundy);
         }
 
         .logo-icon {
-            color: var(--primary);
-            font-size: 2.2rem;
-            transition: var(--transition);
-        }
-
-        .logo:hover .logo-icon {
-            transform: rotate(15deg);
-        }
-
-        .logo-text {
-            font-family: 'Playfair Display', serif;
+            color: var(--gold);
             font-size: 2rem;
-            font-weight: 700;
-            color: var(--primary);
-            letter-spacing: -0.5px;
         }
 
         .logo-text span {
-            color: var(--secondary);
+            color: var(--gold);
         }
 
         .nav-links {
             display: flex;
-            gap: 35px;
+            gap: 2.5rem;
             align-items: center;
         }
 
         .nav-links a {
             font-weight: 600;
             position: relative;
-            padding: 8px 0;
+            padding: 0.5rem 0;
             font-size: 1.05rem;
-            letter-spacing: 0.3px;
+            transition: var(--transition-fast);
         }
 
         .nav-links a::after {
@@ -338,86 +297,71 @@
             bottom: 0;
             left: 0;
             width: 0;
-            height: 3px;
-            background: var(--primary);
-            transition: var(--transition);
-            border-radius: 1.5px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--burgundy), var(--gold));
+            transition: var(--transition-smooth);
         }
 
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .nav-links a.active {
-            color: var(--primary);
-        }
-
+        .nav-links a:hover::after,
         .nav-links a.active::after {
             width: 100%;
         }
 
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--burgundy);
+        }
+
         .mobile-toggle {
             display: none;
-            font-size: 1.6rem;
-            cursor: pointer;
-            color: var(--primary);
-            transition: var(--transition);
             background: none;
             border: none;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            align-items: center;
-            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--burgundy);
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: var(--radius-small);
+            transition: var(--transition-fast);
         }
 
         .mobile-toggle:hover {
-            transform: scale(1.1);
-            background: rgba(139, 69, 19, 0.1);
+            background: rgba(128, 0, 32, 0.1);
         }
 
-        /* Language Toggle */
         .lang-toggle {
             display: flex;
-            gap: 12px;
-            margin-left: 25px;
+            gap: 0.5rem;
+            margin-left: 2rem;
         }
 
         .lang-btn {
             background: none;
-            border: 2px solid var(--primary);
-            padding: 8px 18px;
-            border-radius: 25px;
+            border: 1px solid var(--burgundy);
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-small);
             cursor: pointer;
-            transition: var(--transition);
             font-weight: 600;
-            font-size: 0.95rem;
-            min-width: 44px;
-            min-height: 44px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            transition: var(--transition-fast);
+            min-width: 3rem;
         }
 
         .lang-btn:hover {
-            background: rgba(139, 69, 19, 0.1);
+            background: var(--burgundy);
+            color: var(--white);
         }
 
         .lang-btn.active {
-            background: var(--primary);
-            color: white;
-            box-shadow: 0 3px 10px rgba(139, 69, 19, 0.2);
+            background: var(--burgundy);
+            color: var(--white);
         }
 
-        /* Hero Section with Video Background */
+        /* ===== HERO SECTION ===== */
         .hero {
-            padding-top: 130px;
-            color: white;
-            text-align: center;
+            position: relative;
             min-height: 100vh;
             display: flex;
             align-items: center;
-            position: relative;
+            padding-top: 6rem;
             overflow: hidden;
         }
 
@@ -428,505 +372,370 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, rgba(44, 24, 16, 0.85), rgba(26, 15, 10, 0.95));
+            background: linear-gradient(135deg, rgba(26, 15, 10, 0.9) 0%, rgba(128, 0, 32, 0.7) 100%);
             z-index: 1;
         }
 
-        .hero-content {
-            max-width: 900px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-            padding: 40px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            color: white;
-            margin-bottom: 25px;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
-            line-height: 1.2;
-            letter-spacing: -0.5px;
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 35px;
-            opacity: 0.9;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.7;
-        }
-
-        .hero-btns {
-            display: flex;
-            gap: 25px;
-            justify-content: center;
-            margin-top: 40px;
-        }
-
-        /* Video Container with Controls */
-        .video-container {
+        .hero-video {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            overflow: hidden;
+            object-fit: cover;
+            z-index: 0;
+            filter: brightness(0.7);
         }
 
-        .hero-video {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            object-fit: cover;
-            filter: brightness(0.8);
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 2rem;
         }
 
         .video-controls {
             position: absolute;
-            bottom: 20px;
-            right: 20px;
+            bottom: 2rem;
+            right: 2rem;
             z-index: 3;
             display: flex;
-            gap: 10px;
+            gap: 0.75rem;
         }
 
-        .video-btn {
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            color: white;
-            width: 44px;
-            height: 44px;
+        .video-controls button {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--white);
+            width: 3rem;
+            height: 3rem;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: var(--transition);
-            backdrop-filter: blur(5px);
+            transition: var(--transition-fast);
         }
 
-        .video-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
+        .video-controls button:hover {
+            background: rgba(255, 255, 255, 0.2);
             transform: scale(1.1);
         }
 
-        /* Shimmer Effect for Loading */
-        .shimmer {
-            background: linear-gradient(90deg, 
-                rgba(255,255,255,0) 0%, 
-                rgba(255,255,255,0.3) 50%, 
-                rgba(255,255,255,0) 100%);
-            background-size: 200% 100%;
-            animation: shimmer 1.5s infinite;
-        }
-
-        @keyframes shimmer {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
-        }
-
-        .menu-item-img.shimmer {
-            height: 200px;
-            width: 100%;
-            border-radius: 15px 15px 0 0;
-        }
-
-        /* About Section */
+        /* ===== ABOUT SECTION ===== */
         .about {
-            background-color: white;
-            position: relative;
-            overflow: hidden;
+            background: var(--light-cream);
         }
 
         .about-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            gap: 4rem;
             align-items: center;
-            position: relative;
-            z-index: 1;
         }
 
         .about-img {
-            border-radius: 15px;
+            position: relative;
+            border-radius: var(--radius-large);
             overflow: hidden;
             box-shadow: var(--shadow-heavy);
-            transition: var(--transition);
-            position: relative;
         }
 
-        .about-img:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        .about-img::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(128, 0, 32, 0.2), transparent);
+            z-index: 1;
+        }
+
+        .about-img img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            transition: var(--transition-smooth);
+        }
+
+        .about-img:hover img {
+            transform: scale(1.05);
         }
 
         .about-text h3 {
-            font-size: 2.3rem;
-            margin-bottom: 25px;
-            color: var(--primary);
-            position: relative;
-            display: inline-block;
-        }
-
-        .about-text h3::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 60px;
-            height: 3px;
-            background: var(--secondary);
-            border-radius: 1.5px;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--burgundy);
         }
 
         .about-text p {
-            margin-bottom: 25px;
-            color: var(--text-light);
-            font-size: 1.05rem;
-            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+            opacity: 0.9;
         }
 
         .hours {
-            background: var(--light);
-            padding: 25px;
-            border-radius: 15px;
-            margin-top: 30px;
-            border-left: 4px solid var(--secondary);
-            box-shadow: var(--shadow);
-            transition: var(--transition);
+            background: var(--white);
+            padding: 2rem;
+            border-radius: var(--radius-medium);
+            border-left: 4px solid var(--gold);
+            box-shadow: var(--shadow-light);
+            margin-top: 2rem;
         }
 
-        .hours:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        .hours h4 {
+            color: var(--burgundy);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
         }
 
-        /* Menu Section - Enhanced */
+        /* ===== MENU SECTION ===== */
         .menu {
-            background-color: var(--light);
-            position: relative;
-            overflow: hidden;
+            background: var(--cream);
         }
 
-        /* Enhanced Categories */
-        .menu-categories-container {
-            position: sticky;
-            top: 85px;
-            background: linear-gradient(135deg, var(--darker) 0%, #2C1810 100%);
-            padding: 20px 0;
-            z-index: 100;
-            box-shadow: var(--shadow-heavy);
-            margin-bottom: 40px;
-            border-bottom: 3px solid var(--secondary);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+        .menu-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            gap: 2rem;
+        }
+
+        .search-container {
+            position: relative;
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border: 1px solid rgba(128, 0, 32, 0.2);
+            border-radius: var(--radius-full);
+            font-family: inherit;
+            font-size: 1rem;
+            background: var(--white);
+            transition: var(--transition-fast);
+            box-shadow: var(--shadow-light);
+        }
+
+        .search-bar:focus {
+            outline: none;
+            border-color: var(--burgundy);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1.25rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--burgundy);
+        }
+
+        .voice-search {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--burgundy);
+            cursor: pointer;
+            padding: 0.5rem;
         }
 
         .menu-categories {
             display: flex;
-            justify-content: flex-start;
-            gap: 12px;
-            flex-wrap: nowrap;
+            gap: 0.75rem;
             overflow-x: auto;
-            padding: 5px 0 15px;
+            padding: 0.5rem 0 1rem;
             scrollbar-width: thin;
-            scrollbar-color: var(--secondary) var(--darker);
         }
 
-        .menu-categories::-webkit-scrollbar {
-            height: 8px;
-        }
-
-        .menu-categories::-webkit-scrollbar-track {
-            background: var(--darker);
-            border-radius: 4px;
-        }
-
-        .menu-categories::-webkit-scrollbar-thumb {
-            background: var(--secondary);
-            border-radius: 4px;
-        }
-
-        /* Enhanced Category Buttons */
         .category-btn {
-            padding: 14px 24px;
-            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 100%);
-            border-radius: 12px;
+            padding: 0.75rem 1.5rem;
+            background: var(--white);
+            border: 1px solid rgba(128, 0, 32, 0.1);
+            border-radius: var(--radius-full);
             font-weight: 600;
             cursor: pointer;
-            transition: var(--transition);
-            border: 2px solid rgba(255,255,255,0.1);
-            font-size: 0.95rem;
-            color: white;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            transition: var(--transition-fast);
             white-space: nowrap;
-            position: relative;
-            overflow: hidden;
-            min-width: fit-content;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             display: flex;
             align-items: center;
-            gap: 10px;
-            min-height: 44px;
+            gap: 0.5rem;
         }
 
-        .category-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.7s ease;
-        }
-
-        .category-btn:hover::before {
-            left: 100%;
-        }
-
-        .category-btn.active, .category-btn:hover {
-            background: var(--primary);
-            color: white;
-            border-color: var(--secondary);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        .category-btn:hover {
+            background: var(--burgundy);
+            color: var(--white);
+            border-color: var(--burgundy);
+            transform: translateY(-2px);
         }
 
         .category-btn.active {
-            background: var(--secondary);
-            color: var(--darker);
-            font-weight: 700;
-            border-color: var(--secondary);
-            box-shadow: 0 0 25px rgba(212, 175, 55, 0.5);
+            background: var(--burgundy);
+            color: var(--white);
+            border-color: var(--burgundy);
+            box-shadow: var(--shadow-light);
         }
 
-        /* Menu Items Grid - Always 4 columns on tablet/desktop */
         .menu-items {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 25px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
         }
 
-        /* Enhanced Menu Items */
         .menu-item {
-            background: white;
-            border-radius: 15px;
+            background: var(--white);
+            border-radius: var(--radius-medium);
             overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
+            box-shadow: var(--shadow-light);
+            transition: var(--transition-smooth);
             position: relative;
             cursor: pointer;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            border: 1px solid rgba(0,0,0,0.08);
-            -webkit-tap-highlight-color: transparent;
-            -webkit-touch-callout: none;
-            user-select: none;
-        }
-
-        .menu-item:active {
-            transform: scale(0.98);
         }
 
         .menu-item:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-            border-color: var(--secondary);
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-heavy);
         }
 
         .menu-item-img {
             height: 200px;
             overflow: hidden;
             position: relative;
-            background: var(--light);
         }
 
         .menu-item-img img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: var(--transition);
+            transition: var(--transition-smooth);
         }
 
         .menu-item:hover .menu-item-img img {
-            transform: scale(1.15);
+            transform: scale(1.1);
         }
 
         .menu-item-content {
-            padding: 22px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
+            padding: 1.5rem;
         }
 
         .menu-item-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 15px;
-            gap: 12px;
+            margin-bottom: 1rem;
         }
 
         .menu-item-name {
-            font-size: 1.15rem;
-            color: var(--primary);
-            line-height: 1.3;
-            flex: 1;
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            color: var(--burgundy);
             font-weight: 600;
-            letter-spacing: -0.3px;
         }
 
         .menu-item-price {
-            color: white;
+            background: linear-gradient(135deg, var(--gold), var(--light-gold));
+            color: var(--dark);
+            padding: 0.25rem 1rem;
+            border-radius: var(--radius-full);
             font-weight: 700;
             font-size: 1.1rem;
             white-space: nowrap;
-            background: linear-gradient(135deg, var(--primary) 0%, #9c5c2e 100%);
-            padding: 8px 16px;
-            border-radius: 20px;
-            min-width: 75px;
-            text-align: center;
-            box-shadow: 0 4px 12px rgba(139, 69, 19, 0.3);
-            flex-shrink: 0;
-            letter-spacing: 0.5px;
         }
 
-        /* Search Bar */
-        .search-container {
-            max-width: 600px;
-            margin: 0 auto 40px;
-            position: relative;
+        .menu-item-desc {
+            color: var(--dark);
+            opacity: 0.8;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            line-height: 1.6;
         }
 
-        .search-bar {
-            width: 100%;
-            padding: 18px 25px 18px 60px;
-            border: 2px solid rgba(139, 69, 19, 0.2);
-            border-radius: 30px;
-            font-size: 1.1rem;
-            font-family: 'Cairo', sans-serif;
-            background: white;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: var(--transition);
-        }
-
-        .search-bar:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 5px 25px rgba(139, 69, 19, 0.2);
-        }
-
-        .search-icon {
-            position: absolute;
-            left: 25px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--primary);
-            font-size: 1.2rem;
-        }
-
-        .voice-search-btn {
-            position: absolute;
-            right: 25px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            color: var(--primary);
-            font-size: 1.2rem;
-            cursor: pointer;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
+        .menu-item-details {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
-            transition: var(--transition);
+            font-size: 0.85rem;
+            color: var(--dark);
+            opacity: 0.7;
         }
 
-        .voice-search-btn:hover {
-            background: rgba(139, 69, 19, 0.1);
+        .dietary-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
         }
 
-        .voice-search-btn.listening {
-            background: var(--accent);
-            color: white;
-            animation: pulse 1.5s infinite;
+        .dietary-tag {
+            background: var(--cream);
+            padding: 0.25rem 0.5rem;
+            border-radius: var(--radius-small);
+            font-size: 0.75rem;
         }
 
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(196, 30, 58, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(196, 30, 58, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(196, 30, 58, 0); }
-        }
-
-        /* No Results Message */
-        .no-results {
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: 60px 20px;
-            color: var(--text-light);
-        }
-
-        .no-results i {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            color: var(--primary);
-            opacity: 0.5;
-        }
-
-        /* Gallery Section with Lightbox */
+        /* ===== GALLERY ===== */
         .gallery {
-            background-color: white;
-            position: relative;
-            overflow: hidden;
+            background: var(--light-cream);
         }
 
-        .gallery-container {
+        .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
-            position: relative;
-            z-index: 1;
+            gap: 1.5rem;
         }
 
         .gallery-item {
-            border-radius: 15px;
-            overflow: hidden;
             position: relative;
+            border-radius: var(--radius-medium);
+            overflow: hidden;
             height: 280px;
             cursor: pointer;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            -webkit-tap-highlight-color: transparent;
+            box-shadow: var(--shadow-light);
+            transition: var(--transition-smooth);
         }
 
         .gallery-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-heavy);
         }
 
         .gallery-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: var(--transition);
+            transition: var(--transition-smooth);
         }
 
         .gallery-item:hover img {
@@ -939,19 +748,19 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to top, rgba(139, 69, 19, 0.9), transparent);
+            background: linear-gradient(to top, rgba(128, 0, 32, 0.8), transparent);
             display: flex;
             align-items: center;
             justify-content: center;
             opacity: 0;
-            transition: var(--transition);
+            transition: var(--transition-smooth);
         }
 
         .gallery-item:hover .gallery-overlay {
             opacity: 1;
         }
 
-        /* Lightbox */
+        /* ===== LIGHTBOX ===== */
         .lightbox {
             display: none;
             position: fixed;
@@ -959,12 +768,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.95);
+            background: rgba(0, 0, 0, 0.95);
             z-index: 2000;
             align-items: center;
             justify-content: center;
-            padding: 20px;
-            animation: fadeIn 0.3s ease;
+            padding: 2rem;
         }
 
         .lightbox.active {
@@ -972,45 +780,37 @@
         }
 
         .lightbox-content {
+            position: relative;
             max-width: 90%;
             max-height: 90%;
-            position: relative;
-            animation: zoomIn 0.3s ease;
-        }
-
-        @keyframes zoomIn {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
         }
 
         .lightbox-img {
             max-width: 100%;
             max-height: 80vh;
-            border-radius: 10px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            border-radius: var(--radius-medium);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
         }
 
         .lightbox-close {
             position: absolute;
-            top: 20px;
-            right: 20px;
-            background: rgba(255,255,255,0.1);
+            top: -3rem;
+            right: 0;
+            background: rgba(255, 255, 255, 0.1);
             border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            width: 50px;
-            height: 50px;
+            color: var(--white);
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 50%;
-            color: white;
-            transition: var(--transition);
-            backdrop-filter: blur(10px);
+            cursor: pointer;
+            transition: var(--transition-fast);
         }
 
         .lightbox-close:hover {
-            background: var(--accent);
+            background: var(--burgundy);
             transform: rotate(90deg);
         }
 
@@ -1018,259 +818,191 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.1);
             border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            width: 50px;
-            height: 50px;
+            color: var(--white);
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 50%;
-            color: white;
-            transition: var(--transition);
-            backdrop-filter: blur(10px);
+            cursor: pointer;
+            transition: var(--transition-fast);
         }
 
         .lightbox-nav:hover {
-            background: var(--secondary);
+            background: var(--gold);
             color: var(--dark);
         }
 
         .lightbox-prev {
-            left: 20px;
+            left: -4rem;
         }
 
         .lightbox-next {
-            right: 20px;
+            right: -4rem;
         }
 
-        .lightbox-caption {
-            position: absolute;
-            bottom: 20px;
+        /* ===== ITEM MODAL ===== */
+        .item-modal {
+            display: none;
+            position: fixed;
+            top: 0;
             left: 0;
             width: 100%;
-            text-align: center;
-            color: white;
-            padding: 10px;
-            background: rgba(0,0,0,0.5);
-            backdrop-filter: blur(5px);
-            border-radius: 0 0 10px 10px;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
         }
 
-        /* Interactive Map Section */
-        .map-section {
-            background: var(--light);
-            padding: 60px 0;
+        .item-modal.active {
+            display: flex;
         }
 
-        .map-container {
+        .item-modal-content {
+            background: var(--white);
+            border-radius: var(--radius-large);
+            width: 100%;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: var(--shadow-heavy);
+        }
+
+        .item-modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: var(--burgundy);
+            border: none;
+            color: var(--white);
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: var(--transition-fast);
+        }
+
+        .item-modal-close:hover {
+            background: var(--dark-burgundy);
+            transform: rotate(90deg);
+        }
+
+        .item-modal-body {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: center;
+            min-height: 500px;
         }
 
-        .map-info {
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: var(--shadow-heavy);
-        }
-
-        .map-placeholder {
-            background: linear-gradient(135deg, var(--light), #e8e0d5);
-            border-radius: 20px;
+        .item-modal-img {
+            height: 100%;
+            min-height: 500px;
             overflow: hidden;
-            height: 400px;
+            border-radius: var(--radius-large) 0 0 var(--radius-large);
+        }
+
+        .item-modal-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .item-modal-info {
+            padding: 3rem;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            box-shadow: var(--shadow);
         }
 
-        .map-placeholder i {
-            font-size: 4rem;
-            color: var(--primary);
-            margin-bottom: 20px;
-            opacity: 0.7;
+        .item-modal-header {
+            margin-bottom: 1.5rem;
         }
 
-        .directions-btn {
-            margin-top: 20px;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
+        .item-modal-name {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            color: var(--burgundy);
+            margin-bottom: 0.5rem;
         }
 
-        /* Contact Form with Enhanced Validation */
-        .contact-form {
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: var(--shadow-heavy);
-            border: 1px solid rgba(0,0,0,0.05);
+        .item-modal-price {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--gold);
         }
 
-        .form-group {
-            margin-bottom: 25px;
-            position: relative;
+        .item-modal-desc {
+            margin-bottom: 2rem;
+            color: var(--dark);
+            opacity: 0.9;
+            line-height: 1.8;
         }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 10px;
+        .item-modal-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .detail-box {
+            background: var(--cream);
+            padding: 1.5rem;
+            border-radius: var(--radius-medium);
+            text-align: center;
+        }
+
+        .detail-box h4 {
+            color: var(--burgundy);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .detail-box p {
+            font-size: 1.1rem;
             font-weight: 600;
             color: var(--dark);
-            font-size: 1.05rem;
         }
 
-        .form-control {
-            width: 100%;
-            padding: 16px 20px;
-            border: 2px solid rgba(0,0,0,0.1);
-            border-radius: 10px;
-            font-family: 'Cairo', sans-serif;
-            transition: var(--transition);
-            font-size: 1rem;
-            background: var(--light);
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary);
-            background: white;
-            box-shadow: 0 5px 15px rgba(139, 69, 19, 0.1);
-        }
-
-        .form-control.error {
-            border-color: var(--accent);
-            background: rgba(196, 30, 58, 0.05);
-        }
-
-        .error-message {
-            color: var(--accent);
-            font-size: 0.85rem;
-            margin-top: 5px;
-            display: none;
-        }
-
-        .error-message.show {
-            display: block;
-        }
-
-        /* Toast Notifications */
-        .toast {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: white;
-            padding: 20px 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            z-index: 2001;
-            transform: translateY(100px);
-            opacity: 0;
-            transition: var(--transition);
-            max-width: 400px;
-        }
-
-        .toast.show {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .toast-icon {
-            font-size: 1.5rem;
-            color: var(--success);
-        }
-
-        .toast.error .toast-icon {
-            color: var(--accent);
-        }
-
-        .toast-close {
-            background: none;
-            border: none;
-            font-size: 1.2rem;
-            cursor: pointer;
-            color: var(--text-light);
-            transition: var(--transition);
-            margin-left: auto;
-        }
-
-        .toast-close:hover {
-            color: var(--accent);
-        }
-
-        /* Dark Mode Toggle */
-        .theme-toggle {
-            position: fixed;
-            bottom: 30px;
-            left: 30px;
-            z-index: 999;
-        }
-
-        .theme-btn {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: var(--primary);
-            color: white;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            box-shadow: 0 5px 20px rgba(139, 69, 19, 0.3);
-            transition: var(--transition);
-        }
-
-        .theme-btn:hover {
-            transform: scale(1.1) rotate(15deg);
-            box-shadow: 0 8px 30px rgba(139, 69, 19, 0.4);
-        }
-
-        /* Share Buttons */
         .share-buttons {
             display: flex;
-            gap: 10px;
-            margin-top: 20px;
-            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: auto;
         }
 
         .share-btn {
-            width: 44px;
-            height: 44px;
+            width: 3rem;
+            height: 3rem;
             border-radius: 50%;
-            background: var(--light);
+            background: var(--cream);
             border: none;
-            color: var(--primary);
+            color: var(--burgundy);
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: var(--transition);
-            font-size: 1.2rem;
+            transition: var(--transition-fast);
         }
 
         .share-btn:hover {
-            background: var(--primary);
-            color: white;
+            background: var(--burgundy);
+            color: var(--white);
             transform: translateY(-3px);
         }
 
-        /* Testimonials Section */
+        /* ===== TESTIMONIALS ===== */
         .testimonials {
-            background: linear-gradient(135deg, var(--light) 0%, #f0e9db 100%);
-            padding: 80px 0;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--light-cream) 100%);
         }
 
         .testimonial-slider {
@@ -1280,173 +1012,307 @@
         }
 
         .testimonial {
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: var(--shadow);
+            background: var(--white);
+            padding: 3rem;
+            border-radius: var(--radius-large);
+            box-shadow: var(--shadow-light);
             text-align: center;
-            margin: 20px;
-            transition: var(--transition);
-        }
-
-        .testimonial:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            margin: 1rem;
         }
 
         .testimonial-rating {
-            color: var(--secondary);
-            font-size: 1.2rem;
-            margin-bottom: 20px;
+            color: var(--gold);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
         }
 
         .testimonial-text {
             font-size: 1.1rem;
             font-style: italic;
-            color: var(--text);
-            margin-bottom: 25px;
-            line-height: 1.7;
+            margin-bottom: 2rem;
+            line-height: 1.8;
         }
 
         .testimonial-author {
             font-weight: 600;
-            color: var(--primary);
+            color: var(--burgundy);
         }
 
-        /* Footer Enhancements */
+        /* ===== CONTACT ===== */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .contact-info {
+            padding-right: 2rem;
+        }
+
+        .contact-info h3 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--burgundy);
+        }
+
+        .contact-details {
+            margin: 2rem 0;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: var(--cream);
+            border-radius: var(--radius-medium);
+        }
+
+        .contact-icon {
+            width: 3rem;
+            height: 3rem;
+            background: var(--burgundy);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .contact-form {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: var(--radius-large);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid rgba(128, 0, 32, 0.2);
+            border-radius: var(--radius-medium);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: var(--transition-fast);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--burgundy);
+            box-shadow: 0 0 0 3px rgba(128, 0, 32, 0.1);
+        }
+
+        /* ===== FOOTER ===== */
         footer {
-            background: linear-gradient(135deg, var(--dark) 0%, #1A0F0A 100%);
-            color: white;
-            padding: 70px 0 25px;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--black) 100%);
+            color: var(--white);
+            padding: 5rem 0 2rem;
             position: relative;
-            overflow: hidden;
         }
 
         .back-to-top {
             position: absolute;
-            top: -25px;
+            top: -1.5rem;
             left: 50%;
             transform: translateX(-50%);
-            background: var(--secondary);
+            width: 3rem;
+            height: 3rem;
+            background: var(--gold);
             color: var(--dark);
-            width: 50px;
-            height: 50px;
+            border: none;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
             cursor: pointer;
-            transition: var(--transition);
-            border: none;
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+            transition: var(--transition-fast);
+            font-size: 1.25rem;
         }
 
         .back-to-top:hover {
             transform: translateX(-50%) translateY(-5px);
-            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
+            box-shadow: var(--shadow-gold);
         }
 
-        /* WhatsApp Button with Animation */
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-col h3 {
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: var(--transition-fast);
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+            transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-fast);
+        }
+
+        .social-links a:hover {
+            background: var(--gold);
+            color: var(--dark);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        /* ===== WIDGETS ===== */
         .whatsapp-btn {
             position: fixed;
-            bottom: 100px;
-            right: 30px;
+            bottom: 2rem;
+            right: 2rem;
+            width: 4rem;
+            height: 4rem;
             background: linear-gradient(135deg, #25D366, #128C7E);
-            color: white;
-            width: 65px;
-            height: 65px;
+            color: var(--white);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.2rem;
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+            font-size: 1.75rem;
+            box-shadow: var(--shadow-medium);
             z-index: 999;
-            transition: var(--transition);
+            transition: var(--transition-smooth);
             text-decoration: none;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
         }
 
         .whatsapp-btn:hover {
             transform: scale(1.1) rotate(5deg);
-            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
-            animation: none;
+            box-shadow: var(--shadow-heavy);
         }
 
-        /* PWA Install Prompt */
-        .install-prompt {
+        .theme-toggle {
             position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%) translateY(100px);
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            bottom: 7rem;
+            right: 2rem;
+            z-index: 999;
+        }
+
+        .theme-btn {
+            width: 3.5rem;
+            height: 3.5rem;
+            background: var(--burgundy);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
             display: flex;
             align-items: center;
-            gap: 15px;
-            z-index: 2002;
-            transition: var(--transition);
-            max-width: 400px;
+            justify-content: center;
+            font-size: 1.25rem;
+            cursor: pointer;
+            box-shadow: var(--shadow-medium);
+            transition: var(--transition-smooth);
+        }
+
+        .theme-btn:hover {
+            transform: scale(1.1) rotate(15deg);
+            background: var(--dark-burgundy);
+        }
+
+        /* ===== TOAST ===== */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--white);
+            padding: 1.25rem 2rem;
+            border-radius: var(--radius-medium);
+            box-shadow: var(--shadow-heavy);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            z-index: 2001;
+            opacity: 0;
+            transition: var(--transition-smooth);
+            max-width: 500px;
             width: 90%;
         }
 
-        .install-prompt.show {
+        .toast.show {
             transform: translateX(-50%) translateY(0);
+            opacity: 1;
         }
 
-        .install-icon {
-            font-size: 2rem;
-            color: var(--primary);
+        .toast-icon {
+            color: var(--success);
+            font-size: 1.5rem;
         }
 
-        .install-close {
+        .toast-close {
             background: none;
             border: none;
-            font-size: 1.2rem;
+            color: var(--dark);
+            opacity: 0.5;
             cursor: pointer;
-            color: var(--text-light);
             margin-left: auto;
+            padding: 0.5rem;
         }
 
-        /* RESPONSIVE DESIGN */
-        @media (max-width: 1600px) {
-            .container {
-                max-width: 1300px;
-            }
-            
-            .menu-items {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 22px;
-            }
+        .toast-close:hover {
+            opacity: 1;
         }
 
-        @media (max-width: 1400px) {
-            .container {
-                max-width: 1200px;
-            }
-            
-            .menu-items {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 20px;
-            }
-        }
-
+        /* ===== RESPONSIVE DESIGN ===== */
         @media (max-width: 1200px) {
             .container {
-                max-width: 1100px;
+                padding: 0 1.5rem;
             }
             
-            .menu-items {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 18px;
+            .section {
+                padding: 5rem 0;
             }
             
             .hero h1 {
@@ -1455,50 +1321,59 @@
         }
 
         @media (max-width: 992px) {
-            .about-content, .contact-container, .map-container {
+            .about-content,
+            .contact-container,
+            .item-modal-body {
                 grid-template-columns: 1fr;
             }
             
-            .footer-container {
+            .footer-content {
                 grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .menu-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .search-container {
+                max-width: 100%;
+            }
+            
+            .item-modal-img {
+                min-height: 300px;
+                border-radius: var(--radius-large) var(--radius-large) 0 0;
             }
             
             .hero h1 {
                 font-size: 3rem;
             }
-            
-            .menu-items {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 15px;
-            }
-            
-            .gallery-container {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            }
         }
 
         @media (max-width: 768px) {
             .mobile-toggle {
-                display: flex;
+                display: block;
             }
             
             .nav-links {
                 position: fixed;
-                top: 85px;
-                left: -100%;
+                top: 100%;
+                left: 0;
                 width: 100%;
-                height: calc(100vh - 85px);
-                background: white;
+                background: var(--white);
                 flex-direction: column;
-                align-items: center;
-                padding-top: 60px;
-                transition: var(--transition);
-                box-shadow: var(--shadow);
-                z-index: 999;
+                padding: 2rem;
+                box-shadow: var(--shadow-heavy);
+                transform: translateY(-100%);
+                transition: var(--transition-smooth);
+                opacity: 0;
+                visibility: hidden;
             }
             
             .nav-links.active {
-                left: 0;
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
             }
             
             .hero h1 {
@@ -1508,132 +1383,108 @@
             .hero-btns {
                 flex-direction: column;
                 align-items: center;
-                gap: 15px;
+            }
+            
+            .section-title h2 {
+                font-size: 2.5rem;
             }
             
             .menu-items {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 18px;
-            }
-            
-            .lightbox-nav, .lightbox-close {
-                width: 40px;
-                height: 40px;
-                font-size: 1.2rem;
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             }
         }
 
-        @media (max-width: 640px) {
-            .footer-container {
+        @media (max-width: 576px) {
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .section {
+                padding: 4rem 0;
+            }
+            
+            .footer-content {
                 grid-template-columns: 1fr;
             }
             
             .hero h1 {
-                font-size: 2.2rem;
+                font-size: 2rem;
             }
             
-            .menu-items {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 15px;
+            .item-modal-info {
+                padding: 2rem;
             }
             
-            .theme-toggle {
-                bottom: 20px;
-                left: 20px;
-            }
-            
-            .whatsapp-btn {
-                bottom: 90px;
-                right: 20px;
+            .item-modal-name {
+                font-size: 2rem;
             }
         }
 
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 20px;
-            }
-            
-            .menu-items {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 12px;
-            }
-            
-            .gallery-container {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            
-            .theme-btn, .whatsapp-btn {
-                width: 55px;
-                height: 55px;
-                font-size: 1.8rem;
-            }
+        /* ===== DARK MODE ===== */
+        .dark-mode {
+            --cream: #1A1A1A;
+            --light-cream: #252525;
+            --white: #2A2A2A;
+            --dark: #E0E0E0;
+            --black: #F0F0F0;
         }
 
-        @media (max-width: 380px) {
-            .menu-items {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Full-screen mode optimizations */
-        @media (display-mode: fullscreen) {
-            .container {
-                max-width: 1400px;
-            }
-            
-            .menu-items {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 25px;
-            }
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
         }
 
-        /* Print styles */
+        .shimmer {
+            background: linear-gradient(90deg, 
+                rgba(255,255,255,0) 0%, 
+                rgba(255,255,255,0.1) 50%, 
+                rgba(255,255,255,0) 100%);
+            background-size: 1000px 100%;
+            animation: shimmer 2s infinite;
+        }
+
+        /* ===== PRINT STYLES ===== */
         @media print {
             .whatsapp-btn,
-            .mobile-toggle,
-            .hero-btns,
             .theme-toggle,
             .video-controls,
-            .install-prompt {
+            .mobile-toggle {
                 display: none !important;
-            }
-            
-            body {
-                background: white;
-                color: black;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header & Navigation -->
-    <header id="header" aria-label="Main navigation">
+    <!-- Header -->
+    <header id="header">
         <div class="container header-container">
-            <a href="#home" class="logo" aria-label="Turkiana Cafe & Sweets Home">
-                <div class="logo-icon" aria-hidden="true">
-                    <i class="fas fa-mug-hot"></i>
-                </div>
+            <a href="#home" class="logo">
+                <i class="fas fa-crown logo-icon"></i>
                 <div class="logo-text">Turkiana<span>Cafe</span></div>
             </a>
             
-            <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-links">
+            <button class="mobile-toggle" id="mobile-toggle">
                 <i class="fas fa-bars"></i>
             </button>
             
-            <nav aria-label="Main navigation">
+            <nav>
                 <ul class="nav-links" id="nav-links">
                     <li><a href="#home" class="active">Home</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#menu">Menu</a></li>
                     <li><a href="#gallery">Gallery</a></li>
-                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#testimonials">Reviews</a></li>
                     <li><a href="#contact">Contact</a></li>
                     <li>
                         <div class="lang-toggle">
-                            <button class="lang-btn active" data-lang="en" aria-label="Switch to English">EN</button>
-                            <button class="lang-btn" data-lang="ar" aria-label="Switch to Arabic">AR</button>
+                            <button class="lang-btn active" data-lang="en">EN</button>
+                            <button class="lang-btn" data-lang="ar">AR</button>
                         </div>
                     </li>
                 </ul>
@@ -1641,117 +1492,31 @@
         </div>
     </header>
 
-    <!-- Lightbox -->
-    <div class="lightbox" id="lightbox" role="dialog" aria-label="Image lightbox" aria-hidden="true">
-        <button class="lightbox-close" id="lightbox-close" aria-label="Close lightbox">
-            <i class="fas fa-times"></i>
-        </button>
-        <button class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Previous image">
-            <i class="fas fa-chevron-left"></i>
-        </button>
-        <button class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Next image">
-            <i class="fas fa-chevron-right"></i>
-        </button>
-        <div class="lightbox-content">
-            <img class="lightbox-img" id="lightbox-img" src="" alt="">
-            <div class="lightbox-caption" id="lightbox-caption"></div>
-        </div>
-    </div>
-
-    <!-- Item Modal -->
-    <div class="item-modal" id="item-modal" role="dialog" aria-label="Menu item details" aria-hidden="true">
-        <div class="item-modal-content">
-            <button class="item-modal-close" id="item-modal-close" aria-label="Close modal">
-                <i class="fas fa-times"></i>
-            </button>
-            <div class="item-modal-img">
-                <img id="modal-image" src="" alt="">
-            </div>
-            <div class="item-modal-info">
-                <h3 class="item-modal-name en-name" id="modal-name-en"></h3>
-                <h3 class="item-modal-name ar-name" id="modal-name-ar" style="display: none;"></h3>
-                <div class="item-modal-price" id="modal-price"></div>
-                <p class="item-modal-desc en-desc" id="modal-desc-en"></p>
-                <p class="item-modal-desc ar-desc" id="modal-desc-ar" style="display: none;"></p>
-                <div class="item-modal-details">
-                    <div class="item-modal-calories" id="modal-calories"></div>
-                    <div class="item-modal-dietary" id="modal-dietary"></div>
-                </div>
-                <div class="share-buttons">
-                    <button class="share-btn" onclick="shareItem()" aria-label="Share this item">
-                        <i class="fas fa-share-alt"></i>
-                    </button>
-                    <button class="share-btn" onclick="shareOnFacebook()" aria-label="Share on Facebook">
-                        <i class="fab fa-facebook-f"></i>
-                    </button>
-                    <button class="share-btn" onclick="shareOnTwitter()" aria-label="Share on Twitter">
-                        <i class="fab fa-twitter"></i>
-                    </button>
-                    <button class="share-btn" onclick="shareOnWhatsApp()" aria-label="Share on WhatsApp">
-                        <i class="fab fa-whatsapp"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Toast Notification -->
-    <div class="toast" id="toast" role="alert" aria-live="polite" aria-atomic="true">
-        <div class="toast-icon">
-            <i class="fas fa-check-circle"></i>
-        </div>
-        <div class="toast-message" id="toast-message"></div>
-        <button class="toast-close" id="toast-close" aria-label="Close notification">
-            <i class="fas fa-times"></i>
-        </button>
-    </div>
-
-    <!-- PWA Install Prompt -->
-    <div class="install-prompt" id="install-prompt">
-        <div class="install-icon">
-            <i class="fas fa-download"></i>
-        </div>
-        <div>
-            <h4 class="en-message">Install Turkiana Cafe App</h4>
-            <h4 class="ar-message" style="display: none;">تثبيت تطبيق تركيانا كافيه</h4>
-            <p class="en-message">Get faster access and offline features</p>
-            <p class="ar-message" style="display: none;">احصل على وصول أسرع وميزات دون اتصال</p>
-        </div>
-        <button class="install-close" id="install-close" aria-label="Close install prompt">
-            <i class="fas fa-times"></i>
-        </button>
-        <button class="btn btn-secondary" id="install-btn">
-            <span class="en-message">Install</span>
-            <span class="ar-message" style="display: none;">تثبيت</span>
-        </button>
-    </div>
-
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="video-container">
-            <video autoplay muted loop playsinline class="hero-video" id="hero-video">
-                <source src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Video.mp4" type="video/mp4">
-                <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg" alt="Turkiana Cafe Background">
-            </video>
-            <div class="video-controls">
-                <button class="video-btn" id="video-mute" aria-label="Toggle video sound">
-                    <i class="fas fa-volume-up"></i>
-                </button>
-                <button class="video-btn" id="video-pause" aria-label="Pause video">
-                    <i class="fas fa-pause"></i>
-                </button>
-            </div>
-        </div>
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Video.mp4" type="video/mp4">
+            <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg" alt="Turkiana Cafe">
+        </video>
         
         <div class="container">
             <div class="hero-content">
-                <h1 data-en="Experience Authentic Turkish & Arabic Delights" data-ar="استمتع بألذ المشروبات والحلويات التركية والعربية">Experience Authentic Turkish & Arabic Delights</h1>
-                <p data-en="Savor traditional Turkish coffee, exquisite baklava, and authentic Arabic beverages in the heart of Doha, Qatar" data-ar="استمتع بالقهوة التركية التقليدية والبقلاوة الفاخرة والمشروبات العربية الأصيلة في قلب الدوحة، قطر">Savor traditional Turkish coffee, exquisite baklava, and authentic Arabic beverages in the heart of Doha, Qatar</p>
+                <h1>Luxury Turkish & Arabic Delights</h1>
+                <p>Experience the pinnacle of Turkish coffee, exquisite baklava, and premium Arabic beverages in the heart of Doha. Where tradition meets luxury.</p>
                 <div class="hero-btns">
-                    <a href="#menu" class="btn" data-en="View Full Menu" data-ar="عرض القائمة الكاملة">View Full Menu</a>
-                    <a href="#contact" class="btn btn-secondary" data-en="Visit Us Today" data-ar="زورونا اليوم">Visit Us Today</a>
+                    <a href="#menu" class="btn">Explore Menu</a>
+                    <a href="#contact" class="btn btn-gold">Reserve Table</a>
                 </div>
             </div>
+        </div>
+        
+        <div class="video-controls">
+            <button id="video-mute">
+                <i class="fas fa-volume-up"></i>
+            </button>
+            <button id="video-pause">
+                <i class="fas fa-pause"></i>
+            </button>
         </div>
     </section>
 
@@ -1759,51 +1524,50 @@
     <section class="section about" id="about">
         <div class="container">
             <div class="section-title">
-                <h2 data-en="Our Story" data-ar="قصتنا">Our Story</h2>
+                <h2>Our Story</h2>
             </div>
             <div class="about-content">
                 <div class="about-img">
-                    <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg" alt="Turkiana Cafe Interior" loading="lazy" width="600" height="400">
+                    <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg" alt="Turkiana Cafe Interior">
                 </div>
                 <div class="about-text">
-                    <h3 data-en="Authentic Flavors of Turkey & Arabia in Doha" data-ar="نكهات تركية وعربية أصيلة في الدوحة">Authentic Flavors of Turkey & Arabia in Doha</h3>
-                    <p data-en="Turkiana Cafe & Sweets brings the rich culinary traditions of Turkey and Arabia to Doha. Our commitment to authenticity ensures every cup of Turkish coffee, every piece of baklava, and every Arabic brew is prepared with traditional methods and premium ingredients." data-ar="تجلب تركيانا كافيه & سوييتس التقاليد الطهوية الغنية لتركيا والعربية إلى الدوحة. التزامنا بالأصالة يضمن تحضير كل فنجان قهوة تركي، كل قطعة بقلاوة، وكل مشروب عربي بالطرق التقليدية والمكونات الفاخرة."></p>
-                    <p data-en="Located in the heart of Doha, we create a welcoming atmosphere where tradition meets modern comfort, perfect for enjoying time-honored recipes with friends and family." data-ar="تقع في قلب الدوحة، نخلق أجواء ترحيبية حيث يلتقي التقليد بالراحة الحديثة، مثالية للاستمتاع بالوصفات العريقة مع الأصدقاء والعائلة."></p>
+                    <h3>A Legacy of Turkish Excellence</h3>
+                    <p>Turkiana Cafe & Sweets represents the culmination of centuries-old Turkish and Arabic culinary traditions, reimagined for the discerning palate. Our establishment is built upon three pillars: authenticity, quality, and luxury.</p>
+                    <p>Every cup of Turkish coffee is brewed with beans sourced directly from Anatolia, while our baklava is crafted by master pastry chefs using techniques passed down through generations.</p>
                     
                     <div class="hours">
-                        <h4><i class="fas fa-clock"></i> <span data-en="Opening Hours" data-ar="ساعات العمل">Opening Hours</span></h4>
-                        <p data-en="Saturday - Wednesday: 8:00 AM - 12:00 AM" data-ar="السبت - الأربعاء: ٨:٠٠ صباحاً - ١٢:٠٠ منتصف الليل">Saturday - Wednesday: 8:00 AM - 12:00 AM</p>
-                        <p data-en="Thursday & Friday: 8:00 AM - 1:00 AM" data-ar="الخميس والجمعة: ٨:٠٠ صباحاً - ١:٠٠ فجراً">Thursday & Friday: 8:00 AM - 1:00 AM</p>
+                        <h4><i class="fas fa-clock"></i> Opening Hours</h4>
+                        <p><strong>Saturday - Wednesday:</strong> 8:00 AM - 12:00 AM</p>
+                        <p><strong>Thursday & Friday:</strong> 8:00 AM - 1:00 AM</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Menu Section with Search -->
+    <!-- Menu Section -->
     <section class="section menu" id="menu">
         <div class="container">
             <div class="section-title">
-                <h2 data-en="Our Menu" data-ar="قائمتنا">Our Menu</h2>
+                <h2>Premium Menu</h2>
             </div>
             
-            <!-- Search Bar -->
-            <div class="search-container">
-                <i class="fas fa-search search-icon"></i>
-                <input type="text" class="search-bar" id="search-bar" placeholder="Search menu items..." data-en="Search menu items..." data-ar="ابحث في القائمة...">
-                <button class="voice-search-btn" id="voice-search-btn" aria-label="Voice search">
-                    <i class="fas fa-microphone"></i>
-                </button>
-            </div>
-            
-            <div class="menu-categories-container">
+            <div class="menu-controls">
+                <div class="search-container">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" class="search-bar" id="search-bar" placeholder="Search our premium menu...">
+                    <button class="voice-search" id="voice-search">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+                
                 <div class="menu-categories" id="menu-categories">
-                    <!-- Categories populated by JavaScript -->
+                    <!-- Categories will be populated by JavaScript -->
                 </div>
             </div>
             
-            <div class="menu-items" id="menu-items-container">
-                <!-- Menu items populated by JavaScript -->
+            <div class="menu-items" id="menu-items">
+                <!-- Menu items will be populated by JavaScript -->
             </div>
         </div>
     </section>
@@ -1812,43 +1576,43 @@
     <section class="section gallery" id="gallery">
         <div class="container">
             <div class="section-title">
-                <h2 data-en="Gallery" data-ar="معرض الصور">Gallery</h2>
+                <h2>Gallery</h2>
             </div>
             
-            <div class="gallery-container">
+            <div class="gallery-grid">
                 <div class="gallery-item">
-                    <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/a.jpeg" alt="Traditional Turkish Coffee" loading="lazy" width="280" height="280">
+                    <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/a.jpeg" alt="Turkish Coffee">
                     <div class="gallery-overlay">
-                        <i class="fas fa-search-plus"></i>
+                        <i class="fas fa-search-plus fa-2x"></i>
                     </div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/b.jpeg" alt="Baklava Assortment" loading="lazy" width="280" height="280">
+                    <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/b.jpeg" alt="Baklava">
                     <div class="gallery-overlay">
-                        <i class="fas fa-search-plus"></i>
+                        <i class="fas fa-search-plus fa-2x"></i>
                     </div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/c.jpeg" alt="Kunafa" loading="lazy" width="280" height="280">
+                    <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/c.jpeg" alt="Kunafa">
                     <div class="gallery-overlay">
-                        <i class="fas fa-search-plus"></i>
+                        <i class="fas fa-search-plus fa-2x"></i>
                     </div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/d.jpeg" alt="Turkish Breakfast" loading="lazy" width="280" height="280">
+                    <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/d.jpeg" alt="Turkish Breakfast">
                     <div class="gallery-overlay">
-                        <i class="fas fa-search-plus"></i>
+                        <i class="fas fa-search-plus fa-2x"></i>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Testimonials Section -->
+    <!-- Testimonials -->
     <section class="section testimonials" id="testimonials">
         <div class="container">
             <div class="section-title">
-                <h2 data-en="What Our Guests Say" data-ar="آراء زوارنا">What Our Guests Say</h2>
+                <h2>Guest Reviews</h2>
             </div>
             
             <div class="testimonial-slider">
@@ -1860,58 +1624,8 @@
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                     </div>
-                    <p class="testimonial-text en-message">"The best Turkish coffee I've had outside of Istanbul! The baklava is absolutely divine. A true taste of Turkey in Doha."</p>
-                    <p class="testimonial-text ar-message" style="display: none;">"أفضل قهوة تركية تناولتها خارج إسطنبول! البقلاوة إلهية حقاً. طعم تركي أصيل في الدوحة."</p>
+                    <p class="testimonial-text">"The most authentic Turkish coffee experience outside of Istanbul. The attention to detail and luxurious ambiance make Turkiana a must-visit destination in Doha."</p>
                     <div class="testimonial-author">Ahmed Al-Mansoori</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Interactive Map Section -->
-    <section class="section map-section" id="location">
-        <div class="container">
-            <div class="section-title">
-                <h2 data-en="Find Us" data-ar="جدونا">Find Us</h2>
-            </div>
-            
-            <div class="map-container">
-                <div class="map-info">
-                    <h3 data-en="Visit Our Cafe" data-ar="زوروا مقهانا">Visit Our Cafe</h3>
-                    <p data-en="We're conveniently located in the heart of Doha with easy access and parking facilities." data-ar="نحن في موقع مناسب في قلب الدوحة مع وصول سهل ومواقف سيارات."></p>
-                    
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div>
-                                <h4 data-en="Our Location" data-ar="موقعنا">Our Location</h4>
-                                <p>7GPG+Q2R, Al Kahraba St, Doha, Qatar</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-clock"></i>
-                            </div>
-                            <div>
-                                <h4 data-en="Opening Hours" data-ar="ساعات العمل">Opening Hours</h4>
-                                <p data-en="Sat-Wed: 8:00 AM - 12:00 AM" data-ar="السبت-الأربعاء: ٨ صباحاً - ١٢ منتصف الليل">Sat-Wed: 8:00 AM - 12:00 AM</p>
-                                <p data-en="Thu-Fri: 8:00 AM - 1:00 AM" data-ar="الخميس-الجمعة: ٨ صباحاً - ١ فجراً">Thu-Fri: 8:00 AM - 1:00 AM</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <button class="btn directions-btn" onclick="getDirections()">
-                        <i class="fas fa-directions"></i>
-                        <span class="en-message">Get Directions</span>
-                        <span class="ar-message" style="display: none;">احصل على الاتجاهات</span>
-                    </button>
-                </div>
-                
-                <div class="map-placeholder" id="map-placeholder">
-                    <i class="fas fa-map-marked-alt"></i>
-                    <p data-en="Interactive map coming soon" data-ar="خريطة تفاعلية قريباً">Interactive map coming soon</p>
                 </div>
             </div>
         </div>
@@ -1921,86 +1635,72 @@
     <section class="section contact" id="contact">
         <div class="container">
             <div class="section-title">
-                <h2 data-en="Visit Us" data-ar="زورونا">Visit Us</h2>
+                <h2>Visit Us</h2>
             </div>
             
             <div class="contact-container">
                 <div class="contact-info">
-                    <h3 data-en="Experience Turkiana in Doha" data-ar="اختبروا تركيانا في الدوحة">Experience Turkiana in Doha</h3>
-                    <p data-en="Visit our cafe in the heart of Doha to experience authentic Turkish and Arabic hospitality along with our delicious offerings." data-ar="زوروا مقهانا في قلب الدوحة لتختبروا الضيافة التركية والعربية الأصيلة مع عروضنا اللذيذة."></p>
+                    <h3>Experience Luxury at Turkiana</h3>
+                    <p>Visit our premium location in the heart of Doha to experience Turkish and Arabic hospitality at its finest.</p>
                     
                     <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4>Location</h4>
+                                <p>7GPG+Q2R, Al Kahraba St, Doha</p>
+                            </div>
+                        </div>
                         <div class="contact-item">
                             <div class="contact-icon">
                                 <i class="fas fa-phone"></i>
                             </div>
                             <div>
-                                <h4 data-en="Contact Us" data-ar="اتصل بنا">Contact Us</h4>
-                                <p>Phone: +974 5186 6671</p>
-                                <p>Instagram: @turkiana.qa</p>
+                                <h4>Contact</h4>
+                                <p>+974 5186 6671</p>
+                                <p>@turkiana.qa</p>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="share-buttons">
-                        <a href="https://www.instagram.com/turkiana.qa/" class="share-btn" target="_blank" aria-label="Follow on Instagram">
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/turkiana.qa/" target="_blank">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="https://turkianasweets.com/" class="share-btn" target="_blank" aria-label="Visit our website">
+                        <a href="https://turkianasweets.com/" target="_blank">
                             <i class="fas fa-globe"></i>
                         </a>
-                        <button class="share-btn" onclick="shareLocation()" aria-label="Share location">
-                            <i class="fas fa-share-alt"></i>
-                        </button>
                     </div>
                 </div>
                 
                 <div class="contact-form">
-                    <h3 data-en="Make a Reservation" data-ar="احجز طاولتك">Make a Reservation</h3>
+                    <h3>Reserve Your Table</h3>
                     <form id="reservation-form">
                         <div class="form-group">
-                            <label for="name" data-en="Full Name" data-ar="الاسم الكامل">Full Name</label>
-                            <input type="text" id="name" class="form-control" placeholder data-en="Your Name" data-ar="اسمك" required>
-                            <div class="error-message" id="name-error"></div>
+                            <label for="name">Name</label>
+                            <input type="text" id="name" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label for="phone" data-en="Phone Number" data-ar="رقم الهاتف">Phone Number</label>
-                            <input type="tel" id="phone" class="form-control" placeholder="+974 XXXXXXXX" required>
-                            <div class="error-message" id="phone-error"></div>
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label for="date" data-en="Reservation Date" data-ar="تاريخ الحجز">Reservation Date</label>
+                            <label for="date">Date</label>
                             <input type="date" id="date" class="form-control" required>
-                            <div class="error-message" id="date-error"></div>
                         </div>
                         <div class="form-group">
-                            <label for="time" data-en="Reservation Time" data-ar="وقت الحجز">Reservation Time</label>
-                            <select id="time" class="form-control" required>
-                                <option value="" data-en="Select Time" data-ar="اختر الوقت">Select Time</option>
-                                <option value="08:00">8:00 AM</option>
-                                <option value="10:00">10:00 AM</option>
-                                <option value="12:00">12:00 PM</option>
-                                <option value="14:00">2:00 PM</option>
-                                <option value="16:00">4:00 PM</option>
-                                <option value="18:00">6:00 PM</option>
-                                <option value="20:00">8:00 PM</option>
-                                <option value="22:00">10:00 PM</option>
-                            </select>
-                            <div class="error-message" id="time-error"></div>
-                        </div>
-                        <div class="form-group">
-                            <label for="guests" data-en="Number of Guests" data-ar="عدد الأشخاص">Number of Guests</label>
+                            <label for="guests">Guests</label>
                             <select id="guests" class="form-control" required>
                                 <option value="1">1 Person</option>
                                 <option value="2">2 People</option>
                                 <option value="3">3 People</option>
                                 <option value="4">4 People</option>
-                                <option value="5">5 People</option>
-                                <option value="6">6+ People</option>
+                                <option value="5">5+ People</option>
                             </select>
-                            <div class="error-message" id="guests-error"></div>
                         </div>
-                        <button type="submit" class="btn" style="width: 100%;" data-en="Book Reservation" data-ar="احجز الآن">Book Reservation</button>
+                        <button type="submit" class="btn" style="width: 100%;">Book Now</button>
                     </form>
                 </div>
             </div>
@@ -2009,66 +1709,140 @@
 
     <!-- Footer -->
     <footer>
-        <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+        <button class="back-to-top" id="back-to-top">
             <i class="fas fa-chevron-up"></i>
         </button>
         
         <div class="container">
-            <div class="footer-container">
+            <div class="footer-content">
                 <div class="footer-col">
-                    <h3 data-en="Turkiana Cafe & Sweets" data-ar="تركيانا كافيه & سوييتس">Turkiana Cafe & Sweets</h3>
-                    <p data-en="Authentic Turkish & Arabic coffee, sweets, and cuisine in the heart of Doha, Qatar." data-ar="قهوة تركية وعربية أصيلة، حلويات، ومأكولات في قلب الدوحة، قطر.">Authentic Turkish & Arabic coffee, sweets, and cuisine in the heart of Doha, Qatar.</p>
+                    <h3>Turkiana Cafe</h3>
+                    <p>Premium Turkish & Arabic coffee, sweets, and cuisine in Doha, Qatar.</p>
                     <div class="social-links">
-                        <a href="https://www.instagram.com/turkiana.qa/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="https://turkianasweets.com/" target="_blank" aria-label="Website"><i class="fas fa-globe"></i></a>
-                        <a href="#contact" aria-label="Phone"><i class="fas fa-phone"></i></a>
-                        <a href="#location" aria-label="Location"><i class="fas fa-map-marker-alt"></i></a>
+                        <a href="https://www.instagram.com/turkiana.qa/" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://turkianasweets.com/" target="_blank">
+                            <i class="fas fa-globe"></i>
+                        </a>
                     </div>
                 </div>
                 
                 <div class="footer-col">
-                    <h3 data-en="Quick Links" data-ar="روابط سريعة">Quick Links</h3>
+                    <h3>Quick Links</h3>
                     <ul class="footer-links">
-                        <li><a href="#home"><i class="fas fa-home"></i> <span data-en="Home" data-ar="الرئيسية">Home</span></a></li>
-                        <li><a href="#about"><i class="fas fa-info-circle"></i> <span data-en="About Us" data-ar="عننا">About Us</span></a></li>
-                        <li><a href="#menu"><i class="fas fa-utensils"></i> <span data-en="Menu" data-ar="القائمة">Menu</span></a></li>
-                        <li><a href="#gallery"><i class="fas fa-images"></i> <span data-en="Gallery" data-ar="المعرض">Gallery</span></a></li>
-                        <li><a href="#contact"><i class="fas fa-envelope"></i> <span data-en="Contact" data-ar="اتصل بنا">Contact</span></a></li>
+                        <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="#about"><i class="fas fa-info-circle"></i> About</a></li>
+                        <li><a href="#menu"><i class="fas fa-utensils"></i> Menu</a></li>
+                        <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-col">
-                    <h3 data-en="Contact Info" data-ar="معلومات الاتصال">Contact Info</h3>
-                    <div class="contact-info-footer">
-                        <p><i class="fas fa-map-marker-alt"></i> 7GPG+Q2R, Al Kahraba St, Doha</p>
-                        <p><i class="fas fa-phone"></i> +974 5186 6671</p>
-                        <p><i class="fab fa-instagram"></i> @turkiana.qa</p>
-                        <p><i class="fas fa-clock"></i> Sat-Wed: 8AM-12AM<br>Thu-Fri: 8AM-1AM</p>
-                    </div>
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> Al Kahraba St, Doha</li>
+                        <li><i class="fas fa-phone"></i> +974 5186 6671</li>
+                        <li><i class="fab fa-instagram"></i> @turkiana.qa</li>
+                        <li><i class="fas fa-clock"></i> Sat-Wed: 8AM-12AM</li>
+                    </ul>
                 </div>
             </div>
             
             <div class="copyright">
-                <p>&copy; 2024 Turkiana Cafe & Sweets. All Rights Reserved. | +974 5186 6671 | @turkiana.qa</p>
+                <p>&copy; 2024 Turkiana Cafe & Sweets. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Theme Toggle Button -->
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightbox-close">
+            <i class="fas fa-times"></i>
+        </button>
+        <button class="lightbox-nav lightbox-prev" id="lightbox-prev">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="lightbox-nav lightbox-next" id="lightbox-next">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+        <div class="lightbox-content">
+            <img class="lightbox-img" id="lightbox-img" src="" alt="">
+        </div>
+    </div>
+
+    <!-- Item Modal -->
+    <div class="item-modal" id="item-modal">
+        <div class="item-modal-content">
+            <button class="item-modal-close" id="item-modal-close">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="item-modal-body">
+                <div class="item-modal-img">
+                    <img id="modal-image" src="" alt="">
+                </div>
+                <div class="item-modal-info">
+                    <div class="item-modal-header">
+                        <h2 class="item-modal-name" id="modal-name"></h2>
+                        <div class="item-modal-price" id="modal-price"></div>
+                    </div>
+                    <p class="item-modal-desc" id="modal-desc"></p>
+                    
+                    <div class="item-modal-details">
+                        <div class="detail-box">
+                            <h4>Category</h4>
+                            <p id="modal-category"></p>
+                        </div>
+                        <div class="detail-box">
+                            <h4>Calories</h4>
+                            <p id="modal-calories"></p>
+                        </div>
+                    </div>
+                    
+                    <div id="modal-dietary"></div>
+                    
+                    <div class="share-buttons">
+                        <button class="share-btn" onclick="shareItem()">
+                            <i class="fas fa-share-alt"></i>
+                        </button>
+                        <button class="share-btn" onclick="shareOnWhatsApp()">
+                            <i class="fab fa-whatsapp"></i>
+                        </button>
+                        <button class="share-btn" onclick="shareOnFacebook()">
+                            <i class="fab fa-facebook-f"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <div class="toast-icon">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        <div class="toast-message" id="toast-message"></div>
+        <button class="toast-close" id="toast-close">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <!-- Widgets -->
+    <a href="https://wa.me/97451866671" class="whatsapp-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    
     <div class="theme-toggle">
-        <button class="theme-btn" id="theme-toggle" aria-label="Toggle dark mode">
+        <button class="theme-btn" id="theme-toggle">
             <i class="fas fa-moon"></i>
         </button>
     </div>
 
-    <!-- WhatsApp Button -->
-    <a href="https://wa.me/97451866671" class="whatsapp-btn" target="_blank" aria-label="Chat on WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
     <!-- JavaScript -->
     <script>
-      const menuItems = [
+        // Menu Data
+       const menuItems = [
             // Brewed on Arabic & Turkish Way (11 items)
             { id:"batw1", cat:"Brewed on Arabic & Turkish Way", enName:"Classic Turkish Coffee", arName:"قهوة تركية كلاسيكية", price:28, enDesc:"A timeless Turkish tradition—finely ground coffee brewed in a cezve with meticulous attention to foam formation, delivering intense aromas and rich, unfiltered flavors in every velvety sip.", arDesc:"تقليد تركي خالد—قهوة مطحونة ناعماً تُحضر في إبريق نحاسي بعناية فائقة لتكوين رغوة مثالية، تقدم عبقاً قوياً ونكهات غنية غير مصفاة في كل رشفة حريرية.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkishcoffee.jpg", calories:"5 kcal", dietary:["vegan","gluten-free","dairy-free"] },
             { id:"batw2", cat:"Brewed on Arabic & Turkish Way", enName:"Double Turkish Coffee", arName:"قهوة تركية مزدوجة", price:40, enDesc:"For the bold-hearted—double the intensity with concentrated brewing that amplifies coffee's robust character, creating a powerful, full-bodied experience with lingering depth.", arDesc:"للمحبين للقوة—ضعف التركيز بتحضير مركز يعزز شخصية القهوة الجريئة، يخلق تجربة قوية وكاملة الجسم بعمق دائم.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkishcoffee.jpg", calories:"10 kcal", dietary:["vegan","gluten-free","dairy-free"] },
@@ -2210,11 +1984,12 @@
             { id:"amt12", cat:"Anatolian Morning Table", enName:"Tuna Sandwich", arName:"ساندويتش تونا", price:37, enDesc:"Classic protein—traditional tuna sandwich with smooth filling, offering reliable favorite that satisfies with familiar flavors and substantial protein content in convenient format.", arDesc:"بروتين كلاسيكي—ساندويتش تونا تقليدي بحشوة ناعمة، يقدم المفضل الموثوق الذي يشبع بنكهات مألوفة ومحتوى بروتيني جوهري في شكل ملائم.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Tunasandwich.jpg", calories:"400 kcal", dietary:[] },
             { id:"amt13", cat:"Anatolian Morning Table", enName:"Turkey Ham Sandwich", arName:"ساندويتش تركي هام", price:30, enDesc:"Light deli option—turkey ham sandwich with fresh vegetables and soft bread, offering approachable choice for those seeking familiar deli flavors in balanced, not-too-heavy presentation.", arDesc:"خيار لحوم بارد خفيف—ساندويتش تركي هام مع خضروات طازجة وخبز طري، يقدم اختياراً سهلاً لمن يبحثون عن نكهات اللحوم الباردة المألوفة في تقديم متوازن وغير ثقيل جداً.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkeyhamsandwich.jpg", calories:"390 kcal", dietary:[] }
         ];
-        
-        // Enhanced JavaScript with all new features
+
         document.addEventListener('DOMContentLoaded', function() {
-            // Initialize all components
-            initLanguageSystem();
+            initializeApp();
+        });
+
+        function initializeApp() {
             initNavigation();
             initMenuSystem();
             initGallery();
@@ -2222,558 +1997,351 @@
             initForms();
             initThemeToggle();
             initBackToTop();
-            initPWA();
-            initVoiceSearch();
-            initShareFunctions();
-        });
-
-        // Language Management System
-        function initLanguageSystem() {
-            let currentLang = localStorage.getItem('turkiana-lang') || 'en';
-            const langButtons = document.querySelectorAll('.lang-btn');
-            
-            function setLanguage(lang) {
-                currentLang = lang;
-                localStorage.setItem('turkiana-lang', lang);
-                
-                // Update buttons
-                langButtons.forEach(btn => {
-                    btn.classList.remove('active');
-                    if(btn.getAttribute('data-lang') === lang) {
-                        btn.classList.add('active');
-                    }
-                });
-                
-                // Update direction
-                if(lang === 'ar') {
-                    document.body.classList.add('rtl');
-                    document.querySelector('.menu-categories').style.justifyContent = 'flex-end';
-                } else {
-                    document.body.classList.remove('rtl');
-                    document.querySelector('.menu-categories').style.justifyContent = 'flex-start';
-                }
-                
-                // Update content
-                updateAllContent(lang);
-            }
-            
-            function updateAllContent(lang) {
-                // Update text content
-                document.querySelectorAll('[data-en], [data-ar]').forEach(element => {
-                    if(lang === 'en' && element.hasAttribute('data-en')) {
-                        element.textContent = element.getAttribute('data-en');
-                    } else if(lang === 'ar' && element.hasAttribute('data-ar')) {
-                        element.textContent = element.getAttribute('data-ar');
-                    }
-                });
-                
-                // Update placeholders
-                document.querySelectorAll('input[placeholder], select, textarea').forEach(input => {
-                    if(input.hasAttribute('data-en') && input.hasAttribute('data-ar')) {
-                        input.placeholder = lang === 'en' ? input.getAttribute('data-en') : input.getAttribute('data-ar');
-                    }
-                });
-                
-                // Update menu
-                updateMenuLanguage();
-                updateModalLanguage();
-            }
-            
-            // Event listeners
-            langButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const lang = button.getAttribute('data-lang');
-                    setLanguage(lang);
-                    showToast(lang === 'en' ? 'Language changed to English' : 'تم تغيير اللغة إلى العربية');
-                });
-            });
-            
-            // Initialize
-            setLanguage(currentLang);
+            initToast();
         }
 
-        // Navigation System
+        // Navigation
         function initNavigation() {
             const mobileToggle = document.getElementById('mobile-toggle');
             const navLinks = document.getElementById('nav-links');
             
             mobileToggle.addEventListener('click', () => {
-                const isExpanded = navLinks.classList.toggle('active');
-                mobileToggle.setAttribute('aria-expanded', isExpanded);
-                mobileToggle.innerHTML = isExpanded 
+                navLinks.classList.toggle('active');
+                mobileToggle.innerHTML = navLinks.classList.contains('active') 
                     ? '<i class="fas fa-times"></i>' 
                     : '<i class="fas fa-bars"></i>';
             });
             
-            // Close on link click
-            document.querySelectorAll('.nav-links a').forEach(link => {
-                link.addEventListener('click', () => {
-                    navLinks.classList.remove('active');
-                    mobileToggle.setAttribute('aria-expanded', 'false');
-                    mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            // Smooth scroll
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if(targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Close mobile menu
+                        navLinks.classList.remove('active');
+                        mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                });
+            });
+            
+            // Language toggle
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const lang = this.dataset.lang;
+                    document.body.classList.toggle('rtl', lang === 'ar');
+                    showToast(lang === 'en' ? 'Language set to English' : 'تم تغيير اللغة إلى العربية');
                 });
             });
             
             // Header scroll effect
             window.addEventListener('scroll', () => {
                 const header = document.getElementById('header');
-                if (window.scrollY > 100) {
-                    header.style.padding = '10px 0';
-                    header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.15)';
+                if(window.scrollY > 50) {
+                    header.style.padding = '0.5rem 0';
+                    header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.1)';
                 } else {
-                    header.style.padding = '18px 0';
-                    header.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
+                    header.style.padding = '1rem 0';
+                    header.style.boxShadow = 'none';
                 }
-                
-                // Update active nav link
-                updateActiveNavLink();
             });
-            
-            function updateActiveNavLink() {
-                const sections = document.querySelectorAll('section');
-                const navLinks = document.querySelectorAll('.nav-links a');
-                
-                let current = '';
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    const sectionHeight = section.clientHeight;
-                    if(scrollY >= (sectionTop - 200)) {
-                        current = section.getAttribute('id');
-                    }
-                });
-                
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if(link.getAttribute('href') === `#${current}`) {
-                        link.classList.add('active');
-                    }
-                });
-            }
         }
 
-        // Enhanced Menu System with Search
+        // Menu System
         function initMenuSystem() {
             const categories = [...new Set(menuItems.map(item => item.cat))];
             const categoriesContainer = document.getElementById('menu-categories');
-            const menuContainer = document.getElementById('menu-items-container');
+            const menuContainer = document.getElementById('menu-items');
             const searchBar = document.getElementById('search-bar');
             let currentCategory = 'all';
-            let currentSearch = '';
             
             // Create categories
             function createCategories() {
                 categoriesContainer.innerHTML = '';
                 
                 // All button
-                const allButton = document.createElement('button');
-                allButton.className = 'category-btn active';
-                allButton.setAttribute('data-category', 'all');
-                allButton.innerHTML = '<i class="fas fa-star"></i> <span data-en="All Items" data-ar="كل المنتجات">All Items</span>';
-                categoriesContainer.appendChild(allButton);
+                const allBtn = document.createElement('button');
+                allBtn.className = 'category-btn active';
+                allBtn.dataset.category = 'all';
+                allBtn.innerHTML = '<i class="fas fa-star"></i> All Items';
+                allBtn.addEventListener('click', () => filterMenu('all'));
+                categoriesContainer.appendChild(allBtn);
                 
                 // Category buttons
                 categories.forEach(category => {
-                    const button = document.createElement('button');
-                    button.className = 'category-btn';
-                    button.setAttribute('data-category', category);
-                    button.setAttribute('aria-label', `Show ${category}`);
-                    
-                    let icon = 'fas fa-utensils';
-                    if (category.includes('Brewed')) icon = 'fas fa-mug-hot';
-                    if (category.includes('Tea')) icon = 'fas fa-mug-saucer';
-                    if (category.includes('Café')) icon = 'fas fa-coffee';
-                    if (category.includes('Refreshers')) icon = 'fas fa-glass-water';
-                    if (category.includes('Baklava')) icon = 'fas fa-cookie-bite';
-                    if (category.includes('Fondue')) icon = 'fas fa-fire';
-                    if (category.includes('Croissant')) icon = 'fas fa-bread-slice';
-                    if (category.includes('Grill')) icon = 'fas fa-fire-burner';
-                    if (category.includes('Morning')) icon = 'fas fa-egg';
-                    if (category.includes('Specialty')) icon = 'fas fa-flask';
-                    
-                    button.innerHTML = `<i class="${icon}"></i> <span data-en="${category}" data-ar="${category}">${category}</span>`;
-                    categoriesContainer.appendChild(button);
-                });
-                
-                // Add event listeners
-                document.querySelectorAll('.category-btn').forEach(btn => {
-                    btn.addEventListener('click', () => {
-                        document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
-                        btn.classList.add('active');
-                        currentCategory = btn.getAttribute('data-category');
-                        displayMenuItems();
-                    });
+                    const btn = document.createElement('button');
+                    btn.className = 'category-btn';
+                    btn.dataset.category = category;
+                    btn.textContent = category;
+                    btn.addEventListener('click', () => filterMenu(category));
+                    categoriesContainer.appendChild(btn);
                 });
             }
             
-            // Display menu items with search
-            function displayMenuItems() {
+            // Filter menu
+            function filterMenu(category) {
+                currentCategory = category;
+                
+                // Update active button
+                document.querySelectorAll('.category-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                    if(btn.dataset.category === category) {
+                        btn.classList.add('active');
+                    }
+                });
+                
+                renderMenuItems();
+            }
+            
+            // Render menu items
+            function renderMenuItems() {
                 menuContainer.innerHTML = '';
                 
                 let filteredItems = menuItems;
                 
                 // Filter by category
-                if (currentCategory !== 'all') {
+                if(currentCategory !== 'all') {
                     filteredItems = filteredItems.filter(item => item.cat === currentCategory);
                 }
                 
                 // Filter by search
-                if (currentSearch) {
-                    const searchTerm = currentSearch.toLowerCase();
+                const searchTerm = searchBar.value.toLowerCase();
+                if(searchTerm) {
                     filteredItems = filteredItems.filter(item => 
                         item.enName.toLowerCase().includes(searchTerm) ||
-                        item.arName.toLowerCase().includes(searchTerm) ||
-                        item.enDesc.toLowerCase().includes(searchTerm) ||
-                        item.arDesc.toLowerCase().includes(searchTerm)
+                        item.arName.toLowerCase().includes(searchTerm)
                     );
                 }
                 
-                if (filteredItems.length === 0) {
-                    const noResults = document.createElement('div');
-                    noResults.className = 'no-results';
-                    noResults.innerHTML = `
-                        <i class="fas fa-search"></i>
-                        <h3 class="en-message">No items found</h3>
-                        <h3 class="ar-message" style="display: none;">لم يتم العثور على منتجات</h3>
-                        <p class="en-message">Try a different search term or category</p>
-                        <p class="ar-message" style="display: none;">جرب مصطلح بحث أو فئة مختلفة</p>
-                    `;
-                    menuContainer.appendChild(noResults);
-                    return;
-                }
-                
-                // Create menu items
+                // Display items
                 filteredItems.forEach(item => {
                     const menuItem = document.createElement('div');
                     menuItem.className = 'menu-item';
-                    menuItem.setAttribute('data-category', item.cat);
-                    menuItem.setAttribute('data-id', item.id);
-                    menuItem.tabIndex = 0;
-                    menuItem.setAttribute('role', 'button');
-                    menuItem.setAttribute('aria-label', `View details for ${item.enName}`);
-                    
-                    // Popular badge
-                    if (item.popular) {
-                        const popularBadge = document.createElement('div');
-                        popularBadge.className = 'popular-badge';
-                        popularBadge.innerHTML = '<i class="fas fa-fire"></i> <span data-en="Popular" data-ar="الأكثر طلباً">Popular</span>';
-                        menuItem.appendChild(popularBadge);
-                    }
-                    
-                    // Dietary tags
-                    const dietaryTags = item.dietary ? item.dietary.map(tag => {
-                        let displayTag = tag;
-                        let icon = '';
-                        switch(tag) {
-                            case 'vegan': displayTag = 'Vegan'; icon = 'fas fa-leaf'; break;
-                            case 'vegetarian': displayTag = 'Vegetarian'; icon = 'fas fa-seedling'; break;
-                            case 'gluten-free': displayTag = 'Gluten Free'; icon = 'fas fa-wheat-awn'; break;
-                            case 'dairy-free': displayTag = 'Dairy Free'; icon = 'fas fa-cow'; break;
-                            case 'contains-dairy': displayTag = 'Dairy'; icon = 'fas fa-cow'; break;
-                            case 'contains-nuts': displayTag = 'Nuts'; icon = 'fas fa-peanut'; break;
-                            case 'contains-gluten': displayTag = 'Gluten'; icon = 'fas fa-wheat-awn'; break;
-                        }
-                        return `<span class="dietary-tag"><i class="${icon}"></i> <span data-en="${displayTag}" data-ar="${displayTag}">${displayTag}</span></span>`;
-                    }).join('') : '';
-                    
-                    // Menu item HTML
                     menuItem.innerHTML = `
-                        <div class="menu-item-img shimmer">
-                            <img src="${item.image}" alt="${item.enName}" loading="lazy" width="300" height="200" onload="this.parentElement.classList.remove('shimmer')">
+                        <div class="menu-item-img">
+                            <img src="${item.image}" alt="${item.enName}" loading="lazy">
                         </div>
                         <div class="menu-item-content">
                             <div class="menu-item-header">
-                                <h3 class="menu-item-name en-name">${item.enName}</h3>
-                                <h3 class="menu-item-name ar-name" style="display: none;">${item.arName}</h3>
+                                <h3 class="menu-item-name">${item.enName}</h3>
                                 <span class="menu-item-price">${item.price} QR</span>
                             </div>
-                            <p class="menu-item-desc en-desc">${item.enDesc}</p>
-                            <p class="menu-item-desc ar-desc" style="display: none;">${item.arDesc}</p>
+                            <p class="menu-item-desc">${item.enDesc}</p>
                             <div class="menu-item-details">
-                                <div class="calories"><i class="fas fa-fire"></i> ${item.calories}</div>
-                                <div class="dietary-tags">${dietaryTags}</div>
+                                <div>${item.calories}</div>
+                                <div class="dietary-tags">
+                                    ${item.dietary.map(tag => `<span class="dietary-tag">${tag}</span>`).join('')}
+                                </div>
                             </div>
                         </div>
                     `;
                     
-                    // Click event
                     menuItem.addEventListener('click', () => showItemModal(item));
-                    menuItem.addEventListener('keypress', (e) => {
-                        if (e.key === 'Enter' || e.key === ' ') {
-                            e.preventDefault();
-                            showItemModal(item);
-                        }
-                    });
-                    
                     menuContainer.appendChild(menuItem);
                 });
                 
-                updateMenuLanguage();
+                if(filteredItems.length === 0) {
+                    menuContainer.innerHTML = `
+                        <div style="grid-column: 1/-1; text-align: center; padding: 3rem; color: var(--dark); opacity: 0.7;">
+                            <i class="fas fa-search fa-3x" style="margin-bottom: 1rem;"></i>
+                            <h3>No items found</h3>
+                            <p>Try a different search term or category</p>
+                        </div>
+                    `;
+                }
             }
             
             // Search functionality
-            searchBar.addEventListener('input', (e) => {
-                currentSearch = e.target.value;
-                displayMenuItems();
+            searchBar.addEventListener('input', renderMenuItems);
+            
+            // Voice search
+            document.getElementById('voice-search').addEventListener('click', function() {
+                if('webkitSpeechRecognition' in window) {
+                    const recognition = new webkitSpeechRecognition();
+                    recognition.lang = 'en-US';
+                    recognition.start();
+                    
+                    recognition.onresult = function(event) {
+                        searchBar.value = event.results[0][0].transcript;
+                        renderMenuItems();
+                    };
+                    
+                    recognition.onerror = function() {
+                        showToast('Voice recognition failed');
+                    };
+                } else {
+                    showToast('Voice search not supported');
+                }
             });
             
             // Initialize
             createCategories();
-            displayMenuItems();
+            renderMenuItems();
         }
 
-        // Gallery Lightbox
+        // Item Modal
+        function showItemModal(item) {
+            const modal = document.getElementById('item-modal');
+            const isArabic = document.body.classList.contains('rtl');
+            
+            document.getElementById('modal-image').src = item.image;
+            document.getElementById('modal-name').textContent = isArabic ? item.arName : item.enName;
+            document.getElementById('modal-price').textContent = `${item.price} QR`;
+            document.getElementById('modal-desc').textContent = isArabic ? item.arDesc : item.enDesc;
+            document.getElementById('modal-category').textContent = item.cat;
+            document.getElementById('modal-calories').textContent = item.calories;
+            
+            const dietaryDiv = document.getElementById('modal-dietary');
+            dietaryDiv.innerHTML = `
+                <h4 style="margin-bottom: 0.5rem; color: var(--burgundy);">Dietary Information</h4>
+                <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                    ${item.dietary.map(tag => `
+                        <span style="background: var(--cream); padding: 0.5rem 1rem; border-radius: var(--radius-small); font-size: 0.9rem;">
+                            ${tag}
+                        </span>
+                    `).join('')}
+                </div>
+            `;
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            // Close modal
+            document.getElementById('item-modal-close').onclick = () => {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            };
+            
+            modal.onclick = (e) => {
+                if(e.target === modal) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            };
+        }
+
+        // Gallery
         function initGallery() {
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightbox-img');
-            const lightboxCaption = document.getElementById('lightbox-caption');
-            const lightboxClose = document.getElementById('lightbox-close');
-            const lightboxPrev = document.getElementById('lightbox-prev');
-            const lightboxNext = document.getElementById('lightbox-next');
-            
             const galleryItems = document.querySelectorAll('.gallery-item');
-            let currentImageIndex = 0;
             
-            galleryItems.forEach((item, index) => {
-                item.addEventListener('click', () => {
-                    openLightbox(index);
+            galleryItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const imgSrc = this.querySelector('img').src;
+                    lightboxImg.src = imgSrc;
+                    lightbox.classList.add('active');
+                    document.body.style.overflow = 'hidden';
                 });
             });
             
-            function openLightbox(index) {
-                currentImageIndex = index;
-                const img = galleryItems[index].querySelector('img');
-                lightboxImg.src = img.src;
-                lightboxCaption.textContent = img.alt;
-                lightbox.setAttribute('aria-hidden', 'false');
-                lightbox.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
-            
-            function closeLightbox() {
-                lightbox.setAttribute('aria-hidden', 'true');
+            // Close lightbox
+            document.getElementById('lightbox-close').onclick = () => {
                 lightbox.classList.remove('active');
                 document.body.style.overflow = 'auto';
-            }
+            };
             
-            function navigateLightbox(direction) {
-                currentImageIndex += direction;
-                if (currentImageIndex < 0) currentImageIndex = galleryItems.length - 1;
-                if (currentImageIndex >= galleryItems.length) currentImageIndex = 0;
-                const img = galleryItems[currentImageIndex].querySelector('img');
-                lightboxImg.src = img.src;
-                lightboxCaption.textContent = img.alt;
-            }
-            
-            // Event listeners
-            lightboxClose.addEventListener('click', closeLightbox);
-            lightboxPrev.addEventListener('click', () => navigateLightbox(-1));
-            lightboxNext.addEventListener('click', () => navigateLightbox(1));
-            
-            lightbox.addEventListener('click', (e) => {
-                if (e.target === lightbox) closeLightbox();
-            });
-            
-            // Keyboard navigation
-            document.addEventListener('keydown', (e) => {
-                if (!lightbox.classList.contains('active')) return;
-                
-                if (e.key === 'Escape') closeLightbox();
-                if (e.key === 'ArrowLeft') navigateLightbox(-1);
-                if (e.key === 'ArrowRight') navigateLightbox(1);
-            });
+            lightbox.onclick = (e) => {
+                if(e.target === lightbox) {
+                    lightbox.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            };
         }
 
         // Video Controls
         function initVideoControls() {
-            const video = document.getElementById('hero-video');
+            const video = document.querySelector('.hero-video');
             const muteBtn = document.getElementById('video-mute');
             const pauseBtn = document.getElementById('video-pause');
-            
-            if (!video) return;
             
             muteBtn.addEventListener('click', () => {
                 video.muted = !video.muted;
                 muteBtn.innerHTML = video.muted 
                     ? '<i class="fas fa-volume-mute"></i>' 
                     : '<i class="fas fa-volume-up"></i>';
-                muteBtn.setAttribute('aria-label', video.muted ? 'Unmute video' : 'Mute video');
             });
             
             pauseBtn.addEventListener('click', () => {
-                if (video.paused) {
+                if(video.paused) {
                     video.play();
                     pauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-                    pauseBtn.setAttribute('aria-label', 'Pause video');
                 } else {
                     video.pause();
                     pauseBtn.innerHTML = '<i class="fas fa-play"></i>';
-                    pauseBtn.setAttribute('aria-label', 'Play video');
                 }
             });
         }
 
-        // Form Validation & Submission
+        // Forms
         function initForms() {
             const form = document.getElementById('reservation-form');
             
-            form.addEventListener('submit', (e) => {
+            form.addEventListener('submit', function(e) {
                 e.preventDefault();
-                if (validateForm()) {
-                    submitReservation();
-                }
-            });
-            
-            function validateForm() {
-                let isValid = true;
-                const name = document.getElementById('name');
-                const phone = document.getElementById('phone');
-                const date = document.getElementById('date');
-                const time = document.getElementById('time');
-                const guests = document.getElementById('guests');
                 
-                // Clear previous errors
-                document.querySelectorAll('.error-message').forEach(el => {
-                    el.classList.remove('show');
-                });
-                document.querySelectorAll('.form-control').forEach(el => {
-                    el.classList.remove('error');
-                });
+                const name = document.getElementById('name').value;
+                const phone = document.getElementById('phone').value;
+                const date = document.getElementById('date').value;
+                const guests = document.getElementById('guests').value;
                 
-                // Validate name
-                if (!name.value.trim()) {
-                    showError(name, 'name-error', 'Please enter your name');
-                    isValid = false;
-                }
+                // WhatsApp message
+                const message = `New Reservation Request%0A%0AName: ${name}%0APhone: ${phone}%0ADate: ${date}%0AGuests: ${guests}%0A%0AFrom Turkiana Cafe Website`;
+                const whatsappUrl = `https://wa.me/97451866671?text=${message}`;
                 
-                // Validate phone
-                const phoneRegex = /^\+?[\d\s\-\(\)]+$/;
-                if (!phone.value.trim() || !phoneRegex.test(phone.value)) {
-                    showError(phone, 'phone-error', 'Please enter a valid phone number');
-                    isValid = false;
-                }
-                
-                // Validate date
-                const selectedDate = new Date(date.value);
-                const today = new Date();
-                today.setHours(0, 0, 0, 0);
-                if (!date.value || selectedDate < today) {
-                    showError(date, 'date-error', 'Please select a future date');
-                    isValid = false;
-                }
-                
-                // Validate time
-                if (!time.value) {
-                    showError(time, 'time-error', 'Please select a time');
-                    isValid = false;
-                }
-                
-                return isValid;
-            }
-            
-            function showError(input, errorId, message) {
-                input.classList.add('error');
-                const errorEl = document.getElementById(errorId);
-                errorEl.textContent = message;
-                errorEl.classList.add('show');
-            }
-            
-            function submitReservation() {
-                // Get form data
-                const formData = {
-                    name: document.getElementById('name').value,
-                    phone: document.getElementById('phone').value,
-                    date: document.getElementById('date').value,
-                    time: document.getElementById('time').value,
-                    guests: document.getElementById('guests').value
-                };
-                
-                // Create WhatsApp message
-                const isArabic = localStorage.getItem('turkiana-lang') === 'ar';
-                const formattedDate = new Date(formData.date).toLocaleDateString(isArabic ? 'ar-SA' : 'en-US', {
-                    weekday: 'long',
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                });
-                
-                const timeDisplay = formData.time.includes('00') ? formData.time.replace(':00', '') : formData.time;
-                const formattedTime = timeDisplay + (parseInt(timeDisplay) < 12 ? ' AM' : ' PM');
-                
-                const whatsappMessage = isArabic 
-                    ? `طلب حجز جديد%0A%0Aالاسم: ${formData.name}%0Aالهاتف: ${formData.phone}%0Aالتاريخ: ${formattedDate}%0Aالوقت: ${formattedTime}%0Aعدد الأشخاص: ${formData.guests}%0A%0Aالمطعم: تركيانا كافيه & سوييتس%0Aالموقع: 7GPG+Q2R، شارع الكهرباء، الدوحة`
-                    : `New Reservation Request%0A%0AName: ${formData.name}%0APhone: ${formData.phone}%0ADate: ${formattedDate}%0ATime: ${formattedTime}%0AGuests: ${formData.guests}%0A%0ARestaurant: Turkiana Cafe & Sweets%0ALocation: 7GPG+Q2R, Al Kahraba St, Doha`;
-                
-                const whatsappNumber = '97451866671';
-                const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
-                
-                // Open WhatsApp
-                window.open(whatsappLink, '_blank');
-                
-                // Show success message
-                showToast(isArabic ? 'تم إرسال طلب الحجز إلى واتساب' : 'Reservation request sent to WhatsApp');
-                
-                // Reset form
+                window.open(whatsappUrl, '_blank');
+                showToast('Reservation request sent to WhatsApp');
                 form.reset();
-            }
+            });
         }
 
         // Theme Toggle
         function initThemeToggle() {
-            const themeToggle = document.getElementById('theme-toggle');
-            const currentTheme = localStorage.getItem('theme') || 'light';
+            const themeBtn = document.getElementById('theme-toggle');
             
-            if (currentTheme === 'dark') {
-                enableDarkMode();
-            }
-            
-            themeToggle.addEventListener('click', () => {
-                if (document.body.classList.contains('dark-mode')) {
-                    disableDarkMode();
-                } else {
-                    enableDarkMode();
-                }
+            themeBtn.addEventListener('click', () => {
+                document.body.classList.toggle('dark-mode');
+                themeBtn.innerHTML = document.body.classList.contains('dark-mode')
+                    ? '<i class="fas fa-sun"></i>'
+                    : '<i class="fas fa-moon"></i>';
+                
+                localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
             });
             
-            function enableDarkMode() {
+            // Load saved theme
+            const savedTheme = localStorage.getItem('theme');
+            if(savedTheme === 'dark') {
                 document.body.classList.add('dark-mode');
-                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-                themeToggle.setAttribute('aria-label', 'Switch to light mode');
-                localStorage.setItem('theme', 'dark');
-                
-                // Update CSS variables for dark mode
-                document.documentElement.style.setProperty('--light', '#1a1a1a');
-                document.documentElement.style.setProperty('--dark', '#f8f4e9');
-                document.documentElement.style.setProperty('--text', '#e0e0e0');
-                document.documentElement.style.setProperty('--text-light', '#b0b0b0');
-            }
-            
-            function disableDarkMode() {
-                document.body.classList.remove('dark-mode');
-                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-                themeToggle.setAttribute('aria-label', 'Switch to dark mode');
-                localStorage.setItem('theme', 'light');
-                
-                // Reset CSS variables
-                document.documentElement.style.setProperty('--light', '#F8F4E9');
-                document.documentElement.style.setProperty('--dark', '#2C1810');
-                document.documentElement.style.setProperty('--text', '#333333');
-                document.documentElement.style.setProperty('--text-light', '#666666');
+                themeBtn.innerHTML = '<i class="fas fa-sun"></i>';
             }
         }
 
-        // Back to Top Button
+        // Back to Top
         function initBackToTop() {
-            const backToTop = document.getElementById('back-to-top');
+            const backBtn = document.getElementById('back-to-top');
             
             window.addEventListener('scroll', () => {
-                if (window.scrollY > 500) {
-                    backToTop.style.display = 'flex';
+                if(window.scrollY > 500) {
+                    backBtn.style.opacity = '1';
+                    backBtn.style.visibility = 'visible';
                 } else {
-                    backToTop.style.display = 'none';
+                    backBtn.style.opacity = '0';
+                    backBtn.style.visibility = 'hidden';
                 }
             });
             
-            backToTop.addEventListener('click', () => {
+            backBtn.addEventListener('click', () => {
                 window.scrollTo({
                     top: 0,
                     behavior: 'smooth'
@@ -2781,290 +2349,57 @@
             });
         }
 
-        // PWA Features
-        function initPWA() {
-            let deferredPrompt;
-            const installPrompt = document.getElementById('install-prompt');
-            const installBtn = document.getElementById('install-btn');
-            const installClose = document.getElementById('install-close');
-            
-            // Check if already installed
-            if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone) {
-                return;
-            }
-            
-            // Listen for beforeinstallprompt event
-            window.addEventListener('beforeinstallprompt', (e) => {
-                e.preventDefault();
-                deferredPrompt = e;
-                
-                // Show install prompt after delay
-                setTimeout(() => {
-                    installPrompt.classList.add('show');
-                }, 5000);
-            });
-            
-            // Install button click
-            installBtn.addEventListener('click', async () => {
-                if (!deferredPrompt) return;
-                
-                deferredPrompt.prompt();
-                const { outcome } = await deferredPrompt.userChoice;
-                
-                if (outcome === 'accepted') {
-                    showToast('App installed successfully!');
-                }
-                
-                deferredPrompt = null;
-                installPrompt.classList.remove('show');
-            });
-            
-            // Close install prompt
-            installClose.addEventListener('click', () => {
-                installPrompt.classList.remove('show');
-            });
-            
-            // Service Worker registration
-            if ('serviceWorker' in navigator) {
-                window.addEventListener('load', () => {
-                    navigator.serviceWorker.register('/sw.js').catch(error => {
-                        console.log('Service Worker registration failed:', error);
-                    });
-                });
-            }
-        }
-
-        // Voice Search
-        function initVoiceSearch() {
-            const voiceBtn = document.getElementById('voice-search-btn');
-            const searchBar = document.getElementById('search-bar');
-            
-            if (!('webkitSpeechRecognition' in window)) {
-                voiceBtn.style.display = 'none';
-                return;
-            }
-            
-            const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-            recognition.continuous = false;
-            recognition.interimResults = false;
-            recognition.lang = localStorage.getItem('turkiana-lang') === 'ar' ? 'ar-QA' : 'en-US';
-            
-            voiceBtn.addEventListener('click', () => {
-                if (voiceBtn.classList.contains('listening')) {
-                    recognition.stop();
-                    voiceBtn.classList.remove('listening');
-                } else {
-                    recognition.start();
-                    voiceBtn.classList.add('listening');
-                }
-            });
-            
-            recognition.onresult = (event) => {
-                const transcript = event.results[0][0].transcript;
-                searchBar.value = transcript;
-                searchBar.dispatchEvent(new Event('input'));
-                voiceBtn.classList.remove('listening');
-            };
-            
-            recognition.onerror = () => {
-                voiceBtn.classList.remove('listening');
-                showToast('Voice recognition failed. Please try again.');
-            };
-        }
-
-        // Share Functions
-        function initShareFunctions() {
-            window.shareItem = function() {
-                const modalName = document.getElementById('modal-name-en').textContent;
-                const modalPrice = document.getElementById('modal-price').textContent;
-                
-                if (navigator.share) {
-                    navigator.share({
-                        title: `${modalName} - Turkiana Cafe`,
-                        text: `Check out ${modalName} at Turkiana Cafe: ${modalPrice}`,
-                        url: window.location.href
-                    });
-                } else {
-                    // Fallback
-                    const shareText = `${modalName} - ${modalPrice} at Turkiana Cafe & Sweets\n${window.location.href}`;
-                    navigator.clipboard.writeText(shareText).then(() => {
-                        showToast('Item link copied to clipboard!');
-                    });
-                }
-            };
-            
-            window.shareLocation = function() {
-                const locationText = "Visit Turkiana Cafe & Sweets at 7GPG+Q2R, Al Kahraba St, Doha, Qatar";
-                const locationURL = `https://maps.google.com/?q=7GPG+Q2R,+Al+Kahraba+St,+Doha,+Qatar`;
-                
-                if (navigator.share) {
-                    navigator.share({
-                        title: 'Turkiana Cafe Location',
-                        text: locationText,
-                        url: locationURL
-                    });
-                } else {
-                    navigator.clipboard.writeText(`${locationText}\n${locationURL}`).then(() => {
-                        showToast('Location copied to clipboard!');
-                    });
-                }
-            };
-            
-            window.shareOnFacebook = function() {
-                const url = encodeURIComponent(window.location.href);
-                window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
-            };
-            
-            window.shareOnTwitter = function() {
-                const text = encodeURIComponent("Check out Turkiana Cafe & Sweets in Doha!");
-                const url = encodeURIComponent(window.location.href);
-                window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
-            };
-            
-            window.shareOnWhatsApp = function() {
-                const text = encodeURIComponent("Check out Turkiana Cafe & Sweets in Doha! " + window.location.href);
-                window.open(`https://wa.me/?text=${text}`, '_blank');
-            };
-            
-            window.getDirections = function() {
-                const destination = encodeURIComponent('7GPG+Q2R, Al Kahraba St, Doha, Qatar');
-                window.open(`https://www.google.com/maps/dir/?api=1&destination=${destination}`, '_blank');
-            };
-        }
-
-        // Toast Notification System
-        function showToast(message) {
+        // Toast System
+        function initToast() {
             const toast = document.getElementById('toast');
             const toastMessage = document.getElementById('toast-message');
             const toastClose = document.getElementById('toast-close');
             
-            toastMessage.textContent = message;
-            toast.classList.add('show');
+            window.showToast = function(message) {
+                toastMessage.textContent = message;
+                toast.classList.add('show');
+                
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 3000);
+            };
             
-            // Auto-hide after 5 seconds
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 5000);
-            
-            // Close button
             toastClose.addEventListener('click', () => {
                 toast.classList.remove('show');
             });
         }
 
-        // Item Modal Functions
-        function showItemModal(item) {
-            const modal = document.getElementById('item-modal');
-            const modalImage = document.getElementById('modal-image');
-            const modalNameEn = document.getElementById('modal-name-en');
-            const modalNameAr = document.getElementById('modal-name-ar');
-            const modalPrice = document.getElementById('modal-price');
-            const modalDescEn = document.getElementById('modal-desc-en');
-            const modalDescAr = document.getElementById('modal-desc-ar');
-            const modalCalories = document.getElementById('modal-calories');
-            const modalDietary = document.getElementById('modal-dietary');
+        // Share Functions
+        window.shareItem = function() {
+            const itemName = document.getElementById('modal-name').textContent;
+            const itemPrice = document.getElementById('modal-price').textContent;
+            const shareUrl = window.location.href;
+            const text = `Check out ${itemName} at Turkiana Cafe: ${itemPrice}\n${shareUrl}`;
             
-            // Set content
-            modalImage.src = item.image;
-            modalImage.alt = item.enName;
-            modalNameEn.textContent = item.enName;
-            modalNameAr.textContent = item.arName;
-            modalPrice.textContent = `${item.price} QR`;
-            modalDescEn.textContent = item.enDesc;
-            modalDescAr.textContent = item.arDesc;
-            modalCalories.innerHTML = `<i class="fas fa-fire"></i> ${item.calories}`;
-            
-            // Dietary tags
-            modalDietary.innerHTML = '';
-            if (item.dietary) {
-                item.dietary.forEach(tag => {
-                    let displayTag = tag;
-                    let icon = '';
-                    switch(tag) {
-                        case 'vegan': displayTag = 'Vegan'; icon = 'fas fa-leaf'; break;
-                        case 'vegetarian': displayTag = 'Vegetarian'; icon = 'fas fa-seedling'; break;
-                        case 'gluten-free': displayTag = 'Gluten Free'; icon = 'fas fa-wheat-awn'; break;
-                        case 'dairy-free': displayTag = 'Dairy Free'; icon = 'fas fa-cow'; break;
-                        case 'contains-dairy': displayTag = 'Contains Dairy'; icon = 'fas fa-cow'; break;
-                        case 'contains-nuts': displayTag = 'Contains Nuts'; icon = 'fas fa-peanut'; break;
-                        case 'contains-gluten': displayTag = 'Contains Gluten'; icon = 'fas fa-wheat-awn'; break;
-                    }
-                    const tagElement = document.createElement('span');
-                    tagElement.className = 'item-modal-dietary-tag';
-                    tagElement.innerHTML = `<i class="${icon}"></i> ${displayTag}`;
-                    modalDietary.appendChild(tagElement);
+            if(navigator.share) {
+                navigator.share({
+                    title: `${itemName} - Turkiana Cafe`,
+                    text: text,
+                    url: shareUrl
+                });
+            } else {
+                navigator.clipboard.writeText(text).then(() => {
+                    showToast('Item details copied to clipboard!');
                 });
             }
-            
-            // Show modal
-            modal.setAttribute('aria-hidden', 'false');
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-            
-            // Close modal
-            document.getElementById('item-modal-close').addEventListener('click', closeItemModal);
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) closeItemModal();
-            });
-            
-            // Keyboard navigation
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') closeItemModal();
-            });
-        }
+        };
         
-        function closeItemModal() {
-            const modal = document.getElementById('item-modal');
-            modal.setAttribute('aria-hidden', 'true');
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        // Language update functions
-        function updateMenuLanguage() {
-            const isArabic = localStorage.getItem('turkiana-lang') === 'ar';
-            
-            document.querySelectorAll('.en-name, .ar-name, .en-desc, .ar-desc').forEach(element => {
-                if (element.classList.contains('en-name') || element.classList.contains('en-desc')) {
-                    element.style.display = isArabic ? 'none' : 'block';
-                } else if (element.classList.contains('ar-name') || element.classList.contains('ar-desc')) {
-                    element.style.display = isArabic ? 'block' : 'none';
-                }
-            });
-        }
+        window.shareOnWhatsApp = function() {
+            const itemName = document.getElementById('modal-name').textContent;
+            const itemPrice = document.getElementById('modal-price').textContent;
+            const text = `Check out ${itemName} at Turkiana Cafe: ${itemPrice}\n${window.location.href}`;
+            window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+        };
         
-        function updateModalLanguage() {
-            // Modal language update logic
-        }
-
-        // Touch device optimizations
-        document.addEventListener('touchstart', function(event) {
-            if (event.touches.length > 1) {
-                event.preventDefault();
-            }
-        }, { passive: false });
-
-        let lastTouchEnd = 0;
-        document.addEventListener('touchend', function(event) {
-            const now = Date.now();
-            if (now - lastTouchEnd <= 300) {
-                event.preventDefault();
-            }
-            lastTouchEnd = now;
-        }, false);
-
-        // Performance monitoring
-        if ('performance' in window) {
-            window.addEventListener('load', () => {
-                setTimeout(() => {
-                    const perfEntries = performance.getEntriesByType('navigation');
-                    if (perfEntries.length > 0) {
-                        const navEntry = perfEntries[0];
-                        console.log('Page load time:', navEntry.loadEventEnd - navEntry.startTime, 'ms');
-                    }
-                }, 0);
-            });
-        }
+        window.shareOnFacebook = function() {
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
+        };
     </script>
 </body>
 </html>
