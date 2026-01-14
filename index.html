@@ -55,63 +55,61 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700&family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* ===== REBRANDED COLOR SYSTEM ===== */
+        /* ===== LUXURIOUS BURGUNDY & GOLD COLOR SYSTEM ===== */
         :root {
-            /* Core Brand Colors from TurkianaSweets.com */
-            --color-primary: #DBB66D;      /* Gold/Beige - Main brand color */
-            --color-primary-dark: #BF994D;  /* Darker gold */
-            --color-secondary: #AA7446;    /* Warm brown */
-            --color-secondary-dark: #895528; /* Dark brown */
-            --color-neutral: #7E808A;      /* Gray */
-            --color-neutral-dark: #5F6169;  /* Dark gray */
+            /* Core Brand Colors - Enhanced Luxury */
+            --color-primary: #800020;          /* Rich Royal Burgundy */
+            --color-primary-dark: #5A0017;     /* Deep Velvet Burgundy */
+            --color-primary-light: #A63232;    /* Light Velvet Burgundy */
+            --color-secondary: #D4AF37;        /* Metallic Royal Gold */
+            --color-secondary-dark: #B8860B;   /* Antique Gold */
+            --color-secondary-light: #FFD700;  /* Bright Gold */
+            --color-accent: #C19A6B;           /* Camel/Beige accent */
             
-            /* Background Colors */
-            --color-bg-main: #FFFFFF;      /* White background */
-            --color-bg-alt: #F8F5EB;       /* Cream/off-white */
-            --color-bg-dark: #342A25;      /* Dark brown for footer */
-            --color-bg-overlay: rgba(52, 42, 37, 0.9); /* Dark overlay */
+            /* Luxury Neutrals */
+            --color-black: #000000;            /* Pure Black */
+            --color-white: #FFFFFF;            /* Pure White */
+            --color-ivory: #FFFFF0;            /* Ivory for backgrounds */
+            --color-charcoal: #1A1A1A;         /* Charcoal Black */
+            --color-charcoal-light: #2D2D2D;   /* Light Charcoal */
             
             /* Text Colors */
-            --color-text-dark: #423831;    /* Dark brown text */
-            --color-text-medium: #7C7874;  /* Medium gray text */
-            --color-text-light: #A79E99;   /* Light gray text */
-            --color-text-white: #FFFFFF;   /* White text */
+            --color-text-dark: #000000;        /* Black text */
+            --color-text-medium: #333333;      /* Dark Gray text */
+            --color-text-light: #666666;       /* Medium Gray text */
+            --color-text-white: #FFFFFF;       /* White text */
+            --color-text-gold: #D4AF37;        /* Gold text */
+            
+            /* Background Colors */
+            --color-bg-main: #FFFFFF;          /* White background */
+            --color-bg-alt: #FAF7F2;           /* Luxury Ivory/Cream */
+            --color-bg-dark: #000000;          /* Pure Black for footer */
+            --color-bg-overlay: rgba(0, 0, 0, 0.85); /* Black overlay */
+            --color-bg-card: #FFFFFF;          /* White card background */
             
             /* Border & Line Colors */
-            --color-border-light: #E3DBD9; /* Light border */
-            --color-border-medium: #C9BBB8; /* Medium border */
-            --color-border-dark: #313131;   /* Dark border */
+            --color-border-light: #E8E2D6;     /* Light goldish ivory border */
+            --color-border-medium: #D4AF37;    /* Gold border */
+            --color-border-dark: #800020;      /* Burgundy border */
+            --color-border-luxury: #C19A6B;    /* Luxury beige border */
             
             /* Interactive States */
-            --color-hover: rgba(219, 182, 109, 0.1); /* Light gold hover */
-            --color-active: #F8F5EB;       /* Active state background */
+            --color-hover: rgba(128, 0, 32, 0.08); /* Light burgundy hover */
+            --color-active: rgba(212, 175, 55, 0.1); /* Gold active state */
             
-            /* Accent & Specialty Colors */
-            --color-accent-gold: #DBB66D;
-            --color-accent-brown: #AA7446;
-            --color-accent-dark: #423831;
+            /* Shadows & Glows */
+            --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.06);
+            --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.1);
+            --shadow-heavy: 0 8px 32px rgba(0, 0, 0, 0.15);
+            --shadow-elegant: 0 6px 24px rgba(128, 0, 32, 0.12);
+            --shadow-gold: 0 4px 20px rgba(212, 175, 55, 0.25);
+            --shadow-luxury: 0 10px 40px rgba(0, 0, 0, 0.2);
             
-            /* Functional Colors */
-            --color-success: #4CAF50;
-            --color-error: #C41E3A;
-            --color-warning: #FF9800;
-            --color-info: #2196F3;
-            
-            /* Opacity Variations */
-            --color-primary-20: rgba(219, 182, 109, 0.2);
-            --color-primary-30: rgba(219, 182, 109, 0.3);
-            --color-primary-70: rgba(219, 182, 109, 0.7);
-            --color-dark-10: rgba(66, 56, 49, 0.1);
-            --color-dark-20: rgba(66, 56, 49, 0.2);
-            --color-dark-50: rgba(66, 56, 49, 0.5);
-            --color-dark-80: rgba(66, 56, 49, 0.8);
-            
-            /* Shadows - Enhanced with brand colors */
-            --shadow-light: 0 4px 12px var(--color-dark-10);
-            --shadow-medium: 0 8px 24px var(--color-dark-20);
-            --shadow-heavy: 0 16px 48px var(--color-dark-20);
-            --shadow-gold: 0 8px 32px rgba(219, 182, 109, 0.3);
-            --shadow-elegant: 0 10px 40px rgba(66, 56, 49, 0.15);
+            /* Gradients */
+            --gradient-burgundy: linear-gradient(135deg, #800020 0%, #5A0017 100%);
+            --gradient-gold: linear-gradient(135deg, #D4AF37 0%, #B8860B 100%);
+            --gradient-luxury: linear-gradient(135deg, #000000 0%, #800020 50%, #D4AF37 100%);
+            --gradient-overlay: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(128,0,32,0.6) 100%);
             
             /* Transitions */
             --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -119,9 +117,9 @@
             --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             
             /* Border Radius */
-            --radius-small: 8px;
-            --radius-medium: 12px;
-            --radius-large: 20px;
+            --radius-small: 6px;
+            --radius-medium: 10px;
+            --radius-large: 16px;
             --radius-full: 50px;
             --radius-oval: 100px;
             
@@ -130,7 +128,7 @@
             --space-sm: 1rem;
             --space-md: 2rem;
             --space-lg: 3rem;
-            --space-xl: 4rem;
+            --space-xl: 5rem;
             
             /* Typography */
             --font-heading: 'Playfair Display', serif;
@@ -145,6 +143,7 @@
             --z-modal: 1050;
             --z-popover: 1060;
             --z-tooltip: 1070;
+            --z-floating: 1080;
         }
 
         /* ===== RESET & BASE STYLES ===== */
@@ -185,8 +184,8 @@
             margin-bottom: var(--space-sm);
         }
 
-        h1 { font-size: 3.5rem; }
-        h2 { font-size: 2.75rem; }
+        h1 { font-size: 3.5rem; letter-spacing: -0.5px; }
+        h2 { font-size: 2.75rem; letter-spacing: -0.3px; }
         h3 { font-size: 2.25rem; }
         h4 { font-size: 1.75rem; }
         h5 { font-size: 1.5rem; }
@@ -251,19 +250,40 @@
             left: 50%;
             transform: translateX(-50%);
             width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+            height: 3px;
+            background: var(--gradient-burgundy);
             border-radius: 2px;
         }
 
-        /* ===== BUTTONS ===== */
+        /* ===== FULLSCREEN OVERRIDE ===== */
+        body:fullscreen {
+            width: 100%;
+            height: 100%;
+        }
+
+        body:-webkit-full-screen {
+            width: 100%;
+            height: 100%;
+        }
+
+        body:-moz-full-screen {
+            width: 100%;
+            height: 100%;
+        }
+
+        body:-ms-fullscreen {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* ===== LUXURY BUTTONS ===== */
         .btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 0.75rem;
             padding: 1rem 2.5rem;
-            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            background: var(--gradient-burgundy);
             color: var(--color-text-white);
             border: none;
             border-radius: var(--radius-full);
@@ -275,6 +295,7 @@
             overflow: hidden;
             box-shadow: var(--shadow-light);
             font-family: var(--font-body);
+            letter-spacing: 0.5px;
         }
 
         .btn::before {
@@ -293,13 +314,14 @@
         }
 
         .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-medium);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-elegant);
             color: var(--color-text-white);
+            background: linear-gradient(135deg, var(--color-primary-dark) 0%, #000000 100%);
         }
 
         .btn:active {
-            transform: translateY(-1px);
+            transform: translateY(0);
         }
 
         .btn-outline {
@@ -314,13 +336,13 @@
             border-color: var(--color-primary);
         }
 
-        .btn-dark {
-            background: var(--color-text-dark);
-            color: var(--color-text-white);
+        .btn-gold {
+            background: var(--gradient-gold);
+            color: var(--color-text-dark);
         }
 
-        .btn-dark:hover {
-            background: var(--color-secondary-dark);
+        .btn-gold:hover {
+            background: linear-gradient(135deg, var(--color-secondary-dark) 0%, #000000 100%);
             color: var(--color-text-white);
         }
 
@@ -334,7 +356,7 @@
             font-size: 1.1rem;
         }
 
-        /* ===== HEADER ===== */
+        /* ===== LUXURY HEADER ===== */
         header {
             position: fixed;
             top: 0;
@@ -367,7 +389,7 @@
         }
 
         .logo-icon {
-            color: var(--color-primary);
+            color: var(--color-secondary);
             font-size: 2rem;
             display: flex;
             align-items: center;
@@ -383,14 +405,15 @@
         .logo-text .main {
             font-size: 1.8rem;
             font-weight: 700;
-            color: var(--color-text-dark);
+            color: var(--color-primary);
+            letter-spacing: 1px;
         }
 
         .logo-text .sub {
             font-size: 0.9rem;
             font-weight: 400;
             color: var(--color-text-medium);
-            letter-spacing: 1px;
+            letter-spacing: 2px;
         }
 
         .nav-links {
@@ -406,6 +429,7 @@
             font-size: 1.05rem;
             transition: var(--transition-fast);
             color: var(--color-text-dark);
+            letter-spacing: 0.3px;
         }
 
         .nav-links a::after {
@@ -415,7 +439,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+            background: var(--gradient-gold);
             transition: var(--transition-smooth);
         }
 
@@ -476,7 +500,70 @@
             border-color: var(--color-primary);
         }
 
-        /* ===== HERO SECTION ===== */
+        /* ===== FLOATING CATEGORY NAVIGATION ===== */
+        .floating-categories {
+            position: fixed;
+            top: 80px;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--color-border-light);
+            z-index: var(--z-sticky);
+            padding: 1rem 0;
+            transform: translateY(-100%);
+            opacity: 0;
+            transition: var(--transition-smooth);
+            box-shadow: var(--shadow-light);
+        }
+
+        .floating-categories.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .floating-categories-container {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            overflow-x: auto;
+            padding: 0.5rem 0;
+        }
+
+        .floating-category-btn {
+            padding: 0.75rem 1.5rem;
+            background: var(--color-bg-main);
+            border: 1.5px solid var(--color-border-light);
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--color-text-medium);
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            letter-spacing: 0.3px;
+        }
+
+        .floating-category-btn:hover {
+            background: var(--color-primary);
+            color: var(--color-text-white);
+            border-color: var(--color-primary);
+            transform: translateY(-2px);
+        }
+
+        .floating-category-btn.active {
+            background: var(--gradient-burgundy);
+            color: var(--color-text-white);
+            border-color: var(--color-primary);
+            box-shadow: var(--shadow-light);
+        }
+
+        /* ===== LUXURY HERO SECTION ===== */
         .hero {
             position: relative;
             min-height: 100vh;
@@ -484,7 +571,7 @@
             align-items: center;
             padding-top: 80px;
             overflow: hidden;
-            background: linear-gradient(135deg, var(--color-bg-overlay) 0%, rgba(66, 56, 49, 0.8) 100%);
+            background: var(--gradient-overlay);
         }
 
         .hero::before {
@@ -494,7 +581,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, var(--color-bg-overlay) 0%, rgba(66, 56, 49, 0.7) 100%);
+            background: var(--gradient-overlay);
             z-index: 1;
         }
 
@@ -506,7 +593,7 @@
             height: 100%;
             object-fit: cover;
             z-index: 0;
-            filter: brightness(0.6);
+            filter: brightness(0.7);
         }
 
         .hero-content {
@@ -523,22 +610,23 @@
             font-size: 4rem;
             margin-bottom: 1.5rem;
             color: var(--color-text-white);
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
-            font-weight: 700;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+            font-weight: 800;
+            letter-spacing: -0.5px;
         }
 
         .hero-subtitle {
             font-size: 1.5rem;
             margin-bottom: 2rem;
-            opacity: 0.9;
-            color: var(--color-primary);
+            color: var(--color-secondary);
             font-weight: 500;
+            letter-spacing: 1px;
         }
 
         .hero p {
             font-size: 1.25rem;
             margin-bottom: 2.5rem;
-            opacity: 0.85;
+            opacity: 0.9;
             line-height: 1.8;
             max-width: 600px;
             margin-left: auto;
@@ -582,7 +670,7 @@
             transform: scale(1.1);
         }
 
-        /* ===== FEATURES SECTION ===== */
+        /* ===== LUXURY FEATURES SECTION ===== */
         .features {
             background: var(--color-bg-main);
             padding: 5rem 0;
@@ -603,6 +691,24 @@
             box-shadow: var(--shadow-light);
             transition: var(--transition-smooth);
             border: 1px solid var(--color-border-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-burgundy);
+            transform: scaleX(0);
+            transition: var(--transition-smooth);
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
         }
 
         .feature-card:hover {
@@ -614,7 +720,7 @@
         .feature-icon {
             width: 80px;
             height: 80px;
-            background: linear-gradient(135deg, var(--color-primary-20), transparent);
+            background: linear-gradient(135deg, rgba(128, 0, 32, 0.1), transparent);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -622,6 +728,13 @@
             margin: 0 auto 1.5rem;
             font-size: 2rem;
             color: var(--color-primary);
+            transition: var(--transition-smooth);
+        }
+
+        .feature-card:hover .feature-icon {
+            background: var(--gradient-burgundy);
+            color: var(--color-text-white);
+            transform: rotate(10deg) scale(1.1);
         }
 
         .feature-card h3 {
@@ -635,7 +748,7 @@
             line-height: 1.6;
         }
 
-        /* ===== ABOUT SECTION ===== */
+        /* ===== LUXURY ABOUT SECTION ===== */
         .about {
             background: var(--color-bg-alt);
             position: relative;
@@ -649,7 +762,7 @@
             right: 0;
             width: 300px;
             height: 300px;
-            background: radial-gradient(circle, var(--color-primary-30) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(128, 0, 32, 0.1) 0%, transparent 70%);
             opacity: 0.3;
         }
 
@@ -666,7 +779,7 @@
             position: relative;
             border-radius: var(--radius-large);
             overflow: hidden;
-            box-shadow: var(--shadow-heavy);
+            box-shadow: var(--shadow-luxury);
         }
 
         .about-img::before {
@@ -676,7 +789,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(45deg, var(--color-primary-20), transparent);
+            background: linear-gradient(45deg, rgba(128, 0, 32, 0.1), transparent);
             z-index: 1;
         }
 
@@ -710,6 +823,7 @@
             border-left: 4px solid var(--color-primary);
             box-shadow: var(--shadow-light);
             margin-top: 2rem;
+            border: 1px solid var(--color-border-light);
         }
 
         .hours h4 {
@@ -735,10 +849,11 @@
             font-weight: 600;
         }
 
-        /* ===== MENU SECTION ===== */
+        /* ===== LUXURY MENU SECTION ===== */
         .menu {
             background: var(--color-bg-main);
             position: relative;
+            padding-top: 120px; /* Space for floating categories */
         }
 
         .menu-controls {
@@ -768,6 +883,7 @@
             transition: var(--transition-fast);
             box-shadow: var(--shadow-light);
             color: var(--color-text-dark);
+            letter-spacing: 0.3px;
         }
 
         .search-bar:focus {
@@ -852,7 +968,7 @@
         }
 
         .category-btn.active {
-            background: var(--color-primary);
+            background: var(--gradient-burgundy);
             color: var(--color-text-white);
             border-color: var(--color-primary);
             box-shadow: var(--shadow-light);
@@ -895,13 +1011,14 @@
             position: absolute;
             top: 1rem;
             right: 1rem;
-            background: var(--color-primary);
+            background: var(--gradient-burgundy);
             color: var(--color-text-white);
             padding: 0.25rem 0.75rem;
             border-radius: var(--radius-small);
             font-size: 0.75rem;
             font-weight: 600;
             z-index: 2;
+            letter-spacing: 0.5px;
         }
 
         .menu-item-img {
@@ -943,7 +1060,7 @@
         }
 
         .menu-item-price {
-            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+            background: var(--gradient-burgundy);
             color: var(--color-text-white);
             padding: 0.25rem 1rem;
             border-radius: var(--radius-full);
@@ -988,34 +1105,35 @@
             border-radius: var(--radius-small);
             font-size: 0.75rem;
             font-weight: 500;
+            letter-spacing: 0.3px;
         }
 
         .dietary-tag.vegan {
-            background: var(--color-success);
+            background: var(--color-primary);
             color: white;
         }
 
         .dietary-tag.vegetarian {
-            background: #4CAF50;
+            background: var(--color-primary-light);
             color: white;
         }
 
         .dietary-tag.gluten-free {
-            background: #FF9800;
+            background: var(--color-secondary);
             color: white;
         }
 
         .dietary-tag.contains-nuts {
-            background: #795548;
+            background: var(--color-secondary-dark);
             color: white;
         }
 
         .dietary-tag.contains-dairy {
-            background: #2196F3;
+            background: var(--color-accent);
             color: white;
         }
 
-        /* ===== GALLERY ===== */
+        /* ===== LUXURY GALLERY ===== */
         .gallery {
             background: var(--color-bg-alt);
             position: relative;
@@ -1061,7 +1179,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to top, rgba(66, 56, 49, 0.8), transparent);
+            background: linear-gradient(to top, rgba(128, 0, 32, 0.8), transparent);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1076,7 +1194,7 @@
         .gallery-overlay i {
             color: var(--color-text-white);
             font-size: 2rem;
-            background: rgba(219, 182, 109, 0.8);
+            background: rgba(128, 0, 32, 0.8);
             width: 60px;
             height: 60px;
             border-radius: 50%;
@@ -1090,7 +1208,7 @@
             transform: scale(1.1) rotate(5deg);
         }
 
-        /* ===== TESTIMONIALS ===== */
+        /* ===== LUXURY TESTIMONIALS ===== */
         .testimonials {
             background: linear-gradient(135deg, var(--color-bg-alt) 0%, var(--color-bg-main) 100%);
             position: relative;
@@ -1127,7 +1245,7 @@
         }
 
         .testimonial-rating {
-            color: var(--color-primary);
+            color: var(--color-secondary);
             font-size: 1.5rem;
             margin-bottom: 1.5rem;
             display: flex;
@@ -1157,7 +1275,7 @@
             margin-top: 0.25rem;
         }
 
-        /* ===== CONTACT ===== */
+        /* ===== LUXURY CONTACT ===== */
         .contact {
             background: var(--color-bg-main);
         }
@@ -1204,7 +1322,7 @@
         .contact-icon {
             width: 3rem;
             height: 3rem;
-            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+            background: var(--gradient-burgundy);
             color: var(--color-text-white);
             border-radius: 50%;
             display: flex;
@@ -1291,7 +1409,7 @@
         .form-control:focus {
             outline: none;
             border-color: var(--color-primary);
-            box-shadow: 0 0 0 3px var(--color-primary-20);
+            box-shadow: 0 0 0 3px rgba(128, 0, 32, 0.1);
         }
 
         .form-control::placeholder {
@@ -1300,16 +1418,16 @@
 
         select.form-control {
             appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%237C7874' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23333' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-position: right 1rem center;
             background-size: 16px;
             padding-right: 3rem;
         }
 
-        /* ===== FOOTER ===== */
+        /* ===== LUXURY FOOTER ===== */
         footer {
-            background: var(--color-bg-dark);
+            background: var(--color-black);
             color: var(--color-text-white);
             padding: 5rem 0 2rem;
             position: relative;
@@ -1322,7 +1440,7 @@
             transform: translateX(-50%);
             width: 3rem;
             height: 3rem;
-            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+            background: var(--gradient-burgundy);
             color: var(--color-text-white);
             border: none;
             border-radius: 50%;
@@ -1349,7 +1467,7 @@
         }
 
         .footer-col h3 {
-            color: var(--color-primary);
+            color: var(--color-secondary);
             margin-bottom: 1.5rem;
             font-size: 1.5rem;
             font-weight: 600;
@@ -1374,12 +1492,12 @@
         }
 
         .footer-links a:hover {
-            color: var(--color-primary);
+            color: var(--color-secondary);
             transform: translateX(5px);
         }
 
         .footer-links a i {
-            color: var(--color-primary);
+            color: var(--color-secondary);
             width: 1.25rem;
         }
 
@@ -1442,6 +1560,10 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: rgba(255, 255, 255, 0.6);
             font-size: 0.9rem;
+        }
+
+        .copyright i.fa-heart {
+            color: var(--color-primary);
         }
 
         /* ===== MODAL & LIGHTBOX ===== */
@@ -1536,7 +1658,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.95);
             z-index: var(--z-modal);
             align-items: center;
             justify-content: center;
@@ -1555,7 +1677,7 @@
             max-height: 90vh;
             overflow-y: auto;
             position: relative;
-            box-shadow: var(--shadow-heavy);
+            box-shadow: var(--shadow-luxury);
             border: 1px solid var(--color-border-light);
         }
 
@@ -1563,7 +1685,7 @@
             position: absolute;
             top: 1.5rem;
             right: 1.5rem;
-            background: var(--color-primary);
+            background: var(--gradient-burgundy);
             border: none;
             color: var(--color-text-white);
             width: 2.5rem;
@@ -1704,7 +1826,7 @@
             justify-content: center;
             font-size: 1.75rem;
             box-shadow: var(--shadow-medium);
-            z-index: var(--z-fixed);
+            z-index: var(--z-floating);
             transition: var(--transition-smooth);
             text-decoration: none;
         }
@@ -1718,13 +1840,13 @@
             position: fixed;
             bottom: 7rem;
             right: 2rem;
-            z-index: var(--z-fixed);
+            z-index: var(--z-floating);
         }
 
         .theme-btn {
             width: 3.5rem;
             height: 3.5rem;
-            background: var(--color-primary);
+            background: var(--gradient-burgundy);
             color: var(--color-text-white);
             border: none;
             border-radius: 50%;
@@ -1739,7 +1861,7 @@
 
         .theme-btn:hover {
             transform: scale(1.1) rotate(15deg);
-            background: var(--color-primary-dark);
+            background: linear-gradient(135deg, var(--color-primary-dark) 0%, #000000 100%);
         }
 
         /* ===== TOAST ===== */
@@ -1769,7 +1891,7 @@
         }
 
         .toast-icon {
-            color: var(--color-success);
+            color: var(--color-primary);
             font-size: 1.5rem;
         }
 
@@ -1926,6 +2048,10 @@
                 margin-left: 0;
                 margin-top: 1rem;
             }
+            
+            .floating-categories {
+                top: 70px;
+            }
         }
 
         @media (max-width: 576px) {
@@ -1973,14 +2099,16 @@
 
         /* ===== DARK MODE ===== */
         .dark-mode {
-            --color-bg-main: #1A1A1A;
-            --color-bg-alt: #252525;
-            --color-text-dark: #F0F0F0;
+            --color-bg-main: #000000;
+            --color-bg-alt: #1A1A1A;
+            --color-text-dark: #FFFFFF;
             --color-text-medium: #CCCCCC;
             --color-text-light: #999999;
             --color-border-light: #333333;
             --color-border-medium: #444444;
-            --color-hover: rgba(219, 182, 109, 0.15);
+            --color-hover: rgba(128, 0, 32, 0.15);
+            --color-bg-dark: #000000;
+            --color-bg-card: #1A1A1A;
         }
 
         /* ===== PRINT STYLES ===== */
@@ -1989,7 +2117,8 @@
             .theme-toggle,
             .video-controls,
             .mobile-toggle,
-            .back-to-top {
+            .back-to-top,
+            .floating-categories {
                 display: none !important;
             }
             
@@ -2022,7 +2151,7 @@
                 </div>
                 <div class="logo-text">
                     <span class="main">Turkiana</span>
-                    <span class="sub">Cafe & Sweets</span>
+                    <span class="sub">CAFE & SWEETS</span>
                 </div>
             </a>
             
@@ -2049,9 +2178,16 @@
         </div>
     </header>
 
+    <!-- Floating Categories Navigation -->
+    <div class="floating-categories" id="floating-categories">
+        <div class="container floating-categories-container" id="floating-categories-container">
+            <!-- Categories will be populated by JavaScript -->
+        </div>
+    </div>
+
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <video class="hero-video" autoplay muted loop playsinline>
+        <video class="hero-video" autoplay muted loop playsinline id="hero-video">
             <source src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Video.mp4" type="video/mp4">
             <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg" alt="Turkiana Cafe">
         </video>
@@ -2074,6 +2210,9 @@
             </button>
             <button id="video-pause">
                 <i class="fas fa-pause"></i>
+            </button>
+            <button id="fullscreen-btn">
+                <i class="fas fa-expand"></i>
             </button>
         </div>
     </section>
@@ -2129,7 +2268,7 @@
                     <h3>A Legacy of Culinary Excellence</h3>
                     <p>Turkiana Cafe & Sweets represents the culmination of centuries-old Turkish and Arabic culinary traditions, reimagined for the discerning palate of Doha's cosmopolitan community.</p>
                     <p>Every cup of our Turkish coffee is brewed with beans sourced directly from the fertile regions of Anatolia, while our baklava is crafted by master pastry chefs using techniques passed down through generations.</p>
-                    <p>Our commitment to quality extends beyond ingredients to every aspect of the experience – from the elegant ambiance to the attentive service that makes every visit memorable.</p>
+                    <p>Our commitment to quality extends beyond ingredients to every aspect of the experience - from the elegant ambiance to the attentive service that makes every visit memorable.</p>
                     
                     <div class="hours">
                         <h4><i class="fas fa-clock"></i> Opening Hours</h4>
@@ -2405,7 +2544,7 @@
             </div>
             
             <div class="copyright">
-                <p>&copy; 2024 Turkiana Cafe & Sweets. All rights reserved. | Designed with <i class="fas fa-heart" style="color: #DBB66D;"></i> in Doha</p>
+                <p>&copy; 2024 Turkiana Cafe & Sweets. All rights reserved. | Designed with <i class="fas fa-heart"></i> in Doha</p>
             </div>
         </div>
     </footer>
@@ -2499,8 +2638,15 @@
 
     <!-- JavaScript -->
     <script>
-        // Menu Data (same as before)
-         const menuItems = [
+        // Enhanced Menu Data with your requested popular items
+        const menuItems = [
+            // POPULAR ITEMS (as requested)
+            { id:"pop1", cat:"Popular", enName:"Turkiana Beef Burger", arName:"برجر تركيانا", price:69, enDesc:"Signature masterpiece—premium beef patty with secret seasoning blend, grilled to juicy perfection and served with fresh vegetables, special sauce, and golden fries in definitive burger experience.", arDesc:"تحفة مميزة—قطعة برجر بقري فاخرة بمزيج تتبيل سري، مشوية إلى عصرية مثالية وتُقدم مع خضروات طازجة، صوص خاص، وبطاطس ذهبية في تجربة برجر حاسمة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Burger.jpeg", calories:"950 kcal", dietary:[], popular:true },
+            { id:"pop2", cat:"Popular", enName:"Turkish Tea", arName:"شاي تركي", price:15, enDesc:"The heartbeat of Turkish culture—deep amber Rize tea double-brewed to perfection, served in iconic tulip glasses that concentrate aromas and warmth in every comforting sip.", arDesc:"نبض الثقافة التركية—شاي ريزه الكهرماني العميق يُحضر مزدوجاً إلى الكمال، يُقدم في أكواب التوليب الأيقونية التي تركز العطور والدفء في كل رشفة مريحة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Tea.jpg", calories:"2 kcal", dietary:["vegan","dairy-free"], popular:true },
+            { id:"pop3", cat:"Popular", enName:"Classic Turkish Coffee", arName:"قهوة تركية كلاسيكية", price:28, enDesc:"A timeless Turkish tradition—finely ground coffee brewed in a cezve with meticulous attention to foam formation, delivering intense aromas and rich, unfiltered flavors in every velvety sip.", arDesc:"تقليد تركي خالد—قهوة مطحونة ناعماً تُحضر في إبريق نحاسي بعناية فائقة لتكوين رغوة مثالية، تقدم عبقاً قوياً ونكهات غنية غير مصفاة في كل رشفة حريرية.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkishcoffee.jpg", calories:"5 kcal", dietary:["vegan","gluten-free","dairy-free"], popular:true },
+            { id:"pop4", cat:"Popular", enName:"Kunafa", arName:"كنافة", price:40, enDesc:"Cheese perfection—shredded kataifi pastry baked with Akkawi cheese until golden, soaked in rose-scented syrup, creating perfect balance of salty cheese, sweet syrup, and crispy texture.", arDesc:"كمال الجبن—عجينة الكنافة المفتولة تُخبز مع جبنة عكاوي حتى تصبح ذهبية، تنقع في شراب معطر بماء الورد، تخلق توازناً مثالياً بين الجبن المالح، الشراب الحلو، والقوام المقرمش.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Kunafa.jpeg", calories:"520 kcal", dietary:["contains-dairy"], popular:true },
+            { id:"pop5", cat:"Popular", enName:"Latte (Hot/Ice)", arName:"لاتيه (ساخن/مثلج)", price:29, enDesc:"The perfect canvas—smooth microfoam over balanced espresso creating creamy harmony, offering comforting warmth or refreshing chill in beautifully layered presentation.", arDesc:"اللوحة المثالية—رغوة دقيقة ناعمة فوق إسبرسو متوازن تخلق تناغماً كريمياً، تقدم دفئاً مريحاً أو برودة منعشة في تقديم جميل متعدد الطبقات.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Latteart.webp", calories:"170 kcal", dietary:["contains-dairy"], popular:true },
+            { id:"pop6", cat:"Popular", enName:"Cappuccino (Hot/Ice)", arName:"كابوتشينو (ساخن/مثلج)", price:29, enDesc:"Textural masterpiece—equal parts espresso, steamed milk, and thick microfoam creating perfect trifecta of strength, creaminess, and airy lightness in traditional Italian style.", arDesc:"تحفة قوامية—أجزاء متساوية من إسبرسو، حليب مبخر، ورغوة دقيقة سميكة تخلق ثلاثية مثالية من القوة والكريمية والخفة الهوائية بالأسلوب الإيطالي التقليدي.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Art.webp", calories:"150 kcal", dietary:["contains-dairy"], popular:true },
             // Brewed on Arabic & Turkish Way (11 items)
             { id:"batw1", cat:"Brewed on Arabic & Turkish Way", enName:"Classic Turkish Coffee", arName:"قهوة تركية كلاسيكية", price:28, enDesc:"A timeless Turkish tradition—finely ground coffee brewed in a cezve with meticulous attention to foam formation, delivering intense aromas and rich, unfiltered flavors in every velvety sip.", arDesc:"تقليد تركي خالد—قهوة مطحونة ناعماً تُحضر في إبريق نحاسي بعناية فائقة لتكوين رغوة مثالية، تقدم عبقاً قوياً ونكهات غنية غير مصفاة في كل رشفة حريرية.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkishcoffee.jpg", calories:"5 kcal", dietary:["vegan","gluten-free","dairy-free"] },
             { id:"batw2", cat:"Brewed on Arabic & Turkish Way", enName:"Double Turkish Coffee", arName:"قهوة تركية مزدوجة", price:40, enDesc:"For the bold-hearted—double the intensity with concentrated brewing that amplifies coffee's robust character, creating a powerful, full-bodied experience with lingering depth.", arDesc:"للمحبين للقوة—ضعف التركيز بتحضير مركز يعزز شخصية القهوة الجريئة، يخلق تجربة قوية وكاملة الجسم بعمق دائم.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkishcoffee.jpg", calories:"10 kcal", dietary:["vegan","gluten-free","dairy-free"] },
@@ -2552,7 +2698,7 @@
             { id:"cac14", cat:"Café & Chill", enName:"Mocha (Hot/Ice)", arName:"موكا (ساخن/مثلج)", price:32, enDesc:"Chocolate-coffee marriage—rich dark chocolate melted into espresso base, topped with steamed milk and cocoa powder for decadent treat that satisfies both cravings simultaneously.", arDesc:"زواج شوكولاتة-قهوة—شوكولاتة داكنة غنية ذائبة في قاعدة إسبرسو، تتوج بحليب مبخر ومسحوق كاكاو لتناول فاخر يرضي الرغبتين في آن واحد.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Art.webp", calories:"260 kcal", dietary:["contains-dairy"] },
             
             // Specialty Brews (3 items)
-            { id:"sb1", cat:"Specialty Brews", enName:"V60 Pour Over - Ethiopia Beans", arName:"V60 بورت أوفر - حبوب إثيوبيا", price:33, enDesc:"Manual artistry—Ethiopian Yirgacheffe beans hand-poured through ceramic V60, extracting bright floral notes, bergamot hints, and clean finish that showcases terroir with clarity.", arDesc:"فن يدوي—حبوب إثيوبيا يرجاتشيف تُسكب يدوياً عبر V60 سيراميكي، تستخلص نفحات زهرية زاهية، تلميحات برغموت، ونهاية نظيفة تعرض التيروار بوضوح.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/V60.webp", calories:"2 kcal", dietary:["vegan","dairy-free"] },
+            { id:"sb1", cat:"Specialty Brews", enName:"V60 Pour Over - Ethiopia Beans", arName:"V60 بورت أوفر - حبوب إثيوبيا", price:35, enDesc:"Manual artistry—Ethiopian Yirgacheffe beans hand-poured through ceramic V60, extracting bright floral notes, bergamot hints, and clean finish that showcases terroir with clarity.", arDesc:"فن يدوي—حبوب إثيوبيا يرجاتشيف تُسكب يدوياً عبر V60 سيراميكي، تستخلص نفحات زهرية زاهية، تلميحات برغموت، ونهاية نظيفة تعرض التيروار بوضوح.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/V60.webp", calories:"2 kcal", dietary:["vegan","dairy-free"] },
             { id:"sb2", cat:"Specialty Brews", enName:"Ice Drip", arName:"آيس دريب", price:35, enDesc:"Slow-motion extraction—coffee grounds slowly dripped with ice-cold water over 8 hours, creating concentrated, smooth elixir with low acidity and complex flavor development.", arDesc:"استخلاص بالحركة البطيئة—بن مطحون يُقطر ببطء بماء مثلج على مدى 8 ساعات، يخلق إكسير مركزاً وناعماً بحموضة منخفضة وتطور نكهة معقد.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Drip.jpg", calories:"2 kcal", dietary:["vegan","dairy-free"] },
             { id:"sb3", cat:"Specialty Brews", enName:"Cold Brew", arName:"كولد برو", price:37, enDesc:"Patience rewarded—coarse grounds steeped in cold water for 18+ hours, producing naturally sweet, low-acid concentrate with chocolatey notes and remarkably smooth character.", arDesc:"صبر مكافأ—بن خشِن منقوع في ماء بارد لأكثر من 18 ساعة، ينتج مركزاً حلوماً طبيعياً ومنخفض الحموضة بنفحات شوكولاتية وشخصية ناعمة بشكل ملحوظ.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Coldbrew.webp", calories:"2 kcal", dietary:["vegan","dairy-free"] },
             
@@ -2574,25 +2720,21 @@
             
             // Baklava & Beyond (22 items - adjusted numbering)
             { id:"bak2", cat:"Baklava & Beyond", enName:"Turkish Mix Baklava", arName:"بقلاوة تركية مشكلة", price:65, enDesc:"Artisanal assortment—carefully curated selection of Gaziantep's finest baklava varieties, featuring multiple nut fillings, syrup saturation levels, and pastry techniques in one exquisite box.", arDesc:"تشكيلة حرفية—اختيار مدقق بعناية من أفضل أنواع بقلاوة غازي عنتاب، يضم حشوات مكسرات متعددة، مستويات تشريب بالشراب، وتقنيات عجين في صندوق واحد فاخر.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg", calories:"450 kcal", dietary:["contains-nuts"] },
-            { id:"bak3", cat:"Baklava & Beyond", enName:"Carrot Slice Baklava", arName:"بقلاوة شريحة الجزر", price:40, enDesc:"Innovative tradition—classic baklava enriched with carrot puree that adds natural sweetness and moist texture, layered with pistachios and bathed in rose-orange blossom syrup.", arDesc:"تقليد مبتكر—بقلاوة كلاسيكية معززة بهريس الجزر الذي يضيف حلاوة طبيعية وقواماً رطباً، مطبقة بالفستق ومغمورة بشراب ماء الورد-زهر البرتقال.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Carrot.jpeg", calories:"420 kcal", dietary:["vegetarian","contains-nuts"] },
-            { id:"bak4", cat:"Baklava & Beyond", enName:"Carrot Slice Baklava With Ice Cream", arName:"بقلاوة شريحة الجزر مع الآيس كريم", price:51, enDesc:"Temperature contrast—warm carrot baklava paired with cool vanilla bean ice cream, creating delightful interplay of crispy pastry, sweet syrup, and creamy cold that elevates both elements.", arDesc:"تباين درجات الحرارة—بقلاوة جزر دافئة مقترنة بآيس كريم فانيليا بارد، تخلق تفاعلاً مسلياً بين العجين المقرمش، الشراب الحلو، والكريمية الباردة التي ترفع كلا العنصرين.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Carroticecream.jpeg", calories:"620 kcal", dietary:["contains-nuts","contains-dairy"] },
+            { id:"bak3", cat:"Baklava & Beyond", enName:"Carrot Slice Baklava", arName:"بقلاوة شريحة الجزر", price:45, enDesc:"Innovative tradition—classic baklava enriched with carrot puree that adds natural sweetness and moist texture, layered with pistachios and bathed in rose-orange blossom syrup.", arDesc:"تقليد مبتكر—بقلاوة كلاسيكية معززة بهريس الجزر الذي يضيف حلاوة طبيعية وقواماً رطباً، مطبقة بالفستق ومغمورة بشراب ماء الورد-زهر البرتقال.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Carrot.jpeg", calories:"420 kcal", dietary:["vegetarian","contains-nuts"] },
+            { id:"bak4", cat:"Baklava & Beyond", enName:"Carrot Slice Baklava With Ice Cream", arName:"بقلاوة شريحة الجزر مع الآيس كريم", price:55, enDesc:"Temperature contrast—warm carrot baklava paired with cool vanilla bean ice cream, creating delightful interplay of crispy pastry, sweet syrup, and creamy cold that elevates both elements.", arDesc:"تباين درجات الحرارة—بقلاوة جزر دافئة مقترنة بآيس كريم فانيليا بارد، تخلق تفاعلاً مسلياً بين العجين المقرمش، الشراب الحلو، والكريمية الباردة التي ترفع كلا العنصرين.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Carroticecream.jpeg", calories:"620 kcal", dietary:["contains-nuts","contains-dairy"] },
+          { id:"des114", cat:"Baklava & Beyond", enName:"Turkish Ice Cream (Cup)", arName:"آيس كريم تركي بالكوب", price:27, enDesc:"Classic Turkish dondurma served in a cup—rich, creamy texture with a smooth chew, offering a refreshing yet indulgent treat inspired by traditional Anatolian flavors.", arDesc:"آيس كريم تركي تقليدي (دوندورما) يُقدّم في كوب بقوام غني وكريمي مع مطاطية ناعمة، ليمنح تجربة منعشة وممتعة مستوحاة من النكهات الأناضولية الأصيلة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Icecream.webp", calories:"210 kcal", dietary:[] },
             { id:"bak5", cat:"Baklava & Beyond", enName:"Trio Baklava", arName:"تريو بقلاوة", price:45, enDesc:"Trinity of textures—three distinct baklava styles showcasing different techniques: rolled, open-faced, and diamond-cut, each highlighting unique aspects of this pastry art form.", arDesc:"ثالوث القوام—ثلاثة أنماط بقلاوة مميزة تعرض تقنيات مختلفة: ملفوف، مكشوف، ومقطع بشكل الماس، كل منها يسلط الضوء على جوانب فريدة من هذا الفن المعجني.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/TrioBaklava.jpeg", calories:"480 kcal", dietary:["contains-nuts"] },
-            { id:"bak6", cat:"Baklava & Beyond", enName:"Fruit Cake", arName:"كيك الفواكه", price:36, enDesc:"Celebratory classic—moist cake studded with candied citrus peel, raisins, and nuts, soaked in fruit juice for tender crumb and festive flavor that improves with each day.", arDesc:"كلاسيكي احتفالي—كيك رطب مرصّع بقشور الحمضيات المسكرة، الزبيب، والمكسرات، منقوع في عصير فواكه للفتات الطري والنكهة الاحتفالية التي تتحسن مع كل يوم.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Fruitcake.jfif", calories:"420 kcal", dietary:["contains-dairy"], popular:true },
-            { id:"bak7", cat:"Baklava & Beyond", enName:"Honey Cake", arName:"كيك العسل", price:40, enDesc:"Layered sweetness—multiple thin cake layers alternating with honey cream, creating moist, tender dessert where floral honey notes develop complexity with each delicate bite.", arDesc:"حلاوة متعددة الطبقات—طبقات كيك رقيقة متعددة تتبادل مع كريمة العسل، تخلق حلوى رطبة وطرية حيث تتطور نفحات العسل الزهرية إلى تعقيد مع كل قضمة دقيقة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Honeycake.jfif", calories:"430 kcal", dietary:["contains-dairy"], popular:true },
-            { id:"bak8", cat:"Baklava & Beyond", enName:"Vanilla Cake", arName:"كيك الفانيلا", price:36, enDesc:"Timeless simplicity—fluffy cake with pure Madagascar vanilla bean infusion, offering clean, aromatic sweetness that serves as perfect canvas for coffee pairing or standalone enjoyment.", arDesc:"بساطة خالدة—كيك منفوش بنقيع فانيليا مدغشقر نقية، يقدم حلاوة نظيفة وعطرة تعمل كلوحة مثالية لقرينة القهوة أو الاستمتاع المنفرد.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Vanillacake.jfif", calories:"410 kcal", dietary:["contains-dairy"], popular:true },
-            { id:"bak9", cat:"Baklava & Beyond", enName:"Chocolate Fruit Cake", arName:"كيك الشوكولاتة", price:36, enDesc:"Dual decadence—rich chocolate cake interwoven with rum-soaked dried fruits and nuts, creating sophisticated dessert where cocoa depth meets festive fruit complexity.", arDesc:"فخامة مزدوجة—كيك شوكولاتة غني منسوج مع فواكه مجففة منقوعة بالروم ومكسرات، يخلق حلوى راقية حيث يلتقي عمق الكاكاو بتعقيد الفواكه الاحتفالي.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Chocolatecake.jfif", calories:"450 kcal", dietary:["contains-dairy"], popular:true },
-            { id:"bak10", cat:"Baklava & Beyond", enName:"Kunafa", arName:"كنافة", price:40, enDesc:"Cheese perfection—shredded kataifi pastry baked with Akkawi cheese until golden, soaked in rose-scented syrup, creating perfect balance of salty cheese, sweet syrup, and crispy texture.", arDesc:"كمال الجبن—عجينة الكنافة المفتولة تُخبز مع جبنة عكاوي حتى تصبح ذهبية، تنقع في شراب معطر بماء الورد، تخلق توازناً مثالياً بين الجبن المالح، الشراب الحلو، والقوام المقرمش.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Kunafa.jpeg", calories:"520 kcal", dietary:["contains-dairy"] },
-            { id:"bak11", cat:"Baklava & Beyond", enName:"Chocolate Cake", arName:"كعكة الشكولاتة", price:40, enDesc:"Decadent foundation—deep, moist chocolate cake with intense cocoa flavor, versatile enough for standalone enjoyment or as base for further dessert customization and pairing.", arDesc:"أساس فاخر—كعكة شوكولاتة عميقة ورطبة بنكهة كاكاو مكثفة، متعددة الاستخدامات بما يكفي للاستمتاع المنفرد أو كقاعدة لمزيد من تخصيص الحلوى والقرينة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Chocolate.jpg", calories:"480 kcal", dietary:["contains-dairy"], popular:true },
+            { id:"bak7", cat:"Baklava & Beyond", enName:"Honey Cake", arName:"كيك العسل", price:40, enDesc:"Layered sweetness—multiple thin cake layers alternating with honey cream, creating moist, tender dessert where floral honey notes develop complexity with each delicate bite.", arDesc:"حلاوة متعددة الطبقات—طبقات كيك رقيقة متعددة تتبادل مع كريمة العسل، تخلق حلوى رطبة وطرية حيث تتطور نفحات العسل الزهرية إلى تعقيد مع كل قضمة دقيقة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Honeycake.jfif", calories:"430 kcal", dietary:["contains-dairy"], },
+            { id:"bak10", cat:"Baklava & Beyond", enName:"Kunafa", arName:"كنافة", price:45, enDesc:"Cheese perfection—shredded kataifi pastry baked with Akkawi cheese until golden, soaked in rose-scented syrup, creating perfect balance of salty cheese, sweet syrup, and crispy texture.", arDesc:"كمال الجبن—عجينة الكنافة المفتولة تُخبز مع جبنة عكاوي حتى تصبح ذهبية، تنقع في شراب معطر بماء الورد، تخلق توازناً مثالياً بين الجبن المالح، الشراب الحلو، والقوام المقرمش.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Kunafa.jpeg", calories:"520 kcal", dietary:["contains-dairy"] },
             { id:"bak13", cat:"Baklava & Beyond", enName:"Brownies", arName:"براونيز", price:45, enDesc:"Fudgy perfection—dense, rich brownies with crackly top and gooey center, balancing deep chocolate intensity with just enough sweetness to satisfy without overwhelming.", arDesc:"كمال فادج—براونيز كثيفة وغنية بقمة متشققة ومركز لزج، توازن بين شدة الشوكولاتة العميقة وما يكفي من الحلاوة للإشباع دون طغيان.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Brown.jpg", calories:"380 kcal", dietary:["contains-dairy"] },
             { id:"bak14", cat:"Baklava & Beyond", enName:"Tiramisu", arName:"تيراميسو", price:50, enDesc:"Italian masterpiece—ladyfinger layers soaked in espresso and Marsala, alternating with mascarpone cream and dusted with cocoa, creating sophisticated coffee dessert that improves with time.", arDesc:"تحفة إيطالية—طبقات بسكويت السيدة منقوعة في إسبرسو ومارسالا، تتبادل مع كريمة الماسكاربون وتُذرّ بالكاكاو، تخلق حلوى قهوة راقية تتحسن مع الوقت.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Tiramisu.jpg", calories:"420 kcal", dietary:["contains-dairy"] },
             { id:"bak15", cat:"Baklava & Beyond", enName:"Almond Chocolate Cake", arName:"كعكة الشوكولاتة باللوز", price:40, enDesc:"Nutty sophistication—moist chocolate cake with almond meal integrated into batter and toasted almond garnish, creating textural contrast and flavor harmony between cocoa and nuts.", arDesc:"رقة جوزية—كعكة شوكولاتة رطبة مع طحين اللوز المدمج في الخليط وتزيين لوز محمص، يخلق تبايناً قوامياً وتناغماً نكهياً بين الكاكاو والمكسرات.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Almond.jpg", calories:"490 kcal", dietary:["contains-nuts"] },
             { id:"bak17", cat:"Baklava & Beyond", enName:"Chocolate Pistachio Cake", arName:"كعكة الشوكولاتة والفستق", price:40, enDesc:"Green luxury—rich chocolate cake adorned with crushed pistachios that provide vibrant color contrast, subtle saltiness, and elegant crunch against smooth chocolate background.", arDesc:"فخامة خضراء—كعكة شوكولاتة غنية مزينة بفستق مفتت يوفر تباين لوني نابض، ملوحة خفيفة، وقرمشة أنيقة ضد خلفية الشوكولاتة الناعمة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Chocolate_pistachio.jpg", calories:"510 kcal", dietary:["contains-nuts"] },
             { id:"bak18", cat:"Baklava & Beyond", enName:"Strawberry Cake", arName:"كعكة الفراولة", price:45, enDesc:"Spring celebration—light sponge cake layered with fresh strawberry slices and cream, capturing fruit's natural sweetness and floral notes in visually stunning, seasonally inspired dessert.", arDesc:"احتفال ربيعي—كعكة إسفنجية خفيفة مطبقة بشرائح فراولة طازجة وكريمة، تلتقط حلاوة الفاكهة الطبيعية ونفحاتها الزهرية في حلوى مذهلة بصرياً ومستوحاة من الموسم.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Strawberry.jpg", calories:"470 kcal", dietary:["contains-dairy"] },
-            { id:"bak19", cat:"Baklava & Beyond", enName:"White Almond Cake", arName:"كعكة اللوز البيضاء", price:42, enDesc:"Elegant simplicity—delicate almond-flavored cake with fine crumb and subtle sweetness, often enjoyed with tea or as light dessert that highlights almond's sophisticated character.", arDesc:"بساطة أنيقة—كعكة بنكهة اللوز الدقيقة بفتات ناعم وحلاوة خفيفة، غالباً ما تُستمتع مع الشاي أو كحلوى خفيفة تسلط الضوء على شخصية اللوز الراقية.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/White.jpg", calories:"500 kcal", dietary:["contains-nuts"] },
             { id:"bak20", cat:"Baklava & Beyond", enName:"Trileche With Milk", arName:"تريليتش باللبن", price:42, enDesc:"Triple moisture—sponge cake soaked in three-milk blend (evaporated, condensed, and cream), creating incredibly moist dessert with rich, creamy texture and caramelized notes.", arDesc:"رطوبة ثلاثية—كعكة إسفنجية منقوعة في مزيج ثلاثي الحليب (مبخر، مكثف، وكريمة)، تخلق حلوى رطبة بشكل لا يصدق بقوام غني كريمي ونفحات مكرملة.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Trileche.jpg", calories:"540 kcal", dietary:["contains-dairy"] },
-            { id:"bak21", cat:"Baklava & Beyond", enName:"San Sebastian Cheesecake", arName:"تشيز كيك سان سيباستيان", price:42, enDesc:"Basque perfection—cream-centered cheesecake with caramelized top and creamy, almost liquid interior, intentionally underbaked to create unique texture contrast and rich flavor.", arDesc:"كمال باسكي—تشيز كيك مركز الكريمة بقمة مكرملة وداخل كريمي شبه سائل، يُخبز عمداً بشكل غير كامل لخلق تباين قوام فريد ونكهة غنية.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Sebastian.jpg", calories:"520 kcal", dietary:["contains-dairy"] },
-            { id:"bak22", cat:"Baklava & Beyond", enName:"Cheesecake", arName:"تشيز كيك", price:42, enDesc:"Classic foundation—creamy New York-style cheesecake with graham cracker crust, serving as perfect canvas for various toppings or enjoyed in its pure, unadorned perfection.", arDesc:"أساس كلاسيكي—تشيز كيك كريمي على الطريقة النيويوركية بقشرة بسكويت غراهام، يعمل كلوحة مثالية للطبقات المختلفة أو يُستمتع به في كماله النقي غير المزين.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/cheesecake.webp", calories:"500 kcal", dietary:["contains-dairy"] },
-            { id:"bak23", cat:"Baklava & Beyond", enName:"Pecan Cake", arName:"كيك البقان", price:45, enDesc:"Southern elegance—moist cake loaded with toasted pecans, often with caramel or maple notes, creating rich, nutty dessert that celebrates this distinctive nut's buttery character.", arDesc:"أناقة جنوبية—كعكة رطبة محشوة ببقان محمص، غالباً بنفحات كراميل أو قيقب، تخلق حلوى جوزية غنية تحتفظ بالشخصية الزبدية لهذا الجوز المميز.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Pecan.jpg", calories:"350 kcal", dietary:["vegetarian"] },
+            { id:"bak21", cat:"Baklava & Beyond", enName:"San Sebastian Cheesecake", arName:"تشيز كيك سان سيباستيان", price:45, enDesc:"Basque perfection—cream-centered cheesecake with caramelized top and creamy, almost liquid interior, intentionally underbaked to create unique texture contrast and rich flavor.", arDesc:"كمال باسكي—تشيز كيك مركز الكريمة بقمة مكرملة وداخل كريمي شبه سائل، يُخبز عمداً بشكل غير كامل لخلق تباين قوام فريد ونكهة غنية.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Sebastian.jpg", calories:"520 kcal", dietary:["contains-dairy"] },
+            { id:"bak22", cat:"Baklava & Beyond", enName:"Cheesecake", arName:"تشيز كيك", price:45, enDesc:"Classic foundation—creamy New York-style cheesecake with graham cracker crust, serving as perfect canvas for various toppings or enjoyed in its pure, unadorned perfection.", arDesc:"أساس كلاسيكي—تشيز كيك كريمي على الطريقة النيويوركية بقشرة بسكويت غراهام، يعمل كلوحة مثالية للطبقات المختلفة أو يُستمتع به في كماله النقي غير المزين.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/cheesecake.webp", calories:"500 kcal", dietary:["contains-dairy"] },
+            { id:"bak23", cat:"Baklava & Beyond", enName:"Pecan Cake", arName:"كيك البقان", price:50, enDesc:"Southern elegance—moist cake loaded with toasted pecans, often with caramel or maple notes, creating rich, nutty dessert that celebrates this distinctive nut's buttery character.", arDesc:"أناقة جنوبية—كعكة رطبة محشوة ببقان محمص، غالباً بنفحات كراميل أو قيقب، تخلق حلوى جوزية غنية تحتفظ بالشخصية الزبدية لهذا الجوز المميز.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Pecan.jpg", calories:"350 kcal", dietary:["vegetarian"] },
             { id:"bak24", cat:"Baklava & Beyond", enName:"Fanzuella Sweet", arName:"حلوى فانزويلا", price:45, enDesc:"Exotic delight—traditional Venezuelan sweet with unique texture and flavor profile, offering cultural dessert experience that combines local ingredients in balanced, memorable treat.", arDesc:"لذة غريبة—حلوى فانزويلية تقليدية بقوام فريد وملف نكهة، تقدم تجربة حلوى ثقافية تجمع مكونات محلية في تناول متوازن لا يُنسى.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Fanzuella.webp", calories:"300 kcal", dietary:["vegetarian"] },
             
             // Fondue & Nuts (6 items)
@@ -2643,13 +2785,64 @@
             { id:"amt13", cat:"Anatolian Morning Table", enName:"Turkey Ham Sandwich", arName:"ساندويتش تركي هام", price:30, enDesc:"Light deli option—turkey ham sandwich with fresh vegetables and soft bread, offering approachable choice for those seeking familiar deli flavors in balanced, not-too-heavy presentation.", arDesc:"خيار لحوم بارد خفيف—ساندويتش تركي هام مع خضروات طازجة وخبز طري، يقدم اختياراً سهلاً لمن يبحثون عن نكهات اللحوم الباردة المألوفة في تقديم متوازن وغير ثقيل جداً.", image:"https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkeyhamsandwich.jpg", calories:"390 kcal", dietary:[] }
         ];
 
+
+        // Initialize the application
         document.addEventListener('DOMContentLoaded', function() {
             initializeApp();
         });
 
+        // Fullscreen functionality
+        function enterFullscreen() {
+            const elem = document.documentElement;
+            
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+            } else if (elem.webkitRequestFullscreen) { /* Safari */
+                elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) { /* IE11 */
+                elem.msRequestFullscreen();
+            }
+        }
+
+        function exitFullscreen() {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) { /* Safari */
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) { /* IE11 */
+                document.msExitFullscreen();
+            }
+        }
+
+        function toggleFullscreen() {
+            if (!document.fullscreenElement &&    // standard
+                !document.webkitFullscreenElement && /* safari */
+                !document.msFullscreenElement) {  /* ie11 */
+                enterFullscreen();
+                document.getElementById('fullscreen-btn').innerHTML = '<i class="fas fa-compress"></i>';
+            } else {
+                exitFullscreen();
+                document.getElementById('fullscreen-btn').innerHTML = '<i class="fas fa-expand"></i>';
+            }
+        }
+
+        // Check if we're already in fullscreen
+        function isFullscreen() {
+            return !!(document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement);
+        }
+
         function initializeApp() {
+            // Auto enter fullscreen
+            setTimeout(() => {
+                if (!isFullscreen()) {
+                    enterFullscreen();
+                    document.getElementById('fullscreen-btn').innerHTML = '<i class="fas fa-compress"></i>';
+                }
+            }, 1000);
+            
             initNavigation();
             initMenuSystem();
+            initFloatingCategories();
             initGallery();
             initVideoControls();
             initForms();
@@ -2657,6 +2850,7 @@
             initBackToTop();
             initToast();
             initNewsletter();
+            initScrollAnimations();
         }
 
         // Enhanced Navigation
@@ -2717,7 +2911,7 @@
                     const sectionHeight = section.clientHeight;
                     const headerHeight = header.offsetHeight;
                     
-                    if(scrollY >= (sectionTop - headerHeight - 100)) {
+                    if(window.scrollY >= (sectionTop - headerHeight - 100)) {
                         current = section.getAttribute('id');
                     }
                 });
@@ -2755,32 +2949,92 @@
             });
         }
 
+        // Floating Categories
+        function initFloatingCategories() {
+            const floatingCategories = document.getElementById('floating-categories');
+            const floatingContainer = document.getElementById('floating-categories-container');
+            const menuContainer = document.getElementById('menu');
+            
+            // Extract unique categories
+            const categories = ['Popular', ...new Set(menuItems.filter(item => item.cat !== 'Popular').map(item => item.cat))];
+            
+            // Create floating category buttons
+            categories.forEach(category => {
+                const btn = document.createElement('button');
+                btn.className = 'floating-category-btn';
+                if(category === 'Popular') {
+                    btn.classList.add('active');
+                }
+                btn.dataset.category = category;
+                btn.textContent = category;
+                if(category === 'Popular') {
+                    btn.innerHTML = '<i class="fas fa-star"></i> ' + category;
+                }
+                btn.addEventListener('click', () => {
+                    // Scroll to menu section
+                    const menuSection = document.getElementById('menu');
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const menuPosition = menuSection.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                    
+                    window.scrollTo({
+                        top: menuPosition,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Filter menu
+                    filterMenu(category);
+                    
+                    // Update active button
+                    document.querySelectorAll('.floating-category-btn').forEach(b => {
+                        b.classList.remove('active');
+                    });
+                    btn.classList.add('active');
+                });
+                floatingContainer.appendChild(btn);
+            });
+            
+            // Show/hide floating categories based on scroll position
+            window.addEventListener('scroll', () => {
+                if (menuContainer) {
+                    const menuRect = menuContainer.getBoundingClientRect();
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    
+                    // Show floating categories when menu section is in view
+                    if (menuRect.top <= headerHeight && menuRect.bottom >= headerHeight) {
+                        floatingCategories.classList.add('visible');
+                    } else {
+                        floatingCategories.classList.remove('visible');
+                    }
+                }
+            });
+        }
+
         // Enhanced Menu System
         function initMenuSystem() {
-            const categories = [...new Set(menuItems.map(item => item.cat))];
             const categoriesContainer = document.getElementById('menu-categories');
             const menuContainer = document.getElementById('menu-items');
             const searchBar = document.getElementById('search-bar');
-            let currentCategory = 'all';
+            let currentCategory = 'Popular';
             let currentLanguage = 'en';
+            
+            // Extract unique categories
+            const categories = ['Popular', ...new Set(menuItems.filter(item => item.cat !== 'Popular').map(item => item.cat))];
             
             function createCategories() {
                 categoriesContainer.innerHTML = '';
                 
-                // All button
-                const allBtn = document.createElement('button');
-                allBtn.className = 'category-btn active';
-                allBtn.dataset.category = 'all';
-                allBtn.innerHTML = '<i class="fas fa-star"></i> All Items';
-                allBtn.addEventListener('click', () => filterMenu('all'));
-                categoriesContainer.appendChild(allBtn);
-                
-                // Category buttons
                 categories.forEach(category => {
                     const btn = document.createElement('button');
                     btn.className = 'category-btn';
+                    if(category === 'Popular') {
+                        btn.classList.add('active');
+                        currentCategory = 'Popular';
+                    }
                     btn.dataset.category = category;
                     btn.textContent = category;
+                    if(category === 'Popular') {
+                        btn.innerHTML = '<i class="fas fa-star"></i> ' + category;
+                    }
                     btn.addEventListener('click', () => filterMenu(category));
                     categoriesContainer.appendChild(btn);
                 });
@@ -2789,8 +3043,15 @@
             function filterMenu(category) {
                 currentCategory = category;
                 
-                // Update active button
+                // Update active button in both containers
                 document.querySelectorAll('.category-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                    if(btn.dataset.category === category) {
+                        btn.classList.add('active');
+                    }
+                });
+                
+                document.querySelectorAll('.floating-category-btn').forEach(btn => {
                     btn.classList.remove('active');
                     if(btn.dataset.category === category) {
                         btn.classList.add('active');
@@ -2833,6 +3094,20 @@
                 });
                 
                 // Display items
+                if(filteredItems.length === 0) {
+                    menuContainer.innerHTML = `
+                        <div style="grid-column: 1/-1; text-align: center; padding: 3rem; color: var(--color-text-medium);">
+                            <i class="fas fa-search fa-3x" style="margin-bottom: 1rem; color: var(--color-primary);"></i>
+                            <h3 style="color: var(--color-text-dark);">No items found</h3>
+                            <p>Try a different search term or category</p>
+                            <button class="btn btn-small" onclick="filterMenu('Popular')" style="margin-top: 1rem;">
+                                Show Popular Items
+                            </button>
+                        </div>
+                    `;
+                    return;
+                }
+                
                 filteredItems.forEach(item => {
                     const menuItem = document.createElement('div');
                     menuItem.className = 'menu-item';
@@ -2863,19 +3138,6 @@
                     menuItem.addEventListener('click', () => showItemModal(item, currentLanguage));
                     menuContainer.appendChild(menuItem);
                 });
-                
-                if(filteredItems.length === 0) {
-                    menuContainer.innerHTML = `
-                        <div style="grid-column: 1/-1; text-align: center; padding: 3rem; color: var(--color-text-medium);">
-                            <i class="fas fa-search fa-3x" style="margin-bottom: 1rem; color: var(--color-primary);"></i>
-                            <h3 style="color: var(--color-text-dark);">No items found</h3>
-                            <p>Try a different search term or category</p>
-                            <button class="btn btn-small" onclick="document.querySelector('.category-btn[data-category=\"all\"]').click();" style="margin-top: 1rem;">
-                                Show All Items
-                            </button>
-                        </div>
-                    `;
-                }
             }
             
             // Search functionality
@@ -2920,6 +3182,9 @@
             // Initialize
             createCategories();
             renderMenuItems();
+            
+            // Expose filterMenu globally for floating categories
+            window.filterMenu = filterMenu;
         }
 
         // Enhanced Item Modal
@@ -2935,16 +3200,20 @@
             document.getElementById('modal-calories').textContent = item.calories;
             
             const dietaryDiv = document.getElementById('modal-dietary');
-            dietaryDiv.innerHTML = `
-                <h4 style="margin-bottom: 0.5rem; color: var(--color-text-dark);">Dietary Information</h4>
-                <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                    ${item.dietary.map(tag => `
-                        <span style="background: var(--color-bg-alt); padding: 0.5rem 1rem; border-radius: var(--radius-small); font-size: 0.9rem; color: var(--color-text-dark); border: 1px solid var(--color-border-light);">
-                            ${tag.replace('-', ' ')}
-                        </span>
-                    `).join('')}
-                </div>
-            `;
+            if(item.dietary && item.dietary.length > 0) {
+                dietaryDiv.innerHTML = `
+                    <h4 style="margin-bottom: 0.5rem; color: var(--color-text-dark);">Dietary Information</h4>
+                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                        ${item.dietary.map(tag => `
+                            <span style="background: var(--color-bg-alt); padding: 0.5rem 1rem; border-radius: var(--radius-small); font-size: 0.9rem; color: var(--color-text-dark); border: 1px solid var(--color-border-light);">
+                                ${tag.replace('-', ' ')}
+                            </span>
+                        `).join('')}
+                    </div>
+                `;
+            } else {
+                dietaryDiv.innerHTML = '';
+            }
             
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -3076,6 +3345,7 @@
             const video = document.querySelector('.hero-video');
             const muteBtn = document.getElementById('video-mute');
             const pauseBtn = document.getElementById('video-pause');
+            const fullscreenBtn = document.getElementById('fullscreen-btn');
             
             if(video) {
                 // Auto-pause video when not in viewport for performance
@@ -3109,6 +3379,9 @@
                         pauseBtn.setAttribute('title', 'Play video');
                     }
                 });
+                
+                // Fullscreen button
+                fullscreenBtn.addEventListener('click', toggleFullscreen);
                 
                 // Update button state based on video events
                 video.addEventListener('play', () => {
@@ -3174,7 +3447,7 @@
                     if(requests) message += `💭 *Special Requests:* ${requests}%0A`;
                     message += `%0A📍 *From Turkiana Cafe Website*`;
                     
-                    const whatsappUrl = `https://wa.me/97451866671?text=${encodeURIComponent(message)}`;
+                    const whatsappUrl = `https://wa.me/97451866671?text=${message}`;
                     
                     // Open WhatsApp in new tab
                     window.open(whatsappUrl, '_blank');
@@ -3185,17 +3458,11 @@
                     // Reset form
                     form.reset();
                     
-                    // Add to browser history (optional)
-                    if('localStorage' in window) {
-                        const reservation = {
-                            name,
-                            date: formattedDate,
-                            time,
-                            guests,
-                            timestamp: new Date().toISOString()
-                        };
-                        localStorage.setItem('lastReservation', JSON.stringify(reservation));
-                    }
+                    // Set default date to tomorrow
+                    const dateInput = document.getElementById('date');
+                    const tomorrow = new Date();
+                    tomorrow.setDate(tomorrow.getDate() + 1);
+                    dateInput.value = tomorrow.toISOString().split('T')[0];
                 });
                 
                 // Set minimum date to today
@@ -3225,7 +3492,7 @@
                 const input = newsletterForm.querySelector('input[type="email"]');
                 const button = newsletterForm.querySelector('button');
                 
-                newsletterForm.addEventListener('submit', function(e) {
+                button.addEventListener('click', function(e) {
                     e.preventDefault();
                     
                     const email = input.value.trim();
@@ -3237,7 +3504,6 @@
                     }
                     
                     // In a real application, you would send this to your server
-                    // For now, just show a success message
                     showToast('Thank you for subscribing to our newsletter!');
                     input.value = '';
                     
@@ -3363,19 +3629,19 @@
                 switch(type) {
                     case 'success':
                         icon.className = 'fas fa-check-circle';
-                        icon.style.color = 'var(--color-success)';
+                        icon.style.color = 'var(--color-primary)';
                         break;
                     case 'error':
                         icon.className = 'fas fa-exclamation-circle';
-                        icon.style.color = 'var(--color-error)';
+                        icon.style.color = 'var(--color-primary)';
                         break;
                     case 'warning':
                         icon.className = 'fas fa-exclamation-triangle';
-                        icon.style.color = 'var(--color-warning)';
+                        icon.style.color = 'var(--color-secondary)';
                         break;
                     case 'info':
                         icon.className = 'fas fa-info-circle';
-                        icon.style.color = 'var(--color-info)';
+                        icon.style.color = 'var(--color-primary-light)';
                         break;
                 }
                 
@@ -3433,7 +3699,6 @@
         
         window.shareOnInstagram = function() {
             // Instagram doesn't have a direct sharing API for web
-            // You would typically use their API or just show a message
             showToast('To share on Instagram, save the image and post it!', 'info');
         };
         
@@ -3451,7 +3716,7 @@
                         body { font-family: Arial, sans-serif; padding: 20px; }
                         .item { border: 1px solid #ccc; padding: 20px; border-radius: 10px; max-width: 400px; margin: 0 auto; }
                         .item h2 { color: #333; margin-bottom: 10px; }
-                        .price { color: #DBB66D; font-size: 24px; font-weight: bold; margin: 10px 0; }
+                        .price { color: #800020; font-size: 24px; font-weight: bold; margin: 10px 0; }
                         .desc { color: #666; line-height: 1.6; margin-bottom: 20px; }
                         .footer { text-align: center; margin-top: 30px; color: #999; font-size: 12px; }
                     </style>
@@ -3508,11 +3773,6 @@
                 observer.observe(el);
             });
         }
-
-        // Initialize when DOM is loaded
-        document.addEventListener('DOMContentLoaded', () => {
-            initScrollAnimations();
-        });
     </script>
 </body>
 </html>
