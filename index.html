@@ -226,6 +226,212 @@
             color: transparent;
             font-weight: 900;
         }
+
+        /* Scrollable Categories Styles */
+        .categories-nav {
+            position: fixed;
+            top: 80px;
+            width: 100%;
+            background: linear-gradient(to right, var(--color-black), var(--color-burgundy-dark));
+            z-index: 999;
+            padding: 0.75rem 0;
+            border-top: 2px solid var(--color-gold);
+            border-bottom: 2px solid var(--color-gold);
+            overflow: hidden;
+        }
+
+        .categories-container {
+            position: relative;
+            width: 100%;
+            overflow-x: auto;
+            overflow-y: hidden;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            scrollbar-color: var(--color-gold) transparent;
+            padding: 0.5rem 0;
+        }
+
+        .categories-container::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .categories-container::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .categories-container::-webkit-scrollbar-thumb {
+            background: var(--color-gold);
+            border-radius: 3px;
+        }
+
+        .categories-container::-webkit-scrollbar-thumb:hover {
+            background: var(--color-gold-dark);
+        }
+
+        .categories-content {
+            display: flex;
+            gap: 1rem;
+            padding: 0 2rem;
+            min-width: min-content;
+            transition: transform 0.3s ease;
+        }
+
+        .category-btn {
+            white-space: nowrap;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, var(--color-burgundy), var(--color-burgundy-dark));
+            border: 2px solid var(--color-gold);
+            color: var(--color-gold);
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-btn:hover {
+            background: var(--color-gold);
+            color: var(--color-burgundy);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-gold);
+        }
+
+        .category-btn.active {
+            background: var(--color-gold);
+            color: var(--color-burgundy);
+            box-shadow: var(--shadow-gold);
+        }
+
+        .category-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 3px;
+            background: var(--color-burgundy);
+            border-radius: 2px;
+        }
+
+        /* Scroll indicators */
+        .scroll-indicator {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .scroll-indicator.left {
+            left: 0;
+            background: linear-gradient(to right, var(--color-black), transparent);
+        }
+
+        .scroll-indicator.right {
+            right: 0;
+            background: linear-gradient(to left, var(--color-black), transparent);
+        }
+
+        .scroll-indicator.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .scroll-arrow {
+            width: 40px;
+            height: 40px;
+            background: var(--color-gold);
+            color: var(--color-burgundy);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            pointer-events: auto;
+            border: 2px solid var(--color-burgundy);
+            box-shadow: var(--shadow-light);
+            transition: all 0.3s;
+        }
+
+        .scroll-arrow:hover {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-medium);
+        }
+
+        /* Mobile scroll buttons */
+        .mobile-scroll-buttons {
+            display: none;
+            position: absolute;
+            bottom: -30px;
+            left: 0;
+            right: 0;
+            justify-content: center;
+            gap: 1rem;
+            z-index: 10;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-scroll-buttons {
+                display: flex;
+            }
+            
+            .scroll-indicator {
+                display: none;
+            }
+            
+            .categories-container {
+                padding: 0.5rem 1rem;
+            }
+            
+            .category-btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Category counter */
+        .category-counter {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--color-gold);
+            font-size: 0.85rem;
+            font-weight: 600;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            border: 1px solid var(--color-gold);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .category-counter {
+                position: static;
+                transform: none;
+                margin-left: auto;
+                margin-right: 1rem;
+            }
+            
+            .categories-nav {
+                top: 70px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -295,14 +501,38 @@
             </div>
         </header>
 
-        <!-- Marquee Categories Navigation -->
-        <nav class="categories-nav" style="position: fixed; top: 80px; width: 100%; background: linear-gradient(to right, var(--color-black), var(--color-burgundy-dark)); z-index: 999; padding: 0.75rem 0; border-top: 2px solid var(--color-gold); border-bottom: 2px solid var(--color-gold); overflow: hidden;">
-            <div class="marquee-container" style="position: relative; width: 100%; overflow: hidden;">
-                <div class="marquee-content" id="marquee-categories" style="display: flex; animation: marquee 30s linear infinite; padding: 0.5rem 0;">
+        <!-- Scrollable Categories Navigation -->
+        <nav class="categories-nav" id="categories-nav">
+            <div class="scroll-indicator left" id="scroll-left">
+                <div class="scroll-arrow" id="scroll-left-btn">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+            </div>
+            
+            <div class="categories-container" id="categories-container">
+                <div class="categories-content" id="categories-content">
                     <!-- Categories will be populated here -->
                 </div>
-                <div class="marquee-overlay-left" style="position: absolute; left: 0; top: 0; height: 100%; width: 100px; background: linear-gradient(to right, var(--color-black), transparent); z-index: 2;"></div>
-                <div class="marquee-overlay-right" style="position: absolute; right: 0; top: 0; height: 100%; width: 100px; background: linear-gradient(to left, var(--color-black), transparent); z-index: 2;"></div>
+            </div>
+            
+            <div class="scroll-indicator right" id="scroll-right">
+                <div class="scroll-arrow" id="scroll-right-btn">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+            
+            <div class="category-counter" id="category-counter">
+                <i class="fas fa-list"></i>
+                <span id="current-category">1</span>/<span id="total-categories">11</span>
+            </div>
+            
+            <div class="mobile-scroll-buttons">
+                <button class="mobile-scroll-btn left" id="mobile-scroll-left">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="mobile-scroll-btn right" id="mobile-scroll-right">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
             </div>
         </nav>
 
@@ -660,11 +890,6 @@
     <!-- Full CSS (Loaded after initial render) -->
     <style id="full-css">
         /* ===== COMPLETE STYLES ===== */
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -794,8 +1019,13 @@
                 height: 50px !important;
             }
             
-            .marquee-content {
-                animation-duration: 20s !important;
+            .category-btn {
+                padding: 0.6rem 1.2rem !important;
+                font-size: 0.9rem !important;
+            }
+            
+            .mobile-scroll-buttons {
+                display: flex !important;
             }
         }
 
@@ -825,6 +1055,11 @@
             .modal-info {
                 padding: 2rem !important;
             }
+            
+            .category-counter {
+                font-size: 0.8rem !important;
+                padding: 0.2rem 0.5rem !important;
+            }
         }
 
         /* Tablet specific */
@@ -839,10 +1074,6 @@
         }
 
         /* Hover effects */
-        .category-btn:hover {
-            animation: pulse 0.5s;
-        }
-
         .menu-item:hover {
             transform: translateY(-10px) scale(1.02);
         }
@@ -1083,12 +1314,40 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
+
+        /* Mobile scroll buttons styling */
+        .mobile-scroll-btn {
+            background: var(--color-gold);
+            color: var(--color-burgundy);
+            border: 2px solid var(--color-burgundy);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            box-shadow: var(--shadow-light);
+            transition: all 0.3s;
+        }
+
+        .mobile-scroll-btn:hover {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .mobile-scroll-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
     </style>
 
     <!-- JavaScript -->
     <script>
         // Enhanced Menu Data Structure
-        const menuData = {
+       const menuData = {
             categories: [
                 "Popular",
                 "Brewed on Arabic & Turkish Way",
@@ -3254,25 +3513,35 @@
             isMenuOpen: false,
             searchQuery: '',
             loadedImages: new Set(),
-            marqueeAnimation: null
+            currentCategoryIndex: 0
         };
 
         // DOM Elements
         const elements = {
             loadingOverlay: document.getElementById('loading-overlay'),
             mainContent: document.getElementById('main-content'),
-            marqueeCategories: document.getElementById('marquee-categories'),
+            categoriesContent: document.getElementById('categories-content'),
+            categoriesContainer: document.getElementById('categories-container'),
             menuItems: document.getElementById('menu-items'),
             menuSearch: document.getElementById('menu-search'),
             clearSearch: document.getElementById('clear-search'),
             header: document.getElementById('header'),
-            categoriesNav: document.querySelector('.categories-nav'),
+            categoriesNav: document.getElementById('categories-nav'),
             backToTop: document.getElementById('back-to-top'),
             itemModal: document.getElementById('item-modal'),
             mobileMenuBtn: document.querySelector('.mobile-menu-btn'),
             mainNav: document.querySelector('.main-nav'),
             langButtons: document.querySelectorAll('.lang-btn'),
-            reservationForm: document.getElementById('reservation-form')
+            reservationForm: document.getElementById('reservation-form'),
+            scrollLeftBtn: document.getElementById('scroll-left-btn'),
+            scrollRightBtn: document.getElementById('scroll-right-btn'),
+            scrollLeftIndicator: document.getElementById('scroll-left'),
+            scrollRightIndicator: document.getElementById('scroll-right'),
+            mobileScrollLeft: document.getElementById('mobile-scroll-left'),
+            mobileScrollRight: document.getElementById('mobile-scroll-right'),
+            categoryCounter: document.getElementById('category-counter'),
+            currentCategorySpan: document.getElementById('current-category'),
+            totalCategoriesSpan: document.getElementById('total-categories')
         };
 
         // Initialize Application
@@ -3288,8 +3557,8 @@
 
                 // Initialize components
                 initializeNavigation();
+                initializeScrollableCategories();
                 initializeMenuSystem();
-                initializeMarqueeCategories();
                 initializeScrollHandlers();
                 initializeModal();
                 initializeForms();
@@ -3308,8 +3577,8 @@
                         // Initialize animations
                         initializeAnimations();
                         
-                        // Start marquee animation
-                        startMarqueeAnimation();
+                        // Update scroll indicators
+                        updateScrollIndicators();
                     }, 300);
                 }, 1000);
 
@@ -3428,86 +3697,130 @@
             });
         }
 
-        function initializeMarqueeCategories() {
-            if (!elements.marqueeCategories) return;
+        function initializeScrollableCategories() {
+            if (!elements.categoriesContent || !elements.categoriesContainer) return;
 
-            // Create duplicate categories for seamless marquee
-            const categories = [...menuData.categories, ...menuData.categories];
-            
-            categories.forEach(category => {
+            // Set total categories counter
+            elements.totalCategoriesSpan.textContent = menuData.categories.length;
+
+            // Create category buttons
+            menuData.categories.forEach((category, index) => {
                 const button = document.createElement('button');
                 button.className = 'category-btn';
+                button.dataset.category = category;
+                button.dataset.index = index;
+                
                 button.innerHTML = `
                     <span style="display: flex; align-items: center; gap: 0.5rem;">
-                        <i class="fas fa-utensils" style="color: var(--color-gold);"></i>
+                        <i class="fas fa-utensils"></i>
                         ${category}
                     </span>
                 `;
-                button.style.cssText = `
-                    white-space: nowrap;
-                    padding: 1rem 2rem;
-                    background: linear-gradient(135deg, var(--color-burgundy), var(--color-burgundy-dark));
-                    border: 2px solid var(--color-gold);
-                    color: var(--color-gold);
-                    border-radius: 50px;
-                    font-weight: 700;
-                    font-size: 1.1rem;
-                    cursor: pointer;
-                    margin: 0 1rem;
-                    transition: all 0.3s;
-                    flex-shrink: 0;
-                `;
                 
-                button.addEventListener('mouseover', () => {
-                    button.style.background = 'var(--color-gold)';
-                    button.style.color = 'var(--color-burgundy)';
-                    button.style.transform = 'scale(1.1)';
-                    button.style.boxShadow = 'var(--shadow-gold)';
-                });
-                
-                button.addEventListener('mouseout', () => {
-                    button.style.background = 'linear-gradient(135deg, var(--color-burgundy), var(--color-burgundy-dark))';
-                    button.style.color = 'var(--color-gold)';
-                    button.style.transform = 'scale(1)';
-                    button.style.boxShadow = 'none';
-                });
+                // Set active class for first category
+                if (index === 0) {
+                    button.classList.add('active');
+                }
 
                 button.addEventListener('click', () => {
-                    state.currentCategory = category;
-                    filterMenu();
-                    scrollToCategory(category);
-                    
-                    // Highlight active category
-                    document.querySelectorAll('.category-btn').forEach(btn => {
-                        btn.style.background = 'linear-gradient(135deg, var(--color-burgundy), var(--color-burgundy-dark))';
-                        btn.style.color = 'var(--color-gold)';
-                    });
-                    button.style.background = 'var(--color-gold)';
-                    button.style.color = 'var(--color-burgundy)';
+                    selectCategory(category, index);
                 });
 
-                elements.marqueeCategories.appendChild(button);
+                elements.categoriesContent.appendChild(button);
             });
+
+            // Initialize scroll buttons
+            if (elements.scrollLeftBtn && elements.scrollRightBtn) {
+                elements.scrollLeftBtn.addEventListener('click', scrollLeft);
+                elements.scrollRightBtn.addEventListener('click', scrollRight);
+            }
+
+            if (elements.mobileScrollLeft && elements.mobileScrollRight) {
+                elements.mobileScrollLeft.addEventListener('click', scrollLeft);
+                elements.mobileScrollRight.addEventListener('click', scrollRight);
+            }
+
+            // Update scroll indicators on scroll
+            elements.categoriesContainer.addEventListener('scroll', updateScrollIndicators);
+
+            // Update scroll indicators on resize
+            window.addEventListener('resize', updateScrollIndicators);
         }
 
-        function startMarqueeAnimation() {
-            const marqueeContent = elements.marqueeCategories;
-            if (!marqueeContent) return;
+        function selectCategory(category, index) {
+            // Update state
+            state.currentCategory = category;
+            state.currentCategoryIndex = index;
             
-            // Calculate animation duration based on content width
-            const contentWidth = marqueeContent.scrollWidth / 2; // Divided by 2 because we duplicated
-            const duration = Math.max(30, contentWidth / 50); // Adjust speed
+            // Update counter
+            elements.currentCategorySpan.textContent = index + 1;
             
-            marqueeContent.style.animationDuration = `${duration}s`;
-            
-            // Pause on hover
-            marqueeContent.parentElement.addEventListener('mouseenter', () => {
-                marqueeContent.style.animationPlayState = 'paused';
+            // Update active button
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('active');
             });
             
-            marqueeContent.parentElement.addEventListener('mouseleave', () => {
-                marqueeContent.style.animationPlayState = 'running';
-            });
+            const activeBtn = document.querySelector(`.category-btn[data-index="${index}"]`);
+            if (activeBtn) {
+                activeBtn.classList.add('active');
+                
+                // Scroll button into view if needed
+                const container = elements.categoriesContainer;
+                const btnRect = activeBtn.getBoundingClientRect();
+                const containerRect = container.getBoundingClientRect();
+                
+                if (btnRect.left < containerRect.left) {
+                    container.scrollLeft -= (containerRect.left - btnRect.left);
+                } else if (btnRect.right > containerRect.right) {
+                    container.scrollLeft += (btnRect.right - containerRect.right);
+                }
+            }
+            
+            // Filter menu items
+            filterMenu();
+            
+            // Scroll to menu section
+            scrollToCategory(category);
+        }
+
+        function scrollLeft() {
+            const container = elements.categoriesContainer;
+            const scrollAmount = container.clientWidth * 0.8;
+            container.scrollLeft -= scrollAmount;
+            updateScrollIndicators();
+        }
+
+        function scrollRight() {
+            const container = elements.categoriesContainer;
+            const scrollAmount = container.clientWidth * 0.8;
+            container.scrollLeft += scrollAmount;
+            updateScrollIndicators();
+        }
+
+        function updateScrollIndicators() {
+            const container = elements.categoriesContainer;
+            const scrollLeft = container.scrollLeft;
+            const maxScroll = container.scrollWidth - container.clientWidth;
+            
+            // Show/hide left indicator
+            if (scrollLeft > 10) {
+                elements.scrollLeftIndicator.classList.add('visible');
+            } else {
+                elements.scrollLeftIndicator.classList.remove('visible');
+            }
+            
+            // Show/hide right indicator
+            if (scrollLeft < maxScroll - 10) {
+                elements.scrollRightIndicator.classList.add('visible');
+            } else {
+                elements.scrollRightIndicator.classList.remove('visible');
+            }
+            
+            // Update mobile button states
+            if (elements.mobileScrollLeft && elements.mobileScrollRight) {
+                elements.mobileScrollLeft.disabled = scrollLeft <= 10;
+                elements.mobileScrollRight.disabled = scrollLeft >= maxScroll - 10;
+            }
         }
 
         function initializeMenuSystem() {
