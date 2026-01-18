@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Turkiana Cafe & Sweets | Premium Turkish & Arabic Experience in Doha, Qatar</title>
+    <title>Turkiana Cafe & Sweets | Turkish & Arabic Experience in Doha, Qatar</title>
     <meta name="description" content="Luxury Turkish coffee, authentic baklava & premium Arabic delights at Turkiana Cafe in Doha. Experience opulence in every sip and bite.">
     
     <!-- Preload Critical Resources -->
@@ -102,14 +102,28 @@
         :root {
             --color-burgundy: #8B0000;
             --color-burgundy-dark: #5A0000;
+            --color-burgundy-light: #A00000;
             --color-gold: #FFD700;
             --color-gold-dark: #DAA520;
+            --color-gold-light: #FFEC8B;
             --color-black: #000000;
             --color-white: #FFFFFF;
             --color-off-white: #FAF9F6;
+            --color-gray: #666666;
+            --color-light-gray: #F5F5F5;
+            
             --font-heading: 'Playfair Display', serif;
             --font-body: 'Montserrat', sans-serif;
             --font-arabic: 'Cairo', sans-serif;
+            
+            --transition-fast: 0.3s ease;
+            --transition-smooth: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            
+            --shadow-light: 0 4px 12px rgba(0,0,0,0.1);
+            --shadow-medium: 0 8px 24px rgba(0,0,0,0.15);
+            --shadow-heavy: 0 12px 36px rgba(0,0,0,0.2);
+            --shadow-gold: 0 0 20px rgba(255, 215, 0, 0.4);
+            --shadow-burgundy: 0 0 20px rgba(139, 0, 0, 0.4);
         }
 
         * {
@@ -187,14 +201,32 @@
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
+
+        /* VIP Style Enhancements */
+        .vip-border {
+            border: 2px solid var(--color-gold);
+            position: relative;
+        }
+
+        .vip-border::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 1px solid var(--color-burgundy);
+            z-index: -1;
+        }
+
+        .royal-text {
+            background: linear-gradient(to right, var(--color-gold), var(--color-burgundy));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 900;
+        }
     </style>
-    
-    <!-- Lazy Load Non-Critical CSS -->
-    <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" 
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <noscript>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    </noscript>
 </head>
 <body>
     <!-- Loading Overlay -->
@@ -211,9 +243,15 @@
         
         <div class="hero-content" style="position: relative; z-index: 2; height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; color: var(--color-white); padding: 20px;">
             <div>
-                <h1 style="font-family: var(--font-heading); font-size: clamp(2.5rem, 5vw, 4.5rem); margin-bottom: 1rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">Luxury Turkish & Arabic Delights</h1>
-                <p style="font-size: clamp(1rem, 2vw, 1.5rem); margin-bottom: 2rem; color: var(--color-gold); font-weight: 600;">Experience Authentic Taste in Doha</p>
-                <a href="#menu" style="display: inline-block; background: var(--color-burgundy); color: var(--color-white); padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; transition: transform 0.3s;">Explore Our Menu</a>
+                <h1 style="font-family: var(--font-heading); font-size: clamp(2.5rem, 5vw, 4.5rem); margin-bottom: 1rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
+                    <span class="royal-text">Luxury Turkish & Arabic Delights</span>
+                </h1>
+                <p style="font-size: clamp(1rem, 2vw, 1.5rem); margin-bottom: 2rem; color: var(--color-gold); font-weight: 600; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">Experience Authentic Taste in Doha</p>
+                <a href="#menu" style="display: inline-block; background: linear-gradient(to right, var(--color-burgundy), var(--color-burgundy-dark)); color: var(--color-white); padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s; border: 2px solid var(--color-gold); box-shadow: var(--shadow-gold);" 
+                   onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 10px 25px rgba(139, 0, 0, 0.4)'" 
+                   onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='var(--shadow-gold)'">
+                   <i class="fas fa-crown" style="margin-right: 10px;"></i>Explore Our Menu
+                </a>
             </div>
         </div>
     </div>
@@ -221,92 +259,169 @@
     <!-- Main Content (Loaded After Initial Render) -->
     <div id="main-content" style="display: none;">
         <!-- Header -->
-        <header id="header" style="position: fixed; top: 0; width: 100%; background: var(--color-white); z-index: 1000; box-shadow: 0 2px 20px rgba(0,0,0,0.1);">
+        <header id="header" style="position: fixed; top: 0; width: 100%; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); z-index: 1000; box-shadow: 0 2px 20px rgba(0,0,0,0.1); border-bottom: 2px solid var(--color-gold);">
             <div class="container" style="max-width: 1400px; margin: 0 auto; padding: 0 20px;">
                 <div class="header-inner" style="display: flex; justify-content: space-between; align-items: center; padding: 1rem 0;">
                     <a href="#" class="logo" style="display: flex; align-items: center; text-decoration: none; color: var(--color-burgundy);">
-                        <i class="fas fa-crown" style="font-size: 2rem; color: var(--color-gold); margin-right: 10px;"></i>
+                        <div style="position: relative;">
+                            <i class="fas fa-crown" style="font-size: 2.5rem; color: var(--color-gold); margin-right: 15px; text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);"></i>
+                            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, rgba(255,215,0,0.3) 0%, transparent 70%); border-radius: 50%;"></div>
+                        </div>
                         <div>
-                            <div style="font-family: var(--font-heading); font-size: 1.8rem; font-weight: 900;">Turkiana</div>
-                            <div style="font-size: 0.8rem; letter-spacing: 3px; color: var(--color-gold); font-weight: 600;">CAFE & SWEETS</div>
+                            <div style="font-family: var(--font-heading); font-size: 2.2rem; font-weight: 900; letter-spacing: 1px;">Turkiana</div>
+                            <div style="font-size: 0.9rem; letter-spacing: 4px; color: var(--color-gold); font-weight: 700; text-transform: uppercase;">CAFE & SWEETS</div>
                         </div>
                     </a>
                     
                     <nav class="main-nav">
-                        <ul style="display: flex; list-style: none; gap: 2rem; align-items: center;">
-                            <li><a href="#home" style="text-decoration: none; color: var(--color-burgundy); font-weight: 600; position: relative; padding: 0.5rem 0;">Home</a></li>
-                            <li><a href="#menu" style="text-decoration: none; color: var(--color-burgundy); font-weight: 600; position: relative; padding: 0.5rem 0;">Menu</a></li>
-                            <li><a href="#about" style="text-decoration: none; color: var(--color-burgundy); font-weight: 600; position: relative; padding: 0.5rem 0;">About</a></li>
-                            <li><a href="#contact" style="text-decoration: none; color: var(--color-burgundy); font-weight: 600; position: relative; padding: 0.5rem 0;">Contact</a></li>
+                        <ul style="display: flex; list-style: none; gap: 2.5rem; align-items: center;">
+                            <li><a href="#home" style="text-decoration: none; color: var(--color-burgundy); font-weight: 700; position: relative; padding: 0.5rem 0; font-size: 1.1rem;">Home</a></li>
+                            <li><a href="#menu" style="text-decoration: none; color: var(--color-burgundy); font-weight: 700; position: relative; padding: 0.5rem 0; font-size: 1.1rem;">Menu</a></li>
+                            <li><a href="#about" style="text-decoration: none; color: var(--color-burgundy); font-weight: 700; position: relative; padding: 0.5rem 0; font-size: 1.1rem;">About</a></li>
+                            <li><a href="#contact" style="text-decoration: none; color: var(--color-burgundy); font-weight: 700; position: relative; padding: 0.5rem 0; font-size: 1.1rem;">Contact</a></li>
                             <li>
-                                <div class="language-switcher" style="display: flex; gap: 0.5rem;">
-                                    <button class="lang-btn active" data-lang="en" style="background: var(--color-burgundy); color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;">EN</button>
-                                    <button class="lang-btn" data-lang="ar" style="background: var(--color-gold); color: black; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;">AR</button>
+                                <div class="language-switcher" style="display: flex; gap: 0.5rem; background: var(--color-burgundy); padding: 0.25rem; border-radius: 50px; border: 1px solid var(--color-gold);">
+                                    <button class="lang-btn active" data-lang="en" style="background: var(--color-gold); color: var(--color-burgundy); border: none; padding: 0.5rem 1.5rem; border-radius: 50px; cursor: pointer; font-weight: 700; transition: all 0.3s;">EN</button>
+                                    <button class="lang-btn" data-lang="ar" style="background: transparent; color: var(--color-white); border: none; padding: 0.5rem 1.5rem; border-radius: 50px; cursor: pointer; font-weight: 700; transition: all 0.3s;">AR</button>
                                 </div>
                             </li>
                         </ul>
                     </nav>
                     
-                    <button class="mobile-menu-btn" style="display: none; background: none; border: none; font-size: 1.5rem; color: var(--color-burgundy); cursor: pointer;">
+                    <button class="mobile-menu-btn" style="display: none; background: none; border: none; font-size: 1.8rem; color: var(--color-burgundy); cursor: pointer; width: 50px; height: 50px; border-radius: 50%; border: 2px solid var(--color-gold);">
                         <i class="fas fa-bars"></i>
                     </button>
                 </div>
             </div>
         </header>
 
-        <!-- Categories Navigation -->
-        <nav class="categories-nav" style="position: fixed; top: 80px; width: 100%; background: var(--color-black); z-index: 999; padding: 0.5rem 0;">
-            <div class="container">
-                <div class="categories-scroll" id="categories-scroll" style="display: flex; gap: 0.5rem; overflow-x: auto; padding: 0.5rem 0; scrollbar-width: thin;">
-                    <!-- Categories populated by JS -->
+        <!-- Marquee Categories Navigation -->
+        <nav class="categories-nav" style="position: fixed; top: 80px; width: 100%; background: linear-gradient(to right, var(--color-black), var(--color-burgundy-dark)); z-index: 999; padding: 0.75rem 0; border-top: 2px solid var(--color-gold); border-bottom: 2px solid var(--color-gold); overflow: hidden;">
+            <div class="marquee-container" style="position: relative; width: 100%; overflow: hidden;">
+                <div class="marquee-content" id="marquee-categories" style="display: flex; animation: marquee 30s linear infinite; padding: 0.5rem 0;">
+                    <!-- Categories will be populated here -->
                 </div>
+                <div class="marquee-overlay-left" style="position: absolute; left: 0; top: 0; height: 100%; width: 100px; background: linear-gradient(to right, var(--color-black), transparent); z-index: 2;"></div>
+                <div class="marquee-overlay-right" style="position: absolute; right: 0; top: 0; height: 100%; width: 100px; background: linear-gradient(to left, var(--color-black), transparent); z-index: 2;"></div>
             </div>
         </nav>
 
         <!-- Main Sections -->
         <main>
             <!-- Features Section -->
-            <section id="features" class="section" style="padding: 5rem 0; background: var(--color-off-white);">
-                <div class="container">
-                    <h2 class="section-title" style="text-align: center; margin-bottom: 3rem; font-family: var(--font-heading);">Why Choose Turkiana</h2>
-                    <div class="features-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-                        <!-- Features populated by JS -->
+            <section id="features" class="section" style="padding: 6rem 0; background: linear-gradient(135deg, var(--color-off-white) 0%, #fff 100%); position: relative; overflow: hidden;">
+                <div class="container" style="max-width: 1400px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1;">
+                    <h2 class="section-title" style="text-align: center; margin-bottom: 4rem; font-family: var(--font-heading); font-size: 3rem; color: var(--color-burgundy); position: relative; display: inline-block; left: 50%; transform: translateX(-50%);">
+                        <span class="royal-text">Why Choose Turkiana</span>
+                        <div style="position: absolute; bottom: -10px; left: 0; width: 100%; height: 3px; background: linear-gradient(to right, transparent, var(--color-gold), transparent);"></div>
+                    </h2>
+                    <div class="features-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem;">
+                        <div class="feature-card vip-border" style="background: var(--color-white); padding: 2.5rem; border-radius: 15px; text-align: center; transition: transform 0.3s, box-shadow 0.3s;" 
+                             onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='var(--shadow-heavy)'" 
+                             onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                            <div style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--color-burgundy), var(--color-burgundy-dark)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; border: 3px solid var(--color-gold);">
+                                <i class="fas fa-award" style="font-size: 2rem; color: var(--color-gold);"></i>
+                            </div>
+                            <h3 style="color: var(--color-burgundy); margin-bottom: 1rem; font-family: var(--font-heading); font-size: 1.5rem;">Premium Quality</h3>
+                            <p style="color: var(--color-gray); line-height: 1.8;">Finest ingredients sourced from Turkey and the Middle East for authentic taste.</p>
+                        </div>
+                        <div class="feature-card vip-border" style="background: var(--color-white); padding: 2.5rem; border-radius: 15px; text-align: center; transition: transform 0.3s, box-shadow 0.3s;" 
+                             onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='var(--shadow-heavy)'" 
+                             onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                            <div style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--color-burgundy), var(--color-burgundy-dark)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; border: 3px solid var(--color-gold);">
+                                <i class="fas fa-crown" style="font-size: 2rem; color: var(--color-gold);"></i>
+                            </div>
+                            <h3 style="color: var(--color-burgundy); margin-bottom: 1rem; font-family: var(--font-heading); font-size: 1.5rem;">Luxury Experience</h3>
+                            <p style="color: var(--color-gray); line-height: 1.8;">Opulent ambiance with Turkish and Arabic hospitality.</p>
+                        </div>
+                        <div class="feature-card vip-border" style="background: var(--color-white); padding: 2.5rem; border-radius: 15px; text-align: center; transition: transform 0.3s, box-shadow 0.3s;" 
+                             onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='var(--shadow-heavy)'" 
+                             onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                            <div style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--color-burgundy), var(--color-burgundy-dark)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; border: 3px solid var(--color-gold);">
+                                <i class="fas fa-star" style="font-size: 2rem; color: var(--color-gold);"></i>
+                            </div>
+                            <h3 style="color: var(--color-burgundy); margin-bottom: 1rem; font-family: var(--font-heading); font-size: 1.5rem;">Authentic Taste</h3>
+                            <p style="color: var(--color-gray); line-height: 1.8;">Traditional recipes passed down through generations.</p>
+                        </div>
                     </div>
                 </div>
+                <div style="position: absolute; top: 0; right: 0; width: 300px; height: 300px; background: radial-gradient(circle, rgba(139,0,0,0.1) 0%, transparent 70%); border-radius: 50%;"></div>
+                <div style="position: absolute; bottom: 0; left: 0; width: 400px; height: 400px; background: radial-gradient(circle, rgba(255,215,0,0.05) 0%, transparent 70%); border-radius: 50%;"></div>
             </section>
 
             <!-- Menu Section -->
-            <section id="menu" class="section" style="padding: 5rem 0;">
-                <div class="container">
-                    <h2 class="section-title" style="text-align: center; margin-bottom: 3rem; font-family: var(--font-heading);">Premium Menu</h2>
+            <section id="menu" class="section" style="padding: 6rem 0; background: var(--color-white); position: relative;">
+                <div class="container" style="max-width: 1400px; margin: 0 auto; padding: 0 20px;">
+                    <h2 class="section-title" style="text-align: center; margin-bottom: 4rem; font-family: var(--font-heading); font-size: 3rem; color: var(--color-burgundy); position: relative; display: inline-block; left: 50%; transform: translateX(-50%);">
+                        <span class="royal-text">Menu</span>
+                        <div style="position: absolute; bottom: -10px; left: 0; width: 100%; height: 3px; background: linear-gradient(to right, transparent, var(--color-gold), transparent);"></div>
+                    </h2>
                     
-                    <div class="menu-search" style="max-width: 500px; margin: 0 auto 3rem; position: relative;">
-                        <input type="text" id="menu-search" placeholder="Search menu items..." 
-                               style="width: 100%; padding: 1rem 1rem 1rem 3rem; border: 2px solid var(--color-burgundy); border-radius: 50px; font-size: 1rem;">
-                        <i class="fas fa-search" style="position: absolute; left: 1.25rem; top: 50%; transform: translateY(-50%); color: var(--color-burgundy);"></i>
+                    <div class="menu-search" style="max-width: 600px; margin: 0 auto 4rem; position: relative;">
+                        <div style="position: relative;">
+                            <input type="text" id="menu-search" placeholder="Search for exquisite dishes..." 
+                                   style="width: 100%; padding: 1.2rem 1.2rem 1.2rem 4rem; border: 3px solid var(--color-burgundy); border-radius: 50px; font-size: 1.1rem; background: var(--color-off-white); color: var(--color-black); transition: all 0.3s; box-shadow: var(--shadow-light);"
+                                   onfocus="this.style.borderColor='var(--color-gold)'; this.style.boxShadow='var(--shadow-gold)'"
+                                   onblur="this.style.borderColor='var(--color-burgundy)'; this.style.boxShadow='var(--shadow-light)'">
+                            <i class="fas fa-search" style="position: absolute; left: 1.5rem; top: 50%; transform: translateY(-50%); color: var(--color-burgundy); font-size: 1.2rem;"></i>
+                            <button id="clear-search" style="position: absolute; right: 1.5rem; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--color-burgundy); cursor: pointer; display: none;">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
                     </div>
                     
-                    <div class="menu-items-grid" id="menu-items" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 2rem;">
+                    <div class="menu-items-grid" id="menu-items" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem;">
                         <!-- Menu items populated by JS -->
+                    </div>
+
+                    <!-- Time Notice -->
+                    <div class="time-notice" style="background: linear-gradient(135deg, var(--color-burgundy), var(--color-burgundy-dark)); padding: 1.5rem; border-radius: 15px; margin-top: 4rem; border: 3px solid var(--color-gold); box-shadow: var(--shadow-medium);">
+                        <div style="display: flex; align-items: center; justify-content: center; gap: 1rem; color: var(--color-white);">
+                            <i class="fas fa-clock" style="font-size: 1.5rem; color: var(--color-gold);"></i>
+                            <p style="font-size: 1.1rem; font-weight: 600; margin: 0; text-align: center;">
+                                <span style="color: var(--color-gold);">Note:</span> Breakfast items, Croissant Sandwiches, Burgers & Salads are available from <strong>8:00 AM to 3:00 PM only</strong>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </section>
 
             <!-- About Section -->
-            <section id="about" class="section" style="padding: 5rem 0; background: var(--color-off-white);">
-                <div class="container">
-                    <div class="about-content" style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
-                        <div class="about-image">
-                            <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg" alt="Turkiana Cafe Interior" 
-                                 style="width: 100%; height: 500px; object-fit: cover; border-radius: 10px; border: 5px solid var(--color-gold);">
+            <section id="about" class="section" style="padding: 6rem 0; background: linear-gradient(135deg, var(--color-off-white) 0%, #fff 100%); position: relative; overflow: hidden;">
+                <div class="container" style="max-width: 1400px; margin: 0 auto; padding: 0 20px;">
+                    <div class="about-content" style="display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;">
+                        <div class="about-image" style="position: relative;">
+                            <div class="vip-border" style="border-radius: 15px; overflow: hidden; position: relative; box-shadow: var(--shadow-heavy);">
+                                <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg" alt="Turkiana Cafe Interior" 
+                                     style="width: 100%; height: 500px; object-fit: cover; transition: transform 0.5s;"
+                                     onmouseover="this.style.transform='scale(1.05)'"
+                                     onmouseout="this.style.transform='scale(1)'">
+                            </div>
+                            <div style="position: absolute; top: 20px; right: 20px; background: rgba(139, 0, 0, 0.9); color: var(--color-gold); padding: 0.75rem 1.5rem; border-radius: 50px; font-weight: 600; border: 2px solid var(--color-gold);">
+                                <i class="fas fa-star" style="margin-right: 5px;"></i> Since 2020
+                            </div>
                         </div>
                         <div class="about-text">
-                            <h2 style="font-family: var(--font-heading); margin-bottom: 1.5rem;">Our Story</h2>
-                            <p style="margin-bottom: 1rem;">Turkiana Cafe & Sweets represents centuries-old Turkish and Arabic culinary traditions, reimagined for Doha's cosmopolitan community.</p>
-                            <div class="hours" style="background: white; padding: 2rem; border-radius: 10px; margin-top: 2rem; border: 2px solid var(--color-burgundy);">
-                                <h3 style="color: var(--color-burgundy); margin-bottom: 1rem;"><i class="fas fa-clock"></i> Opening Hours</h3>
-                                <p><strong>Saturday - Wednesday:</strong> 8:00 AM - 12:00 AM</p>
-                                <p><strong>Thursday & Friday:</strong> 8:00 AM - 1:00 AM</p>
+                            <h2 style="font-family: var(--font-heading); margin-bottom: 2rem; font-size: 2.5rem; color: var(--color-burgundy);">
+                                <span class="royal-text">About Us</span>
+                            </h2>
+                            <p style="margin-bottom: 1.5rem; font-size: 1.1rem; line-height: 1.8; color: var(--color-gray);">
+                                Turkiana Cafe & Sweets represents centuries-old Turkish and Arabic culinary traditions, reimagined for Doha's cosmopolitan community. We bring the opulence of Ottoman palaces and the warmth of Arabian hospitality to every experience.
+                            </p>
+                            <div class="hours vip-border" style="background: linear-gradient(135deg, var(--color-white), var(--color-off-white)); padding: 2.5rem; border-radius: 15px; margin-top: 2.5rem; border: 3px solid var(--color-burgundy); box-shadow: var(--shadow-medium);">
+                                <h3 style="color: var(--color-burgundy); margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1.8rem; display: flex; align-items: center; gap: 1rem;">
+                                    <i class="fas fa-clock" style="color: var(--color-gold);"></i> Opening Hours
+                                </h3>
+                                <div style="display: grid; gap: 1rem;">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 0; border-bottom: 1px solid rgba(139,0,0,0.1);">
+                                        <span style="font-weight: 600; color: var(--color-burgundy);">Saturday - Wednesday:</span>
+                                        <span style="color: var(--color-black); font-weight: 600;">8:00 AM - 12:00 AM</span>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 0;">
+                                        <span style="font-weight: 600; color: var(--color-burgundy);">Thursday & Friday:</span>
+                                        <span style="color: var(--color-black); font-weight: 600;">8:00 AM - 1:00 AM</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -314,88 +429,134 @@
             </section>
 
             <!-- Gallery Section -->
-            <section id="gallery" class="section" style="padding: 5rem 0; background: var(--color-black);">
-                <div class="container">
-                    <h2 class="section-title" style="text-align: center; margin-bottom: 3rem; font-family: var(--font-heading); color: white;">Gallery</h2>
-                    <div class="gallery-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem;">
-                        <div class="gallery-item">
-                            <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/a.jpeg" alt="Turkish Coffee" loading="lazy">
+            <section id="gallery" class="section" style="padding: 6rem 0; background: linear-gradient(135deg, var(--color-black), var(--color-burgundy-dark)); position: relative;">
+                <div class="container" style="max-width: 1400px; margin: 0 auto; padding: 0 20px;">
+                    <h2 class="section-title" style="text-align: center; margin-bottom: 4rem; font-family: var(--font-heading); font-size: 3rem; position: relative; display: inline-block; left: 50%; transform: translateX(-50%);">
+                        <span class="royal-text">Turkiana Gallery</span>
+                        <div style="position: absolute; bottom: -10px; left: 0; width: 100%; height: 3px; background: linear-gradient(to right, transparent, var(--color-gold), transparent);"></div>
+                    </h2>
+                    <div class="gallery-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem;">
+                        <div class="gallery-item vip-border" style="border-radius: 15px; overflow: hidden; height: 300px; cursor: pointer; border: 3px solid var(--color-gold); position: relative; transition: transform 0.3s;" 
+                             onmouseover="this.style.transform='translateY(-10px)'" 
+                             onmouseout="this.style.transform='translateY(0)'">
+                            <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/a.jpeg" alt="Turkish Coffee" loading="lazy" 
+                                 style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s;">
+                            <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); padding: 1rem; color: white;">
+                                <h4 style="margin: 0; font-family: var(--font-heading);">Turkish Coffee</h4>
+                            </div>
                         </div>
-                        <div class="gallery-item">
-                            <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/b.jpeg" alt="Baklava" loading="lazy">
+                        <div class="gallery-item vip-border" style="border-radius: 15px; overflow: hidden; height: 300px; cursor: pointer; border: 3px solid var(--color-gold); position: relative; transition: transform 0.3s;" 
+                             onmouseover="this.style.transform='translateY(-10px)'" 
+                             onmouseout="this.style.transform='translateY(0)'">
+                            <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/b.jpeg" alt="Baklava" loading="lazy" 
+                                 style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s;">
+                            <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); padding: 1rem; color: white;">
+                                <h4 style="margin: 0; font-family: var(--font-heading);">Baklava</h4>
+                            </div>
                         </div>
-                        <div class="gallery-item">
-                            <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/c.jpeg" alt="Kunafa" loading="lazy">
+                        <div class="gallery-item vip-border" style="border-radius: 15px; overflow: hidden; height: 300px; cursor: pointer; border: 3px solid var(--color-gold); position: relative; transition: transform 0.3s;" 
+                             onmouseover="this.style.transform='translateY(-10px)'" 
+                             onmouseout="this.style.transform='translateY(0)'">
+                            <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/c.jpeg" alt="Kunafa" loading="lazy" 
+                                 style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s;">
+                            <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); padding: 1rem; color: white;">
+                                <h4 style="margin: 0; font-family: var(--font-heading);">Kunafa</h4>
+                            </div>
                         </div>
-                        <div class="gallery-item">
-                            <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/d.jpeg" alt="Turkish Breakfast" loading="lazy">
+                        <div class="gallery-item vip-border" style="border-radius: 15px; overflow: hidden; height: 300px; cursor: pointer; border: 3px solid var(--color-gold); position: relative; transition: transform 0.3s;" 
+                             onmouseover="this.style.transform='translateY(-10px)'" 
+                             onmouseout="this.style.transform='translateY(0)'">
+                            <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/d.jpeg" alt="Turkish Breakfast" loading="lazy" 
+                                 style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s;">
+                            <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); padding: 1rem; color: white;">
+                                <h4 style="margin: 0; font-family: var(--font-heading);">Turkish Breakfast</h4>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
 
             <!-- Contact Section -->
-            <section id="contact" class="section" style="padding: 5rem 0;">
-                <div class="container">
-                    <h2 class="section-title" style="text-align: center; margin-bottom: 3rem; font-family: var(--font-heading);">Visit Us</h2>
+            <section id="contact" class="section" style="padding: 6rem 0; background: var(--color-white); position: relative;">
+                <div class="container" style="max-width: 1400px; margin: 0 auto; padding: 0 20px;">
+                    <h2 class="section-title" style="text-align: center; margin-bottom: 4rem; font-family: var(--font-heading); font-size: 3rem; color: var(--color-burgundy); position: relative; display: inline-block; left: 50%; transform: translateX(-50%);">
+                        <span class="royal-text">Visit Our Royal Venue</span>
+                        <div style="position: absolute; bottom: -10px; left: 0; width: 100%; height: 3px; background: linear-gradient(to right, transparent, var(--color-gold), transparent);"></div>
+                    </h2>
                     
-                    <div class="contact-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;">
+                    <div class="contact-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;">
                         <div class="contact-info">
-                            <h3 style="margin-bottom: 1.5rem;">Experience Luxury at Turkiana</h3>
+                            <h3 style="margin-bottom: 2rem; font-family: var(--font-heading); font-size: 2rem; color: var(--color-burgundy);">
+                                <span class="royal-text">Experience Royal Luxury</span>
+                            </h3>
                             
-                            <div class="contact-details" style="margin: 2rem 0;">
-                                <div class="contact-item" style="display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 2rem;">
-                                    <div style="width: 50px; height: 50px; background: var(--color-burgundy); color: var(--color-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                                        <i class="fas fa-map-marker-alt"></i>
+                            <div class="contact-details" style="margin: 3rem 0;">
+                                <div class="contact-item vip-border" style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2.5rem; padding: 1.5rem; background: linear-gradient(135deg, var(--color-off-white), var(--color-white)); border-radius: 15px; border: 2px solid var(--color-burgundy);">
+                                    <div style="min-width: 60px; height: 60px; background: linear-gradient(135deg, var(--color-burgundy), var(--color-burgundy-dark)); color: var(--color-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid var(--color-gold);">
+                                        <i class="fas fa-map-marker-alt fa-lg"></i>
                                     </div>
                                     <div>
-                                        <h4 style="margin-bottom: 0.5rem;">Location</h4>
-                                        <p>7GPG+Q2R, Al Kahraba St, Doha, Qatar</p>
+                                        <h4 style="margin-bottom: 0.75rem; color: var(--color-burgundy); font-size: 1.2rem;">Turkiana Cafe Location</h4>
+                                        <p style="color: var(--color-gray); font-size: 1.1rem; line-height: 1.6;">7GPG+Q2R, Al Kahraba St, Doha, Qatar</p>
                                     </div>
                                 </div>
                                 
-                                <div class="contact-item" style="display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 2rem;">
-                                    <div style="width: 50px; height: 50px; background: var(--color-burgundy); color: var(--color-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                                        <i class="fas fa-phone"></i>
+                                <div class="contact-item vip-border" style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2.5rem; padding: 1.5rem; background: linear-gradient(135deg, var(--color-off-white), var(--color-white)); border-radius: 15px; border: 2px solid var(--color-burgundy);">
+                                    <div style="min-width: 60px; height: 60px; background: linear-gradient(135deg, var(--color-burgundy), var(--color-burgundy-dark)); color: var(--color-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid var(--color-gold);">
+                                        <i class="fas fa-phone fa-lg"></i>
                                     </div>
                                     <div>
-                                        <h4 style="margin-bottom: 0.5rem;">Contact</h4>
-                                        <p>+974 5186 6671</p>
-                                        <p>info@turkianacafe.com</p>
+                                        <h4 style="margin-bottom: 0.75rem; color: var(--color-burgundy); font-size: 1.2rem;">Contact</h4>
+                                        <p style="color: var(--color-gray); font-size: 1.1rem; line-height: 1.6;">+974 5186 6671</p>
+                                        <p style="color: var(--color-gray); font-size: 1.1rem; line-height: 1.6;">info@turkianacafe.com</p>
                                     </div>
                                 </div>
                             </div>
                             
-                            <div class="social-links" style="display: flex; gap: 1rem;">
-                                <a href="https://www.instagram.com/turkiana.qa/" target="_blank" 
-                                   style="width: 50px; height: 50px; background: var(--color-burgundy); color: var(--color-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none;">
-                                    <i class="fab fa-instagram"></i>
+                            <div class="social-links" style="display: flex; gap: 1.5rem;">
+                                <a href="https://www.instagram.com/turkiana.qa/" target="_blank" class="vip-border"
+                                   style="width: 60px; height: 60px; background: linear-gradient(135deg, var(--color-burgundy), var(--color-burgundy-dark)); color: var(--color-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; border: 2px solid var(--color-gold); transition: all 0.3s;"
+                                   onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='var(--shadow-gold)'"
+                                   onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                                    <i class="fab fa-instagram fa-lg"></i>
                                 </a>
-                                <a href="https://turkianasweets.com/" target="_blank" 
-                                   style="width: 50px; height: 50px; background: var(--color-burgundy); color: var(--color-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none;">
-                                    <i class="fas fa-globe"></i>
+                                <a href="https://turkianasweets.com/" target="_blank" class="vip-border"
+                                   style="width: 60px; height: 60px; background: linear-gradient(135deg, var(--color-burgundy), var(--color-burgundy-dark)); color: var(--color-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; border: 2px solid var(--color-gold); transition: all 0.3s;"
+                                   onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='var(--shadow-gold)'"
+                                   onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                                    <i class="fas fa-globe fa-lg"></i>
                                 </a>
                             </div>
                         </div>
                         
-                        <div class="contact-form" style="background: white; padding: 3rem; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-                            <h3 style="margin-bottom: 2rem;">Reserve Your Table</h3>
+                        <div class="contact-form vip-border" style="background: linear-gradient(135deg, var(--color-white), var(--color-off-white)); padding: 3rem; border-radius: 15px; box-shadow: var(--shadow-heavy); border: 3px solid var(--color-burgundy);">
+                            <h3 style="margin-bottom: 2.5rem; font-family: var(--font-heading); font-size: 1.8rem; color: var(--color-burgundy); display: flex; align-items: center; gap: 1rem;">
+                                <i class="fas fa-calendar-check" style="color: var(--color-gold);"></i> Reserve Your Table
+                            </h3>
                             <form id="reservation-form">
-                                <div style="margin-bottom: 1rem;">
-                                    <input type="text" placeholder="Full Name *" required 
-                                           style="width: 100%; padding: 1rem; border: 2px solid var(--color-burgundy); border-radius: 5px; font-size: 1rem;">
+                                <div style="margin-bottom: 1.5rem;">
+                                    <input type="text" placeholder="Your Royal Name *" required 
+                                           style="width: 100%; padding: 1.2rem; border: 2px solid var(--color-burgundy); border-radius: 10px; font-size: 1.1rem; background: var(--color-white); transition: all 0.3s;"
+                                           onfocus="this.style.borderColor='var(--color-gold)'; this.style.boxShadow='var(--shadow-gold)'"
+                                           onblur="this.style.borderColor='var(--color-burgundy)'; this.style.boxShadow='none'">
                                 </div>
-                                <div style="margin-bottom: 1rem;">
+                                <div style="margin-bottom: 1.5rem;">
                                     <input type="tel" placeholder="Phone Number *" required 
-                                           style="width: 100%; padding: 1rem; border: 2px solid var(--color-burgundy); border-radius: 5px; font-size: 1rem;">
+                                           style="width: 100%; padding: 1.2rem; border: 2px solid var(--color-burgundy); border-radius: 10px; font-size: 1.1rem; background: var(--color-white); transition: all 0.3s;"
+                                           onfocus="this.style.borderColor='var(--color-gold)'; this.style.boxShadow='var(--shadow-gold)'"
+                                           onblur="this.style.borderColor='var(--color-burgundy)'; this.style.boxShadow='none'">
                                 </div>
-                                <div style="margin-bottom: 1rem;">
+                                <div style="margin-bottom: 1.5rem;">
                                     <input type="date" required 
-                                           style="width: 100%; padding: 1rem; border: 2px solid var(--color-burgundy); border-radius: 5px; font-size: 1rem;">
+                                           style="width: 100%; padding: 1.2rem; border: 2px solid var(--color-burgundy); border-radius: 10px; font-size: 1.1rem; background: var(--color-white); transition: all 0.3s;"
+                                           onfocus="this.style.borderColor='var(--color-gold)'; this.style.boxShadow='var(--shadow-gold)'"
+                                           onblur="this.style.borderColor='var(--color-burgundy)'; this.style.boxShadow='none'">
                                 </div>
                                 <button type="submit" 
-                                        style="background: var(--color-burgundy); color: white; border: none; padding: 1rem 2rem; width: 100%; border-radius: 5px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: background 0.3s;">
-                                    Book Now
+                                        style="background: linear-gradient(to right, var(--color-burgundy), var(--color-burgundy-dark)); color: var(--color-white); border: none; padding: 1.2rem 2rem; width: 100%; border-radius: 10px; font-size: 1.1rem; font-weight: 700; cursor: pointer; transition: all 0.3s; border: 2px solid var(--color-gold); letter-spacing: 1px;"
+                                        onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='var(--shadow-heavy)'"
+                                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                                    <i class="fas fa-crown" style="margin-right: 10px;"></i>Book Your Table
                                 </button>
                             </form>
                         </div>
@@ -405,68 +566,92 @@
         </main>
 
         <!-- Footer -->
-        <footer style="background: var(--color-black); color: white; padding: 4rem 0 2rem; border-top: 5px solid var(--color-gold);">
-            <div class="container">
-                <div class="footer-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; margin-bottom: 3rem;">
+        <footer style="background: linear-gradient(135deg, var(--color-black), var(--color-burgundy-dark)); color: white; padding: 5rem 0 2rem; border-top: 5px solid var(--color-gold); position: relative; overflow: hidden;">
+            <div class="container" style="max-width: 1400px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1;">
+                <div class="footer-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4rem; margin-bottom: 4rem;">
                     <div class="footer-col">
-                        <h3 style="color: var(--color-gold); margin-bottom: 1.5rem;">Turkiana Cafe</h3>
-                        <p>Premium Turkish & Arabic coffee, sweets, and cuisine in Doha, Qatar.</p>
+                        <h3 style="color: var(--color-gold); margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+                            <i class="fas fa-crown"></i> Turkiana Cafe
+                        </h3>
+                        <p style="color: var(--color-light-gray); line-height: 1.8; font-size: 1.1rem;">Premium Turkish & Arabic coffee, sweets, and cuisine in Doha, Qatar. Experience royal hospitality and authentic flavors.</p>
                     </div>
                     
                     <div class="footer-col">
-                        <h3 style="color: var(--color-gold); margin-bottom: 1.5rem;">Quick Links</h3>
+                        <h3 style="color: var(--color-gold); margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1.5rem;">Links</h3>
                         <ul style="list-style: none;">
-                            <li style="margin-bottom: 0.5rem;"><a href="#" style="color: white; text-decoration: none;">Home</a></li>
-                            <li style="margin-bottom: 0.5rem;"><a href="#menu" style="color: white; text-decoration: none;">Menu</a></li>
-                            <li style="margin-bottom: 0.5rem;"><a href="#contact" style="color: white; text-decoration: none;">Contact</a></li>
+                            <li style="margin-bottom: 1rem;"><a href="#" style="color: var(--color-light-gray); text-decoration: none; transition: color 0.3s; display: flex; align-items: center; gap: 0.5rem; font-size: 1.1rem;" onmouseover="this.style.color='var(--color-gold)'" onmouseout="this.style.color='var(--color-light-gray)'"><i class="fas fa-chevron-right" style="font-size: 0.8rem;"></i> Home</a></li>
+                            <li style="margin-bottom: 1rem;"><a href="#menu" style="color: var(--color-light-gray); text-decoration: none; transition: color 0.3s; display: flex; align-items: center; gap: 0.5rem; font-size: 1.1rem;" onmouseover="this.style.color='var(--color-gold)'" onmouseout="this.style.color='var(--color-light-gray)'"><i class="fas fa-chevron-right" style="font-size: 0.8rem;"></i> Menu</a></li>
+                            <li style="margin-bottom: 1rem;"><a href="#contact" style="color: var(--color-light-gray); text-decoration: none; transition: color 0.3s; display: flex; align-items: center; gap: 0.5rem; font-size: 1.1rem;" onmouseover="this.style.color='var(--color-gold)'" onmouseout="this.style.color='var(--color-light-gray)'"><i class="fas fa-chevron-right" style="font-size: 0.8rem;"></i> Contact</a></li>
                         </ul>
                     </div>
                     
                     <div class="footer-col">
-                        <h3 style="color: var(--color-gold); margin-bottom: 1.5rem;">Newsletter</h3>
+                        <h3 style="color: var(--color-gold); margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1.5rem;">Newsletter</h3>
+                        <p style="color: var(--color-light-gray); margin-bottom: 1.5rem; font-size: 1.1rem;">for exclusive offers and updates.</p>
                         <div style="display: flex; gap: 0.5rem;">
-                            <input type="email" placeholder="Your email" 
-                                   style="flex: 1; padding: 0.75rem; border: 2px solid var(--color-gold); background: transparent; color: white; border-radius: 5px;">
-                            <button style="background: var(--color-gold); color: black; border: none; padding: 0.75rem 1.5rem; border-radius: 5px; cursor: pointer;">Subscribe</button>
+                            <input type="email" placeholder="Your royal email" 
+                                   style="flex: 1; padding: 1rem; border: 2px solid var(--color-gold); background: transparent; color: white; border-radius: 10px; font-size: 1rem;"
+                                   onfocus="this.style.borderColor='var(--color-white)'; this.style.boxShadow='var(--shadow-gold)'"
+                                   onblur="this.style.borderColor='var(--color-gold)'; this.style.boxShadow='none'">
+                            <button style="background: var(--color-gold); color: var(--color-burgundy); border: none; padding: 1rem 2rem; border-radius: 10px; cursor: pointer; font-weight: 700; transition: all 0.3s; border: 2px solid var(--color-gold);"
+                                    onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='var(--shadow-gold)'"
+                                    onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
                 
-                <div class="copyright" style="text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1);">
-                    <p>&copy; 2024 Turkiana Cafe & Sweets. All rights reserved.</p>
+                <div class="copyright" style="text-align: center; padding-top: 3rem; border-top: 1px solid rgba(255,255,255,0.1);">
+                    <p style="color: var(--color-light-gray); font-size: 1rem;">&copy; 2026 Turkiana Cafe & Sweets. All rights reserved. | Turkish Experience in Doha</p>
                 </div>
             </div>
+            <div style="position: absolute; top: 0; right: 0; width: 300px; height: 300px; background: radial-gradient(circle, rgba(255,215,0,0.05) 0%, transparent 70%); border-radius: 50%;"></div>
         </footer>
 
         <!-- Floating Buttons -->
         <a href="https://wa.me/97451866671" class="whatsapp-float" target="_blank" 
-           style="position: fixed; bottom: 30px; right: 30px; background: #25D366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 1000;">
+           style="position: fixed; bottom: 30px; right: 30px; background: #25D366; color: white; width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; box-shadow: var(--shadow-heavy); z-index: 1000; border: 3px solid var(--color-gold); transition: all 0.3s;"
+           onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 8px 25px rgba(37, 211, 102, 0.5)'"
+           onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='var(--shadow-heavy)'">
             <i class="fab fa-whatsapp"></i>
         </a>
         
         <button class="back-to-top" id="back-to-top" 
-                style="position: fixed; bottom: 100px; right: 30px; background: var(--color-burgundy); color: var(--color-gold); border: none; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; cursor: pointer; z-index: 1000; opacity: 0; transition: opacity 0.3s;">
+                style="position: fixed; bottom: 120px; right: 30px; background: linear-gradient(135deg, var(--color-burgundy), var(--color-burgundy-dark)); color: var(--color-gold); border: 3px solid var(--color-gold); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; cursor: pointer; z-index: 1000; opacity: 0; transition: all 0.3s; box-shadow: var(--shadow-medium);"
+                onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='var(--shadow-heavy)'"
+                onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='var(--shadow-medium)'">
             <i class="fas fa-chevron-up"></i>
         </button>
     </div>
 
     <!-- Modal for Menu Items -->
     <div class="modal-overlay" id="item-modal" 
-         style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: none; justify-content: center; align-items: center; z-index: 2000;">
-        <div class="modal-content" 
-             style="background: white; width: 90%; max-width: 1000px; max-height: 90vh; overflow-y: auto; border-radius: 10px; position: relative;">
+         style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); display: none; justify-content: center; align-items: center; z-index: 2000; padding: 20px;">
+        <div class="modal-content vip-border" 
+             style="background: linear-gradient(135deg, var(--color-white), var(--color-off-white)); width: 90%; max-width: 1000px; max-height: 90vh; overflow-y: auto; border-radius: 20px; position: relative; border: 4px solid var(--color-burgundy); box-shadow: var(--shadow-heavy);">
             <button class="modal-close" 
-                    style="position: absolute; top: 20px; right: 20px; background: var(--color-burgundy); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; z-index: 10;">
+                    style="position: absolute; top: 20px; right: 20px; background: var(--color-burgundy); color: var(--color-gold); border: 2px solid var(--color-gold); width: 50px; height: 50px; border-radius: 50%; cursor: pointer; z-index: 10; font-size: 1.2rem; transition: all 0.3s;"
+                    onmouseover="this.style.transform='rotate(90deg)'; this.style.background='var(--color-gold)'; this.style.color='var(--color-burgundy)'"
+                    onmouseout="this.style.transform='rotate(0)'; this.style.background='var(--color-burgundy)'; this.style.color='var(--color-gold)'">
                 <i class="fas fa-times"></i>
             </button>
             <div class="modal-body" style="display: grid; grid-template-columns: 1fr 1fr; min-height: 500px;">
-                <div class="modal-image" style="height: 500px;">
+                <div class="modal-image" style="height: 500px; border-right: 3px solid var(--color-gold);">
                     <img src="" alt="" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
-                <div class="modal-info" style="padding: 3rem;">
-                    <h2 class="modal-title" style="font-family: var(--font-heading); color: var(--color-burgundy); margin-bottom: 1rem;"></h2>
-                    <div class="modal-price" style="font-size: 2rem; font-weight: 700; color: var(--color-gold); margin-bottom: 2rem;"></div>
-                    <p class="modal-description" style="line-height: 1.8;"></p>
+                <div class="modal-info" style="padding: 3rem; display: flex; flex-direction: column; justify-content: center;">
+                    <h2 class="modal-title" style="font-family: var(--font-heading); color: var(--color-burgundy); margin-bottom: 1.5rem; font-size: 2.5rem;"></h2>
+                    <div class="modal-price" style="font-size: 2.5rem; font-weight: 900; color: var(--color-gold); margin-bottom: 2rem; text-shadow: 1px 1px 2px rgba(0,0,0,0.1);"></div>
+                    <p class="modal-description" style="line-height: 1.8; color: var(--color-gray); font-size: 1.1rem; margin-bottom: 2rem;"></p>
+                    <div class="modal-details" style="display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap;">
+                        <!-- Dietary info will be added here -->
+                    </div>
+                    <!-- Time availability notice for specific categories -->
+                    <div class="time-availability-notice" style="display: none; background: linear-gradient(135deg, var(--color-burgundy), var(--color-burgundy-dark)); color: var(--color-gold); padding: 1rem; border-radius: 10px; border: 2px solid var(--color-gold); margin-top: 1rem;">
+                        <i class="fas fa-clock" style="margin-right: 10px;"></i>
+                        <span style="font-weight: 600;">Available: 8:00 AM - 3:00 PM</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -475,157 +660,67 @@
     <!-- Full CSS (Loaded after initial render) -->
     <style id="full-css">
         /* ===== COMPLETE STYLES ===== */
-        :root {
-            /* Color System */
-            --color-burgundy: #8B0000;
-            --color-burgundy-dark: #5A0000;
-            --color-burgundy-light: #A00000;
-            --color-gold: #FFD700;
-            --color-gold-dark: #DAA520;
-            --color-gold-light: #FFEC8B;
-            --color-black: #000000;
-            --color-white: #FFFFFF;
-            --color-off-white: #FAF9F6;
-            --color-gray: #666666;
-            --color-light-gray: #F5F5F5;
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .container {
+                padding: 0 1.5rem !important;
+            }
             
-            /* Typography */
-            --font-heading: 'Playfair Display', serif;
-            --font-body: 'Montserrat', sans-serif;
-            --font-arabic: 'Cairo', sans-serif;
+            .menu-items-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
             
-            /* Spacing */
-            --space-xs: 0.5rem;
-            --space-sm: 1rem;
-            --space-md: 2rem;
-            --space-lg: 3rem;
-            --space-xl: 5rem;
-            
-            /* Transitions */
-            --transition-fast: 0.3s ease;
-            --transition-smooth: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            
-            /* Shadows */
-            --shadow-light: 0 4px 12px rgba(0,0,0,0.1);
-            --shadow-medium: 0 8px 24px rgba(0,0,0,0.15);
-            --shadow-heavy: 0 12px 36px rgba(0,0,0,0.2);
-            --shadow-gold: 0 0 20px rgba(255, 215, 0, 0.4);
-            --shadow-burgundy: 0 0 20px rgba(139, 0, 0, 0.4);
-            
-            /* Borders */
-            --border-radius-sm: 4px;
-            --border-radius-md: 8px;
-            --border-radius-lg: 16px;
-            --border-radius-xl: 50px;
+            .about-content,
+            .contact-grid {
+                grid-template-columns: 1fr !important;
+                gap: 3rem !important;
+            }
         }
 
-        /* Base Styles */
-        html {
-            scroll-behavior: smooth;
-            overflow-x: hidden;
-        }
-
-        body {
-            font-family: var(--font-body);
-            line-height: 1.6;
-            color: var(--color-black);
-            background: var(--color-white);
-            overflow-x: hidden;
-        }
-
-        body.rtl {
-            font-family: var(--font-arabic);
-            direction: rtl;
-            text-align: right;
-        }
-
-        body.dark-mode {
-            background: var(--color-black);
-            color: var(--color-white);
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: var(--font-heading);
-            font-weight: 700;
-            line-height: 1.2;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-            transition: color var(--transition-fast);
-        }
-
-        button {
-            font-family: inherit;
-            cursor: pointer;
-            border: none;
-            transition: all var(--transition-fast);
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 var(--space-md);
-        }
-
-        .section {
-            padding: var(--space-xl) 0;
-        }
-
-        /* Header */
-        #header {
-            transition: transform 0.3s, background 0.3s;
-        }
-
-        #header.hidden {
-            transform: translateY(-100%);
-        }
-
-        #header.scrolled {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-        }
-
-        .main-nav a {
-            position: relative;
-        }
-
-        .main-nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--color-gold);
-            transition: width var(--transition-fast);
-        }
-
-        .main-nav a:hover::after {
-            width: 100%;
-        }
-
-        /* Mobile Menu */
         @media (max-width: 992px) {
+            .section {
+                padding: 4rem 0 !important;
+            }
+            
             .main-nav {
                 position: fixed;
                 top: 80px;
                 left: 0;
                 width: 100%;
-                background: var(--color-white);
-                padding: var(--space-lg);
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(10px);
+                padding: 2rem;
                 transform: translateY(-100%);
                 opacity: 0;
                 visibility: hidden;
-                transition: var(--transition-smooth);
+                transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
                 box-shadow: var(--shadow-heavy);
+                border-top: 2px solid var(--color-gold);
+                z-index: 999;
             }
 
             .main-nav.active {
@@ -635,77 +730,251 @@
             }
 
             .main-nav ul {
-                flex-direction: column;
-                gap: var(--space-md);
+                flex-direction: column !important;
+                gap: 1.5rem !important;
             }
 
             .mobile-menu-btn {
                 display: block !important;
             }
+            
+            .categories-nav {
+                top: 70px !important;
+            }
+            
+            .menu-items-grid {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr !important;
+                gap: 3rem !important;
+            }
+            
+            .modal-body {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .modal-image {
+                height: 300px !important;
+                border-right: none !important;
+                border-bottom: 3px solid var(--color-gold) !important;
+            }
         }
 
-        /* Categories Navigation */
-        .categories-nav {
-            transition: transform 0.3s;
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem !important; }
+            h2 { font-size: 2.2rem !important; }
+            h3 { font-size: 1.8rem !important; }
+            
+            .section-title {
+                font-size: 2.5rem !important;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.8rem !important;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .whatsapp-float {
+                bottom: 20px !important;
+                right: 20px !important;
+                width: 60px !important;
+                height: 60px !important;
+                font-size: 1.5rem !important;
+            }
+
+            .back-to-top {
+                bottom: 100px !important;
+                right: 20px !important;
+                width: 50px !important;
+                height: 50px !important;
+            }
+            
+            .marquee-content {
+                animation-duration: 20s !important;
+            }
         }
 
-        .categories-nav.hidden {
-            transform: translateY(-100%);
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem !important;
+            }
+
+            .section {
+                padding: 3rem 0 !important;
+            }
+            
+            .menu-search {
+                margin-bottom: 3rem !important;
+            }
+            
+            .feature-card,
+            .contact-form,
+            .hours {
+                padding: 2rem !important;
+            }
+            
+            .modal-content {
+                width: 95% !important;
+            }
+            
+            .modal-info {
+                padding: 2rem !important;
+            }
         }
 
-        .categories-scroll {
-            scrollbar-width: thin;
-            scrollbar-color: var(--color-gold) transparent;
+        /* Tablet specific */
+        @media (min-width: 768px) and (max-width: 1024px) {
+            .menu-items-grid {
+                grid-template-columns: repeat(3, 1fr) !important;
+            }
+            
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
         }
 
-        .categories-scroll::-webkit-scrollbar {
-            height: 4px;
-        }
-
-        .categories-scroll::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        .categories-scroll::-webkit-scrollbar-thumb {
-            background: var(--color-gold);
-            border-radius: 2px;
-        }
-
-        .category-btn {
-            white-space: nowrap;
-            padding: 0.75rem 1.5rem;
-            background: transparent;
-            border: 2px solid var(--color-gold);
-            color: var(--color-gold);
-            border-radius: var(--border-radius-xl);
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        .category-btn:hover,
-        .category-btn.active {
-            background: var(--color-gold);
-            color: var(--color-black);
-        }
-
-        /* Menu Items */
-        .menu-item {
-            background: var(--color-white);
-            border-radius: var(--border-radius-lg);
-            overflow: hidden;
-            box-shadow: var(--shadow-medium);
-            transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
-            cursor: pointer;
-            border: 2px solid transparent;
+        /* Hover effects */
+        .category-btn:hover {
+            animation: pulse 0.5s;
         }
 
         .menu-item:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-heavy);
-            border-color: var(--color-gold);
+            transform: translateY(-10px) scale(1.02);
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--color-off-white);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, var(--color-burgundy), var(--color-gold));
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(to bottom, var(--color-burgundy-dark), var(--color-gold-dark));
+        }
+
+        /* Selection color */
+        ::selection {
+            background: var(--color-gold);
+            color: var(--color-burgundy);
+        }
+
+        /* Focus styles for accessibility */
+        :focus {
+            outline: 3px solid var(--color-gold);
+            outline-offset: 2px;
+        }
+
+        /* Loading animation for images */
+        .img-loading {
+            background: linear-gradient(90deg, var(--color-off-white) 25%, var(--color-light-gray) 50%, var(--color-off-white) 75%);
+            background-size: 200% 100%;
+            animation: skeleton-loading 1.5s infinite;
+        }
+
+        /* VIP Badge */
+        .vip-badge {
+            position: relative;
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: linear-gradient(45deg, var(--color-gold), var(--color-burgundy));
+            color: white;
+            font-weight: 700;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            border: 2px solid var(--color-gold);
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3);
+        }
+
+        .vip-badge::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--color-gold), transparent, var(--color-burgundy));
+            border-radius: 52px;
+            z-index: -1;
+            opacity: 0.7;
+        }
+
+        /* Royal shimmer effect */
+        .royal-shimmer {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .royal-shimmer::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to right,
+                transparent 0%,
+                rgba(255, 215, 0, 0.1) 50%,
+                transparent 100%
+            );
+            transform: rotate(30deg);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) rotate(30deg); }
+            100% { transform: translateX(100%) rotate(30deg); }
+        }
+
+        /* Menu item card enhancements */
+        .menu-item {
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-radius: 15px;
+            overflow: hidden;
+            background: white;
+            border: 2px solid transparent;
+        }
+
+        .menu-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 2px solid transparent;
+            border-radius: 15px;
+            background: linear-gradient(45deg, var(--color-burgundy), var(--color-gold), var(--color-burgundy)) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .menu-item:hover::before {
+            opacity: 1;
         }
 
         .menu-item-img {
+            position: relative;
             height: 250px;
             overflow: hidden;
         }
@@ -714,7 +983,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform var(--transition-smooth);
+            transition: transform 0.5s;
         }
 
         .menu-item:hover .menu-item-img img {
@@ -722,208 +991,118 @@
         }
 
         .menu-item-content {
-            padding: var(--space-lg);
+            padding: 1.5rem;
+            position: relative;
+            z-index: 1;
+            background: white;
         }
 
         .menu-item-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: var(--space-sm);
+            margin-bottom: 1rem;
         }
 
         .menu-item-name {
             font-family: var(--font-heading);
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: var(--color-burgundy);
             font-weight: 700;
+            line-height: 1.3;
+            flex: 1;
         }
 
         .menu-item-price {
-            background: var(--color-gold);
-            color: var(--color-black);
-            padding: 0.5rem 1.5rem;
-            border-radius: var(--border-radius-xl);
-            font-weight: 700;
+            background: linear-gradient(135deg, var(--color-burgundy), var(--color-burgundy-dark));
+            color: var(--color-gold);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: 800;
             font-size: 1.2rem;
+            white-space: nowrap;
+            margin-left: 1rem;
+            border: 2px solid var(--color-gold);
         }
 
-        /* Gallery */
-        .gallery-item {
-            border-radius: var(--border-radius-lg);
-            overflow: hidden;
-            height: 300px;
-            cursor: pointer;
-            border: 3px solid var(--color-gold);
+        .menu-item-desc {
+            color: var(--color-gray);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
         }
 
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform var(--transition-smooth);
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-
-        /* Forms */
-        input, select, textarea {
-            font-family: inherit;
-            font-size: 1rem;
-            padding: 1rem;
-            border: 2px solid var(--color-burgundy);
-            border-radius: var(--border-radius-md);
-            background: var(--color-white);
-            color: var(--color-black);
-            transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
-        }
-
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: var(--color-gold);
-            box-shadow: var(--shadow-gold);
-        }
-
-        /* Buttons */
-        .btn {
-            display: inline-flex;
+        .menu-item-meta {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
             align-items: center;
-            justify-content: center;
-            gap: var(--space-xs);
-            padding: 1rem 2.5rem;
-            background: var(--color-burgundy);
-            color: var(--color-white);
-            border: none;
-            border-radius: var(--border-radius-xl);
+        }
+
+        .calories {
+            background: var(--color-light-gray);
+            color: var(--color-gray);
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
             font-weight: 600;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: var(--transition-smooth);
-            text-decoration: none;
         }
 
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-heavy);
-            background: var(--color-burgundy-dark);
+        .dietary-tag {
+            background: var(--color-burgundy);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
         }
 
-        .btn-gold {
-            background: var(--color-gold);
-            color: var(--color-black);
+        .time-tag {
+            background: linear-gradient(135deg, var(--color-gold), var(--color-burgundy));
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid var(--color-gold);
         }
 
-        .btn-gold:hover {
-            background: var(--color-gold-dark);
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .fade-in {
-            animation: fadeIn 0.6s ease-out;
-        }
-
-        /* Utility Classes */
-        .text-center { text-align: center; }
-        .text-gold { color: var(--color-gold); }
-        .text-burgundy { color: var(--color-burgundy); }
-        .bg-black { background: var(--color-black); }
-        .bg-white { background: var(--color-white); }
-        .mb-1 { margin-bottom: var(--space-xs); }
-        .mb-2 { margin-bottom: var(--space-sm); }
-        .mb-3 { margin-bottom: var(--space-md); }
-        .mb-4 { margin-bottom: var(--space-lg); }
-        .mb-5 { margin-bottom: var(--space-xl); }
-
-        /* Responsive Design */
-        @media (max-width: 1200px) {
-            .container {
-                padding: 0 var(--space-sm);
-            }
-        }
-
-        @media (max-width: 992px) {
-            .section {
-                padding: var(--space-lg) 0;
-            }
-
-            .about-content,
-            .contact-grid,
-            .modal-body {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-grid {
-                grid-template-columns: 1fr;
-                gap: var(--space-lg);
-            }
-        }
-
-        @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            h2 { font-size: 2rem; }
-            h3 { font-size: 1.5rem; }
-
-            .menu-items-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .categories-nav {
-                top: 60px;
-            }
-
-            .whatsapp-float {
-                bottom: 20px;
-                right: 20px;
-                width: 50px;
-                height: 50px;
-                font-size: 1.3rem;
-            }
-
-            .back-to-top {
-                bottom: 80px;
-                right: 20px;
-                width: 45px;
-                height: 45px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 var(--space-xs);
-            }
-
-            .section {
-                padding: var(--space-md) 0;
-            }
+        .popular-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: linear-gradient(135deg, var(--color-gold), var(--color-burgundy));
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            z-index: 2;
+            border: 2px solid white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
     </style>
 
     <!-- JavaScript -->
     <script>
         // Enhanced Menu Data Structure
-       // Complete Menu Data Structure
-const menuData = {
-    categories: [
-        "Popular",
-        "Brewed on Arabic & Turkish Way",
-        "Tea on the House",
-        "Café & Chill",
-        "Specialty Brews",
-        "Refreshers",
-        "Baklava & Beyond",
-        "Fondue & Nuts",
-        "Croissant Creations",
-        "From the Grill & Garden",
-        "Anatolian Morning Table"
-    ],
-    items: [
+        const menuData = {
+            categories: [
+                "Popular",
+                "Brewed on Arabic & Turkish Way",
+                "Tea on the House",
+                "Café & Chill",
+                "Specialty Brews",
+                "Refreshers",
+                "Baklava & Beyond",
+                "Fondue & Nuts",
+                "Croissant Creations",
+                "From the Grill & Garden",
+                "Anatolian Morning Table"
+            ],
+             items: [
         // ===== POPULAR ITEMS =====
         {
             id: "pop1",
@@ -3046,25 +3225,46 @@ const menuData = {
             image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkeyhamsandwich.jpg",
             calories: "390 kcal",
             dietary: []
-        }
-    ]
-};
+       
+                },
+                // Add timeRestricted: true for all items in categories: "Anatolian Morning Table", "Croissant Creations", "From the Grill & Garden"
+            ]
+        };
+
+        // Add timeRestricted property to all relevant items
+        const timeRestrictedCategories = ["Anatolian Morning Table", "Croissant Creations", "From the Grill & Garden"];
+        
+        menuData.items.forEach(item => {
+            if (timeRestrictedCategories.includes(item.category)) {
+                item.timeRestricted = true;
+                item.availableTime = "8:00 AM - 3:00 PM";
+            }
+            
+            // Also mark burgers specifically
+            if (item.en.name.toLowerCase().includes('burger')) {
+                item.timeRestricted = true;
+                item.availableTime = "8:00 AM - 3:00 PM";
+            }
+        });
+
         // Application State
         const state = {
             currentLanguage: 'en',
             currentCategory: 'Popular',
             isMenuOpen: false,
             searchQuery: '',
-            loadedImages: new Set()
+            loadedImages: new Set(),
+            marqueeAnimation: null
         };
 
         // DOM Elements
         const elements = {
             loadingOverlay: document.getElementById('loading-overlay'),
             mainContent: document.getElementById('main-content'),
-            categoriesScroll: document.getElementById('categories-scroll'),
+            marqueeCategories: document.getElementById('marquee-categories'),
             menuItems: document.getElementById('menu-items'),
             menuSearch: document.getElementById('menu-search'),
+            clearSearch: document.getElementById('clear-search'),
             header: document.getElementById('header'),
             categoriesNav: document.querySelector('.categories-nav'),
             backToTop: document.getElementById('back-to-top'),
@@ -3089,7 +3289,7 @@ const menuData = {
                 // Initialize components
                 initializeNavigation();
                 initializeMenuSystem();
-                initializeCategories();
+                initializeMarqueeCategories();
                 initializeScrollHandlers();
                 initializeModal();
                 initializeForms();
@@ -3107,20 +3307,24 @@ const menuData = {
                         
                         // Initialize animations
                         initializeAnimations();
+                        
+                        // Start marquee animation
+                        startMarqueeAnimation();
                     }, 300);
                 }, 1000);
 
-                // Performance monitoring
-                if ('connection' in navigator) {
-                    const connection = navigator.connection;
-                    if (connection.saveData) {
-                        console.log('Data saver mode enabled - optimizing');
-                    }
-                }
-
             } catch (error) {
                 console.error('Initialization error:', error);
-                elements.loadingOverlay.innerHTML = '<p style="color: white;">Failed to load. Please refresh.</p>';
+                elements.loadingOverlay.innerHTML = `
+                    <div style="text-align: center; color: white;">
+                        <i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 1rem; color: var(--color-gold);"></i>
+                        <h3 style="margin-bottom: 1rem;">Failed to load</h3>
+                        <p>Please refresh the page or check your connection</p>
+                        <button onclick="location.reload()" style="margin-top: 1rem; background: var(--color-gold); color: var(--color-burgundy); border: none; padding: 0.75rem 1.5rem; border-radius: 50px; font-weight: 700; cursor: pointer;">
+                            <i class="fas fa-redo"></i> Refresh Page
+                        </button>
+                    </div>
+                `;
             }
         }
 
@@ -3129,7 +3333,7 @@ const menuData = {
                 if (document.fonts && document.fonts.ready) {
                     document.fonts.ready.then(resolve);
                 } else {
-                    resolve();
+                    setTimeout(resolve, 1000);
                 }
             });
         }
@@ -3137,16 +3341,17 @@ const menuData = {
         function preloadCriticalImages() {
             const criticalImages = [
                 'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg',
-                'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Burger.jpeg'
+                'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Burger.jpeg',
+                'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Tea.jpg'
             ];
 
             return Promise.all(
                 criticalImages.map(src => {
-                    return new Promise((resolve, reject) => {
+                    return new Promise((resolve) => {
                         const img = new Image();
                         img.src = src;
                         img.onload = resolve;
-                        img.onerror = reject;
+                        img.onerror = resolve; // Continue even if some images fail
                     });
                 })
             );
@@ -3159,17 +3364,25 @@ const menuData = {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         const img = entry.target;
-                        img.src = img.dataset.src || img.src;
+                        if (img.dataset.src) {
+                            img.src = img.dataset.src;
+                            img.removeAttribute('data-src');
+                        }
                         state.loadedImages.add(img.src);
                         observer.unobserve(img);
                     }
                 });
             }, {
-                rootMargin: '50px 0px',
+                rootMargin: '100px 0px',
                 threshold: 0.1
             });
 
-            images.forEach(img => imageObserver.observe(img));
+            images.forEach(img => {
+                if (!img.src || img.src === '') {
+                    img.classList.add('img-loading');
+                }
+                imageObserver.observe(img);
+            });
         }
 
         function initializeNavigation() {
@@ -3181,6 +3394,12 @@ const menuData = {
                     elements.mobileMenuBtn.innerHTML = state.isMenuOpen 
                         ? '<i class="fas fa-times"></i>' 
                         : '<i class="fas fa-bars"></i>';
+                    elements.mobileMenuBtn.style.background = state.isMenuOpen 
+                        ? 'var(--color-burgundy)' 
+                        : 'none';
+                    elements.mobileMenuBtn.style.color = state.isMenuOpen 
+                        ? 'var(--color-gold)' 
+                        : 'var(--color-burgundy)';
                 });
             }
 
@@ -3190,35 +3409,104 @@ const menuData = {
                     if (state.isMenuOpen) {
                         elements.mainNav.classList.remove('active');
                         elements.mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                        elements.mobileMenuBtn.style.background = 'none';
+                        elements.mobileMenuBtn.style.color = 'var(--color-burgundy)';
                         state.isMenuOpen = false;
                     }
                 });
             });
+
+            // Close mobile menu on ESC key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && state.isMenuOpen) {
+                    elements.mainNav.classList.remove('active');
+                    elements.mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    elements.mobileMenuBtn.style.background = 'none';
+                    elements.mobileMenuBtn.style.color = 'var(--color-burgundy)';
+                    state.isMenuOpen = false;
+                }
+            });
         }
 
-        function initializeCategories() {
-            if (!elements.categoriesScroll) return;
+        function initializeMarqueeCategories() {
+            if (!elements.marqueeCategories) return;
 
-            elements.categoriesScroll.innerHTML = '';
-
-            menuData.categories.forEach(category => {
+            // Create duplicate categories for seamless marquee
+            const categories = [...menuData.categories, ...menuData.categories];
+            
+            categories.forEach(category => {
                 const button = document.createElement('button');
                 button.className = 'category-btn';
-                button.textContent = category;
-                button.dataset.category = category;
-
-                if (category === state.currentCategory) {
-                    button.classList.add('active');
-                }
+                button.innerHTML = `
+                    <span style="display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fas fa-utensils" style="color: var(--color-gold);"></i>
+                        ${category}
+                    </span>
+                `;
+                button.style.cssText = `
+                    white-space: nowrap;
+                    padding: 1rem 2rem;
+                    background: linear-gradient(135deg, var(--color-burgundy), var(--color-burgundy-dark));
+                    border: 2px solid var(--color-gold);
+                    color: var(--color-gold);
+                    border-radius: 50px;
+                    font-weight: 700;
+                    font-size: 1.1rem;
+                    cursor: pointer;
+                    margin: 0 1rem;
+                    transition: all 0.3s;
+                    flex-shrink: 0;
+                `;
+                
+                button.addEventListener('mouseover', () => {
+                    button.style.background = 'var(--color-gold)';
+                    button.style.color = 'var(--color-burgundy)';
+                    button.style.transform = 'scale(1.1)';
+                    button.style.boxShadow = 'var(--shadow-gold)';
+                });
+                
+                button.addEventListener('mouseout', () => {
+                    button.style.background = 'linear-gradient(135deg, var(--color-burgundy), var(--color-burgundy-dark))';
+                    button.style.color = 'var(--color-gold)';
+                    button.style.transform = 'scale(1)';
+                    button.style.boxShadow = 'none';
+                });
 
                 button.addEventListener('click', () => {
                     state.currentCategory = category;
                     filterMenu();
-                    updateActiveCategoryButton();
                     scrollToCategory(category);
+                    
+                    // Highlight active category
+                    document.querySelectorAll('.category-btn').forEach(btn => {
+                        btn.style.background = 'linear-gradient(135deg, var(--color-burgundy), var(--color-burgundy-dark))';
+                        btn.style.color = 'var(--color-gold)';
+                    });
+                    button.style.background = 'var(--color-gold)';
+                    button.style.color = 'var(--color-burgundy)';
                 });
 
-                elements.categoriesScroll.appendChild(button);
+                elements.marqueeCategories.appendChild(button);
+            });
+        }
+
+        function startMarqueeAnimation() {
+            const marqueeContent = elements.marqueeCategories;
+            if (!marqueeContent) return;
+            
+            // Calculate animation duration based on content width
+            const contentWidth = marqueeContent.scrollWidth / 2; // Divided by 2 because we duplicated
+            const duration = Math.max(30, contentWidth / 50); // Adjust speed
+            
+            marqueeContent.style.animationDuration = `${duration}s`;
+            
+            // Pause on hover
+            marqueeContent.parentElement.addEventListener('mouseenter', () => {
+                marqueeContent.style.animationPlayState = 'paused';
+            });
+            
+            marqueeContent.parentElement.addEventListener('mouseleave', () => {
+                marqueeContent.style.animationPlayState = 'running';
             });
         }
 
@@ -3230,15 +3518,32 @@ const menuData = {
 
             // Search functionality
             elements.menuSearch.addEventListener('input', debounce(() => {
-                state.searchQuery = elements.menuSearch.value.toLowerCase();
+                state.searchQuery = elements.menuSearch.value.toLowerCase().trim();
+                if (elements.clearSearch) {
+                    elements.clearSearch.style.display = state.searchQuery ? 'block' : 'none';
+                }
                 renderMenuItems();
             }, 300));
+
+            // Clear search functionality
+            if (elements.clearSearch) {
+                elements.clearSearch.addEventListener('click', () => {
+                    elements.menuSearch.value = '';
+                    state.searchQuery = '';
+                    elements.clearSearch.style.display = 'none';
+                    renderMenuItems();
+                    elements.menuSearch.focus();
+                });
+            }
 
             // Clear search on escape
             elements.menuSearch.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape') {
                     elements.menuSearch.value = '';
                     state.searchQuery = '';
+                    if (elements.clearSearch) {
+                        elements.clearSearch.style.display = 'none';
+                    }
                     renderMenuItems();
                 }
             });
@@ -3266,25 +3571,35 @@ const menuData = {
                 });
             }
 
-            // Clear container
+            // Clear container with loading animation
             elements.menuItems.innerHTML = '';
+            elements.menuItems.style.opacity = '0.5';
+            elements.menuItems.style.transition = 'opacity 0.3s';
 
             if (filteredItems.length === 0) {
                 elements.menuItems.innerHTML = `
-                    <div style="grid-column: 1/-1; text-align: center; padding: 3rem;">
-                        <i class="fas fa-search fa-3x" style="color: var(--color-burgundy); margin-bottom: 1rem;"></i>
-                        <h3 style="color: var(--color-burgundy);">No items found</h3>
-                        <p style="color: var(--color-gray);">Try a different search term or category</p>
+                    <div style="grid-column: 1/-1; text-align: center; padding: 4rem; opacity: 0; animation: fadeIn 0.5s ease forwards;">
+                        <div style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--color-burgundy), var(--color-burgundy-dark)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2rem; border: 3px solid var(--color-gold);">
+                            <i class="fas fa-search fa-2x" style="color: var(--color-gold);"></i>
+                        </div>
+                        <h3 style="color: var(--color-burgundy); margin-bottom: 1rem; font-family: var(--font-heading); font-size: 1.8rem;">No Royal Items Found</h3>
+                        <p style="color: var(--color-gray); font-size: 1.1rem;">Try a different search term or select another category</p>
                     </div>
                 `;
+                elements.menuItems.style.opacity = '1';
                 return;
             }
 
-            // Render items
-            filteredItems.forEach(item => {
-                const itemElement = createMenuItemElement(item);
-                elements.menuItems.appendChild(itemElement);
-            });
+            // Render items with staggered animation
+            setTimeout(() => {
+                filteredItems.forEach((item, index) => {
+                    const itemElement = createMenuItemElement(item);
+                    itemElement.style.animationDelay = `${index * 0.05}s`;
+                    elements.menuItems.appendChild(itemElement);
+                });
+                
+                elements.menuItems.style.opacity = '1';
+            }, 100);
         }
 
         function createMenuItemElement(item) {
@@ -3294,27 +3609,51 @@ const menuData = {
             const lang = state.currentLanguage === 'en' ? item.en : item.ar;
             const name = lang.name;
             const description = lang.description;
-            const price = item.en.price; // Price is same for both languages
+            const price = item.en.price;
+
+            // Create dietary tags
+            const dietaryTags = item.dietary ? item.dietary.map(d => 
+                `<span class="dietary-tag">${d}</span>`
+            ).join('') : '';
+
+            // Add time tag if restricted
+            const timeTag = item.timeRestricted ? 
+                `<span class="time-tag"><i class="fas fa-clock"></i> ${item.availableTime}</span>` : '';
 
             div.innerHTML = `
                 <div class="menu-item-img">
-                    <img src="${item.image}" alt="${name}" loading="lazy">
-                    ${item.popular ? '<span class="popular-badge">Popular</span>' : ''}
+                    <img src="${item.image}" alt="${name}" loading="lazy" 
+                         onload="this.classList.remove('img-loading')"
+                         onerror="this.src='https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg'; this.onerror=null;">
+                    ${item.popular ? '<span class="popular-badge"><i class="fas fa-crown"></i> Popular</span>' : ''}
                 </div>
                 <div class="menu-item-content">
                     <div class="menu-item-header">
                         <h3 class="menu-item-name">${name}</h3>
                         <span class="menu-item-price">${price} QR</span>
                     </div>
-                    <p class="menu-item-desc">${description.substring(0, 100)}...</p>
+                    <p class="menu-item-desc">${description.substring(0, 120)}...</p>
                     <div class="menu-item-meta">
                         ${item.calories ? `<span class="calories">${item.calories}</span>` : ''}
-                        ${item.dietary ? item.dietary.map(d => `<span class="dietary-tag">${d}</span>`).join('') : ''}
+                        ${dietaryTags}
+                        ${timeTag}
                     </div>
                 </div>
             `;
 
             div.addEventListener('click', () => openItemModal(item));
+            
+            // Add hover effects
+            div.addEventListener('mouseenter', () => {
+                div.style.transform = 'translateY(-10px) scale(1.02)';
+                div.style.boxShadow = 'var(--shadow-heavy)';
+            });
+            
+            div.addEventListener('mouseleave', () => {
+                div.style.transform = 'translateY(0) scale(1)';
+                div.style.boxShadow = 'none';
+            });
+
             return div;
         }
 
@@ -3322,21 +3661,12 @@ const menuData = {
             renderMenuItems();
         }
 
-        function updateActiveCategoryButton() {
-            document.querySelectorAll('.category-btn').forEach(btn => {
-                btn.classList.remove('active');
-                if (btn.dataset.category === state.currentCategory) {
-                    btn.classList.add('active');
-                }
-            });
-        }
-
         function scrollToCategory(category) {
             const menuSection = document.getElementById('menu');
             if (menuSection) {
                 const headerHeight = elements.header.offsetHeight;
                 const categoriesHeight = elements.categoriesNav.offsetHeight;
-                const offset = headerHeight + categoriesHeight;
+                const offset = headerHeight + categoriesHeight + 20;
                 const targetPosition = menuSection.offsetTop - offset;
 
                 window.scrollTo({
@@ -3349,30 +3679,34 @@ const menuData = {
         function initializeScrollHandlers() {
             let lastScrollY = window.scrollY;
             let ticking = false;
+            let scrollTimeout;
 
             function updateHeaderVisibility() {
                 const currentScrollY = window.scrollY;
                 const scrollDirection = currentScrollY > lastScrollY ? 'down' : 'up';
                 
                 if (currentScrollY > 100) {
-                    if (scrollDirection === 'down') {
-                        elements.header.classList.add('hidden');
-                        elements.categoriesNav.classList.add('hidden');
+                    if (scrollDirection === 'down' && currentScrollY - lastScrollY > 5) {
+                        elements.header.style.transform = 'translateY(-100%)';
+                        elements.categoriesNav.style.transform = 'translateY(-100%)';
                     } else {
-                        elements.header.classList.remove('hidden');
-                        elements.categoriesNav.classList.remove('hidden');
+                        elements.header.style.transform = 'translateY(0)';
+                        elements.categoriesNav.style.transform = 'translateY(0)';
                     }
                     elements.header.classList.add('scrolled');
                 } else {
-                    elements.header.classList.remove('hidden', 'scrolled');
-                    elements.categoriesNav.classList.remove('hidden');
+                    elements.header.style.transform = 'translateY(0)';
+                    elements.categoriesNav.style.transform = 'translateY(0)';
+                    elements.header.classList.remove('scrolled');
                 }
 
                 // Back to top button
                 if (currentScrollY > 500) {
                     elements.backToTop.style.opacity = '1';
+                    elements.backToTop.style.pointerEvents = 'auto';
                 } else {
                     elements.backToTop.style.opacity = '0';
+                    elements.backToTop.style.pointerEvents = 'none';
                 }
 
                 lastScrollY = currentScrollY;
@@ -3384,6 +3718,15 @@ const menuData = {
                     window.requestAnimationFrame(updateHeaderVisibility);
                     ticking = true;
                 }
+                
+                // Clear timeout on scroll
+                clearTimeout(scrollTimeout);
+                
+                // Set timeout to show header after scrolling stops
+                scrollTimeout = setTimeout(() => {
+                    elements.header.style.transform = 'translateY(0)';
+                    elements.categoriesNav.style.transform = 'translateY(0)';
+                }, 1500);
             });
 
             // Back to top button
@@ -3404,6 +3747,8 @@ const menuData = {
             const modalTitle = modal.querySelector('.modal-title');
             const modalPrice = modal.querySelector('.modal-price');
             const modalDesc = modal.querySelector('.modal-description');
+            const modalDetails = modal.querySelector('.modal-details');
+            const timeNotice = modal.querySelector('.time-availability-notice');
 
             function openModal(item) {
                 const lang = state.currentLanguage === 'en' ? item.en : item.ar;
@@ -3413,14 +3758,53 @@ const menuData = {
                 modalTitle.textContent = lang.name;
                 modalPrice.textContent = `${item.en.price} QAR`;
                 modalDesc.textContent = lang.description;
+                
+                // Clear previous details
+                modalDetails.innerHTML = '';
+                
+                // Add dietary information
+                if (item.dietary && item.dietary.length > 0) {
+                    item.dietary.forEach(diet => {
+                        const tag = document.createElement('span');
+                        tag.className = 'dietary-tag';
+                        tag.textContent = diet;
+                        modalDetails.appendChild(tag);
+                    });
+                }
+                
+                // Add calories if available
+                if (item.calories) {
+                    const calories = document.createElement('span');
+                    calories.className = 'calories';
+                    calories.textContent = item.calories;
+                    modalDetails.appendChild(calories);
+                }
+                
+                // Show time notice if restricted
+                if (item.timeRestricted) {
+                    timeNotice.style.display = 'flex';
+                    timeNotice.querySelector('span').textContent = `Available: ${item.availableTime}`;
+                } else {
+                    timeNotice.style.display = 'none';
+                }
 
                 modal.style.display = 'flex';
                 document.body.style.overflow = 'hidden';
+                
+                // Add fade-in animation
+                modal.style.opacity = '0';
+                setTimeout(() => {
+                    modal.style.opacity = '1';
+                    modal.style.transition = 'opacity 0.3s';
+                }, 10);
             }
 
             function closeModal() {
-                modal.style.display = 'none';
-                document.body.style.overflow = 'auto';
+                modal.style.opacity = '0';
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }, 300);
             }
 
             // Close modal on click outside
@@ -3470,16 +3854,24 @@ const menuData = {
             const date = formData.get('date') || form.querySelector('input[type="date"]').value;
 
             if (!name || !phone) {
-                alert('Please fill in all required fields.');
+                showToast('Please fill in all required fields.', 'error');
+                return;
+            }
+
+            // Validate phone number
+            const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
+            if (!phoneRegex.test(phone.replace(/[\s\-\(\)]/g, ''))) {
+                showToast('Please enter a valid phone number.', 'error');
                 return;
             }
 
             // Create WhatsApp message
-            const message = `New Reservation Request:%0A%0A` +
-                          `Name: ${name}%0A` +
-                          `Phone: ${phone}%0A` +
-                          `Date: ${date}%0A` +
-                          `From Turkiana Cafe Website`;
+            const message = `*New Royal Reservation Request*%0A%0A` +
+                          `👑 *Name:* ${name}%0A` +
+                          `📱 *Phone:* ${phone}%0A` +
+                          `📅 *Date:* ${date}%0A` +
+                          `🏰 *From:* Turkiana Cafe Website%0A%0A` +
+                          `_Please confirm this reservation._`;
 
             const whatsappUrl = `https://wa.me/97451866671?text=${message}`;
             
@@ -3498,7 +3890,7 @@ const menuData = {
             }
             
             // Show success message
-            showToast('Reservation request sent! Check WhatsApp.');
+            showToast('Royal reservation request sent! Check WhatsApp for confirmation.', 'success');
         }
 
         function initializeLanguageSwitcher() {
@@ -3507,15 +3899,35 @@ const menuData = {
                     const lang = btn.dataset.lang;
                     if (lang !== state.currentLanguage) {
                         // Update active button
-                        elements.langButtons.forEach(b => b.classList.remove('active'));
-                        btn.classList.add('active');
+                        elements.langButtons.forEach(b => {
+                            if (b.dataset.lang === lang) {
+                                b.style.background = 'var(--color-gold)';
+                                b.style.color = 'var(--color-burgundy)';
+                            } else {
+                                b.style.background = 'transparent';
+                                b.style.color = 'var(--color-white)';
+                            }
+                        });
                         
                         // Update state
                         state.currentLanguage = lang;
                         
-                        // Update UI
+                        // Update UI direction
                         document.body.classList.toggle('rtl', lang === 'ar');
+                        document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';
+                        
+                        // Update text alignment
+                        if (lang === 'ar') {
+                            document.body.style.textAlign = 'right';
+                        } else {
+                            document.body.style.textAlign = 'left';
+                        }
+                        
+                        // Re-render menu items
                         renderMenuItems();
+                        
+                        // Show language change toast
+                        showToast(`Language changed to ${lang === 'en' ? 'English' : 'Arabic'}`, 'info');
                     }
                 });
             });
@@ -3541,32 +3953,106 @@ const menuData = {
             document.querySelectorAll('.section').forEach(section => {
                 observer.observe(section);
             });
+
+            // Observe menu items
+            document.querySelectorAll('.menu-item').forEach(item => {
+                observer.observe(item);
+            });
+
+            // Observe feature cards
+            document.querySelectorAll('.feature-card').forEach(card => {
+                observer.observe(card);
+            });
         }
 
-        function showToast(message) {
+        function showToast(message, type = 'info') {
+            // Remove existing toast
+            const existingToast = document.querySelector('.custom-toast');
+            if (existingToast) {
+                existingToast.remove();
+            }
+
             const toast = document.createElement('div');
+            toast.className = 'custom-toast fade-in';
+            
+            // Set colors based on type
+            let bgColor, textColor, icon;
+            switch(type) {
+                case 'success':
+                    bgColor = 'linear-gradient(135deg, #2ecc71, #27ae60)';
+                    textColor = 'white';
+                    icon = 'fas fa-check-circle';
+                    break;
+                case 'error':
+                    bgColor = 'linear-gradient(135deg, var(--color-burgundy), var(--color-burgundy-dark))';
+                    textColor = 'var(--color-gold)';
+                    icon = 'fas fa-exclamation-circle';
+                    break;
+                case 'info':
+                    bgColor = 'linear-gradient(135deg, #3498db, #2980b9)';
+                    textColor = 'white';
+                    icon = 'fas fa-info-circle';
+                    break;
+                default:
+                    bgColor = 'linear-gradient(135deg, var(--color-burgundy), var(--color-burgundy-dark))';
+                    textColor = 'var(--color-gold)';
+                    icon = 'fas fa-info-circle';
+            }
+
             toast.style.cssText = `
                 position: fixed;
-                bottom: 20px;
+                bottom: 30px;
                 left: 50%;
                 transform: translateX(-50%);
-                background: var(--color-burgundy);
-                color: white;
-                padding: 1rem 2rem;
-                border-radius: 50px;
+                background: ${bgColor};
+                color: ${textColor};
+                padding: 1.2rem 2rem;
+                border-radius: 15px;
                 box-shadow: var(--shadow-heavy);
                 z-index: 10000;
                 animation: slideUp 0.3s ease;
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                max-width: 90%;
+                width: auto;
+                min-width: 300px;
+                border: 2px solid var(--color-gold);
+                font-weight: 600;
+                font-size: 1.1rem;
             `;
             
-            toast.textContent = message;
+            toast.innerHTML = `
+                <i class="${icon}" style="font-size: 1.3rem;"></i>
+                <span>${message}</span>
+            `;
+            
             document.body.appendChild(toast);
             
             setTimeout(() => {
                 toast.style.animation = 'slideDown 0.3s ease';
-                setTimeout(() => document.body.removeChild(toast), 300);
-            }, 3000);
+                setTimeout(() => {
+                    if (toast.parentNode) {
+                        document.body.removeChild(toast);
+                    }
+                }, 300);
+            }, 4000);
         }
+
+        // Add CSS for toast animations
+        const toastStyles = document.createElement('style');
+        toastStyles.textContent = `
+            @keyframes slideUp {
+                from { transform: translateX(-50%) translateY(100%); opacity: 0; }
+                to { transform: translateX(-50%) translateY(0); opacity: 1; }
+            }
+            
+            @keyframes slideDown {
+                from { transform: translateX(-50%) translateY(0); opacity: 1; }
+                to { transform: translateX(-50%) translateY(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(toastStyles);
 
         // Utility Functions
         function debounce(func, wait) {
@@ -3594,74 +4080,68 @@ const menuData = {
             };
         }
 
-        // Add CSS animations
-        const styleSheet = document.createElement('style');
-        styleSheet.textContent = `
-            @keyframes slideUp {
-                from { transform: translateX(-50%) translateY(100%); opacity: 0; }
-                to { transform: translateX(-50%) translateY(0); opacity: 1; }
+        // Add mobile menu close on outside click
+        document.addEventListener('click', (e) => {
+            if (state.isMenuOpen && 
+                !elements.mainNav.contains(e.target) && 
+                !elements.mobileMenuBtn.contains(e.target)) {
+                elements.mainNav.classList.remove('active');
+                elements.mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                elements.mobileMenuBtn.style.background = 'none';
+                elements.mobileMenuBtn.style.color = 'var(--color-burgundy)';
+                state.isMenuOpen = false;
+            }
+        });
+
+        // Add keyboard navigation for accessibility
+        document.addEventListener('keydown', (e) => {
+            // Tab navigation - add focus styles
+            if (e.key === 'Tab') {
+                document.body.classList.add('keyboard-navigation');
+            }
+        });
+
+        document.addEventListener('click', () => {
+            document.body.classList.remove('keyboard-navigation');
+        });
+
+        // Add keyboard navigation styles
+        const keyboardStyles = document.createElement('style');
+        keyboardStyles.textContent = `
+            .keyboard-navigation :focus {
+                outline: 3px solid var(--color-gold) !important;
+                outline-offset: 2px !important;
             }
             
-            @keyframes slideDown {
-                from { transform: translateX(-50%) translateY(0); opacity: 1; }
-                to { transform: translateX(-50%) translateY(100%); opacity: 0; }
-            }
-            
-            .popular-badge {
-                position: absolute;
-                top: 1rem;
-                right: 1rem;
-                background: var(--color-gold);
-                color: var(--color-black);
-                padding: 0.25rem 0.75rem;
-                border-radius: 50px;
-                font-size: 0.8rem;
-                font-weight: 600;
-                z-index: 2;
-            }
-            
-            .menu-item-meta {
-                display: flex;
-                gap: 0.5rem;
-                margin-top: 1rem;
-                flex-wrap: wrap;
-            }
-            
-            .calories {
-                background: var(--color-light-gray);
-                color: var(--color-gray);
-                padding: 0.25rem 0.75rem;
-                border-radius: 50px;
-                font-size: 0.8rem;
-            }
-            
-            .dietary-tag {
-                background: var(--color-burgundy);
-                color: white;
-                padding: 0.25rem 0.75rem;
-                border-radius: 50px;
-                font-size: 0.8rem;
+            .keyboard-navigation .menu-item:focus {
+                transform: translateY(-5px) !important;
+                box-shadow: var(--shadow-heavy) !important;
             }
         `;
-        document.head.appendChild(styleSheet);
+        document.head.appendChild(keyboardStyles);
+
+        // Handle image loading errors
+        document.addEventListener('error', (e) => {
+            if (e.target.tagName === 'IMG') {
+                e.target.src = 'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg';
+                e.target.onerror = null; // Prevent infinite loop
+            }
+        }, true);
 
         // Performance monitoring
         if ('PerformanceObserver' in window) {
-            const observer = new PerformanceObserver((list) => {
-                for (const entry of list.getEntries()) {
-                    console.log(`${entry.name}: ${entry.duration}ms`);
-                }
-            });
-            observer.observe({ entryTypes: ['paint', 'largest-contentful-paint', 'layout-shift'] });
-        }
-
-        // Service Worker Registration (Optional)
-        if ('serviceWorker' in navigator && window.location.hostname !== 'localhost') {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js').catch(error => {
-                    console.log('Service Worker registration failed:', error);
+            try {
+                const observer = new PerformanceObserver((list) => {
+                    for (const entry of list.getEntries()) {
+                        if (entry.duration > 100) {
+                            console.warn(`${entry.name} took ${entry.duration}ms`);
+                        }
+                    }
                 });
-            });
+                observer.observe({ entryTypes: ['paint', 'largest-contentful-paint', 'layout-shift', 'longtask'] });
+            } catch (e) {
+                console.log('Performance monitoring not supported');
+            }
         }
 
         // Offline detection
@@ -3670,9 +4150,58 @@ const menuData = {
 
         function updateOnlineStatus() {
             if (!navigator.onLine) {
-                showToast('You are offline. Some features may be unavailable.');
+                showToast('You are offline. Some features may be unavailable.', 'error');
+            } else {
+                showToast('You are back online!', 'success');
             }
         }
+
+        // Check if page is being loaded from cache
+        window.addEventListener('pageshow', (event) => {
+            if (event.persisted) {
+                console.log('Page loaded from cache');
+                // Refresh any dynamic content if needed
+            }
+        });
+
+        // Prevent form resubmission on page refresh
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+        }
+
+        // Initialize current time for time-restricted items
+        function checkTimeRestrictedItems() {
+            const now = new Date();
+            const currentHour = now.getHours();
+            const currentMinute = now.getMinutes();
+            const currentTime = currentHour * 60 + currentMinute;
+            
+            // Breakfast time: 8:00 AM - 3:00 PM (8:00 to 15:00)
+            const breakfastStart = 8 * 60; // 8:00 AM
+            const breakfastEnd = 15 * 60; // 3:00 PM
+            
+            const isBreakfastTime = currentTime >= breakfastStart && currentTime <= breakfastEnd;
+            
+            // Update time notice visibility
+            const timeNotice = document.querySelector('.time-notice');
+            if (timeNotice) {
+                if (!isBreakfastTime) {
+                    timeNotice.style.background = 'linear-gradient(135deg, #e74c3c, #c0392b)';
+                    timeNotice.innerHTML = `
+                        <div style="display: flex; align-items: center; justify-content: center; gap: 1rem; color: white;">
+                            <i class="fas fa-exclamation-triangle" style="font-size: 1.5rem; color: white;"></i>
+                            <p style="font-size: 1.1rem; font-weight: 600; margin: 0; text-align: center;">
+                                <strong>Note:</strong> Breakfast items are currently unavailable. Available from <strong>8:00 AM to 3:00 PM</strong>
+                            </p>
+                        </div>
+                    `;
+                }
+            }
+        }
+
+        // Check time on load and every minute
+        checkTimeRestrictedItems();
+        setInterval(checkTimeRestrictedItems, 60000); // Check every minute
     </script>
 </body>
 </html>
