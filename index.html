@@ -124,6 +124,9 @@
             --shadow-heavy: 0 12px 36px rgba(0,0,0,0.2);
             --shadow-gold: 0 0 20px rgba(255, 215, 0, 0.4);
             --shadow-burgundy: 0 0 20px rgba(139, 0, 0, 0.4);
+            
+            --text-direction: ltr;
+            --text-align: left;
         }
 
         * {
@@ -145,6 +148,13 @@
             overflow-x: hidden;
             min-height: 100vh;
             opacity: 1 !important;
+            direction: var(--text-direction);
+            text-align: var(--text-align);
+        }
+
+        body[dir="rtl"] {
+            --text-direction: rtl;
+            --text-align: right;
         }
 
         .skeleton {
@@ -227,210 +237,409 @@
             font-weight: 900;
         }
 
-        /* Scrollable Categories Styles */
-        .categories-nav {
+        /* NEW LARGE FIXED CATEGORIES STYLES */
+        .categories-sidebar {
             position: fixed;
-            top: 80px;
-            width: 100%;
-            background: linear-gradient(to right, var(--color-black), var(--color-burgundy-dark));
+            top: 100px;
+            left: 0;
+            width: 320px;
+            height: calc(100vh - 140px);
+            background: linear-gradient(180deg, var(--color-black), var(--color-burgundy-dark));
             z-index: 999;
-            padding: 0.75rem 0;
-            border-top: 2px solid var(--color-gold);
+            padding: 2rem 1.5rem;
+            border-right: 4px solid var(--color-gold);
+            box-shadow: var(--shadow-heavy);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        body[dir="rtl"] .categories-sidebar {
+            left: auto;
+            right: 0;
+            border-right: none;
+            border-left: 4px solid var(--color-gold);
+        }
+
+        .categories-header {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
             border-bottom: 2px solid var(--color-gold);
-            overflow: hidden;
         }
 
-        .categories-container {
+        .categories-header h2 {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            color: var(--color-gold);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .categories-header p {
+            color: var(--color-white);
+            opacity: 0.8;
+            font-size: 1rem;
+            font-weight: 300;
+        }
+
+        .categories-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            flex: 1;
+        }
+
+        .category-item {
+            padding: 1.2rem 1.5rem;
+            background: linear-gradient(135deg, rgba(139, 0, 0, 0.3), rgba(90, 0, 0, 0.5));
+            border: 2px solid var(--color-gold);
+            color: var(--color-gold);
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
             position: relative;
-            width: 100%;
-            overflow-x: auto;
-            overflow-y: hidden;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: thin;
-            scrollbar-color: var(--color-gold) transparent;
-            padding: 0.5rem 0;
+            overflow: hidden;
+            text-align: left;
         }
 
-        .categories-container::-webkit-scrollbar {
-            height: 6px;
+        body[dir="rtl"] .category-item {
+            text-align: right;
         }
 
-        .categories-container::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        .categories-container::-webkit-scrollbar-thumb {
+        .category-item:hover {
             background: var(--color-gold);
+            color: var(--color-burgundy);
+            transform: translateX(10px);
+            box-shadow: var(--shadow-gold);
+        }
+
+        body[dir="rtl"] .category-item:hover {
+            transform: translateX(-10px);
+        }
+
+        .category-item.active {
+            background: var(--color-gold);
+            color: var(--color-burgundy);
+            box-shadow: var(--shadow-gold);
+            transform: translateX(10px);
+        }
+
+        body[dir="rtl"] .category-item.active {
+            transform: translateX(-10px);
+        }
+
+        .category-item.active::before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 60%;
+            background: var(--color-burgundy);
             border-radius: 3px;
         }
 
-        .categories-container::-webkit-scrollbar-thumb:hover {
-            background: var(--color-gold-dark);
+        body[dir="rtl"] .category-item.active::before {
+            left: auto;
+            right: -10px;
         }
 
-        .categories-content {
-            display: flex;
-            gap: 1rem;
-            padding: 0 2rem;
-            min-width: min-content;
-            transition: transform 0.3s ease;
-        }
-
-        .category-btn {
-            white-space: nowrap;
-            padding: 0.75rem 1.5rem;
-            background: linear-gradient(135deg, var(--color-burgundy), var(--color-burgundy-dark));
-            border: 2px solid var(--color-gold);
-            color: var(--color-gold);
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            flex-shrink: 0;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .category-btn:hover {
-            background: var(--color-gold);
-            color: var(--color-burgundy);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-gold);
-        }
-
-        .category-btn.active {
-            background: var(--color-gold);
-            color: var(--color-burgundy);
-            box-shadow: var(--shadow-gold);
-        }
-
-        .category-btn.active::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 30px;
-            height: 3px;
-            background: var(--color-burgundy);
-            border-radius: 2px;
-        }
-
-        /* Scroll indicators */
-        .scroll-indicator {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            width: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .scroll-indicator.left {
-            left: 0;
-            background: linear-gradient(to right, var(--color-black), transparent);
-        }
-
-        .scroll-indicator.right {
-            right: 0;
-            background: linear-gradient(to left, var(--color-black), transparent);
-        }
-
-        .scroll-indicator.visible {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .scroll-arrow {
+        .category-item-icon {
+            font-size: 1.3rem;
             width: 40px;
             height: 40px;
-            background: var(--color-gold);
-            color: var(--color-burgundy);
+            background: rgba(255, 215, 0, 0.1);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
-            pointer-events: auto;
-            border: 2px solid var(--color-burgundy);
-            box-shadow: var(--shadow-light);
+            border: 1px solid var(--color-gold);
             transition: all 0.3s;
         }
 
-        .scroll-arrow:hover {
-            transform: scale(1.1);
-            box-shadow: var(--shadow-medium);
-        }
-
-        /* Mobile scroll buttons */
-        .mobile-scroll-buttons {
-            display: none;
-            position: absolute;
-            bottom: -30px;
-            left: 0;
-            right: 0;
-            justify-content: center;
-            gap: 1rem;
-            z-index: 10;
-        }
-
-        @media (max-width: 768px) {
-            .mobile-scroll-buttons {
-                display: flex;
-            }
-            
-            .scroll-indicator {
-                display: none;
-            }
-            
-            .categories-container {
-                padding: 0.5rem 1rem;
-            }
-            
-            .category-btn {
-                padding: 0.6rem 1.2rem;
-                font-size: 0.9rem;
-            }
-        }
-
-        /* Category counter */
-        .category-counter {
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
+        .category-item.active .category-item-icon,
+        .category-item:hover .category-item-icon {
+            background: var(--color-burgundy);
             color: var(--color-gold);
-            font-size: 0.85rem;
+            border-color: var(--color-burgundy);
+        }
+
+        .category-item-text {
+            flex: 1;
+            font-family: var(--font-body);
             font-weight: 600;
+        }
+
+        .category-count {
             background: rgba(0, 0, 0, 0.5);
-            padding: 0.25rem 0.75rem;
+            color: var(--color-gold);
+            padding: 0.4rem 0.8rem;
             border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
             border: 1px solid var(--color-gold);
+            min-width: 40px;
+            text-align: center;
+        }
+
+        .category-item.active .category-count,
+        .category-item:hover .category-count {
+            background: var(--color-burgundy);
+            color: var(--color-gold);
+        }
+
+        .category-time-notice {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(139, 0, 0, 0.2));
+            border: 2px solid var(--color-gold);
+            border-radius: 12px;
+            padding: 1.2rem;
+            margin-top: 2rem;
+        }
+
+        .category-time-notice h4 {
+            color: var(--color-gold);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
 
-        @media (max-width: 768px) {
-            .category-counter {
-                position: static;
-                transform: none;
-                margin-left: auto;
-                margin-right: 1rem;
+        .category-time-notice p {
+            color: var(--color-white);
+            font-size: 0.9rem;
+            opacity: 0.8;
+            line-height: 1.4;
+        }
+
+        /* Mobile category toggle button */
+        .category-toggle-btn {
+            position: fixed;
+            top: 100px;
+            left: 20px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--color-burgundy), var(--color-burgundy-dark));
+            color: var(--color-gold);
+            border: 3px solid var(--color-gold);
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: var(--shadow-heavy);
+            transition: all 0.3s;
+        }
+
+        body[dir="rtl"] .category-toggle-btn {
+            left: auto;
+            right: 20px;
+        }
+
+        .category-toggle-btn:hover {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-gold);
+        }
+
+        /* Adjust main content margin for sidebar */
+        .main-content-with-sidebar {
+            margin-left: 320px;
+            padding-top: 100px;
+            min-height: 100vh;
+        }
+
+        body[dir="rtl"] .main-content-with-sidebar {
+            margin-left: 0;
+            margin-right: 320px;
+        }
+
+        @media (max-width: 1200px) {
+            .categories-sidebar {
+                width: 280px;
             }
             
-            .categories-nav {
-                top: 70px;
+            .main-content-with-sidebar {
+                margin-left: 280px;
             }
+            
+            body[dir="rtl"] .main-content-with-sidebar {
+                margin-left: 0;
+                margin-right: 280px;
+            }
+            
+            .category-item {
+                padding: 1rem 1.2rem;
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .categories-sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                width: 300px;
+                height: calc(100vh - 80px);
+                top: 80px;
+            }
+            
+            body[dir="rtl"] .categories-sidebar {
+                transform: translateX(100%);
+                left: auto;
+                right: 0;
+            }
+            
+            .categories-sidebar.active {
+                transform: translateX(0);
+            }
+            
+            body[dir="rtl"] .categories-sidebar.active {
+                transform: translateX(0);
+            }
+            
+            .main-content-with-sidebar {
+                margin-left: 0;
+                margin-right: 0;
+            }
+            
+            .category-toggle-btn {
+                display: flex;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .categories-sidebar {
+                width: 280px;
+                padding: 1.5rem 1rem;
+            }
+            
+            .categories-header h2 {
+                font-size: 1.8rem;
+            }
+            
+            .category-item {
+                padding: 1rem;
+                font-size: 1rem;
+            }
+            
+            .category-toggle-btn {
+                top: 90px;
+                left: 15px;
+                width: 50px;
+                height: 50px;
+                font-size: 1.3rem;
+            }
+            
+            body[dir="rtl"] .category-toggle-btn {
+                left: auto;
+                right: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .categories-sidebar {
+                width: 260px;
+            }
+            
+            .category-item {
+                padding: 0.8rem;
+                font-size: 0.95rem;
+            }
+            
+            .category-item-icon {
+                width: 35px;
+                height: 35px;
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Keyboard navigation */
+        .keyboard-navigation :focus {
+            outline: 3px solid var(--color-gold) !important;
+            outline-offset: 2px !important;
+        }
+        
+        .keyboard-navigation .menu-item:focus {
+            transform: translateY(-5px) !important;
+            box-shadow: var(--shadow-heavy) !important;
+        }
+
+        /* Toast notifications */
+        .custom-toast {
+            position: fixed !important;
+            bottom: 30px !important;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+            background: linear-gradient(135deg, var(--color-burgundy), var(--color-burgundy-dark)) !important;
+            color: var(--color-gold) !important;
+            padding: 1.2rem 2rem !important;
+            border-radius: 15px !important;
+            box-shadow: var(--shadow-heavy) !important;
+            z-index: 10000 !important;
+            animation: slideUp 0.3s ease !important;
+            display: flex !important;
+            align-items: center !important;
+            gap: 1rem !important;
+            max-width: 90% !important;
+            width: auto !important;
+            min-width: 300px !important;
+            border: 2px solid var(--color-gold) !important;
+            font-weight: 600 !important;
+            font-size: 1.1rem !important;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateX(-50%) translateY(100%); opacity: 0; }
+            to { transform: translateX(-50%) translateY(0); opacity: 1; }
+        }
+        
+        @keyframes slideDown {
+            from { transform: translateX(-50%) translateY(0); opacity: 1; }
+            to { transform: translateX(-50%) translateY(100%); opacity: 0; }
+        }
+
+        /* Mobile menu styles */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--color-burgundy);
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid var(--color-gold);
+            z-index: 1001;
+            position: relative;
+        }
+
+        @media (max-width: 992px) {
+            .mobile-menu-btn {
+                display: block !important;
+            }
+            
+            .main-nav.active {
+                transform: translateY(0) !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+            }
+        }
+
+        /* Image loading states */
+        .img-loading {
+            background: linear-gradient(90deg, var(--color-off-white) 25%, var(--color-light-gray) 50%, var(--color-off-white) 75%);
+            background-size: 200% 100%;
+            animation: skeleton-loading 1.5s infinite;
         }
     </style>
 </head>
@@ -459,6 +668,31 @@
                    <i class="fas fa-crown" style="margin-right: 10px;"></i>Explore Our Menu
                 </a>
             </div>
+        </div>
+    </div>
+
+    <!-- Mobile Category Toggle Button -->
+    <button class="category-toggle-btn" id="category-toggle">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Large Fixed Categories Sidebar -->
+    <div class="categories-sidebar" id="categories-sidebar">
+        <div class="categories-header">
+            <h2>
+                <i class="fas fa-crown"></i>
+                <span id="menu-title">Menu</span>
+            </h2>
+            <p id="menu-subtitle">Explore our premium categories</p>
+        </div>
+        
+        <div class="categories-list" id="categories-list">
+            <!-- Categories will be populated here -->
+        </div>
+        
+        <div class="category-time-notice">
+            <h4><i class="fas fa-clock"></i> <span id="time-notice-title">Important Notice</span></h4>
+            <p id="time-notice-text">Breakfast items, sandwiches, burgers & salads are available from 8:00 AM to 3:00 PM only.</p>
         </div>
     </div>
 
@@ -494,50 +728,15 @@
                         </ul>
                     </nav>
                     
-                    <button class="mobile-menu-btn" style="display: none; background: none; border: none; font-size: 1.8rem; color: var(--color-burgundy); cursor: pointer; width: 50px; height: 50px; border-radius: 50%; border: 2px solid var(--color-gold);">
+                    <button class="mobile-menu-btn" style="width: 50px; height: 50px;">
                         <i class="fas fa-bars"></i>
                     </button>
                 </div>
             </div>
         </header>
 
-        <!-- Scrollable Categories Navigation -->
-        <nav class="categories-nav" id="categories-nav">
-            <div class="scroll-indicator left" id="scroll-left">
-                <div class="scroll-arrow" id="scroll-left-btn">
-                    <i class="fas fa-chevron-left"></i>
-                </div>
-            </div>
-            
-            <div class="categories-container" id="categories-container">
-                <div class="categories-content" id="categories-content">
-                    <!-- Categories will be populated here -->
-                </div>
-            </div>
-            
-            <div class="scroll-indicator right" id="scroll-right">
-                <div class="scroll-arrow" id="scroll-right-btn">
-                    <i class="fas fa-chevron-right"></i>
-                </div>
-            </div>
-            
-            <div class="category-counter" id="category-counter">
-                <i class="fas fa-list"></i>
-                <span id="current-category">1</span>/<span id="total-categories">11</span>
-            </div>
-            
-            <div class="mobile-scroll-buttons">
-                <button class="mobile-scroll-btn left" id="mobile-scroll-left">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <button class="mobile-scroll-btn right" id="mobile-scroll-right">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-            </div>
-        </nav>
-
-        <!-- Main Sections -->
-        <main>
+        <!-- Main Sections Wrapper -->
+        <div class="main-content-with-sidebar" id="main-content-wrapper">
             <!-- Features Section -->
             <section id="features" class="section" style="padding: 6rem 0; background: linear-gradient(135deg, var(--color-off-white) 0%, #fff 100%); position: relative; overflow: hidden;">
                 <div class="container" style="max-width: 1400px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1;">
@@ -583,13 +782,13 @@
             <section id="menu" class="section" style="padding: 6rem 0; background: var(--color-white); position: relative;">
                 <div class="container" style="max-width: 1400px; margin: 0 auto; padding: 0 20px;">
                     <h2 class="section-title" style="text-align: center; margin-bottom: 4rem; font-family: var(--font-heading); font-size: 3rem; color: var(--color-burgundy); position: relative; display: inline-block; left: 50%; transform: translateX(-50%);">
-                        <span class="royal-text">Menu</span>
+                        <span class="royal-text">Royal Menu</span>
                         <div style="position: absolute; bottom: -10px; left: 0; width: 100%; height: 3px; background: linear-gradient(to right, transparent, var(--color-gold), transparent);"></div>
                     </h2>
                     
-                    <div class="menu-search" style="max-width: 600px; margin: 0 auto 4rem; position: relative;">
+                    <div class="menu-search" style="max-width: 800px; margin: 0 auto 4rem; position: relative;">
                         <div style="position: relative;">
-                            <input type="text" id="menu-search" placeholder="Search for exquisite dishes..." 
+                            <input type="text" id="menu-search" placeholder="Search for exquisite dishes, drinks, or desserts..." 
                                    style="width: 100%; padding: 1.2rem 1.2rem 1.2rem 4rem; border: 3px solid var(--color-burgundy); border-radius: 50px; font-size: 1.1rem; background: var(--color-off-white); color: var(--color-black); transition: all 0.3s; box-shadow: var(--shadow-light);"
                                    onfocus="this.style.borderColor='var(--color-gold)'; this.style.boxShadow='var(--shadow-gold)'"
                                    onblur="this.style.borderColor='var(--color-burgundy)'; this.style.boxShadow='var(--shadow-light)'">
@@ -710,14 +909,14 @@
             <section id="contact" class="section" style="padding: 6rem 0; background: var(--color-white); position: relative;">
                 <div class="container" style="max-width: 1400px; margin: 0 auto; padding: 0 20px;">
                     <h2 class="section-title" style="text-align: center; margin-bottom: 4rem; font-family: var(--font-heading); font-size: 3rem; color: var(--color-burgundy); position: relative; display: inline-block; left: 50%; transform: translateX(-50%);">
-                        <span class="royal-text">Visit Our Royal Venue</span>
+                        <span class="royal-text">Visit Our Turkish Vibe</span>
                         <div style="position: absolute; bottom: -10px; left: 0; width: 100%; height: 3px; background: linear-gradient(to right, transparent, var(--color-gold), transparent);"></div>
                     </h2>
                     
                     <div class="contact-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;">
                         <div class="contact-info">
                             <h3 style="margin-bottom: 2rem; font-family: var(--font-heading); font-size: 2rem; color: var(--color-burgundy);">
-                                <span class="royal-text">Experience Royal Luxury</span>
+                                <span class="royal-text">Experience Modern Turkish Way</span>
                             </h3>
                             
                             <div class="contact-details" style="margin: 3rem 0;">
@@ -948,6 +1147,11 @@
                 z-index: 999;
             }
 
+            body[dir="rtl"] .main-nav {
+                left: auto;
+                right: 0;
+            }
+
             .main-nav.active {
                 transform: translateY(0);
                 opacity: 1;
@@ -961,10 +1165,6 @@
 
             .mobile-menu-btn {
                 display: block !important;
-            }
-            
-            .categories-nav {
-                top: 70px !important;
             }
             
             .menu-items-grid {
@@ -1019,13 +1219,14 @@
                 height: 50px !important;
             }
             
-            .category-btn {
-                padding: 0.6rem 1.2rem !important;
-                font-size: 0.9rem !important;
+            body[dir="rtl"] .whatsapp-float {
+                right: auto;
+                left: 20px;
             }
             
-            .mobile-scroll-buttons {
-                display: flex !important;
+            body[dir="rtl"] .back-to-top {
+                right: auto;
+                left: 20px;
             }
         }
 
@@ -1054,11 +1255,6 @@
             
             .modal-info {
                 padding: 2rem !important;
-            }
-            
-            .category-counter {
-                font-size: 0.8rem !important;
-                padding: 0.2rem 0.5rem !important;
             }
         }
 
@@ -1235,6 +1431,10 @@
             margin-bottom: 1rem;
         }
 
+        body[dir="rtl"] .menu-item-header {
+            flex-direction: row-reverse;
+        }
+
         .menu-item-name {
             font-family: var(--font-heading);
             font-size: 1.3rem;
@@ -1254,6 +1454,11 @@
             white-space: nowrap;
             margin-left: 1rem;
             border: 2px solid var(--color-gold);
+        }
+
+        body[dir="rtl"] .menu-item-price {
+            margin-left: 0;
+            margin-right: 1rem;
         }
 
         .menu-item-desc {
@@ -1315,51 +1520,77 @@
             letter-spacing: 1px;
         }
 
-        /* Mobile scroll buttons styling */
-        .mobile-scroll-btn {
-            background: var(--color-gold);
-            color: var(--color-burgundy);
-            border: 2px solid var(--color-burgundy);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
+        body[dir="rtl"] .popular-badge {
+            right: auto;
+            left: 1rem;
+        }
+
+        /* Image error handling */
+        .image-error {
             display: flex;
             align-items: center;
             justify-content: center;
+            background: linear-gradient(135deg, var(--color-light-gray), var(--color-off-white));
+            color: var(--color-gray);
+            font-size: 0.9rem;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Search suggestions */
+        .search-suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 2px solid var(--color-gold);
+            border-radius: 10px;
+            margin-top: 5px;
+            box-shadow: var(--shadow-heavy);
+            z-index: 100;
+            display: none;
+        }
+
+        .suggestion-item {
+            padding: 1rem;
             cursor: pointer;
-            font-size: 1.2rem;
-            box-shadow: var(--shadow-light);
             transition: all 0.3s;
+            border-bottom: 1px solid var(--color-light-gray);
         }
 
-        .mobile-scroll-btn:hover {
-            transform: scale(1.1);
-            box-shadow: var(--shadow-medium);
+        .suggestion-item:hover {
+            background: var(--color-light-gray);
+            color: var(--color-burgundy);
         }
 
-        .mobile-scroll-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none;
+        .suggestion-item:last-child {
+            border-bottom: none;
+        }
+
+        /* Language switcher active state */
+        .lang-btn.active {
+            background: var(--color-gold) !important;
+            color: var(--color-burgundy) !important;
         }
     </style>
 
     <!-- JavaScript -->
     <script>
-        // Enhanced Menu Data Structure
-       const menuData = {
+        // Enhanced Menu Data Structure with Icons for Categories
+        const menuData = {
             categories: [
-                "Popular",
-                "Brewed on Arabic & Turkish Way",
-                "Tea on the House",
-                "Café & Chill",
-                "Specialty Brews",
-                "Refreshers",
-                "Baklava & Beyond",
-                "Fondue & Nuts",
-                "Croissant Creations",
-                "From the Grill & Garden",
-                "Anatolian Morning Table"
+                 {name: "Popular", icon: "fas fa-crown"},
+                {name: "Brewed on Arabic & Turkish Way", icon: "fas fa-coffee"},
+                {name: "Tea on the House", icon: "fas fa-mug-hot"},
+                {name: "Café & Chill", icon: "fas fa-martini-glass"},
+                {name: "Specialty Brews", icon: "fas fa-filter"},
+                {name: "Refreshers", icon: "fas fa-glass-water"},
+                {name: "Baklava & Beyond", icon: "fas fa-cookie-bite"},
+                {name: "Fondue & Nuts", icon: "fas fa-cheese"},
+                {name: "Croissant Creations", icon: "fas fa-bread-slice"},
+                {name: "From the Grill & Garden", icon: "fas fa-hamburger"},
+                {name: "Anatolian Morning Table", icon: "fas fa-egg"}
             ],
              items: [
         // ===== POPULAR ITEMS =====
@@ -3513,35 +3744,28 @@
             isMenuOpen: false,
             searchQuery: '',
             loadedImages: new Set(),
-            currentCategoryIndex: 0
+            currentCategoryIndex: 0,
+            isCategorySidebarOpen: true
         };
 
         // DOM Elements
         const elements = {
             loadingOverlay: document.getElementById('loading-overlay'),
             mainContent: document.getElementById('main-content'),
-            categoriesContent: document.getElementById('categories-content'),
-            categoriesContainer: document.getElementById('categories-container'),
+            categoriesList: document.getElementById('categories-list'),
             menuItems: document.getElementById('menu-items'),
             menuSearch: document.getElementById('menu-search'),
             clearSearch: document.getElementById('clear-search'),
             header: document.getElementById('header'),
-            categoriesNav: document.getElementById('categories-nav'),
             backToTop: document.getElementById('back-to-top'),
             itemModal: document.getElementById('item-modal'),
             mobileMenuBtn: document.querySelector('.mobile-menu-btn'),
             mainNav: document.querySelector('.main-nav'),
             langButtons: document.querySelectorAll('.lang-btn'),
             reservationForm: document.getElementById('reservation-form'),
-            scrollLeftBtn: document.getElementById('scroll-left-btn'),
-            scrollRightBtn: document.getElementById('scroll-right-btn'),
-            scrollLeftIndicator: document.getElementById('scroll-left'),
-            scrollRightIndicator: document.getElementById('scroll-right'),
-            mobileScrollLeft: document.getElementById('mobile-scroll-left'),
-            mobileScrollRight: document.getElementById('mobile-scroll-right'),
-            categoryCounter: document.getElementById('category-counter'),
-            currentCategorySpan: document.getElementById('current-category'),
-            totalCategoriesSpan: document.getElementById('total-categories')
+            categoryToggle: document.getElementById('category-toggle'),
+            categoriesSidebar: document.getElementById('categories-sidebar'),
+            mainContentWrapper: document.getElementById('main-content-wrapper')
         };
 
         // Initialize Application
@@ -3549,51 +3773,37 @@
 
         async function initializeApp() {
             try {
-                // Wait for critical resources
-                await Promise.all([
+                // Start loading animations immediately
+                startLoadingAnimation();
+                
+                // Load critical resources in parallel
+                await Promise.allSettled([
                     loadFonts(),
                     preloadCriticalImages()
                 ]);
-
+                
                 // Initialize components
                 initializeNavigation();
-                initializeScrollableCategories();
+                initializeLargeCategories();
                 initializeMenuSystem();
                 initializeScrollHandlers();
                 initializeModal();
                 initializeForms();
                 initializeLanguageSwitcher();
-
-                // Show main content
-                setTimeout(() => {
-                    elements.loadingOverlay.style.opacity = '0';
-                    setTimeout(() => {
-                        elements.loadingOverlay.style.display = 'none';
-                        elements.mainContent.style.display = 'block';
-                        
-                        // Load non-critical images
-                        lazyLoadImages();
-                        
-                        // Initialize animations
-                        initializeAnimations();
-                        
-                        // Update scroll indicators
-                        updateScrollIndicators();
-                    }, 300);
-                }, 1000);
-
+                
+                // Show content gradually
+                revealContent();
+                
             } catch (error) {
-                console.error('Initialization error:', error);
-                elements.loadingOverlay.innerHTML = `
-                    <div style="text-align: center; color: white;">
-                        <i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 1rem; color: var(--color-gold);"></i>
-                        <h3 style="margin-bottom: 1rem;">Failed to load</h3>
-                        <p>Please refresh the page or check your connection</p>
-                        <button onclick="location.reload()" style="margin-top: 1rem; background: var(--color-gold); color: var(--color-burgundy); border: none; padding: 0.75rem 1.5rem; border-radius: 50px; font-weight: 700; cursor: pointer;">
-                            <i class="fas fa-redo"></i> Refresh Page
-                        </button>
-                    </div>
-                `;
+                handleInitializationError(error);
+            }
+        }
+
+        function startLoadingAnimation() {
+            // Add loading animation to critical elements
+            const loader = elements.loadingOverlay.querySelector('.loader');
+            if (loader) {
+                loader.style.animation = 'spin 1s linear infinite';
             }
         }
 
@@ -3626,6 +3836,58 @@
             );
         }
 
+        function revealContent() {
+            setTimeout(() => {
+                elements.loadingOverlay.style.opacity = '0';
+                setTimeout(() => {
+                    elements.loadingOverlay.style.display = 'none';
+                    elements.mainContent.style.display = 'block';
+                    
+                    // Load non-critical images
+                    lazyLoadImages();
+                    
+                    // Initialize animations
+                    initializeAnimations();
+                    
+                    // Check time-restricted items
+                    checkTimeRestrictedItems();
+                    
+                    // Show welcome toast
+                    showToast('Welcome to Turkiana Cafe & Sweets! 👑', 'info');
+                }, 300);
+            }, 1000);
+        }
+
+        function handleInitializationError(error) {
+            console.error('Initialization error:', error);
+            elements.loadingOverlay.innerHTML = `
+                <div style="text-align: center; color: white;">
+                    <i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 1rem; color: var(--color-gold);"></i>
+                    <h3 style="margin-bottom: 1rem;">Failed to load</h3>
+                    <p>Please refresh the page or check your connection</p>
+                    <button onclick="location.reload()" style="margin-top: 1rem; background: var(--color-gold); color: var(--color-burgundy); border: none; padding: 0.75rem 1.5rem; border-radius: 50px; font-weight: 700; cursor: pointer;">
+                        <i class="fas fa-redo"></i> Refresh Page
+                    </button>
+                </div>
+            `;
+        }
+
+        function handleImageError(img) {
+            const fallbacks = [
+                'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg',
+                'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/a.jpeg',
+                'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/b.jpeg'
+            ];
+            
+            let currentIndex = fallbacks.indexOf(img.src);
+            if (currentIndex === -1 || currentIndex >= fallbacks.length - 1) {
+                img.src = fallbacks[0];
+            } else {
+                img.src = fallbacks[currentIndex + 1];
+            }
+            img.onerror = null; // Prevent infinite loop
+        }
+
         function lazyLoadImages() {
             const images = document.querySelectorAll('img[loading="lazy"]');
             
@@ -3650,6 +3912,8 @@
                 if (!img.src || img.src === '') {
                     img.classList.add('img-loading');
                 }
+                // Add error handling
+                img.onerror = () => handleImageError(img);
                 imageObserver.observe(img);
             });
         }
@@ -3672,6 +3936,17 @@
                 });
             }
 
+            // Category sidebar toggle
+            if (elements.categoryToggle) {
+                elements.categoryToggle.addEventListener('click', () => {
+                    state.isCategorySidebarOpen = !state.isCategorySidebarOpen;
+                    elements.categoriesSidebar.classList.toggle('active', state.isCategorySidebarOpen);
+                    elements.categoryToggle.innerHTML = state.isCategorySidebarOpen 
+                        ? '<i class="fas fa-times"></i>' 
+                        : '<i class="fas fa-bars"></i>';
+                });
+            }
+
             // Close mobile menu on link click
             document.querySelectorAll('.main-nav a').forEach(link => {
                 link.addEventListener('click', () => {
@@ -3687,64 +3962,58 @@
 
             // Close mobile menu on ESC key
             document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && state.isMenuOpen) {
-                    elements.mainNav.classList.remove('active');
-                    elements.mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-                    elements.mobileMenuBtn.style.background = 'none';
-                    elements.mobileMenuBtn.style.color = 'var(--color-burgundy)';
-                    state.isMenuOpen = false;
+                if (e.key === 'Escape') {
+                    if (state.isMenuOpen) {
+                        elements.mainNav.classList.remove('active');
+                        elements.mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                        elements.mobileMenuBtn.style.background = 'none';
+                        elements.mobileMenuBtn.style.color = 'var(--color-burgundy)';
+                        state.isMenuOpen = false;
+                    }
+                    if (state.isCategorySidebarOpen && window.innerWidth <= 992) {
+                        elements.categoriesSidebar.classList.remove('active');
+                        elements.categoryToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                        state.isCategorySidebarOpen = false;
+                    }
                 }
             });
         }
 
-        function initializeScrollableCategories() {
-            if (!elements.categoriesContent || !elements.categoriesContainer) return;
+        function initializeLargeCategories() {
+            if (!elements.categoriesList) return;
 
-            // Set total categories counter
-            elements.totalCategoriesSpan.textContent = menuData.categories.length;
+            // Clear existing content
+            elements.categoriesList.innerHTML = '';
 
-            // Create category buttons
+            // Create category items
             menuData.categories.forEach((category, index) => {
-                const button = document.createElement('button');
-                button.className = 'category-btn';
-                button.dataset.category = category;
-                button.dataset.index = index;
+                // Count items in this category
+                const itemCount = menuData.items.filter(item => item.category === category.name).length;
                 
-                button.innerHTML = `
-                    <span style="display: flex; align-items: center; gap: 0.5rem;">
-                        <i class="fas fa-utensils"></i>
-                        ${category}
-                    </span>
-                `;
+                const categoryItem = document.createElement('div');
+                categoryItem.className = 'category-item';
+                categoryItem.dataset.category = category.name;
+                categoryItem.dataset.index = index;
                 
                 // Set active class for first category
                 if (index === 0) {
-                    button.classList.add('active');
+                    categoryItem.classList.add('active');
                 }
 
-                button.addEventListener('click', () => {
-                    selectCategory(category, index);
+                categoryItem.innerHTML = `
+                    <div class="category-item-icon">
+                        <i class="${category.icon}"></i>
+                    </div>
+                    <div class="category-item-text">${category.name}</div>
+                    <div class="category-count">${itemCount}</div>
+                `;
+                
+                categoryItem.addEventListener('click', () => {
+                    selectCategory(category.name, index);
                 });
 
-                elements.categoriesContent.appendChild(button);
+                elements.categoriesList.appendChild(categoryItem);
             });
-
-            // Initialize scroll buttons
-            if (elements.scrollLeftBtn && elements.scrollRightBtn) {
-                elements.scrollLeftBtn.addEventListener('click', scrollLeft);
-                elements.scrollRightBtn.addEventListener('click', scrollRight);
-            }
-
-            if (elements.mobileScrollLeft && elements.mobileScrollRight) {
-                elements.mobileScrollLeft.addEventListener('click', scrollLeft);
-                elements.mobileScrollRight.addEventListener('click', scrollRight);
-            }
-
-            // Update scroll indicators on scroll
-            elements.categoriesContainer.addEventListener('scroll', updateScrollIndicators);
-
-            // Update scroll indicators on resize
-            window.addEventListener('resize', updateScrollIndicators);
         }
 
         function selectCategory(category, index) {
@@ -3752,28 +4021,14 @@
             state.currentCategory = category;
             state.currentCategoryIndex = index;
             
-            // Update counter
-            elements.currentCategorySpan.textContent = index + 1;
-            
-            // Update active button
-            document.querySelectorAll('.category-btn').forEach(btn => {
-                btn.classList.remove('active');
+            // Update active category item
+            document.querySelectorAll('.category-item').forEach(item => {
+                item.classList.remove('active');
             });
             
-            const activeBtn = document.querySelector(`.category-btn[data-index="${index}"]`);
-            if (activeBtn) {
-                activeBtn.classList.add('active');
-                
-                // Scroll button into view if needed
-                const container = elements.categoriesContainer;
-                const btnRect = activeBtn.getBoundingClientRect();
-                const containerRect = container.getBoundingClientRect();
-                
-                if (btnRect.left < containerRect.left) {
-                    container.scrollLeft -= (containerRect.left - btnRect.left);
-                } else if (btnRect.right > containerRect.right) {
-                    container.scrollLeft += (btnRect.right - containerRect.right);
-                }
+            const activeItem = document.querySelector(`.category-item[data-index="${index}"]`);
+            if (activeItem) {
+                activeItem.classList.add('active');
             }
             
             // Filter menu items
@@ -3781,46 +4036,16 @@
             
             // Scroll to menu section
             scrollToCategory(category);
-        }
-
-        function scrollLeft() {
-            const container = elements.categoriesContainer;
-            const scrollAmount = container.clientWidth * 0.8;
-            container.scrollLeft -= scrollAmount;
-            updateScrollIndicators();
-        }
-
-        function scrollRight() {
-            const container = elements.categoriesContainer;
-            const scrollAmount = container.clientWidth * 0.8;
-            container.scrollLeft += scrollAmount;
-            updateScrollIndicators();
-        }
-
-        function updateScrollIndicators() {
-            const container = elements.categoriesContainer;
-            const scrollLeft = container.scrollLeft;
-            const maxScroll = container.scrollWidth - container.clientWidth;
             
-            // Show/hide left indicator
-            if (scrollLeft > 10) {
-                elements.scrollLeftIndicator.classList.add('visible');
-            } else {
-                elements.scrollLeftIndicator.classList.remove('visible');
+            // Close sidebar on mobile after selection
+            if (window.innerWidth <= 992) {
+                elements.categoriesSidebar.classList.remove('active');
+                elements.categoryToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                state.isCategorySidebarOpen = false;
             }
             
-            // Show/hide right indicator
-            if (scrollLeft < maxScroll - 10) {
-                elements.scrollRightIndicator.classList.add('visible');
-            } else {
-                elements.scrollRightIndicator.classList.remove('visible');
-            }
-            
-            // Update mobile button states
-            if (elements.mobileScrollLeft && elements.mobileScrollRight) {
-                elements.mobileScrollLeft.disabled = scrollLeft <= 10;
-                elements.mobileScrollRight.disabled = scrollLeft >= maxScroll - 10;
-            }
+            // Show toast notification
+            showToast(`Viewing ${category}`, 'info');
         }
 
         function initializeMenuSystem() {
@@ -3937,7 +4162,7 @@
                 <div class="menu-item-img">
                     <img src="${item.image}" alt="${name}" loading="lazy" 
                          onload="this.classList.remove('img-loading')"
-                         onerror="this.src='https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg'; this.onerror=null;">
+                         onerror="handleImageError(this)">
                     ${item.popular ? '<span class="popular-badge"><i class="fas fa-crown"></i> Popular</span>' : ''}
                 </div>
                 <div class="menu-item-content">
@@ -3978,8 +4203,7 @@
             const menuSection = document.getElementById('menu');
             if (menuSection) {
                 const headerHeight = elements.header.offsetHeight;
-                const categoriesHeight = elements.categoriesNav.offsetHeight;
-                const offset = headerHeight + categoriesHeight + 20;
+                const offset = headerHeight + 40;
                 const targetPosition = menuSection.offsetTop - offset;
 
                 window.scrollTo({
@@ -4001,15 +4225,12 @@
                 if (currentScrollY > 100) {
                     if (scrollDirection === 'down' && currentScrollY - lastScrollY > 5) {
                         elements.header.style.transform = 'translateY(-100%)';
-                        elements.categoriesNav.style.transform = 'translateY(-100%)';
                     } else {
                         elements.header.style.transform = 'translateY(0)';
-                        elements.categoriesNav.style.transform = 'translateY(0)';
                     }
                     elements.header.classList.add('scrolled');
                 } else {
                     elements.header.style.transform = 'translateY(0)';
-                    elements.categoriesNav.style.transform = 'translateY(0)';
                     elements.header.classList.remove('scrolled');
                 }
 
@@ -4038,7 +4259,6 @@
                 // Set timeout to show header after scrolling stops
                 scrollTimeout = setTimeout(() => {
                     elements.header.style.transform = 'translateY(0)';
-                    elements.categoriesNav.style.transform = 'translateY(0)';
                 }, 1500);
             });
 
@@ -4216,25 +4436,35 @@
                             if (b.dataset.lang === lang) {
                                 b.style.background = 'var(--color-gold)';
                                 b.style.color = 'var(--color-burgundy)';
+                                b.classList.add('active');
                             } else {
                                 b.style.background = 'transparent';
                                 b.style.color = 'var(--color-white)';
+                                b.classList.remove('active');
                             }
                         });
                         
                         // Update state
                         state.currentLanguage = lang;
                         
-                        // Update UI direction
-                        document.body.classList.toggle('rtl', lang === 'ar');
-                        document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';
+                        // Update document direction
+                        document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+                        document.documentElement.lang = lang;
                         
-                        // Update text alignment
+                        // Update body classes
+                        document.body.classList.toggle('rtl', lang === 'ar');
+                        
+                        // Update CSS variables for RTL
                         if (lang === 'ar') {
-                            document.body.style.textAlign = 'right';
+                            document.documentElement.style.setProperty('--text-direction', 'rtl');
+                            document.documentElement.style.setProperty('--text-align', 'right');
                         } else {
-                            document.body.style.textAlign = 'left';
+                            document.documentElement.style.setProperty('--text-direction', 'ltr');
+                            document.documentElement.style.setProperty('--text-align', 'left');
                         }
+                        
+                        // Update text content based on language
+                        updateTextContent(lang);
                         
                         // Re-render menu items
                         renderMenuItems();
@@ -4244,6 +4474,32 @@
                     }
                 });
             });
+        }
+
+        function updateTextContent(lang) {
+            // Update static text elements
+            const textUpdates = {
+                'en': {
+                    'menu-title': 'Menu',
+                    'menu-subtitle': 'Explore our premium categories',
+                    'time-notice-title': 'Important Notice',
+                    'time-notice-text': 'Breakfast items, sandwiches, burgers & salads are available from 8:00 AM to 3:00 PM only.'
+                },
+                'ar': {
+                    'menu-title': 'القائمة',
+                    'menu-subtitle': 'استكشف فئاتنا المميزة',
+                    'time-notice-title': 'ملاحظة مهمة',
+                    'time-notice-text': 'أصناف الإفطار، الساندويتشات، البرجر والسلطات متوفرة من الساعة 8:00 صباحاً حتى 3:00 مساءً فقط.'
+                }
+            };
+            
+            const updates = textUpdates[lang];
+            for (const [id, text] of Object.entries(updates)) {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.textContent = text;
+                }
+            }
         }
 
         function initializeAnimations() {
@@ -4286,7 +4542,7 @@
             }
 
             const toast = document.createElement('div');
-            toast.className = 'custom-toast fade-in';
+            toast.className = 'custom-toast';
             
             // Set colors based on type
             let bgColor, textColor, icon;
@@ -4302,8 +4558,8 @@
                     icon = 'fas fa-exclamation-circle';
                     break;
                 case 'info':
-                    bgColor = 'linear-gradient(135deg, #3498db, #2980b9)';
-                    textColor = 'white';
+                    bgColor = 'linear-gradient(135deg, var(--color-burgundy), var(--color-burgundy-dark))';
+                    textColor = 'var(--color-gold)';
                     icon = 'fas fa-info-circle';
                     break;
                 default:
@@ -4312,28 +4568,8 @@
                     icon = 'fas fa-info-circle';
             }
 
-            toast.style.cssText = `
-                position: fixed;
-                bottom: 30px;
-                left: 50%;
-                transform: translateX(-50%);
-                background: ${bgColor};
-                color: ${textColor};
-                padding: 1.2rem 2rem;
-                border-radius: 15px;
-                box-shadow: var(--shadow-heavy);
-                z-index: 10000;
-                animation: slideUp 0.3s ease;
-                display: flex;
-                align-items: center;
-                gap: 1rem;
-                max-width: 90%;
-                width: auto;
-                min-width: 300px;
-                border: 2px solid var(--color-gold);
-                font-weight: 600;
-                font-size: 1.1rem;
-            `;
+            toast.style.background = bgColor;
+            toast.style.color = textColor;
             
             toast.innerHTML = `
                 <i class="${icon}" style="font-size: 1.3rem;"></i>
@@ -4352,21 +4588,6 @@
             }, 4000);
         }
 
-        // Add CSS for toast animations
-        const toastStyles = document.createElement('style');
-        toastStyles.textContent = `
-            @keyframes slideUp {
-                from { transform: translateX(-50%) translateY(100%); opacity: 0; }
-                to { transform: translateX(-50%) translateY(0); opacity: 1; }
-            }
-            
-            @keyframes slideDown {
-                from { transform: translateX(-50%) translateY(0); opacity: 1; }
-                to { transform: translateX(-50%) translateY(100%); opacity: 0; }
-            }
-        `;
-        document.head.appendChild(toastStyles);
-
         // Utility Functions
         function debounce(func, wait) {
             let timeout;
@@ -4380,109 +4601,20 @@
             };
         }
 
-        function throttle(func, limit) {
-            let inThrottle;
-            return function() {
-                const args = arguments;
-                const context = this;
-                if (!inThrottle) {
-                    func.apply(context, args);
-                    inThrottle = true;
-                    setTimeout(() => inThrottle = false, limit);
-                }
-            };
-        }
-
-        // Add mobile menu close on outside click
-        document.addEventListener('click', (e) => {
-            if (state.isMenuOpen && 
-                !elements.mainNav.contains(e.target) && 
-                !elements.mobileMenuBtn.contains(e.target)) {
-                elements.mainNav.classList.remove('active');
-                elements.mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-                elements.mobileMenuBtn.style.background = 'none';
-                elements.mobileMenuBtn.style.color = 'var(--color-burgundy)';
-                state.isMenuOpen = false;
-            }
-        });
-
-        // Add keyboard navigation for accessibility
-        document.addEventListener('keydown', (e) => {
-            // Tab navigation - add focus styles
-            if (e.key === 'Tab') {
-                document.body.classList.add('keyboard-navigation');
-            }
-        });
-
-        document.addEventListener('click', () => {
-            document.body.classList.remove('keyboard-navigation');
-        });
-
-        // Add keyboard navigation styles
-        const keyboardStyles = document.createElement('style');
-        keyboardStyles.textContent = `
-            .keyboard-navigation :focus {
-                outline: 3px solid var(--color-gold) !important;
-                outline-offset: 2px !important;
-            }
-            
-            .keyboard-navigation .menu-item:focus {
-                transform: translateY(-5px) !important;
-                box-shadow: var(--shadow-heavy) !important;
-            }
-        `;
-        document.head.appendChild(keyboardStyles);
-
-        // Handle image loading errors
-        document.addEventListener('error', (e) => {
-            if (e.target.tagName === 'IMG') {
-                e.target.src = 'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg';
-                e.target.onerror = null; // Prevent infinite loop
-            }
-        }, true);
-
-        // Performance monitoring
-        if ('PerformanceObserver' in window) {
+        // Safe execute function with error boundary
+        function safeExecute(fn, fallback) {
             try {
-                const observer = new PerformanceObserver((list) => {
-                    for (const entry of list.getEntries()) {
-                        if (entry.duration > 100) {
-                            console.warn(`${entry.name} took ${entry.duration}ms`);
-                        }
-                    }
-                });
-                observer.observe({ entryTypes: ['paint', 'largest-contentful-paint', 'layout-shift', 'longtask'] });
-            } catch (e) {
-                console.log('Performance monitoring not supported');
+                return fn();
+            } catch (error) {
+                console.error('Error:', error);
+                if (typeof fallback === 'function') {
+                    return fallback();
+                }
+                return fallback;
             }
         }
 
-        // Offline detection
-        window.addEventListener('online', updateOnlineStatus);
-        window.addEventListener('offline', updateOnlineStatus);
-
-        function updateOnlineStatus() {
-            if (!navigator.onLine) {
-                showToast('You are offline. Some features may be unavailable.', 'error');
-            } else {
-                showToast('You are back online!', 'success');
-            }
-        }
-
-        // Check if page is being loaded from cache
-        window.addEventListener('pageshow', (event) => {
-            if (event.persisted) {
-                console.log('Page loaded from cache');
-                // Refresh any dynamic content if needed
-            }
-        });
-
-        // Prevent form resubmission on page refresh
-        if (window.history.replaceState) {
-            window.history.replaceState(null, null, window.location.href);
-        }
-
-        // Initialize current time for time-restricted items
+        // Check time-restricted items
         function checkTimeRestrictedItems() {
             const now = new Date();
             const currentHour = now.getHours();
@@ -4512,9 +4644,63 @@
             }
         }
 
+        // Add mobile menu close on outside click
+        document.addEventListener('click', (e) => {
+            if (state.isMenuOpen && 
+                !elements.mainNav.contains(e.target) && 
+                !elements.mobileMenuBtn.contains(e.target)) {
+                elements.mainNav.classList.remove('active');
+                elements.mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                elements.mobileMenuBtn.style.background = 'none';
+                elements.mobileMenuBtn.style.color = 'var(--color-burgundy)';
+                state.isMenuOpen = false;
+            }
+            
+            // Close category sidebar on outside click on mobile
+            if (state.isCategorySidebarOpen && 
+                window.innerWidth <= 992 &&
+                !elements.categoriesSidebar.contains(e.target) &&
+                !elements.categoryToggle.contains(e.target)) {
+                elements.categoriesSidebar.classList.remove('active');
+                elements.categoryToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                state.isCategorySidebarOpen = false;
+            }
+        });
+
+        // Add keyboard navigation for accessibility
+        document.addEventListener('keydown', (e) => {
+            // Tab navigation - add focus styles
+            if (e.key === 'Tab') {
+                document.body.classList.add('keyboard-navigation');
+            }
+        });
+
+        document.addEventListener('click', () => {
+            document.body.classList.remove('keyboard-navigation');
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            // Auto-open sidebar on larger screens
+            if (window.innerWidth > 992 && !state.isCategorySidebarOpen) {
+                elements.categoriesSidebar.classList.add('active');
+                state.isCategorySidebarOpen = true;
+            }
+        });
+
         // Check time on load and every minute
         checkTimeRestrictedItems();
         setInterval(checkTimeRestrictedItems, 60000); // Check every minute
+
+        // Initialize image error handling globally
+        document.addEventListener('error', (e) => {
+            if (e.target.tagName === 'IMG') {
+                handleImageError(e.target);
+            }
+        }, true);
+
+        // Expose handleImageError globally
+        window.handleImageError = handleImageError;
     </script>
 </body>
 </html>
