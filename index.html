@@ -2,8 +2,8 @@
 <html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Turkiana Cafe & Sweets | Turkish & Arabic Experience in Doha, Qatar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Turkiana Cafe & Sweets | Luxury Turkish & Arabic Experience in Doha, Qatar</title>
     <meta name="description" content="Luxury Turkish coffee, authentic baklava & premium Arabic delights at Turkiana Cafe in Doha. Experience opulence in every sip and bite.">
     
     <!-- Preload Critical Resources -->
@@ -96,9 +96,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700&family=Cairo:wght@400;500;600;700&display=swap" 
           rel="stylesheet">
     
-    <!-- Inline Critical CSS -->
+    <!-- Critical CSS (Inline) -->
     <style>
-        /* ===== CRITICAL CSS - ABOVE THE FOLD ===== */
+        /* ===== CRITICAL CSS ===== */
         :root {
             --color-burgundy: #8B0000;
             --color-burgundy-dark: #5A0000;
@@ -133,6 +133,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         html {
@@ -147,7 +148,6 @@
             background: var(--color-white);
             overflow-x: hidden;
             min-height: 100vh;
-            opacity: 1 !important;
             direction: var(--text-direction);
             text-align: var(--text-align);
         }
@@ -157,35 +157,28 @@
             --text-align: right;
         }
 
-        .skeleton {
-            animation: skeleton-loading 1.5s infinite;
-            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-            background-size: 200% 100%;
-        }
-
-        @keyframes skeleton-loading {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
-        }
-
-        /* ===== ABOVE THE FOLD STYLES ===== */
-        #above-the-fold {
-            min-height: 100vh;
-            position: relative;
-            background: var(--color-black);
-        }
-
-        .hero-video {
+        /* Skip to content */
+        .skip-to-content {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.7;
+            top: -40px;
+            left: 16px;
+            background: var(--color-burgundy);
+            color: var(--color-gold);
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            z-index: 9999;
+            border: 2px solid var(--color-gold);
         }
 
-        .loading-overlay {
+        .skip-to-content:focus {
+            top: 16px;
+            outline: 3px solid var(--color-gold);
+        }
+
+        /* Loading Overlay */
+        #loading-overlay {
             position: fixed;
             top: 0;
             left: 0;
@@ -193,6 +186,7 @@
             height: 100%;
             background: var(--color-black);
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             z-index: 9999;
@@ -206,27 +200,185 @@
             border-top-color: var(--color-burgundy);
             border-radius: 50%;
             animation: spin 1s linear infinite;
+            margin-bottom: 20px;
         }
 
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
 
-        /* VIP Style Enhancements */
-        .vip-border {
-            border: 2px solid var(--color-gold);
+        @keyframes skeleton-loading {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        /* Header */
+        #header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            border-bottom: 2px solid var(--color-gold);
+        }
+
+        .header-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--color-burgundy);
+            gap: 15px;
+        }
+
+        .logo-icon {
+            font-size: 2.5rem;
+            color: var(--color-gold);
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
             position: relative;
         }
 
-        .vip-border::before {
-            content: '';
+        .logo-text {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+
+        .logo-subtext {
+            font-size: 0.9rem;
+            letter-spacing: 4px;
+            color: var(--color-gold);
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        /* Header Controls */
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .theme-toggle {
+            width: 48px;
+            height: 48px;
+            background: var(--color-burgundy);
+            border-radius: 50%;
+            border: 2px solid var(--color-gold);
+            color: var(--color-gold);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-fast);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-gold);
+        }
+
+        .mobile-menu-btn {
+            width: 48px;
+            height: 48px;
+            background: var(--color-burgundy);
+            border-radius: 50%;
+            border: 2px solid var(--color-gold);
+            color: var(--color-gold);
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-fast);
+        }
+
+        .mobile-menu-btn:hover {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-gold);
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 20px;
+            background: linear-gradient(135deg, var(--color-off-white), var(--color-white));
+            border-bottom: 1px solid var(--color-gold);
+            margin-top: 80px;
+            border-left: 4px solid var(--color-burgundy);
+        }
+
+        .breadcrumb a {
+            color: var(--color-burgundy);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--color-gold);
+        }
+
+        .breadcrumb-separator {
+            color: var(--color-gold);
+        }
+
+        .breadcrumb-current {
+            color: var(--color-burgundy);
+            font-weight: 700;
+        }
+
+        /* Hero Section */
+        #hero {
+            min-height: 100vh;
+            position: relative;
+            background: var(--color-black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-video {
             position: absolute;
-            top: -5px;
-            left: -5px;
-            right: -5px;
-            bottom: -5px;
-            border: 1px solid var(--color-burgundy);
-            z-index: -1;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.7;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: var(--color-white);
+            padding: 20px;
+            max-width: 800px;
+        }
+
+        .hero-title {
+            font-family: var(--font-heading);
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
 
         .royal-text {
@@ -237,7 +389,188 @@
             font-weight: 900;
         }
 
-        /* NEW LARGE FIXED CATEGORIES STYLES */
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            margin-bottom: 2rem;
+            color: var(--color-gold);
+            font-weight: 600;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .hero-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(to right, var(--color-burgundy), var(--color-burgundy-dark));
+            color: var(--color-white);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 2px solid var(--color-gold);
+            box-shadow: var(--shadow-gold);
+        }
+
+        .hero-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(139, 0, 0, 0.4);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 320px;
+            background: linear-gradient(180deg, var(--color-black), var(--color-burgundy-dark));
+            z-index: 1001;
+            transform: translateX(100%);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-left: 4px solid var(--color-gold);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-menu-header {
+            padding: 24px;
+            border-bottom: 2px solid var(--color-gold);
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .mobile-menu-close {
+            width: 48px;
+            height: 48px;
+            background: var(--color-burgundy);
+            border-radius: 50%;
+            border: 2px solid var(--color-gold);
+            color: var(--color-gold);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-fast);
+        }
+
+        .mobile-menu-close:hover {
+            transform: rotate(90deg);
+            background: var(--color-gold);
+            color: var(--color-burgundy);
+        }
+
+        .mobile-menu-nav {
+            padding: 32px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            flex: 1;
+        }
+
+        .mobile-nav-link {
+            padding: 16px 24px;
+            background: linear-gradient(135deg, rgba(139, 0, 0, 0.3), rgba(90, 0, 0, 0.5));
+            border-radius: 12px;
+            color: var(--color-gold);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+            border: 2px solid var(--color-gold);
+            transition: all var(--transition-fast);
+        }
+
+        .mobile-nav-link:hover {
+            background: var(--color-gold);
+            color: var(--color-burgundy);
+            transform: translateX(10px);
+        }
+
+        body[dir="rtl"] .mobile-nav-link:hover {
+            transform: translateX(-10px);
+        }
+
+        /* Main Navigation */
+        .main-nav {
+            display: flex;
+        }
+
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .main-nav a {
+            text-decoration: none;
+            color: var(--color-burgundy);
+            font-weight: 700;
+            position: relative;
+            padding: 0.5rem 0;
+            font-size: 1.1rem;
+            transition: color var(--transition-fast);
+        }
+
+        .main-nav a:hover {
+            color: var(--color-gold);
+        }
+
+        .main-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-gold);
+            transition: width var(--transition-fast);
+        }
+
+        .main-nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Language Switcher */
+        .language-switcher {
+            display: flex;
+            gap: 0.5rem;
+            background: var(--color-burgundy);
+            padding: 0.25rem;
+            border-radius: 50px;
+            border: 1px solid var(--color-gold);
+        }
+
+        .lang-btn {
+            background: transparent;
+            color: var(--color-white);
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+
+        .lang-btn.active {
+            background: var(--color-gold);
+            color: var(--color-burgundy);
+        }
+
+        /* Main Content */
+        .main-content-with-sidebar {
+            margin-left: 320px;
+            min-height: 100vh;
+        }
+
+        body[dir="rtl"] .main-content-with-sidebar {
+            margin-left: 0;
+            margin-right: 320px;
+        }
+
+        /* Category Sidebar */
         .categories-sidebar {
             position: fixed;
             top: 100px;
@@ -335,23 +668,6 @@
             transform: translateX(-10px);
         }
 
-        .category-item.active::before {
-            content: '';
-            position: absolute;
-            left: -10px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 6px;
-            height: 60%;
-            background: var(--color-burgundy);
-            border-radius: 3px;
-        }
-
-        body[dir="rtl"] .category-item.active::before {
-            left: auto;
-            right: -10px;
-        }
-
         .category-item-icon {
             font-size: 1.3rem;
             width: 40px;
@@ -420,7 +736,7 @@
             line-height: 1.4;
         }
 
-        /* Mobile category toggle button */
+        /* Category Toggle Button */
         .category-toggle-btn {
             position: fixed;
             top: 100px;
@@ -451,931 +767,178 @@
             box-shadow: var(--shadow-gold);
         }
 
-        /* Adjust main content margin for sidebar */
-        .main-content-with-sidebar {
-            margin-left: 320px;
-            padding-top: 100px;
-            min-height: 100vh;
-        }
-
-        body[dir="rtl"] .main-content-with-sidebar {
-            margin-left: 0;
-            margin-right: 320px;
-        }
-
-        @media (max-width: 1200px) {
-            .categories-sidebar {
-                width: 280px;
-            }
-            
-            .main-content-with-sidebar {
-                margin-left: 280px;
-            }
-            
-            body[dir="rtl"] .main-content-with-sidebar {
-                margin-left: 0;
-                margin-right: 280px;
-            }
-            
-            .category-item {
-                padding: 1rem 1.2rem;
-                font-size: 1.1rem;
-            }
-        }
-
-        @media (max-width: 992px) {
-            .categories-sidebar {
-                transform: translateX(-100%);
-                transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                width: 300px;
-                height: calc(100vh - 80px);
-                top: 80px;
-            }
-            
-            body[dir="rtl"] .categories-sidebar {
-                transform: translateX(100%);
-                left: auto;
-                right: 0;
-            }
-            
-            .categories-sidebar.active {
-                transform: translateX(0);
-            }
-            
-            body[dir="rtl"] .categories-sidebar.active {
-                transform: translateX(0);
-            }
-            
-            .main-content-with-sidebar {
-                margin-left: 0;
-                margin-right: 0;
-            }
-            
-            .category-toggle-btn {
-                display: flex;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .categories-sidebar {
-                width: 280px;
-                padding: 1.5rem 1rem;
-            }
-            
-            .categories-header h2 {
-                font-size: 1.8rem;
-            }
-            
-            .category-item {
-                padding: 1rem;
-                font-size: 1rem;
-            }
-            
-            .category-toggle-btn {
-                top: 90px;
-                left: 15px;
-                width: 50px;
-                height: 50px;
-                font-size: 1.3rem;
-            }
-            
-            body[dir="rtl"] .category-toggle-btn {
-                left: auto;
-                right: 15px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .categories-sidebar {
-                width: 260px;
-            }
-            
-            .category-item {
-                padding: 0.8rem;
-                font-size: 0.95rem;
-            }
-            
-            .category-item-icon {
-                width: 35px;
-                height: 35px;
-                font-size: 1.1rem;
-            }
-        }
-
-        /* Keyboard navigation */
-        .keyboard-navigation :focus {
-            outline: 3px solid var(--color-gold) !important;
-            outline-offset: 2px !important;
-        }
-        
-        .keyboard-navigation .menu-item:focus {
-            transform: translateY(-5px) !important;
-            box-shadow: var(--shadow-heavy) !important;
-        }
-
-        /* Toast notifications */
-        .custom-toast {
-            position: fixed !important;
-            bottom: 30px !important;
-            left: 50% !important;
-            transform: translateX(-50%) !important;
-            background: linear-gradient(135deg, var(--color-burgundy), var(--color-burgundy-dark)) !important;
-            color: var(--color-gold) !important;
-            padding: 1.2rem 2rem !important;
-            border-radius: 15px !important;
-            box-shadow: var(--shadow-heavy) !important;
-            z-index: 10000 !important;
-            animation: slideUp 0.3s ease !important;
-            display: flex !important;
-            align-items: center !important;
-            gap: 1rem !important;
-            max-width: 90% !important;
-            width: auto !important;
-            min-width: 300px !important;
-            border: 2px solid var(--color-gold) !important;
-            font-weight: 600 !important;
-            font-size: 1.1rem !important;
-        }
-
-        @keyframes slideUp {
-            from { transform: translateX(-50%) translateY(100%); opacity: 0; }
-            to { transform: translateX(-50%) translateY(0); opacity: 1; }
-        }
-        
-        @keyframes slideDown {
-            from { transform: translateX(-50%) translateY(0); opacity: 1; }
-            to { transform: translateX(-50%) translateY(100%); opacity: 0; }
-        }
-
-        /* Mobile menu styles */
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.8rem;
-            color: var(--color-burgundy);
-            cursor: pointer;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            border: 2px solid var(--color-gold);
-            z-index: 1001;
+        /* Sections */
+        .section {
+            padding: 6rem 0;
             position: relative;
+            overflow: hidden;
         }
 
-        @media (max-width: 992px) {
-            .mobile-menu-btn {
-                display: block !important;
-            }
-            
-            .main-nav.active {
-                transform: translateY(0) !important;
-                opacity: 1 !important;
-                visibility: visible !important;
-            }
-        }
-
-        /* Image loading states */
-        .img-loading {
-            background: linear-gradient(90deg, var(--color-off-white) 25%, var(--color-light-gray) 50%, var(--color-off-white) 75%);
-            background-size: 200% 100%;
-            animation: skeleton-loading 1.5s infinite;
-        }
-    </style>
-</head>
-<body>
-    <!-- Loading Overlay -->
-    <div class="loading-overlay" id="loading-overlay">
-        <div class="loader"></div>
-    </div>
-
-    <!-- Above the Fold Content -->
-    <div id="above-the-fold">
-        <video class="hero-video" autoplay muted loop playsinline preload="metadata" 
-               poster="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg">
-            <source src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Video.mp4" type="video/mp4">
-        </video>
-        
-        <div class="hero-content" style="position: relative; z-index: 2; height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; color: var(--color-white); padding: 20px;">
-            <div>
-                <h1 style="font-family: var(--font-heading); font-size: clamp(2.5rem, 5vw, 4.5rem); margin-bottom: 1rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
-                    <span class="royal-text">Luxury Turkish & Arabic Delights</span>
-                </h1>
-                <p style="font-size: clamp(1rem, 2vw, 1.5rem); margin-bottom: 2rem; color: var(--color-gold); font-weight: 600; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">Experience Authentic Taste in Doha</p>
-                <a href="#menu" style="display: inline-block; background: linear-gradient(to right, var(--color-burgundy), var(--color-burgundy-dark)); color: var(--color-white); padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s; border: 2px solid var(--color-gold); box-shadow: var(--shadow-gold);" 
-                   onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 10px 25px rgba(139, 0, 0, 0.4)'" 
-                   onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='var(--shadow-gold)'">
-                   <i class="fas fa-crown" style="margin-right: 10px;"></i>Explore Our Menu
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Mobile Category Toggle Button -->
-    <button class="category-toggle-btn" id="category-toggle">
-        <i class="fas fa-bars"></i>
-    </button>
-
-    <!-- Large Fixed Categories Sidebar -->
-    <div class="categories-sidebar" id="categories-sidebar">
-        <div class="categories-header">
-            <h2>
-                <i class="fas fa-crown"></i>
-                <span id="menu-title">Menu</span>
-            </h2>
-            <p id="menu-subtitle">Explore our Categories</p>
-        </div>
-        
-        <div class="categories-list" id="categories-list">
-            <!-- Categories will be populated here -->
-        </div>
-        
-        <div class="category-time-notice">
-            <h4><i class="fas fa-clock"></i> <span id="time-notice-title">Important Notice</span></h4>
-            <p id="time-notice-text">Breakfast, Sandwiches, Croissants, Burgers & Salads are available from 8:00 AM to 3:00 PM only.</p>
-        </div>
-    </div>
-
-    <!-- Main Content (Loaded After Initial Render) -->
-    <div id="main-content" style="display: none;">
-        <!-- Header -->
-        <header id="header" style="position: fixed; top: 0; width: 100%; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); z-index: 1000; box-shadow: 0 2px 20px rgba(0,0,0,0.1); border-bottom: 2px solid var(--color-gold);">
-            <div class="container" style="max-width: 1400px; margin: 0 auto; padding: 0 20px;">
-                <div class="header-inner" style="display: flex; justify-content: space-between; align-items: center; padding: 1rem 0;">
-                    <a href="#" class="logo" style="display: flex; align-items: center; text-decoration: none; color: var(--color-burgundy);">
-                        <div style="position: relative;">
-                            <i class="fas fa-crown" style="font-size: 2.5rem; color: var(--color-gold); margin-right: 15px; text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);"></i>
-                            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, rgba(255,215,0,0.3) 0%, transparent 70%); border-radius: 50%;"></div>
-                        </div>
-                        <div>
-                            <div style="font-family: var(--font-heading); font-size: 2.2rem; font-weight: 900; letter-spacing: 1px;">Turkiana</div>
-                            <div style="font-size: 0.9rem; letter-spacing: 4px; color: var(--color-gold); font-weight: 700; text-transform: uppercase;">CAFE & SWEETS</div>
-                        </div>
-                    </a>
-                    
-                    <nav class="main-nav">
-                        <ul style="display: flex; list-style: none; gap: 2.5rem; align-items: center;">
-                            <li><a href="#home" style="text-decoration: none; color: var(--color-burgundy); font-weight: 700; position: relative; padding: 0.5rem 0; font-size: 1.1rem;">Home</a></li>
-                            <li><a href="#menu" style="text-decoration: none; color: var(--color-burgundy); font-weight: 700; position: relative; padding: 0.5rem 0; font-size: 1.1rem;">Menu</a></li>
-                            <li><a href="#about" style="text-decoration: none; color: var(--color-burgundy); font-weight: 700; position: relative; padding: 0.5rem 0; font-size: 1.1rem;">About</a></li>
-                            <li><a href="#contact" style="text-decoration: none; color: var(--color-burgundy); font-weight: 700; position: relative; padding: 0.5rem 0; font-size: 1.1rem;">Contact</a></li>
-                            <li>
-                                <div class="language-switcher" style="display: flex; gap: 0.5rem; background: var(--color-burgundy); padding: 0.25rem; border-radius: 50px; border: 1px solid var(--color-gold);">
-                                    <button class="lang-btn active" data-lang="en" style="background: var(--color-gold); color: var(--color-burgundy); border: none; padding: 0.5rem 1.5rem; border-radius: 50px; cursor: pointer; font-weight: 700; transition: all 0.3s;">EN</button>
-                                    <button class="lang-btn" data-lang="ar" style="background: transparent; color: var(--color-white); border: none; padding: 0.5rem 1.5rem; border-radius: 50px; cursor: pointer; font-weight: 700; transition: all 0.3s;">AR</button>
-                                </div>
-                            </li>
-                        </ul>
-                    </nav>
-                    
-                    <button class="mobile-menu-btn" style="width: 50px; height: 50px;">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                </div>
-            </div>
-        </header>
-
-        <!-- Main Sections Wrapper -->
-        <div class="main-content-with-sidebar" id="main-content-wrapper">
-            <!-- Features Section -->
-            <section id="features" class="section" style="padding: 6rem 0; background: linear-gradient(135deg, var(--color-off-white) 0%, #fff 100%); position: relative; overflow: hidden;">
-                <div class="container" style="max-width: 1400px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1;">
-                    <h2 class="section-title" style="text-align: center; margin-bottom: 4rem; font-family: var(--font-heading); font-size: 3rem; color: var(--color-burgundy); position: relative; display: inline-block; left: 50%; transform: translateX(-50%);">
-                        <span class="royal-text">Why Choose Turkiana</span>
-                        <div style="position: absolute; bottom: -10px; left: 0; width: 100%; height: 3px; background: linear-gradient(to right, transparent, var(--color-gold), transparent);"></div>
-                    </h2>
-                    <div class="features-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem;">
-                        <div class="feature-card vip-border" style="background: var(--color-white); padding: 2.5rem; border-radius: 15px; text-align: center; transition: transform 0.3s, box-shadow 0.3s;" 
-                             onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='var(--shadow-heavy)'" 
-                             onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                            <div style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--color-burgundy), var(--color-burgundy-dark)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; border: 3px solid var(--color-gold);">
-                                <i class="fas fa-award" style="font-size: 2rem; color: var(--color-gold);"></i>
-                            </div>
-                            <h3 style="color: var(--color-burgundy); margin-bottom: 1rem; font-family: var(--font-heading); font-size: 1.5rem;">Premium Quality</h3>
-                            <p style="color: var(--color-gray); line-height: 1.8;">Finest ingredients sourced from Turkey and the Middle East for authentic taste.</p>
-                        </div>
-                        <div class="feature-card vip-border" style="background: var(--color-white); padding: 2.5rem; border-radius: 15px; text-align: center; transition: transform 0.3s, box-shadow 0.3s;" 
-                             onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='var(--shadow-heavy)'" 
-                             onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                            <div style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--color-burgundy), var(--color-burgundy-dark)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; border: 3px solid var(--color-gold);">
-                                <i class="fas fa-crown" style="font-size: 2rem; color: var(--color-gold);"></i>
-                            </div>
-                            <h3 style="color: var(--color-burgundy); margin-bottom: 1rem; font-family: var(--font-heading); font-size: 1.5rem;">Luxury Experience</h3>
-                            <p style="color: var(--color-gray); line-height: 1.8;">Opulent ambiance with Turkish and Arabic hospitality.</p>
-                        </div>
-                        <div class="feature-card vip-border" style="background: var(--color-white); padding: 2.5rem; border-radius: 15px; text-align: center; transition: transform 0.3s, box-shadow 0.3s;" 
-                             onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='var(--shadow-heavy)'" 
-                             onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                            <div style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--color-burgundy), var(--color-burgundy-dark)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; border: 3px solid var(--color-gold);">
-                                <i class="fas fa-star" style="font-size: 2rem; color: var(--color-gold);"></i>
-                            </div>
-                            <h3 style="color: var(--color-burgundy); margin-bottom: 1rem; font-family: var(--font-heading); font-size: 1.5rem;">Authentic Taste</h3>
-                            <p style="color: var(--color-gray); line-height: 1.8;">Traditional recipes passed down through generations.</p>
-                        </div>
-                    </div>
-                </div>
-                <div style="position: absolute; top: 0; right: 0; width: 300px; height: 300px; background: radial-gradient(circle, rgba(139,0,0,0.1) 0%, transparent 70%); border-radius: 50%;"></div>
-                <div style="position: absolute; bottom: 0; left: 0; width: 400px; height: 400px; background: radial-gradient(circle, rgba(255,215,0,0.05) 0%, transparent 70%); border-radius: 50%;"></div>
-            </section>
-
-            <!-- Menu Section -->
-            <section id="menu" class="section" style="padding: 6rem 0; background: var(--color-white); position: relative;">
-                <div class="container" style="max-width: 1400px; margin: 0 auto; padding: 0 20px;">
-                    <h2 class="section-title" style="text-align: center; margin-bottom: 4rem; font-family: var(--font-heading); font-size: 3rem; color: var(--color-burgundy); position: relative; display: inline-block; left: 50%; transform: translateX(-50%);">
-                        <span class="royal-text">Royal Menu</span>
-                        <div style="position: absolute; bottom: -10px; left: 0; width: 100%; height: 3px; background: linear-gradient(to right, transparent, var(--color-gold), transparent);"></div>
-                    </h2>
-                    
-                    <div class="menu-search" style="max-width: 800px; margin: 0 auto 4rem; position: relative;">
-                        <div style="position: relative;">
-                            <input type="text" id="menu-search" placeholder="Search for exquisite dishes, drinks, or desserts..." 
-                                   style="width: 100%; padding: 1.2rem 1.2rem 1.2rem 4rem; border: 3px solid var(--color-burgundy); border-radius: 50px; font-size: 1.1rem; background: var(--color-off-white); color: var(--color-black); transition: all 0.3s; box-shadow: var(--shadow-light);"
-                                   onfocus="this.style.borderColor='var(--color-gold)'; this.style.boxShadow='var(--shadow-gold)'"
-                                   onblur="this.style.borderColor='var(--color-burgundy)'; this.style.boxShadow='var(--shadow-light)'">
-                            <i class="fas fa-search" style="position: absolute; left: 1.5rem; top: 50%; transform: translateY(-50%); color: var(--color-burgundy); font-size: 1.2rem;"></i>
-                            <button id="clear-search" style="position: absolute; right: 1.5rem; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--color-burgundy); cursor: pointer; display: none;">
-                                <i class="fas fa-times"></i>
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <div class="menu-items-grid" id="menu-items" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem;">
-                        <!-- Menu items populated by JS -->
-                    </div>
-
-                    <!-- Time Notice -->
-                    <div class="time-notice" style="background: linear-gradient(135deg, var(--color-burgundy), var(--color-burgundy-dark)); padding: 1.5rem; border-radius: 15px; margin-top: 4rem; border: 3px solid var(--color-gold); box-shadow: var(--shadow-medium);">
-                        <div style="display: flex; align-items: center; justify-content: center; gap: 1rem; color: var(--color-white);">
-                            <i class="fas fa-clock" style="font-size: 1.5rem; color: var(--color-gold);"></i>
-                            <p style="font-size: 1.1rem; font-weight: 600; margin: 0; text-align: center;">
-                                <span style="color: var(--color-gold);">Note:</span> Breakfast, Sandwiches, Croissants, Burgers & Salads are available from <strong>8:00 AM to 3:00 PM only</strong>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- About Section -->
-            <section id="about" class="section" style="padding: 6rem 0; background: linear-gradient(135deg, var(--color-off-white) 0%, #fff 100%); position: relative; overflow: hidden;">
-                <div class="container" style="max-width: 1400px; margin: 0 auto; padding: 0 20px;">
-                    <div class="about-content" style="display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;">
-                        <div class="about-image" style="position: relative;">
-                            <div class="vip-border" style="border-radius: 15px; overflow: hidden; position: relative; box-shadow: var(--shadow-heavy);">
-                                <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg" alt="Turkiana Cafe Interior" 
-                                     style="width: 100%; height: 500px; object-fit: cover; transition: transform 0.5s;"
-                                     onmouseover="this.style.transform='scale(1.05)'"
-                                     onmouseout="this.style.transform='scale(1)'">
-                            </div>
-                            <div style="position: absolute; top: 20px; right: 20px; background: rgba(139, 0, 0, 0.9); color: var(--color-gold); padding: 0.75rem 1.5rem; border-radius: 50px; font-weight: 600; border: 2px solid var(--color-gold);">
-                                <i class="fas fa-star" style="margin-right: 5px;"></i> Since 2016
-                            </div>
-                        </div>
-                        <div class="about-text">
-                            <h2 style="font-family: var(--font-heading); margin-bottom: 2rem; font-size: 2.5rem; color: var(--color-burgundy);">
-                                <span class="royal-text">About Us</span>
-                            </h2>
-                            <p style="margin-bottom: 1.5rem; font-size: 1.1rem; line-height: 1.8; color: var(--color-gray);">
-                                Turkiana Cafe & Sweets represents centuries-old Turkish and Arabic culinary traditions, reimagined for Doha's cosmopolitan community. We bring the opulence of Ottoman palaces and the warmth of Arabian hospitality to every experience.
-                            </p>
-                            <div class="hours vip-border" style="background: linear-gradient(135deg, var(--color-white), var(--color-off-white)); padding: 2.5rem; border-radius: 15px; margin-top: 2.5rem; border: 3px solid var(--color-burgundy); box-shadow: var(--shadow-medium);">
-                                <h3 style="color: var(--color-burgundy); margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1.8rem; display: flex; align-items: center; gap: 1rem;">
-                                    <i class="fas fa-clock" style="color: var(--color-gold);"></i> Operation Hours
-                                </h3>
-                                <div style="display: grid; gap: 1rem;">
-                                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 0; border-bottom: 1px solid rgba(139,0,0,0.1);">
-                                        <span style="font-weight: 600; color: var(--color-burgundy);">Saturday - Wednesday:</span>
-                                        <span style="color: var(--color-black); font-weight: 600;">8:00 AM - 12:00 AM</span>
-                                    </div>
-                                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 0;">
-                                        <span style="font-weight: 600; color: var(--color-burgundy);">Thursday & Friday:</span>
-                                        <span style="color: var(--color-black); font-weight: 600;">8:00 AM - 1:00 AM</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Gallery Section -->
-            <section id="gallery" class="section" style="padding: 6rem 0; background: linear-gradient(135deg, var(--color-black), var(--color-burgundy-dark)); position: relative;">
-                <div class="container" style="max-width: 1400px; margin: 0 auto; padding: 0 20px;">
-                    <h2 class="section-title" style="text-align: center; margin-bottom: 4rem; font-family: var(--font-heading); font-size: 3rem; position: relative; display: inline-block; left: 50%; transform: translateX(-50%);">
-                        <span class="royal-text">Turkiana Gallery</span>
-                        <div style="position: absolute; bottom: -10px; left: 0; width: 100%; height: 3px; background: linear-gradient(to right, transparent, var(--color-gold), transparent);"></div>
-                    </h2>
-                    <div class="gallery-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem;">
-                        <div class="gallery-item vip-border" style="border-radius: 15px; overflow: hidden; height: 300px; cursor: pointer; border: 3px solid var(--color-gold); position: relative; transition: transform 0.3s;" 
-                             onmouseover="this.style.transform='translateY(-10px)'" 
-                             onmouseout="this.style.transform='translateY(0)'">
-                            <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/a.jpeg" alt="Turkish Coffee" loading="lazy" 
-                                 style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s;">
-                            <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); padding: 1rem; color: white;">
-                                <h4 style="margin: 0; font-family: var(--font-heading);">Turkish Coffee</h4>
-                            </div>
-                        </div>
-                        <div class="gallery-item vip-border" style="border-radius: 15px; overflow: hidden; height: 300px; cursor: pointer; border: 3px solid var(--color-gold); position: relative; transition: transform 0.3s;" 
-                             onmouseover="this.style.transform='translateY(-10px)'" 
-                             onmouseout="this.style.transform='translateY(0)'">
-                            <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/b.jpeg" alt="Baklava" loading="lazy" 
-                                 style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s;">
-                            <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); padding: 1rem; color: white;">
-                                <h4 style="margin: 0; font-family: var(--font-heading);">Baklava</h4>
-                            </div>
-                        </div>
-                        <div class="gallery-item vip-border" style="border-radius: 15px; overflow: hidden; height: 300px; cursor: pointer; border: 3px solid var(--color-gold); position: relative; transition: transform 0.3s;" 
-                             onmouseover="this.style.transform='translateY(-10px)'" 
-                             onmouseout="this.style.transform='translateY(0)'">
-                            <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/c.jpeg" alt="Kunafa" loading="lazy" 
-                                 style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s;">
-                            <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); padding: 1rem; color: white;">
-                                <h4 style="margin: 0; font-family: var(--font-heading);">Kunafa</h4>
-                            </div>
-                        </div>
-                        <div class="gallery-item vip-border" style="border-radius: 15px; overflow: hidden; height: 300px; cursor: pointer; border: 3px solid var(--color-gold); position: relative; transition: transform 0.3s;" 
-                             onmouseover="this.style.transform='translateY(-10px)'" 
-                             onmouseout="this.style.transform='translateY(0)'">
-                            <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/d.jpeg" alt="Turkish Breakfast" loading="lazy" 
-                                 style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s;">
-                            <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); padding: 1rem; color: white;">
-                                <h4 style="margin: 0; font-family: var(--font-heading);">Turkish Breakfast</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Contact Section -->
-            <section id="contact" class="section" style="padding: 6rem 0; background: var(--color-white); position: relative;">
-                <div class="container" style="max-width: 1400px; margin: 0 auto; padding: 0 20px;">
-                    <h2 class="section-title" style="text-align: center; margin-bottom: 4rem; font-family: var(--font-heading); font-size: 3rem; color: var(--color-burgundy); position: relative; display: inline-block; left: 50%; transform: translateX(-50%);">
-                        <span class="royal-text">Visit Our Turkish Vibe</span>
-                        <div style="position: absolute; bottom: -10px; left: 0; width: 100%; height: 3px; background: linear-gradient(to right, transparent, var(--color-gold), transparent);"></div>
-                    </h2>
-                    
-                    <div class="contact-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;">
-                        <div class="contact-info">
-                            <h3 style="margin-bottom: 2rem; font-family: var(--font-heading); font-size: 2rem; color: var(--color-burgundy);">
-                                <span class="royal-text">Experience Modern Turkish Way</span>
-                            </h3>
-                            
-                            <div class="contact-details" style="margin: 3rem 0;">
-                                <div class="contact-item vip-border" style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2.5rem; padding: 1.5rem; background: linear-gradient(135deg, var(--color-off-white), var(--color-white)); border-radius: 15px; border: 2px solid var(--color-burgundy);">
-                                    <div style="min-width: 60px; height: 60px; background: linear-gradient(135deg, var(--color-burgundy), var(--color-burgundy-dark)); color: var(--color-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid var(--color-gold);">
-                                        <i class="fas fa-map-marker-alt fa-lg"></i>
-                                    </div>
-                                    <div>
-                                        <h4 style="margin-bottom: 0.75rem; color: var(--color-burgundy); font-size: 1.2rem;">Turkiana Cafe Location</h4>
-                                        <p style="color: var(--color-gray); font-size: 1.1rem; line-height: 1.6;">7GPG+Q2R, Al Kahraba St, Doha, Qatar</p>
-                                    </div>
-                                </div>
-                                
-                                <div class="contact-item vip-border" style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2.5rem; padding: 1.5rem; background: linear-gradient(135deg, var(--color-off-white), var(--color-white)); border-radius: 15px; border: 2px solid var(--color-burgundy);">
-                                    <div style="min-width: 60px; height: 60px; background: linear-gradient(135deg, var(--color-burgundy), var(--color-burgundy-dark)); color: var(--color-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid var(--color-gold);">
-                                        <i class="fas fa-phone fa-lg"></i>
-                                    </div>
-                                    <div>
-                                        <h4 style="margin-bottom: 0.75rem; color: var(--color-burgundy); font-size: 1.2rem;">Contact</h4>
-                                        <p style="color: var(--color-gray); font-size: 1.1rem; line-height: 1.6;">+974 5186 6671</p>
-                                        <p style="color: var(--color-gray); font-size: 1.1rem; line-height: 1.6;">info@turkianacafe.com</p>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="social-links" style="display: flex; gap: 1.5rem;">
-                                <a href="https://www.instagram.com/turkiana.qa/" target="_blank" class="vip-border"
-                                   style="width: 60px; height: 60px; background: linear-gradient(135deg, var(--color-burgundy), var(--color-burgundy-dark)); color: var(--color-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; border: 2px solid var(--color-gold); transition: all 0.3s;"
-                                   onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='var(--shadow-gold)'"
-                                   onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                                    <i class="fab fa-instagram fa-lg"></i>
-                                </a>
-                                <a href="https://turkianasweets.com/" target="_blank" class="vip-border"
-                                   style="width: 60px; height: 60px; background: linear-gradient(135deg, var(--color-burgundy), var(--color-burgundy-dark)); color: var(--color-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; border: 2px solid var(--color-gold); transition: all 0.3s;"
-                                   onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='var(--shadow-gold)'"
-                                   onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                                    <i class="fas fa-globe fa-lg"></i>
-                                </a>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-form vip-border" style="background: linear-gradient(135deg, var(--color-white), var(--color-off-white)); padding: 3rem; border-radius: 15px; box-shadow: var(--shadow-heavy); border: 3px solid var(--color-burgundy);">
-                            <h3 style="margin-bottom: 2.5rem; font-family: var(--font-heading); font-size: 1.8rem; color: var(--color-burgundy); display: flex; align-items: center; gap: 1rem;">
-                                <i class="fas fa-calendar-check" style="color: var(--color-gold);"></i> Reserve Your Table
-                            </h3>
-                            <form id="reservation-form">
-                                <div style="margin-bottom: 1.5rem;">
-                                    <input type="text" placeholder="Your Royal Name *" required 
-                                           style="width: 100%; padding: 1.2rem; border: 2px solid var(--color-burgundy); border-radius: 10px; font-size: 1.1rem; background: var(--color-white); transition: all 0.3s;"
-                                           onfocus="this.style.borderColor='var(--color-gold)'; this.style.boxShadow='var(--shadow-gold)'"
-                                           onblur="this.style.borderColor='var(--color-burgundy)'; this.style.boxShadow='none'">
-                                </div>
-                                <div style="margin-bottom: 1.5rem;">
-                                    <input type="tel" placeholder="Phone Number *" required 
-                                           style="width: 100%; padding: 1.2rem; border: 2px solid var(--color-burgundy); border-radius: 10px; font-size: 1.1rem; background: var(--color-white); transition: all 0.3s;"
-                                           onfocus="this.style.borderColor='var(--color-gold)'; this.style.boxShadow='var(--shadow-gold)'"
-                                           onblur="this.style.borderColor='var(--color-burgundy)'; this.style.boxShadow='none'">
-                                </div>
-                                <div style="margin-bottom: 1.5rem;">
-                                    <input type="date" required 
-                                           style="width: 100%; padding: 1.2rem; border: 2px solid var(--color-burgundy); border-radius: 10px; font-size: 1.1rem; background: var(--color-white); transition: all 0.3s;"
-                                           onfocus="this.style.borderColor='var(--color-gold)'; this.style.boxShadow='var(--shadow-gold)'"
-                                           onblur="this.style.borderColor='var(--color-burgundy)'; this.style.boxShadow='none'">
-                                </div>
-                                <button type="submit" 
-                                        style="background: linear-gradient(to right, var(--color-burgundy), var(--color-burgundy-dark)); color: var(--color-white); border: none; padding: 1.2rem 2rem; width: 100%; border-radius: 10px; font-size: 1.1rem; font-weight: 700; cursor: pointer; transition: all 0.3s; border: 2px solid var(--color-gold); letter-spacing: 1px;"
-                                        onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='var(--shadow-heavy)'"
-                                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                                    <i class="fas fa-crown" style="margin-right: 10px;"></i>Book Now Your Table
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <!-- Footer -->
-        <footer style="background: linear-gradient(135deg, var(--color-black), var(--color-burgundy-dark)); color: white; padding: 5rem 0 2rem; border-top: 5px solid var(--color-gold); position: relative; overflow: hidden;">
-            <div class="container" style="max-width: 1400px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1;">
-                <div class="footer-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4rem; margin-bottom: 4rem;">
-                    <div class="footer-col">
-                        <h3 style="color: var(--color-gold); margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1.5rem; display: flex; align-items: center; gap: 1rem;">
-                            <i class="fas fa-crown"></i> Turkiana Cafe
-                        </h3>
-                        <p style="color: var(--color-light-gray); line-height: 1.8; font-size: 1.1rem;">Premium Turkish & Arabic coffee, sweets, and cuisine in Doha, Qatar. Experience royal hospitality and authentic flavors.</p>
-                    </div>
-                    
-                    <div class="footer-col">
-                        <h3 style="color: var(--color-gold); margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1.5rem;">Links</h3>
-                        <ul style="list-style: none;">
-                            <li style="margin-bottom: 1rem;"><a href="#" style="color: var(--color-light-gray); text-decoration: none; transition: color 0.3s; display: flex; align-items: center; gap: 0.5rem; font-size: 1.1rem;" onmouseover="this.style.color='var(--color-gold)'" onmouseout="this.style.color='var(--color-light-gray)'"><i class="fas fa-chevron-right" style="font-size: 0.8rem;"></i> Home</a></li>
-                            <li style="margin-bottom: 1rem;"><a href="#menu" style="color: var(--color-light-gray); text-decoration: none; transition: color 0.3s; display: flex; align-items: center; gap: 0.5rem; font-size: 1.1rem;" onmouseover="this.style.color='var(--color-gold)'" onmouseout="this.style.color='var(--color-light-gray)'"><i class="fas fa-chevron-right" style="font-size: 0.8rem;"></i> Menu</a></li>
-                            <li style="margin-bottom: 1rem;"><a href="#contact" style="color: var(--color-light-gray); text-decoration: none; transition: color 0.3s; display: flex; align-items: center; gap: 0.5rem; font-size: 1.1rem;" onmouseover="this.style.color='var(--color-gold)'" onmouseout="this.style.color='var(--color-light-gray)'"><i class="fas fa-chevron-right" style="font-size: 0.8rem;"></i> Contact</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div class="footer-col">
-                        <h3 style="color: var(--color-gold); margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1.5rem;">Newsletter</h3>
-                        <p style="color: var(--color-light-gray); margin-bottom: 1.5rem; font-size: 1.1rem;">for exclusive offers and updates.</p>
-                        <div style="display: flex; gap: 0.5rem;">
-                            <input type="email" placeholder="Your royal email" 
-                                   style="flex: 1; padding: 1rem; border: 2px solid var(--color-gold); background: transparent; color: white; border-radius: 10px; font-size: 1rem;"
-                                   onfocus="this.style.borderColor='var(--color-white)'; this.style.boxShadow='var(--shadow-gold)'"
-                                   onblur="this.style.borderColor='var(--color-gold)'; this.style.boxShadow='none'">
-                            <button style="background: var(--color-gold); color: var(--color-burgundy); border: none; padding: 1rem 2rem; border-radius: 10px; cursor: pointer; font-weight: 700; transition: all 0.3s; border: 2px solid var(--color-gold);"
-                                    onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='var(--shadow-gold)'"
-                                    onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                                <i class="fas fa-paper-plane"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="copyright" style="text-align: center; padding-top: 3rem; border-top: 1px solid rgba(255,255,255,0.1);">
-                    <p style="color: var(--color-light-gray); font-size: 1rem;">&copy; 2026 Turkiana Cafe & Sweets. All rights reserved. | Turkish Experience in Doha</p>
-                </div>
-            </div>
-            <div style="position: absolute; top: 0; right: 0; width: 300px; height: 300px; background: radial-gradient(circle, rgba(255,215,0,0.05) 0%, transparent 70%); border-radius: 50%;"></div>
-        </footer>
-
-        <!-- Floating Buttons -->
-        <a href="https://wa.me/97451866671" class="whatsapp-float" target="_blank" 
-           style="position: fixed; bottom: 30px; right: 30px; background: #25D366; color: white; width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; box-shadow: var(--shadow-heavy); z-index: 1000; border: 3px solid var(--color-gold); transition: all 0.3s;"
-           onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 8px 25px rgba(37, 211, 102, 0.5)'"
-           onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='var(--shadow-heavy)'">
-            <i class="fab fa-whatsapp"></i>
-        </a>
-        
-        <button class="back-to-top" id="back-to-top" 
-                style="position: fixed; bottom: 120px; right: 30px; background: linear-gradient(135deg, var(--color-burgundy), var(--color-burgundy-dark)); color: var(--color-gold); border: 3px solid var(--color-gold); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; cursor: pointer; z-index: 1000; opacity: 0; transition: all 0.3s; box-shadow: var(--shadow-medium);"
-                onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='var(--shadow-heavy)'"
-                onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='var(--shadow-medium)'">
-            <i class="fas fa-chevron-up"></i>
-        </button>
-    </div>
-
-    <!-- Modal for Menu Items -->
-    <div class="modal-overlay" id="item-modal" 
-         style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); display: none; justify-content: center; align-items: center; z-index: 2000; padding: 20px;">
-        <div class="modal-content vip-border" 
-             style="background: linear-gradient(135deg, var(--color-white), var(--color-off-white)); width: 90%; max-width: 1000px; max-height: 90vh; overflow-y: auto; border-radius: 20px; position: relative; border: 4px solid var(--color-burgundy); box-shadow: var(--shadow-heavy);">
-            <button class="modal-close" 
-                    style="position: absolute; top: 20px; right: 20px; background: var(--color-burgundy); color: var(--color-gold); border: 2px solid var(--color-gold); width: 50px; height: 50px; border-radius: 50%; cursor: pointer; z-index: 10; font-size: 1.2rem; transition: all 0.3s;"
-                    onmouseover="this.style.transform='rotate(90deg)'; this.style.background='var(--color-gold)'; this.style.color='var(--color-burgundy)'"
-                    onmouseout="this.style.transform='rotate(0)'; this.style.background='var(--color-burgundy)'; this.style.color='var(--color-gold)'">
-                <i class="fas fa-times"></i>
-            </button>
-            <div class="modal-body" style="display: grid; grid-template-columns: 1fr 1fr; min-height: 500px;">
-                <div class="modal-image" style="height: 500px; border-right: 3px solid var(--color-gold);">
-                    <img src="" alt="" style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
-                <div class="modal-info" style="padding: 3rem; display: flex; flex-direction: column; justify-content: center;">
-                    <h2 class="modal-title" style="font-family: var(--font-heading); color: var(--color-burgundy); margin-bottom: 1.5rem; font-size: 2.5rem;"></h2>
-                    <div class="modal-price" style="font-size: 2.5rem; font-weight: 900; color: var(--color-gold); margin-bottom: 2rem; text-shadow: 1px 1px 2px rgba(0,0,0,0.1);"></div>
-                    <p class="modal-description" style="line-height: 1.8; color: var(--color-gray); font-size: 1.1rem; margin-bottom: 2rem;"></p>
-                    <div class="modal-details" style="display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap;">
-                        <!-- Dietary info will be added here -->
-                    </div>
-                    <!-- Time availability notice for specific categories -->
-                    <div class="time-availability-notice" style="display: none; background: linear-gradient(135deg, var(--color-burgundy), var(--color-burgundy-dark)); color: var(--color-gold); padding: 1rem; border-radius: 10px; border: 2px solid var(--color-gold); margin-top: 1rem;">
-                        <i class="fas fa-clock" style="margin-right: 10px;"></i>
-                        <span style="font-weight: 600;">Available: 8:00 AM - 3:00 PM</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Full CSS (Loaded after initial render) -->
-    <style id="full-css">
-        /* ===== COMPLETE STYLES ===== */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        .fade-in {
-            animation: fadeIn 0.6s ease-out;
-        }
-
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1200px) {
-            .container {
-                padding: 0 1.5rem !important;
-            }
-            
-            .menu-items-grid {
-                grid-template-columns: repeat(2, 1fr) !important;
-            }
-            
-            .about-content,
-            .contact-grid {
-                grid-template-columns: 1fr !important;
-                gap: 3rem !important;
-            }
-        }
-
-        @media (max-width: 992px) {
-            .section {
-                padding: 4rem 0 !important;
-            }
-            
-            .main-nav {
-                position: fixed;
-                top: 80px;
-                left: 0;
-                width: 100%;
-                background: rgba(255, 255, 255, 0.98);
-                backdrop-filter: blur(10px);
-                padding: 2rem;
-                transform: translateY(-100%);
-                opacity: 0;
-                visibility: hidden;
-                transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-                box-shadow: var(--shadow-heavy);
-                border-top: 2px solid var(--color-gold);
-                z-index: 999;
-            }
-
-            body[dir="rtl"] .main-nav {
-                left: auto;
-                right: 0;
-            }
-
-            .main-nav.active {
-                transform: translateY(0);
-                opacity: 1;
-                visibility: visible;
-            }
-
-            .main-nav ul {
-                flex-direction: column !important;
-                gap: 1.5rem !important;
-            }
-
-            .mobile-menu-btn {
-                display: block !important;
-            }
-            
-            .menu-items-grid {
-                grid-template-columns: 1fr !important;
-            }
-            
-            .footer-grid {
-                grid-template-columns: 1fr !important;
-                gap: 3rem !important;
-            }
-            
-            .modal-body {
-                grid-template-columns: 1fr !important;
-            }
-            
-            .modal-image {
-                height: 300px !important;
-                border-right: none !important;
-                border-bottom: 3px solid var(--color-gold) !important;
-            }
-        }
-
-        @media (max-width: 768px) {
-            h1 { font-size: 2.5rem !important; }
-            h2 { font-size: 2.2rem !important; }
-            h3 { font-size: 1.8rem !important; }
-            
-            .section-title {
-                font-size: 2.5rem !important;
-            }
-            
-            .hero-content h1 {
-                font-size: 2.8rem !important;
-            }
-            
-            .features-grid {
-                grid-template-columns: 1fr !important;
-            }
-            
-            .whatsapp-float {
-                bottom: 20px !important;
-                right: 20px !important;
-                width: 60px !important;
-                height: 60px !important;
-                font-size: 1.5rem !important;
-            }
-
-            .back-to-top {
-                bottom: 100px !important;
-                right: 20px !important;
-                width: 50px !important;
-                height: 50px !important;
-            }
-            
-            body[dir="rtl"] .whatsapp-float {
-                right: auto;
-                left: 20px;
-            }
-            
-            body[dir="rtl"] .back-to-top {
-                right: auto;
-                left: 20px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 1rem !important;
-            }
-
-            .section {
-                padding: 3rem 0 !important;
-            }
-            
-            .menu-search {
-                margin-bottom: 3rem !important;
-            }
-            
-            .feature-card,
-            .contact-form,
-            .hours {
-                padding: 2rem !important;
-            }
-            
-            .modal-content {
-                width: 95% !important;
-            }
-            
-            .modal-info {
-                padding: 2rem !important;
-            }
-        }
-
-        /* Tablet specific */
-        @media (min-width: 768px) and (max-width: 1024px) {
-            .menu-items-grid {
-                grid-template-columns: repeat(3, 1fr) !important;
-            }
-            
-            .features-grid {
-                grid-template-columns: repeat(2, 1fr) !important;
-            }
-        }
-
-        /* Hover effects */
-        .menu-item:hover {
-            transform: translateY(-10px) scale(1.02);
-        }
-
-        /* Scrollbar styling */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--color-off-white);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(to bottom, var(--color-burgundy), var(--color-gold));
-            border-radius: 5px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(to bottom, var(--color-burgundy-dark), var(--color-gold-dark));
-        }
-
-        /* Selection color */
-        ::selection {
-            background: var(--color-gold);
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+            font-family: var(--font-heading);
+            font-size: 3rem;
             color: var(--color-burgundy);
-        }
-
-        /* Focus styles for accessibility */
-        :focus {
-            outline: 3px solid var(--color-gold);
-            outline-offset: 2px;
-        }
-
-        /* Loading animation for images */
-        .img-loading {
-            background: linear-gradient(90deg, var(--color-off-white) 25%, var(--color-light-gray) 50%, var(--color-off-white) 75%);
-            background-size: 200% 100%;
-            animation: skeleton-loading 1.5s infinite;
-        }
-
-        /* VIP Badge */
-        .vip-badge {
             position: relative;
             display: inline-block;
-            padding: 0.5rem 1.5rem;
-            background: linear-gradient(45deg, var(--color-gold), var(--color-burgundy));
-            color: white;
-            font-weight: 700;
-            border-radius: 50px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.9rem;
-            border: 2px solid var(--color-gold);
-            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3);
+            left: 50%;
+            transform: translateX(-50%);
         }
 
-        .vip-badge::after {
+        .section-title::after {
             content: '';
             position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, var(--color-gold), transparent, var(--color-burgundy));
-            border-radius: 52px;
-            z-index: -1;
-            opacity: 0.7;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--color-gold), transparent);
         }
 
-        /* Royal shimmer effect */
-        .royal-shimmer {
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
             position: relative;
-            overflow: hidden;
+            z-index: 1;
         }
 
-        .royal-shimmer::after {
+        /* Features Section */
+        #features {
+            background: linear-gradient(135deg, var(--color-off-white) 0%, #fff 100%);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .feature-card {
+            background: var(--color-white);
+            padding: 2.5rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 2px solid var(--color-gold);
+            position: relative;
+        }
+
+        .feature-card::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-                to right,
-                transparent 0%,
-                rgba(255, 215, 0, 0.1) 50%,
-                transparent 100%
-            );
-            transform: rotate(30deg);
-            animation: shimmer 3s infinite;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 1px solid var(--color-burgundy);
+            border-radius: 17px;
+            z-index: -1;
         }
 
-        @keyframes shimmer {
-            0% { transform: translateX(-100%) rotate(30deg); }
-            100% { transform: translateX(100%) rotate(30deg); }
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-heavy);
         }
 
-        /* Menu item card enhancements */
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--color-burgundy), var(--color-burgundy-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            border: 3px solid var(--color-gold);
+        }
+
+        .feature-icon i {
+            font-size: 2rem;
+            color: var(--color-gold);
+        }
+
+        .feature-card h3 {
+            color: var(--color-burgundy);
+            margin-bottom: 1rem;
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+        }
+
+        .feature-card p {
+            color: var(--color-gray);
+            line-height: 1.8;
+        }
+
+        /* Menu Section */
+        #menu {
+            background: var(--color-white);
+        }
+
+        .menu-search {
+            max-width: 800px;
+            margin: 0 auto 4rem;
+            position: relative;
+        }
+
+        .search-container {
+            position: relative;
+        }
+
+        #menu-search {
+            width: 100%;
+            padding: 1.2rem 1.2rem 1.2rem 4rem;
+            border: 3px solid var(--color-burgundy);
+            border-radius: 50px;
+            font-size: 1.1rem;
+            background: var(--color-off-white);
+            color: var(--color-black);
+            transition: all 0.3s;
+            box-shadow: var(--shadow-light);
+        }
+
+        #menu-search:focus {
+            border-color: var(--color-gold);
+            box-shadow: var(--shadow-gold);
+            outline: none;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--color-burgundy);
+            font-size: 1.2rem;
+        }
+
+        #clear-search {
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--color-burgundy);
+            cursor: pointer;
+            display: none;
+        }
+
+        .menu-items-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+        }
+
         .menu-item {
             position: relative;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: white;
             border-radius: 15px;
             overflow: hidden;
-            background: white;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: 2px solid transparent;
+            cursor: pointer;
         }
 
         .menu-item::before {
@@ -1400,6 +963,11 @@
             opacity: 1;
         }
 
+        .menu-item:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--shadow-heavy);
+        }
+
         .menu-item-img {
             position: relative;
             height: 250px;
@@ -1415,6 +983,28 @@
 
         .menu-item:hover .menu-item-img img {
             transform: scale(1.1);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: linear-gradient(135deg, var(--color-gold), var(--color-burgundy));
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            z-index: 2;
+            border: 2px solid white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        body[dir="rtl"] .popular-badge {
+            right: auto;
+            left: 1rem;
         }
 
         .menu-item-content {
@@ -1503,77 +1093,1297 @@
             border: 1px solid var(--color-gold);
         }
 
-        .popular-badge {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: linear-gradient(135deg, var(--color-gold), var(--color-burgundy));
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            z-index: 2;
-            border: 2px solid white;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        /* Time Notice */
+        .time-notice {
+            background: linear-gradient(135deg, var(--color-burgundy), var(--color-burgundy-dark));
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-top: 4rem;
+            border: 3px solid var(--color-gold);
+            box-shadow: var(--shadow-medium);
         }
 
-        body[dir="rtl"] .popular-badge {
-            right: auto;
-            left: 1rem;
-        }
-
-        /* Image error handling */
-        .image-error {
+        .time-notice-content {
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, var(--color-light-gray), var(--color-off-white));
-            color: var(--color-gray);
-            font-size: 0.9rem;
+            gap: 1rem;
+            color: var(--color-white);
+        }
+
+        .time-notice-content i {
+            font-size: 1.5rem;
+            color: var(--color-gold);
+        }
+
+        .time-notice-content p {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 0;
             text-align: center;
-            padding: 2rem;
         }
 
-        /* Search suggestions */
-        .search-suggestions {
+        .time-notice-content span {
+            color: var(--color-gold);
+        }
+
+        /* About Section */
+        #about {
+            background: linear-gradient(135deg, var(--color-off-white) 0%, #fff 100%);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 15px;
+            transition: transform 0.5s;
+            border: 3px solid var(--color-burgundy);
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .about-badge {
             position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: white;
+            top: 20px;
+            right: 20px;
+            background: rgba(139, 0, 0, 0.9);
+            color: var(--color-gold);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
             border: 2px solid var(--color-gold);
-            border-radius: 10px;
-            margin-top: 5px;
-            box-shadow: var(--shadow-heavy);
-            z-index: 100;
-            display: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
-        .suggestion-item {
-            padding: 1rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            border-bottom: 1px solid var(--color-light-gray);
+        .hours {
+            background: linear-gradient(135deg, var(--color-white), var(--color-off-white));
+            padding: 2.5rem;
+            border-radius: 15px;
+            margin-top: 2.5rem;
+            border: 3px solid var(--color-burgundy);
+            box-shadow: var(--shadow-medium);
         }
 
-        .suggestion-item:hover {
-            background: var(--color-light-gray);
+        .hours h3 {
             color: var(--color-burgundy);
+            margin-bottom: 1.5rem;
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
         }
 
-        .suggestion-item:last-child {
+        .hours-grid {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .hours-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(139,0,0,0.1);
+        }
+
+        .hours-item:last-child {
             border-bottom: none;
         }
 
-        /* Language switcher active state */
-        .lang-btn.active {
-            background: var(--color-gold) !important;
-            color: var(--color-burgundy) !important;
+        .hours-day {
+            font-weight: 600;
+            color: var(--color-burgundy);
+        }
+
+        .hours-time {
+            color: var(--color-black);
+            font-weight: 600;
+        }
+
+        /* Gallery Section */
+        #gallery {
+            background: linear-gradient(135deg, var(--color-black), var(--color-burgundy-dark));
+        }
+
+        #gallery .section-title {
+            color: var(--color-gold);
+        }
+
+        #gallery .section-title span {
+            background: linear-gradient(to right, var(--color-gold), var(--color-white));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            border-radius: 15px;
+            overflow: hidden;
+            height: 300px;
+            cursor: pointer;
+            border: 3px solid var(--color-gold);
+            position: relative;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 1rem;
+            color: white;
+        }
+
+        .gallery-overlay h4 {
+            margin: 0;
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 2rem;
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: var(--color-burgundy);
+        }
+
+        .contact-details {
+            margin: 3rem 0;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, var(--color-off-white), var(--color-white));
+            border-radius: 15px;
+            border: 2px solid var(--color-burgundy);
+            transition: transform 0.3s;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-icon {
+            min-width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--color-burgundy), var(--color-burgundy-dark));
+            color: var(--color-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--color-gold);
+        }
+
+        .contact-item h4 {
+            margin-bottom: 0.75rem;
+            color: var(--color-burgundy);
+            font-size: 1.2rem;
+        }
+
+        .contact-item p {
+            color: var(--color-gray);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .social-link {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--color-burgundy), var(--color-burgundy-dark));
+            color: var(--color-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            border: 2px solid var(--color-gold);
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-gold);
+        }
+
+        .contact-form {
+            background: linear-gradient(135deg, var(--color-white), var(--color-off-white));
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow-heavy);
+            border: 3px solid var(--color-burgundy);
+        }
+
+        .contact-form h3 {
+            margin-bottom: 2.5rem;
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            color: var(--color-burgundy);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 1.2rem;
+            border: 2px solid var(--color-burgundy);
+            border-radius: 10px;
+            font-size: 1.1rem;
+            background: var(--color-white);
+            transition: all 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: var(--color-gold);
+            box-shadow: var(--shadow-gold);
+            outline: none;
+        }
+
+        .submit-btn {
+            background: linear-gradient(to right, var(--color-burgundy), var(--color-burgundy-dark));
+            color: var(--color-white);
+            border: none;
+            padding: 1.2rem 2rem;
+            width: 100%;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid var(--color-gold);
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--color-black), var(--color-burgundy-dark));
+            color: white;
+            padding: 5rem 0 2rem;
+            border-top: 5px solid var(--color-gold);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-col h3 {
+            color: var(--color-gold);
+            margin-bottom: 1.5rem;
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .footer-col p {
+            color: var(--color-light-gray);
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--color-light-gray);
+            text-decoration: none;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-gold);
+        }
+
+        .newsletter {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 1rem;
+            border: 2px solid var(--color-gold);
+            background: transparent;
+            color: white;
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+
+        .newsletter-input:focus {
+            border-color: var(--color-white);
+            box-shadow: var(--shadow-gold);
+            outline: none;
+        }
+
+        .newsletter-btn {
+            background: var(--color-gold);
+            color: var(--color-burgundy);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.3s;
+            border: 2px solid var(--color-gold);
+        }
+
+        .newsletter-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-gold);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .copyright p {
+            color: var(--color-light-gray);
+            font-size: 1rem;
+        }
+
+        /* Floating Buttons */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            color: white;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: var(--shadow-heavy);
+            z-index: 1000;
+            border: 3px solid var(--color-gold);
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
+        }
+
+        #back-to-top {
+            position: fixed;
+            bottom: 120px;
+            right: 30px;
+            background: linear-gradient(135deg, var(--color-burgundy), var(--color-burgundy-dark));
+            color: var(--color-gold);
+            border: 3px solid var(--color-gold);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s;
+            box-shadow: var(--shadow-medium);
+        }
+
+        #back-to-top.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        #back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        body[dir="rtl"] .whatsapp-float {
+            right: auto;
+            left: 30px;
+        }
+
+        body[dir="rtl"] #back-to-top {
+            right: auto;
+            left: 30px;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, var(--color-white), var(--color-off-white));
+            width: 90%;
+            max-width: 1000px;
+            max-height: 90vh;
+            overflow-y: auto;
+            border-radius: 20px;
+            position: relative;
+            border: 4px solid var(--color-burgundy);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--color-burgundy);
+            color: var(--color-gold);
+            border: 2px solid var(--color-gold);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            transform: rotate(90deg);
+            background: var(--color-gold);
+            color: var(--color-burgundy);
+        }
+
+        .modal-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 500px;
+        }
+
+        .modal-image {
+            height: 500px;
+            border-right: 3px solid var(--color-gold);
+        }
+
+        .modal-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-info {
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .modal-title {
+            font-family: var(--font-heading);
+            color: var(--color-burgundy);
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+        }
+
+        .modal-price {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--color-gold);
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .modal-description {
+            line-height: 1.8;
+            color: var(--color-gray);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .modal-details {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .time-availability-notice {
+            background: linear-gradient(135deg, var(--color-burgundy), var(--color-burgundy-dark));
+            color: var(--color-gold);
+            padding: 1rem;
+            border-radius: 10px;
+            border: 2px solid var(--color-gold);
+            margin-top: 1rem;
+            display: none;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .time-availability-notice.show {
+            display: flex;
+        }
+
+        /* Toast */
+        .custom-toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--color-burgundy), var(--color-burgundy-dark));
+            color: var(--color-gold);
+            padding: 1.2rem 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow-heavy);
+            z-index: 10000;
+            animation: slideUp 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            max-width: 90%;
+            min-width: 300px;
+            border: 2px solid var(--color-gold);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateX(-50%) translateY(100%); opacity: 0; }
+            to { transform: translateX(-50%) translateY(0); opacity: 1; }
+        }
+
+        @keyframes slideDown {
+            from { transform: translateX(-50%) translateY(0); opacity: 1; }
+            to { transform: translateX(-50%) translateY(100%); opacity: 0; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        /* Image Loading */
+        .img-loading {
+            background: linear-gradient(90deg, var(--color-off-white) 25%, var(--color-light-gray) 50%, var(--color-off-white) 75%);
+            background-size: 200% 100%;
+            animation: skeleton-loading 1.5s infinite;
+        }
+
+        /* Screen Reader */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Focus Styles */
+        :focus-visible {
+            outline: 3px solid var(--color-gold);
+            outline-offset: 2px;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--color-off-white);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, var(--color-burgundy), var(--color-gold));
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(to bottom, var(--color-burgundy-dark), var(--color-gold-dark));
+        }
+
+        /* Selection */
+        ::selection {
+            background: var(--color-gold);
+            color: var(--color-burgundy);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .menu-items-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .main-content-with-sidebar {
+                margin-left: 280px;
+            }
+            
+            body[dir="rtl"] .main-content-with-sidebar {
+                margin-right: 280px;
+            }
+            
+            .categories-sidebar {
+                width: 280px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .main-nav {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: flex;
+            }
+            
+            .categories-sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                width: 300px;
+                height: calc(100vh - 80px);
+                top: 80px;
+            }
+            
+            body[dir="rtl"] .categories-sidebar {
+                transform: translateX(100%);
+                left: auto;
+                right: 0;
+            }
+            
+            .categories-sidebar.active {
+                transform: translateX(0);
+            }
+            
+            body[dir="rtl"] .categories-sidebar.active {
+                transform: translateX(0);
+            }
+            
+            .main-content-with-sidebar {
+                margin-left: 0;
+                margin-right: 0;
+            }
+            
+            .category-toggle-btn {
+                display: flex;
+            }
+            
+            .about-content,
+            .contact-grid,
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .modal-body {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-image {
+                height: 300px;
+                border-right: none;
+                border-bottom: 3px solid var(--color-gold);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section {
+                padding: 4rem 0;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            
+            .menu-items-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .whatsapp-float {
+                bottom: 20px;
+                right: 20px;
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+            
+            #back-to-top {
+                bottom: 100px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+            }
+            
+            body[dir="rtl"] .whatsapp-float {
+                right: auto;
+                left: 20px;
+            }
+            
+            body[dir="rtl"] #back-to-top {
+                right: auto;
+                left: 20px;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .section {
+                padding: 3rem 0;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .feature-card,
+            .contact-form,
+            .hours {
+                padding: 2rem;
+            }
+            
+            .modal-content {
+                width: 95%;
+            }
+            
+            .modal-info {
+                padding: 2rem;
+            }
+            
+            .custom-toast {
+                min-width: auto;
+                width: calc(100% - 40px);
+            }
         }
     </style>
+</head>
+<body>
+    <!-- Skip to content -->
+    <a href="#main-content" class="skip-to-content">
+        <i class="fas fa-arrow-right"></i> Skip to main content
+    </a>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay">
+        <div class="loader"></div>
+        <p style="color: var(--color-gold); margin-top: 20px;">Loading Royal Experience...</p>
+    </div>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="header-inner">
+            <a href="#home" class="logo">
+                <i class="fas fa-crown logo-icon"></i>
+                <div>
+                    <div class="logo-text">Turkiana</div>
+                    <div class="logo-subtext">CAFE & SWEETS</div>
+                </div>
+            </a>
+            
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li>
+                        <div class="language-switcher">
+                            <button class="lang-btn active" data-lang="en">EN</button>
+                            <button class="lang-btn" data-lang="ar">AR</button>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="header-controls">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Open mobile menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-menu-header">
+            <button class="mobile-menu-close" id="mobile-menu-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <nav class="mobile-menu-nav">
+            <a href="#home" class="mobile-nav-link">
+                <i class="fas fa-home"></i> Home
+            </a>
+            <a href="#features" class="mobile-nav-link">
+                <i class="fas fa-star"></i> Features
+            </a>
+            <a href="#menu" class="mobile-nav-link">
+                <i class="fas fa-utensils"></i> Menu
+            </a>
+            <a href="#about" class="mobile-nav-link">
+                <i class="fas fa-info-circle"></i> About
+            </a>
+            <a href="#contact" class="mobile-nav-link">
+                <i class="fas fa-phone"></i> Contact
+            </a>
+        </nav>
+    </div>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="#home">
+            <i class="fas fa-home"></i> Home
+        </a>
+        <span class="breadcrumb-separator">/</span>
+        <span class="breadcrumb-current" id="breadcrumb-current">Welcome</span>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <video class="hero-video" autoplay muted loop playsinline preload="metadata" 
+               poster="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg">
+            <source src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Video.mp4" type="video/mp4">
+        </video>
+        
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="royal-text">Luxury Turkish & Arabic Delights</span>
+            </h1>
+            <p class="hero-subtitle">Experience Authentic Taste in Doha</p>
+            <a href="#menu" class="hero-button">
+                <i class="fas fa-crown"></i>Explore Our Menu
+            </a>
+        </div>
+    </section>
+
+    <!-- Category Toggle Button -->
+    <button class="category-toggle-btn" id="category-toggle">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Large Fixed Categories Sidebar -->
+    <div class="categories-sidebar" id="categories-sidebar">
+        <div class="categories-header">
+            <h2>
+                <i class="fas fa-crown"></i>
+                <span id="menu-title">Menu</span>
+            </h2>
+            <p id="menu-subtitle">Explore our Categories</p>
+        </div>
+        
+        <div class="categories-list" id="categories-list">
+            <!-- Categories will be populated here -->
+        </div>
+        
+        <div class="category-time-notice">
+            <h4><i class="fas fa-clock"></i> <span id="time-notice-title">Important Notice</span></h4>
+            <p id="time-notice-text">Breakfast, Sandwiches, Croissants, Burgers & Salads are available from 8:00 AM to 3:00 PM only.</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main id="main-content" class="main-content-with-sidebar" style="display: none;">
+        <!-- Features Section -->
+        <section id="features" class="section">
+            <div class="container">
+                <h2 class="section-title">
+                    <span class="royal-text">Why Choose Turkiana</span>
+                </h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <h3>Premium Quality</h3>
+                        <p>Finest ingredients sourced from Turkey and the Middle East for authentic taste.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <h3>Luxury Experience</h3>
+                        <p>Opulent ambiance with Turkish and Arabic hospitality.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h3>Authentic Taste</h3>
+                        <p>Traditional recipes passed down through generations.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Menu Section -->
+        <section id="menu" class="section">
+            <div class="container">
+                <h2 class="section-title">
+                    <span class="royal-text">Royal Menu</span>
+                </h2>
+                
+                <div class="menu-search">
+                    <div class="search-container">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" id="menu-search" placeholder="Search for exquisite dishes, drinks, or desserts...">
+                        <button id="clear-search">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="menu-items-grid" id="menu-items">
+                    <!-- Menu items populated by JS -->
+                </div>
+
+                <!-- Time Notice -->
+                <div class="time-notice">
+                    <div class="time-notice-content">
+                        <i class="fas fa-clock"></i>
+                        <p>
+                            <span>Note:</span> Breakfast, Sandwiches, Croissants, Burgers & Salads are available from <strong>8:00 AM to 3:00 PM only</strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-image">
+                        <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg" alt="Turkiana Cafe Interior">
+                        <div class="about-badge">
+                            <i class="fas fa-star"></i> Since 2016
+                        </div>
+                    </div>
+                    <div class="about-text">
+                        <h2 style="font-family: var(--font-heading); margin-bottom: 2rem; font-size: 2.5rem; color: var(--color-burgundy);">
+                            <span class="royal-text">About Us</span>
+                        </h2>
+                        <p style="margin-bottom: 1.5rem; font-size: 1.1rem; line-height: 1.8; color: var(--color-gray);">
+                            Turkiana Cafe & Sweets represents centuries-old Turkish and Arabic culinary traditions, reimagined for Doha's cosmopolitan community. We bring the opulence of Ottoman palaces and the warmth of Arabian hospitality to every experience.
+                        </p>
+                        <div class="hours">
+                            <h3>
+                                <i class="fas fa-clock"></i> Operation Hours
+                            </h3>
+                            <div class="hours-grid">
+                                <div class="hours-item">
+                                    <span class="hours-day">Saturday - Wednesday:</span>
+                                    <span class="hours-time">8:00 AM - 12:00 AM</span>
+                                </div>
+                                <div class="hours-item">
+                                    <span class="hours-day">Thursday & Friday:</span>
+                                    <span class="hours-time">8:00 AM - 1:00 AM</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="section">
+            <div class="container">
+                <h2 class="section-title">
+                    <span>Turkiana Gallery</span>
+                </h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/a.jpeg" alt="Turkish Coffee" loading="lazy">
+                        <div class="gallery-overlay">
+                            <h4>Turkish Coffee</h4>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/b.jpeg" alt="Baklava" loading="lazy">
+                        <div class="gallery-overlay">
+                            <h4>Baklava</h4>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/c.jpeg" alt="Kunafa" loading="lazy">
+                        <div class="gallery-overlay">
+                            <h4>Kunafa</h4>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/d.jpeg" alt="Turkish Breakfast" loading="lazy">
+                        <div class="gallery-overlay">
+                            <h4>Turkish Breakfast</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <div class="container">
+                <h2 class="section-title">
+                    <span class="royal-text">Visit Our Turkish Vibe</span>
+                </h2>
+                
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h3>
+                            <span class="royal-text">Experience Modern Turkish Way</span>
+                        </h3>
+                        
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h4>Turkiana Cafe Location</h4>
+                                    <p>7GPG+Q2R, Al Kahraba St, Doha, Qatar</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div>
+                                    <h4>Contact</h4>
+                                    <p>+974 5186 6671</p>
+                                    <p>info@turkianacafe.com</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="social-links">
+                            <a href="https://www.instagram.com/turkiana.qa/" target="_blank" class="social-link">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://wa.me/97451866671" target="_blank" class="social-link" style="background: #25D366;">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-form">
+                        <h3>
+                            <i class="fas fa-calendar-check"></i> Reserve Your Table
+                        </h3>
+                        <form id="reservation-form">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Your Royal Name *" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="tel" class="form-control" placeholder="Phone Number *" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="date" class="form-control" required>
+                            </div>
+                            <button type="submit" class="submit-btn">
+                                <i class="fas fa-crown"></i>Book Now Your Table
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-col">
+                        <h3>
+                            <i class="fas fa-crown"></i> Turkiana Cafe
+                        </h3>
+                        <p>Premium Turkish & Arabic coffee, sweets, and cuisine in Doha, Qatar. Experience royal hospitality and authentic flavors.</p>
+                    </div>
+                    
+                    <div class="footer-col">
+                        <h3>Links</h3>
+                        <ul class="footer-links">
+                            <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+                            <li><a href="#menu"><i class="fas fa-chevron-right"></i> Menu</a></li>
+                            <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-col">
+                        <h3>Newsletter</h3>
+                        <p>for exclusive offers and updates.</p>
+                        <div class="newsletter">
+                            <input type="email" class="newsletter-input" placeholder="Your royal email">
+                            <button class="newsletter-btn">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="copyright">
+                    <p>&copy; <span id="current-year"></span> Turkiana Cafe & Sweets. All rights reserved. | Turkish Experience in Doha</p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Floating Buttons -->
+        <a href="https://wa.me/97451866671" class="whatsapp-float" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        
+        <button class="back-to-top" id="back-to-top">
+            <i class="fas fa-chevron-up"></i>
+        </button>
+    </main>
+
+    <!-- Modal for Menu Items -->
+    <div class="modal-overlay" id="item-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <img src="" alt="">
+                </div>
+                <div class="modal-info">
+                    <h2 class="modal-title"></h2>
+                    <div class="modal-price"></div>
+                    <p class="modal-description"></p>
+                    <div class="modal-details">
+                        <!-- Dietary info will be added here -->
+                    </div>
+                    <div class="time-availability-notice" id="modal-time-notice">
+                        <i class="fas fa-clock"></i>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- JavaScript -->
     <script>
@@ -3721,7 +4531,7 @@
             ]
         };
 
-        // Add timeRestricted property to all relevant items
+        // Add timeRestricted property to relevant items
         const timeRestrictedCategories = ["Anatolian Morning Table", "Croissant Creations", "From the Grill & Garden"];
         
         menuData.items.forEach(item => {
@@ -3730,7 +4540,6 @@
                 item.availableTime = "8:00 AM - 3:00 PM";
             }
             
-            // Also mark burgers specifically
             if (item.en.name.toLowerCase().includes('burger')) {
                 item.timeRestricted = true;
                 item.availableTime = "8:00 AM - 3:00 PM";
@@ -3745,7 +4554,8 @@
             searchQuery: '',
             loadedImages: new Set(),
             currentCategoryIndex: 0,
-            isCategorySidebarOpen: true
+            isCategorySidebarOpen: true,
+            theme: localStorage.getItem('theme') || 'light'
         };
 
         // DOM Elements
@@ -3759,13 +4569,24 @@
             header: document.getElementById('header'),
             backToTop: document.getElementById('back-to-top'),
             itemModal: document.getElementById('item-modal'),
-            mobileMenuBtn: document.querySelector('.mobile-menu-btn'),
+            mobileMenuToggle: document.getElementById('mobile-menu-toggle'),
+            mobileMenu: document.getElementById('mobile-menu'),
+            mobileMenuClose: document.getElementById('mobile-menu-close'),
             mainNav: document.querySelector('.main-nav'),
             langButtons: document.querySelectorAll('.lang-btn'),
             reservationForm: document.getElementById('reservation-form'),
             categoryToggle: document.getElementById('category-toggle'),
             categoriesSidebar: document.getElementById('categories-sidebar'),
-            mainContentWrapper: document.getElementById('main-content-wrapper')
+            themeToggle: document.getElementById('theme-toggle'),
+            breadcrumbCurrent: document.getElementById('breadcrumb-current'),
+            modalClose: document.getElementById('modal-close'),
+            modalTitle: document.querySelector('.modal-title'),
+            modalPrice: document.querySelector('.modal-price'),
+            modalDescription: document.querySelector('.modal-description'),
+            modalDetails: document.querySelector('.modal-details'),
+            modalTimeNotice: document.getElementById('modal-time-notice'),
+            modalImage: document.querySelector('.modal-image img'),
+            currentYear: document.getElementById('current-year')
         };
 
         // Initialize Application
@@ -3773,25 +4594,23 @@
 
         async function initializeApp() {
             try {
-                // Start loading animations immediately
-                startLoadingAnimation();
+                // Set current year
+                elements.currentYear.textContent = new Date().getFullYear();
                 
-                // Load critical resources in parallel
-                await Promise.allSettled([
-                    loadFonts(),
-                    preloadCriticalImages()
-                ]);
+                // Initialize theme
+                initializeTheme();
                 
                 // Initialize components
-                initializeNavigation();
+                initializeMobileMenu();
                 initializeLargeCategories();
                 initializeMenuSystem();
                 initializeScrollHandlers();
                 initializeModal();
                 initializeForms();
                 initializeLanguageSwitcher();
+                initializeBreadcrumb();
                 
-                // Show content gradually
+                // Show content
                 revealContent();
                 
             } catch (error) {
@@ -3799,182 +4618,65 @@
             }
         }
 
-        function startLoadingAnimation() {
-            // Add loading animation to critical elements
-            const loader = elements.loadingOverlay.querySelector('.loader');
-            if (loader) {
-                loader.style.animation = 'spin 1s linear infinite';
-            }
-        }
-
-        function loadFonts() {
-            return new Promise((resolve) => {
-                if (document.fonts && document.fonts.ready) {
-                    document.fonts.ready.then(resolve);
-                } else {
-                    setTimeout(resolve, 1000);
-                }
+        function initializeTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            applyTheme(savedTheme);
+            
+            elements.themeToggle.addEventListener('click', () => {
+                const newTheme = state.theme === 'light' ? 'dark' : 'light';
+                applyTheme(newTheme);
+                localStorage.setItem('theme', newTheme);
+                state.theme = newTheme;
+                showToast(`Theme changed to ${newTheme} mode`, 'info');
             });
         }
 
-        function preloadCriticalImages() {
-            const criticalImages = [
-                'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg',
-                'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Burger.jpeg',
-                'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Tea.jpg'
-            ];
-
-            return Promise.all(
-                criticalImages.map(src => {
-                    return new Promise((resolve) => {
-                        const img = new Image();
-                        img.src = src;
-                        img.onload = resolve;
-                        img.onerror = resolve; // Continue even if some images fail
-                    });
-                })
-            );
-        }
-
-        function revealContent() {
-            setTimeout(() => {
-                elements.loadingOverlay.style.opacity = '0';
-                setTimeout(() => {
-                    elements.loadingOverlay.style.display = 'none';
-                    elements.mainContent.style.display = 'block';
-                    
-                    // Load non-critical images
-                    lazyLoadImages();
-                    
-                    // Initialize animations
-                    initializeAnimations();
-                    
-                    // Check time-restricted items
-                    checkTimeRestrictedItems();
-                    
-                    // Show welcome toast
-                    showToast('Welcome to Turkiana Cafe & Sweets! 👑', 'info');
-                }, 300);
-            }, 1000);
-        }
-
-        function handleInitializationError(error) {
-            console.error('Initialization error:', error);
-            elements.loadingOverlay.innerHTML = `
-                <div style="text-align: center; color: white;">
-                    <i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 1rem; color: var(--color-gold);"></i>
-                    <h3 style="margin-bottom: 1rem;">Failed to load</h3>
-                    <p>Please refresh the page or check your connection</p>
-                    <button onclick="location.reload()" style="margin-top: 1rem; background: var(--color-gold); color: var(--color-burgundy); border: none; padding: 0.75rem 1.5rem; border-radius: 50px; font-weight: 700; cursor: pointer;">
-                        <i class="fas fa-redo"></i> Refresh Page
-                    </button>
-                </div>
-            `;
-        }
-
-        function handleImageError(img) {
-            const fallbacks = [
-                'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg',
-                'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/a.jpeg',
-                'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/b.jpeg'
-            ];
-            
-            let currentIndex = fallbacks.indexOf(img.src);
-            if (currentIndex === -1 || currentIndex >= fallbacks.length - 1) {
-                img.src = fallbacks[0];
+        function applyTheme(theme) {
+            const icon = elements.themeToggle.querySelector('i');
+            if (theme === 'dark') {
+                document.documentElement.style.setProperty('--color-white', '#000000');
+                document.documentElement.style.setProperty('--color-black', '#FFFFFF');
+                document.documentElement.style.setProperty('--color-off-white', '#1C1C1E');
+                document.documentElement.style.setProperty('--color-light-gray', '#2C2C2E');
+                document.documentElement.style.setProperty('--color-gray', '#98989D');
+                icon.className = 'fas fa-sun';
             } else {
-                img.src = fallbacks[currentIndex + 1];
+                document.documentElement.style.setProperty('--color-white', '#FFFFFF');
+                document.documentElement.style.setProperty('--color-black', '#000000');
+                document.documentElement.style.setProperty('--color-off-white', '#FAF9F6');
+                document.documentElement.style.setProperty('--color-light-gray', '#F5F5F5');
+                document.documentElement.style.setProperty('--color-gray', '#666666');
+                icon.className = 'fas fa-moon';
             }
-            img.onerror = null; // Prevent infinite loop
+            state.theme = theme;
         }
 
-        function lazyLoadImages() {
-            const images = document.querySelectorAll('img[loading="lazy"]');
-            
-            const imageObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        if (img.dataset.src) {
-                            img.src = img.dataset.src;
-                            img.removeAttribute('data-src');
-                        }
-                        state.loadedImages.add(img.src);
-                        observer.unobserve(img);
-                    }
-                });
-            }, {
-                rootMargin: '100px 0px',
-                threshold: 0.1
+        function initializeMobileMenu() {
+            elements.mobileMenuToggle.addEventListener('click', () => {
+                elements.mobileMenu.style.transform = 'translateX(0)';
+                elements.mobileMenuToggle.setAttribute('aria-expanded', 'true');
+                document.body.style.overflow = 'hidden';
             });
 
-            images.forEach(img => {
-                if (!img.src || img.src === '') {
-                    img.classList.add('img-loading');
-                }
-                // Add error handling
-                img.onerror = () => handleImageError(img);
-                imageObserver.observe(img);
+            elements.mobileMenuClose.addEventListener('click', () => {
+                elements.mobileMenu.style.transform = 'translateX(100%)';
+                elements.mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = 'auto';
             });
-        }
 
-        function initializeNavigation() {
-            // Mobile menu toggle
-            if (elements.mobileMenuBtn) {
-                elements.mobileMenuBtn.addEventListener('click', () => {
-                    state.isMenuOpen = !state.isMenuOpen;
-                    elements.mainNav.classList.toggle('active', state.isMenuOpen);
-                    elements.mobileMenuBtn.innerHTML = state.isMenuOpen 
-                        ? '<i class="fas fa-times"></i>' 
-                        : '<i class="fas fa-bars"></i>';
-                    elements.mobileMenuBtn.style.background = state.isMenuOpen 
-                        ? 'var(--color-burgundy)' 
-                        : 'none';
-                    elements.mobileMenuBtn.style.color = state.isMenuOpen 
-                        ? 'var(--color-gold)' 
-                        : 'var(--color-burgundy)';
-                });
-            }
-
-            // Category sidebar toggle
-            if (elements.categoryToggle) {
-                elements.categoryToggle.addEventListener('click', () => {
-                    state.isCategorySidebarOpen = !state.isCategorySidebarOpen;
-                    elements.categoriesSidebar.classList.toggle('active', state.isCategorySidebarOpen);
-                    elements.categoryToggle.innerHTML = state.isCategorySidebarOpen 
-                        ? '<i class="fas fa-times"></i>' 
-                        : '<i class="fas fa-bars"></i>';
-                });
-            }
-
-            // Close mobile menu on link click
-            document.querySelectorAll('.main-nav a').forEach(link => {
+            // Close menu on link click
+            document.querySelectorAll('.mobile-nav-link').forEach(link => {
                 link.addEventListener('click', () => {
-                    if (state.isMenuOpen) {
-                        elements.mainNav.classList.remove('active');
-                        elements.mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-                        elements.mobileMenuBtn.style.background = 'none';
-                        elements.mobileMenuBtn.style.color = 'var(--color-burgundy)';
-                        state.isMenuOpen = false;
-                    }
+                    elements.mobileMenu.style.transform = 'translateX(100%)';
+                    elements.mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                    document.body.style.overflow = 'auto';
                 });
             });
 
-            // Close mobile menu on ESC key
+            // Close on escape
             document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
-                    if (state.isMenuOpen) {
-                        elements.mainNav.classList.remove('active');
-                        elements.mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-                        elements.mobileMenuBtn.style.background = 'none';
-                        elements.mobileMenuBtn.style.color = 'var(--color-burgundy)';
-                        state.isMenuOpen = false;
-                    }
-                    if (state.isCategorySidebarOpen && window.innerWidth <= 992) {
-                        elements.categoriesSidebar.classList.remove('active');
-                        elements.categoryToggle.innerHTML = '<i class="fas fa-bars"></i>';
-                        state.isCategorySidebarOpen = false;
-                    }
+                if (e.key === 'Escape' && elements.mobileMenu.style.transform === 'translateX(0px)') {
+                    elements.mobileMenuClose.click();
                 }
             });
         }
@@ -3982,12 +4684,9 @@
         function initializeLargeCategories() {
             if (!elements.categoriesList) return;
 
-            // Clear existing content
             elements.categoriesList.innerHTML = '';
 
-            // Create category items
             menuData.categories.forEach((category, index) => {
-                // Count items in this category
                 const itemCount = menuData.items.filter(item => item.category === category.name).length;
                 
                 const categoryItem = document.createElement('div');
@@ -3995,7 +4694,6 @@
                 categoryItem.dataset.category = category.name;
                 categoryItem.dataset.index = index;
                 
-                // Set active class for first category
                 if (index === 0) {
                     categoryItem.classList.add('active');
                 }
@@ -4017,11 +4715,9 @@
         }
 
         function selectCategory(category, index) {
-            // Update state
             state.currentCategory = category;
             state.currentCategoryIndex = index;
             
-            // Update active category item
             document.querySelectorAll('.category-item').forEach(item => {
                 item.classList.remove('active');
             });
@@ -4031,30 +4727,23 @@
                 activeItem.classList.add('active');
             }
             
-            // Filter menu items
             filterMenu();
-            
-            // Scroll to menu section
             scrollToCategory(category);
             
-            // Close sidebar on mobile after selection
             if (window.innerWidth <= 992) {
                 elements.categoriesSidebar.classList.remove('active');
                 elements.categoryToggle.innerHTML = '<i class="fas fa-bars"></i>';
                 state.isCategorySidebarOpen = false;
             }
             
-            // Show toast notification
             showToast(`Viewing ${category}`, 'info');
         }
 
         function initializeMenuSystem() {
             if (!elements.menuItems || !elements.menuSearch) return;
 
-            // Initial render
             renderMenuItems();
 
-            // Search functionality
             elements.menuSearch.addEventListener('input', debounce(() => {
                 state.searchQuery = elements.menuSearch.value.toLowerCase().trim();
                 if (elements.clearSearch) {
@@ -4063,7 +4752,6 @@
                 renderMenuItems();
             }, 300));
 
-            // Clear search functionality
             if (elements.clearSearch) {
                 elements.clearSearch.addEventListener('click', () => {
                     elements.menuSearch.value = '';
@@ -4074,7 +4762,6 @@
                 });
             }
 
-            // Clear search on escape
             elements.menuSearch.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape') {
                     elements.menuSearch.value = '';
@@ -4085,6 +4772,15 @@
                     renderMenuItems();
                 }
             });
+
+            // Category toggle
+            elements.categoryToggle.addEventListener('click', () => {
+                state.isCategorySidebarOpen = !state.isCategorySidebarOpen;
+                elements.categoriesSidebar.classList.toggle('active', state.isCategorySidebarOpen);
+                elements.categoryToggle.innerHTML = state.isCategorySidebarOpen 
+                    ? '<i class="fas fa-times"></i>' 
+                    : '<i class="fas fa-bars"></i>';
+            });
         }
 
         function renderMenuItems() {
@@ -4092,14 +4788,12 @@
 
             let filteredItems = menuData.items;
 
-            // Filter by category
             if (state.currentCategory && state.currentCategory !== 'All') {
                 filteredItems = filteredItems.filter(item => 
                     item.category === state.currentCategory
                 );
             }
 
-            // Filter by search query
             if (state.searchQuery) {
                 filteredItems = filteredItems.filter(item => {
                     const name = state.currentLanguage === 'en' ? item.en.name : item.ar.name;
@@ -4109,7 +4803,6 @@
                 });
             }
 
-            // Clear container with loading animation
             elements.menuItems.innerHTML = '';
             elements.menuItems.style.opacity = '0.5';
             elements.menuItems.style.transition = 'opacity 0.3s';
@@ -4128,7 +4821,6 @@
                 return;
             }
 
-            // Render items with staggered animation
             setTimeout(() => {
                 filteredItems.forEach((item, index) => {
                     const itemElement = createMenuItemElement(item);
@@ -4149,12 +4841,10 @@
             const description = lang.description;
             const price = item.en.price;
 
-            // Create dietary tags
             const dietaryTags = item.dietary ? item.dietary.map(d => 
                 `<span class="dietary-tag">${d}</span>`
             ).join('') : '';
 
-            // Add time tag if restricted
             const timeTag = item.timeRestricted ? 
                 `<span class="time-tag"><i class="fas fa-clock"></i> ${item.availableTime}</span>` : '';
 
@@ -4181,7 +4871,6 @@
 
             div.addEventListener('click', () => openItemModal(item));
             
-            // Add hover effects
             div.addEventListener('mouseenter', () => {
                 div.style.transform = 'translateY(-10px) scale(1.02)';
                 div.style.boxShadow = 'var(--shadow-heavy)';
@@ -4234,13 +4923,10 @@
                     elements.header.classList.remove('scrolled');
                 }
 
-                // Back to top button
                 if (currentScrollY > 500) {
-                    elements.backToTop.style.opacity = '1';
-                    elements.backToTop.style.pointerEvents = 'auto';
+                    elements.backToTop.classList.add('show');
                 } else {
-                    elements.backToTop.style.opacity = '0';
-                    elements.backToTop.style.pointerEvents = 'none';
+                    elements.backToTop.classList.remove('show');
                 }
 
                 lastScrollY = currentScrollY;
@@ -4253,16 +4939,13 @@
                     ticking = true;
                 }
                 
-                // Clear timeout on scroll
                 clearTimeout(scrollTimeout);
                 
-                // Set timeout to show header after scrolling stops
                 scrollTimeout = setTimeout(() => {
                     elements.header.style.transform = 'translateY(0)';
                 }, 1500);
             });
 
-            // Back to top button
             elements.backToTop.addEventListener('click', () => {
                 window.scrollTo({
                     top: 0,
@@ -4272,93 +4955,71 @@
         }
 
         function initializeModal() {
-            const modal = elements.itemModal;
-            if (!modal) return;
-
-            const closeBtn = modal.querySelector('.modal-close');
-            const modalImage = modal.querySelector('.modal-image img');
-            const modalTitle = modal.querySelector('.modal-title');
-            const modalPrice = modal.querySelector('.modal-price');
-            const modalDesc = modal.querySelector('.modal-description');
-            const modalDetails = modal.querySelector('.modal-details');
-            const timeNotice = modal.querySelector('.time-availability-notice');
-
             function openModal(item) {
                 const lang = state.currentLanguage === 'en' ? item.en : item.ar;
                 
-                modalImage.src = item.image;
-                modalImage.alt = lang.name;
-                modalTitle.textContent = lang.name;
-                modalPrice.textContent = `${item.en.price} QAR`;
-                modalDesc.textContent = lang.description;
+                elements.modalImage.src = item.image;
+                elements.modalImage.alt = lang.name;
+                elements.modalTitle.textContent = lang.name;
+                elements.modalPrice.textContent = `${item.en.price} QAR`;
+                elements.modalDescription.textContent = lang.description;
                 
-                // Clear previous details
-                modalDetails.innerHTML = '';
+                elements.modalDetails.innerHTML = '';
                 
-                // Add dietary information
                 if (item.dietary && item.dietary.length > 0) {
                     item.dietary.forEach(diet => {
                         const tag = document.createElement('span');
                         tag.className = 'dietary-tag';
                         tag.textContent = diet;
-                        modalDetails.appendChild(tag);
+                        elements.modalDetails.appendChild(tag);
                     });
                 }
                 
-                // Add calories if available
                 if (item.calories) {
                     const calories = document.createElement('span');
                     calories.className = 'calories';
                     calories.textContent = item.calories;
-                    modalDetails.appendChild(calories);
+                    elements.modalDetails.appendChild(calories);
                 }
                 
-                // Show time notice if restricted
                 if (item.timeRestricted) {
-                    timeNotice.style.display = 'flex';
-                    timeNotice.querySelector('span').textContent = `Available: ${item.availableTime}`;
+                    elements.modalTimeNotice.classList.add('show');
+                    elements.modalTimeNotice.querySelector('span').textContent = `Available: ${item.availableTime}`;
                 } else {
-                    timeNotice.style.display = 'none';
+                    elements.modalTimeNotice.classList.remove('show');
                 }
 
-                modal.style.display = 'flex';
+                elements.itemModal.style.display = 'flex';
                 document.body.style.overflow = 'hidden';
                 
-                // Add fade-in animation
-                modal.style.opacity = '0';
+                elements.itemModal.style.opacity = '0';
                 setTimeout(() => {
-                    modal.style.opacity = '1';
-                    modal.style.transition = 'opacity 0.3s';
+                    elements.itemModal.style.opacity = '1';
+                    elements.itemModal.style.transition = 'opacity 0.3s';
                 }, 10);
             }
 
             function closeModal() {
-                modal.style.opacity = '0';
+                elements.itemModal.style.opacity = '0';
                 setTimeout(() => {
-                    modal.style.display = 'none';
+                    elements.itemModal.style.display = 'none';
                     document.body.style.overflow = 'auto';
                 }, 300);
             }
 
-            // Close modal on click outside
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
+            elements.itemModal.addEventListener('click', (e) => {
+                if (e.target === elements.itemModal) {
                     closeModal();
                 }
             });
 
-            // Close on escape key
             document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && modal.style.display === 'flex') {
+                if (e.key === 'Escape' && elements.itemModal.style.display === 'flex') {
                     closeModal();
                 }
             });
 
-            if (closeBtn) {
-                closeBtn.addEventListener('click', closeModal);
-            }
-
-            // Expose openItemModal globally
+            elements.modalClose.addEventListener('click', closeModal);
             window.openItemModal = openModal;
         }
 
@@ -4366,7 +5027,6 @@
             if (elements.reservationForm) {
                 elements.reservationForm.addEventListener('submit', handleReservationSubmit);
                 
-                // Set default date to tomorrow
                 const dateInput = elements.reservationForm.querySelector('input[type="date"]');
                 if (dateInput) {
                     const tomorrow = new Date();
@@ -4391,14 +5051,12 @@
                 return;
             }
 
-            // Validate phone number
             const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
             if (!phoneRegex.test(phone.replace(/[\s\-\(\)]/g, ''))) {
                 showToast('Please enter a valid phone number.', 'error');
                 return;
             }
 
-            // Create WhatsApp message
             const message = `*New Royal Reservation Request*%0A%0A` +
                           `👑 *Name:* ${name}%0A` +
                           `📱 *Phone:* ${phone}%0A` +
@@ -4408,13 +5066,9 @@
 
             const whatsappUrl = `https://wa.me/97451866671?text=${message}`;
             
-            // Open WhatsApp in new tab
             window.open(whatsappUrl, '_blank');
-            
-            // Reset form
             form.reset();
             
-            // Reset date to tomorrow
             const tomorrow = new Date();
             tomorrow.setDate(tomorrow.getDate() + 1);
             const dateInput = form.querySelector('input[type="date"]');
@@ -4422,7 +5076,6 @@
                 dateInput.value = tomorrow.toISOString().split('T')[0];
             }
             
-            // Show success message
             showToast('Royal reservation request sent! Check WhatsApp for confirmation.', 'success');
         }
 
@@ -4431,7 +5084,6 @@
                 btn.addEventListener('click', () => {
                     const lang = btn.dataset.lang;
                     if (lang !== state.currentLanguage) {
-                        // Update active button
                         elements.langButtons.forEach(b => {
                             if (b.dataset.lang === lang) {
                                 b.style.background = 'var(--color-gold)';
@@ -4444,32 +5096,13 @@
                             }
                         });
                         
-                        // Update state
                         state.currentLanguage = lang;
-                        
-                        // Update document direction
                         document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
                         document.documentElement.lang = lang;
                         
-                        // Update body classes
-                        document.body.classList.toggle('rtl', lang === 'ar');
-                        
-                        // Update CSS variables for RTL
-                        if (lang === 'ar') {
-                            document.documentElement.style.setProperty('--text-direction', 'rtl');
-                            document.documentElement.style.setProperty('--text-align', 'right');
-                        } else {
-                            document.documentElement.style.setProperty('--text-direction', 'ltr');
-                            document.documentElement.style.setProperty('--text-align', 'left');
-                        }
-                        
-                        // Update text content based on language
                         updateTextContent(lang);
-                        
-                        // Re-render menu items
                         renderMenuItems();
                         
-                        // Show language change toast
                         showToast(`Language changed to ${lang === 'en' ? 'English' : 'Arabic'}`, 'info');
                     }
                 });
@@ -4477,7 +5110,6 @@
         }
 
         function updateTextContent(lang) {
-            // Update static text elements
             const textUpdates = {
                 'en': {
                     'menu-title': 'Menu',
@@ -4502,13 +5134,105 @@
             }
         }
 
-        function initializeAnimations() {
-            // Intersection Observer for fade-in animations
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
+        function initializeBreadcrumb() {
+            const sections = document.querySelectorAll('section[id]');
+            const sectionTitles = {
+                'hero': 'Welcome',
+                'features': 'Features',
+                'menu': 'Menu',
+                'about': 'About',
+                'gallery': 'Gallery',
+                'contact': 'Contact'
             };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const sectionId = entry.target.id;
+                        if (sectionTitles[sectionId]) {
+                            elements.breadcrumbCurrent.textContent = sectionTitles[sectionId];
+                        }
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            sections.forEach(section => observer.observe(section));
+        }
 
+        function revealContent() {
+            setTimeout(() => {
+                elements.loadingOverlay.style.opacity = '0';
+                setTimeout(() => {
+                    elements.loadingOverlay.style.display = 'none';
+                    elements.mainContent.style.display = 'block';
+                    lazyLoadImages();
+                    initializeAnimations();
+                    checkTimeRestrictedItems();
+                    showToast('Welcome to Turkiana Cafe & Sweets! 👑', 'info');
+                }, 300);
+            }, 1000);
+        }
+
+        function handleInitializationError(error) {
+            console.error('Initialization error:', error);
+            elements.loadingOverlay.innerHTML = `
+                <div style="text-align: center; color: var(--color-gold);">
+                    <i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                    <h3 style="margin-bottom: 1rem;">Failed to load</h3>
+                    <p>Please refresh the page or check your connection</p>
+                    <button onclick="location.reload()" style="margin-top: 1rem; background: var(--color-gold); color: var(--color-burgundy); border: none; padding: 0.75rem 1.5rem; border-radius: 50px; font-weight: 700; cursor: pointer;">
+                        <i class="fas fa-redo"></i> Refresh Page
+                    </button>
+                </div>
+            `;
+        }
+
+        function handleImageError(img) {
+            const fallbacks = [
+                'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg',
+                'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/a.jpeg',
+                'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/b.jpeg'
+            ];
+            
+            let currentIndex = fallbacks.indexOf(img.src);
+            if (currentIndex === -1 || currentIndex >= fallbacks.length - 1) {
+                img.src = fallbacks[0];
+            } else {
+                img.src = fallbacks[currentIndex + 1];
+            }
+            img.onerror = null;
+        }
+
+        function lazyLoadImages() {
+            const images = document.querySelectorAll('img[loading="lazy"]');
+            
+            const imageObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        if (img.dataset.src) {
+                            img.src = img.dataset.src;
+                            img.removeAttribute('data-src');
+                        }
+                        state.loadedImages.add(img.src);
+                        observer.unobserve(img);
+                    }
+                });
+            }, {
+                rootMargin: '100px 0px',
+                threshold: 0.1
+            });
+
+            images.forEach(img => {
+                if (!img.src || img.src === '') {
+                    img.classList.add('img-loading');
+                }
+                img.onerror = () => handleImageError(img);
+                imageObserver.observe(img);
+            });
+        }
+
+        function initializeAnimations() {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -4516,26 +5240,25 @@
                         observer.unobserve(entry.target);
                     }
                 });
-            }, observerOptions);
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
 
-            // Observe sections
             document.querySelectorAll('.section').forEach(section => {
                 observer.observe(section);
             });
 
-            // Observe menu items
             document.querySelectorAll('.menu-item').forEach(item => {
                 observer.observe(item);
             });
 
-            // Observe feature cards
             document.querySelectorAll('.feature-card').forEach(card => {
                 observer.observe(card);
             });
         }
 
         function showToast(message, type = 'info') {
-            // Remove existing toast
             const existingToast = document.querySelector('.custom-toast');
             if (existingToast) {
                 existingToast.remove();
@@ -4544,7 +5267,6 @@
             const toast = document.createElement('div');
             toast.className = 'custom-toast';
             
-            // Set colors based on type
             let bgColor, textColor, icon;
             switch(type) {
                 case 'success':
@@ -4588,7 +5310,31 @@
             }, 4000);
         }
 
-        // Utility Functions
+        function checkTimeRestrictedItems() {
+            const now = new Date();
+            const currentHour = now.getHours();
+            const currentMinute = now.getMinutes();
+            const currentTime = currentHour * 60 + currentMinute;
+            
+            const breakfastStart = 8 * 60;
+            const breakfastEnd = 15 * 60;
+            
+            const isBreakfastTime = currentTime >= breakfastStart && currentTime <= breakfastEnd;
+            
+            const timeNotice = document.querySelector('.time-notice');
+            if (timeNotice) {
+                if (!isBreakfastTime) {
+                    timeNotice.style.background = 'linear-gradient(135deg, #e74c3c, #c0392b)';
+                    timeNotice.querySelector('.time-notice-content').innerHTML = `
+                        <i class="fas fa-exclamation-triangle" style="font-size: 1.5rem; color: white;"></i>
+                        <p style="font-size: 1.1rem; font-weight: 600; margin: 0; text-align: center;">
+                            <strong>Note:</strong> Breakfast items are currently unavailable. Available from <strong>8:00 AM to 3:00 PM</strong>
+                        </p>
+                    `;
+                }
+            }
+        }
+
         function debounce(func, wait) {
             let timeout;
             return function executedFunction(...args) {
@@ -4601,87 +5347,8 @@
             };
         }
 
-        // Safe execute function with error boundary
-        function safeExecute(fn, fallback) {
-            try {
-                return fn();
-            } catch (error) {
-                console.error('Error:', error);
-                if (typeof fallback === 'function') {
-                    return fallback();
-                }
-                return fallback;
-            }
-        }
-
-        // Check time-restricted items
-        function checkTimeRestrictedItems() {
-            const now = new Date();
-            const currentHour = now.getHours();
-            const currentMinute = now.getMinutes();
-            const currentTime = currentHour * 60 + currentMinute;
-            
-            // Breakfast time: 8:00 AM - 3:00 PM (8:00 to 15:00)
-            const breakfastStart = 8 * 60; // 8:00 AM
-            const breakfastEnd = 15 * 60; // 3:00 PM
-            
-            const isBreakfastTime = currentTime >= breakfastStart && currentTime <= breakfastEnd;
-            
-            // Update time notice visibility
-            const timeNotice = document.querySelector('.time-notice');
-            if (timeNotice) {
-                if (!isBreakfastTime) {
-                    timeNotice.style.background = 'linear-gradient(135deg, #e74c3c, #c0392b)';
-                    timeNotice.innerHTML = `
-                        <div style="display: flex; align-items: center; justify-content: center; gap: 1rem; color: white;">
-                            <i class="fas fa-exclamation-triangle" style="font-size: 1.5rem; color: white;"></i>
-                            <p style="font-size: 1.1rem; font-weight: 600; margin: 0; text-align: center;">
-                                <strong>Note:</strong> Breakfast items are currently unavailable. Available from <strong>8:00 AM to 3:00 PM</strong>
-                            </p>
-                        </div>
-                    `;
-                }
-            }
-        }
-
-        // Add mobile menu close on outside click
-        document.addEventListener('click', (e) => {
-            if (state.isMenuOpen && 
-                !elements.mainNav.contains(e.target) && 
-                !elements.mobileMenuBtn.contains(e.target)) {
-                elements.mainNav.classList.remove('active');
-                elements.mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-                elements.mobileMenuBtn.style.background = 'none';
-                elements.mobileMenuBtn.style.color = 'var(--color-burgundy)';
-                state.isMenuOpen = false;
-            }
-            
-            // Close category sidebar on outside click on mobile
-            if (state.isCategorySidebarOpen && 
-                window.innerWidth <= 992 &&
-                !elements.categoriesSidebar.contains(e.target) &&
-                !elements.categoryToggle.contains(e.target)) {
-                elements.categoriesSidebar.classList.remove('active');
-                elements.categoryToggle.innerHTML = '<i class="fas fa-bars"></i>';
-                state.isCategorySidebarOpen = false;
-            }
-        });
-
-        // Add keyboard navigation for accessibility
-        document.addEventListener('keydown', (e) => {
-            // Tab navigation - add focus styles
-            if (e.key === 'Tab') {
-                document.body.classList.add('keyboard-navigation');
-            }
-        });
-
-        document.addEventListener('click', () => {
-            document.body.classList.remove('keyboard-navigation');
-        });
-
         // Handle window resize
         window.addEventListener('resize', () => {
-            // Auto-open sidebar on larger screens
             if (window.innerWidth > 992 && !state.isCategorySidebarOpen) {
                 elements.categoriesSidebar.classList.add('active');
                 state.isCategorySidebarOpen = true;
@@ -4690,7 +5357,7 @@
 
         // Check time on load and every minute
         checkTimeRestrictedItems();
-        setInterval(checkTimeRestrictedItems, 60000); // Check every minute
+        setInterval(checkTimeRestrictedItems, 60000);
 
         // Initialize image error handling globally
         document.addEventListener('error', (e) => {
