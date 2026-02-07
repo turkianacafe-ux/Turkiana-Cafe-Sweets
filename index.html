@@ -2550,6 +2550,25 @@
             items: [
                 // ===== POPULAR ITEMS =====
                 {
+                                        id: "pop1",
+                    category: "Popular",
+                    en: {
+                        name: "Carrot Slice Baklava With Ice Cream",
+                        description: "Temperature contrast—warm carrot baklava paired with cool vanilla bean ice cream, creating delightful interplay of crispy pastry, sweet syrup, and creamy cold that elevates both elements.",
+                        price: 55
+                    },
+                    ar: {
+                        name: "بقلاوة شريحة الجزر مع الآيس كريم",
+                        description: "تباين درجات الحرارة—بقلاوة جزر دافئة مقترنة بآيس كريم فانيليا بارد، تخلق تفاعلاً مسلياً بين العجين المقرمش، الشراب الحلو، والكريمية الباردة التي ترفع كلا العنصرين.",
+                        price: 55
+                    },
+                    image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Carroticecream.jpeg",
+                    calories: "620 kcal",
+                    dietary: ["contains-nuts", "contains-dairy"],
+                    popular: true
+
+        },
+                {
                     id: "pop2",
                     category: "Popular",
                     en: {
@@ -3010,23 +3029,7 @@
                     calories: "95 kcal",
                     dietary: ["vegan", "dairy-free"]
                 },
-                {
-                    id: "th8",
-                    category: "Tea on the House",
-                    en: {
-                        name: "Strawberry Matcha",
-                        description: "Harmonious fusion—vibrant matcha meets sun-ripened strawberry puree, creating layered experience where green tea's umami depth dances with berry's natural sweetness.",
-                        price: 42
-                    },
-                    ar: {
-                        name: "ماتشا بالفراولة",
-                        description: "اندماج متناغم—ماتشا نابض يلتقي بهريس فراولة ناضج بالشمس، يخلق تجربة متعددة الطبقات حيث عمق الأومامي في الشاي الأخضر يرقص مع حلاوة التوت الطبيعية.",
-                        price: 42
-                    },
-                    image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Strawberrymatcha.webp",
-                    calories: "135 kcal",
-                    dietary: ["vegan", "dairy-free"]
-                },
+                
                 {
                     id: "th9",
                     category: "Tea on the House",
@@ -3850,92 +3853,7 @@
                 },
 
                 // ===== CROISSANT CREATIONS =====
-                {
-                    id: "cc1",
-                    category: "Croissant Creations",
-                    en: {
-                        name: "Croissant Beef Ribs",
-                        description: "Savory masterpiece—flaky croissant generously filled with slow-braised beef ribs, melted cheddar, kasfar cheese, and fresh pesto, creating hearty sandwich that redefines breakfast possibilities.",
-                        price: 45
-                    },
-                    ar: {
-                        name: "كرواسون أضلاع اللحم",
-                        description: "تحفة مالحة—كرواسون هش محشو بسخاء بأضلاع لحم مطهوة ببطء، شيدر مذاب، جبن كاسفار، وبيستو طازج، يخلق ساندويتش مشبعاً يعيد تعريف احتمالات الفطور.",
-                        price: 45
-                    },
-                    image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Ribs.jpg",
-                    calories: "720 kcal",
-                    dietary: []
-                },
-                {
-                    id: "cc2",
-                    category: "Croissant Creations",
-                    en: {
-                        name: "Avocado Croissant",
-                        description: "California-Turkish fusion—buttery croissant layered with creamy avocado and soft scrambled eggs, offering healthy indulgence where rich textures meet fresh, vibrant flavors.",
-                        price: 42
-                    },
-                    ar: {
-                        name: "كرواسون الأفوكادو",
-                        description: "اندماج كاليفورني-تركي—كرواسون زبدي مطبق بأفوكادو كريمي وبيض مخفوق طري، يقدم تناولاً صحياً حيث تلتقي القوام الغنية بالنكهات الطازجة النابضة.",
-                        price: 42
-                    },
-                    image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Avocado.jpg",
-                    calories: "610 kcal",
-                    dietary: ["vegetarian"]
-                },
-                {
-                    id: "cc3",
-                    category: "Croissant Creations",
-                    en: {
-                        name: "Smoked Beef Croissant",
-                        description: "Smoky sophistication—freshly baked croissant filled with delicate eggs and premium smoked beef slices, where pastry's buttery layers complement meat's rich, aromatic smokiness.",
-                        price: 45
-                    },
-                    ar: {
-                        name: "كرواسون لحم مدخن",
-                        description: "رقة دخانية—كرواسون طازج محشو ببيض دقيق وشرائح لحم مدخن فاخر، حيث تكمل طبقات العجين الزبدية دخانية اللحم الغنية العطرية.",
-                        price: 45
-                    },
-                    image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/5.jpg",
-                    calories: "630 kcal",
-                    dietary: []
-                },
-                {
-                    id: "cc4",
-                    category: "Croissant Creations",
-                    en: {
-                        name: "Butter & Jam Croissant",
-                        description: "Sweet-savory harmony—warm croissant served with cherry jam, roasted olives, and creamy feta, creating Mediterranean-inspired combination that celebrates contrasting flavors in perfect balance.",
-                        price: 40
-                    },
-                    ar: {
-                        name: "كرواسون زبدة ومربى",
-                        description: "تناغم حلو-مالح—كرواسون دافئ يُقدم مع مربى الكرز، زيتون محمص، وفيتا كريمي، يخلق مزيجاً مستوحى من البحر المتوسط يحتفل بالنكهات المتباينة في توازن مثالي.",
-                        price: 40
-                    },
-                    image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/4.jpg",
-                    calories: "540 kcal",
-                    dietary: ["vegetarian"]
-                },
-                {
-                    id: "cc5",
-                    category: "Croissant Creations",
-                    en: {
-                        name: "Croissant Scrambled Eggs",
-                        description: "Morning classic elevated—light croissant generously filled with soft scrambled eggs and fresh arugula, creating satisfying breakfast where French pastry meets Turkish breakfast tradition.",
-                        price: 37
-                    },
-                    ar: {
-                        name: "كرواسون بالبيض المخفوق",
-                        description: "كلاسيكي الصباح المرفوع—كرواسون خفيف محشو بسخاء ببيض مخفوق طري وجرجير طازج، يخلق فطوراً مشبعاً حيث يلتقي المعجنات الفرنسية بتقليد الفطور التركي.",
-                        price: 37
-                    },
-                    image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/1.jpg",
-                    calories: "520 kcal",
-                    dietary: ["vegetarian"]
-                },
-                {
+                                {
                     id: "cc6",
                     category: "Croissant Creations",
                     en: {
@@ -4126,299 +4044,13 @@
                     dietary: ["vegetarian", "gluten-free"],
                     popular: false
                 },
-                {
-                    id: "gg5",
-                    category: "From the Grill & Garden",
-                    en: {
-                        name: "Fried Sweet Potato",
-                        description: "Natural sweetness—sweet potato fries with caramelized edges and soft centers, offering healthier alternative with lower glycemic index and rich beta-carotene content in vibrant orange hue.",
-                        price: 32
-                    },
-                    ar: {
-                        name: "بطاطس حلوة مقلية",
-                        description: "حلاوة طبيعية—بطاطس حلوة مقلية بحواف مكرملة ومراكز طرية، تقدم بديلاً صحياً بمؤشر جلايسيمي أقل ومحتوى بيتا كاروتين غني بلون برتقالي نابض.",
-                        price: 32
-                    },
-                    image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Sweetpotato.jpg",
-                    calories: "360 kcal",
-                    dietary: ["vegan", "gluten-free"],
-                    popular: false
-                },
-                {
-                    id: "gg6",
-                    category: "From the Grill & Garden",
-                    en: {
-                        name: "Caesar Salad",
-                        description: "Roman classic—crisp romaine lettuce with Caesar dressing, Parmesan cheese, and croutons, creating balanced salad where creamy, garlicky dressing complements fresh greens perfectly.",
-                        price: 47
-                    },
-                    ar: {
-                        name: "سلطة سيزر",
-                        description: "كلاسيكي روماني—خس روماني مقرمش مع تتبيلة سيزر، جبن بارميزان، وكراوتون، يخلق سلطة متوازنة حيث تكمل التتبيلة الكريمية الثومية الخضروات الطازجة بشكل مثالي.",
-                        price: 47
-                    },
-                    image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Caesar.jpeg",
-                    calories: "420 kcal",
-                    dietary: ["contains-gluten", "contains-dairy", "vegetarian"]
-                },
-                {
-                    id: "gg7",
-                    category: "From the Grill & Garden",
-                    en: {
-                        name: "Ottoman Salad",
-                        description: "Imperial freshness—traditional salad with crisp vegetables, fresh herbs, and light dressing inspired by Ottoman palace kitchens, offering refreshing accompaniment that cleanses palate.",
-                        price: 59
-                    },
-                    ar: {
-                        name: "سلطة عثمانية",
-                        description: "نضارة إمبراطورية—سلطة تقليدية مع خضروات مقرمشة، أعشاب طازجة، وتتبيلة خفيفة مستوحاة من مطابخ القصر العثماني، تقدم مرافقاً منعشاً ينظف الحنك.",
-                        price: 59
-                    },
-                    image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Salad.jpg",
-                    calories: "120 kcal",
-                    dietary: ["vegetarian"]
-                },
-                {
-                    id: "gg8",
-                    category: "From the Grill & Garden",
-                    en: {
-                        name: "Avocado Salad",
-                        description: "Creamy freshness—ripe avocado combined with crisp vegetables and lemon dressing, creating rich salad where avocado's buttery texture balances with acidic dressing and crunchy elements.",
-                        price: 49
-                    },
-                    ar: {
-                        name: "سلطة الأفوكادو",
-                        description: "نضارة كريمية—أفوكادو ناضج مجتمع مع خضروات مقرمشة وتتبيلة ليمون، يخلق سلطة غنية حيث يوازن قوام الأفوكادو الزبدي مع التتبيلة الحامضة والعناصر المقرمشة.",
-                        price: 49
-                    },
-                    image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Saladavocado.jpg",
-                    calories: "180 kcal",
-                    dietary: ["vegetarian"]
-                },
+           
+          
+              
+            
 
                 // ===== ANATOLIAN MORNING TABLE =====
-                {
-                    id: "amt1",
-                    category: "Anatolian Morning Table",
-                    en: {
-                        name: "Turkish Classic Breakfast",
-                        description: "Cultural immersion—traditional Turkish breakfast spread featuring fresh bread, assorted cheeses, olives, tomatoes, cucumbers, honey, clotted cream, and tea, creating leisurely morning ritual.",
-                        price: 65
-                    },
-                    ar: {
-                        name: "فطور تركي كلاسيكي",
-                        description: "انغماس ثقافي—مائدة فطور تركية تقليدية تضم خبزاً طازجاً، أجبان متنوعة، زيتون، طماطم، خيار، عسل، قشطة، وشاي، تخلق طقساً صباحياً مريحاً.",
-                        price: 65
-                    },
-                    image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Breakfast.jpg",
-                    calories: "680 kcal",
-                    dietary: ["vegetarian", "contains-dairy"],
-                    popular: true
-                },
-                {
-                    id: "amt2",
-                    category: "Anatolian Morning Table",
-                    en: {
-                        name: "Turkish Breakfast for 2",
-                        description: "Shared abundance—lavish Turkish breakfast platter for two with extensive selection of cheeses, olives, vegetables, eggs, honey, jams, and bread, designed for extended, celebratory mornings.",
-                        price: 179
-                    },
-                    ar: {
-                        name: "فطور تركي لشخصين",
-                        description: "وفرة مشتركة—صحن فطور تركي فاخر لشخصين باختيار واسع من الأجبان، الزيتون، الخضروات، البيض، العسل، المربى، والخبز، مصمم للصباحات الممتدة الاحتفالية.",
-                        price: 179
-                    },
-                    image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Breakfast2.jpg",
-                    calories: "1200 kcal",
-                    dietary: ["vegetarian"]
-                },
-                {
-                    id: "amt3",
-                    category: "Anatolian Morning Table",
-                    en: {
-                        name: "Turkish Menemen",
-                        description: "Homestyle comfort—soft scrambled eggs cooked with tomatoes, green peppers, and spices in traditional Turkish style, served in pan for rustic, satisfying breakfast that feels like home.",
-                        price: 45
-                    },
-                    ar: {
-                        name: "مينمن تركي",
-                        description: "رحة منزلية—بيض مخفوق طري مطهو مع طماطم، فلفل أخضر، وتوابل على الطريقة التركية التقليدية، يُقدم في مقلاة لفطور ريفي مشبع يشبه البيت.",
-                        price: 45
-                    },
-                    image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Menemen.jpg",
-                    calories: "360 kcal",
-                    dietary: ["gluten-free", "contains-dairy"]
-                },
-                {
-                    id: "amt4",
-                    category: "Anatolian Morning Table",
-                    en: {
-                        name: "Plain Omelette",
-                        description: "Simple perfection—light, tender omelette cooked to golden perfection, showcasing egg's natural flavor and texture without distractions, perfect for purists or as protein foundation.",
-                        price: 25
-                    },
-                    ar: {
-                        name: "أومليت عادي",
-                        description: "كمال بسيط—أومليت خفيف طري مطهو إلى الكمال الذهبي، يعرض نكهة البيض الطبيعية وقوامه دون تشتيت، مثالي للأصوليين أو كأساس بروتيني.",
-                        price: 25
-                    },
-                    image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Omellet.jpg",
-                    calories: "220 kcal",
-                    dietary: ["gluten-free", "contains-dairy"]
-                },
-                {
-                    id: "amt5",
-                    category: "Anatolian Morning Table",
-                    en: {
-                        name: "Afternoon Sandwich",
-                        description: "Light refreshment—delicate sandwich perfect for afternoon pause, offering satisfying yet not overwhelming option that provides energy without weighing down before evening.",
-                        price: 36
-                    },
-                    ar: {
-                        name: "ساندويتش بعد الظهر",
-                        description: "انتعاش خفيف—ساندويتش دقيق مثالي لاستراحة بعد الظهر، يقدم خياراً مشبعاً لكن غير طاغٍ يوفر الطاقة دون إثقال قبل المساء.",
-                        price: 36
-                    },
-                    image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Afternoonsandwich.jpg",
-                    calories: "320 kcal",
-                    dietary: ["vegetarian"]
-                },
-                {
-                    id: "amt6",
-                    category: "Anatolian Morning Table",
-                    en: {
-                        name: "Chicken Sandwich",
-                        description: "Poultry satisfaction—juicy chicken sandwich with fresh vegetables and sauce, creating balanced meal where protein, crunch, and flavor come together in handheld convenience.",
-                        price: 38
-                    },
-                    ar: {
-                        name: "ساندويتش دجاج",
-                        description: "إشباع دواجن—ساندويتش دجاج طري مع خضروات طازجة وصوص، يخلق وجبة متوازنة حيث يجتمع البروتين، القرمشة، والنكهة في راحة محمولة باليد.",
-                        price: 38
-                    },
-                    image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Chickensandwich.jpg",
-                    calories: "420 kcal",
-                    dietary: []
-                },
-                {
-                    id: "amt7",
-                    category: "Anatolian Morning Table",
-                    en: {
-                        name: "Cold Healthy Cheese Sandwich",
-                        description: "Fresh simplicity—cold sandwich with healthy cheese and light ingredients, offering refreshing option for warm days or those preferring cooler, lighter meal alternatives.",
-                        price: 29
-                    },
-                    ar: {
-                        name: "ساندويتش جبن صحي بارد",
-                        description: "بساطة طازجة—ساندويتش بارد بجبن صحي ومكونات خفيفة، يقدم خياراً منعشاً للأيام الدافئة أو لمن يفضلون بدائل وجبات أبرد وأخف.",
-                        price: 29
-                    },
-                    image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Cold Healthy Cheese Sandwich 0.jpg",
-                    calories: "290 kcal",
-                    dietary: ["vegetarian"]
-                },
-                {
-                    id: "amt8",
-                    category: "Anatolian Morning Table",
-                    en: {
-                        name: "Cucumber Labneh Sandwich",
-                        description: "Levantine freshness—labneh and cucumber sandwich that captures Middle Eastern breakfast essence, offering cooling combination perfect for warm climates or light morning start.",
-                        price: 32
-                    },
-                    ar: {
-                        name: "ساندويتش لبنة بالخيار",
-                        description: "نضارة شامية—ساندويتش لبنة وخيار يلتقط جوهر الفطور الشرق أوسطي، يقدم مزيجاً مبرداً مثالياً للمناخات الدافئة أو بداية صباحية خفيفة.",
-                        price: 32
-                    },
-                    image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Cucumberlabnah.jpg",
-                    calories: "260 kcal",
-                    dietary: ["vegetarian"]
-                },
-                {
-                    id: "amt9",
-                    category: "Anatolian Morning Table",
-                    en: {
-                        name: "Egg & Cheese Sandwich",
-                        description: "Protein classic—warm egg and cheese sandwich that satisfies morning hunger with familiar comfort, offering versatile option suitable for breakfast, lunch, or any-time craving.",
-                        price: 33
-                    },
-                    ar: {
-                        name: "ساندويتش بيض وجبن",
-                        description: "كلاسيكي بروتيني—ساندويتش بيض وجبن دافئ يشبع جوع الصباح براحة مألوفة، يقدم خياراً متعدد الاستخدامات مناسباً للفطور، الغداء، أو أي رغبة في أي وقت.",
-                        price: 33
-                    },
-                    image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Eggcheese.jpg",
-                    calories: "380 kcal",
-                    dietary: ["vegetarian"]
-                },
-                {
-                    id: "amt10",
-                    category: "Anatolian Morning Table",
-                    en: {
-                        name: "Smoked Turkey Sandwich",
-                        description: "Smoked sophistication—sandwich with premium smoked turkey, fresh bread, and balanced accompaniments, offering lighter protein option with distinctive flavor profile for discerning palates.",
-                        price: 49
-                    },
-                    ar: {
-                        name: "ساندويتش ديك رومي مدخن",
-                        description: "رقة مدخنة—ساندويتش بديك رومي مدخن فاخر، خبز طازج، ومرافقات متوازنة، يقدم خيار بروتيني أخف بملف نكهة مميز للأذواق المتذوقة.",
-                        price: 49
-                    },
-                    image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Smokedturkey.jpg",
-                    calories: "410 kcal",
-                    dietary: []
-                },
-                {
-                    id: "amt11",
-                    category: "Anatolian Morning Table",
-                    en: {
-                        name: "Tuna & Avocado Sandwich",
-                        description: "Oceanic creaminess—tuna paired with creamy avocado in sandwich that combines protein richness with healthy fats, creating satisfying, nutritionally balanced option for conscious eaters.",
-                        price: 47
-                    },
-                    ar: {
-                        name: "ساندويتش تونا بالأفوكادو",
-                        description: "كريمية محيطية—تونا مقترنة بأفوكادو كريمي في ساندويتش يجمع غنى البروتين بالدهون الصحية، يخلق خياراً مشبعاً ومتوازناً غذائياً للأكَلَة الواعية.",
-                        price: 47
-                    },
-                    image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Tunacado.jpg",
-                    calories: "430 kcal",
-                    dietary: []
-                },
-                {
-                    id: "amt12",
-                    category: "Anatolian Morning Table",
-                    en: {
-                        name: "Tuna Sandwich",
-                        description: "Classic protein—traditional tuna sandwich with smooth filling, offering reliable favorite that satisfies with familiar flavors and substantial protein content in convenient format.",
-                        price: 37
-                    },
-                    ar: {
-                        name: "ساندويتش تونا",
-                        description: "بروتين كلاسيكي—ساندويتش تونا تقليدي بحشوة ناعمة، يقدم المفضل الموثوق الذي يشبع بنكهات مألوفة ومحتوى بروتيني جوهري في شكل ملائم.",
-                        price: 37
-                    },
-                    image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Tunasandwich.jpg",
-                    calories: "400 kcal",
-                    dietary: []
-                },
-                {
-                    id: "amt13",
-                    category: "Anatolian Morning Table",
-                    en: {
-                        name: "Turkey Ham Sandwich",
-                        description: "Light deli option—turkey ham sandwich with fresh vegetables and soft bread, offering approachable choice for those seeking familiar deli flavors in balanced, not-too-heavy presentation.",
-                        price: 30
-                    },
-                    ar: {
-                        name: "ساندويتش تركي هام",
-                        description: "خيار لحوم بارد خفيف—ساندويتش تركي هام مع خضروات طازجة وخبز طري، يقدم اختياراً سهلاً لمن يبحثون عن نكهات اللحوم الباردة المألوفة في تقديم متوازن وغير ثقيل جداً.",
-                        price: 30
-                    },
-                    image: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkeyhamsandwich.jpg",
-                    calories: "390 kcal",
-                    dietary: []
-                },
+               
 
                 // ===== CAFÉ & CHILL (with milk selection) =====
                 {
