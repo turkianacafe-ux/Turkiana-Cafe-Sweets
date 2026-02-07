@@ -1,0 +1,22 @@
+{
+    "name": "Turkiana Cafe & Sweets",
+    "short_name": "Turkiana",
+    "description": "Luxury Turkish coffee, authentic baklava & premium Arabic delights in Doha",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#0A1931",
+    "theme_color": "#D4AF37",
+    "orientation": "portrait",
+    "icons": [
+        {
+            "src": "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg",
+            "sizes": "192x192",
+            "type": "image/jpeg"
+        },
+        {
+            "src": "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg",
+            "sizes": "512x512",
+            "type": "image/jpeg"
+        }
+    ]
+}
