@@ -5041,6 +5041,11 @@
                 }
             </style>
         `);
+        if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js')
+        .then(() => console.log('✅ Working!'))
+        .catch(err => console.log('❌ Error:', err));
+}
     </script>
 </body>
 </html>
