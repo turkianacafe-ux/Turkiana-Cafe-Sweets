@@ -4,10 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>Turkiana Cafe & Sweets | Luxury Turkish & Arabic Experience in Mshreib Downtown Doha, Qatar</title>
+  <!-- Base tag to fix all relative paths -->
+<base href="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/">
+
+<!-- Update manifest link -->
+<link rel="manifest" href="/Turkiana-Cafe-Sweets/manifest.json" crossorigin="use-credentials">
     <meta name="description" content="Luxury Turkish coffee, authentic baklava & premium Arabic delights at Turkiana Cafe in Doha. Experience opulence in every sip and bite.">
     
+    <!-- REMOVED: Duplicate manifest link -->
+    
     <!-- PWA Manifest -->
-    <link rel="manifest" href="manifest.json">
+   
     <meta name="theme-color" content="#2A0F1A">
     
     <!-- Preload Critical Resources -->
@@ -5032,10 +5039,36 @@ document.head.insertAdjacentHTML('beforeend', `
 `);
 
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/Turkiana-Cafe-Sweets/sw.js')
-        .then(() => console.log('✅ Working!'))
-        .catch(err => console.log('❌ Error:', err));
+    window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/Turkiana-Cafe-Sweets/sw.js', {
+            scope: '/Turkiana-Cafe-Sweets/'
+        })
+        .then(function(registration) {
+            console.log('✅ Service Worker registered with scope:', registration.scope);
+        })
+        .catch(function(err) {
+            console.log('❌ Service Worker registration failed:', err);
+        });
+    });
 }
+        // Fix all image paths when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    // Update all image src attributes
+    document.querySelectorAll('img[src^="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/"]').forEach(img => {
+        const originalSrc = img.src;
+        const newSrc = originalSrc.replace('https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/', '');
+        img.src = newSrc;
+        console.log('Updated image path:', originalSrc, '->', newSrc);
+    });
+    
+    // Update video source
+    const videoSource = document.querySelector('source[src^="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/"]');
+    if (videoSource) {
+        const originalSrc = videoSource.src;
+        const newSrc = originalSrc.replace('https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/', '');
+        videoSource.src = newSrc;
+    }
+});
     </script>
 </body>
 </html>
