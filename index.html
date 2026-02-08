@@ -5003,45 +5003,35 @@
 
         // Initialize the app
         document.addEventListener('DOMContentLoaded', () => {
-            try {
-                window.turkianaApp = new TurkianaApp();
-                
-                // Register service worker for PWA capabilities
-                if ('serviceWorker' in navigator) {
-                    navigator.serviceWorker.register('/sw.js')
-                        .then(registration => {
-                            console.log('ServiceWorker registered:', registration);
-                        })
-                        .catch(error => {
-                            console.log('ServiceWorker registration failed:', error);
-                        });
-                }
-            } catch (error) {
-                console.error('Failed to initialize Turkiana App:', error);
-                
-                // Show user-friendly error message
-                const errorDiv = document.createElement('div');
-                errorDiv.className = 'error-message glass-panel';
-                errorDiv.innerHTML = `
-                    <i class="fas fa-exclamation-triangle"></i>
-                    <h3>Something went wrong</h3>
-                    <p>Please refresh the page or contact support.</p>
-                    <button onclick="window.location.reload()">Refresh Page</button>
-                `;
-                document.body.appendChild(errorDiv);
-            }
-        });
+    try {
+        window.turkianaApp = new TurkianaApp();
+    } catch (error) {
+        console.error('Failed to initialize Turkiana App:', error);
+        
+        // Show user-friendly error message
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'error-message glass-panel';
+        errorDiv.innerHTML = `
+            <i class="fas fa-exclamation-triangle"></i>
+            <h3>Something went wrong</h3>
+            <p>Please refresh the page or contact support.</p>
+            <button onclick="window.location.reload()">Refresh Page</button>
+        `;
+        document.body.appendChild(errorDiv);
+    }
+});
 
-        // Add keyboard navigation styles
-        document.head.insertAdjacentHTML('beforeend', `
-            <style>
-                .keyboard-navigation :focus-visible {
-                    outline: 3px solid var(--gold-matte) !important;
-                    outline-offset: 3px !important;
-                }
-            </style>
-        `);
-   if ('serviceWorker' in navigator) {
+// Add keyboard navigation styles
+document.head.insertAdjacentHTML('beforeend', `
+    <style>
+        .keyboard-navigation :focus-visible {
+            outline: 3px solid var(--gold-matte) !important;
+            outline-offset: 3px !important;
+        }
+    </style>
+`);
+
+if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/Turkiana-Cafe-Sweets/sw.js')
         .then(() => console.log('✅ Working!'))
         .catch(err => console.log('❌ Error:', err));
