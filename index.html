@@ -5041,10 +5041,8 @@
                 }
             </style>
         `);
-      if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js', { 
-        scope: './' 
-    })
+   if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/Turkiana-Cafe-Sweets/sw.js')
         .then(() => console.log('✅ Working!'))
         .catch(err => console.log('❌ Error:', err));
 }
