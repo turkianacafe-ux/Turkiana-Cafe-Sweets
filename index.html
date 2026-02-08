@@ -5041,8 +5041,10 @@
                 }
             </style>
         `);
-        if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js')
+      if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js', { 
+        scope: './' 
+    })
         .then(() => console.log('✅ Working!'))
         .catch(err => console.log('❌ Error:', err));
 }
