@@ -9,13 +9,18 @@
   "description": "Luxury Turkish coffee and authentic Arabic sweets in Doha",
   "icons": [
     {
-      "src": "/Turkiana-Cafe-Sweets/Mix.jpeg",
+      "src": "/Turkiana-Cafe-Sweets/Turkishcoffee.jpg",
       "sizes": "192x192",
       "type": "image/jpeg"
     },
     {
-      "src": "/Turkiana-Cafe-Sweets/Mix.jpeg",
+      "src": "/Turkiana-Cafe-Sweets/Turkishcoffee.jpg",
       "sizes": "512x512",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "/Turkiana-Cafe-Sweets/Turkishcoffee.jpg",
+      "sizes": "1024x1024",
       "type": "image/jpeg"
     }
   ]
