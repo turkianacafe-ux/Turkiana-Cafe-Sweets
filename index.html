@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
-    <title>Turkiana Cafe & Sweets | Ramadan 1447 • 2026 – Luxury Turkish & Arabic Experience in Doha</title>
+    <title>Turkiana Cafe & Sweets | 🌙 Ramadan 1447 • 2026 – Luxury Turkish & Arabic Experience in Doha</title>
     <meta name="description" content="Experience the spiritual elegance of Ramadan 2026 at Turkiana. Royal Turkish coffee, artisanal baklava, and Iftar feasts in an atmosphere of Ottoman grandeur and Qatari hospitality.">
     <meta name="keywords" content="Turkish coffee Doha, Arabic coffee Qatar, baklava, kunafa, Iftar Doha 2026, Suhoor Doha, Ottoman cuisine, Msheireb restaurants, Ramadan 1447">
     <meta name="author" content="Turkiana Café & Sweets">
@@ -130,6 +130,87 @@
             background-size: 120px 120px;
             pointer-events: none;
             z-index: -1;
+        }
+
+        /* ========== CINEMATIC RAMADAN EFFECTS ========== */
+        /* Falling stars animation */
+        .stars-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--gold-soft);
+            border-radius: 50%;
+            box-shadow: 0 0 8px 2px rgba(212, 188, 106, 0.4);
+            animation: fall linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-10vh) translateX(0) rotate(0deg);
+                opacity: 0.8;
+            }
+            70% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(100vh) translateX(20px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Gentle light from above (divine light effect) */
+        .divine-light {
+            position: fixed;
+            top: -20%;
+            left: 0;
+            width: 100%;
+            height: 30%;
+            background: radial-gradient(ellipse at top, rgba(212, 188, 106, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 2;
+            animation: gentlePulse 8s infinite alternate;
+        }
+
+        @keyframes gentlePulse {
+            0% { opacity: 0.3; }
+            100% { opacity: 0.7; }
+        }
+
+        /* Soft glow on headings */
+        h1, h2, .section-title, .hero-title {
+            position: relative;
+            z-index: 5;
+        }
+
+        h1::after, .hero-title::after {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150%;
+            height: 150%;
+            background: radial-gradient(circle, rgba(212, 188, 106, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: -1;
+            animation: glowPulse 5s infinite alternate;
+        }
+
+        @keyframes glowPulse {
+            0% { opacity: 0.2; transform: translateX(-50%) scale(0.9); }
+            100% { opacity: 0.5; transform: translateX(-50%) scale(1.1); }
         }
 
         h1, h2, h3, h4, h5, h6 {
@@ -1945,6 +2026,10 @@
     </style>
 </head>
 <body>
+    <!-- ===== CINEMATIC RAMADAN EFFECTS: FALLING STARS & DIVINE LIGHT ===== -->
+    <div class="stars-container" id="starsContainer"></div>
+    <div class="divine-light"></div>
+
     <!-- ===== LOADING OVERLAY - RAMADAN 1447 ===== -->
     <div class="loading-overlay" id="loadingOverlay">
         <div class="ramadan-loader">
@@ -1965,13 +2050,14 @@
                     <span class="logo-text-main">TURKIANA</span>
                     <span class="logo-text-sub">Café & Sweets</span>
                 </div>
-                <span class="ramadan-badge-header">✨ RAMADAN 1447</span>
+                <span class="ramadan-badge-header"> RAMADAN 1447</span>
             </a>
             
             <nav class="nav-menu" id="navMenu">
                 <a href="#home" class="nav-link active">Home</a>
                 <a href="#menu" class="nav-link">Menu</a>
                 <a href="#ramadan-special" class="nav-link">Iftar</a>
+                <a href="#ramadan-special2" class="nav-link">Suhoor</a>
                 <a href="#story" class="nav-link">Tradition</a>
                 <a href="#gallery" class="nav-link">Gallery</a>
                 <a href="#contact" class="nav-link">Reserve</a>
@@ -1995,7 +2081,7 @@
         </video>
         
         <div class="hero-content glass-panel">
-            <div class="hero-year">✨ RAMADAN 1447 • 2026 ✨</div>
+            <div class="hero-year"> 🌙 RAMADAN 1447 • 2026 </div>
             <h1 class="hero-title">Nights of Light,<br>Tastes of Heritage</h1>
             <div class="hero-divider"></div>
             <p class="hero-subtitle">رمضان كريم • Generous Ramadan</p>
@@ -2007,19 +2093,19 @@
             
             <div class="ramadan-hours-banner">
                 <i class="fas fa-clock"></i>
-                <span class="ramadan-hours-text">RAMADAN HOURS: 7:00 PM – 2:00 AM DAILY</span>
+                <span class="ramadan-hours-text"> 🌙 RAMADAN HOURS: 7:00 PM – 2:00 AM DAILY</span>
                 <i class="fas fa-moon"></i>
             </div>
             
             <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-top: var(--space-lg);">
-                <a href="#menu" class="btn btn-primary">✨ Explore Ramadan Menu ✨</a>
+                <a href="#menu" class="btn btn-primary"> 🌙 Explore Ramadan Menu </a>
                 <a href="#ramadan-special" class="btn btn-outline">Sultan's Iftar</a>
             </div>
             
             <div class="hero-stats">
                 <div class="stat-item">
                     <span class="stat-number">50+</span>
-                    <span class="stat-label">Ramadan Items</span>
+                    <span class="stat-label"> 🌙 Ramadan Items</span>
                 </div>
                 <div class="stat-item">
                     <span class="stat-number">1447</span>
@@ -2033,12 +2119,14 @@
         </div>
     </section>
 
+    
+
     <!-- ===== RAMADAN SPECIAL - SULTAN'S IFTAR ===== -->
     <div id="ramadan-special" class="container-wide">
         <div class="ramadan-special-banner">
             <div class="ramadan-special-content">
                 <div>
-                    <span class="special-badge">✨ RAMADAN 1447 EXCLUSIVE ✨</span>
+                    <span class="special-badge"> 🌙 RAMADAN 1447 EXCLUSIVE </span>
                     <h2 class="ramadan-special-title">Sultan's Iftar</h2>
                     <p class="ramadan-special-date">Sunset - 2:00 AM • Daily</p>
                     <p style="color: var(--cream); margin-bottom: var(--space-md);">
@@ -2048,12 +2136,16 @@
                     </p>
                     
                     <div class="iftar-items-list">
-                        <span class="iftar-item-tag">🥓 Turkey Ham</span>
+                      <span class="iftar-item-tag">🥓 Turkey Ham</span>
 <span class="iftar-item-tag">🥗 Ottoman Salad</span>
+<span class="iftar-item-tag">🥚 Shakshuka</span>
 <span class="iftar-item-tag">🧀 Healthy Cheese</span>
 <span class="iftar-item-tag">🥣 Assorted Sauce</span>
 <span class="iftar-item-tag">🥚 Boiled Egg</span>
+<span class="iftar-item-tag">🍞 Fresh Bread</span>
 <span class="iftar-item-tag">☕ Turkish Tea</span>
+
+
 
                     </div>
                     
@@ -2068,6 +2160,45 @@
                 
                 <div class="ramadan-special-image">
                     <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Breakfast2.jpg" alt="Sultan's Iftar Spread - Ramadan 1447">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ===== RAMADAN SPECIAL - SULTAN'S IFTAR ===== -->
+    <div id="ramadan-special2" class="container-wide">
+        <div class="ramadan-special-banner">
+            <div class="ramadan-special-content">
+                <div>
+                    <span class="special-badge"> RAMADAN 1447 EXCLUSIVE </span>
+                    <h2 class="ramadan-special-title">Sultan's Suhoor</h2>
+                    <p class="ramadan-special-date">10:00 PM – Fajr • Daily</p>
+                    <p style="color: var(--cream); margin-bottom: var(--space-md);">
+                        Prepare for the fast with a refined Suhoor experience inspired by Ottoman tradition.
+Start with nourishing dates and refreshing Ramadan drinks, then enjoy a balanced selection of Turkish and Arabic specialties — thoughtfully prepared to sustain you comfortably through the day ahead.
+                    </p>
+                    
+                    <div class="iftar-items-list">
+                        <span class="iftar-item-tag">🥓 Turkey Ham</span>
+<span class="iftar-item-tag">🥗 Ottoman Salad</span>
+<span class="iftar-item-tag">🍞 Fresh Bread</span>
+<span class="iftar-item-tag">🧀 Healthy Cheese</span>
+<span class="iftar-item-tag">🥣 Assorted Sauce</span>
+<span class="iftar-item-tag">🥚 Boiled Egg</span>
+<span class="iftar-item-tag">☕ Turkish Tea</span>
+
+                    </div>
+                    
+                    <div class="iftar-price">99 QAR</div>
+                    
+                    <div style="margin-top: var(--space-lg);">
+                        <a href="#contact" class="btn btn-secondary">
+                            <i class="fas fa-crown"></i> Reserve Suhoor
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="ramadan-special-image">
+                    <img src="https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Breakfast.jpg" alt="Sultan's Iftar Spread - Ramadan 1447">
                 </div>
             </div>
         </div>
@@ -2432,9 +2563,29 @@
         // LUXURY FUSION DESIGN - MATTE BURGUNDY & MATTE GOLD
         // =========================================================================
 
+        // Falling stars animation
+        function createStars() {
+            const starsContainer = document.getElementById('starsContainer');
+            if (!starsContainer) return;
+            const starCount = 50;
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                const size = Math.random() * 3 + 1;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.animationDuration = Math.random() * 10 + 5 + 's';
+                star.style.animationDelay = Math.random() * 5 + 's';
+                star.style.opacity = Math.random() * 0.7 + 0.2;
+                starsContainer.appendChild(star);
+            }
+        }
+
         const menuDatabase = {
             categories: [
                 { id: 'popular', nameEn: '🌙 Ramadan Specials', nameAr: '🌙 عروض رمضان', icon: 'fa-moon' },
+                { id: 'breakfast', nameEn: 'Iftar & Suhoor Table', nameAr: 'مائدة إفطار وسحور', icon: 'fa-egg' },
                 { id: 'brewed', nameEn: 'Brewed on Arabic & Turkish Way', nameAr: 'قهوة عربية وتركية', icon: 'fa-coffee' },
                 { id: 'tea', nameEn: 'Tea on the House', nameAr: 'الشاي', icon: 'fa-mug-hot' },
                 { id: 'cafe', nameEn: 'Café & Chill', nameAr: 'مشروبات باردة وساخنة', icon: 'fa-martini-glass' },
@@ -2443,8 +2594,7 @@
                 { id: 'baklava', nameEn: 'Baklava & Beyond', nameAr: 'بقلاوة وحلويات', icon: 'fa-cookie-bite' },
                 { id: 'fondue', nameEn: 'Fondue & Nuts', nameAr: 'فوندو ومكسرات', icon: 'fa-cheese' },
                 { id: 'croissant', nameEn: 'Suhoor Creations', nameAr: 'سحوريات', icon: 'fa-bread-slice' },
-                { id: 'grill', nameEn: 'From the Grill & Garden', nameAr: 'مشاوي وسلطات', icon: 'fa-hamburger' },
-                { id: 'breakfast', nameEn: 'Iftar & Suhoor Table', nameAr: 'مائدة إفطار وسحور', icon: 'fa-egg' }
+                { id: 'grill', nameEn: 'From the Grill & Garden', nameAr: 'مشاوي وسلطات', icon: 'fa-hamburger' }
             ],
             
             items: [
@@ -3495,6 +3645,8 @@
         let loadingOverlay = null;
 
         document.addEventListener('DOMContentLoaded', function() {
+            createStars(); // Start celestial animation
+            
             // Cache DOM elements
             menuItemsContainer = document.getElementById('menuGrid');
             categoriesListElement = document.getElementById('categoriesList');
