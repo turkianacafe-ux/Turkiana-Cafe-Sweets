@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Ramadan 1447 / 2026 · Ottoman Nights | Turkiana</title>
-  <meta name="description" content="Experience luxury Turkish coffee and sweets this Ramadan 1447 (2026). Giant crescent, floating lanterns, twinkling stars & authentic Ottoman menu.">
+  <meta name="description" content="Luxury Turkish coffee & sweets this Ramadan 1447 (2026). Giant crescent, floating lanterns & authentic Ottoman menu in Doha.">
   <style>
     /* ----- RESET & GLOBAL ----- */
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -12,7 +12,7 @@
       background: #0a0503;
       font-family: 'Cormorant Garamond', 'Playfair Display', 'Inter', serif;
       color: #fdf3e0;
-      line-height: 1.6;
+      line-height: 1.5;
       overflow-x: hidden;
       min-height: 100vh;
       -webkit-font-smoothing: antialiased;
@@ -25,12 +25,10 @@
                   repeating-linear-gradient(45deg, rgba(200, 155, 90, 0.02) 0px, rgba(200, 155, 90, 0.02) 4px, transparent 4px, transparent 12px);
       pointer-events: none; z-index: 0;
     }
-
-    /* skip link */
-    .skip-link { position: absolute; left: -9999px; top: 0; background: #c7a05b; color: #130b08; padding: 0.8rem 1.5rem; border-radius: 0 0 30px 30px; font-weight: 600; z-index: 1000; }
+    .skip-link { position: absolute; left: -9999px; top: 0; background: #c7a05b; color: #130b08; padding: 0.8rem 1.5rem; border-radius: 0 0 30px 30px; font-weight: 600; z-index: 1000; text-decoration: none; }
     .skip-link:focus { left: 50%; transform: translateX(-50%); }
 
-    /* ===== DECOR FIXED (hardware accelerated) ===== */
+    /* ===== DECORATIONS (HARDWARE ACCELERATED) ===== */
     .crescent-mega {
       position: fixed; top: 12%; left: 50%; transform: translateX(-50%) rotate(15deg);
       width: 240px; height: 240px; border-radius: 50%;
@@ -38,7 +36,7 @@
       box-shadow: 0 0 120px #ffb347, 0 0 240px #ff9800;
       z-index: 1; opacity: 0.9; pointer-events: none; mix-blend-mode: hard-light;
       animation: crescentPulse 8s infinite alternate ease-in-out;
-      will-change: filter, box-shadow;
+      will-change: box-shadow, filter;
     }
     .crescent-mega::after {
       content: ''; position: absolute; top: -12px; left: 28px; width: 200px; height: 200px;
@@ -48,7 +46,6 @@
       0% { box-shadow: 0 0 100px #f9b81b, 0 0 200px #f97316; filter: brightness(0.9); }
       100% { box-shadow: 0 0 180px #ffe484, 0 0 300px #fbbf24; filter: brightness(1.2); }
     }
-
     .lantern-cluster { position: fixed; inset: 0; pointer-events: none; z-index: 2; transform: translateZ(0); }
     .lantern {
       position: absolute; width: 75px; height: 115px;
@@ -81,7 +78,6 @@
       0% { transform: translateY(0px) rotateY(0deg) rotateX(2deg); }
       100% { transform: translateY(-25px) rotateY(8deg) rotateX(-3deg); }
     }
-
     .ottoman-skyline {
       position: fixed; bottom: 8%; left: 0; width: 100%; height: 160px;
       background: repeat-x bottom url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 120" opacity="0.25"><path fill="%233d2b1e" d="M0,120 L0,40 L40,20 L90,60 L130,30 L180,55 L220,25 L280,50 L330,15 L380,40 L440,10 L500,45 L550,25 L600,50 L660,35 L720,60 L770,25 L800,40 L800,120 Z"/><circle cx="120" cy="28" r="7" fill="%23cf9f4a" opacity="0.8"/><circle cx="320" cy="20" r="6" fill="%23cf9f4a" opacity="0.7"/><circle cx="550" cy="40" r="8" fill="%23cf9f4a" opacity="0.8"/><circle cx="700" cy="50" r="7" fill="%23cf9f4a" opacity="0.9"/></svg>');
@@ -94,7 +90,6 @@
       transform: rotate(-10deg) scale(1.2); text-shadow: 0 0 30px #ba8b4b30;
     }
     .bg-calligraphy span { margin: 0 3rem; }
-
     .starfield { position: fixed; inset: 0; pointer-events: none; z-index: 1; transform: translateZ(0); }
     .star-gold, .star-silver, .star-copper {
       position: absolute; border-radius: 50%; animation: twinkleSoft 7s infinite alternate ease-in-out;
@@ -113,15 +108,12 @@
       position: relative; z-index: 20; transform: translateZ(0);
       will-change: transform;
     }
-
     .glass-panel, .prayer-row, .category-nav, .menu-item, .modal-card {
       background: rgba(35, 22, 18, 0.7); backdrop-filter: blur(12px) saturate(180%);
       -webkit-backdrop-filter: blur(12px) saturate(180%);
       border: 1px solid #c7a05b40; border-radius: 2.4rem;
       box-shadow: 0 20px 40px -10px black;
     }
-
-    /* typography */
     .thuluth {
       font-family: 'Scheherazade New', serif; font-size: 4rem; color: #eedbba;
       text-align: center; margin: 1rem 0 0; text-shadow: 0 0 30px #c7a05b;
@@ -149,7 +141,7 @@
     .verse-divider { width: 120px; height: 2px; margin: 0.8rem auto; background: linear-gradient(90deg,transparent,#c7a05b,#e9c78c,transparent); }
     .verse-english { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: #dacbb8; }
 
-    /* search + clear */
+    /* search */
     .search-wrap { display: flex; justify-content: center; margin: 1.5rem 0 0.5rem; position: relative; }
     #searchInput {
       background: rgba(35,22,18,0.8); backdrop-filter: blur(8px);
@@ -200,7 +192,7 @@
       box-shadow: 0 25px 40px -10px black, 0 0 0 2px #c7a05b30 inset;
     }
     .item-image { height: 200px; background: #2f1f18; overflow: hidden; position: relative; }
-    .item-image picture, .item-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; }
+    .item-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; }
     .menu-item:hover .item-image img { transform: scale(1.05); }
     .item-content { padding: 1.5rem; flex: 1; }
     .item-name { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: #f5e6d3; }
@@ -222,7 +214,6 @@
       margin-top: 1rem; padding: 1rem; background: #c7a05b0d; border-radius: 1.5rem;
       border-left: 4px solid #c7a05b; font-style: italic; font-size: 0.85rem;
     }
-
     .no-results {
       text-align: center; padding: 4rem 2rem; background: rgba(35,22,18,0.5);
       border-radius: 60px; border: 2px dashed #c7a05b80; grid-column: 1/-1;
@@ -238,6 +229,7 @@
     .modal-card {
       width: 90%; max-width: 620px; padding: 2.5rem; position: relative;
       border: 2px solid #c7a05b; background: rgba(45,30,24,0.96);
+      outline: none;
     }
     .modal-close {
       position: absolute; top: 1.5rem; right: 1.5rem; width: 44px; height: 44px;
@@ -264,11 +256,6 @@
       border-radius: 4rem 4rem 2rem 2rem; border-top: 1px solid #c7a05b40;
     }
 
-    /* RTL support */
-    html[dir="rtl"] .badge-popular { left: auto; right: 1rem; }
-    html[dir="rtl"] .iftar-badge { right: auto; left: 1rem; }
-    html[dir="rtl"] .origin-story { border-left: none; border-right: 4px solid #c7a05b; }
-
     @media (max-width: 700px) {
       .thuluth { font-size: 2.8rem; }
       .prayer-row { flex-direction: column; gap: 0.8rem; padding: 1.2rem; }
@@ -276,11 +263,15 @@
       .countdown-glow { font-size: 1.4rem; }
     }
   </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
   <a href="#mainContent" class="skip-link">Skip to main content</a>
 
-  <!-- fixed decorations (preserved) -->
+  <!-- fixed decorations -->
   <div class="crescent-mega"></div>
   <div class="lantern-cluster">
     <div class="lantern red" style="top:15%; left:12%;"><div class="colored-pane"></div></div>
@@ -296,8 +287,7 @@
   <div class="starfield" id="starfield"></div>
   <div class="bg-calligraphy"><span>الله</span> <span>محمد</span></div>
 
-  <!-- main content -->
-  <div class="container" id="mainContent">
+  <div class="container" id="mainContent" role="main">
     <div class="thuluth">Ramadan 1447 · 2026 🌙 رمضان كريم</div>
 
     <div class="prayer-row">
@@ -338,19 +328,11 @@
     </div>
   </div>
 
-  <!-- Font Awesome (loaded asynchronously) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"></noscript>
-  <!-- Google Fonts (optimized) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
-
   <script>
     (function() {
       "use strict";
 
-      // ---------- MENU DATA (complete, 91+ items) ----------
+      // ---------- MENU DATA (full 91+ items, consolidated) ----------
       const MENU_DATA = {
         categories: [
           { id: 'popular', nameEn: '🌙 Ramadan Specials', icon: 'fa-moon' },
@@ -494,13 +476,7 @@
         ]
       };
 
-      // ----- state -----
-      let activeCategory = 'popular';
-      let searchTerm = '';
-      let lastFocusedElement = null;
-
-      // DOM elements
-      const container = document.querySelector('.container');
+      // ----- DOM elements -----
       const categoryNav = document.getElementById('categoryNav');
       const menuContainer = document.getElementById('menuContainer');
       const searchInput = document.getElementById('searchInput');
@@ -511,12 +487,19 @@
       const backToTop = document.getElementById('backToTop');
       const iftarSpan = document.querySelector('#iftarTimer span');
       const starfield = document.getElementById('starfield');
+      const verseArabic = document.getElementById('verseArabic');
+      const verseEnglish = document.getElementById('verseEnglish');
+      const containerEl = document.querySelector('.container');
 
-      // image base & fallback
-      const IMAGE_BASE = 'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/';
+      // ----- state -----
+      let activeCategory = 'popular';
+      let searchTerm = '';
+      let lastFocusedElement = null;
+
+      // ----- fallback image & observer -----
       const FALLBACK_SVG = 'data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22400%22%20height%3D%22200%22%20viewBox%3D%220%200%20400%20200%22%3E%3Crect%20width%3D%22400%22%20height%3D%22200%22%20fill%3D%22%232f241e%22%2F%3E%3Ctext%20x%3D%2250%22%20y%3D%22115%22%20font-family%3D%22Inter%22%20font-size%3D%2224%22%20fill%3D%22%23c7a05b%22%3ETurkiana%3C%2Ftext%3E%3C%2Fsvg%3E';
+      const IMAGE_BASE = 'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/';
 
-      // lazy image factory
       function createImage(src, alt) {
         const img = document.createElement('img');
         img.dataset.src = src;
@@ -527,7 +510,6 @@
         return img;
       }
 
-      // IntersectionObserver for images
       const imageObserver = new IntersectionObserver((entries, obs) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
@@ -542,24 +524,23 @@
       }, { rootMargin: '100px' });
 
       function observeImages() {
-        document.querySelectorAll('img[data-src]').forEach(img => imageObserver.observe(img));
+        document.querySelectorAll('.menu-item img[data-src]').forEach(img => imageObserver.observe(img));
       }
 
-      // category counts
+      // ----- render functions -----
       function getCategoryCounts() {
         const counts = {};
         MENU_DATA.items.forEach(item => { counts[item.categoryId] = (counts[item.categoryId] || 0) + 1; });
         return counts;
       }
 
-      // render nav
       function renderNav() {
         const counts = getCategoryCounts();
         categoryNav.innerHTML = MENU_DATA.categories.map(c => 
           `<button class="cat-btn ${c.id === activeCategory ? 'active-cat' : ''}" data-cat="${c.id}" role="tab" aria-label="${c.nameEn}" aria-pressed="${c.id === activeCategory}"><i class="fas ${c.icon}"></i> ${c.nameEn} <span class="count-badge">${counts[c.id] || 0}</span></button>`
         ).join('');
         categoryNav.querySelectorAll('.cat-btn').forEach(btn => {
-          btn.addEventListener('click', (e) => {
+          btn.addEventListener('click', () => {
             categoryNav.querySelectorAll('.cat-btn').forEach(b => {
               b.classList.remove('active-cat');
               b.setAttribute('aria-pressed', 'false');
@@ -572,13 +553,11 @@
         });
       }
 
-      // dietary class helper
       function dietaryClass(diet) {
         const map = { 'vegan': 'tag-vegan', 'gluten-free': 'tag-gluten-free', 'contains-dairy': 'tag-contains-dairy', 'contains-nuts': 'tag-contains-nuts' };
         return map[diet] || 'tag-default';
       }
 
-      // render menu
       function renderMenu() {
         let filtered = MENU_DATA.items.filter(i => i.categoryId === activeCategory);
         if (searchTerm) {
@@ -615,9 +594,9 @@
         menuContainer.innerHTML = html;
         observeImages();
 
-        // attach click events via delegation
+        // attach click delegation
         menuContainer.querySelectorAll('.menu-item').forEach(card => {
-          card.addEventListener('click', (e) => {
+          card.addEventListener('click', () => {
             const id = card.dataset.id;
             const item = MENU_DATA.items.find(i => i.id === id);
             if (item) showModal(item);
@@ -625,7 +604,7 @@
         });
       }
 
-      // modal functions
+      // ----- modal -----
       function showModal(item) {
         lastFocusedElement = document.activeElement;
         const milkHtml = item.hasMilkSelection ? '<div style="background:#c7a05b20; padding:0.8rem; border-radius:40px; margin:1rem 0;"><i class="fas fa-jug"></i> Milk options: oat, almond, whole</div>' : '';
@@ -648,7 +627,7 @@
         if (lastFocusedElement) lastFocusedElement.focus();
       }
 
-      // countdown
+      // ----- countdown -----
       function updateIftarTimer() {
         const now = new Date();
         const maghrib = new Date();
@@ -658,10 +637,10 @@
         const h = Math.floor(diff / 3600000);
         const m = Math.floor((diff % 3600000) / 60000);
         const s = Math.floor((diff % 60000) / 1000);
-        iftarSpan.innerText = `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+        if (iftarSpan) iftarSpan.innerText = `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
       }
 
-      // verse rotation
+      // ----- verse rotation -----
       const verses = [
         { ar: 'يَا أَيُّهَا الَّذِينَ آمَنُوا كُتِبَ عَلَيْكُمُ الصِّيَامُ', en: '"O you who have believed, decreed upon you is fasting..." (2:183)' },
         { ar: 'شَهْرُ رَمَضَانَ الَّذِي أُنزِلَ فِيهِ الْقُرْآنُ', en: '"The month of Ramadan [is that] in which was revealed the Qur\'an..." (2:185)' },
@@ -670,28 +649,41 @@
       let vIdx = 0;
       function rotateVerse() {
         vIdx = (vIdx + 1) % verses.length;
-        document.getElementById('verseArabic').innerText = verses[vIdx].ar;
-        document.getElementById('verseEnglish').innerText = verses[vIdx].en;
+        verseArabic.innerText = verses[vIdx].ar;
+        verseEnglish.innerText = verses[vIdx].en;
       }
 
-      // parallax (GPU accelerated)
+      // ----- starfield generation -----
+      function generateStars() {
+        for (let i = 0; i < 70; i++) {
+          const s = document.createElement('div');
+          s.className = i % 3 === 0 ? 'star-gold' : i % 3 === 1 ? 'star-silver' : 'star-copper';
+          s.style.width = s.style.height = (Math.random() * 5 + 2) + 'px';
+          s.style.left = Math.random() * 100 + '%';
+          s.style.top = Math.random() * 100 + '%';
+          s.style.animationDelay = Math.random() * 7 + 's';
+          starfield.appendChild(s);
+        }
+      }
+
+      // ----- scroll effects (GPU accelerated) -----
       let ticking = false;
       window.addEventListener('scroll', () => {
         if (!ticking) {
           requestAnimationFrame(() => {
             const scrollY = window.scrollY;
-            if (container) container.style.transform = `translate3d(0,${scrollY * 0.05}px,0)`;
+            if (containerEl) containerEl.style.transform = `translate3d(0, ${scrollY * 0.05}px, 0)`;
+            backToTop.classList.toggle('visible', scrollY > 400);
             ticking = false;
           });
           ticking = true;
         }
-        backToTop.classList.toggle('visible', window.scrollY > 400);
       });
 
-      // back to top
+      // ----- back to top -----
       backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-      // search clear
+      // ----- search clear -----
       function toggleClear() {
         clearSearch.classList.toggle('visible', searchInput.value.length > 0);
       }
@@ -708,25 +700,12 @@
         searchInput.focus();
       });
 
-      // starfield
-      function generateStars() {
-        for (let i = 0; i < 70; i++) {
-          const s = document.createElement('div');
-          s.className = i % 3 === 0 ? 'star-gold' : i % 3 === 1 ? 'star-silver' : 'star-copper';
-          s.style.width = s.style.height = (Math.random() * 5 + 2) + 'px';
-          s.style.left = Math.random() * 100 + '%';
-          s.style.top = Math.random() * 100 + '%';
-          s.style.animationDelay = Math.random() * 7 + 's';
-          starfield.appendChild(s);
-        }
-      }
-
-      // modal close handlers
+      // ----- modal close handlers -----
       closeModalBtn.addEventListener('click', closeModal);
       modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('show')) closeModal(); });
 
-      // init
+      // ----- initialization -----
       generateStars();
       renderNav();
       renderMenu();
