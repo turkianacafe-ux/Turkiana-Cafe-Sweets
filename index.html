@@ -3,356 +3,217 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- SEO & meta -->
-  <meta name="description" content="Experience luxury Turkish coffee and sweets this Ramadan at Turkiana. Special Iftar and Suhoor menu with authentic Ottoman flavors.">
-  <meta property="og:title" content="Turkiana · Ramadan 1446 | Luxury Café & Sweets">
-  <title>Turkiana · Ramadan 1446 | Luxury Café & Sweets</title>
-  <!-- Premium fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <title>Ramadan 1447 / 2026 · Ottoman Nights | Turkiana</title>
+  <meta name="description" content="Experience luxury Turkish coffee and sweets this Ramadan 1447 (2026). Giant crescent, floating lanterns, twinkling stars & authentic Ottoman menu.">
   <style>
-    /* ==========================================================================
-       PREMIUM RAMADAN · MATTE BURGUNDY & GOLD · MASTER EDITION
-       ALL 91 ORIGINAL ITEMS PRESERVED · ACCESSIBILITY · PERFECT STRUCTURE
-    ========================================================================== */
+    /* ----- RESET & GLOBAL ----- */
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
     body {
-      font-family: 'Inter', sans-serif;
-      background: #1a0f0c;  /* deep matte burgundy base */
-      color: #f4ede7;
+      background: #0a0503;
+      font-family: 'Cormorant Garamond', 'Playfair Display', 'Inter', serif;
+      color: #fdf3e0;
       line-height: 1.6;
-      min-height: 100vh;
       overflow-x: hidden;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
       position: relative;
-      scroll-behavior: smooth;
     }
-
-    /* ----- Ambient depth: vignette + subtle geometric pattern ----- */
     body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background: radial-gradient(circle at 50% 30%, transparent 30%, rgba(25, 10, 8, 0.8) 90%),
+      content: ''; position: fixed; inset: 0;
+      background: radial-gradient(circle at 50% 30%, transparent 30%, rgba(25, 10, 8, 0.85) 90%),
                   repeating-linear-gradient(45deg, rgba(200, 155, 90, 0.02) 0px, rgba(200, 155, 90, 0.02) 4px, transparent 4px, transparent 12px);
-      pointer-events: none;
-      z-index: 1;
+      pointer-events: none; z-index: 0;
     }
 
-    /* ----- glassmorphism panels (luxury) ----- */
-    .glass-panel {
-      background: rgba(45, 30, 26, 0.6);
-      backdrop-filter: blur(12px) saturate(180%);
-      -webkit-backdrop-filter: blur(12px) saturate(180%);
-      border: 1px solid rgba(200, 155, 90, 0.25);
-      border-radius: 2rem;
-      box-shadow: 0 20px 40px -10px rgba(0,0,0,0.5), 0 0 0 1px rgba(200, 155, 90, 0.1) inset;
+    /* skip link */
+    .skip-link { position: absolute; left: -9999px; top: 0; background: #c7a05b; color: #130b08; padding: 0.8rem 1.5rem; border-radius: 0 0 30px 30px; font-weight: 600; z-index: 1000; }
+    .skip-link:focus { left: 50%; transform: translateX(-50%); }
+
+    /* ===== DECOR FIXED (hardware accelerated) ===== */
+    .crescent-mega {
+      position: fixed; top: 12%; left: 50%; transform: translateX(-50%) rotate(15deg);
+      width: 240px; height: 240px; border-radius: 50%;
+      background: radial-gradient(circle at 35% 45%, #fdde9c 5%, #f9b81b 90%);
+      box-shadow: 0 0 120px #ffb347, 0 0 240px #ff9800;
+      z-index: 1; opacity: 0.9; pointer-events: none; mix-blend-mode: hard-light;
+      animation: crescentPulse 8s infinite alternate ease-in-out;
+      will-change: filter, box-shadow;
+    }
+    .crescent-mega::after {
+      content: ''; position: absolute; top: -12px; left: 28px; width: 200px; height: 200px;
+      border-radius: 50%; background: #0a0503; box-shadow: inset -5px -5px 30px #00000080;
+    }
+    @keyframes crescentPulse {
+      0% { box-shadow: 0 0 100px #f9b81b, 0 0 200px #f97316; filter: brightness(0.9); }
+      100% { box-shadow: 0 0 180px #ffe484, 0 0 300px #fbbf24; filter: brightness(1.2); }
     }
 
+    .lantern-cluster { position: fixed; inset: 0; pointer-events: none; z-index: 2; transform: translateZ(0); }
+    .lantern {
+      position: absolute; width: 75px; height: 115px;
+      background: radial-gradient(circle at 30% 30%, #cc7f3a, #923e1c 80%);
+      border-radius: 45% 45% 30% 30% / 60% 60% 20% 20%;
+      filter: drop-shadow(0 0 40px #ff7b24);
+      animation: float3d 8s infinite alternate ease-in-out;
+      will-change: transform;
+    }
+    .lantern::before {
+      content: ''; position: absolute; top: -38px; left: 50%; transform: translateX(-50%);
+      width: 6px; height: 40px; background: linear-gradient(#ab8e5a, #5d482a);
+      border-radius: 20%; box-shadow: 0 -2px 8px #fabc60;
+    }
+    .lantern::after {
+      content: ''; position: absolute; bottom: -20px; left: 50%; transform: translateX(-50%);
+      width: 20px; height: 26px; background: radial-gradient(ellipse at top, #fcd9a3, #b1550f);
+      border-radius: 50% 50% 20% 20%; filter: blur(1px); box-shadow: 0 6px 10px #8b4513;
+    }
+    .lantern .colored-pane {
+      position: absolute; width: 30px; height: 35px; background: rgba(255,255,255,0.25);
+      border-radius: 30%; top: 35px; left: 50%; transform: translateX(-50%);
+      box-shadow: inset 0 0 20px #f1d27b, 0 0 30px currentColor;
+      backdrop-filter: blur(3px);
+    }
+    .lantern.red .colored-pane { background: #ff7961b3; box-shadow: 0 0 45px #ff4d4d; }
+    .lantern.amber .colored-pane { background: #ffbf69b3; box-shadow: 0 0 50px #ffa726; }
+    .lantern.turquoise .colored-pane { background: #7ed9d1b3; box-shadow: 0 0 45px #2dd4bf; }
+    @keyframes float3d {
+      0% { transform: translateY(0px) rotateY(0deg) rotateX(2deg); }
+      100% { transform: translateY(-25px) rotateY(8deg) rotateX(-3deg); }
+    }
+
+    .ottoman-skyline {
+      position: fixed; bottom: 8%; left: 0; width: 100%; height: 160px;
+      background: repeat-x bottom url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 120" opacity="0.25"><path fill="%233d2b1e" d="M0,120 L0,40 L40,20 L90,60 L130,30 L180,55 L220,25 L280,50 L330,15 L380,40 L440,10 L500,45 L550,25 L600,50 L660,35 L720,60 L770,25 L800,40 L800,120 Z"/><circle cx="120" cy="28" r="7" fill="%23cf9f4a" opacity="0.8"/><circle cx="320" cy="20" r="6" fill="%23cf9f4a" opacity="0.7"/><circle cx="550" cy="40" r="8" fill="%23cf9f4a" opacity="0.8"/><circle cx="700" cy="50" r="7" fill="%23cf9f4a" opacity="0.9"/></svg>');
+      pointer-events: none; z-index: 3; filter: drop-shadow(0 0 8px #aa7e54);
+    }
+    .bg-calligraphy {
+      position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      font-family: 'Scheherazade New', serif; font-size: 12vw; font-weight: 700;
+      color: rgba(175, 130, 70, 0.12); display: flex; align-items: center; justify-content: center;
+      transform: rotate(-10deg) scale(1.2); text-shadow: 0 0 30px #ba8b4b30;
+    }
+    .bg-calligraphy span { margin: 0 3rem; }
+
+    .starfield { position: fixed; inset: 0; pointer-events: none; z-index: 1; transform: translateZ(0); }
+    .star-gold, .star-silver, .star-copper {
+      position: absolute; border-radius: 50%; animation: twinkleSoft 7s infinite alternate ease-in-out;
+    }
+    .star-gold { background: #f5d98f; box-shadow: 0 0 20px #f5b81b; }
+    .star-silver { background: #e6e9f0; box-shadow: 0 0 18px #b0c4de; }
+    .star-copper { background: #e3b38b; box-shadow: 0 0 18px #cd7f4b; }
+    @keyframes twinkleSoft {
+      0% { opacity: 0.3; transform: scale(0.9); }
+      100% { opacity: 1; transform: scale(1.2); }
+    }
+
+    /* ===== MAIN CONTAINER ===== */
     .container {
-      max-width: 1320px;
-      margin: 0 auto;
-      padding: 0 24px;
-      position: relative;
-      z-index: 10;
+      max-width: 1320px; margin: 0 auto; padding: 0 24px 80px;
+      position: relative; z-index: 20; transform: translateZ(0);
+      will-change: transform;
     }
 
-    /* ===== DECOR: lanterns, stars, crescent ===== */
-    .crescent {
-      display: inline-block;
-      width: 2rem;
-      height: 2rem;
-      background: radial-gradient(circle at 30% 50%, transparent 40%, #c7a05b 45%);
-      border-radius: 50%;
-      box-shadow: 0 0 20px #d4b27e;
+    .glass-panel, .prayer-row, .category-nav, .menu-item, .modal-card {
+      background: rgba(35, 22, 18, 0.7); backdrop-filter: blur(12px) saturate(180%);
+      -webkit-backdrop-filter: blur(12px) saturate(180%);
+      border: 1px solid #c7a05b40; border-radius: 2.4rem;
+      box-shadow: 0 20px 40px -10px black;
     }
 
-    .lantern-left, .lantern-right {
-      position: fixed;
-      top: 20px;
-      width: 80px;
-      height: 130px;
-      background: radial-gradient(ellipse at top, #9e7a56 0%, #5d3e2c 95%);
-      border-radius: 50% 50% 30% 30%;
-      box-shadow: 0 0 60px #b28b4b, 0 0 120px rgba(200,155,90,0.3);
-      z-index: 5;
-      pointer-events: none;
-      opacity: 0.8;
-      animation: gentle-glow 6s infinite alternate ease-in-out;
-    }
-    .lantern-left::before, .lantern-right::before {
-      content: '';
-      position: absolute;
-      top: -22px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 22px;
-      height: 32px;
-      background: #b4915c;
-      border-radius: 20% 20% 0 0;
-      box-shadow: 0 -5px 30px #e1b87a;
-    }
-    .lantern-left::after, .lantern-right::after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 16px;
-      height: 20px;
-      background: linear-gradient(to bottom, #c7a05b, #8b6f42);
-      border-radius: 0 0 30% 30%;
-      filter: blur(2px);
-    }
-    .lantern-left { left: 15px; }
-    .lantern-right { right: 15px; }
-    @keyframes gentle-glow {
-      0% { box-shadow: 0 0 40px #a17e4b, 0 0 80px rgba(200,155,90,0.3); opacity: 0.7; }
-      100% { box-shadow: 0 0 70px #e9c489, 0 0 140px #e9c489; opacity: 0.95; }
-    }
-
-    .stars-container {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 2;
-    }
-    .star {
-      position: absolute;
-      background: #f3d9b1;
-      border-radius: 50%;
-      box-shadow: 0 0 20px #f3d9b1;
-      opacity: 0.5;
-      animation: twinkle 10s infinite alternate;
-    }
-    @keyframes twinkle {
-      0% { opacity: 0.2; transform: scale(1); }
-      100% { opacity: 0.8; transform: scale(1.2); }
-    }
-
-    .particle {
-      position: fixed;
-      width: 4px;
-      height: 4px;
-      background: rgba(230, 190, 120, 0.3);
-      border-radius: 50%;
-      filter: blur(2px);
-      animation: float 20s infinite linear;
-      pointer-events: none;
-      z-index: 3;
-    }
-    @keyframes float {
-      0% { transform: translateY(100vh) translateX(0); opacity: 0; }
-      10% { opacity: 0.6; }
-      90% { opacity: 0.3; }
-      100% { transform: translateY(-20vh) translateX(50px); opacity: 0; }
-    }
-
-    /* ===== TYPOGRAPHY ===== */
-    h1, h2, h3, .arabic-title {
-      font-family: 'Playfair Display', 'Cormorant Garamond', serif;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-    }
+    /* typography */
     .thuluth {
-      font-family: 'Scheherazade New', 'Amiri', serif;
-      font-size: 4rem;
-      color: #eedbba;
-      text-shadow: 0 0 30px #c7a05b, 2px 4px 12px rgba(0,0,0,0.5);
-      line-height: 1.2;
+      font-family: 'Scheherazade New', serif; font-size: 4rem; color: #eedbba;
+      text-align: center; margin: 1rem 0 0; text-shadow: 0 0 30px #c7a05b;
     }
-    @media (max-width: 768px) { .thuluth { font-size: 2.8rem; } }
+    h2 { font-family: 'Playfair Display', serif; color: #e1caa8; }
 
-    /* ===== PRAYER / COUNTDOWN WIDGET (horizontal row) ===== */
+    /* prayer row */
     .prayer-row {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      gap: 1.5rem 2.5rem;
-      background: rgba(45, 30, 26, 0.55);
-      backdrop-filter: blur(16px);
-      border: 1px solid #c7a05b50;
-      border-radius: 60px;
-      padding: 1rem 2.5rem;
-      margin: 2rem auto;
-      width: fit-content;
-      box-shadow: 0 15px 40px -10px #00000080;
+      display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
+      gap: 2rem; padding: 1.2rem 2.5rem; width: fit-content; margin: 2rem auto;
     }
-    .prayer-item {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      color: #f0e0cf;
-      font-weight: 400;
-    }
-    .prayer-item i { color: #c7a05b; font-size: 1.4rem; width: 1.8rem; text-align: center; }
-
+    .prayer-item { display: flex; align-items: center; gap: 0.6rem; }
     .countdown-glow {
-      background: rgba(170, 130, 70, 0.15);
-      border: 1px solid #c7a05b80;
-      border-radius: 80px;
-      padding: 0.7rem 2rem;
-      font-size: 1.8rem;
-      font-weight: 400;
-      backdrop-filter: blur(12px);
-      font-family: 'Cormorant Garamond', serif;
-      white-space: nowrap;
+      background: #c7a05b20; border-radius: 60px; padding: 0.6rem 1.5rem; font-size: 1.8rem;
+      border: 1px solid #c7a05b80; font-family: 'Cormorant Garamond', serif;
     }
-    .countdown-glow span { color: #ffdead; font-weight: 600; letter-spacing: 2px; }
 
-    /* ----- QURAN VERSE (arabic + english + gold divider) ----- */
+    /* quran */
     .verse-luxury {
-      text-align: center;
-      max-width: 800px;
-      margin: 2rem auto;
-      background: rgba(200,155,90,0.06);
-      border: 1px solid #c7a05b30;
-      border-radius: 80px;
-      padding: 1.5rem 2rem;
-      backdrop-filter: blur(6px);
+      text-align: center; max-width: 800px; margin: 2rem auto;
+      background: rgba(200,155,90,0.06); border: 1px solid #c7a05b30;
+      border-radius: 80px; padding: 1.5rem 2rem; backdrop-filter: blur(6px);
     }
-    .verse-arabic {
-      font-family: 'Amiri', serif;
-      font-size: 2.2rem;
-      color: #eedbba;
-      line-height: 1.5;
-      margin-bottom: 0.5rem;
-    }
-    .verse-divider {
-      width: 120px;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, #c7a05b, #e9c78c, #c7a05b, transparent);
-      margin: 0.8rem auto;
-    }
-    .verse-english {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.3rem;
-      color: #dacbb8;
-      font-style: italic;
-    }
+    .verse-arabic { font-family: 'Amiri', serif; font-size: 2.2rem; color: #eedbba; }
+    .verse-divider { width: 120px; height: 2px; margin: 0.8rem auto; background: linear-gradient(90deg,transparent,#c7a05b,#e9c78c,transparent); }
+    .verse-english { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: #dacbb8; }
 
-    /* ===== STICKY CATEGORY NAV (glass, accessible) ===== */
+    /* search + clear */
+    .search-wrap { display: flex; justify-content: center; margin: 1.5rem 0 0.5rem; position: relative; }
+    #searchInput {
+      background: rgba(35,22,18,0.8); backdrop-filter: blur(8px);
+      border: 1px solid #c7a05b60; border-radius: 60px; padding: 1rem 3rem 1rem 2rem;
+      width: 100%; max-width: 500px; font-size: 1.2rem; color: #f0e0cf; outline: none;
+    }
+    #searchInput:focus { border-color: #c7a05b; box-shadow: 0 0 30px #c7a05b60; }
+    #clearSearch {
+      position: absolute; right: calc((100% - 500px)/2 + 20px); top: 50%; transform: translateY(-50%);
+      background: none; border: none; color: #c7a05b; font-size: 1.5rem; cursor: pointer;
+      display: none; z-index: 25;
+    }
+    #clearSearch.visible { display: block; }
+
+    /* category nav */
     .category-nav {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.8rem;
-      background: rgba(40, 25, 20, 0.7);
-      backdrop-filter: blur(14px);
-      border: 1px solid #c7a05b30;
-      border-radius: 60px;
-      padding: 1.2rem 1.8rem;
-      margin: 2rem 0;
-      position: sticky;
-      top: 12px;
-      z-index: 100;
-      box-shadow: 0 20px 40px -10px #00000080;
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 0.7rem;
+      padding: 1.2rem; position: sticky; top: 12px; z-index: 150;
+      background: rgba(40,25,20,0.8); border-radius: 60px; margin: 2rem 0;
     }
     .cat-btn {
-      padding: 0.7rem 1.8rem;
-      background: transparent;
-      border: 1px solid #c7a05b40;
-      border-radius: 40px;
-      color: #e6d5c0;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.2rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      white-space: nowrap;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
+      padding: 0.7rem 1.8rem; border-radius: 40px; border: 1px solid #c7a05b40;
+      background: transparent; color: #e6d5c0; cursor: pointer; transition: 0.3s;
+      font-size: 1.2rem; display: inline-flex; align-items: center; gap: 0.6rem;
     }
-    .cat-btn i { color: #c7a05b; transition: 0.3s; }
+    .cat-btn i { color: #c7a05b; }
     .cat-btn:hover, .cat-btn.active-cat {
-      background: #c7a05b30;
-      border-color: #c7a05b;
-      box-shadow: 0 0 25px #c7a05b80;
+      background: #c7a05b40; border-color: #c7a05b; box-shadow: 0 0 30px #c7a05b;
       transform: translateY(-2px);
     }
-
-    /* ===== SEARCH BAR (real-time) ===== */
-    .search-wrap {
-      display: flex;
-      justify-content: center;
-      margin: 1.5rem 0 0.5rem;
+    .count-badge {
+      background: #c7a05b30; border-radius: 30px; padding: 2px 8px; font-size: 0.8rem;
+      margin-left: 6px;
     }
-    #searchInput {
-      background: rgba(35,22,18,0.8);
-      backdrop-filter: blur(8px);
-      border: 1px solid #c7a05b60;
-      border-radius: 60px;
-      padding: 1rem 2rem;
-      width: 100%;
-      max-width: 500px;
-      font-size: 1.2rem;
-      color: #f0e0cf;
-      outline: none;
-      transition: 0.3s;
-      font-family: 'Inter', sans-serif;
-    }
-    #searchInput::placeholder { color: #c7a05b90; font-style: italic; }
-    #searchInput:focus { border-color: #c7a05b; box-shadow: 0 0 30px #c7a05b60; }
 
-    /* ===== MENU GRID (premium cards) ===== */
+    /* menu grid */
     .menu-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-      gap: 2rem;
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(300px,1fr));
+      gap: 2rem; margin-top: 2rem;
     }
     .menu-item {
-      background: rgba(45, 28, 22, 0.75);
-      backdrop-filter: blur(8px);
-      border: 1px solid #c7a05b40;
-      border-radius: 2.2rem;
-      overflow: hidden;
-      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.3, 1);
-      cursor: pointer;
-      position: relative;
-      box-shadow: 0 15px 30px -15px #000000cc;
+      overflow: hidden; transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s; cursor: pointer;
+      background: rgba(45,28,22,0.75); backdrop-filter: blur(8px);
+      display: flex; flex-direction: column;
     }
     .menu-item:hover {
-      transform: translateY(-8px);
-      border-color: #c7a05b;
-      box-shadow: 0 25px 40px -10px #000, 0 0 0 2px #c7a05b30 inset;
+      transform: translateY(-8px) scale(1.02); border-color: #c7a05b;
+      box-shadow: 0 25px 40px -10px black, 0 0 0 2px #c7a05b30 inset;
     }
-    .item-image {
-      height: 210px;
-      background: #2a1e18;
-      overflow: hidden;
-    }
-    .item-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.6s ease;
-    }
+    .item-image { height: 200px; background: #2f1f18; overflow: hidden; position: relative; }
+    .item-image picture, .item-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; }
     .menu-item:hover .item-image img { transform: scale(1.05); }
-    .item-content { padding: 1.5rem; }
-    .item-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.6rem;
-      font-weight: 500;
-      color: #f5e6d3;
-    }
+    .item-content { padding: 1.5rem; flex: 1; }
+    .item-name { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: #f5e6d3; }
     .item-price {
-      background: #c7a05b25;
-      padding: 0.4rem 1.2rem;
-      border-radius: 40px;
-      font-weight: 600;
-      color: #ffdead;
+      background: #c7a05b25; padding: 0.4rem 1.2rem; border-radius: 40px; font-weight: 600;
+      color: #ffdead; white-space: nowrap;
     }
-    .badge-popular {
+    .badge-popular, .iftar-badge {
       position: absolute; top: 1rem; left: 1rem; background: #c7a05bdd; color: #1a0f0c;
       padding: 0.3rem 1.2rem; border-radius: 40px; font-size: 0.85rem; font-weight: 600;
-      backdrop-filter: blur(4px); box-shadow: 0 0 20px #c7a05b; z-index: 20;
+      backdrop-filter: blur(4px); z-index: 10;
     }
-    .iftar-badge {
-      position: absolute; top: 1rem; right: 1rem; background: #ac4949e0; color: #fbe9c3;
-      padding: 0.3rem 1.2rem; border-radius: 40px; font-size: 0.85rem; backdrop-filter: blur(4px);
-      border: 1px solid #ffb56b; box-shadow: 0 0 20px #ff7b7b; z-index: 20;
-    }
+    .iftar-badge { left: auto; right: 1rem; background: #ac4949e0; color: #fbe9c3; }
     .meta-tag {
       background: #c7a05b1a; padding: 0.2rem 1rem; border-radius: 30px; font-size: 0.8rem;
       border: 1px solid #c7a05b30; display: inline-block; margin: 0.2rem 0.4rem 0 0;
@@ -362,396 +223,516 @@
       border-left: 4px solid #c7a05b; font-style: italic; font-size: 0.85rem;
     }
 
-    /* ===== MODAL (enhanced: milk/bean options, close btn) ===== */
+    .no-results {
+      text-align: center; padding: 4rem 2rem; background: rgba(35,22,18,0.5);
+      border-radius: 60px; border: 2px dashed #c7a05b80; grid-column: 1/-1;
+    }
+
+    /* modal */
     .modal-overlay {
-      position: fixed; inset: 0; background: rgba(20, 10, 8, 0.85); backdrop-filter: blur(16px);
+      position: fixed; inset: 0; background: rgba(20,10,8,0.85); backdrop-filter: blur(16px);
       display: flex; align-items: center; justify-content: center; z-index: 300;
       visibility: hidden; opacity: 0; transition: 0.3s;
     }
     .modal-overlay.show { visibility: visible; opacity: 1; }
     .modal-card {
-      background: rgba(45, 30, 24, 0.96); backdrop-filter: blur(20px);
-      width: 90%; max-width: 620px; border-radius: 3rem;
-      border: 2px solid #c7a05b; padding: 2.5rem; position: relative;
-      box-shadow: 0 40px 80px #000, 0 0 0 4px #c7a05b30 inset;
-      color: #f0e0cf;
+      width: 90%; max-width: 620px; padding: 2.5rem; position: relative;
+      border: 2px solid #c7a05b; background: rgba(45,30,24,0.96);
     }
     .modal-close {
-      position: absolute; top: 1.5rem; right: 1.5rem;
-      background: rgba(0,0,0,0.3); backdrop-filter: blur(4px);
-      width: 44px; height: 44px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.8rem; cursor: pointer; color: #c7a05b;
-      border: 1px solid #c7a05b80; transition: 0.2s;
+      position: absolute; top: 1.5rem; right: 1.5rem; width: 44px; height: 44px;
+      border-radius: 50%; background: rgba(0,0,0,0.3); backdrop-filter: blur(4px);
+      display: flex; align-items: center; justify-content: center; font-size: 1.8rem;
+      cursor: pointer; color: #c7a05b; border: 1px solid #c7a05b80; transition: 0.2s;
     }
-    .modal-close:hover { background: #c7a05b30; color: #ffdead; transform: scale(1.05); }
+    .modal-close:hover { background: #c7a05b30; color: #ffdead; }
 
-    /* ===== BACK TO TOP (floating) ===== */
+    /* back to top */
     #backToTop {
       position: fixed; bottom: 30px; right: 25px; width: 56px; height: 56px;
       border-radius: 50%; background: #2b1b15; border: 2px solid #c7a05b;
-      color: #c7a05b; font-size: 2rem; display: flex; align-items: center; justify-content: center;
+      color: #c7a05b; display: flex; align-items: center; justify-content: center;
       cursor: pointer; opacity: 0; visibility: hidden; transition: 0.3s; z-index: 200;
-      backdrop-filter: blur(8px); box-shadow: 0 0 30px #c7a05b80;
+      backdrop-filter: blur(8px); box-shadow: 0 0 30px #c7a05b80; font-size: 2rem;
     }
     #backToTop.visible { opacity: 1; visibility: visible; }
-    #backToTop:hover { background: #c7a05b30; transform: scale(1.1); }
 
-    /* ===== FOOTER ===== */
+    /* footer */
     .footer {
-      margin-top: 5rem; text-align: center; background: rgba(25, 15, 12, 0.6);
-      backdrop-filter: blur(8px); border-radius: 4rem 4rem 2rem 2rem; padding: 2.5rem 1.5rem;
-      border-top: 1px solid #c7a05b40;
+      margin-top: 4rem; text-align: center; padding: 2rem;
+      background: rgba(25,15,12,0.6); backdrop-filter: blur(8px);
+      border-radius: 4rem 4rem 2rem 2rem; border-top: 1px solid #c7a05b40;
     }
 
-    /* ===== RESPONSIVE ===== */
+    /* RTL support */
+    html[dir="rtl"] .badge-popular { left: auto; right: 1rem; }
+    html[dir="rtl"] .iftar-badge { right: auto; left: 1rem; }
+    html[dir="rtl"] .origin-story { border-left: none; border-right: 4px solid #c7a05b; }
+
     @media (max-width: 700px) {
-      .prayer-row { flex-direction: column; gap: 0.8rem; border-radius: 40px; padding: 1.2rem; }
-      .countdown-glow { font-size: 1.4rem; padding: 0.6rem 1.5rem; white-space: normal; }
-      .category-nav { border-radius: 40px; overflow-x: auto; justify-content: flex-start; }
-      .cat-btn { padding: 0.5rem 1.2rem; font-size: 1rem; }
+      .thuluth { font-size: 2.8rem; }
+      .prayer-row { flex-direction: column; gap: 0.8rem; padding: 1.2rem; }
+      .category-nav { overflow-x: auto; justify-content: flex-start; }
+      .countdown-glow { font-size: 1.4rem; }
     }
   </style>
 </head>
 <body>
-  <!-- ambient decor -->
-  <div class="stars-container" id="stars"></div>
-  <div id="particles"></div>
-  <div class="lantern-left" aria-hidden="true"></div>
-  <div class="lantern-right" aria-hidden="true"></div>
+  <a href="#mainContent" class="skip-link">Skip to main content</a>
 
-  <div class="container">
-    <!-- thuluth calligraphy -->
-    <div class="thuluth" style="text-align: center; margin-top: 1.5rem;">Ramadan Kareem رمضان كريم</div>
+  <!-- fixed decorations (preserved) -->
+  <div class="crescent-mega"></div>
+  <div class="lantern-cluster">
+    <div class="lantern red" style="top:15%; left:12%;"><div class="colored-pane"></div></div>
+    <div class="lantern amber" style="top:28%; left:22%; width:85px; height:130px;"><div class="colored-pane"></div></div>
+    <div class="lantern turquoise" style="top:42%; left:8%;"><div class="colored-pane"></div></div>
+    <div class="lantern amber" style="top:60%; right:15%; width:95px; height:140px;"><div class="colored-pane"></div></div>
+    <div class="lantern red" style="top:20%; right:18%;"><div class="colored-pane"></div></div>
+    <div class="lantern turquoise" style="top:70%; left:20%; height:120px;"><div class="colored-pane"></div></div>
+    <div class="lantern amber" style="top:50%; left:30%; width:70px; height:100px;"><div class="colored-pane"></div></div>
+    <div class="lantern red" style="top:35%; right:28%;"><div class="colored-pane"></div></div>
+  </div>
+  <div class="ottoman-skyline"></div>
+  <div class="starfield" id="starfield"></div>
+  <div class="bg-calligraphy"><span>الله</span> <span>محمد</span></div>
 
-    <!-- prayer + iftar countdown row (imsak, maghrib, isha, iftar countdown) -->
+  <!-- main content -->
+  <div class="container" id="mainContent">
+    <div class="thuluth">Ramadan 1447 · 2026 🌙 رمضان كريم</div>
+
     <div class="prayer-row">
-      <div class="prayer-item"><i class="fas fa-clock" style="color:#c7a05b;"></i> Imsak: 04:23</div>
+      <div class="prayer-item"><i class="fas fa-clock"></i> Imsak: 04:23</div>
       <div class="prayer-item"><i class="fas fa-sun"></i> Maghrib: 17:42</div>
       <div class="prayer-item"><i class="fas fa-mosque"></i> Isha: 19:02</div>
-      <div class="countdown-glow" id="iftarTimer"><i class="fas fa-clock" style="color:#c7a05b;"></i> Iftar in: <span>02:35:12</span></div>
+      <div class="countdown-glow" id="iftarTimer"><i class="fas fa-clock"></i> Iftar in: <span>02:35:12</span></div>
     </div>
 
-    <!-- quran verse (arabic + english) with gold divider -->
-    <div class="verse-luxury" id="quranVerse">
+    <div class="verse-luxury">
       <div class="verse-arabic" id="verseArabic">يَا أَيُّهَا الَّذِينَ آمَنُوا كُتِبَ عَلَيْكُمُ الصِّيَامُ</div>
       <div class="verse-divider"></div>
       <div class="verse-english" id="verseEnglish">"O you who have believed, decreed upon you is fasting..." (2:183)</div>
     </div>
 
-    <!-- search input (real‑time filter) -->
     <div class="search-wrap">
-      <input type="text" id="searchInput" placeholder="Search menu... (e.g. kunafa, coffee)" aria-label="Search menu items">
+      <input type="text" id="searchInput" placeholder="Search menu... (kunafa, coffee)" aria-label="Search menu">
+      <button id="clearSearch" aria-label="Clear search"><i class="fas fa-times-circle"></i></button>
     </div>
 
-    <!-- sticky category navigation -->
     <div class="category-nav" id="categoryNav" role="tablist"></div>
-
-    <!-- menu container (all original items rendered dynamically) -->
     <div id="menuContainer"></div>
 
-    <!-- footer -->
     <footer class="footer">
-      <div class="footer-logo" style="font-size:2.8rem; font-family:'Playfair Display';">TURKIANA</div>
-      <div class="footer-hours"><i class="fas fa-clock"></i> 7:00 PM – 2:00 AM Daily<br><small>Throughout Ramadan</small></div>
-      <div style="font-size: 1.5rem; color: #c7a05b; margin: 1rem 0;"><i class="fas fa-star"></i> May your Ramadan be blessed <i class="fas fa-star"></i></div>
-      <p>© 2026 Turkiana Cafe & Sweets. All rights reserved.</p>
-      <p style="margin-top:0.5rem;">Mshreib Downtown, Doha | +974 5186 6671</p>
+      <div style="font-size:2.8rem; font-family:'Playfair Display';">TURKIANA</div>
+      <div>7:00 PM – 2:00 AM Daily · throughout Ramadan 1447</div>
+      <div style="margin:1rem 0;">🌟 May your Ramadan be blessed 🌟</div>
+      <p>Mshreib Downtown, Doha | +974 5186 6671</p>
     </footer>
   </div>
 
-  <!-- floating back to top -->
   <div id="backToTop" aria-label="Back to top"><i class="fas fa-chevron-up"></i></div>
 
-  <!-- modal (enhanced) -->
-  <div class="modal-overlay" id="itemModal" role="dialog" aria-modal="true">
+  <div class="modal-overlay" id="itemModal" role="dialog" aria-modal="true" aria-hidden="true" tabindex="-1">
     <div class="modal-card">
       <span class="modal-close" id="closeModal" aria-label="Close"><i class="fas fa-times"></i></span>
       <div id="modalContent"></div>
     </div>
   </div>
 
+  <!-- Font Awesome (loaded asynchronously) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"></noscript>
+  <!-- Google Fonts (optimized) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+
   <script>
     (function() {
-      // ---------- FULL ORIGINAL MENU (91 items, untouched) ----------
-      const menuItems = [
-        {id:'pop1',categoryId:'popular',nameEn:'Sultan’s Turkish Coffee',nameAr:'قهوة السلطان التركية',descriptionEn:'A timeless Ottoman tradition—finely ground coffee brewed in copper cezve.',price:28,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkishcoffee.jpg',calories:'5 kcal',dietary:['vegan','gluten-free'],popular:true,storyEn:'In 16th century Topkapi Palace, this coffee was served to sultans after Tarawih prayers.'},
-        {id:'pop2',categoryId:'popular',nameEn:'Ramadan Tea',nameAr:'شاي رمضان',descriptionEn:'The heartbeat of Turkish Ramadan—deep amber Rize tea double-brewed.',price:15,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Tea.jpg',calories:'2 kcal',dietary:['vegan','dairy-free'],popular:true,storyEn:'Turkish tea is the symbol of Ramadan hospitality.'},
-        {id:'pop3',categoryId:'popular',nameEn:'Blessed Kunafa',nameAr:'كنافة مباركة',descriptionEn:'Shredded kataifi baked with Akkawi cheese until golden, soaked in rose-scented syrup.',price:45,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Kunafa.jpeg',calories:'520 kcal',dietary:['contains-dairy'],popular:true,storyEn:'Kunafa originated in Nablus and became an Ottoman palace favorite.'},
-        {id:'pop4',categoryId:'popular',nameEn:'Ramadan Baklava',nameAr:'بقلاوة رمضان',descriptionEn:'Gaziantep pistachios layered between 40 sheets of hand-stretched phyllo, baked golden.',price:65,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg',calories:'450 kcal',dietary:['contains-nuts'],popular:true,storyEn:'Gaziantep is UNESCO Creative City of Gastronomy.'},
-        {id:'brew1',categoryId:'brewed',nameEn:'Classic Turkish Coffee',nameAr:'قهوة تركية كلاسيكية',descriptionEn:'Finely ground coffee brewed in copper cezve. Served with foam crown and Turkish delight.',price:28,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkishcoffee.jpg',calories:'5 kcal',dietary:['vegan','gluten-free']},
-        {id:'brew2',categoryId:'brewed',nameEn:'Double Turkish Coffee',nameAr:'قهوة تركية مزدوجة',descriptionEn:'Double the intensity with concentrated brewing. For the bold-hearted during Ramadan nights.',price:40,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkishcoffee.jpg',calories:'10 kcal',dietary:['vegan','gluten-free']},
-        {id:'brew3',categoryId:'brewed',nameEn:'Ottoman Mastic Coffee',nameAr:'قهوة عثمانية بالمستيك',descriptionEn:'Premium coffee enhanced with rare Chios mastic resin. Distinctive pine-like aroma.',price:28,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Ottomanmastica.jpg',calories:'5 kcal',dietary:['vegan','gluten-free']},
-        {id:'brew4',categoryId:'brewed',nameEn:'Hazelnut Turkish Coffee',nameAr:'قهوة تركية بالبندق',descriptionEn:'Blended with finely ground premium hazelnuts. Velvety texture, nutty sweetness for Suhoor.',price:28,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Ottomanhazelnut.jpg',calories:'20 kcal',dietary:['contains-nuts']},
-        {id:'brew5',categoryId:'brewed',nameEn:'Cardamom Turkish Coffee',nameAr:'قهوة تركية بالهيل',descriptionEn:'Infused with aromatic green cardamom pods. Warm, fragrant layers, perfect after Iftar.',price:28,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Ottomancardamom.jpg',calories:'5 kcal',dietary:['vegan','gluten-free']},
-        {id:'brew6',categoryId:'brewed',nameEn:'Sahlep',nameAr:'شلهب',descriptionEn:'Ancient Anatolian comfort drink from wild orchid tubers. Creamy perfection with cinnamon.',price:38,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Sahlep.jpg',calories:'200 kcal',dietary:['contains-dairy']},
-        {id:'brew7',categoryId:'brewed',nameEn:'Arabic Coffee - Full Dalla',nameAr:'قهوة عربية - دلة كاملة',descriptionEn:'Ceremonial centerpiece for Iftar gatherings. Brewed in brass dalla with cardamom, saffron.',price:90,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Arabic.jpg',calories:'10 kcal',dietary:['vegan','gluten-free']},
-        {id:'brew8',categoryId:'brewed',nameEn:'Arabic Coffee - Half Dalla',nameAr:'قهوة عربية - نصف دلة',descriptionEn:'Perfectly portioned for intimate Iftar gatherings. Same delicate spice balance.',price:55,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Arabic.jpg',calories:'10 kcal',dietary:['vegan','gluten-free']},
-        {id:'brew9',categoryId:'brewed',nameEn:'Arabic Coffee - Cup',nameAr:'قهوة عربية - فنجان',descriptionEn:'Personal journey. Single serving of authentic Arabic coffee after Iftar.',price:35,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Arabiccup.jpeg',calories:'10 kcal',dietary:['vegan','gluten-free']},
-        {id:'tea1',categoryId:'tea',nameEn:'Turkish Tea',nameAr:'شاي تركي',descriptionEn:'Deep amber Rize tea. Served in traditional tulip glasses.',price:15,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Tea.jpg',calories:'2 kcal',dietary:['vegan','dairy-free']},
-        {id:'tea2',categoryId:'tea',nameEn:'Turkish Tea Pot',nameAr:'إبريق شاي تركي',descriptionEn:'Generous pot for sharing Iftar conversations. Embodies communal warmth.',price:45,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkishteapot.jpeg',calories:'0 kcal',dietary:['vegan','gluten-free']},
-        {id:'tea3',categoryId:'tea',nameEn:'Apple Tea',nameAr:'شاي التفاح',descriptionEn:'Sun-ripened apple essence with premium black tea. Refreshing after Iftar.',price:35,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Appletea.jpg',calories:'2 kcal',dietary:['vegan','dairy-free']},
-        {id:'tea4',categoryId:'tea',nameEn:'Mulberry Tea',nameAr:'شاي التوت',descriptionEn:'Delicate white mulberry infusion. Honey-like sweetness for Suhoor.',price:35,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mulberrytea.jpg',calories:'2 kcal',dietary:['vegan','dairy-free']},
-        {id:'tea5',categoryId:'tea',nameEn:'Lemon Mint',nameAr:'ليمون بالنعناع',descriptionEn:'Zesty lemon wedges and fresh mint leaves. Invigorating clarity after fasting.',price:35,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Lemontea.jpg',calories:'2 kcal',dietary:['vegan','dairy-free']},
-        {id:'tea6',categoryId:'tea',nameEn:'Pomegranate Tea',nameAr:'شاي الرمان',descriptionEn:'Vibrant infusion. Sweet-tart duality. Antioxidant-rich for blessed nights.',price:35,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Romantea.jpg',calories:'2 kcal',dietary:['vegan','dairy-free']},
-        {id:'tea7',categoryId:'tea',nameEn:'Matcha',nameAr:'ماتشا',descriptionEn:'Ceremonial-grade matcha. Concentrated umami, vibrant chlorophyll.',price:36,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Matcha.webp',calories:'95 kcal',dietary:['vegan','dairy-free']},
-        {id:'tea8',categoryId:'tea',nameEn:'Strawberry Matcha',nameAr:'ماتشا بالفراولة',descriptionEn:'Vibrant matcha meets sun-ripened strawberry puree. Iftar refreshment.',price:42,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Strawberrymatcha.webp',calories:'135 kcal',dietary:['vegan','dairy-free']},
-        {id:'tea9',categoryId:'tea',nameEn:'Iced Apple Tea',nameAr:'شاي التفاح مثلج',descriptionEn:'Chilled orchard breeze over crystalline ice. Suhoor refreshment.',price:35,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Appletea.avif',calories:'35 kcal',dietary:['vegan','dairy-free']},
-        {id:'tea10',categoryId:'tea',nameEn:'Iced Mulberry Tea',nameAr:'شاي التوت المثلج',descriptionEn:'Frosted silk. Subtle fruity notes, smooth texture for Ramadan nights.',price:35,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Blackmulberrytea.png',calories:'35 kcal',dietary:['vegan','dairy-free']},
-        {id:'tea11',categoryId:'tea',nameEn:'Iced Pomegranate Tea',nameAr:'شاي الرمان المثلج',descriptionEn:'Jewel-toned refreshment. Bold fruity character after Iftar.',price:35,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Pomegranatetea.avif',calories:'45 kcal',dietary:['vegan','dairy-free']},
-        {id:'tea12',categoryId:'tea',nameEn:'Passion Fruit Tea',nameAr:'شاي باشن فروت',descriptionEn:'Tropical euphoria. Tangy vibrancy with subtle sweetness.',price:45,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Passiontea.webp',calories:'40 kcal',dietary:['vegan','dairy-free']},
-        {id:'tea13',categoryId:'tea',nameEn:'Hibiscus Iced',nameAr:'كركديه مثلج',descriptionEn:'Ruby glacier. Tangy floral notes, stunning crimson color.',price:36,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Hibiscus.webp',calories:'25 kcal',dietary:['vegan','dairy-free']},
-        {id:'tea14',categoryId:'tea',nameEn:'Hibiscus Tea',nameAr:'شاي الكركديه',descriptionEn:'Soothing hot infusion. Gentle tangy notes for quiet Ramadan moments.',price:36,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Hibiscustea.webp',calories:'25 kcal',dietary:['vegan','dairy-free']},
-        {id:'tea15',categoryId:'tea',nameEn:'Winter Tea',nameAr:'شاي الشتاء',descriptionEn:'Warming seasonal blend of herbs and spices. Ramadan comfort.',price:38,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Wintertea.webp',calories:'30 kcal',dietary:['vegan','dairy-free']},
-        {id:'tea16',categoryId:'tea',nameEn:'Chamomile Tea',nameAr:'شاي البابونج',descriptionEn:'Calming infusion with soft floral notes. Post-Iftar tranquility.',price:36,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Chamomiletea.webp',calories:'0 kcal',dietary:['vegan','dairy-free']},
-        {id:'tea17',categoryId:'tea',nameEn:'Green Tea',nameAr:'شاي أخضر',descriptionEn:'Pure, clean, balanced taste with refreshing finish. Suhoor serenity.',price:36,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Greentea.jpg',calories:'0 kcal',dietary:['vegan','dairy-free']},
-        {id:'cafe1',categoryId:'cafe',nameEn:'Ramadan Latte',nameAr:'لاتيه رمضان',descriptionEn:'Smooth microfoam over balanced espresso. Creamy harmony for blessed nights.',price:29,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Latteart.webp',calories:'170 kcal',dietary:['contains-dairy'],hasMilkSelection:true},
-        {id:'cafe2',categoryId:'cafe',nameEn:'Ramadan Cappuccino',nameAr:'كابوتشينو رمضان',descriptionEn:'Equal parts espresso, steamed milk, thick microfoam. Iftar delight.',price:29,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Art.webp',calories:'150 kcal',dietary:['contains-dairy'],hasMilkSelection:true},
-        {id:'cafe3',categoryId:'cafe',nameEn:'Spanish Latte',nameAr:'لاتيه إسباني',descriptionEn:'Enriched with sweetened condensed milk. Luxurious texture for Suhoor.',price:32,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Latteart.webp',calories:'220 kcal',dietary:['contains-dairy'],hasMilkSelection:true},
-        {id:'cafe4',categoryId:'cafe',nameEn:'Salted Caramel Latte',nameAr:'لاتيه كراميل مملح',descriptionEn:'House-made caramel with Himalayan salt. Savory-sweet alchemy after Iftar.',price:32,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Latteart.webp',calories:'230 kcal',dietary:['contains-dairy'],hasMilkSelection:true},
-        {id:'cafe5',categoryId:'cafe',nameEn:'Vanilla Latte',nameAr:'لاتيه فانيليا',descriptionEn:'Madagascar bourbon vanilla bean infusion. Fragrant sweetness for Ramadan.',price:32,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Art.webp',calories:'220 kcal',dietary:['contains-dairy'],hasMilkSelection:true},
-        {id:'cafe6',categoryId:'cafe',nameEn:'Hazelnut Latte',nameAr:'لاتيه البندق',descriptionEn:'Rich, nutty flavor of premium hazelnuts. Velvety smooth for Suhoor.',price:32,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Art.webp',calories:'180 kcal',dietary:['contains-dairy'],hasMilkSelection:true},
-        {id:'cafe7',categoryId:'cafe',nameEn:'Toffee Nut Latte',nameAr:'لاتيه توفي مكسرات',descriptionEn:'Rich toffee and nut flavors. Buttery caramel notes for Iftar.',price:32,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Art.webp',calories:'190 kcal',dietary:['contains-dairy'],hasMilkSelection:true},
-        {id:'cafe8',categoryId:'cafe',nameEn:'Pistachio Latte',nameAr:'لاتيه الفستق',descriptionEn:'Rich pistachio flavor. Nutty sweetness with velvety milk. Ramadan luxury.',price:36,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Pistachiolatte.webp',calories:'210 kcal',dietary:['contains-dairy'],hasMilkSelection:true},
-        {id:'cafe9',categoryId:'cafe',nameEn:'White Mocha',nameAr:'وايت موكا',descriptionEn:'Creamy white chocolate melted into espresso. Decadent sweetness for Eid.',price:32,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Latteart.webp',calories:'260 kcal',dietary:['contains-dairy'],hasMilkSelection:true},
-        {id:'cafe10',categoryId:'cafe',nameEn:'Mocha',nameAr:'موكا',descriptionEn:'Rich dark chocolate melted into espresso. Cocoa-dusted Iftar indulgence.',price:32,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Art.webp',calories:'260 kcal',dietary:['contains-dairy'],hasMilkSelection:true},
-        {id:'cafe11',categoryId:'cafe',nameEn:'Flat White',nameAr:'فلات وايت',descriptionEn:'Strong double ristretto with velvety microfoam. Post-Iftar strength.',price:27,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Flatwhite.webp',calories:'140 kcal',dietary:['contains-dairy'],hasMilkSelection:true},
-        {id:'cafe12',categoryId:'cafe',nameEn:'Piccolo Latte',nameAr:'بيكولو لاتيه',descriptionEn:'Strong ristretto with just enough velvety milk. Elegantly small for Suhoor.',price:24,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Piccololatte.jpg',calories:'120 kcal',dietary:['contains-dairy'],hasMilkSelection:true},
-        {id:'cafe13',categoryId:'cafe',nameEn:'Cortado',nameAr:'كورتادو',descriptionEn:'Equal parts espresso and warm steamed milk. Perfect equilibrium after Iftar.',price:24,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Cortado.webp',calories:'110 kcal',dietary:['contains-dairy'],hasMilkSelection:true},
-        {id:'cafe14',categoryId:'cafe',nameEn:'Macchiato',nameAr:'ماكياتو',descriptionEn:'Strong espresso "marked" with a dollop of foam. Quick Iftar pick-me-up.',price:24,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Machiatto.jpg',calories:'40 kcal',dietary:['contains-dairy'],hasMilkSelection:true},
-        {id:'cafe15',categoryId:'cafe',nameEn:'Espresso Single',nameAr:'إسپريسو مفرد',descriptionEn:'Pure coffee essence. Concentrated extraction with crema crown.',price:18,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Espresso.webp',calories:'3 kcal',dietary:['vegan','gluten-free']},
-        {id:'cafe16',categoryId:'cafe',nameEn:'Espresso Double',nameAr:'إسپريسو مزدوج',descriptionEn:'Double the intensity. For true Ramadan coffee connoisseurs.',price:21,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Espresso.webp',calories:'6 kcal',dietary:['vegan','gluten-free']},
-        {id:'cafe17',categoryId:'cafe',nameEn:'Americano',nameAr:'أمريكانو',descriptionEn:'Espresso extended with hot water. Smooth, approachable for Suhoor.',price:21,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Americano.webp',calories:'5 kcal',dietary:['vegan','gluten-free']},
-        {id:'cafe18',categoryId:'cafe',nameEn:'Hot Chocolate',nameAr:'هوت شوكولاتة',descriptionEn:'Artisanal blend of single-origin cocoa. Liquid velvet for Ramadan nights.',price:36,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Hotchocolate.jfif',calories:'360 kcal',dietary:['contains-dairy'],hasMilkSelection:true},
-        {id:'cafe19',categoryId:'cafe',nameEn:'Iced Tiramisu Latte',nameAr:'لاتيه تيراميسو مثلج',descriptionEn:'Layered iced latte capturing tiramisu essence. Mascarpone-inspired Iftar treat.',price:36,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Icetiramisu.webp',calories:'210 kcal',dietary:['contains-dairy'],hasMilkSelection:true},
-        {id:'cafe20',categoryId:'cafe',nameEn:'Aerocano',nameAr:'أيرو كانو',descriptionEn:'Light and airy iced espresso with smooth foam. Suhoor refreshment.',price:28,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Aerocano.webp',calories:'5 kcal',dietary:['vegan','dairy-free']},
-        {id:'spec1',categoryId:'specialty',nameEn:'V60 Pour Over',nameAr:'V60',descriptionEn:'Hand-poured through ceramic V60. Bright floral notes. Bean selection available.',price:35,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/V60.webp',calories:'2 kcal',dietary:['vegan','dairy-free'],hasBeanSelection:true},
-        {id:'spec2',categoryId:'specialty',nameEn:'Ice Drip',nameAr:'آيس دريب',descriptionEn:'8-hour cold water extraction. Concentrated, smooth, low acidity.',price:35,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Drip.jpg',calories:'2 kcal',dietary:['vegan','dairy-free'],hasBeanSelection:true},
-        {id:'spec3',categoryId:'specialty',nameEn:'Cold Brew',nameAr:'كولد برو',descriptionEn:'18+ hour steep. Naturally sweet, chocolatey notes, remarkably smooth.',price:37,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Coldbrew.webp',calories:'2 kcal',dietary:['vegan','dairy-free'],hasBeanSelection:true},
-        {id:'ref1',categoryId:'refreshers',nameEn:'Ramadan Lemonade',nameAr:'ليموناضة رمضان',descriptionEn:'Freshly squeezed Sicilian lemons. Perfect sweet-tart harmony for Iftar.',price:37,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Lemonade.jpg',calories:'120 kcal',dietary:['vegan','dairy-free']},
-        {id:'ref2',categoryId:'refreshers',nameEn:'Fresh Orange Juice',nameAr:'عصير برتقال طازج',descriptionEn:'Valencia oranges pressed to order. Natural pulp, vibrant color for Suhoor.',price:37,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Orange.jpeg',calories:'140 kcal',dietary:['vegan','dairy-free']},
-        {id:'ref3',categoryId:'refreshers',nameEn:'Orange Earl Grey',nameAr:'برتقال إيرل جراي',descriptionEn:'Premium Earl Grey with orange zest and juice. Citrus-bergamot duet.',price:47,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Earl.jpeg',calories:'2 kcal',dietary:['vegan','dairy-free']},
-        {id:'ref4',categoryId:'refreshers',nameEn:'Strawberry Mojito',nameAr:'موهيتو فراولة',descriptionEn:'Fresh strawberries muddled with mint, lime, cane sugar. Iftar vibrancy.',price:42,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Strawberrymojito.jpg',calories:'160 kcal',dietary:[]},
-        {id:'ref5',categoryId:'refreshers',nameEn:'Passion Fruit Mojito',nameAr:'موهيتو باشن فروت',descriptionEn:'Exotic passion fruit pulp with traditional mojito. Tangy-sweet celebration.',price:42,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Passionfruit.webp',calories:'170 kcal',dietary:[]},
-        {id:'ref6',categoryId:'refreshers',nameEn:'Blueberry Mojito',nameAr:'موهيتو توت أزرق',descriptionEn:'Wild blueberries muddled. Deep purple hue, complex berry notes.',price:38,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Blueberrymojito.webp',calories:'150 kcal',dietary:[]},
-        {id:'ref7',categoryId:'refreshers',nameEn:'Black Mulberry Mojito',nameAr:'موهيتو توت أسود',descriptionEn:'Rich black mulberries. Sophisticated sweetness, jewel-toned color.',price:40,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mulberrymojito.jpg',calories:'170 kcal',dietary:[]},
-        {id:'ref8',categoryId:'refreshers',nameEn:'Mix Berries Mojito',nameAr:'موهيتو توت مشكل',descriptionEn:'Strawberries, raspberries, blackberries, blueberries. Berry symphony.',price:47,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mixberriesmojito.webp',calories:'176 kcal',dietary:[]},
-        {id:'ref9',categoryId:'refreshers',nameEn:'Cooling Breeze',nameAr:'نسيم بارد',descriptionEn:'Fresh mint and lime with sparkling water. Herbal clarity after Iftar.',price:38,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Coolingbreeze.jpg',calories:'110 kcal',dietary:[]},
-        {id:'ref10',categoryId:'refreshers',nameEn:'Still Water',nameAr:'مياه عادية',descriptionEn:'Crisp, filtered still water. 330ml. Essential for Iftar.',price:11,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/WaterBig.jpg',calories:'0 kcal',dietary:['vegan','dairy-free']},
-        {id:'ref11',categoryId:'refreshers',nameEn:'Still Water Large',nameAr:'مياه عادية كبير',descriptionEn:'Premium still water. 750ml. Perfect for sharing at Iftar.',price:21,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Watersmall.jpg',calories:'0 kcal',dietary:['vegan','dairy-free']},
-        {id:'ref12',categoryId:'refreshers',nameEn:'Sparkling Water',nameAr:'مياه غازية',descriptionEn:'Naturally carbonated. Fine bubbles, elegant alternative.',price:21,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Sparkling.jpg',calories:'0 kcal',dietary:['vegan','dairy-free']},
-        {id:'ref13',categoryId:'refreshers',nameEn:'Kinza Cola',nameAr:'كينزا كولا',descriptionEn:'Signature cola. Balanced sweetness, familiar effervescence.',price:17,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Cola.jpg',calories:'150 kcal',dietary:[]},
-        {id:'ref14',categoryId:'refreshers',nameEn:'Kinza Cola Zero',nameAr:'كينزا كولا زيرو',descriptionEn:'Sugar-free. Zero calories, same satisfying refreshment.',price:17,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Zero.jpg',calories:'0 kcal',dietary:[]},
-        {id:'bak1',categoryId:'baklava',nameEn:'Ramadan Baklava Mix',nameAr:'بقلاوة رمضان مشكلة',descriptionEn:'Assortment of Gaziantep\'s finest baklava. Multiple nut fillings.',price:65,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mix.jpeg',calories:'450 kcal',dietary:['contains-nuts']},
-        {id:'bak2',categoryId:'baklava',nameEn:'Carrot Baklava',nameAr:'بقلاوة جزر',descriptionEn:'Classic baklava enriched with carrot puree. Natural sweetness.',price:45,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Carrot.jpeg',calories:'420 kcal',dietary:['contains-nuts']},
-        {id:'bak3',categoryId:'baklava',nameEn:'Carrot Baklava with Ice Cream',nameAr:'بقلاوة جزر مع آيس كريم',descriptionEn:'Warm carrot baklava paired with cool vanilla bean ice cream.',price:55,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Carroticecream.jpeg',calories:'620 kcal',dietary:['contains-nuts','contains-dairy']},
-        {id:'bak4',categoryId:'baklava',nameEn:'Trio Baklava',nameAr:'تريو بقلاوة',descriptionEn:'Three distinct styles: rolled, open-faced, diamond-cut.',price:45,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/TrioBaklava.jpeg',calories:'480 kcal',dietary:['contains-nuts']},
-        {id:'bak5',categoryId:'baklava',nameEn:'Honey Cake',nameAr:'كيك عسل',descriptionEn:'Multiple thin cake layers with honey cream. Moist, tender.',price:45,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Honeycake.jfif',calories:'430 kcal',dietary:['contains-dairy']},
-        {id:'bak6',categoryId:'baklava',nameEn:'Fanzuella Sweets',nameAr:'فانزويلا',descriptionEn:'Decadent layered creation with delicate pastry, rich cream.',price:45,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Fanzuella.webp',calories:'420 kcal',dietary:['contains-dairy','contains-gluten']},
-        {id:'bak7',categoryId:'baklava',nameEn:'Chocolate Flan',nameAr:'فلان شوكولاتة',descriptionEn:'Rich chocolate-infused flan. Smooth custard texture.',price:25,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Chocoflan.jpeg',calories:'380 kcal',dietary:['contains-dairy']},
-        {id:'bak8',categoryId:'baklava',nameEn:'Dark Chocolate Cake',nameAr:'كيكة شوكولاتة داكنة',descriptionEn:'Moist dark chocolate layers. Intense, rich, smooth cocoa glaze.',price:45,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Darkchocolate.jpeg',calories:'540 kcal',dietary:['contains-dairy']},
-        {id:'bak9',categoryId:'baklava',nameEn:'Pistachio Cake',nameAr:'كيكة الفستق',descriptionEn:'Soft pistachio sponge with creamy frosting. Delicate, luxurious.',price:45,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Pistachiocake.jpeg',calories:'510 kcal',dietary:['contains-dairy','contains-nuts']},
-        {id:'bak10',categoryId:'baklava',nameEn:'Black Forest Cake',nameAr:'كيكة الغابة السوداء',descriptionEn:'Chocolate sponge with whipped cream and cherry notes.',price:45,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Darkforest.jpeg',calories:'560 kcal',dietary:['contains-dairy']},
-        {id:'bak11',categoryId:'baklava',nameEn:'Chocolate Mousse Cake',nameAr:'كيكة موس شوكولاتة',descriptionEn:'Light chocolate mousse over soft base. Melt-in-your-mouth.',price:45,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Mousse.jpeg',calories:'530 kcal',dietary:['contains-dairy']},
-        {id:'bak12',categoryId:'baklava',nameEn:'Red Velvet Cake',nameAr:'ريد فلفت',descriptionEn:'Soft red sponge with creamy frosting. Elegant signature dessert.',price:45,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Redvelvet.jpeg',calories:'520 kcal',dietary:['contains-dairy']},
-        {id:'bak13',categoryId:'baklava',nameEn:'Kunafa',nameAr:'كنافة',descriptionEn:'Shredded kataifi with Akkawi cheese. Golden, crispy, rose-scented.',price:45,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Kunafa.jpeg',calories:'520 kcal',dietary:['contains-dairy']},
-        {id:'bak14',categoryId:'baklava',nameEn:'Brownies',nameAr:'براونيز',descriptionEn:'Dense, rich brownies. Crackly top, gooey center. Deep chocolate.',price:55,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Brown.jpg',calories:'380 kcal',dietary:['contains-dairy']},
-        {id:'bak15',categoryId:'baklava',nameEn:'Tiramisu',nameAr:'تيراميسو',descriptionEn:'Ladyfinger layers soaked in espresso and Marsala. Mascarpone cream.',price:50,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Tiramisu.jpg',calories:'420 kcal',dietary:['contains-dairy']},
-        {id:'bak16',categoryId:'baklava',nameEn:'Trileche',nameAr:'تريليتش',descriptionEn:'Sponge cake soaked in three-milk blend. Incredibly moist, rich.',price:45,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Trileche.jpg',calories:'540 kcal',dietary:['contains-dairy']},
-        {id:'bak17',categoryId:'baklava',nameEn:'San Sebastian Cheesecake',nameAr:'تشيز كيك سان سيباستيان',descriptionEn:'Cream-centered with caramelized top. Almost liquid interior.',price:45,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Sebastian.jpg',calories:'520 kcal',dietary:['contains-dairy']},
-        {id:'bak18',categoryId:'baklava',nameEn:'New York Cheesecake',nameAr:'تشيز كيك نيويورك',descriptionEn:'Creamy New York-style. Graham cracker crust. Pure, unadorned.',price:45,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/cheesecake.webp',calories:'500 kcal',dietary:['contains-dairy']},
-        {id:'bak19',categoryId:'baklava',nameEn:'Turkish Ice Cream',nameAr:'آيس كريم تركي',descriptionEn:'Classic dondurma. Rich, creamy, smooth chew. Traditional Anatolian.',price:27,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Icecream.webp',calories:'210 kcal',dietary:['contains-dairy']},
-        {id:'fond1',categoryId:'fondue',nameEn:'Strawberry Fondue',nameAr:'فوندو فراولة',descriptionEn:'Plump, ripe strawberries with warm milk chocolate fondue.',price:40,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Fondue1.jpeg',calories:'320 kcal',dietary:['contains-dairy']},
-        {id:'fond2',categoryId:'fondue',nameEn:'Strawberry-Banana Fondue',nameAr:'فوندو فراولة وموز',descriptionEn:'Fresh strawberries and ripe banana with chocolate fondue.',price:45,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Fondue2.jpeg',calories:'410 kcal',dietary:['contains-dairy']},
-        {id:'fond3',categoryId:'fondue',nameEn:'Turkiana Fondue',nameAr:'فوندو تركيانا',descriptionEn:'Assortment of fresh fruits, brownie, marshmallows. Dark and milk chocolate fondues.',price:59,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Fondue3.jpeg',calories:'480 kcal',dietary:['contains-dairy']},
-        {id:'fond4',categoryId:'fondue',nameEn:'Nuts Stand - Tall',nameAr:'مكسرات - ستاند كبير',descriptionEn:'Premium roasted nuts: almonds, walnuts, pistachios, cashews. Elegant stand.',price:99,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Nuts.jpg',calories:'300 kcal',dietary:['contains-nuts']},
-        {id:'fond5',categoryId:'fondue',nameEn:'Nuts Stand - Small',nameAr:'مكسرات - ستاند صغير',descriptionEn:'Curated mix of premium roasted nuts. Smaller presentation.',price:60,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Nutsmall.jpg',calories:'180 kcal',dietary:['contains-nuts']},
-        {id:'fond6',categoryId:'fondue',nameEn:'Assorted Nut Platter',nameAr:'طبق مكسرات مشكل',descriptionEn:'Artfully arranged selection. Various roasting levels.',price:35,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Nutsplatter.jpg',calories:'180 kcal',dietary:['contains-nuts']},
-        {id:'cro1',categoryId:'croissant',nameEn:'Suhoor Beef Croissant',nameAr:'كرواسون لحم للسحور',descriptionEn:'Flaky croissant with slow-braised beef ribs, cheddar, kasfar cheese, pesto.',price:45,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Ribs.jpg',calories:'720 kcal',dietary:[],timeRestricted:true},
-        {id:'cro2',categoryId:'croissant',nameEn:'Avocado Suhoor Croissant',nameAr:'كرواسون أفوكادو للسحور',descriptionEn:'Buttery croissant with creamy avocado and soft scrambled eggs.',price:42,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Avocado.jpg',calories:'610 kcal',dietary:['vegetarian'],timeRestricted:true},
-        {id:'cro3',categoryId:'croissant',nameEn:'Smoked Beef Suhoor',nameAr:'لحم مدخن للسحور',descriptionEn:'Fresh croissant with delicate eggs and premium smoked beef.',price:45,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/5.jpg',calories:'630 kcal',dietary:[],timeRestricted:true},
-        {id:'cro4',categoryId:'croissant',nameEn:'Butter & Jam Suhoor',nameAr:'زبدة ومربى للسحور',descriptionEn:'Warm croissant with cherry jam, roasted olives, creamy feta.',price:40,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/4.jpg',calories:'540 kcal',dietary:['vegetarian'],timeRestricted:true},
-        {id:'cro5',categoryId:'croissant',nameEn:'Scrambled Eggs Suhoor',nameAr:'بيض مخفوق للسحور',descriptionEn:'Light croissant with soft scrambled eggs and fresh arugula.',price:37,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/1.jpg',calories:'520 kcal',dietary:['vegetarian'],timeRestricted:true},
-        {id:'cro6',categoryId:'croissant',nameEn:'Plain Butter Croissant',nameAr:'كرواسون زبدة',descriptionEn:'Classic Parisian. Crisp, flaky exterior; tender, layered interior.',price:20,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Plain.webp',calories:'320 kcal',dietary:['vegetarian'],timeRestricted:true},
-        {id:'cro7',categoryId:'croissant',nameEn:'Cheese Croissant',nameAr:'كرواسون جبن',descriptionEn:'Buttery croissant with cheese filling. Gooey, savory center.',price:20,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Cheese.jpg',calories:'360 kcal',dietary:['vegetarian'],timeRestricted:true},
-        {id:'cro8',categoryId:'croissant',nameEn:'Chocolate Croissant',nameAr:'كرواسون شوكولاتة',descriptionEn:'Pain au chocolat. Two dark chocolate batons baked inside.',price:20,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Chocolatecroissant.jpg',calories:'380 kcal',dietary:['vegetarian'],timeRestricted:true},
-        {id:'cro9',categoryId:'croissant',nameEn:'Almond Croissant',nameAr:'كرواسون لوز',descriptionEn:'Filled with almond cream, topped with sliced almonds.',price:20,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Almondcroissant.jpg',calories:'400 kcal',dietary:['vegetarian'],timeRestricted:true},
-        {id:'cro10',categoryId:'croissant',nameEn:'Cinnamon Danish',nameAr:'دانش قرفة',descriptionEn:'Flaky Danish with cinnamon-sugar spiral. Aromatic layers.',price:20,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Cinnamon.jpg',calories:'390 kcal',dietary:['vegetarian'],timeRestricted:true},
-        {id:'cro11',categoryId:'croissant',nameEn:'Danish Shell',nameAr:'دانش شل',descriptionEn:'Shell-shaped Danish. Delicate layers, light sweetness.',price:20,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Danish.jpg',calories:'380 kcal',dietary:['vegetarian'],timeRestricted:true},
-        {id:'cro12',categoryId:'croissant',nameEn:'Raisins Danish',nameAr:'دانش زبيب',descriptionEn:'Danish pastry studded with plump raisins. Natural sweetness.',price:20,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Raisin.jpg',calories:'390 kcal',dietary:['vegetarian'],timeRestricted:true},
-        {id:'grill1',categoryId:'grill',nameEn:'Iftar Beef Burger',nameAr:'برجر لحم للإفطار',descriptionEn:'Premium beef patty with secret seasoning. Juicy perfection, special sauce.',price:69,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Burger.jpeg',calories:'950 kcal',dietary:[],timeRestricted:true},
-        {id:'grill2',categoryId:'grill',nameEn:'Iftar Chicken Burger',nameAr:'برجر دجاج للإفطار',descriptionEn:'Marinated chicken fillet grilled with expertise. Soft bun, crisp vegetables.',price:59,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Burgerchicken.jpg',calories:'850 kcal',dietary:[],timeRestricted:true},
-        {id:'grill3',categoryId:'grill',nameEn:'French Fries',nameAr:'بطاطس مقلية',descriptionEn:'Golden fries. Crisp exterior, fluffy interior. Perfectly salted.',price:29,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Patatas.jpg',calories:'340 kcal',dietary:['vegan','gluten-free'],timeRestricted:true},
-        {id:'grill4',categoryId:'grill',nameEn:'Potato Wedges',nameAr:'بطاطس ويدجز',descriptionEn:'Thick potato wedges with seasoned skin. Heartier texture.',price:32,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Wedges.webp',calories:'380 kcal',dietary:['vegetarian','gluten-free'],timeRestricted:true},
-        {id:'grill5',categoryId:'grill',nameEn:'Sweet Potato Fries',nameAr:'بطاطس حلوة',descriptionEn:'Caramelized edges, soft centers. Natural sweetness.',price:32,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Sweetpotato.jpg',calories:'360 kcal',dietary:['vegan','gluten-free'],timeRestricted:true},
-        {id:'grill6',categoryId:'grill',nameEn:'Caesar Salad',nameAr:'سلطة سيزر',descriptionEn:'Crisp romaine, Caesar dressing, Parmesan, croutons.',price:47,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Caesar.jpeg',calories:'420 kcal',dietary:['vegetarian'],timeRestricted:true},
-        {id:'grill7',categoryId:'grill',nameEn:'Ottoman Salad',nameAr:'سلطة عثمانية',descriptionEn:'Crisp vegetables, fresh herbs, light dressing. Imperial freshness.',price:59,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Salad.jpg',calories:'120 kcal',dietary:['vegetarian'],timeRestricted:true},
-        {id:'grill8',categoryId:'grill',nameEn:'Avocado Salad',nameAr:'سلطة أفوكادو',descriptionEn:'Ripe avocado with crisp vegetables, lemon dressing. Buttery meets acidic.',price:49,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Saladavocado.jpg',calories:'180 kcal',dietary:['vegetarian'],timeRestricted:true},
-        {id:'break1',categoryId:'breakfast',nameEn:'Iftar Table',nameAr:'مائدة إفطار',descriptionEn:'Fresh bread, assorted cheeses, olives, tomatoes, cucumbers, honey, clotted cream, tea.',price:99,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Breakfast.jpg',calories:'680 kcal',dietary:['vegetarian'],popular:true,timeRestricted:true},
-        {id:'break2',categoryId:'breakfast',nameEn:'Suhoor Feast',nameAr:'وليمة سحور',descriptionEn:'Lavish platter for two. Extensive selection of cheeses, olives, eggs, honey, jams.',price:199,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Breakfast2.jpg',calories:'1200 kcal',dietary:['vegetarian'],timeRestricted:true},
-        {id:'break3',categoryId:'breakfast',nameEn:'Menemen',nameAr:'مينمن',descriptionEn:'Soft scrambled eggs with tomatoes, green peppers, spices. Rustic, satisfying.',price:45,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Menemen.jpg',calories:'360 kcal',dietary:['gluten-free','contains-dairy'],timeRestricted:true},
-        {id:'break4',categoryId:'breakfast',nameEn:'Plain Omelette',nameAr:'أومليت',descriptionEn:'Light, tender omelette. Golden perfection. Pure egg flavor.',price:25,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Omellet.jpg',calories:'220 kcal',dietary:['gluten-free','contains-dairy'],timeRestricted:true},
-        {id:'break5',categoryId:'breakfast',nameEn:'Afternoon Sandwich',nameAr:'ساندويتش مسائي',descriptionEn:'Delicate sandwich for Iftar. Light yet satisfying.',price:36,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Afternoonsandwich.jpg',calories:'320 kcal',dietary:['vegetarian'],timeRestricted:true},
-        {id:'break6',categoryId:'breakfast',nameEn:'Chicken Sandwich',nameAr:'ساندويتش دجاج',descriptionEn:'Juicy chicken with fresh vegetables and sauce. Balanced handheld meal.',price:38,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Chickensandwich.jpg',calories:'420 kcal',dietary:[],timeRestricted:true},
-        {id:'break7',categoryId:'breakfast',nameEn:'Cold Cheese Sandwich',nameAr:'ساندويتش جبن بارد',descriptionEn:'Cold sandwich with healthy cheese. Refreshing, light for Iftar.',price:29,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Cold Healthy Cheese Sandwich 0.jpg',calories:'290 kcal',dietary:['vegetarian'],timeRestricted:true},
-        {id:'break8',categoryId:'breakfast',nameEn:'Labneh Cucumber Sandwich',nameAr:'ساندويتش لبنة وخيار',descriptionEn:'Labneh and cucumber. Levantine freshness. Cooling combination.',price:32,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Cucumberlabnah.jpg',calories:'260 kcal',dietary:['vegetarian'],timeRestricted:true},
-        {id:'break9',categoryId:'breakfast',nameEn:'Egg & Cheese Sandwich',nameAr:'ساندويتش بيض وجبن',descriptionEn:'Warm egg and cheese. Iftar hunger satisfaction.',price:33,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Eggcheese.jpg',calories:'380 kcal',dietary:['vegetarian'],timeRestricted:true},
-        {id:'break10',categoryId:'breakfast',nameEn:'Smoked Turkey Sandwich',nameAr:'ساندويتش ديك رومي مدخن',descriptionEn:'Premium smoked turkey, fresh bread. Distinctive flavor profile.',price:49,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Smokedturkey.jpg',calories:'410 kcal',dietary:[],timeRestricted:true},
-        {id:'break11',categoryId:'breakfast',nameEn:'Tuna Avocado Sandwich',nameAr:'ساندويتش تونة وأفوكادو',descriptionEn:'Tuna with creamy avocado. Protein richness, healthy fats.',price:47,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Tunacado.jpg',calories:'430 kcal',dietary:[],timeRestricted:true},
-        {id:'break12',categoryId:'breakfast',nameEn:'Tuna Sandwich',nameAr:'ساندويتش تونة',descriptionEn:'Traditional tuna sandwich. Smooth filling, familiar flavors.',price:37,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Tunasandwich.jpg',calories:'400 kcal',dietary:[],timeRestricted:true},
-        {id:'break13',categoryId:'breakfast',nameEn:'Turkey Ham Sandwich',nameAr:'ساندويتش تركي هام',descriptionEn:'Turkey ham with fresh vegetables, soft bread. Light deli option.',price:30,image:'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/Turkeyhamsandwich.jpg',calories:'390 kcal',dietary:[],timeRestricted:true}
-      ];
+      "use strict";
 
-      const categories = [
-        {id:'popular',nameEn:'🌙 Ramadan Specials',icon:'fa-moon'},
-        {id:'breakfast',nameEn:'Iftar & Suhoor Table',icon:'fa-egg'},
-        {id:'brewed',nameEn:'Brewed on Arabic & Turkish Way',icon:'fa-coffee'},
-        {id:'tea',nameEn:'Tea on the House',icon:'fa-mug-hot'},
-        {id:'cafe',nameEn:'Café & Chill',icon:'fa-martini-glass'},
-        {id:'specialty',nameEn:'Specialty Brews',icon:'fa-filter'},
-        {id:'refreshers',nameEn:'Refreshers',icon:'fa-glass-water'},
-        {id:'baklava',nameEn:'Baklava & Beyond',icon:'fa-cookie-bite'},
-        {id:'fondue',nameEn:'Fondue & Nuts',icon:'fa-cheese'},
-        {id:'croissant',nameEn:'Suhoor Creations',icon:'fa-bread-slice'},
-        {id:'grill',nameEn:'From the Grill & Garden',icon:'fa-hamburger'}
-      ];
+      // ---------- MENU DATA (complete, 91+ items) ----------
+      const MENU_DATA = {
+        categories: [
+          { id: 'popular', nameEn: '🌙 Ramadan Specials', icon: 'fa-moon' },
+          { id: 'breakfast', nameEn: 'Iftar & Suhoor Table', icon: 'fa-egg' },
+          { id: 'brewed', nameEn: 'Brewed on Arabic & Turkish Way', icon: 'fa-coffee' },
+          { id: 'tea', nameEn: 'Tea on the House', icon: 'fa-mug-hot' },
+          { id: 'cafe', nameEn: 'Café & Chill', icon: 'fa-martini-glass' },
+          { id: 'specialty', nameEn: 'Specialty Brews', icon: 'fa-filter' },
+          { id: 'refreshers', nameEn: 'Refreshers', icon: 'fa-glass-water' },
+          { id: 'baklava', nameEn: 'Baklava & Beyond', icon: 'fa-cookie-bite' },
+          { id: 'fondue', nameEn: 'Fondue & Nuts', icon: 'fa-cheese' },
+          { id: 'croissant', nameEn: 'Suhoor Creations', icon: 'fa-bread-slice' },
+          { id: 'grill', nameEn: 'From the Grill & Garden', icon: 'fa-hamburger' }
+        ],
+        items: [
+          { id: 'pop1', categoryId: 'popular', nameEn: "Sultan's Turkish Coffee", nameAr: 'قهوة السلطان التركية', descriptionEn: 'A timeless Ottoman tradition—finely ground coffee brewed in copper cezve.', price: 28, image: 'Turkishcoffee.jpg', calories: '5 kcal', dietary: ['vegan', 'gluten-free'], popular: true, storyEn: 'In 16th century Topkapi Palace, this coffee was served to sultans after Tarawih prayers.' },
+          { id: 'pop2', categoryId: 'popular', nameEn: 'Ramadan Tea', nameAr: 'شاي رمضان', descriptionEn: 'The heartbeat of Turkish Ramadan—deep amber Rize tea double-brewed.', price: 15, image: 'Tea.jpg', calories: '2 kcal', dietary: ['vegan', 'dairy-free'], popular: true, storyEn: 'Turkish tea is the symbol of Ramadan hospitality.' },
+          { id: 'pop3', categoryId: 'popular', nameEn: 'Blessed Kunafa', nameAr: 'كنافة مباركة', descriptionEn: 'Shredded kataifi baked with Akkawi cheese until golden, soaked in rose-scented syrup.', price: 45, image: 'Kunafa.jpeg', calories: '520 kcal', dietary: ['contains-dairy'], popular: true, storyEn: 'Kunafa originated in Nablus and became an Ottoman palace favorite.' },
+          { id: 'pop4', categoryId: 'popular', nameEn: 'Ramadan Baklava', nameAr: 'بقلاوة رمضان', descriptionEn: 'Gaziantep pistachios layered between 40 sheets of hand-stretched phyllo, baked golden.', price: 65, image: 'Mix.jpeg', calories: '450 kcal', dietary: ['contains-nuts'], popular: true, storyEn: 'Gaziantep is UNESCO Creative City of Gastronomy.' },
+          { id: 'brew1', categoryId: 'brewed', nameEn: 'Classic Turkish Coffee', nameAr: 'قهوة تركية كلاسيكية', descriptionEn: 'Finely ground coffee brewed in copper cezve. Served with foam crown and Turkish delight.', price: 28, image: 'Turkishcoffee.jpg', calories: '5 kcal', dietary: ['vegan', 'gluten-free'] },
+          { id: 'brew2', categoryId: 'brewed', nameEn: 'Double Turkish Coffee', nameAr: 'قهوة تركية مزدوجة', descriptionEn: 'Double the intensity with concentrated brewing. For the bold-hearted during Ramadan nights.', price: 40, image: 'Turkishcoffee.jpg', calories: '10 kcal', dietary: ['vegan', 'gluten-free'] },
+          { id: 'brew3', categoryId: 'brewed', nameEn: 'Ottoman Mastic Coffee', nameAr: 'قهوة عثمانية بالمستيك', descriptionEn: 'Premium coffee enhanced with rare Chios mastic resin. Distinctive pine-like aroma.', price: 28, image: 'Ottomanmastica.jpg', calories: '5 kcal', dietary: ['vegan', 'gluten-free'] },
+          { id: 'brew4', categoryId: 'brewed', nameEn: 'Hazelnut Turkish Coffee', nameAr: 'قهوة تركية بالبندق', descriptionEn: 'Blended with finely ground premium hazelnuts. Velvety texture, nutty sweetness for Suhoor.', price: 28, image: 'Ottomanhazelnut.jpg', calories: '20 kcal', dietary: ['contains-nuts'] },
+          { id: 'brew5', categoryId: 'brewed', nameEn: 'Cardamom Turkish Coffee', nameAr: 'قهوة تركية بالهيل', descriptionEn: 'Infused with aromatic green cardamom pods. Warm, fragrant layers, perfect after Iftar.', price: 28, image: 'Ottomancardamom.jpg', calories: '5 kcal', dietary: ['vegan', 'gluten-free'] },
+          { id: 'brew6', categoryId: 'brewed', nameEn: 'Sahlep', nameAr: 'شلهب', descriptionEn: 'Ancient Anatolian comfort drink from wild orchid tubers. Creamy perfection with cinnamon.', price: 38, image: 'Sahlep.jpg', calories: '200 kcal', dietary: ['contains-dairy'] },
+          { id: 'brew7', categoryId: 'brewed', nameEn: 'Arabic Coffee - Full Dalla', nameAr: 'قهوة عربية - دلة كاملة', descriptionEn: 'Ceremonial centerpiece for Iftar gatherings. Brewed in brass dalla with cardamom, saffron.', price: 90, image: 'Arabic.jpg', calories: '10 kcal', dietary: ['vegan', 'gluten-free'] },
+          { id: 'brew8', categoryId: 'brewed', nameEn: 'Arabic Coffee - Half Dalla', nameAr: 'قهوة عربية - نصف دلة', descriptionEn: 'Perfectly portioned for intimate Iftar gatherings. Same delicate spice balance.', price: 55, image: 'Arabic.jpg', calories: '10 kcal', dietary: ['vegan', 'gluten-free'] },
+          { id: 'brew9', categoryId: 'brewed', nameEn: 'Arabic Coffee - Cup', nameAr: 'قهوة عربية - فنجان', descriptionEn: 'Personal journey. Single serving of authentic Arabic coffee after Iftar.', price: 35, image: 'Arabiccup.jpeg', calories: '10 kcal', dietary: ['vegan', 'gluten-free'] },
+          { id: 'tea1', categoryId: 'tea', nameEn: 'Turkish Tea', nameAr: 'شاي تركي', descriptionEn: 'Deep amber Rize tea. Served in traditional tulip glasses.', price: 15, image: 'Tea.jpg', calories: '2 kcal', dietary: ['vegan', 'dairy-free'] },
+          { id: 'tea2', categoryId: 'tea', nameEn: 'Turkish Tea Pot', nameAr: 'إبريق شاي تركي', descriptionEn: 'Generous pot for sharing Iftar conversations. Embodies communal warmth.', price: 45, image: 'Turkishteapot.jpeg', calories: '0 kcal', dietary: ['vegan', 'gluten-free'] },
+          { id: 'tea3', categoryId: 'tea', nameEn: 'Apple Tea', nameAr: 'شاي التفاح', descriptionEn: 'Sun-ripened apple essence with premium black tea. Refreshing after Iftar.', price: 35, image: 'Appletea.jpg', calories: '2 kcal', dietary: ['vegan', 'dairy-free'] },
+          { id: 'tea4', categoryId: 'tea', nameEn: 'Mulberry Tea', nameAr: 'شاي التوت', descriptionEn: 'Delicate white mulberry infusion. Honey-like sweetness for Suhoor.', price: 35, image: 'Mulberrytea.jpg', calories: '2 kcal', dietary: ['vegan', 'dairy-free'] },
+          { id: 'tea5', categoryId: 'tea', nameEn: 'Lemon Mint', nameAr: 'ليمون بالنعناع', descriptionEn: 'Zesty lemon wedges and fresh mint leaves. Invigorating clarity after fasting.', price: 35, image: 'Lemontea.jpg', calories: '2 kcal', dietary: ['vegan', 'dairy-free'] },
+          { id: 'tea6', categoryId: 'tea', nameEn: 'Pomegranate Tea', nameAr: 'شاي الرمان', descriptionEn: 'Vibrant infusion. Sweet-tart duality. Antioxidant-rich for blessed nights.', price: 35, image: 'Romantea.jpg', calories: '2 kcal', dietary: ['vegan', 'dairy-free'] },
+          { id: 'tea7', categoryId: 'tea', nameEn: 'Matcha', nameAr: 'ماتشا', descriptionEn: 'Ceremonial-grade matcha. Concentrated umami, vibrant chlorophyll.', price: 36, image: 'Matcha.webp', calories: '95 kcal', dietary: ['vegan', 'dairy-free'] },
+          { id: 'tea8', categoryId: 'tea', nameEn: 'Strawberry Matcha', nameAr: 'ماتشا بالفراولة', descriptionEn: 'Vibrant matcha meets sun-ripened strawberry puree. Iftar refreshment.', price: 42, image: 'Strawberrymatcha.webp', calories: '135 kcal', dietary: ['vegan', 'dairy-free'] },
+          { id: 'tea9', categoryId: 'tea', nameEn: 'Iced Apple Tea', nameAr: 'شاي التفاح مثلج', descriptionEn: 'Chilled orchard breeze over crystalline ice. Suhoor refreshment.', price: 35, image: 'Appletea.avif', calories: '35 kcal', dietary: ['vegan', 'dairy-free'] },
+          { id: 'tea10', categoryId: 'tea', nameEn: 'Iced Mulberry Tea', nameAr: 'شاي التوت المثلج', descriptionEn: 'Frosted silk. Subtle fruity notes, smooth texture for Ramadan nights.', price: 35, image: 'Blackmulberrytea.png', calories: '35 kcal', dietary: ['vegan', 'dairy-free'] },
+          { id: 'tea11', categoryId: 'tea', nameEn: 'Iced Pomegranate Tea', nameAr: 'شاي الرمان المثلج', descriptionEn: 'Jewel-toned refreshment. Bold fruity character after Iftar.', price: 35, image: 'Pomegranatetea.avif', calories: '45 kcal', dietary: ['vegan', 'dairy-free'] },
+          { id: 'tea12', categoryId: 'tea', nameEn: 'Passion Fruit Tea', nameAr: 'شاي باشن فروت', descriptionEn: 'Tropical euphoria. Tangy vibrancy with subtle sweetness.', price: 45, image: 'Passiontea.webp', calories: '40 kcal', dietary: ['vegan', 'dairy-free'] },
+          { id: 'tea13', categoryId: 'tea', nameEn: 'Hibiscus Iced', nameAr: 'كركديه مثلج', descriptionEn: 'Ruby glacier. Tangy floral notes, stunning crimson color.', price: 36, image: 'Hibiscus.webp', calories: '25 kcal', dietary: ['vegan', 'dairy-free'] },
+          { id: 'tea14', categoryId: 'tea', nameEn: 'Hibiscus Tea', nameAr: 'شاي الكركديه', descriptionEn: 'Soothing hot infusion. Gentle tangy notes for quiet Ramadan moments.', price: 36, image: 'Hibiscustea.webp', calories: '25 kcal', dietary: ['vegan', 'dairy-free'] },
+          { id: 'tea15', categoryId: 'tea', nameEn: 'Winter Tea', nameAr: 'شاي الشتاء', descriptionEn: 'Warming seasonal blend of herbs and spices. Ramadan comfort.', price: 38, image: 'Wintertea.webp', calories: '30 kcal', dietary: ['vegan', 'dairy-free'] },
+          { id: 'tea16', categoryId: 'tea', nameEn: 'Chamomile Tea', nameAr: 'شاي البابونج', descriptionEn: 'Calming infusion with soft floral notes. Post-Iftar tranquility.', price: 36, image: 'Chamomiletea.webp', calories: '0 kcal', dietary: ['vegan', 'dairy-free'] },
+          { id: 'tea17', categoryId: 'tea', nameEn: 'Green Tea', nameAr: 'شاي أخضر', descriptionEn: 'Pure, clean, balanced taste with refreshing finish. Suhoor serenity.', price: 36, image: 'Greentea.jpg', calories: '0 kcal', dietary: ['vegan', 'dairy-free'] },
+          { id: 'cafe1', categoryId: 'cafe', nameEn: 'Ramadan Latte', nameAr: 'لاتيه رمضان', descriptionEn: 'Smooth microfoam over balanced espresso. Creamy harmony for blessed nights.', price: 29, image: 'Latteart.webp', calories: '170 kcal', dietary: ['contains-dairy'], hasMilkSelection: true },
+          { id: 'cafe2', categoryId: 'cafe', nameEn: 'Ramadan Cappuccino', nameAr: 'كابوتشينو رمضان', descriptionEn: 'Equal parts espresso, steamed milk, thick microfoam. Iftar delight.', price: 29, image: 'Art.webp', calories: '150 kcal', dietary: ['contains-dairy'], hasMilkSelection: true },
+          { id: 'cafe3', categoryId: 'cafe', nameEn: 'Spanish Latte', nameAr: 'لاتيه إسباني', descriptionEn: 'Enriched with sweetened condensed milk. Luxurious texture for Suhoor.', price: 32, image: 'Latteart.webp', calories: '220 kcal', dietary: ['contains-dairy'], hasMilkSelection: true },
+          { id: 'cafe4', categoryId: 'cafe', nameEn: 'Salted Caramel Latte', nameAr: 'لاتيه كراميل مملح', descriptionEn: 'House-made caramel with Himalayan salt. Savory-sweet alchemy after Iftar.', price: 32, image: 'Latteart.webp', calories: '230 kcal', dietary: ['contains-dairy'], hasMilkSelection: true },
+          { id: 'cafe5', categoryId: 'cafe', nameEn: 'Vanilla Latte', nameAr: 'لاتيه فانيليا', descriptionEn: 'Madagascar bourbon vanilla bean infusion. Fragrant sweetness for Ramadan.', price: 32, image: 'Art.webp', calories: '220 kcal', dietary: ['contains-dairy'], hasMilkSelection: true },
+          { id: 'cafe6', categoryId: 'cafe', nameEn: 'Hazelnut Latte', nameAr: 'لاتيه البندق', descriptionEn: 'Rich, nutty flavor of premium hazelnuts. Velvety smooth for Suhoor.', price: 32, image: 'Art.webp', calories: '180 kcal', dietary: ['contains-dairy'], hasMilkSelection: true },
+          { id: 'cafe7', categoryId: 'cafe', nameEn: 'Toffee Nut Latte', nameAr: 'لاتيه توفي مكسرات', descriptionEn: 'Rich toffee and nut flavors. Buttery caramel notes for Iftar.', price: 32, image: 'Art.webp', calories: '190 kcal', dietary: ['contains-dairy'], hasMilkSelection: true },
+          { id: 'cafe8', categoryId: 'cafe', nameEn: 'Pistachio Latte', nameAr: 'لاتيه الفستق', descriptionEn: 'Rich pistachio flavor. Nutty sweetness with velvety milk. Ramadan luxury.', price: 36, image: 'Pistachiolatte.webp', calories: '210 kcal', dietary: ['contains-dairy'], hasMilkSelection: true },
+          { id: 'cafe9', categoryId: 'cafe', nameEn: 'White Mocha', nameAr: 'وايت موكا', descriptionEn: 'Creamy white chocolate melted into espresso. Decadent sweetness for Eid.', price: 32, image: 'Latteart.webp', calories: '260 kcal', dietary: ['contains-dairy'], hasMilkSelection: true },
+          { id: 'cafe10', categoryId: 'cafe', nameEn: 'Mocha', nameAr: 'موكا', descriptionEn: 'Rich dark chocolate melted into espresso. Cocoa-dusted Iftar indulgence.', price: 32, image: 'Art.webp', calories: '260 kcal', dietary: ['contains-dairy'], hasMilkSelection: true },
+          { id: 'cafe11', categoryId: 'cafe', nameEn: 'Flat White', nameAr: 'فلات وايت', descriptionEn: 'Strong double ristretto with velvety microfoam. Post-Iftar strength.', price: 27, image: 'Flatwhite.webp', calories: '140 kcal', dietary: ['contains-dairy'], hasMilkSelection: true },
+          { id: 'cafe12', categoryId: 'cafe', nameEn: 'Piccolo Latte', nameAr: 'بيكولو لاتيه', descriptionEn: 'Strong ristretto with just enough velvety milk. Elegantly small for Suhoor.', price: 24, image: 'Piccololatte.jpg', calories: '120 kcal', dietary: ['contains-dairy'], hasMilkSelection: true },
+          { id: 'cafe13', categoryId: 'cafe', nameEn: 'Cortado', nameAr: 'كورتادو', descriptionEn: 'Equal parts espresso and warm steamed milk. Perfect equilibrium after Iftar.', price: 24, image: 'Cortado.webp', calories: '110 kcal', dietary: ['contains-dairy'], hasMilkSelection: true },
+          { id: 'cafe14', categoryId: 'cafe', nameEn: 'Macchiato', nameAr: 'ماكياتو', descriptionEn: 'Strong espresso "marked" with a dollop of foam. Quick Iftar pick-me-up.', price: 24, image: 'Machiatto.jpg', calories: '40 kcal', dietary: ['contains-dairy'], hasMilkSelection: true },
+          { id: 'cafe15', categoryId: 'cafe', nameEn: 'Espresso Single', nameAr: 'إسپريسو مفرد', descriptionEn: 'Pure coffee essence. Concentrated extraction with crema crown.', price: 18, image: 'Espresso.webp', calories: '3 kcal', dietary: ['vegan', 'gluten-free'] },
+          { id: 'cafe16', categoryId: 'cafe', nameEn: 'Espresso Double', nameAr: 'إسپريسو مزدوج', descriptionEn: 'Double the intensity. For true Ramadan coffee connoisseurs.', price: 21, image: 'Espresso.webp', calories: '6 kcal', dietary: ['vegan', 'gluten-free'] },
+          { id: 'cafe17', categoryId: 'cafe', nameEn: 'Americano', nameAr: 'أمريكانو', descriptionEn: 'Espresso extended with hot water. Smooth, approachable for Suhoor.', price: 21, image: 'Americano.webp', calories: '5 kcal', dietary: ['vegan', 'gluten-free'] },
+          { id: 'cafe18', categoryId: 'cafe', nameEn: 'Hot Chocolate', nameAr: 'هوت شوكولاتة', descriptionEn: 'Artisanal blend of single-origin cocoa. Liquid velvet for Ramadan nights.', price: 36, image: 'Hotchocolate.jfif', calories: '360 kcal', dietary: ['contains-dairy'], hasMilkSelection: true },
+          { id: 'cafe19', categoryId: 'cafe', nameEn: 'Iced Tiramisu Latte', nameAr: 'لاتيه تيراميسو مثلج', descriptionEn: 'Layered iced latte capturing tiramisu essence. Mascarpone-inspired Iftar treat.', price: 36, image: 'Icetiramisu.webp', calories: '210 kcal', dietary: ['contains-dairy'], hasMilkSelection: true },
+          { id: 'cafe20', categoryId: 'cafe', nameEn: 'Aerocano', nameAr: 'أيرو كانو', descriptionEn: 'Light and airy iced espresso with smooth foam. Suhoor refreshment.', price: 28, image: 'Aerocano.webp', calories: '5 kcal', dietary: ['vegan', 'dairy-free'] },
+          { id: 'spec1', categoryId: 'specialty', nameEn: 'V60 Pour Over', nameAr: 'V60', descriptionEn: 'Hand-poured through ceramic V60. Bright floral notes. Bean selection available.', price: 35, image: 'V60.webp', calories: '2 kcal', dietary: ['vegan', 'dairy-free'], hasBeanSelection: true },
+          { id: 'spec2', categoryId: 'specialty', nameEn: 'Ice Drip', nameAr: 'آيس دريب', descriptionEn: '8-hour cold water extraction. Concentrated, smooth, low acidity.', price: 35, image: 'Drip.jpg', calories: '2 kcal', dietary: ['vegan', 'dairy-free'], hasBeanSelection: true },
+          { id: 'spec3', categoryId: 'specialty', nameEn: 'Cold Brew', nameAr: 'كولد برو', descriptionEn: '18+ hour steep. Naturally sweet, chocolatey notes, remarkably smooth.', price: 37, image: 'Coldbrew.webp', calories: '2 kcal', dietary: ['vegan', 'dairy-free'], hasBeanSelection: true },
+          { id: 'ref1', categoryId: 'refreshers', nameEn: 'Ramadan Lemonade', nameAr: 'ليموناضة رمضان', descriptionEn: 'Freshly squeezed Sicilian lemons. Perfect sweet-tart harmony for Iftar.', price: 37, image: 'Lemonade.jpg', calories: '120 kcal', dietary: ['vegan', 'dairy-free'] },
+          { id: 'ref2', categoryId: 'refreshers', nameEn: 'Fresh Orange Juice', nameAr: 'عصير برتقال طازج', descriptionEn: 'Valencia oranges pressed to order. Natural pulp, vibrant color for Suhoor.', price: 37, image: 'Orange.jpeg', calories: '140 kcal', dietary: ['vegan', 'dairy-free'] },
+          { id: 'ref3', categoryId: 'refreshers', nameEn: 'Orange Earl Grey', nameAr: 'برتقال إيرل جراي', descriptionEn: 'Premium Earl Grey with orange zest and juice. Citrus-bergamot duet.', price: 47, image: 'Earl.jpeg', calories: '2 kcal', dietary: ['vegan', 'dairy-free'] },
+          { id: 'ref4', categoryId: 'refreshers', nameEn: 'Strawberry Mojito', nameAr: 'موهيتو فراولة', descriptionEn: 'Fresh strawberries muddled with mint, lime, cane sugar. Iftar vibrancy.', price: 42, image: 'Strawberrymojito.jpg', calories: '160 kcal', dietary: [] },
+          { id: 'ref5', categoryId: 'refreshers', nameEn: 'Passion Fruit Mojito', nameAr: 'موهيتو باشن فروت', descriptionEn: 'Exotic passion fruit pulp with traditional mojito. Tangy-sweet celebration.', price: 42, image: 'Passionfruit.webp', calories: '170 kcal', dietary: [] },
+          { id: 'ref6', categoryId: 'refreshers', nameEn: 'Blueberry Mojito', nameAr: 'موهيتو توت أزرق', descriptionEn: 'Wild blueberries muddled. Deep purple hue, complex berry notes.', price: 38, image: 'Blueberrymojito.webp', calories: '150 kcal', dietary: [] },
+          { id: 'ref7', categoryId: 'refreshers', nameEn: 'Black Mulberry Mojito', nameAr: 'موهيتو توت أسود', descriptionEn: 'Rich black mulberries. Sophisticated sweetness, jewel-toned color.', price: 40, image: 'Mulberrymojito.jpg', calories: '170 kcal', dietary: [] },
+          { id: 'ref8', categoryId: 'refreshers', nameEn: 'Mix Berries Mojito', nameAr: 'موهيتو توت مشكل', descriptionEn: 'Strawberries, raspberries, blackberries, blueberries. Berry symphony.', price: 47, image: 'Mixberriesmojito.webp', calories: '176 kcal', dietary: [] },
+          { id: 'ref9', categoryId: 'refreshers', nameEn: 'Cooling Breeze', nameAr: 'نسيم بارد', descriptionEn: 'Fresh mint and lime with sparkling water. Herbal clarity after Iftar.', price: 38, image: 'Coolingbreeze.jpg', calories: '110 kcal', dietary: [] },
+          { id: 'ref10', categoryId: 'refreshers', nameEn: 'Still Water', nameAr: 'مياه عادية', descriptionEn: 'Crisp, filtered still water. 330ml. Essential for Iftar.', price: 11, image: 'WaterBig.jpg', calories: '0 kcal', dietary: ['vegan', 'dairy-free'] },
+          { id: 'ref11', categoryId: 'refreshers', nameEn: 'Still Water Large', nameAr: 'مياه عادية كبير', descriptionEn: 'Premium still water. 750ml. Perfect for sharing at Iftar.', price: 21, image: 'Watersmall.jpg', calories: '0 kcal', dietary: ['vegan', 'dairy-free'] },
+          { id: 'ref12', categoryId: 'refreshers', nameEn: 'Sparkling Water', nameAr: 'مياه غازية', descriptionEn: 'Naturally carbonated. Fine bubbles, elegant alternative.', price: 21, image: 'Sparkling.jpg', calories: '0 kcal', dietary: ['vegan', 'dairy-free'] },
+          { id: 'ref13', categoryId: 'refreshers', nameEn: 'Kinza Cola', nameAr: 'كينزا كولا', descriptionEn: 'Signature cola. Balanced sweetness, familiar effervescence.', price: 17, image: 'Cola.jpg', calories: '150 kcal', dietary: [] },
+          { id: 'ref14', categoryId: 'refreshers', nameEn: 'Kinza Cola Zero', nameAr: 'كينزا كولا زيرو', descriptionEn: 'Sugar-free. Zero calories, same satisfying refreshment.', price: 17, image: 'Zero.jpg', calories: '0 kcal', dietary: [] },
+          { id: 'bak1', categoryId: 'baklava', nameEn: 'Ramadan Baklava Mix', nameAr: 'بقلاوة رمضان مشكلة', descriptionEn: 'Assortment of Gaziantep\'s finest baklava. Multiple nut fillings.', price: 65, image: 'Mix.jpeg', calories: '450 kcal', dietary: ['contains-nuts'] },
+          { id: 'bak2', categoryId: 'baklava', nameEn: 'Carrot Baklava', nameAr: 'بقلاوة جزر', descriptionEn: 'Classic baklava enriched with carrot puree. Natural sweetness.', price: 45, image: 'Carrot.jpeg', calories: '420 kcal', dietary: ['contains-nuts'] },
+          { id: 'bak3', categoryId: 'baklava', nameEn: 'Carrot Baklava with Ice Cream', nameAr: 'بقلاوة جزر مع آيس كريم', descriptionEn: 'Warm carrot baklava paired with cool vanilla bean ice cream.', price: 55, image: 'Carroticecream.jpeg', calories: '620 kcal', dietary: ['contains-nuts', 'contains-dairy'] },
+          { id: 'bak4', categoryId: 'baklava', nameEn: 'Trio Baklava', nameAr: 'تريو بقلاوة', descriptionEn: 'Three distinct styles: rolled, open-faced, diamond-cut.', price: 45, image: 'TrioBaklava.jpeg', calories: '480 kcal', dietary: ['contains-nuts'] },
+          { id: 'bak5', categoryId: 'baklava', nameEn: 'Honey Cake', nameAr: 'كيك عسل', descriptionEn: 'Multiple thin cake layers with honey cream. Moist, tender.', price: 45, image: 'Honeycake.jfif', calories: '430 kcal', dietary: ['contains-dairy'] },
+          { id: 'bak6', categoryId: 'baklava', nameEn: 'Fanzuella Sweets', nameAr: 'فانزويلا', descriptionEn: 'Decadent layered creation with delicate pastry, rich cream.', price: 45, image: 'Fanzuella.webp', calories: '420 kcal', dietary: ['contains-dairy', 'contains-gluten'] },
+          { id: 'bak7', categoryId: 'baklava', nameEn: 'Chocolate Flan', nameAr: 'فلان شوكولاتة', descriptionEn: 'Rich chocolate-infused flan. Smooth custard texture.', price: 25, image: 'Chocoflan.jpeg', calories: '380 kcal', dietary: ['contains-dairy'] },
+          { id: 'bak8', categoryId: 'baklava', nameEn: 'Dark Chocolate Cake', nameAr: 'كيكة شوكولاتة داكنة', descriptionEn: 'Moist dark chocolate layers. Intense, rich, smooth cocoa glaze.', price: 45, image: 'Darkchocolate.jpeg', calories: '540 kcal', dietary: ['contains-dairy'] },
+          { id: 'bak9', categoryId: 'baklava', nameEn: 'Pistachio Cake', nameAr: 'كيكة الفستق', descriptionEn: 'Soft pistachio sponge with creamy frosting. Delicate, luxurious.', price: 45, image: 'Pistachiocake.jpeg', calories: '510 kcal', dietary: ['contains-dairy', 'contains-nuts'] },
+          { id: 'bak10', categoryId: 'baklava', nameEn: 'Black Forest Cake', nameAr: 'كيكة الغابة السوداء', descriptionEn: 'Chocolate sponge with whipped cream and cherry notes.', price: 45, image: 'Darkforest.jpeg', calories: '560 kcal', dietary: ['contains-dairy'] },
+          { id: 'bak11', categoryId: 'baklava', nameEn: 'Chocolate Mousse Cake', nameAr: 'كيكة موس شوكولاتة', descriptionEn: 'Light chocolate mousse over soft base. Melt-in-your-mouth.', price: 45, image: 'Mousse.jpeg', calories: '530 kcal', dietary: ['contains-dairy'] },
+          { id: 'bak12', categoryId: 'baklava', nameEn: 'Red Velvet Cake', nameAr: 'ريد فلفت', descriptionEn: 'Soft red sponge with creamy frosting. Elegant signature dessert.', price: 45, image: 'Redvelvet.jpeg', calories: '520 kcal', dietary: ['contains-dairy'] },
+          { id: 'bak13', categoryId: 'baklava', nameEn: 'Kunafa', nameAr: 'كنافة', descriptionEn: 'Shredded kataifi with Akkawi cheese. Golden, crispy, rose-scented.', price: 45, image: 'Kunafa.jpeg', calories: '520 kcal', dietary: ['contains-dairy'] },
+          { id: 'bak14', categoryId: 'baklava', nameEn: 'Brownies', nameAr: 'براونيز', descriptionEn: 'Dense, rich brownies. Crackly top, gooey center. Deep chocolate.', price: 55, image: 'Brown.jpg', calories: '380 kcal', dietary: ['contains-dairy'] },
+          { id: 'bak15', categoryId: 'baklava', nameEn: 'Tiramisu', nameAr: 'تيراميسو', descriptionEn: 'Ladyfinger layers soaked in espresso and Marsala. Mascarpone cream.', price: 50, image: 'Tiramisu.jpg', calories: '420 kcal', dietary: ['contains-dairy'] },
+          { id: 'bak16', categoryId: 'baklava', nameEn: 'Trileche', nameAr: 'تريليتش', descriptionEn: 'Sponge cake soaked in three-milk blend. Incredibly moist, rich.', price: 45, image: 'Trileche.jpg', calories: '540 kcal', dietary: ['contains-dairy'] },
+          { id: 'bak17', categoryId: 'baklava', nameEn: 'San Sebastian Cheesecake', nameAr: 'تشيز كيك سان سيباستيان', descriptionEn: 'Cream-centered with caramelized top. Almost liquid interior.', price: 45, image: 'Sebastian.jpg', calories: '520 kcal', dietary: ['contains-dairy'] },
+          { id: 'bak18', categoryId: 'baklava', nameEn: 'New York Cheesecake', nameAr: 'تشيز كيك نيويورك', descriptionEn: 'Creamy New York-style. Graham cracker crust. Pure, unadorned.', price: 45, image: 'cheesecake.webp', calories: '500 kcal', dietary: ['contains-dairy'] },
+          { id: 'bak19', categoryId: 'baklava', nameEn: 'Turkish Ice Cream', nameAr: 'آيس كريم تركي', descriptionEn: 'Classic dondurma. Rich, creamy, smooth chew. Traditional Anatolian.', price: 27, image: 'Icecream.webp', calories: '210 kcal', dietary: ['contains-dairy'] },
+          { id: 'fond1', categoryId: 'fondue', nameEn: 'Strawberry Fondue', nameAr: 'فوندو فراولة', descriptionEn: 'Plump, ripe strawberries with warm milk chocolate fondue.', price: 40, image: 'Fondue1.jpeg', calories: '320 kcal', dietary: ['contains-dairy'] },
+          { id: 'fond2', categoryId: 'fondue', nameEn: 'Strawberry-Banana Fondue', nameAr: 'فوندو فراولة وموز', descriptionEn: 'Fresh strawberries and ripe banana with chocolate fondue.', price: 45, image: 'Fondue2.jpeg', calories: '410 kcal', dietary: ['contains-dairy'] },
+          { id: 'fond3', categoryId: 'fondue', nameEn: 'Turkiana Fondue', nameAr: 'فوندو تركيانا', descriptionEn: 'Assortment of fresh fruits, brownie, marshmallows. Dark and milk chocolate fondues.', price: 59, image: 'Fondue3.jpeg', calories: '480 kcal', dietary: ['contains-dairy'] },
+          { id: 'fond4', categoryId: 'fondue', nameEn: 'Nuts Stand - Tall', nameAr: 'مكسرات - ستاند كبير', descriptionEn: 'Premium roasted nuts: almonds, walnuts, pistachios, cashews. Elegant stand.', price: 99, image: 'Nuts.jpg', calories: '300 kcal', dietary: ['contains-nuts'] },
+          { id: 'fond5', categoryId: 'fondue', nameEn: 'Nuts Stand - Small', nameAr: 'مكسرات - ستاند صغير', descriptionEn: 'Curated mix of premium roasted nuts. Smaller presentation.', price: 60, image: 'Nutsmall.jpg', calories: '180 kcal', dietary: ['contains-nuts'] },
+          { id: 'fond6', categoryId: 'fondue', nameEn: 'Assorted Nut Platter', nameAr: 'طبق مكسرات مشكل', descriptionEn: 'Artfully arranged selection. Various roasting levels.', price: 35, image: 'Nutsplatter.jpg', calories: '180 kcal', dietary: ['contains-nuts'] },
+          { id: 'cro1', categoryId: 'croissant', nameEn: 'Suhoor Beef Croissant', nameAr: 'كرواسون لحم للسحور', descriptionEn: 'Flaky croissant with slow-braised beef ribs, cheddar, kasfar cheese, pesto.', price: 45, image: 'Ribs.jpg', calories: '720 kcal', dietary: [], timeRestricted: true },
+          { id: 'cro2', categoryId: 'croissant', nameEn: 'Avocado Suhoor Croissant', nameAr: 'كرواسون أفوكادو للسحور', descriptionEn: 'Buttery croissant with creamy avocado and soft scrambled eggs.', price: 42, image: 'Avocado.jpg', calories: '610 kcal', dietary: ['vegetarian'], timeRestricted: true },
+          { id: 'cro3', categoryId: 'croissant', nameEn: 'Smoked Beef Suhoor', nameAr: 'لحم مدخن للسحور', descriptionEn: 'Fresh croissant with delicate eggs and premium smoked beef.', price: 45, image: '5.jpg', calories: '630 kcal', dietary: [], timeRestricted: true },
+          { id: 'cro4', categoryId: 'croissant', nameEn: 'Butter & Jam Suhoor', nameAr: 'زبدة ومربى للسحور', descriptionEn: 'Warm croissant with cherry jam, roasted olives, creamy feta.', price: 40, image: '4.jpg', calories: '540 kcal', dietary: ['vegetarian'], timeRestricted: true },
+          { id: 'cro5', categoryId: 'croissant', nameEn: 'Scrambled Eggs Suhoor', nameAr: 'بيض مخفوق للسحور', descriptionEn: 'Light croissant with soft scrambled eggs and fresh arugula.', price: 37, image: '1.jpg', calories: '520 kcal', dietary: ['vegetarian'], timeRestricted: true },
+          { id: 'cro6', categoryId: 'croissant', nameEn: 'Plain Butter Croissant', nameAr: 'كرواسون زبدة', descriptionEn: 'Classic Parisian. Crisp, flaky exterior; tender, layered interior.', price: 20, image: 'Plain.webp', calories: '320 kcal', dietary: ['vegetarian'], timeRestricted: true },
+          { id: 'cro7', categoryId: 'croissant', nameEn: 'Cheese Croissant', nameAr: 'كرواسون جبن', descriptionEn: 'Buttery croissant with cheese filling. Gooey, savory center.', price: 20, image: 'Cheese.jpg', calories: '360 kcal', dietary: ['vegetarian'], timeRestricted: true },
+          { id: 'cro8', categoryId: 'croissant', nameEn: 'Chocolate Croissant', nameAr: 'كرواسون شوكولاتة', descriptionEn: 'Pain au chocolat. Two dark chocolate batons baked inside.', price: 20, image: 'Chocolatecroissant.jpg', calories: '380 kcal', dietary: ['vegetarian'], timeRestricted: true },
+          { id: 'cro9', categoryId: 'croissant', nameEn: 'Almond Croissant', nameAr: 'كرواسون لوز', descriptionEn: 'Filled with almond cream, topped with sliced almonds.', price: 20, image: 'Almondcroissant.jpg', calories: '400 kcal', dietary: ['vegetarian'], timeRestricted: true },
+          { id: 'cro10', categoryId: 'croissant', nameEn: 'Cinnamon Danish', nameAr: 'دانش قرفة', descriptionEn: 'Flaky Danish with cinnamon-sugar spiral. Aromatic layers.', price: 20, image: 'Cinnamon.jpg', calories: '390 kcal', dietary: ['vegetarian'], timeRestricted: true },
+          { id: 'cro11', categoryId: 'croissant', nameEn: 'Danish Shell', nameAr: 'دانش شل', descriptionEn: 'Shell-shaped Danish. Delicate layers, light sweetness.', price: 20, image: 'Danish.jpg', calories: '380 kcal', dietary: ['vegetarian'], timeRestricted: true },
+          { id: 'cro12', categoryId: 'croissant', nameEn: 'Raisins Danish', nameAr: 'دانش زبيب', descriptionEn: 'Danish pastry studded with plump raisins. Natural sweetness.', price: 20, image: 'Raisin.jpg', calories: '390 kcal', dietary: ['vegetarian'], timeRestricted: true },
+          { id: 'grill1', categoryId: 'grill', nameEn: 'Iftar Beef Burger', nameAr: 'برجر لحم للإفطار', descriptionEn: 'Premium beef patty with secret seasoning. Juicy perfection, special sauce.', price: 69, image: 'Burger.jpeg', calories: '950 kcal', dietary: [], timeRestricted: true },
+          { id: 'grill2', categoryId: 'grill', nameEn: 'Iftar Chicken Burger', nameAr: 'برجر دجاج للإفطار', descriptionEn: 'Marinated chicken fillet grilled with expertise. Soft bun, crisp vegetables.', price: 59, image: 'Burgerchicken.jpg', calories: '850 kcal', dietary: [], timeRestricted: true },
+          { id: 'grill3', categoryId: 'grill', nameEn: 'French Fries', nameAr: 'بطاطس مقلية', descriptionEn: 'Golden fries. Crisp exterior, fluffy interior. Perfectly salted.', price: 29, image: 'Patatas.jpg', calories: '340 kcal', dietary: ['vegan', 'gluten-free'], timeRestricted: true },
+          { id: 'grill4', categoryId: 'grill', nameEn: 'Potato Wedges', nameAr: 'بطاطس ويدجز', descriptionEn: 'Thick potato wedges with seasoned skin. Heartier texture.', price: 32, image: 'Wedges.webp', calories: '380 kcal', dietary: ['vegetarian', 'gluten-free'], timeRestricted: true },
+          { id: 'grill5', categoryId: 'grill', nameEn: 'Sweet Potato Fries', nameAr: 'بطاطس حلوة', descriptionEn: 'Caramelized edges, soft centers. Natural sweetness.', price: 32, image: 'Sweetpotato.jpg', calories: '360 kcal', dietary: ['vegan', 'gluten-free'], timeRestricted: true },
+          { id: 'grill6', categoryId: 'grill', nameEn: 'Caesar Salad', nameAr: 'سلطة سيزر', descriptionEn: 'Crisp romaine, Caesar dressing, Parmesan, croutons.', price: 47, image: 'Caesar.jpeg', calories: '420 kcal', dietary: ['vegetarian'], timeRestricted: true },
+          { id: 'grill7', categoryId: 'grill', nameEn: 'Ottoman Salad', nameAr: 'سلطة عثمانية', descriptionEn: 'Crisp vegetables, fresh herbs, light dressing. Imperial freshness.', price: 59, image: 'Salad.jpg', calories: '120 kcal', dietary: ['vegetarian'], timeRestricted: true },
+          { id: 'grill8', categoryId: 'grill', nameEn: 'Avocado Salad', nameAr: 'سلطة أفوكادو', descriptionEn: 'Ripe avocado with crisp vegetables, lemon dressing. Buttery meets acidic.', price: 49, image: 'Saladavocado.jpg', calories: '180 kcal', dietary: ['vegetarian'], timeRestricted: true },
+          { id: 'break1', categoryId: 'breakfast', nameEn: 'Iftar Table', nameAr: 'مائدة إفطار', descriptionEn: 'Fresh bread, assorted cheeses, olives, tomatoes, cucumbers, honey, clotted cream, tea.', price: 99, image: 'Breakfast.jpg', calories: '680 kcal', dietary: ['vegetarian'], popular: true, timeRestricted: true },
+          { id: 'break2', categoryId: 'breakfast', nameEn: 'Suhoor Feast', nameAr: 'وليمة سحور', descriptionEn: 'Lavish platter for two. Extensive selection of cheeses, olives, eggs, honey, jams.', price: 199, image: 'Breakfast2.jpg', calories: '1200 kcal', dietary: ['vegetarian'], timeRestricted: true },
+          { id: 'break3', categoryId: 'breakfast', nameEn: 'Menemen', nameAr: 'مينمن', descriptionEn: 'Soft scrambled eggs with tomatoes, green peppers, spices. Rustic, satisfying.', price: 45, image: 'Menemen.jpg', calories: '360 kcal', dietary: ['gluten-free', 'contains-dairy'], timeRestricted: true },
+          { id: 'break4', categoryId: 'breakfast', nameEn: 'Plain Omelette', nameAr: 'أومليت', descriptionEn: 'Light, tender omelette. Golden perfection. Pure egg flavor.', price: 25, image: 'Omellet.jpg', calories: '220 kcal', dietary: ['gluten-free', 'contains-dairy'], timeRestricted: true },
+          { id: 'break5', categoryId: 'breakfast', nameEn: 'Afternoon Sandwich', nameAr: 'ساندويتش مسائي', descriptionEn: 'Delicate sandwich for Iftar. Light yet satisfying.', price: 36, image: 'Afternoonsandwich.jpg', calories: '320 kcal', dietary: ['vegetarian'], timeRestricted: true },
+          { id: 'break6', categoryId: 'breakfast', nameEn: 'Chicken Sandwich', nameAr: 'ساندويتش دجاج', descriptionEn: 'Juicy chicken with fresh vegetables and sauce. Balanced handheld meal.', price: 38, image: 'Chickensandwich.jpg', calories: '420 kcal', dietary: [], timeRestricted: true },
+          { id: 'break7', categoryId: 'breakfast', nameEn: 'Cold Cheese Sandwich', nameAr: 'ساندويتش جبن بارد', descriptionEn: 'Cold sandwich with healthy cheese. Refreshing, light for Iftar.', price: 29, image: 'Cold Healthy Cheese Sandwich 0.jpg', calories: '290 kcal', dietary: ['vegetarian'], timeRestricted: true },
+          { id: 'break8', categoryId: 'breakfast', nameEn: 'Labneh Cucumber Sandwich', nameAr: 'ساندويتش لبنة وخيار', descriptionEn: 'Labneh and cucumber. Levantine freshness. Cooling combination.', price: 32, image: 'Cucumberlabnah.jpg', calories: '260 kcal', dietary: ['vegetarian'], timeRestricted: true },
+          { id: 'break9', categoryId: 'breakfast', nameEn: 'Egg & Cheese Sandwich', nameAr: 'ساندويتش بيض وجبن', descriptionEn: 'Warm egg and cheese. Iftar hunger satisfaction.', price: 33, image: 'Eggcheese.jpg', calories: '380 kcal', dietary: ['vegetarian'], timeRestricted: true },
+          { id: 'break10', categoryId: 'breakfast', nameEn: 'Smoked Turkey Sandwich', nameAr: 'ساندويتش ديك رومي مدخن', descriptionEn: 'Premium smoked turkey, fresh bread. Distinctive flavor profile.', price: 49, image: 'Smokedturkey.jpg', calories: '410 kcal', dietary: [], timeRestricted: true },
+          { id: 'break11', categoryId: 'breakfast', nameEn: 'Tuna Avocado Sandwich', nameAr: 'ساندويتش تونة وأفوكادو', descriptionEn: 'Tuna with creamy avocado. Protein richness, healthy fats.', price: 47, image: 'Tunacado.jpg', calories: '430 kcal', dietary: [], timeRestricted: true },
+          { id: 'break12', categoryId: 'breakfast', nameEn: 'Tuna Sandwich', nameAr: 'ساندويتش تونة', descriptionEn: 'Traditional tuna sandwich. Smooth filling, familiar flavors.', price: 37, image: 'Tunasandwich.jpg', calories: '400 kcal', dietary: [], timeRestricted: true },
+          { id: 'break13', categoryId: 'breakfast', nameEn: 'Turkey Ham Sandwich', nameAr: 'ساندويتش تركي هام', descriptionEn: 'Turkey ham with fresh vegetables, soft bread. Light deli option.', price: 30, image: 'Turkeyhamsandwich.jpg', calories: '390 kcal', dietary: [], timeRestricted: true }
+        ]
+      };
 
-      // ----- state (search, active category) -----
+      // ----- state -----
       let activeCategory = 'popular';
       let searchTerm = '';
+      let lastFocusedElement = null;
 
-      // ----- init ambient -----
-      function initAtmospherics() {
-        const starsDiv = document.getElementById('stars');
-        for (let i=0;i<60;i++) {
-          let s=document.createElement('div'); s.className='star';
-          s.style.width=s.style.height=(Math.random()*4+1)+'px';
-          s.style.left=Math.random()*100+'%'; s.style.top=Math.random()*100+'%';
-          s.style.animationDelay=Math.random()*8+'s'; starsDiv.appendChild(s);
-        }
-        const particlesDiv=document.getElementById('particles');
-        for (let i=0;i<25;i++) {
-          let p=document.createElement('div'); p.className='particle';
-          p.style.left=Math.random()*100+'%'; p.style.animationDelay=Math.random()*15+'s';
-          p.style.width=p.style.height=(Math.random()*6+2)+'px'; particlesDiv.appendChild(p);
-        }
+      // DOM elements
+      const container = document.querySelector('.container');
+      const categoryNav = document.getElementById('categoryNav');
+      const menuContainer = document.getElementById('menuContainer');
+      const searchInput = document.getElementById('searchInput');
+      const clearSearch = document.getElementById('clearSearch');
+      const modal = document.getElementById('itemModal');
+      const modalContent = document.getElementById('modalContent');
+      const closeModalBtn = document.getElementById('closeModal');
+      const backToTop = document.getElementById('backToTop');
+      const iftarSpan = document.querySelector('#iftarTimer span');
+      const starfield = document.getElementById('starfield');
+
+      // image base & fallback
+      const IMAGE_BASE = 'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/';
+      const FALLBACK_SVG = 'data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22400%22%20height%3D%22200%22%20viewBox%3D%220%200%20400%20200%22%3E%3Crect%20width%3D%22400%22%20height%3D%22200%22%20fill%3D%22%232f241e%22%2F%3E%3Ctext%20x%3D%2250%22%20y%3D%22115%22%20font-family%3D%22Inter%22%20font-size%3D%2224%22%20fill%3D%22%23c7a05b%22%3ETurkiana%3C%2Ftext%3E%3C%2Fsvg%3E';
+
+      // lazy image factory
+      function createImage(src, alt) {
+        const img = document.createElement('img');
+        img.dataset.src = src;
+        img.alt = alt;
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        img.addEventListener('error', () => { img.src = FALLBACK_SVG; });
+        return img;
       }
 
-      // ----- iftar countdown -----
-      function updateTimer() {
-        let now=new Date(); let maghrib=new Date(); maghrib.setHours(17,42,0);
-        if (now>maghrib) maghrib.setDate(maghrib.getDate()+1);
-        let diff=maghrib-now;
-        let h=Math.floor(diff/3600000), m=Math.floor((diff%3600000)/60000), s=Math.floor((diff%60000)/1000);
-        document.querySelector('#iftarTimer span').innerText=
-          `${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
+      // IntersectionObserver for images
+      const imageObserver = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            if (img.dataset.src) {
+              img.src = img.dataset.src;
+              img.removeAttribute('data-src');
+            }
+            obs.unobserve(img);
+          }
+        });
+      }, { rootMargin: '100px' });
+
+      function observeImages() {
+        document.querySelectorAll('img[data-src]').forEach(img => imageObserver.observe(img));
       }
-      setInterval(updateTimer,1000); updateTimer();
 
-      // ----- quran verses (english added) -----
-      const verses=[
-        {ar:'يَا أَيُّهَا الَّذِينَ آمَنُوا كُتِبَ عَلَيْكُمُ الصِّيَامُ', en:'"O you who have believed, decreed upon you is fasting..." (2:183)'},
-        {ar:'شَهْرُ رَمَضَانَ الَّذِي أُنزِلَ فِيهِ الْقُرْآنُ', en:'"The month of Ramadan [is that] in which was revealed the Qur\'an..." (2:185)'},
-        {ar:'إِنَّا أَنزَلْنَاهُ فِي لَيْلَةِ الْقَدْرِ', en:'"Indeed, We sent the Qur\'an down during the Night of Decree." (97:1)'}
-      ];
-      let vIdx=0;
-      setInterval(()=>{
-        vIdx=(vIdx+1)%verses.length;
-        document.getElementById('verseArabic').innerText=verses[vIdx].ar;
-        document.getElementById('verseEnglish').innerText=verses[vIdx].en;
-      },6000);
+      // category counts
+      function getCategoryCounts() {
+        const counts = {};
+        MENU_DATA.items.forEach(item => { counts[item.categoryId] = (counts[item.categoryId] || 0) + 1; });
+        return counts;
+      }
 
-      // ----- render nav + menu with search filtering -----
+      // render nav
       function renderNav() {
-        const nav=document.getElementById('categoryNav');
-        nav.innerHTML=categories.map(c=> 
-          `<button class="cat-btn ${c.id===activeCategory?'active-cat':''}" data-cat="${c.id}" role="tab">
-            <i class="fas ${c.icon}"></i> ${c.nameEn}
-          </button>`
+        const counts = getCategoryCounts();
+        categoryNav.innerHTML = MENU_DATA.categories.map(c => 
+          `<button class="cat-btn ${c.id === activeCategory ? 'active-cat' : ''}" data-cat="${c.id}" role="tab" aria-label="${c.nameEn}" aria-pressed="${c.id === activeCategory}"><i class="fas ${c.icon}"></i> ${c.nameEn} <span class="count-badge">${counts[c.id] || 0}</span></button>`
         ).join('');
-        nav.querySelectorAll('.cat-btn').forEach(btn=>{
-          btn.addEventListener('click',(e)=>{
-            document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('active-cat'));
+        categoryNav.querySelectorAll('.cat-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            categoryNav.querySelectorAll('.cat-btn').forEach(b => {
+              b.classList.remove('active-cat');
+              b.setAttribute('aria-pressed', 'false');
+            });
             btn.classList.add('active-cat');
-            activeCategory=btn.dataset.cat;
+            btn.setAttribute('aria-pressed', 'true');
+            activeCategory = btn.dataset.cat;
             renderMenu();
           });
         });
       }
 
-      function renderMenu() {
-        const container=document.getElementById('menuContainer');
-        const filteredByCat=menuItems.filter(i=>i.categoryId===activeCategory);
-        const finalItems = searchTerm ? filteredByCat.filter(i => 
-          i.nameEn.toLowerCase().includes(searchTerm) || (i.descriptionEn && i.descriptionEn.toLowerCase().includes(searchTerm))
-        ) : filteredByCat;
+      // dietary class helper
+      function dietaryClass(diet) {
+        const map = { 'vegan': 'tag-vegan', 'gluten-free': 'tag-gluten-free', 'contains-dairy': 'tag-contains-dairy', 'contains-nuts': 'tag-contains-nuts' };
+        return map[diet] || 'tag-default';
+      }
 
-        const cat=categories.find(c=>c.id===activeCategory);
-        let html=`<section><h2 style="font-family:'Playfair Display'; font-size:2.2rem; color:#e1caa8; margin-bottom:1.5rem;">
-          <i class="fas ${cat.icon}" style="color:#c7a05b;"></i> ${cat.nameEn}
-        </h2><div class="menu-grid">`;
-        finalItems.forEach(item=>{
-          html+=`<div class="menu-item" data-id="${item.id}">
-            ${item.popular?'<div class="badge-popular"><i class="fas fa-star"></i> Popular</div>':''}
-            ${item.timeRestricted?'<div class="iftar-badge"><i class="fas fa-clock"></i> Iftar/Suhoor</div>':''}
-            <div class="item-image"><img src="${item.image}" alt="${item.nameEn}" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22400%22%20height%3D%22200%22%20viewBox%3D%220%200%20400%20200%22%3E%3Crect%20width%3D%22400%22%20height%3D%22200%22%20fill%3D%22%232f241e%22%2F%3E%3Ctext%20x%3D%2250%22%20y%3D%22115%22%20font-family%3D%22Inter%22%20font-size%3D%2224%22%20fill%3D%22%23c7a05b%22%3ETurkiana%3C%2Ftext%3E%3C%2Fsvg%3E'"></div>
+      // render menu
+      function renderMenu() {
+        let filtered = MENU_DATA.items.filter(i => i.categoryId === activeCategory);
+        if (searchTerm) {
+          const st = searchTerm.toLowerCase();
+          filtered = filtered.filter(i => i.nameEn.toLowerCase().includes(st) || i.descriptionEn.toLowerCase().includes(st) || (i.nameAr && i.nameAr.includes(st)));
+        }
+        const cat = MENU_DATA.categories.find(c => c.id === activeCategory) || MENU_DATA.categories[0];
+
+        if (filtered.length === 0) {
+          menuContainer.innerHTML = `<div class="no-results"><i class="fas fa-utensils"></i><h3>No items found</h3><p>Try a different category or search term</p></div>`;
+          return;
+        }
+
+        let html = `<section><h2 style="font-size:2.2rem; color:#e1caa8; margin-bottom:1.5rem;"><i class="fas ${cat.icon}" style="color:#c7a05b;"></i> ${cat.nameEn}</h2><div class="menu-grid">`;
+        filtered.forEach(item => {
+          const storyHtml = item.storyEn ? `<div class="origin-story"><i class="fas fa-quote-right"></i> ${item.storyEn}</div>` : '';
+          const badges = (item.dietary || []).map(d => `<span class="meta-tag ${dietaryClass(d)}">${d.replace('-', ' ')}</span>`).join('');
+          html += `<div class="menu-item" data-id="${item.id}">
+            ${item.popular ? '<div class="badge-popular"><i class="fas fa-star"></i> Popular</div>' : ''}
+            ${item.timeRestricted ? '<div class="iftar-badge"><i class="fas fa-clock"></i> Iftar/Suhoor</div>' : ''}
+            <div class="item-image"><img data-src="${IMAGE_BASE}${item.image}" alt="${item.nameEn}"></div>
             <div class="item-content">
-              <div style="display:flex; justify-content:space-between; align-items:flex-start;">
-                <span class="item-name">${item.nameEn}</span><span class="item-price">${item.price} QAR</span>
-              </div>
+              <div style="display:flex; justify-content:space-between; align-items:flex-start;"><span class="item-name">${item.nameEn}</span><span class="item-price">${item.price} QAR</span></div>
               <div style="color:#c7b7a4; margin:0.5rem 0;">${item.descriptionEn}</div>
               <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin:0.8rem 0;">
-                ${item.calories?`<span class="meta-tag"><i class="fas fa-fire"></i> ${item.calories}</span>`:''}
-                ${item.dietary?item.dietary.map(d=>`<span class="meta-tag">${d.replace('-',' ')}</span>`).join(''):''}
+                ${item.calories ? `<span class="meta-tag"><i class="fas fa-fire"></i> ${item.calories}</span>` : ''}
+                ${badges}
               </div>
-              ${item.storyEn?`<div class="origin-story"><i class="fas fa-quote-right"></i> ${item.storyEn}</div>`:''}
+              ${storyHtml}
             </div>
           </div>`;
         });
-        html+='</div></section>';
-        container.innerHTML=html;
-        document.querySelectorAll('.menu-item').forEach(card=>{
-          card.addEventListener('click',()=>{
-            const id=card.dataset.id; const item=menuItems.find(i=>i.id===id);
-            if(item) showModal(item);
+        html += '</div></section>';
+        menuContainer.innerHTML = html;
+        observeImages();
+
+        // attach click events via delegation
+        menuContainer.querySelectorAll('.menu-item').forEach(card => {
+          card.addEventListener('click', (e) => {
+            const id = card.dataset.id;
+            const item = MENU_DATA.items.find(i => i.id === id);
+            if (item) showModal(item);
           });
         });
       }
 
-      // ----- modal (milk/bean options) -----
+      // modal functions
       function showModal(item) {
-        const milkHtml=item.hasMilkSelection ? '<div style="background:#c7a05b20; padding:0.8rem; border-radius:40px; margin:1rem 0;"><i class="fas fa-jug"></i> Milk options: oat, almond, whole</div>' : '';
-        const beanHtml=item.hasBeanSelection ? '<div style="background:#c7a05b20; padding:0.8rem; border-radius:40px; margin:1rem 0;"><i class="fas fa-seedling"></i> Bean selection: Ethiopia, Colombia, Yemen</div>' : '';
-        document.getElementById('modalContent').innerHTML=`
-          <h3 style="font-size:2rem; margin-bottom:1rem;">${item.nameEn}</h3>
+        lastFocusedElement = document.activeElement;
+        const milkHtml = item.hasMilkSelection ? '<div style="background:#c7a05b20; padding:0.8rem; border-radius:40px; margin:1rem 0;"><i class="fas fa-jug"></i> Milk options: oat, almond, whole</div>' : '';
+        const beanHtml = item.hasBeanSelection ? '<div style="background:#c7a05b20; padding:0.8rem; border-radius:40px; margin:1rem 0;"><i class="fas fa-seedling"></i> Bean selection: Ethiopia, Colombia, Yemen</div>' : '';
+        modalContent.innerHTML = `
+          <h3 style="font-size:2rem; margin-bottom:1rem;">${item.nameEn} <span style="font-size:1.4rem; color:#c7a05b;">${item.nameAr || ''}</span></h3>
           <p style="margin-bottom:1.5rem;">${item.descriptionEn}</p>
-          <div style="display:flex; gap:1.5rem; margin:1rem 0;"><span class="item-price">${item.price} QAR</span>${item.calories?`<span><i class="fas fa-fire"></i> ${item.calories}</span>`:''}</div>
+          <div style="display:flex; gap:1.5rem; margin:1rem 0;"><span class="item-price">${item.price} QAR</span>${item.calories ? `<span><i class="fas fa-fire"></i> ${item.calories}</span>` : ''}</div>
           ${milkHtml} ${beanHtml}
-          ${item.storyEn?`<div class="origin-story"><i class="fas fa-quote-right"></i> ${item.storyEn}</div>`:''}
+          ${item.storyEn ? `<div class="origin-story"><i class="fas fa-quote-right"></i> ${item.storyEn}</div>` : ''}
         `;
-        document.getElementById('itemModal').classList.add('show');
+        modal.classList.add('show');
+        modal.setAttribute('aria-hidden', 'false');
+        modal.focus();
       }
 
-      // ----- search realtime -----
-      document.getElementById('searchInput').addEventListener('input', (e)=>{
-        searchTerm = e.target.value.trim().toLowerCase();
-        renderMenu();
-      });
+      function closeModal() {
+        modal.classList.remove('show');
+        modal.setAttribute('aria-hidden', 'true');
+        if (lastFocusedElement) lastFocusedElement.focus();
+      }
 
-      // modal controls
-      document.getElementById('closeModal').addEventListener('click', ()=>document.getElementById('itemModal').classList.remove('show'));
-      window.addEventListener('click', (e)=>e.target.classList.contains('modal-overlay') && document.getElementById('itemModal').classList.remove('show'));
+      // countdown
+      function updateIftarTimer() {
+        const now = new Date();
+        const maghrib = new Date();
+        maghrib.setHours(17, 42, 0);
+        if (now > maghrib) maghrib.setDate(maghrib.getDate() + 1);
+        const diff = maghrib - now;
+        const h = Math.floor(diff / 3600000);
+        const m = Math.floor((diff % 3600000) / 60000);
+        const s = Math.floor((diff % 60000) / 1000);
+        iftarSpan.innerText = `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+      }
+
+      // verse rotation
+      const verses = [
+        { ar: 'يَا أَيُّهَا الَّذِينَ آمَنُوا كُتِبَ عَلَيْكُمُ الصِّيَامُ', en: '"O you who have believed, decreed upon you is fasting..." (2:183)' },
+        { ar: 'شَهْرُ رَمَضَانَ الَّذِي أُنزِلَ فِيهِ الْقُرْآنُ', en: '"The month of Ramadan [is that] in which was revealed the Qur\'an..." (2:185)' },
+        { ar: 'إِنَّا أَنزَلْنَاهُ فِي لَيْلَةِ الْقَدْرِ', en: '"Indeed, We sent the Qur\'an down during the Night of Decree." (97:1)' }
+      ];
+      let vIdx = 0;
+      function rotateVerse() {
+        vIdx = (vIdx + 1) % verses.length;
+        document.getElementById('verseArabic').innerText = verses[vIdx].ar;
+        document.getElementById('verseEnglish').innerText = verses[vIdx].en;
+      }
+
+      // parallax (GPU accelerated)
+      let ticking = false;
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            const scrollY = window.scrollY;
+            if (container) container.style.transform = `translate3d(0,${scrollY * 0.05}px,0)`;
+            ticking = false;
+          });
+          ticking = true;
+        }
+        backToTop.classList.toggle('visible', window.scrollY > 400);
+      });
 
       // back to top
-      const btt = document.getElementById('backToTop');
-      window.addEventListener('scroll', ()=>{
-        if(window.scrollY>400) btt.classList.add('visible'); else btt.classList.remove('visible');
-      });
-      btt.addEventListener('click', ()=>window.scrollTo({top:0,behavior:'smooth'}));
+      backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-      initAtmospherics();
+      // search clear
+      function toggleClear() {
+        clearSearch.classList.toggle('visible', searchInput.value.length > 0);
+      }
+      searchInput.addEventListener('input', (e) => {
+        searchTerm = e.target.value.trim();
+        renderMenu();
+        toggleClear();
+      });
+      clearSearch.addEventListener('click', () => {
+        searchInput.value = '';
+        searchTerm = '';
+        renderMenu();
+        toggleClear();
+        searchInput.focus();
+      });
+
+      // starfield
+      function generateStars() {
+        for (let i = 0; i < 70; i++) {
+          const s = document.createElement('div');
+          s.className = i % 3 === 0 ? 'star-gold' : i % 3 === 1 ? 'star-silver' : 'star-copper';
+          s.style.width = s.style.height = (Math.random() * 5 + 2) + 'px';
+          s.style.left = Math.random() * 100 + '%';
+          s.style.top = Math.random() * 100 + '%';
+          s.style.animationDelay = Math.random() * 7 + 's';
+          starfield.appendChild(s);
+        }
+      }
+
+      // modal close handlers
+      closeModalBtn.addEventListener('click', closeModal);
+      modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('show')) closeModal(); });
+
+      // init
+      generateStars();
       renderNav();
       renderMenu();
+      setInterval(updateIftarTimer, 1000);
+      updateIftarTimer();
+      setInterval(rotateVerse, 6000);
     })();
   </script>
 </body>
