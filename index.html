@@ -4,8 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Ramadan 1447 / 2026 · Ottoman Nights | Turkiana</title>
-  <meta name="description" content="Luxury Turkish coffee &amp; sweets this Ramadan 1447 (2026). Giant crescent, floating lanterns &amp; authentic Ottoman menu in Doha.">
+  <meta name="description" content="Luxury Turkish coffee & sweets this Ramadan 1447 (2026). Giant crescent, floating lanterns & authentic Ottoman menu in Doha.">
   <meta name="theme-color" content="#0a0503">
+  <link rel="manifest" href="data:application/manifest+json,{
+    &quot;name&quot;:&quot;Turkiana Ramadan&quot;,
+    &quot;short_name&quot;:&quot;Turkiana&quot;,
+    &quot;start_url&quot;:&quot;.&quot;,
+    &quot;display&quot;:&quot;standalone&quot;,
+    &quot;background_color&quot;:&quot;#0a0503&quot;,
+    &quot;theme_color&quot;:&quot;#0a0503&quot;,
+    &quot;icons&quot;:[{
+      &quot;src&quot;:&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' fill='%23c7a05b'%3E%3Cpath d='M50 10 L60 40 L90 40 L65 55 L75 85 L50 65 L25 85 L35 55 L10 40 L40 40 Z'/%3E%3C/svg%3E&quot;,
+      &quot;sizes&quot;:&quot;192x192&quot;,
+      &quot;type&quot;:&quot;image/svg+xml&quot;
+    }]
+  }">
   <style>
     /* ----- RESET & GLOBAL ----- */
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -161,27 +174,49 @@
     .quick-filters {
       display: flex; justify-content: center; gap: 0.8rem; flex-wrap: wrap;
       margin: 1rem 0 2rem;
+      position: relative;
     }
     .quick-filter {
       padding: 0.7rem 1.6rem; border-radius: 50px; border: 1px solid #c7a05b40;
       background: rgba(35,22,18,0.6); color: #e6d5c0; cursor: pointer;
       transition: all 0.3s ease; font-size: 1.05rem; font-weight: 500;
+      white-space: nowrap;
     }
     .quick-filter.active, .quick-filter:hover {
       background: #c7a05b; color: #0a0503; transform: translateY(-2px);
       box-shadow: 0 0 25px #c7a05b80;
     }
 
-    /* category nav */
-    .category-nav {
-      display: flex; flex-wrap: wrap; justify-content: center; gap: 0.7rem;
-      padding: 1.2rem; position: sticky; top: 12px; z-index: 150;
-      background: rgba(40,25,20,0.8); border-radius: 60px; margin: 0 0 1.5rem;
+    /* category nav with scroll hints */
+    .category-nav-wrapper {
+      position: sticky; top: 12px; z-index: 150;
+      margin: 0 0 1.5rem;
+      background: transparent;
+      border-radius: 60px;
+      overflow: hidden;
+      mask-image: linear-gradient(90deg, transparent, black 15px, black 85%, transparent);
+      -webkit-mask-image: linear-gradient(90deg, transparent, black 15px, black 85%, transparent);
     }
+    .category-nav {
+      display: flex; flex-wrap: nowrap; justify-content: flex-start; gap: 0.7rem;
+      padding: 1.2rem;
+      background: rgba(40,25,20,0.8);
+      backdrop-filter: blur(12px) saturate(180%);
+      -webkit-backdrop-filter: blur(12px) saturate(180%);
+      border: 1px solid #c7a05b40;
+      border-radius: 60px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .category-nav::-webkit-scrollbar { display: none; }
     .cat-btn {
       padding: 0.7rem 1.8rem; border-radius: 40px; border: 1px solid #c7a05b40;
       background: transparent; color: #e6d5c0; cursor: pointer; transition: 0.3s;
       font-size: 1.2rem; display: inline-flex; align-items: center; gap: 0.6rem;
+      scroll-snap-align: start;
+      white-space: nowrap;
     }
     .cat-btn i { color: #c7a05b; }
     .cat-btn:hover, .cat-btn.active-cat {
@@ -222,6 +257,7 @@
       margin: 0.4rem 0 0.2rem;
       line-height: 1.2;
       opacity: 0.9;
+      direction: rtl;
     }
     .item-price {
       background: #c7a05b25; padding: 0.4rem 1.2rem; border-radius: 40px; font-weight: 600;
@@ -311,6 +347,14 @@
       background: rgba(25,15,12,0.6); backdrop-filter: blur(8px);
       border-radius: 4rem 4rem 2rem 2rem; border-top: 1px solid #c7a05b40;
     }
+    .social-link {
+      display: inline-block; margin: 0.5rem 1rem; padding: 0.5rem 1.2rem;
+      background: #c7a05b20; border-radius: 40px; color: #eedbba; text-decoration: none;
+      border: 1px solid #c7a05b60; transition: 0.3s;
+    }
+    .social-link:hover {
+      background: #c7a05b; color: #0a0503; transform: translateY(-3px);
+    }
 
     /* accessibility & reduced motion */
     @media (prefers-reduced-motion: reduce) {
@@ -320,7 +364,8 @@
         transition: none !important;
       }
     }
-    .cat-btn:focus-visible, .quick-filter:focus-visible, .menu-item:focus-visible {
+    .cat-btn:focus-visible, .quick-filter:focus-visible, .menu-item:focus-visible,
+    .social-link:focus-visible {
       outline: 3px solid #c7a05b;
       outline-offset: 4px;
     }
@@ -331,7 +376,7 @@
     @media (max-width: 700px) {
       .thuluth { font-size: 2.8rem; }
       .prayer-row { flex-direction: column; gap: 0.8rem; padding: 1.2rem; }
-      .category-nav, .quick-filters { overflow-x: auto; justify-content: flex-start; padding-bottom: 0.5rem; }
+      .category-nav-wrapper { top: 4px; }
       .countdown-glow { font-size: 1.4rem; }
       .modal-card { width: 96%; margin: 20px; }
     }
@@ -378,7 +423,9 @@
 
     <div class="quick-filters" id="quickFilters"></div>
 
-    <div class="category-nav" id="categoryNav" role="tablist"></div>
+    <div class="category-nav-wrapper" id="categoryNavWrapper">
+      <div class="category-nav" id="categoryNav" role="tablist"></div>
+    </div>
     <div id="menuContainer"></div>
 
     <footer class="footer">
@@ -386,6 +433,10 @@
       <div>7:00 PM – 2:00 AM Daily · throughout Ramadan 1447</div>
       <div style="margin:1rem 0;">🌟 May your Ramadan be blessed 🌟</div>
       <p>Mshreib Downtown, Doha | +974 5186 6671</p>
+      <div>
+        <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i> Instagram</a>
+        <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook"></i> Facebook</a>
+      </div>
     </footer>
   </div>
 
@@ -548,6 +599,13 @@
     (function() {
       "use strict";
 
+      // ---------- IMAGE CONFIG (robust fallback) ----------
+      const IMAGE_CONFIG = {
+        base: "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/",
+        fallback: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%232f241e'/%3E%3Ctext x='50' y='115' font-family='Inter' font-size='24' fill='%23c7a05b'%3ETurkiana%3C/text%3E%3C/svg%3E",
+        strictCaseCheck: false
+      };
+
       // ---------- RAMADAN CONFIG ----------
       const RAMADAN_CONFIG = {
         hijriYear: 1447,
@@ -590,24 +648,11 @@
       // ----- state -----
       let activeCategory = "all";
       let searchTerm = "";
-      let activeFilters = { vegan: false, nutFree: false, suhoor: false };
+      let activeFilters = { vegan: false, nutFree: false, iftarSuhoor: false }; // renamed from suhoor
       let lastFocusedElement = null;
       let searchTimeout = null;
 
-      // ----- fallback image & observer -----
-      const FALLBACK_SVG = "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22400%22%20height%3D%22200%22%20viewBox%3D%220%200%20400%20200%22%3E%3Crect%20width%3D%22400%22%20height%3D%22200%22%20fill%3D%22%232f241e%22%2F%3E%3Ctext%20x%3D%2250%22%20y%3D%22115%22%20font-family%3D%22Inter%22%20font-size%3D%2224%22%20fill%3D%22%23c7a05b%22%3ETurkiana%3C%2Ftext%3E%3C%2Fsvg%3E";
-      const IMAGE_BASE = "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/";
-
-      function createImage(src, alt) {
-        const img = document.createElement("img");
-        img.dataset.src = src;
-        img.alt = alt;
-        img.loading = "lazy";
-        img.decoding = "async";
-        img.addEventListener("error", () => { img.src = FALLBACK_SVG; });
-        return img;
-      }
-
+      // ----- image observer -----
       const imageObserver = new IntersectionObserver((entries, obs) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
@@ -620,6 +665,29 @@
           }
         });
       }, { rootMargin: "100px" });
+
+      function createImage(src, alt) {
+        const img = document.createElement("img");
+        const fullSrc = IMAGE_CONFIG.base + src;
+        img.dataset.src = fullSrc;
+        img.alt = alt;
+        img.loading = "lazy";
+        img.decoding = "async";
+        
+        // Error handler with safe unobserve
+        img.addEventListener("error", function onImgError(e) {
+          console.warn(`Image failed to load: ${fullSrc} — using fallback`);
+          if (this.src !== IMAGE_CONFIG.fallback) {
+            this.src = IMAGE_CONFIG.fallback;
+          }
+          // Ensure observer stops watching this failed image
+          imageObserver.unobserve(this);
+          // Remove error handler to prevent loops
+          this.removeEventListener("error", onImgError);
+        });
+        
+        return img;
+      }
 
       function observeImages() {
         document.querySelectorAll(".menu-item img[data-src]").forEach(img => imageObserver.observe(img));
@@ -643,7 +711,7 @@
         let baseItems = MENU_DATA.items;
         if (activeFilters.vegan) baseItems = baseItems.filter(i => (i.dietary || []).includes("vegan"));
         if (activeFilters.nutFree) baseItems = baseItems.filter(i => !(i.dietary || []).includes("contains-nuts"));
-        if (activeFilters.suhoor) baseItems = baseItems.filter(i => i.timeRestricted === true);
+        if (activeFilters.iftarSuhoor) baseItems = baseItems.filter(i => i.timeRestricted === true);
 
         const counts = { all: baseItems.length };
         MENU_DATA.categories.forEach(cat => {
@@ -678,7 +746,7 @@
         quickFiltersContainer.innerHTML = `
           <button class="quick-filter ${activeFilters.vegan ? "active" : ""}" data-filter="vegan">🌱 Vegan</button>
           <button class="quick-filter ${activeFilters.nutFree ? "active" : ""}" data-filter="nutFree">🥜 Nut-Free</button>
-          <button class="quick-filter ${activeFilters.suhoor ? "active" : ""}" data-filter="suhoor">🌙 Suhoor Only</button>
+          <button class="quick-filter ${activeFilters.iftarSuhoor ? "active" : ""}" data-filter="iftarSuhoor">🌙 Iftar / Suhoor</button>
         `;
         quickFiltersContainer.querySelectorAll(".quick-filter").forEach(btn => {
           btn.addEventListener("click", () => {
@@ -708,9 +776,9 @@
         // Quick filters (always applied)
         if (activeFilters.vegan) filtered = filtered.filter(i => (i.dietary || []).includes("vegan"));
         if (activeFilters.nutFree) filtered = filtered.filter(i => !(i.dietary || []).includes("contains-nuts"));
-        if (activeFilters.suhoor) filtered = filtered.filter(i => i.timeRestricted === true);
+        if (activeFilters.iftarSuhoor) filtered = filtered.filter(i => i.timeRestricted === true);
 
-        // Search or category
+        // Search overrides category
         if (searchTerm) {
           const st = searchTerm.toLowerCase();
           filtered = filtered.filter(i => 
@@ -748,10 +816,12 @@
             const label = tagMap[d] || d.replace("-", " ").replace("contains ", "");
             return `<span class="meta-tag ${dietaryClass(d)}">${label}</span>`;
           }).join("");
+          
+          // Create image element as string, will be replaced by JS later
           html += `<div class="menu-item" data-id="${item.id}" tabindex="0">
             ${item.popular ? '<div class="badge-popular"><i class="fas fa-star"></i> Popular</div>' : ""}
             ${item.timeRestricted ? '<div class="iftar-badge"><i class="fas fa-clock"></i> Iftar/Suhoor</div>' : ""}
-            <div class="item-image"><img data-src="${IMAGE_BASE}${item.image}" alt="${item.nameEn}"></div>
+            <div class="item-image" data-image="${item.image}" data-alt="${item.nameEn}"></div>
             <div class="item-content">
               <div style="display:flex; justify-content:space-between; align-items:flex-start;"><span class="item-name">${item.nameEn}</span><span class="item-price">${item.price} QAR</span></div>
               <div dir="rtl" class="item-name-ar">${item.nameAr || ""}</div>
@@ -766,6 +836,13 @@
         });
         html += "</div>";
         menuContainer.innerHTML = html;
+
+        // Replace image divs with actual img elements
+        menuContainer.querySelectorAll(".item-image").forEach(div => {
+          const img = createImage(div.dataset.image, div.dataset.alt);
+          div.appendChild(img);
+        });
+
         observeImages();
 
         menuContainer.querySelectorAll(".menu-item").forEach(card => {
@@ -776,6 +853,7 @@
           });
           card.addEventListener("keydown", (e) => {
             if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
               const id = card.dataset.id;
               const item = MENU_DATA.items.find(i => i.id === id);
               if (item) showModal(item);
@@ -787,14 +865,14 @@
       // ----- modal -----
       function showModal(item) {
         lastFocusedElement = document.activeElement;
-        const imgUrl = `${IMAGE_BASE}${item.image}`;
+        const imgUrl = IMAGE_CONFIG.base + item.image;
         const milkHtml = item.hasMilkSelection ? '<div style="background:#c7a05b20; padding:0.9rem 1.2rem; border-radius:40px; margin:1.2rem 0 0.8rem; font-size:0.95rem;"><i class="fas fa-mug-hot"></i> Milk options: oat, almond, whole milk</div>' : "";
         const beanHtml = item.hasBeanSelection ? '<div style="background:#c7a05b20; padding:0.9rem 1.2rem; border-radius:40px; margin:1.2rem 0 0.8rem; font-size:0.95rem;"><i class="fas fa-seedling"></i> Bean selection available</div>' : "";
         const storyHtml = item.storyEn ? `<div class="origin-story"><i class="fas fa-quote-right"></i> ${item.storyEn}</div>` : "";
 
         modalContent.innerHTML = `
           <div class="modal-hero">
-            <img src="${imgUrl}" alt="${item.nameEn}" onerror="this.src='${FALLBACK_SVG}'">
+            <img src="${imgUrl}" alt="${item.nameEn}" onerror="this.onerror=null; this.src='${IMAGE_CONFIG.fallback}'; console.warn('Modal image failed: ${imgUrl}');">
           </div>
           <div class="modal-content-inner">
             <h3 style="font-size:2.15rem; margin-bottom:0.5rem;">${item.nameEn} <span dir="rtl" style="font-size:1.35rem; color:#c7a05b; font-family:'Scheherazade New',serif;">${item.nameAr || ""}</span></h3>
@@ -830,13 +908,13 @@
         if (now > maghrib) maghrib.setDate(maghrib.getDate() + 1);
         const diff = maghrib - now;
         if (diff < 0) {
-          iftarSpan.innerText = "00:00:00";
+          if (iftarSpan) iftarSpan.innerText = "00:00:00";
           return;
         }
         const h = Math.floor(diff / 3600000);
         const m = Math.floor((diff % 3600000) / 60000);
         const s = Math.floor((diff % 60000) / 1000);
-        iftarSpan.innerText = `${h.toString().padStart(2, "0")}:${m.toString().padStart(2, "0")}:${s.toString().padStart(2, "0")}`;
+        if (iftarSpan) iftarSpan.innerText = `${h.toString().padStart(2, "0")}:${m.toString().padStart(2, "0")}:${s.toString().padStart(2, "0")}`;
       }
 
       // ----- verse rotation -----
@@ -908,6 +986,34 @@
       document.addEventListener("keydown", (e) => { 
         if (e.key === "Escape" && modal.classList.contains("show")) closeModal(); 
       });
+
+      // ----- service worker registration (offline) -----
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          const swCode = `
+            const CACHE_NAME = 'turkiana-v1';
+            const urlsToCache = [
+              '.',
+              '${IMAGE_CONFIG.fallback}'
+            ];
+            self.addEventListener('install', event => {
+              event.waitUntil(
+                caches.open(CACHE_NAME)
+                  .then(cache => cache.addAll(urlsToCache))
+              );
+            });
+            self.addEventListener('fetch', event => {
+              event.respondWith(
+                caches.match(event.request)
+                  .then(response => response || fetch(event.request))
+              );
+            });
+          `;
+          const blob = new Blob([swCode], { type: 'application/javascript' });
+          const swUrl = URL.createObjectURL(blob);
+          navigator.serviceWorker.register(swUrl).catch(err => console.warn('SW registration failed', err));
+        });
+      }
 
       // ----- initialization -----
       function init() {
