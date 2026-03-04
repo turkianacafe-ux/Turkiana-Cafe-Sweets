@@ -3,18 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    
-    <!-- Security -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://turkianacafe-ux.github.io; connect-src 'self';">
-    
     <title>Turkiana • Ottoman Nights 1447</title>
     <meta name="description" content="Premium Turkish coffee &amp; Ottoman sweets in Doha.">
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@500;600;700&amp;family=Scheherazade+New:wght@400;700&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
     <style>
         :root {
             --bg: #0a0503;
@@ -32,6 +27,16 @@
             --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
             --ease-in: cubic-bezier(0.32, 0, 0.67, 0);
         }
+        /* light theme — properly toggled */
+        body.light {
+            --bg: #fbf3e8;
+            --surface: #efe2d3;
+            --text: #2d1f13;
+            --soft: #5f4e3c;
+            --gold: #b28b4b;
+            --accent: #9e6d3e;
+            --border: #b49b7b;
+        }
         
         * { margin:0; padding:0; box-sizing:border-box; }
         
@@ -42,6 +47,7 @@
             line-height: 1.6;
             overflow-x: hidden;
             position: relative;
+            transition: background-color 0.3s, color 0.2s;
         }
         
         body[dir="rtl"] { font-family: var(--font-ar); }
@@ -203,7 +209,9 @@
             scrollbar-width: none;
             box-shadow: 0 12px 40px rgba(0,0,0,0.5);
         }
-        
+        body.light .cat-bar {
+            background: rgba(240, 230, 215, 0.92);
+        }
         .cat-bar::-webkit-scrollbar { display: none; }
         
         .cat-btn {
@@ -216,6 +224,7 @@
             font-weight: 500;
             transition: all 0.35s var(--ease-out);
             flex-shrink: 0;
+            cursor: pointer;
         }
         
         .cat-btn.active,
@@ -255,7 +264,9 @@
             cursor: grab;
             position: relative;
         }
-        
+        body.light .carousel-card {
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
         .carousel-card:active { cursor: grabbing; }
         
         .carousel-card .figure {
@@ -306,19 +317,16 @@
             color: var(--accent);
         }
         
-        /* Hover micro-interactions */
         .carousel-card:hover {
             box-shadow: 0 50px 110px rgba(199,160,91,0.22);
             transform: translateY(-12px) scale(1.02);
         }
         
-        /* Press */
         .carousel-card.pressed {
             transform: scale(0.965) !important;
             transition-duration: 80ms;
         }
         
-        /* Shine layer */
         .carousel-card::after {
             content: '';
             position: absolute;
@@ -355,6 +363,9 @@
             gap: 18px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.6);
         }
+        body.light .search-box {
+            background: rgba(245, 235, 220, 0.9);
+        }
         
         #searchInput {
             flex: 1;
@@ -363,6 +374,16 @@
             outline: none;
             color: var(--text);
             font-size: 1.1rem;
+        }
+        #searchInput::placeholder { color: var(--soft); opacity: 0.8; }
+        
+        #clearBtn {
+            background: none;
+            border: none;
+            color: var(--gold);
+            font-size: 1.5rem;
+            display: none;
+            cursor: pointer;
         }
         
         /* Modal */
@@ -414,9 +435,8 @@
     </style>
 </head>
 <body>
-    <!-- Decor -->
+    <!-- Decor (static) -->
     <div class="crescent"></div>
-    
     <div class="lanterns">
         <div class="lantern" style="top:14%;left:9%;animation-duration:15.3s"><div class="glass"></div></div>
         <div class="lantern" style="top:27%;left:26%;width:94px;height:142px;animation-duration:12.7s"><div class="glass"></div></div>
@@ -425,7 +445,6 @@
         <div class="lantern" style="top:19%;right:24%;animation-duration:14.8s"><div class="glass"></div></div>
         <div class="lantern" style="top:73%;left:34%;animation-duration:16.4s"><div class="glass"></div></div>
     </div>
-    
     <div class="stars" id="stars"></div>
     
     <div class="controls">
@@ -435,31 +454,26 @@
     
     <div style="height:110px"></div>
     
-    <!-- Categories -->
     <nav class="cat-bar" id="catBar"></nav>
     
-    <!-- 3D Carousel -->
     <div class="carousel-container" id="carousel">
         <div class="carousel-track" id="track"></div>
     </div>
     
-    <!-- Floating Search -->
     <div class="search-float">
         <div class="search-box">
             <i class="fas fa-search" style="color:var(--gold);font-size:1.4rem"></i>
             <input type="text" id="searchInput" placeholder="Search Ottoman delights...">
-            <button id="clearBtn" style="background:none;border:none;color:var(--gold);font-size:1.5rem;display:none">✕</button>
+            <button id="clearBtn">✕</button>
         </div>
     </div>
     
-    <!-- Footer -->
     <footer>
         <div class="brand">TURKIANA</div>
         <div>Mshreib Downtown, Doha • 7 PM – 2 AM</div>
         <div style="margin-top:12px">+974 5186 6671</div>
     </footer>
     
-    <!-- Modal -->
     <dialog id="modal">
         <div class="modal-content">
             <div style="position:relative">
@@ -470,7 +484,7 @@
         </div>
     </dialog>
     
-    <!-- Menu Data -->
+    <!-- Menu Data (exactly as provided) -->
     <script id="menuData" type="application/json">
       {
         "categories": [
@@ -587,7 +601,7 @@
         ]
     }
     </script>
-    
+
     <script>
         (function() {
             const data = JSON.parse(document.getElementById('menuData').textContent);
@@ -602,6 +616,7 @@
             let velocity = 0;
             let lastTime = 0;
             let raf = null;
+            let snapTimeout = null;          // for reset timeout
             let currentItems = [];
             
             const els = {
@@ -646,11 +661,6 @@
             }
             
             function renderCats() {
-                const counts = {all: getFiltered().length};
-                data.categories.forEach(c => {
-                    if (c.id !== 'all') counts[c.id] = getFiltered().filter(i => i.categoryId === c.id).length;
-                });
-                
                 let html = '';
                 data.categories.forEach(c => {
                     const name = lang === 'ar' ? c.nameAr : c.nameEn;
@@ -695,13 +705,11 @@
                     els.track.appendChild(card);
                 });
                 
-                // Initial position to middle copy
                 const cardW = 340 + 36;
                 translateX = -items.length * cardW;
                 els.track.style.transition = 'none';
                 els.track.style.transform = `translateX(${translateX}px)`;
                 
-                // Stagger entrance
                 setTimeout(() => {
                     const cards = els.track.children;
                     for (let i = 0; i < cards.length; i++) {
@@ -712,17 +720,19 @@
                         }, i * 22);
                     }
                 }, 80);
+                update3D();
             }
             
             function update3D() {
                 const cards = els.track.children;
+                if (!cards.length) return;
                 const containerRect = els.carousel.getBoundingClientRect();
                 const center = containerRect.left + containerRect.width / 2;
                 
                 for (let card of cards) {
                     const rect = card.getBoundingClientRect();
                     const cardCenter = rect.left + rect.width / 2;
-                    let offset = (cardCenter - center) / 380; // tuned to card width
+                    let offset = (cardCenter - center) / 380;
                     offset = Math.max(Math.min(offset, 2.2), -2.2);
                     
                     const rotateY = offset * -36;
@@ -750,7 +760,9 @@
             }
             
             function snapToCenter() {
+                if (snapTimeout) clearTimeout(snapTimeout);
                 const cards = Array.from(els.track.children);
+                if (!cards.length) return;
                 let closest = null;
                 let minDist = Infinity;
                 const center = els.carousel.getBoundingClientRect().left + els.carousel.offsetWidth / 2;
@@ -772,43 +784,47 @@
                 els.track.style.transition = 'transform 0.65s var(--ease-out)';
                 els.track.style.transform = `translateX(${translateX}px)`;
                 
-                // Infinite loop reset
                 const setWidth = currentItems.length * (340 + 36);
-                if (translateX > -setWidth * 0.6) {
-                    translateX -= setWidth;
-                    setTimeout(() => {
+                snapTimeout = setTimeout(() => {
+                    if (!isDragging) {
+                        if (translateX > -setWidth * 0.6) {
+                            translateX -= setWidth;
+                        } else if (translateX < -setWidth * 2.4) {
+                            translateX += setWidth;
+                        } else {
+                            els.track.style.transition = 'transform 0.65s var(--ease-out)';
+                            update3D();
+                            return;
+                        }
                         els.track.style.transition = 'none';
                         els.track.style.transform = `translateX(${translateX}px)`;
-                        update3D();
-                    }, 700);
-                } else if (translateX < -setWidth * 2.4) {
-                    translateX += setWidth;
-                    setTimeout(() => {
-                        els.track.style.transition = 'none';
-                        els.track.style.transform = `translateX(${translateX}px)`;
-                        update3D();
-                    }, 700);
-                }
+                    }
+                    update3D();
+                }, 700); // after snap animation
                 
                 update3D();
             }
             
             function startDrag(e) {
+                if (snapTimeout) clearTimeout(snapTimeout);
+                cancelAnimationFrame(raf);
                 isDragging = true;
-                startX = prevX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
+                const clientX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
+                startX = prevX = clientX;
                 velocity = 0;
                 lastTime = Date.now();
-                cancelAnimationFrame(raf);
                 els.track.style.transition = 'none';
+                e.preventDefault(); // prevent selection / scroll
             }
             
             function duringDrag(e) {
                 if (!isDragging) return;
-                const x = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
-                const delta = x - prevX;
+                e.preventDefault();
+                const clientX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
+                const delta = clientX - prevX;
                 translateX += delta;
                 els.track.style.transform = `translateX(${translateX}px)`;
-                prevX = x;
+                prevX = clientX;
                 
                 const now = Date.now();
                 if (now - lastTime > 12) {
@@ -819,11 +835,15 @@
             }
             
             function endDrag() {
+                if (!isDragging) return;
                 isDragging = false;
                 animateMomentum();
             }
             
             function switchContent(newItems) {
+                if (snapTimeout) clearTimeout(snapTimeout);
+                cancelAnimationFrame(raf);
+                isDragging = false;
                 currentItems = newItems;
                 els.track.style.transition = 'opacity 0.28s ease';
                 els.track.style.opacity = '0';
@@ -839,15 +859,22 @@
                 const name = lang === 'ar' ? item.nameAr : item.nameEn;
                 const nameAlt = lang === 'ar' ? item.nameEn : item.nameAr || '';
                 
-                els.modalImg.innerHTML = `<img src="${IMAGE_BASE}${item.image}" style="width:100%;height:100%;object-fit:cover">`;
+                els.modalImg.innerHTML = `<img src="${IMAGE_BASE}${item.image}" style="width:100%;height:100%;object-fit:cover" alt="${name}">`;
+                
+                let extras = '';
+                if (item.hasMilkSelection) {
+                    extras += '<div style="margin-top:24px;padding:14px 20px;background:rgba(226,182,117,0.1);border-radius:16px;font-size:0.95rem">Milk options: oat • almond • whole</div>';
+                }
+                if (item.hasBeanSelection) {
+                    extras += '<div style="margin-top:24px;padding:14px 20px;background:rgba(226,182,117,0.1);border-radius:16px;font-size:0.95rem">Bean selection available</div>';
+                }
                 
                 els.modalBody.innerHTML = `
                     <h2 style="font-family:var(--font-heading);font-size:2.4rem;color:var(--gold);margin-bottom:8px">${name}</h2>
                     ${nameAlt ? `<div style="font-family:var(--font-ar);font-size:1.35rem;color:var(--soft);margin-bottom:18px">${nameAlt}</div>` : ''}
                     <div style="font-size:1.85rem;font-weight:600;color:var(--accent);margin:16px 0">${item.price} QAR</div>
                     <p style="color:var(--soft);line-height:1.65">${item.descriptionEn}</p>
-                    ${item.hasMilk ? `<div style="margin-top:24px;padding:14px 20px;background:rgba(226,182,117,0.1);border-radius:16px;font-size:0.95rem">Milk options: oat • almond • whole</div>` : ''}
-                    ${item.hasBean ? `<div style="margin-top:24px;padding:14px 20px;background:rgba(226,182,117,0.1);border-radius:16px;font-size:0.95rem">Bean selection available</div>` : ''}
+                    ${extras}
                 `;
                 
                 els.modal.showModal();
@@ -864,11 +891,10 @@
                 track.addEventListener('mouseup', endDrag);
                 track.addEventListener('mouseleave', endDrag);
                 
-                track.addEventListener('touchstart', startDrag);
-                track.addEventListener('touchmove', duringDrag);
+                track.addEventListener('touchstart', startDrag, { passive: false });
+                track.addEventListener('touchmove', duringDrag, { passive: false });
                 track.addEventListener('touchend', endDrag);
                 
-                // Initial 3D
                 setTimeout(update3D, 120);
                 window.addEventListener('resize', update3D);
             }
@@ -876,11 +902,10 @@
             function init() {
                 generateStars();
                 
-                // Theme
+                // Theme toggle with light class
                 els.themeBtn.addEventListener('click', () => {
-                    document.documentElement.style.setProperty('--bg', document.documentElement.style.getPropertyValue('--bg') === '#f5e6d3' ? '#0a0503' : '#f5e6d3');
-                    document.documentElement.style.setProperty('--surface', document.documentElement.style.getPropertyValue('--surface') === '#eadbc5' ? '#1f130e' : '#eadbc5');
-                    els.themeBtn.textContent = els.themeBtn.textContent === '🌙' ? '☀️' : '🌙';
+                    document.body.classList.toggle('light');
+                    els.themeBtn.textContent = document.body.classList.contains('light') ? '☀️' : '🌙';
                 });
                 
                 // Language
@@ -915,6 +940,9 @@
                 // Start
                 renderCats();
                 initCarousel();
+                
+                // initial lang display
+                els.langBtn.textContent = lang.toUpperCase();
             }
             
             window.onload = init;
