@@ -4,1248 +4,478 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     
-    <!-- Security (CSP) -->
+    <!-- Security -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://turkianacafe-ux.github.io; connect-src 'self';">
     
-    <!-- Primary Meta -->
-    <title>Turkiana | Ottoman Nights · Ramadan 1447 / 2026</title>
-    <meta name="description" content="Luxury Turkish coffee & sweets this Ramadan 1447 (2026). Giant crescent, floating lanterns & authentic Ottoman menu in Doha.">
-    <meta name="author" content="Turkiana Café & Sweets">
-    <meta name="theme-color" content="#0a0503" media="(prefers-color-scheme: dark)">
-    <meta name="theme-color" content="#f5e6d3" media="(prefers-color-scheme: light)">
+    <title>Turkiana • Ottoman Nights 1447</title>
+    <meta name="description" content="Premium Turkish coffee &amp; Ottoman sweets in Doha.">
     
-    <!-- Open Graph / Social -->
-    <meta property="og:title" content="Turkiana | Ottoman Nights · Ramadan 1447">
-    <meta property="og:description" content="Luxury Turkish coffee & sweets this Ramadan 1447. Ottoman menu in Doha.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://turkiana.com/ramadan">
-    <meta property="og:image" content="https://turkiana.com/og-ramadan.jpg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:site_name" content="Turkiana">
-    
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Turkiana | Ottoman Nights">
-    <meta name="twitter:description" content="Turkish coffee & sweets this Ramadan">
-    <meta name="twitter:image" content="https://turkiana.com/og-ramadan.jpg">
-    
-    <!-- Favicons -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23c7a05b'/%3E%3Cpath d='M30 30 L70 70 M70 30 L30 70' stroke='%230a0503' stroke-width='8'/%3E%3C/svg%3E">
-    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23c7a05b'/%3E%3Cpath d='M30 30 L70 70 M70 30 L30 70' stroke='%230a0503' stroke-width='8'/%3E%3C/svg%3E">
-    
-    <!-- Preload Critical Assets -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@500;600;700&amp;family=Scheherazade+New:wght@400;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
-    
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"></noscript>
-    
-    <!-- Critical CSS (embedded for performance) -->
     <style>
-        /* ----- DESIGN TOKENS (CSS Variables) ----- */
         :root {
-            /* Light Theme (Warm Sand) */
-            --color-bg-light: #f5e6d3;
-            --color-surface-light: #eadbc5;
-            --color-text-light: #2d1e12;
-            --color-text-soft-light: #5a4a3a;
-            --color-primary-light: #b38b4c;
-            --color-primary-dark-light: #8b6937;
-            --color-accent-light: #d4a76a;
-            --color-accent-soft-light: #e6c9a8;
-            --color-border-light: #c4a484;
+            --bg: #0a0503;
+            --surface: #1f130e;
+            --text: #fdf3e0;
+            --soft: #d4bc9a;
+            --gold: #c7a05b;
+            --accent: #e2b675;
+            --border: #8b6b4a;
             
-            /* Dark Theme (Ottoman Night) */
-            --color-bg-dark: #0a0503;
-            --color-surface-dark: #1f130e;
-            --color-text-dark: #fdf3e0;
-            --color-text-soft-dark: #d4bc9a;
-            --color-primary-dark: #c7a05b;
-            --color-primary-light-dark: #dbb47a;
-            --color-accent-dark: #e2b675;
-            --color-accent-soft-dark: #5d3e2c;
-            --color-border-dark: #8b6b4a;
-            
-            /* Base colors (will be overridden by theme) */
-            --color-bg: var(--color-bg-dark);
-            --color-surface: var(--color-surface-dark);
-            --color-text: var(--color-text-dark);
-            --color-text-soft: var(--color-text-soft-dark);
-            --color-primary: var(--color-primary-dark);
-            --color-primary-dark: var(--color-primary-light-dark);
-            --color-accent: var(--color-accent-dark);
-            --color-accent-soft: var(--color-accent-soft-dark);
-            --color-border: var(--color-border-dark);
-            
-            /* Glass effects */
-            --glass-bg: rgba(30, 20, 15, 0.7);
-            --glass-border: rgba(199, 160, 91, 0.25);
-            --glass-blur: blur(12px);
-            
-            /* Spacing */
-            --space-xs: 0.25rem;
-            --space-sm: 0.5rem;
-            --space-md: 1rem;
-            --space-lg: 1.5rem;
-            --space-xl: 2rem;
-            --space-2xl: 3rem;
-            --space-3xl: 4rem;
-            
-            /* Typography */
-            --font-serif: 'Cormorant Garamond', 'Playfair Display', serif;
             --font-sans: 'Inter', system-ui, sans-serif;
-            --font-arabic: 'Scheherazade New', 'Amiri', serif;
+            --font-heading: 'Playfair Display', serif;
+            --font-ar: 'Scheherazade New', serif;
             
-            /* Font sizes */
-            --text-xs: 0.75rem;
-            --text-sm: 0.875rem;
-            --text-base: 1rem;
-            --text-lg: 1.125rem;
-            --text-xl: 1.25rem;
-            --text-2xl: 1.5rem;
-            --text-3xl: 1.875rem;
-            --text-4xl: 2.25rem;
-            --text-5xl: 3rem;
-            
-            /* Z-index layer system */
-            --layer-base: 1;
-            --layer-decor: 10;      /* lanterns, crescent, stars */
-            --layer-sticky: 20;      /* prayer times, quote panel */
-            --layer-header: 30;      /* header controls, back to top */
-            --layer-overlay: 40;     /* modal backdrop */
-            --layer-modal: 50;       /* modal dialog */
-            --layer-popover: 60;     /* tooltips, dropdowns */
-            --layer-skip: 100;       /* skip link */
-            
-            /* Shadows */
-            --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
-            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
-            --shadow-lg: 0 10px 25px rgba(0,0,0,0.2);
-            --shadow-glow: 0 0 30px rgba(199, 160, 91, 0.3);
-            
-            /* Transitions */
-            --transition-fast: 150ms ease;
-            --transition-base: 250ms ease;
-            --transition-slow: 350ms ease;
-            
-            /* Border radius */
-            --radius-sm: 4px;
-            --radius-md: 8px;
-            --radius-lg: 16px;
-            --radius-xl: 24px;
-            --radius-full: 9999px;
-            
-            /* Layout */
-            --container-max: 1320px;
-            --header-height: 80px;
-            
-            /* Supports */
-            color-scheme: dark light;
+            --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+            --ease-in: cubic-bezier(0.32, 0, 0.67, 0);
         }
         
-        /* Light theme class */
-        :root.light-theme {
-            --color-bg: var(--color-bg-light);
-            --color-surface: var(--color-surface-light);
-            --color-text: var(--color-text-light);
-            --color-text-soft: var(--color-text-soft-light);
-            --color-primary: var(--color-primary-light);
-            --color-primary-dark: var(--color-primary-dark-light);
-            --color-accent: var(--color-accent-light);
-            --color-accent-soft: var(--color-accent-soft-light);
-            --color-border: var(--color-border-light);
-            --glass-bg: rgba(235, 220, 200, 0.7);
-        }
-        
-        /* System preference dark */
-        @media (prefers-color-scheme: dark) {
-            :root:not(.light-theme):not(.dark-theme) {
-                --color-bg: var(--color-bg-dark);
-                --color-surface: var(--color-surface-dark);
-                --color-text: var(--color-text-dark);
-                --color-text-soft: var(--color-text-soft-dark);
-                --color-primary: var(--color-primary-dark);
-                --color-primary-dark: var(--color-primary-light-dark);
-                --color-accent: var(--color-accent-dark);
-                --color-accent-soft: var(--color-accent-soft-dark);
-                --color-border: var(--color-border-dark);
-                --glass-bg: rgba(30, 20, 15, 0.7);
-            }
-        }
-        
-        /* System preference light */
-        @media (prefers-color-scheme: light) {
-            :root:not(.light-theme):not(.dark-theme) {
-                --color-bg: var(--color-bg-light);
-                --color-surface: var(--color-surface-light);
-                --color-text: var(--color-text-light);
-                --color-text-soft: var(--color-text-soft-light);
-                --color-primary: var(--color-primary-light);
-                --color-primary-dark: var(--color-primary-dark-light);
-                --color-accent: var(--color-accent-light);
-                --color-accent-soft: var(--color-accent-soft-light);
-                --color-border: var(--color-border-light);
-                --glass-bg: rgba(235, 220, 200, 0.7);
-            }
-        }
-        
-        /* ----- RESET & BASE ----- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin:0; padding:0; box-sizing:border-box; }
         
         body {
-            background-color: var(--color-bg);
-            color: var(--color-text);
-            font-family: var(--font-serif);
-            line-height: 1.5;
-            font-size: var(--text-base);
-            min-height: 100vh;
-            transition: background-color var(--transition-base), color var(--transition-base);
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-sans);
+            line-height: 1.6;
             overflow-x: hidden;
             position: relative;
         }
         
-        /* Arabic language direction */
-        body[dir="rtl"] {
-            font-family: var(--font-arabic);
-        }
+        body[dir="rtl"] { font-family: var(--font-ar); }
         
-        body[dir="rtl"] .item-name-ar {
-            font-family: var(--font-serif);
-        }
-        
-        /* Skip link */
-        .skip-link {
-            position: absolute;
-            top: -40px;
-            left: 0;
-            background: var(--color-primary);
-            color: var(--color-bg);
-            padding: var(--space-sm) var(--space-lg);
-            text-decoration: none;
-            border-radius: 0 0 var(--radius-md) var(--radius-md);
-            z-index: var(--layer-skip);
-            font-weight: 600;
-            transition: top var(--transition-fast);
-        }
-        
-        .skip-link:focus {
-            top: 0;
-        }
-        
-        /* Focus visible */
-        :focus-visible {
-            outline: 3px solid var(--color-primary);
-            outline-offset: 2px;
-            border-radius: var(--radius-sm);
-        }
-        
-        /* Images */
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-        }
-        
-        /* Links */
-        a {
-            color: var(--color-primary);
-            text-decoration: none;
-            transition: color var(--transition-fast);
-        }
-        
-        a:hover {
-            color: var(--color-accent);
-        }
-        
-        /* Buttons */
-        button {
-            background: none;
-            border: none;
-            color: inherit;
-            font-family: inherit;
-            font-size: inherit;
-            cursor: pointer;
-        }
-        
-        /* Lists */
-        ul, ol {
-            list-style: none;
-        }
-        
-        /* ----- DECORATIVE ELEMENTS (Ottoman Theme) ----- */
-        .decor-crescent {
+        /* Decor */
+        .crescent {
             position: fixed;
-            top: 10%;
+            top: 12%;
             left: 50%;
-            transform: translateX(-50%) rotate(15deg);
-            width: min(240px, 30vw);
-            height: min(240px, 30vw);
+            width: clamp(160px, 26vw, 260px);
+            height: clamp(160px, 26vw, 260px);
             border-radius: 50%;
-            background: radial-gradient(circle at 35% 45%, #fdde9c 5%, #f9b81b 90%);
-            box-shadow: 0 0 120px #ffb347;
-            z-index: var(--layer-decor);
-            opacity: 0.7;
+            background: radial-gradient(circle at 36% 38%, #ffe8b3 12%, #f9b81b 88%);
+            box-shadow: 0 0 160px #ff9f1c;
+            transform: translateX(-50%);
+            z-index: 2;
+            opacity: 0.68;
+            animation: crescent-breath 18s ease-in-out infinite;
             pointer-events: none;
-            mix-blend-mode: overlay;
-            animation: pulse 8s infinite alternate ease-in-out;
         }
         
-        .decor-crescent::after {
-            content: '';
-            position: absolute;
-            top: -12px;
-            left: 28px;
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            background: var(--color-bg);
-            transition: background var(--transition-base);
+        @keyframes crescent-breath {
+            0%,100% { box-shadow: 0 0 140px #ff9f1c; transform: translateX(-50%) scale(1); }
+            50% { box-shadow: 0 0 210px #ffb347; transform: translateX(-50%) scale(1.04); }
         }
         
-        @keyframes pulse {
-            0% { box-shadow: 0 0 100px #f9b81b; opacity: 0.6; }
-            100% { box-shadow: 0 0 200px #ffb347; opacity: 0.9; }
-        }
-        
-        /* Lanterns */
-        .decor-lanterns {
+        .lanterns {
             position: fixed;
             inset: 0;
+            z-index: 3;
             pointer-events: none;
-            z-index: var(--layer-decor);
         }
         
         .lantern {
             position: absolute;
-            width: 75px;
-            height: 115px;
-            background: radial-gradient(circle at 30% 30%, #cc7f3a, #923e1c 80%);
-            border-radius: 45% 45% 30% 30% / 60% 60% 20% 20%;
-            filter: drop-shadow(0 0 40px #ff7b24);
-            animation: float 8s infinite alternate ease-in-out;
+            width: 82px;
+            height: 124px;
+            background: radial-gradient(circle at 30% 25%, #e89a4a, #8f3a1a);
+            border-radius: 50% 50% 35% 35%;
+            filter: drop-shadow(0 30px 50px #ff7a1f);
+            animation: lantern-physics 14s linear infinite;
         }
         
         .lantern::before {
             content: '';
             position: absolute;
-            top: -38px;
+            top: -46px;
             left: 50%;
             transform: translateX(-50%);
-            width: 6px;
-            height: 40px;
-            background: linear-gradient(#ab8e5a, #5d482a);
-            border-radius: 20%;
+            width: 7px;
+            height: 48px;
+            background: linear-gradient(#c9a46b, #5c3f24);
         }
         
         .lantern::after {
             content: '';
             position: absolute;
-            bottom: -20px;
+            bottom: -26px;
             left: 50%;
             transform: translateX(-50%);
-            width: 20px;
-            height: 26px;
-            background: radial-gradient(ellipse at top, #fcd9a3, #b1550f);
+            width: 26px;
+            height: 32px;
+            background: #ffe8b3;
             border-radius: 50%;
-            filter: blur(1px);
+            box-shadow: 0 0 40px #ffdd7a;
+            animation: flame-flicker 1.4s infinite alternate ease-in-out;
         }
         
-        .lantern .pane {
+        .lantern .glass {
             position: absolute;
-            width: 30px;
-            height: 35px;
-            background: rgba(255,255,255,0.25);
-            border-radius: 30%;
-            top: 35px;
+            top: 42px;
             left: 50%;
             transform: translateX(-50%);
-            box-shadow: inset 0 0 20px #f1d27b, 0 0 30px currentColor;
-            backdrop-filter: blur(3px);
+            width: 34px;
+            height: 42px;
+            background: rgba(255,255,255,0.32);
+            border-radius: 40%;
+            box-shadow: inset 0 0 28px #ffe8b3;
         }
         
-        .lantern.red .pane { background: #ff7961b3; box-shadow: 0 0 45px #ff4d4d; }
-        .lantern.amber .pane { background: #ffbf69b3; box-shadow: 0 0 50px #ffa726; }
-        .lantern.turquoise .pane { background: #7ed9d1b3; box-shadow: 0 0 45px #2dd4bf; }
-        
-        @keyframes float {
-            0% { transform: translateY(0) rotateY(0deg); }
-            100% { transform: translateY(-25px) rotateY(8deg); }
+        @keyframes lantern-physics {
+            0% { transform: translateY(0) rotate(0deg); }
+            33% { transform: translateY(-42px) rotate(6deg); }
+            66% { transform: translateY(-26px) rotate(-5deg); }
+            100% { transform: translateY(0) rotate(0deg); }
         }
         
-        /* Ottoman skyline */
-        .decor-skyline {
-            position: fixed;
-            bottom: 5%;
-            left: 0;
-            width: 100%;
-            height: 120px;
-            background: repeat-x bottom url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 120" opacity="0.2"><path fill="%233d2b1e" d="M0,120 L0,40 L40,20 L90,60 L130,30 L180,55 L220,25 L280,50 L330,15 L380,40 L440,10 L500,45 L550,25 L600,50 L660,35 L720,60 L770,25 L800,40 L800,120 Z"/><circle cx="120" cy="28" r="7" fill="%23cf9f4a"/><circle cx="320" cy="20" r="6" fill="%23cf9f4a"/><circle cx="550" cy="40" r="8" fill="%23cf9f4a"/><circle cx="700" cy="50" r="7" fill="%23cf9f4a"/></svg>');
-            pointer-events: none;
-            z-index: var(--layer-decor);
-            opacity: 0.3;
+        @keyframes flame-flicker {
+            0% { transform: scale(1) translateY(0); opacity: 0.92; }
+            100% { transform: scale(1.08) translateY(-4px); opacity: 1; }
         }
         
-        /* Calligraphy */
-        .decor-calligraphy {
+        .stars {
             position: fixed;
             inset: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            z-index: 1;
             pointer-events: none;
-            z-index: var(--layer-decor);
-            font-family: var(--font-arabic);
-            font-size: min(12vw, 180px);
-            font-weight: 700;
-            color: rgba(175, 130, 70, 0.1);
-            transform: rotate(-10deg) scale(1.2);
-            white-space: nowrap;
-        }
-        
-        .decor-calligraphy span {
-            margin: 0 var(--space-2xl);
-        }
-        
-        /* Stars */
-        .decor-stars {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: var(--layer-decor);
         }
         
         .star {
             position: absolute;
+            background: #fffbeb;
             border-radius: 50%;
-            animation: twinkle 7s infinite alternate ease-in-out;
+            box-shadow: 0 0 14px #ffe070;
+            animation: star-twinkle 5s infinite alternate ease-in-out;
         }
         
-        .star-gold { background: #f5d98f; box-shadow: 0 0 20px #f5b81b; }
-        .star-silver { background: #e6e9f0; box-shadow: 0 0 18px #b0c4de; }
-        .star-copper { background: #e3b38b; box-shadow: 0 0 18px #cd7f4b; }
-        
-        @keyframes twinkle {
-            0% { opacity: 0.3; transform: scale(0.9); }
-            100% { opacity: 1; transform: scale(1.2); }
+        @keyframes star-twinkle {
+            0% { opacity: 0.35; transform: scale(0.7); }
+            100% { opacity: 1; transform: scale(1.35); }
         }
         
-        /* ----- HEADER CONTROLS ----- */
-        .header-controls {
+        /* Controls */
+        .controls {
             position: fixed;
-            top: var(--space-lg);
-            right: var(--space-lg);
+            top: 24px;
+            right: 24px;
             display: flex;
-            gap: var(--space-sm);
-            z-index: var(--layer-header);
+            gap: 14px;
+            z-index: 300;
         }
         
-        .control-btn {
-            width: 48px;
-            height: 48px;
-            border-radius: var(--radius-full);
-            background: var(--glass-bg);
-            backdrop-filter: var(--glass-blur);
-            border: 1px solid var(--color-border);
-            color: var(--color-primary);
-            font-size: var(--text-xl);
+        .ctrl {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: rgba(30,20,15,0.82);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(199,160,91,0.3);
+            color: var(--gold);
+            font-size: 1.65rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all var(--transition-fast);
+            transition: all 0.3s var(--ease-out);
             cursor: pointer;
         }
         
-        .control-btn:hover {
-            transform: scale(1.1);
-            background: var(--color-primary);
-            color: var(--color-bg);
+        .ctrl:hover {
+            transform: scale(1.12) rotate(8deg);
+            background: var(--gold);
+            color: #0a0503;
         }
         
-        /* ----- MAIN CONTAINER ----- */
-        .container {
-            max-width: var(--container-max);
-            margin: 0 auto;
-            padding: calc(var(--header-height) + var(--space-2xl)) var(--space-lg) var(--space-3xl);
-            position: relative;
-            z-index: var(--layer-base);
-        }
-        
-        /* ----- STICKY PANELS ----- */
-        .sticky-panel {
+        /* Sticky categories */
+        .cat-bar {
             position: sticky;
-            z-index: var(--layer-sticky);
-            backdrop-filter: var(--glass-blur);
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: var(--radius-full);
-            padding: var(--space-md) var(--space-xl);
-            margin-bottom: var(--space-md);
-            transition: background var(--transition-base), border-color var(--transition-base);
-        }
-        
-        .prayer-row {
-            top: var(--space-md);
+            top: 20px;
+            z-index: 200;
+            background: rgba(30,20,15,0.92);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(199,160,91,0.25);
+            border-radius: 9999px;
+            padding: 14px 18px;
+            margin: 0 20px 32px;
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            gap: var(--space-lg);
-            width: fit-content;
-            margin-left: auto;
-            margin-right: auto;
+            gap: 12px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.5);
         }
         
-        .prayer-item {
-            display: flex;
-            align-items: center;
-            gap: var(--space-xs);
-            font-size: var(--text-lg);
-        }
-        
-        .prayer-item i {
-            color: var(--color-primary);
-        }
-        
-        .countdown {
-            background: var(--color-accent-soft);
-            color: var(--color-text);
-            padding: var(--space-xs) var(--space-lg);
-            border-radius: var(--radius-full);
-            font-weight: 600;
-            border: 1px solid var(--color-primary);
-        }
-        
-        .quote-panel {
-            top: calc(var(--space-md) + 70px);
-            text-align: center;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .quote-arabic {
-            font-family: var(--font-arabic);
-            font-size: var(--text-2xl);
-            color: var(--color-primary);
-            line-height: 1.3;
-        }
-        
-        .quote-divider {
-            width: 120px;
-            height: 2px;
-            margin: var(--space-sm) auto;
-            background: linear-gradient(90deg, transparent, var(--color-primary), var(--color-accent), transparent);
-        }
-        
-        .quote-english {
-            font-size: var(--text-lg);
-            color: var(--color-text-soft);
-            font-style: italic;
-        }
-        
-        /* Category nav */
-        .category-nav {
-            top: calc(var(--space-md) + 140px);
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: var(--space-sm);
-            padding: var(--space-md);
-            background: var(--glass-bg);
-            backdrop-filter: var(--glass-blur);
-            border: 1px solid var(--glass-border);
-            border-radius: var(--radius-full);
-            margin-bottom: var(--space-xl);
-        }
+        .cat-bar::-webkit-scrollbar { display: none; }
         
         .cat-btn {
-            padding: var(--space-sm) var(--space-xl);
-            border-radius: var(--radius-full);
-            border: 1px solid var(--color-border);
+            padding: 12px 28px;
+            white-space: nowrap;
+            border-radius: 9999px;
+            border: 1px solid var(--border);
             background: transparent;
-            color: var(--color-text);
-            cursor: pointer;
-            transition: all var(--transition-fast);
-            font-size: var(--text-base);
-            display: inline-flex;
-            align-items: center;
-            gap: var(--space-xs);
+            color: var(--text);
+            font-weight: 500;
+            transition: all 0.35s var(--ease-out);
+            flex-shrink: 0;
         }
         
-        .cat-btn i {
-            color: var(--color-primary);
+        .cat-btn.active,
+        .cat-btn:hover {
+            background: var(--gold);
+            color: #0a0503;
+            border-color: var(--gold);
+            transform: translateY(-3px);
         }
         
-        .cat-btn:hover,
-        .cat-btn.active {
-            background: var(--color-primary);
-            color: var(--color-bg);
-            border-color: var(--color-primary);
-            transform: translateY(-2px);
-        }
-        
-        .cat-btn.active i {
-            color: var(--color-bg);
-        }
-        
-        .count-badge {
-            background: var(--color-accent-soft);
-            border-radius: var(--radius-full);
-            padding: 2px 8px;
-            font-size: var(--text-xs);
-            margin-left: var(--space-xs);
-        }
-        
-        .cat-btn.active .count-badge {
-            background: var(--color-bg);
-            color: var(--color-primary);
-        }
-        
-        /* Search */
-        .search-wrapper {
-            display: flex;
-            justify-content: center;
-            margin: var(--space-xl) 0 var(--space-lg);
+        /* 3D Carousel */
+        .carousel-container {
+            perspective: 1600px;
+            perspective-origin: 50% 40%;
+            padding: 40px 0 120px;
+            overflow: hidden;
             position: relative;
+        }
+        
+        .carousel-track {
+            display: flex;
+            gap: 36px;
+            padding: 40px 20px;
+            will-change: transform;
+            user-select: none;
+        }
+        
+        .carousel-card {
+            flex: 0 0 340px;
+            background: var(--surface);
+            border-radius: 32px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.55);
+            transform-style: preserve-3d;
+            transition: box-shadow 0.4s var(--ease-out), transform 0.4s var(--ease-out);
+            cursor: grab;
+            position: relative;
+        }
+        
+        .carousel-card:active { cursor: grabbing; }
+        
+        .carousel-card .figure {
+            position: relative;
+            aspect-ratio: 16/9;
+            overflow: hidden;
+        }
+        
+        .carousel-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1.1s var(--ease-out);
+        }
+        
+        .carousel-card:hover img {
+            transform: scale(1.09);
+        }
+        
+        .carousel-card .content {
+            padding: 26px 24px 28px;
+        }
+        
+        .carousel-card .name {
+            font-family: var(--font-heading);
+            font-size: 1.55rem;
+            color: var(--gold);
+            margin-bottom: 8px;
+        }
+        
+        .carousel-card .name-ar {
+            font-family: var(--font-ar);
+            font-size: 1.22rem;
+            color: var(--soft);
+            margin-bottom: 14px;
+        }
+        
+        .carousel-card .desc {
+            color: var(--soft);
+            font-size: 0.95rem;
+            line-height: 1.55;
+        }
+        
+        .carousel-card .price {
+            margin-top: 18px;
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: var(--accent);
+        }
+        
+        /* Hover micro-interactions */
+        .carousel-card:hover {
+            box-shadow: 0 50px 110px rgba(199,160,91,0.22);
+            transform: translateY(-12px) scale(1.02);
+        }
+        
+        /* Press */
+        .carousel-card.pressed {
+            transform: scale(0.965) !important;
+            transition-duration: 80ms;
+        }
+        
+        /* Shine layer */
+        .carousel-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.4s;
+            pointer-events: none;
+        }
+        
+        .carousel-card:hover::after {
+            opacity: 1;
+        }
+        
+        /* Floating search */
+        .search-float {
+            position: fixed;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 92%;
+            max-width: 480px;
+            z-index: 400;
+        }
+        
+        .search-box {
+            background: rgba(30,20,15,0.88);
+            backdrop-filter: blur(28px);
+            border: 1px solid rgba(199,160,91,0.35);
+            border-radius: 9999px;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
         }
         
         #searchInput {
-            background: var(--glass-bg);
-            backdrop-filter: var(--glass-blur);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-full);
-            padding: var(--space-md) var(--space-2xl) var(--space-md) var(--space-xl);
-            width: 100%;
-            max-width: 500px;
-            font-size: var(--text-lg);
-            color: var(--color-text);
-            font-family: var(--font-serif);
-        }
-        
-        #searchInput:focus {
-            outline: none;
-            border-color: var(--color-primary);
-            box-shadow: var(--shadow-glow);
-        }
-        
-        #clearSearch {
-            position: absolute;
-            right: calc((100% - 500px) / 2 + var(--space-md));
-            top: 50%;
-            transform: translateY(-50%);
+            flex: 1;
             background: none;
             border: none;
-            color: var(--color-primary);
-            font-size: var(--text-xl);
-            cursor: pointer;
-            display: none;
+            outline: none;
+            color: var(--text);
+            font-size: 1.1rem;
         }
         
-        #clearSearch.visible {
-            display: block;
-        }
-        
-        /* Quick filters */
-        .quick-filters {
-            display: flex;
-            justify-content: center;
-            gap: var(--space-sm);
-            flex-wrap: wrap;
-            margin: var(--space-lg) 0;
-        }
-        
-        .quick-filter {
-            padding: var(--space-sm) var(--space-xl);
-            border-radius: var(--radius-full);
-            border: 1px solid var(--color-border);
-            background: transparent;
-            color: var(--color-text);
-            cursor: pointer;
-            transition: all var(--transition-fast);
-            font-size: var(--text-base);
-        }
-        
-        .quick-filter:hover,
-        .quick-filter.active {
-            background: var(--color-primary);
-            color: var(--color-bg);
-            border-color: var(--color-primary);
-        }
-        
-        /* Menu grid */
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: var(--space-xl);
-            margin-top: var(--space-xl);
-            container-type: inline-size;
-            container-name: menu-grid;
-        }
-        
-        /* Article card */
-        .menu-item {
-            background: var(--color-surface);
-            border-radius: var(--radius-xl);
-            overflow: hidden;
-            transition: transform var(--transition-base), box-shadow var(--transition-base);
-            border: 1px solid var(--color-border);
-            display: flex;
-            flex-direction: column;
-            cursor: pointer;
-        }
-        
-        .menu-item:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-lg), var(--shadow-glow);
-            border-color: var(--color-primary);
-        }
-        
-        .menu-item:focus-visible {
-            outline-offset: 2px;
-        }
-        
-        /* Figure */
-        .item-figure {
-            position: relative;
-            aspect-ratio: 16 / 9;
-            overflow: hidden;
-            background: var(--color-accent-soft);
-        }
-        
-        .item-figure img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform var(--transition-slow);
-        }
-        
-        .menu-item:hover .item-figure img {
-            transform: scale(1.05);
-        }
-        
-        .item-badge {
-            position: absolute;
-            top: var(--space-sm);
-            left: var(--space-sm);
-            background: var(--color-primary);
-            color: var(--color-bg);
-            padding: var(--space-xs) var(--space-md);
-            border-radius: var(--radius-full);
-            font-size: var(--text-xs);
-            font-weight: 600;
-            z-index: 2;
-        }
-        
-        .item-iftar-badge {
-            position: absolute;
-            top: var(--space-sm);
-            right: var(--space-sm);
-            background: #ac4949;
-            color: white;
-            padding: var(--space-xs) var(--space-md);
-            border-radius: var(--radius-full);
-            font-size: var(--text-xs);
-            font-weight: 600;
-            z-index: 2;
-        }
-        
-        /* Article content */
-        .item-content {
-            padding: var(--space-lg);
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .item-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: var(--space-xs);
-        }
-        
-        .item-name {
-            font-size: var(--text-xl);
-            font-weight: 600;
-            color: var(--color-primary);
-            font-family: var(--font-serif);
-        }
-        
-        .item-price {
-            background: var(--color-accent-soft);
-            padding: var(--space-xs) var(--space-md);
-            border-radius: var(--radius-full);
-            font-weight: 600;
-            color: var(--color-text);
-            white-space: nowrap;
-        }
-        
-        .item-name-ar {
-            font-family: var(--font-arabic);
-            font-size: var(--text-lg);
-            color: var(--color-text-soft);
-            margin-bottom: var(--space-sm);
-            line-height: 1.2;
-        }
-        
-        .item-description {
-            color: var(--color-text-soft);
-            margin-bottom: var(--space-md);
-            font-size: var(--text-sm);
-            line-height: 1.5;
-        }
-        
-        /* Dietary tags */
-        .dietary-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: var(--space-xs);
-            margin: var(--space-sm) 0;
-        }
-        
-        .dietary-tag {
-            padding: var(--space-xs) var(--space-sm);
-            border-radius: var(--radius-full);
-            font-size: var(--text-xs);
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            background: var(--color-accent-soft);
-            color: var(--color-text);
-        }
-        
-        .tag-vegan { background: #2e7d32; color: white; }
-        .tag-vegetarian { background: #4caf50; color: white; }
-        .tag-dairy { background: #f59e0b; color: black; }
-        .tag-gluten-free { background: #3b82f6; color: white; }
-        .tag-nuts { background: #8b5a2b; color: white; }
-        .tag-dairy-free { background: #10b981; color: white; }
-        
-        /* Calories */
-        .item-calories {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            font-size: var(--text-xs);
-            color: var(--color-text-soft);
-            margin-left: var(--space-xs);
-        }
-        
-        /* Origin story (details/summary) */
-        .origin-story {
-            margin-top: var(--space-md);
-            border-top: 1px solid var(--color-border);
-            padding-top: var(--space-md);
-        }
-        
-        .origin-summary {
-            font-weight: 600;
-            color: var(--color-primary);
-            cursor: pointer;
-            list-style: none;
-            display: flex;
-            align-items: center;
-            gap: var(--space-xs);
-        }
-        
-        .origin-summary::-webkit-details-marker {
-            display: none;
-        }
-        
-        .origin-summary::after {
-            content: '▼';
-            font-size: 0.8em;
-            transition: transform var(--transition-fast);
-        }
-        
-        details[open] .origin-summary::after {
-            transform: rotate(180deg);
-        }
-        
-        .origin-content {
-            margin-top: var(--space-sm);
-            font-style: italic;
-            font-size: var(--text-sm);
-            color: var(--color-text-soft);
-            padding: var(--space-sm);
-            background: var(--color-accent-soft);
-            border-radius: var(--radius-md);
-            border-left: 3px solid var(--color-primary);
-        }
-        
-        /* No results */
-        .no-results {
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: var(--space-3xl) var(--space-2xl);
-            background: var(--color-surface);
-            border-radius: var(--radius-xl);
-            border: 2px dashed var(--color-border);
-        }
-        
-        /* Modal (native dialog) */
+        /* Modal */
         dialog {
             border: none;
-            padding: 0;
             background: transparent;
-            max-width: min(90vw, 700px);
-            width: 100%;
-            border-radius: var(--radius-xl);
-            opacity: 0;
-            transform: scale(0.9);
-            transition: opacity var(--transition-base), transform var(--transition-base), overlay var(--transition-base), display var(--transition-base);
-            transition-behavior: allow-discrete;
+            max-width: 720px;
+            width: 94%;
+            margin: auto;
+            padding: 0;
         }
         
-        dialog[open] {
-            opacity: 1;
-            transform: scale(1);
-        }
-        
-        @starting-style {
-            dialog[open] {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-        }
-        
-        dialog::backdrop {
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(8px);
-            transition: background var(--transition-base);
-        }
-        
-        .modal-card {
-            background: var(--color-surface);
-            border: 2px solid var(--color-primary);
-            border-radius: var(--radius-xl);
+        .modal-content {
+            background: var(--surface);
+            border-radius: 32px;
             overflow: hidden;
-        }
-        
-        .modal-header {
-            position: relative;
-        }
-        
-        .modal-figure {
-            aspect-ratio: 16 / 9;
-            overflow: hidden;
-        }
-        
-        .modal-figure img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            border: 2px solid var(--gold);
         }
         
         .modal-close {
             position: absolute;
-            top: var(--space-md);
-            right: var(--space-md);
-            width: 44px;
-            height: 44px;
-            border-radius: var(--radius-full);
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(4px);
-            border: 1px solid var(--color-border);
+            top: 24px;
+            right: 24px;
+            width: 52px;
+            height: 52px;
+            background: rgba(0,0,0,0.7);
+            border: none;
             color: white;
-            font-size: var(--text-xl);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            font-size: 1.8rem;
+            border-radius: 50%;
+            z-index: 10;
             cursor: pointer;
-            transition: all var(--transition-fast);
-            z-index: 2;
-        }
-        
-        .modal-close:hover {
-            background: var(--color-primary);
-            transform: rotate(90deg);
-        }
-        
-        .modal-body {
-            padding: var(--space-xl);
-        }
-        
-        .modal-title {
-            font-size: var(--text-3xl);
-            color: var(--color-primary);
-            margin-bottom: var(--space-xs);
-        }
-        
-        .modal-subtitle {
-            font-family: var(--font-arabic);
-            font-size: var(--text-xl);
-            color: var(--color-text-soft);
-            margin-bottom: var(--space-md);
-        }
-        
-        .modal-price-row {
-            display: flex;
-            align-items: center;
-            gap: var(--space-lg);
-            margin-bottom: var(--space-lg);
-        }
-        
-        .modal-price {
-            font-size: var(--text-2xl);
-            font-weight: 700;
-            background: var(--color-accent-soft);
-            padding: var(--space-sm) var(--space-lg);
-            border-radius: var(--radius-full);
-        }
-        
-        .modal-description {
-            font-size: var(--text-lg);
-            color: var(--color-text-soft);
-            line-height: 1.6;
-            margin-bottom: var(--space-lg);
-        }
-        
-        .modal-options {
-            background: var(--color-accent-soft);
-            padding: var(--space-md);
-            border-radius: var(--radius-lg);
-            margin: var(--space-lg) 0;
-        }
-        
-        .modal-story {
-            margin-top: var(--space-lg);
-        }
-        
-        /* Back to top */
-        #backToTop {
-            position: fixed;
-            bottom: var(--space-xl);
-            right: var(--space-xl);
-            width: 56px;
-            height: 56px;
-            border-radius: var(--radius-full);
-            background: var(--color-surface);
-            border: 2px solid var(--color-primary);
-            color: var(--color-primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: all var(--transition-base);
-            z-index: var(--layer-header);
-            font-size: var(--text-2xl);
-            box-shadow: var(--shadow-glow);
-        }
-        
-        #backToTop.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        #backToTop:hover {
-            background: var(--color-primary);
-            color: var(--color-bg);
-            transform: translateY(-4px);
         }
         
         /* Footer */
-        .footer {
-            margin-top: var(--space-3xl);
-            padding: var(--space-2xl);
-            background: var(--color-surface);
-            border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
-            border-top: 1px solid var(--color-border);
+        footer {
             text-align: center;
+            padding: 80px 20px 60px;
+            color: var(--soft);
+            font-size: 0.95rem;
         }
         
-        .footer-brand {
-            font-size: var(--text-4xl);
-            font-family: var(--font-serif);
-            color: var(--color-primary);
-            margin-bottom: var(--space-md);
-        }
-        
-        .footer-hours {
-            font-size: var(--text-lg);
-            color: var(--color-text-soft);
-            margin: var(--space-md) 0;
-        }
-        
-        .footer-address {
-            margin-top: var(--space-lg);
-            color: var(--color-text-soft);
-        }
-        
-        .footer-address a {
-            color: var(--color-primary);
-        }
-        
-        /* Reduced motion */
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-                scroll-behavior: auto !important;
-            }
-        }
-        
-        /* Mobile */
-        @media (max-width: 768px) {
-            :root {
-                --header-height: 60px;
-            }
-            
-            .sticky-panel {
-                position: static;
-                width: 100%;
-                border-radius: var(--radius-lg);
-            }
-            
-            .prayer-row {
-                flex-direction: column;
-                gap: var(--space-sm);
-                width: 100%;
-            }
-            
-            .category-nav {
-                position: static;
-                overflow-x: auto;
-                justify-content: flex-start;
-                flex-wrap: nowrap;
-                padding: var(--space-sm);
-                -webkit-overflow-scrolling: touch;
-            }
-            
-            .cat-btn {
-                flex-shrink: 0;
-            }
-            
-            .lanern {
-                opacity: 0.3;
-            }
-            
-            .lantern:nth-child(n+5) {
-                display: none;
-            }
-            
-            .menu-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .control-btn {
-                width: 44px;
-                height: 44px;
-            }
+        .brand {
+            font-family: var(--font-heading);
+            font-size: 3.2rem;
+            color: var(--gold);
+            margin-bottom: 12px;
         }
     </style>
 </head>
 <body>
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-
-    <!-- Theme Controls -->
-    <div class="header-controls">
-        <button id="themeToggle" class="control-btn" aria-label="Toggle theme">
-            <span class="light-icon">☀️</span>
-            <span class="dark-icon">🌙</span>
-        </button>
-        <button id="langToggle" class="control-btn" aria-label="Switch language" data-current="en">EN</button>
-    </div>
-
-    <!-- Decorative Elements -->
-    <div class="decor-crescent" aria-hidden="true"></div>
+    <!-- Decor -->
+    <div class="crescent"></div>
     
-    <div class="decor-lanterns" aria-hidden="true">
-        <div class="lantern red" style="top:15%; left:12%;"><div class="pane"></div></div>
-        <div class="lantern amber" style="top:28%; left:22%; width:85px; height:130px;"><div class="pane"></div></div>
-        <div class="lantern turquoise" style="top:42%; left:8%;"><div class="pane"></div></div>
-        <div class="lantern amber" style="top:60%; right:15%; width:95px; height:140px;"><div class="pane"></div></div>
-        <div class="lantern red" style="top:20%; right:18%;"><div class="pane"></div></div>
-        <div class="lantern turquoise" style="top:70%; left:20%; height:120px;"><div class="pane"></div></div>
-        <div class="lantern amber" style="top:50%; left:30%; width:70px; height:100px;"><div class="pane"></div></div>
-        <div class="lantern red" style="top:35%; right:28%;"><div class="pane"></div></div>
+    <div class="lanterns">
+        <div class="lantern" style="top:14%;left:9%;animation-duration:15.3s"><div class="glass"></div></div>
+        <div class="lantern" style="top:27%;left:26%;width:94px;height:142px;animation-duration:12.7s"><div class="glass"></div></div>
+        <div class="lantern" style="top:51%;left:11%;animation-duration:17.1s"><div class="glass"></div></div>
+        <div class="lantern" style="top:68%;right:19%;animation-duration:13.9s"><div class="glass"></div></div>
+        <div class="lantern" style="top:19%;right:24%;animation-duration:14.8s"><div class="glass"></div></div>
+        <div class="lantern" style="top:73%;left:34%;animation-duration:16.4s"><div class="glass"></div></div>
     </div>
     
-    <div class="decor-skyline" aria-hidden="true"></div>
+    <div class="stars" id="stars"></div>
     
-    <div class="decor-calligraphy" aria-hidden="true">
-        <span>الله</span> <span>محمد</span>
+    <div class="controls">
+        <button id="themeBtn" class="ctrl">🌙</button>
+        <button id="langBtn" class="ctrl">EN</button>
     </div>
     
-    <div class="decor-stars" id="starfield" aria-hidden="true"></div>
-
-    <!-- Main Container -->
-    <div class="container">
-        <header class="page-header" id="main-content">
-            <h1 class="page-title" style="font-size: var(--text-5xl); text-align: center; margin-bottom: var(--space-2xl); font-family: var(--font-arabic); color: var(--color-primary);" id="mainTitle">Ramadan 1447 · 2026 🌙 رمضان كريم</h1>
-        </header>
-
-        <!-- Sticky Prayer Times -->
-        <div class="sticky-panel prayer-row" id="prayerRow"></div>
-
-        <!-- Sticky Quote Panel -->
-        <div class="sticky-panel quote-panel" id="quotePanel">
-            <div class="quote-arabic" id="verseArabic"></div>
-            <div class="quote-divider"></div>
-            <div class="quote-english" id="verseEnglish"></div>
+    <div style="height:110px"></div>
+    
+    <!-- Categories -->
+    <nav class="cat-bar" id="catBar"></nav>
+    
+    <!-- 3D Carousel -->
+    <div class="carousel-container" id="carousel">
+        <div class="carousel-track" id="track"></div>
+    </div>
+    
+    <!-- Floating Search -->
+    <div class="search-float">
+        <div class="search-box">
+            <i class="fas fa-search" style="color:var(--gold);font-size:1.4rem"></i>
+            <input type="text" id="searchInput" placeholder="Search Ottoman delights...">
+            <button id="clearBtn" style="background:none;border:none;color:var(--gold);font-size:1.5rem;display:none">✕</button>
         </div>
-
-        <!-- Search -->
-        <div class="search-wrapper">
-            <input type="search" id="searchInput" placeholder="Search menu... (kunafa, coffee)" aria-label="Search menu">
-            <button id="clearSearch" aria-label="Clear search">✕</button>
-        </div>
-
-        <!-- Quick Filters -->
-        <div class="quick-filters" id="quickFilters"></div>
-
-        <!-- Category Navigation -->
-        <nav class="category-nav" id="categoryNav" aria-label="Menu categories"></nav>
-
-        <!-- Menu Grid Container -->
-        <div id="menuContainer"></div>
-
-        <!-- Footer -->
-        <footer class="footer">
-            <div class="footer-brand">TURKIANA</div>
-            <div class="footer-hours" id="footerHours">7:00 PM – 2:00 AM Daily · throughout Ramadan 1447</div>
-            <p class="footer-blessing">🌟 May your Ramadan be blessed 🌟</p>
-            <address class="footer-address">
-                Mshreib Downtown, Doha | <a href="tel:+97451866671">+974 5186 6671</a>
-            </address>
-        </footer>
     </div>
-
-    <!-- Back to Top -->
-    <button id="backToTop" aria-label="Back to top">↑</button>
-
-    <!-- Native Dialog Modal -->
-    <dialog id="itemModal" aria-labelledby="modal-title">
-        <div class="modal-card">
-            <div class="modal-header">
-                <div class="modal-figure" id="modalFigure"></div>
-                <button class="modal-close" id="closeModal" aria-label="Close dialog">✕</button>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="brand">TURKIANA</div>
+        <div>Mshreib Downtown, Doha • 7 PM – 2 AM</div>
+        <div style="margin-top:12px">+974 5186 6671</div>
+    </footer>
+    
+    <!-- Modal -->
+    <dialog id="modal">
+        <div class="modal-content">
+            <div style="position:relative">
+                <div id="modalImg" style="aspect-ratio:16/9;overflow:hidden"></div>
+                <button id="modalClose" class="modal-close">✕</button>
             </div>
-            <div class="modal-body" id="modalBody"></div>
+            <div id="modalBody" style="padding:32px 28px"></div>
         </div>
     </dialog>
-
-    <!-- Menu Data (JSON) -->
-    <script id="menu-data" type="application/json">
-    {
+    
+    <!-- Menu Data -->
+    <script id="menuData" type="application/json">
+      {
         "categories": [
-            { "id": "all", "nameEn": "🌟 All Menu", "nameAr": "🌟 كل القائمة", "icon": "fa-list" },
-            { "id": "popular", "nameEn": "🌙 Ramadan Specials", "nameAr": "🌙 عروض رمضان", "icon": "fa-moon" },
-            { "id": "brewed", "nameEn": "Brewed on Arabic & Turkish Way", "nameAr": "مغلي على الطريقة العربية والتركية", "icon": "fa-coffee" },
+ { "id": "all", "nameEn": "🌟 All Menu", "nameAr": "🌟 كل القائمة", "icon": "fa-list" },
+                       { "id": "brewed", "nameEn": "Brewed on Arabic & Turkish Way", "nameAr": "مغلي على الطريقة العربية والتركية", "icon": "fa-coffee" },
             { "id": "tea", "nameEn": "Tea on the House", "nameAr": "شاي في المنزل", "icon": "fa-mug-hot" },
             { "id": "cafe", "nameEn": "Café & Chill", "nameAr": "كافيه واستجمام", "icon": "fa-martini-glass" },
             { "id": "specialty", "nameEn": "Specialty Brews", "nameAr": "مشروبات مميزة", "icon": "fa-filter" },
@@ -1254,12 +484,9 @@
             { "id": "fondue", "nameEn": "Fondue & Nuts", "nameAr": "فوندو والمكسرات", "icon": "fa-cheese" },
             { "id": "croissant", "nameEn": "Suhoor Creations", "nameAr": "إبداعات السحور", "icon": "fa-bread-slice" },
             { "id": "grill", "nameEn": "From the Grill & Garden", "nameAr": "من الشواية والحديقة", "icon": "fa-hamburger" }
-        ],
-        "items": [
-            { "id": "pop1", "categoryId": "popular", "nameEn": "Sultan's Turkish Coffee", "nameAr": "قهوة السلطان التركية", "descriptionEn": "A timeless Ottoman tradition—finely ground coffee brewed in copper cezve.", "price": 28, "image": "Turkishcoffee.jpg", "calories": "5 kcal", "dietary": ["vegan", "gluten-free"], "popular": true, "storyEn": "In 16th century Topkapi Palace, this coffee was served to sultans after Tarawih prayers." },
-            { "id": "pop2", "categoryId": "popular", "nameEn": "Ramadan Tea", "nameAr": "شاي رمضان", "descriptionEn": "The heartbeat of Turkish Ramadan—deep amber Rize tea double-brewed.", "price": 15, "image": "Tea.jpg", "calories": "2 kcal", "dietary": ["vegan", "dairy-free"], "popular": true, "storyEn": "Turkish tea is the symbol of Ramadan hospitality." },
-            { "id": "pop3", "categoryId": "popular", "nameEn": "Blessed Kunafa", "nameAr": "كنافة مباركة", "descriptionEn": "Shredded kataifi baked with Akkawi cheese until golden, soaked in rose-scented syrup.", "price": 45, "image": "Kunafa.jpeg", "calories": "520 kcal", "dietary": ["contains-dairy"], "popular": true, "storyEn": "Kunafa originated in Nablus and became an Ottoman palace favorite." },
-            { "id": "pop4", "categoryId": "popular", "nameEn": "Ramadan Baklava", "nameAr": "بقلاوة رمضان", "descriptionEn": "Gaziantep pistachios layered between 40 sheets of hand-stretched phyllo, baked golden.", "price": 65, "image": "Mix.jpeg", "calories": "450 kcal", "dietary": ["contains-nuts"], "popular": true, "storyEn": "Gaziantep is UNESCO Creative City of Gastronomy." },
+        ],   
+"items": [
+            
             { "id": "brew1", "categoryId": "brewed", "nameEn": "Classic Turkish Coffee", "nameAr": "قهوة تركية كلاسيكية", "descriptionEn": "Finely ground coffee brewed in copper cezve. Served with foam crown and Turkish delight.", "price": 28, "image": "Turkishcoffee.jpg", "calories": "5 kcal", "dietary": ["vegan", "gluten-free"] },
             { "id": "brew2", "categoryId": "brewed", "nameEn": "Double Turkish Coffee", "nameAr": "قهوة تركية مزدوجة", "descriptionEn": "Double the intensity with concentrated brewing. For the bold-hearted during Ramadan nights.", "price": 40, "image": "Turkishcoffee.jpg", "calories": "10 kcal", "dietary": ["vegan", "gluten-free"] },
             { "id": "brew3", "categoryId": "brewed", "nameEn": "Ottoman Mastic Coffee", "nameAr": "قهوة عثمانية بالمستيك", "descriptionEn": "Premium coffee enhanced with rare Chios mastic resin. Distinctive pine-like aroma.", "price": 28, "image": "Ottomanmastica.jpg", "calories": "5 kcal", "dietary": ["vegan", "gluten-free"] },
@@ -1360,671 +587,338 @@
         ]
     }
     </script>
-
-    <!-- Prayer Times Data -->
-    <script id="prayer-data" type="application/json">
-    {
-        "2026-02-18": {"imsak":"04:39", "maghrib":"17:32", "isha":"19:02"},
-        "2026-02-19": {"imsak":"04:38", "maghrib":"17:33", "isha":"19:03"},
-        "2026-02-20": {"imsak":"04:37", "maghrib":"17:33", "isha":"19:03"},
-        "2026-02-21": {"imsak":"04:37", "maghrib":"17:34", "isha":"19:04"},
-        "2026-02-22": {"imsak":"04:36", "maghrib":"17:34", "isha":"19:04"},
-        "2026-02-23": {"imsak":"04:35", "maghrib":"17:35", "isha":"19:05"},
-        "2026-02-24": {"imsak":"04:34", "maghrib":"17:35", "isha":"19:05"},
-        "2026-02-25": {"imsak":"04:33", "maghrib":"17:36", "isha":"19:06"},
-        "2026-02-26": {"imsak":"04:33", "maghrib":"17:36", "isha":"19:06"},
-        "2026-02-27": {"imsak":"04:32", "maghrib":"17:37", "isha":"19:07"},
-        "2026-02-28": {"imsak":"04:31", "maghrib":"17:37", "isha":"19:07"},
-        "2026-03-01": {"imsak":"04:30", "maghrib":"17:38", "isha":"19:08"},
-        "2026-03-02": {"imsak":"04:29", "maghrib":"17:38", "isha":"19:08"},
-        "2026-03-03": {"imsak":"04:28", "maghrib":"17:39", "isha":"19:09"},
-        "2026-03-04": {"imsak":"04:27", "maghrib":"17:39", "isha":"19:09"},
-        "2026-03-05": {"imsak":"04:26", "maghrib":"17:40", "isha":"19:10"},
-        "2026-03-06": {"imsak":"04:25", "maghrib":"17:40", "isha":"19:10"},
-        "2026-03-07": {"imsak":"04:24", "maghrib":"17:41", "isha":"19:11"},
-        "2026-03-08": {"imsak":"04:23", "maghrib":"17:41", "isha":"19:11"},
-        "2026-03-09": {"imsak":"04:22", "maghrib":"17:42", "isha":"19:12"},
-        "2026-03-10": {"imsak":"04:21", "maghrib":"17:42", "isha":"19:12"},
-        "2026-03-11": {"imsak":"04:20", "maghrib":"17:43", "isha":"19:13"},
-        "2026-03-12": {"imsak":"04:19", "maghrib":"17:43", "isha":"19:13"},
-        "2026-03-13": {"imsak":"04:18", "maghrib":"17:44", "isha":"19:14"},
-        "2026-03-14": {"imsak":"04:17", "maghrib":"17:44", "isha":"19:14"},
-        "2026-03-15": {"imsak":"04:16", "maghrib":"17:45", "isha":"19:15"},
-        "2026-03-16": {"imsak":"04:15", "maghrib":"17:45", "isha":"19:15"},
-        "2026-03-17": {"imsak":"04:14", "maghrib":"17:46", "isha":"19:16"},
-        "2026-03-18": {"imsak":"04:13", "maghrib":"17:46", "isha":"19:16"},
-        "2026-03-19": {"imsak":"04:12", "maghrib":"17:47", "isha":"19:17"}
-    }
-    </script>
-
-    <!-- Quotes Data -->
-    <script id="quotes-data" type="application/json">
-    [
-        {"ar": "يَا أَيُّهَا الَّذِينَ آمَنُوا كُتِبَ عَلَيْكُمُ الصِّيَامُ", "en": "\"O you who have believed, decreed upon you is fasting...\" (2:183)"},
-        {"ar": "شَهْرُ رَمَضَانَ الَّذِي أُنزِلَ فِيهِ الْقُرْآنُ", "en": "\"The month of Ramadan in which was revealed the Qur’an...\" (2:185)"},
-        {"ar": "إِنَّا أَنزَلْنَاهُ فِي لَيْلَةِ الْقَدْرِ", "en": "\"Indeed, We sent it down during the Night of Decree.\" (97:1)"},
-        {"ar": "وَمَنْ يَتَّقِ اللَّهَ يَجْعَلْ لَهُ مِنْ أَمْرِهِ يُسْرًا", "en": "\"Whoever fears Allah — He will make for him of his affair ease.\" (65:4)"},
-        {"ar": "رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً", "en": "\"Our Lord, give us in this world good and in the Hereafter good...\" (2:201)"},
-        {"ar": "إِنَّ مَعَ الْعُسْرِ يُسْرًا", "en": "\"Indeed, with hardship comes ease.\" (94:6)"},
-        {"ar": "فَاذْكُرُونِي أَذْكُرْكُمْ", "en": "\"Remember Me, and I will remember you.\" (2:152)"}
-    ]
-    </script>
-
-    <!-- Translations -->
-    <script id="translations-data" type="application/json">
-    {
-        "en": {
-            "title": "Ramadan 1447 · 2026 🌙",
-            "search": "Search menu... (kunafa, coffee)",
-            "vegan": "🌱 Vegan",
-            "nutFree": "🥜 Nut-Free",
-            "footerHours": "7:00 PM – 2:00 AM Daily · throughout Ramadan 1447",
-            "imsak": "Imsak",
-            "maghrib": "Maghrib",
-            "isha": "Isha",
-            "iftar": "Iftar in"
-        },
-        "ar": {
-            "title": "رمضان ١٤٤٧ · ٢٠٢٦ 🌙",
-            "search": "ابحث في القائمة... (كنافة، قهوة)",
-            "vegan": "🌱 نباتي",
-            "nutFree": "🥜 خالي من المكسرات",
-            "footerHours": "٧:٠٠ مساءً – ٢:٠٠ صباحاً يومياً · طوال رمضان ١٤٤٧",
-            "imsak": "الإمساك",
-            "maghrib": "المغرب",
-            "isha": "العشاء",
-            "iftar": "الإفطار بعد"
-        }
-    }
-    </script>
-
-    <!-- Main Application Script -->
+    
     <script>
         (function() {
-            "use strict";
-
-            // ==================== DATA LOADING ====================
-            const menuData = JSON.parse(document.getElementById('menu-data').textContent);
-            const prayerTimes = JSON.parse(document.getElementById('prayer-data').textContent);
-            const verses = JSON.parse(document.getElementById('quotes-data').textContent);
-            const translations = JSON.parse(document.getElementById('translations-data').textContent);
-
-            // ==================== CONSTANTS ====================
+            const data = JSON.parse(document.getElementById('menuData').textContent);
             const IMAGE_BASE = "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/";
-            const FALLBACK_IMAGE = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%232f241e'/%3E%3Ctext x='50' y='115' font-family='Inter' font-size='24' fill='%23c7a05b'%3ETurkiana%3C/text%3E%3C/svg%3E";
-
-            // ==================== STATE ====================
-            let currentLang = localStorage.getItem('turkianaLang') || 'en';
-            let currentTheme = localStorage.getItem('turkianaTheme') || 'system';
-            let activeCategory = 'all';
-            let searchTerm = '';
-            let activeFilters = { vegan: false, nutFree: false };
-            let verseIndex = 0;
-            let iftarInterval = null;
-            let searchTimeout = null;
-            let lastFocusedElement = null;
-
-            // ==================== DOM ELEMENTS ====================
+            let lang = localStorage.getItem('lang') || 'en';
+            let activeCat = 'all';
+            let searchQ = '';
+            let translateX = 0;
+            let isDragging = false;
+            let startX = 0;
+            let prevX = 0;
+            let velocity = 0;
+            let lastTime = 0;
+            let raf = null;
+            let currentItems = [];
+            
             const els = {
-                themeToggle: document.getElementById('themeToggle'),
-                langToggle: document.getElementById('langToggle'),
+                track: document.getElementById('track'),
+                carousel: document.getElementById('carousel'),
+                catBar: document.getElementById('catBar'),
                 searchInput: document.getElementById('searchInput'),
-                clearSearch: document.getElementById('clearSearch'),
-                categoryNav: document.getElementById('categoryNav'),
-                quickFilters: document.getElementById('quickFilters'),
-                menuContainer: document.getElementById('menuContainer'),
-                prayerRow: document.getElementById('prayerRow'),
-                verseArabic: document.getElementById('verseArabic'),
-                verseEnglish: document.getElementById('verseEnglish'),
-                footerHours: document.getElementById('footerHours'),
-                mainTitle: document.getElementById('mainTitle'),
-                starfield: document.getElementById('starfield'),
-                backToTop: document.getElementById('backToTop'),
-                modal: document.getElementById('itemModal'),
-                closeModal: document.getElementById('closeModal'),
+                clearBtn: document.getElementById('clearBtn'),
+                modal: document.getElementById('modal'),
+                modalImg: document.getElementById('modalImg'),
                 modalBody: document.getElementById('modalBody'),
-                modalFigure: document.getElementById('modalFigure')
+                modalClose: document.getElementById('modalClose'),
+                themeBtn: document.getElementById('themeBtn'),
+                langBtn: document.getElementById('langBtn')
             };
-
-            // ==================== THEME MANAGEMENT ====================
-            function setTheme(theme) {
-                const root = document.documentElement;
-                root.classList.remove('light-theme', 'dark-theme');
-                
-                if (theme === 'light') {
-                    root.classList.add('light-theme');
-                } else if (theme === 'dark') {
-                    root.classList.add('dark-theme');
+            
+            function generateStars() {
+                const container = document.getElementById('stars');
+                for (let i = 0; i < 92; i++) {
+                    const s = document.createElement('div');
+                    s.className = 'star';
+                    s.style.left = Math.random()*100 + '%';
+                    s.style.top = Math.random()*100 + '%';
+                    s.style.width = s.style.height = (Math.random()*3.5 + 1.5) + 'px';
+                    s.style.animationDelay = Math.random()*6 + 's';
+                    container.appendChild(s);
                 }
-                
-                currentTheme = theme;
-                localStorage.setItem('turkianaTheme', theme);
-                updateThemeIcons();
             }
-
-            function updateThemeIcons() {
-                const isDark = currentTheme === 'dark' || 
-                    (currentTheme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
-                
-                els.themeToggle.innerHTML = isDark ? '☀️' : '🌙';
-            }
-
-            // Initialize theme
-            if (currentTheme === 'light') setTheme('light');
-            else if (currentTheme === 'dark') setTheme('dark');
-            else setTheme('system');
-
-            // Listen for system theme changes
-            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateThemeIcons);
-
-            // ==================== LANGUAGE MANAGEMENT ====================
-            function setLanguage(lang) {
-                currentLang = lang;
-                localStorage.setItem('turkianaLang', lang);
-                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-                document.documentElement.lang = lang;
-                
-                els.langToggle.textContent = lang === 'en' ? 'EN' : 'AR';
-                els.mainTitle.textContent = translations[lang].title;
-                els.searchInput.placeholder = translations[lang].search;
-                els.footerHours.textContent = translations[lang].footerHours;
-                
-                updatePrayerTimes();
-                renderQuickFilters();
-                renderCategoryNav();
-                renderMenu();
-                updateVerse();
-            }
-
-            // ==================== PRAYER TIMES ====================
-            function getTodayPrayerTimes() {
-                const today = new Date().toISOString().slice(0, 10);
-                return prayerTimes[today] || { imsak: "04:34", maghrib: "17:35", isha: "19:05" };
-            }
-
-            function updatePrayerTimes() {
-                const times = getTodayPrayerTimes();
-                const t = translations[currentLang];
-                
-                els.prayerRow.innerHTML = `
-                    <div class="prayer-item"><i class="fas fa-clock"></i> ${t.imsak}: ${times.imsak}</div>
-                    <div class="prayer-item"><i class="fas fa-sun"></i> ${t.maghrib}: ${times.maghrib}</div>
-                    <div class="prayer-item"><i class="fas fa-mosque"></i> ${t.isha}: ${times.isha}</div>
-                    <div class="countdown" id="iftarTimer"><i class="fas fa-clock"></i> ${t.iftar}: <span>00:00:00</span></div>
-                `;
-                
-                startIftarTimer();
-            }
-
-            function startIftarTimer() {
-                if (iftarInterval) clearInterval(iftarInterval);
-                iftarInterval = setInterval(updateIftarTimer, 1000);
-                updateIftarTimer();
-            }
-
-            function updateIftarTimer() {
-                const timerSpan = document.querySelector('#iftarTimer span');
-                if (!timerSpan) return;
-                
-                const now = new Date();
-                const today = now.toISOString().slice(0, 10);
-                const times = prayerTimes[today] || { maghrib: "17:35" };
-                
-                const [hours, minutes] = times.maghrib.split(':').map(Number);
-                const maghrib = new Date(now.getFullYear(), now.getMonth(), now.getDate(), hours, minutes, 0);
-                
-                if (now > maghrib) maghrib.setDate(maghrib.getDate() + 1);
-                
-                const diff = maghrib - now;
-                if (diff < 0) {
-                    timerSpan.textContent = "00:00:00";
-                    return;
-                }
-                
-                const h = Math.floor(diff / 3600000);
-                const m = Math.floor((diff % 3600000) / 60000);
-                const s = Math.floor((diff % 60000) / 1000);
-                
-                timerSpan.textContent = `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
-            }
-
-            // ==================== QUOTES ====================
-            function updateVerse() {
-                const verse = verses[verseIndex];
-                els.verseArabic.textContent = verse.ar;
-                els.verseEnglish.textContent = currentLang === 'en' ? verse.en : '';
-            }
-
-            function rotateVerse() {
-                verseIndex = (verseIndex + 1) % verses.length;
-                updateVerse();
-            }
-
-            // ==================== FILTERS ====================
-            function getFilteredItems() {
-                let items = [...menuData.items];
-                
-                // Apply category filter
-                if (activeCategory !== 'all') {
-                    items = items.filter(item => item.categoryId === activeCategory);
-                }
-                
-                // Apply search
-                if (searchTerm) {
-                    const term = searchTerm.toLowerCase();
-                    items = items.filter(item => 
-                        item.nameEn.toLowerCase().includes(term) ||
-                        (item.nameAr && item.nameAr.toLowerCase().includes(term)) ||
-                        item.descriptionEn.toLowerCase().includes(term)
+            
+            function getFiltered() {
+                let filtered = data.items;
+                if (activeCat !== 'all') filtered = filtered.filter(i => i.categoryId === activeCat);
+                if (searchQ) {
+                    const q = searchQ.toLowerCase();
+                    filtered = filtered.filter(i => 
+                        i.nameEn.toLowerCase().includes(q) || 
+                        (i.nameAr && i.nameAr.toLowerCase().includes(q)) ||
+                        i.descriptionEn.toLowerCase().includes(q)
                     );
                 }
-                
-                // Apply dietary filters
-                if (activeFilters.vegan) {
-                    items = items.filter(item => item.dietary && item.dietary.includes('vegan'));
-                }
-                if (activeFilters.nutFree) {
-                    items = items.filter(item => !item.dietary || !item.dietary.includes('contains-nuts'));
-                }
-                
-                return items;
+                return filtered;
             }
-
-            function getCategoryCounts() {
-                const baseItems = getFilteredItems();
-                const counts = { all: baseItems.length };
+            
+            function renderCats() {
+                const counts = {all: getFiltered().length};
+                data.categories.forEach(c => {
+                    if (c.id !== 'all') counts[c.id] = getFiltered().filter(i => i.categoryId === c.id).length;
+                });
                 
-                menuData.categories.forEach(cat => {
-                    if (cat.id !== 'all') {
-                        counts[cat.id] = baseItems.filter(item => item.categoryId === cat.id).length;
+                let html = '';
+                data.categories.forEach(c => {
+                    const name = lang === 'ar' ? c.nameAr : c.nameEn;
+                    html += `<button class="cat-btn ${c.id===activeCat?'active':''}" data-id="${c.id}">${name}</button>`;
+                });
+                els.catBar.innerHTML = html;
+                
+                els.catBar.querySelectorAll('.cat-btn').forEach(b => {
+                    b.addEventListener('click', () => {
+                        activeCat = b.dataset.id;
+                        renderCats();
+                        switchContent(getFiltered());
+                    });
+                });
+            }
+            
+            function createCardHTML(item) {
+                const name = lang === 'ar' ? item.nameAr : item.nameEn;
+                const nameAlt = lang === 'ar' ? item.nameEn : item.nameAr || '';
+                return `
+                    <div class="figure">
+                        <img src="${IMAGE_BASE}${item.image}" alt="${name}" loading="lazy">
+                    </div>
+                    <div class="content">
+                        <div class="name">${name}</div>
+                        ${nameAlt ? `<div class="name-ar">${nameAlt}</div>` : ''}
+                        <div class="desc">${item.descriptionEn}</div>
+                        <div class="price">${item.price} QAR</div>
+                    </div>
+                `;
+            }
+            
+            function renderTrack(items) {
+                els.track.innerHTML = '';
+                const extended = [...items, ...items, ...items];
+                extended.forEach((item, idx) => {
+                    const card = document.createElement('div');
+                    card.className = 'carousel-card';
+                    card.innerHTML = createCardHTML(item);
+                    card.dataset.index = idx % items.length;
+                    card.addEventListener('click', () => openModal(items[card.dataset.index]));
+                    els.track.appendChild(card);
+                });
+                
+                // Initial position to middle copy
+                const cardW = 340 + 36;
+                translateX = -items.length * cardW;
+                els.track.style.transition = 'none';
+                els.track.style.transform = `translateX(${translateX}px)`;
+                
+                // Stagger entrance
+                setTimeout(() => {
+                    const cards = els.track.children;
+                    for (let i = 0; i < cards.length; i++) {
+                        setTimeout(() => {
+                            cards[i].style.transition = 'all 0.9s var(--ease-out)';
+                            cards[i].style.opacity = '1';
+                            cards[i].style.transform = 'translateY(0) scale(1)';
+                        }, i * 22);
+                    }
+                }, 80);
+            }
+            
+            function update3D() {
+                const cards = els.track.children;
+                const containerRect = els.carousel.getBoundingClientRect();
+                const center = containerRect.left + containerRect.width / 2;
+                
+                for (let card of cards) {
+                    const rect = card.getBoundingClientRect();
+                    const cardCenter = rect.left + rect.width / 2;
+                    let offset = (cardCenter - center) / 380; // tuned to card width
+                    offset = Math.max(Math.min(offset, 2.2), -2.2);
+                    
+                    const rotateY = offset * -36;
+                    const scale = 1 - Math.abs(offset) * 0.24;
+                    const z = (1 - Math.abs(offset)) * 110 - 65;
+                    const op = 0.65 + (1 - Math.abs(offset)) * 0.35;
+                    
+                    card.style.transform = `translateZ(${z}px) rotateY(${rotateY}deg) scale(${scale})`;
+                    card.style.opacity = op;
+                    card.style.boxShadow = `0 ${30 + (1-Math.abs(offset))*35}px ${90}px rgba(0,0,0,${0.65 - Math.abs(offset)*0.35})`;
+                }
+            }
+            
+            function animateMomentum() {
+                velocity *= 0.935;
+                translateX += velocity * 1.65;
+                els.track.style.transform = `translateX(${translateX}px)`;
+                update3D();
+                
+                if (Math.abs(velocity) > 0.6) {
+                    raf = requestAnimationFrame(animateMomentum);
+                } else {
+                    snapToCenter();
+                }
+            }
+            
+            function snapToCenter() {
+                const cards = Array.from(els.track.children);
+                let closest = null;
+                let minDist = Infinity;
+                const center = els.carousel.getBoundingClientRect().left + els.carousel.offsetWidth / 2;
+                
+                cards.forEach(card => {
+                    const r = card.getBoundingClientRect();
+                    const dist = Math.abs((r.left + r.width/2) - center);
+                    if (dist < minDist) {
+                        minDist = dist;
+                        closest = card;
                     }
                 });
                 
-                return counts;
-            }
-
-            // ==================== RENDERING ====================
-            function renderQuickFilters() {
-                els.quickFilters.innerHTML = `
-                    <button class="quick-filter ${activeFilters.vegan ? 'active' : ''}" data-filter="vegan">
-                        ${translations[currentLang].vegan}
-                    </button>
-                    <button class="quick-filter ${activeFilters.nutFree ? 'active' : ''}" data-filter="nutFree">
-                        ${translations[currentLang].nutFree}
-                    </button>
-                `;
+                if (!closest) return;
                 
-                els.quickFilters.querySelectorAll('.quick-filter').forEach(btn => {
-                    btn.addEventListener('click', () => {
-                        const filter = btn.dataset.filter;
-                        activeFilters[filter] = !activeFilters[filter];
-                        renderQuickFilters();
-                        renderCategoryNav();
-                        renderMenu();
-                    });
-                });
-            }
-
-            function renderCategoryNav() {
-                const counts = getCategoryCounts();
+                const targetOffset = center - (closest.getBoundingClientRect().left + closest.offsetWidth/2);
+                translateX += targetOffset;
                 
-                els.categoryNav.innerHTML = menuData.categories.map(cat => {
-                    const name = currentLang === 'ar' ? cat.nameAr : cat.nameEn;
-                    const count = counts[cat.id] || 0;
-                    
-                    return `
-                        <button class="cat-btn ${cat.id === activeCategory ? 'active' : ''}" data-cat="${cat.id}">
-                            <i class="fas ${cat.icon}"></i> ${name}
-                            <span class="count-badge">${count}</span>
-                        </button>
-                    `;
-                }).join('');
+                els.track.style.transition = 'transform 0.65s var(--ease-out)';
+                els.track.style.transform = `translateX(${translateX}px)`;
                 
-                els.categoryNav.querySelectorAll('.cat-btn').forEach(btn => {
-                    btn.addEventListener('click', () => {
-                        els.categoryNav.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-                        btn.classList.add('active');
-                        activeCategory = btn.dataset.cat;
-                        renderMenu();
-                    });
-                });
-            }
-
-            function renderMenu() {
-                const items = getFilteredItems();
-                const currentCat = menuData.categories.find(c => c.id === activeCategory) || menuData.categories[0];
-                const catName = currentLang === 'ar' ? currentCat.nameAr : currentCat.nameEn;
-                
-                let headerHtml = '';
-                if (searchTerm) {
-                    headerHtml = `
-                        <h2 style="font-size: var(--text-3xl); color: var(--color-primary); margin-bottom: var(--space-xl); text-align: center;">
-                            ${currentLang === 'ar' ? 'نتائج البحث عن' : 'Search Results for'} “${searchTerm}”
-                            <span style="font-size: var(--text-lg); opacity: 0.7;">(${items.length})</span>
-                        </h2>
-                    `;
-                } else {
-                    headerHtml = `
-                        <h2 style="font-size: var(--text-3xl); color: var(--color-primary); margin-bottom: var(--space-xl);">
-                            <i class="fas ${currentCat.icon}" style="color: var(--color-primary);"></i> ${catName}
-                        </h2>
-                    `;
+                // Infinite loop reset
+                const setWidth = currentItems.length * (340 + 36);
+                if (translateX > -setWidth * 0.6) {
+                    translateX -= setWidth;
+                    setTimeout(() => {
+                        els.track.style.transition = 'none';
+                        els.track.style.transform = `translateX(${translateX}px)`;
+                        update3D();
+                    }, 700);
+                } else if (translateX < -setWidth * 2.4) {
+                    translateX += setWidth;
+                    setTimeout(() => {
+                        els.track.style.transition = 'none';
+                        els.track.style.transform = `translateX(${translateX}px)`;
+                        update3D();
+                    }, 700);
                 }
                 
-                if (items.length === 0) {
-                    els.menuContainer.innerHTML = `
-                        ${headerHtml}
-                        <div class="no-results">
-                            <i class="fas fa-moon" style="font-size: var(--text-5xl); margin-bottom: var(--space-lg); opacity: 0.5;"></i>
-                            <h3>${currentLang === 'ar' ? 'لا توجد نتائج' : 'No matches found'}</h3>
-                            <p>${currentLang === 'ar' ? 'جرب فلاتر أو كلمات أخرى' : 'Try different filters or search term'}</p>
-                        </div>
-                    `;
-                    return;
-                }
-                
-                let menuHtml = `${headerHtml}<div class="menu-grid">`;
-                
-                items.forEach(item => {
-                    const name = currentLang === 'ar' ? item.nameAr : item.nameEn;
-                    const altName = currentLang === 'ar' ? item.nameEn : (item.nameAr || '');
-                    
-                    const dietaryTags = (item.dietary || []).map(tag => {
-                        let tagClass = 'dietary-tag';
-                        if (tag === 'vegan') tagClass += ' tag-vegan';
-                        else if (tag === 'vegetarian') tagClass += ' tag-vegetarian';
-                        else if (tag.includes('dairy')) tagClass += ' tag-dairy';
-                        else if (tag === 'gluten-free') tagClass += ' tag-gluten-free';
-                        else if (tag.includes('nut')) tagClass += ' tag-nuts';
-                        else if (tag === 'dairy-free') tagClass += ' tag-dairy-free';
-                        
-                        let label = tag;
-                        if (currentLang === 'ar') {
-                            if (tag === 'vegan') label = 'نباتي';
-                            else if (tag === 'vegetarian') label = 'نباتي';
-                            else if (tag.includes('dairy')) label = 'يحتوي ألبان';
-                            else if (tag === 'gluten-free') label = 'خالي من الغلوتين';
-                            else if (tag.includes('nut')) label = 'يحتوي مكسرات';
-                        }
-                        
-                        return `<span class="${tagClass}">${label}</span>`;
-                    }).join('');
-                    
-                    menuHtml += `
-                        <article class="menu-item" data-id="${item.id}" tabindex="0">
-                            <figure class="item-figure">
-                                ${item.popular ? '<figcaption class="item-badge"><i class="fas fa-star"></i> Popular</figcaption>' : ''}
-                                <img 
-                                    src="${IMAGE_BASE}${item.image}" 
-                                    alt="${name}"
-                                    width="300"
-                                    height="200"
-                                    loading="lazy"
-                                    decoding="async"
-                                    onerror="this.src='${FALLBACK_IMAGE}'"
-                                >
-                            </figure>
-                            
-                            <div class="item-content">
-                                <header class="item-header">
-                                    <h3 class="item-name">${name}</h3>
-                                    <data class="item-price" value="${item.price}">${item.price} QAR</data>
-                                </header>
-                                
-                                ${altName ? `<div class="item-name-ar">${altName}</div>` : ''}
-                                
-                                <p class="item-description">${item.descriptionEn}</p>
-                                
-                                <div class="dietary-tags">
-                                    ${item.calories ? `
-                                        <span class="item-calories">
-                                            <i class="fas fa-fire"></i> ${item.calories}
-                                        </span>
-                                    ` : ''}
-                                    ${dietaryTags}
-                                </div>
-                                
-                                ${item.storyEn ? `
-                                    <details class="origin-story">
-                                        <summary class="origin-summary">
-                                            <i class="fas fa-book-open"></i>
-                                            ${currentLang === 'ar' ? 'القصة العثمانية' : 'Ottoman Story'}
-                                        </summary>
-                                        <div class="origin-content">
-                                            ${item.storyEn}
-                                        </div>
-                                    </details>
-                                ` : ''}
-                            </div>
-                        </article>
-                    `;
-                });
-                
-                menuHtml += '</div>';
-                els.menuContainer.innerHTML = menuHtml;
-                
-                // Add click handlers
-                els.menuContainer.querySelectorAll('.menu-item').forEach(card => {
-                    card.addEventListener('click', () => showModal(card.dataset.id));
-                    card.addEventListener('keydown', e => {
-                        if (e.key === 'Enter' || e.key === ' ') {
-                            e.preventDefault();
-                            showModal(card.dataset.id);
-                        }
-                    });
-                });
+                update3D();
             }
-
-            // ==================== MODAL ====================
-            function showModal(itemId) {
-                lastFocusedElement = document.activeElement;
-                
-                const item = menuData.items.find(i => i.id === itemId);
-                if (!item) return;
-                
-                const name = currentLang === 'ar' ? item.nameAr : item.nameEn;
-                const altName = currentLang === 'ar' ? item.nameEn : (item.nameAr || '');
-                
-                // Build modal content
-                let optionsHtml = '';
-                if (item.hasMilkSelection) {
-                    optionsHtml += `
-                        <div class="modal-options">
-                            <i class="fas fa-mug-hot"></i>
-                            ${currentLang === 'ar' ? 'خيارات الحليب: شوفان، لوز، كامل' : 'Milk options: oat, almond, whole milk'}
-                        </div>
-                    `;
-                }
-                if (item.hasBeanSelection) {
-                    optionsHtml += `
-                        <div class="modal-options">
-                            <i class="fas fa-seedling"></i>
-                            ${currentLang === 'ar' ? 'اختيار البن متاح' : 'Bean selection available'}
-                        </div>
-                    `;
-                }
-                
-                els.modalFigure.innerHTML = `
-                    <img 
-                        src="${IMAGE_BASE}${item.image}" 
-                        alt="${name}"
-                        width="640"
-                        height="280"
-                        onerror="this.src='${FALLBACK_IMAGE}'"
-                    >
-                `;
-                
-                els.modalBody.innerHTML = `
-                    <h3 class="modal-title" id="modal-title">${name}</h3>
-                    ${altName ? `<div class="modal-subtitle">${altName}</div>` : ''}
-                    
-                    <div class="modal-price-row">
-                        <span class="modal-price">${item.price} QAR</span>
-                        ${item.calories ? `<span><i class="fas fa-fire"></i> ${item.calories}</span>` : ''}
-                    </div>
-                    
-                    <p class="modal-description">${item.descriptionEn}</p>
-                    
-                    ${optionsHtml}
-                    
-                    ${item.storyEn ? `
-                        <div class="modal-story origin-story">
-                            <div class="origin-content" style="border-left-color: var(--color-primary);">
-                                <i class="fas fa-quote-right"></i> ${item.storyEn}
-                            </div>
-                        </div>
-                    ` : ''}
-                `;
-                
-                // Show modal
-                els.modal.showModal();
-                document.querySelector('main').setAttribute('inert', '');
-                
-                // Focus close button
-                els.closeModal.focus();
+            
+            function startDrag(e) {
+                isDragging = true;
+                startX = prevX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
+                velocity = 0;
+                lastTime = Date.now();
+                cancelAnimationFrame(raf);
+                els.track.style.transition = 'none';
             }
-
-            function closeModal() {
-                els.modal.close();
-                document.querySelector('main').removeAttribute('inert');
-                if (lastFocusedElement) lastFocusedElement.focus();
-            }
-
-            // ==================== STARS GENERATION ====================
-            function generateStars() {
-                els.starfield.innerHTML = '';
+            
+            function duringDrag(e) {
+                if (!isDragging) return;
+                const x = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
+                const delta = x - prevX;
+                translateX += delta;
+                els.track.style.transform = `translateX(${translateX}px)`;
+                prevX = x;
                 
-                for (let i = 0; i < 70; i++) {
-                    const star = document.createElement('div');
-                    star.className = `star ${i % 3 === 0 ? 'star-gold' : i % 3 === 1 ? 'star-silver' : 'star-copper'}`;
-                    star.style.width = `${Math.random() * 5 + 2}px`;
-                    star.style.height = star.style.width;
-                    star.style.left = `${Math.random() * 100}%`;
-                    star.style.top = `${Math.random() * 100}%`;
-                    star.style.animationDelay = `${Math.random() * 7}s`;
-                    els.starfield.appendChild(star);
+                const now = Date.now();
+                if (now - lastTime > 12) {
+                    velocity = delta * 1.8;
+                    lastTime = now;
                 }
+                update3D();
             }
-
-            // ==================== SEARCH ====================
-            function handleSearch() {
-                clearTimeout(searchTimeout);
-                searchTimeout = setTimeout(() => {
-                    searchTerm = els.searchInput.value.trim();
-                    renderCategoryNav();
-                    renderMenu();
-                    els.clearSearch.classList.toggle('visible', searchTerm.length > 0);
+            
+            function endDrag() {
+                isDragging = false;
+                animateMomentum();
+            }
+            
+            function switchContent(newItems) {
+                currentItems = newItems;
+                els.track.style.transition = 'opacity 0.28s ease';
+                els.track.style.opacity = '0';
+                
+                setTimeout(() => {
+                    renderTrack(newItems);
+                    els.track.style.opacity = '1';
+                    update3D();
                 }, 300);
             }
-
-            // ==================== BACK TO TOP ====================
-            function handleScroll() {
-                els.backToTop.classList.toggle('visible', window.scrollY > 400);
+            
+            function openModal(item) {
+                const name = lang === 'ar' ? item.nameAr : item.nameEn;
+                const nameAlt = lang === 'ar' ? item.nameEn : item.nameAr || '';
+                
+                els.modalImg.innerHTML = `<img src="${IMAGE_BASE}${item.image}" style="width:100%;height:100%;object-fit:cover">`;
+                
+                els.modalBody.innerHTML = `
+                    <h2 style="font-family:var(--font-heading);font-size:2.4rem;color:var(--gold);margin-bottom:8px">${name}</h2>
+                    ${nameAlt ? `<div style="font-family:var(--font-ar);font-size:1.35rem;color:var(--soft);margin-bottom:18px">${nameAlt}</div>` : ''}
+                    <div style="font-size:1.85rem;font-weight:600;color:var(--accent);margin:16px 0">${item.price} QAR</div>
+                    <p style="color:var(--soft);line-height:1.65">${item.descriptionEn}</p>
+                    ${item.hasMilk ? `<div style="margin-top:24px;padding:14px 20px;background:rgba(226,182,117,0.1);border-radius:16px;font-size:0.95rem">Milk options: oat • almond • whole</div>` : ''}
+                    ${item.hasBean ? `<div style="margin-top:24px;padding:14px 20px;background:rgba(226,182,117,0.1);border-radius:16px;font-size:0.95rem">Bean selection available</div>` : ''}
+                `;
+                
+                els.modal.showModal();
             }
-
-            // ==================== INITIALIZATION ====================
+            
+            function initCarousel() {
+                currentItems = getFiltered();
+                renderTrack(currentItems);
+                
+                const track = els.track;
+                
+                track.addEventListener('mousedown', startDrag);
+                track.addEventListener('mousemove', duringDrag);
+                track.addEventListener('mouseup', endDrag);
+                track.addEventListener('mouseleave', endDrag);
+                
+                track.addEventListener('touchstart', startDrag);
+                track.addEventListener('touchmove', duringDrag);
+                track.addEventListener('touchend', endDrag);
+                
+                // Initial 3D
+                setTimeout(update3D, 120);
+                window.addEventListener('resize', update3D);
+            }
+            
             function init() {
-                // Generate stars
                 generateStars();
                 
-                // Set initial language
-                setLanguage(currentLang);
-                
-                // Render initial views
-                renderQuickFilters();
-                renderCategoryNav();
-                renderMenu();
-                updatePrayerTimes();
-                updateVerse();
-                
-                // Start quote rotation
-                setInterval(rotateVerse, 8000);
-                
-                // Event listeners
-                els.themeToggle.addEventListener('click', () => {
-                    if (currentTheme === 'system') setTheme('dark');
-                    else if (currentTheme === 'dark') setTheme('light');
-                    else setTheme('system');
+                // Theme
+                els.themeBtn.addEventListener('click', () => {
+                    document.documentElement.style.setProperty('--bg', document.documentElement.style.getPropertyValue('--bg') === '#f5e6d3' ? '#0a0503' : '#f5e6d3');
+                    document.documentElement.style.setProperty('--surface', document.documentElement.style.getPropertyValue('--surface') === '#eadbc5' ? '#1f130e' : '#eadbc5');
+                    els.themeBtn.textContent = els.themeBtn.textContent === '🌙' ? '☀️' : '🌙';
                 });
                 
-                els.langToggle.addEventListener('click', () => {
-                    setLanguage(currentLang === 'en' ? 'ar' : 'en');
+                // Language
+                els.langBtn.addEventListener('click', () => {
+                    lang = lang === 'en' ? 'ar' : 'en';
+                    els.langBtn.textContent = lang.toUpperCase();
+                    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+                    renderCats();
+                    switchContent(getFiltered());
                 });
                 
-                els.searchInput.addEventListener('input', handleSearch);
+                // Search
+                els.searchInput.addEventListener('input', () => {
+                    searchQ = els.searchInput.value.trim();
+                    els.clearBtn.style.display = searchQ ? 'block' : 'none';
+                    switchContent(getFiltered());
+                    renderCats();
+                });
                 
-                els.clearSearch.addEventListener('click', () => {
+                els.clearBtn.addEventListener('click', () => {
                     els.searchInput.value = '';
-                    searchTerm = '';
-                    renderCategoryNav();
-                    renderMenu();
-                    els.clearSearch.classList.remove('visible');
-                    els.searchInput.focus();
+                    searchQ = '';
+                    els.clearBtn.style.display = 'none';
+                    switchContent(getFiltered());
+                    renderCats();
                 });
                 
-                els.closeModal.addEventListener('click', closeModal);
-                els.modal.addEventListener('click', e => {
-                    if (e.target === els.modal) closeModal();
-                });
+                // Modal
+                els.modalClose.addEventListener('click', () => els.modal.close());
+                els.modal.addEventListener('click', e => { if (e.target === els.modal) els.modal.close(); });
                 
-                document.addEventListener('keydown', e => {
-                    if (e.key === 'Escape' && els.modal.open) closeModal();
-                });
-                
-                els.backToTop.addEventListener('click', () => {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                });
-                
-                window.addEventListener('scroll', handleScroll, { passive: true });
-                
-                // Image lazy loading fallback
-                if (!('loading' in HTMLImageElement.prototype)) {
-                    const images = document.querySelectorAll('img[loading="lazy"]');
-                    const observer = new IntersectionObserver((entries) => {
-                        entries.forEach(entry => {
-                            if (entry.isIntersecting) {
-                                const img = entry.target;
-                                img.src = img.dataset.src || img.src;
-                                observer.unobserve(img);
-                            }
-                        });
-                    });
-                    images.forEach(img => observer.observe(img));
-                }
+                // Start
+                renderCats();
+                initCarousel();
             }
-
-            // Start everything
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', init);
-            } else {
-                init();
-            }
+            
+            window.onload = init;
         })();
-    </script>
-    
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Restaurant",
-        "name": "Turkiana Café & Sweets",
-        "description": "Luxury Turkish coffee and sweets in Doha",
-        "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Doha",
-            "addressRegion": "Mshreib Downtown",
-            "addressCountry": "QA"
-        },
-        "telephone": "+97451866671",
-        "servesCuisine": ["Turkish", "Ottoman", "Middle Eastern"],
-        "priceRange": "$$",
-        "openingHoursSpecification": {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-            "opens": "19:00",
-            "closes": "02:00"
-        }
-    }
     </script>
 </body>
 </html>
