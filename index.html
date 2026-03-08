@@ -3,13 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://turkianacafe-ux.github.io; connect-src 'self';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://turkianacafe-ux.github.io; connect-src 'self';">
     <title>Turkiana • Ottoman Nights 1447</title>
     <meta name="description" content="Premium Turkish coffee &amp; Ottoman sweets in Doha.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@500;600;700&amp;family=Scheherazade+New:wght@400;700&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="manifest" href="data:application/manifest+json,{
+        &quot;name&quot;:&quot;Turkiana Menu&quot;,
+        &quot;short_name&quot;:&quot;Turkiana&quot;,
+        &quot;icons&quot;:[{&quot;src&quot;:&quot;https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/icon-192.png&quot;,&quot;sizes&quot;:&quot;192x192&quot;,&quot;type&quot;:&quot;image/png&quot;}],
+        &quot;theme_color&quot;:&quot;#c7a05b&quot;,
+        &quot;background_color&quot;:&quot;#0a0503&quot;,
+        &quot;display&quot;:&quot;standalone&quot;,
+        &quot;start_url&quot;:&quot;.&quot;
+    }">
     <style>
         :root {
             --bg: #0a0503;
@@ -19,15 +28,15 @@
             --gold: #c7a05b;
             --accent: #e2b675;
             --border: #8b6b4a;
-            
+            --dietary-green: #4caf50;
+          
             --font-sans: 'Inter', system-ui, sans-serif;
             --font-heading: 'Playfair Display', serif;
             --font-ar: 'Scheherazade New', serif;
-            
+          
             --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
             --ease-in: cubic-bezier(0.32, 0, 0.67, 0);
         }
-        /* light theme — properly toggled */
         body.light {
             --bg: #fbf3e8;
             --surface: #efe2d3;
@@ -36,10 +45,11 @@
             --gold: #b28b4b;
             --accent: #9e6d3e;
             --border: #b49b7b;
+            --dietary-green: #388e3c;
         }
-        
+      
         * { margin:0; padding:0; box-sizing:border-box; }
-        
+      
         body {
             background: var(--bg);
             color: var(--text);
@@ -49,10 +59,9 @@
             position: relative;
             transition: background-color 0.3s, color 0.2s;
         }
-        
+      
         body[dir="rtl"] { font-family: var(--font-ar); }
-        
-        /* Decor */
+      
         .crescent {
             position: fixed;
             top: 12%;
@@ -68,19 +77,19 @@
             animation: crescent-breath 18s ease-in-out infinite;
             pointer-events: none;
         }
-        
+      
         @keyframes crescent-breath {
             0%,100% { box-shadow: 0 0 140px #ff9f1c; transform: translateX(-50%) scale(1); }
             50% { box-shadow: 0 0 210px #ffb347; transform: translateX(-50%) scale(1.04); }
         }
-        
+      
         .lanterns {
             position: fixed;
             inset: 0;
             z-index: 3;
             pointer-events: none;
         }
-        
+      
         .lantern {
             position: absolute;
             width: 82px;
@@ -90,7 +99,7 @@
             filter: drop-shadow(0 30px 50px #ff7a1f);
             animation: lantern-physics 14s linear infinite;
         }
-        
+      
         .lantern::before {
             content: '';
             position: absolute;
@@ -101,7 +110,7 @@
             height: 48px;
             background: linear-gradient(#c9a46b, #5c3f24);
         }
-        
+      
         .lantern::after {
             content: '';
             position: absolute;
@@ -115,7 +124,7 @@
             box-shadow: 0 0 40px #ffdd7a;
             animation: flame-flicker 1.4s infinite alternate ease-in-out;
         }
-        
+      
         .lantern .glass {
             position: absolute;
             top: 42px;
@@ -127,26 +136,26 @@
             border-radius: 40%;
             box-shadow: inset 0 0 28px #ffe8b3;
         }
-        
+      
         @keyframes lantern-physics {
             0% { transform: translateY(0) rotate(0deg); }
             33% { transform: translateY(-42px) rotate(6deg); }
             66% { transform: translateY(-26px) rotate(-5deg); }
             100% { transform: translateY(0) rotate(0deg); }
         }
-        
+      
         @keyframes flame-flicker {
             0% { transform: scale(1) translateY(0); opacity: 0.92; }
             100% { transform: scale(1.08) translateY(-4px); opacity: 1; }
         }
-        
+      
         .stars {
             position: fixed;
             inset: 0;
             z-index: 1;
             pointer-events: none;
         }
-        
+      
         .star {
             position: absolute;
             background: #fffbeb;
@@ -154,13 +163,29 @@
             box-shadow: 0 0 14px #ffe070;
             animation: star-twinkle 5s infinite alternate ease-in-out;
         }
-        
+      
         @keyframes star-twinkle {
             0% { opacity: 0.35; transform: scale(0.7); }
             100% { opacity: 1; transform: scale(1.35); }
         }
-        
-        /* Controls */
+      
+        .particle {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: #ffd700;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #ffd700;
+            animation: particleFade 1.2s linear forwards;
+            pointer-events: none;
+            z-index: 4;
+        }
+      
+        @keyframes particleFade {
+            0% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(3); }
+        }
+      
         .controls {
             position: fixed;
             top: 24px;
@@ -169,7 +194,7 @@
             gap: 14px;
             z-index: 300;
         }
-        
+      
         .ctrl {
             width: 56px;
             height: 56px;
@@ -184,15 +209,22 @@
             justify-content: center;
             transition: all 0.3s var(--ease-out);
             cursor: pointer;
+            min-width: 48px;
+            min-height: 48px;
         }
-        
+      
+        body.light .ctrl {
+            background: rgba(240,230,215,0.82);
+        }
+      
         .ctrl:hover {
             transform: scale(1.12) rotate(8deg);
             background: var(--gold);
             color: #0a0503;
         }
-        
-        /* Sticky categories */
+      
+        #backToTop { position: fixed; bottom: 100px; right: 24px; z-index: 300; }
+      
         .cat-bar {
             position: sticky;
             top: 20px;
@@ -213,7 +245,7 @@
             background: rgba(240, 230, 215, 0.92);
         }
         .cat-bar::-webkit-scrollbar { display: none; }
-        
+      
         .cat-btn {
             padding: 12px 28px;
             white-space: nowrap;
@@ -225,8 +257,10 @@
             transition: all 0.35s var(--ease-out);
             flex-shrink: 0;
             cursor: pointer;
+            min-width: 48px;
+            min-height: 48px;
         }
-        
+      
         .cat-btn.active,
         .cat-btn:hover {
             background: var(--gold);
@@ -234,8 +268,7 @@
             border-color: var(--gold);
             transform: translateY(-3px);
         }
-        
-        /* 3D Carousel */
+      
         .carousel-container {
             perspective: 1600px;
             perspective-origin: 50% 40%;
@@ -243,15 +276,21 @@
             overflow: hidden;
             position: relative;
         }
-        
+      
         .carousel-track {
             display: flex;
             gap: 36px;
             padding: 40px 20px;
             will-change: transform;
             user-select: none;
+            transform: translate3d(0,0,0);
+            transition: transform 0.3s ease;
         }
-        
+      
+        .dragging {
+            transition: none;
+        }
+      
         .carousel-card {
             flex: 0 0 340px;
             background: var(--surface);
@@ -260,73 +299,113 @@
             border: 1px solid var(--border);
             box-shadow: 0 30px 80px rgba(0,0,0,0.55);
             transform-style: preserve-3d;
-            transition: box-shadow 0.4s var(--ease-out), transform 0.4s var(--ease-out);
-            cursor: grab;
+            transition: box-shadow 0.4s var(--ease-out), transform 0.4s var(--ease-out), opacity 0.4s;
+            cursor: pointer;
             position: relative;
+            will-change: transform, opacity;
+            opacity: 0;
+            transform: translateY(50px) scale(0.9);
+            touch-action: manipulation;
         }
+      
         body.light .carousel-card {
             box-shadow: 0 20px 40px rgba(0,0,0,0.15);
         }
+      
         .carousel-card:active { cursor: grabbing; }
-        
+      
         .carousel-card .figure {
             position: relative;
             aspect-ratio: 16/9;
             overflow: hidden;
         }
-        
+      
         .carousel-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 1.1s var(--ease-out);
+            loading: lazy;
+            decoding: async;
         }
-        
+      
         .carousel-card:hover img {
             transform: scale(1.09);
         }
-        
+      
         .carousel-card .content {
             padding: 26px 24px 28px;
         }
-        
+      
         .carousel-card .name {
             font-family: var(--font-heading);
             font-size: 1.55rem;
             color: var(--gold);
             margin-bottom: 8px;
         }
-        
+      
         .carousel-card .name-ar {
             font-family: var(--font-ar);
             font-size: 1.22rem;
             color: var(--soft);
             margin-bottom: 14px;
         }
-        
+      
         .carousel-card .desc {
             color: var(--soft);
             font-size: 0.95rem;
             line-height: 1.55;
         }
-        
+      
         .carousel-card .price {
             margin-top: 18px;
             font-size: 1.35rem;
             font-weight: 600;
             color: var(--accent);
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
         }
-        
+      
+        .dietary-tags {
+            display: flex;
+            gap: 6px;
+            margin-top: 12px;
+        }
+      
+        .dietary-tag {
+            padding: 4px 10px;
+            background: var(--dietary-green);
+            color: white;
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+      
         .carousel-card:hover {
             box-shadow: 0 50px 110px rgba(199,160,91,0.22);
             transform: translateY(-12px) scale(1.02);
         }
-        
+      
         .carousel-card.pressed {
             transform: scale(0.965) !important;
             transition-duration: 80ms;
         }
-        
+      
+        .carousel-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at var(--x) var(--y), rgba(255,215,120,0.3), transparent 60%);
+            opacity: 0;
+            transition: opacity 0.2s;
+            pointer-events: none;
+        }
+      
+        .carousel-card:hover::before {
+            opacity: 1;
+        }
+      
         .carousel-card::after {
             content: '';
             position: absolute;
@@ -336,12 +415,34 @@
             transition: opacity 0.4s;
             pointer-events: none;
         }
-        
+      
         .carousel-card:hover::after {
             opacity: 1;
         }
-        
-        /* Floating search */
+      
+        .pagination {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+      
+        .pagination-dot {
+            width: 12px;
+            height: 12px;
+            background: var(--soft);
+            border-radius: 50%;
+            transition: background 0.3s;
+            cursor: pointer;
+        }
+      
+        .pagination-dot.active {
+            background: var(--gold);
+        }
+      
         .search-float {
             position: fixed;
             bottom: 32px;
@@ -351,7 +452,7 @@
             max-width: 480px;
             z-index: 400;
         }
-        
+      
         .search-box {
             background: rgba(30,20,15,0.88);
             backdrop-filter: blur(28px);
@@ -363,10 +464,11 @@
             gap: 18px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.6);
         }
+      
         body.light .search-box {
             background: rgba(245, 235, 220, 0.9);
         }
-        
+      
         #searchInput {
             flex: 1;
             background: none;
@@ -375,18 +477,20 @@
             color: var(--text);
             font-size: 1.1rem;
         }
+      
         #searchInput::placeholder { color: var(--soft); opacity: 0.8; }
-        
-        #clearBtn {
+      
+        #clearBtn, #voiceBtn {
             background: none;
             border: none;
             color: var(--gold);
             font-size: 1.5rem;
-            display: none;
             cursor: pointer;
+            display: none;
         }
-        
-        /* Modal */
+      
+        #voiceBtn { display: block; }
+      
         dialog {
             border: none;
             background: transparent;
@@ -395,14 +499,14 @@
             margin: auto;
             padding: 0;
         }
-        
+      
         .modal-content {
             background: var(--surface);
             border-radius: 32px;
             overflow: hidden;
             border: 2px solid var(--gold);
         }
-        
+      
         .modal-close {
             position: absolute;
             top: 24px;
@@ -417,25 +521,49 @@
             z-index: 10;
             cursor: pointer;
         }
-        
-        /* Footer */
+      
+        .modal-img img:hover {
+            transform: scale(1.05);
+            transition: 0.3s;
+        }
+      
         footer {
             text-align: center;
             padding: 80px 20px 60px;
             color: var(--soft);
             font-size: 0.95rem;
         }
-        
+      
         .brand {
             font-family: var(--font-heading);
             font-size: 3.2rem;
             color: var(--gold);
             margin-bottom: 12px;
         }
+      
+        @media (max-width: 768px) {
+            .carousel-track {
+                gap: 16px;
+                flex-direction: row;
+                overflow-x: auto;
+                transform: none;
+            }
+            .carousel-card {
+                flex: 0 0 280px;
+            }
+            .cat-bar {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+            }
+        }
+      
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 <body>
-    <!-- Decor (static) -->
     <div class="crescent"></div>
     <div class="lanterns">
         <div class="lantern" style="top:14%;left:9%;animation-duration:15.3s"><div class="glass"></div></div>
@@ -446,61 +574,64 @@
         <div class="lantern" style="top:73%;left:34%;animation-duration:16.4s"><div class="glass"></div></div>
     </div>
     <div class="stars" id="stars"></div>
-    
+  
     <div class="controls">
         <button id="themeBtn" class="ctrl">🌙</button>
         <button id="langBtn" class="ctrl">EN</button>
+        <button id="backToTop" class="ctrl">↑</button>
     </div>
-    
+  
     <div style="height:110px"></div>
-    
+  
     <nav class="cat-bar" id="catBar"></nav>
-    
+  
     <div class="carousel-container" id="carousel">
-        <div class="carousel-track" id="track"></div>
+        <div class="carousel-track" id="track" aria-label="Menu item carousel"></div>
+        <div class="pagination" id="pagination"></div>
     </div>
-    
+  
     <div class="search-float">
         <div class="search-box">
             <i class="fas fa-search" style="color:var(--gold);font-size:1.4rem"></i>
             <input type="text" id="searchInput" placeholder="Search Ottoman delights...">
+            <button id="voiceBtn"><i class="fas fa-microphone"></i></button>
             <button id="clearBtn">✕</button>
         </div>
     </div>
-    
+  
     <footer>
         <div class="brand">TURKIANA</div>
         <div>Mshreib Downtown, Doha • 7 PM – 2 AM</div>
         <div style="margin-top:12px">+974 5186 6671</div>
     </footer>
-    
+  
     <dialog id="modal">
         <div class="modal-content">
             <div style="position:relative">
-                <div id="modalImg" style="aspect-ratio:16/9;overflow:hidden"></div>
+                <div id="modalImg" class="modal-img" style="aspect-ratio:16/9;overflow:hidden"></div>
                 <button id="modalClose" class="modal-close">✕</button>
             </div>
             <div id="modalBody" style="padding:32px 28px"></div>
         </div>
     </dialog>
-    
-    <!-- Menu Data (exactly as provided) -->
+  
     <script id="menuData" type="application/json">
       {
         "categories": [
- { "id": "all", "nameEn": "🌟 All Menu", "nameAr": "🌟 كل القائمة", "icon": "fa-list" },
-                       { "id": "brewed", "nameEn": "Brewed on Arabic & Turkish Way", "nameAr": "مغلي على الطريقة العربية والتركية", "icon": "fa-coffee" },
-            { "id": "tea", "nameEn": "Tea on the House", "nameAr": "شاي في المنزل", "icon": "fa-mug-hot" },
-            { "id": "cafe", "nameEn": "Café & Chill", "nameAr": "كافيه واستجمام", "icon": "fa-martini-glass" },
-            { "id": "specialty", "nameEn": "Specialty Brews", "nameAr": "مشروبات مميزة", "icon": "fa-filter" },
-            { "id": "refreshers", "nameEn": "Refreshers", "nameAr": "منعشات", "icon": "fa-glass-water" },
-            { "id": "baklava", "nameEn": "Baklava & Beyond", "nameAr": "بقلاوة وما بعدها", "icon": "fa-cookie-bite" },
-            { "id": "fondue", "nameEn": "Fondue & Nuts", "nameAr": "فوندو والمكسرات", "icon": "fa-cheese" },
-            { "id": "croissant", "nameEn": "Suhoor Creations", "nameAr": "إبداعات السحور", "icon": "fa-bread-slice" },
-            { "id": "grill", "nameEn": "From the Grill & Garden", "nameAr": "من الشواية والحديقة", "icon": "fa-hamburger" }
-        ],   
+          { "id": "all", "nameEn": "🌟 All Menu", "nameAr": "🌟 كل القائمة", "icon": "fa-list" },
+          { "id": "recommended", "nameEn": "Recommended", "nameAr": "موصى به", "icon": "fa-star" },
+          { "id": "brewed", "nameEn": "Brewed on Arabic & Turkish Way", "nameAr": "مغلي على الطريقة العربية والتركية", "icon": "fa-coffee" },
+          { "id": "tea", "nameEn": "Tea on the House", "nameAr": "شاي في المنزل", "icon": "fa-mug-hot" },
+          { "id": "cafe", "nameEn": "Café & Chill", "nameAr": "كافيه واستجمام", "icon": "fa-martini-glass" },
+          { "id": "specialty", "nameEn": "Specialty Brews", "nameAr": "مشروبات مميزة", "icon": "fa-filter" },
+          { "id": "refreshers", "nameEn": "Refreshers", "nameAr": "منعشات", "icon": "fa-glass-water" },
+          { "id": "baklava", "nameEn": "Baklava & Beyond", "nameAr": "بقلاوة وما بعدها", "icon": "fa-cookie-bite" },
+          { "id": "fondue", "nameEn": "Fondue & Nuts", "nameAr": "فوندو والمكسرات", "icon": "fa-cheese" },
+          { "id": "croissant", "nameEn": "Suhoor Creations", "nameAr": "إبداعات السحور", "icon": "fa-bread-slice" },
+          { "id": "grill", "nameEn": "From the Grill & Garden", "nameAr": "من الشواية والحديقة", "icon": "fa-hamburger" }
+        ],
 "items": [
-            
+          
             { "id": "brew1", "categoryId": "brewed", "nameEn": "Classic Turkish Coffee", "nameAr": "قهوة تركية كلاسيكية", "descriptionEn": "Finely ground coffee brewed in copper cezve. Served with foam crown and Turkish delight.", "price": 28, "image": "Turkishcoffee.jpg", "calories": "5 kcal", "dietary": ["vegan", "gluten-free"] },
             { "id": "brew2", "categoryId": "brewed", "nameEn": "Double Turkish Coffee", "nameAr": "قهوة تركية مزدوجة", "descriptionEn": "Double the intensity with concentrated brewing. For the bold-hearted during Ramadan nights.", "price": 40, "image": "Turkishcoffee.jpg", "calories": "10 kcal", "dietary": ["vegan", "gluten-free"] },
             { "id": "brew3", "categoryId": "brewed", "nameEn": "Ottoman Mastic Coffee", "nameAr": "قهوة عثمانية بالمستيك", "descriptionEn": "Premium coffee enhanced with rare Chios mastic resin. Distinctive pine-like aroma.", "price": 28, "image": "Ottomanmastica.jpg", "calories": "5 kcal", "dietary": ["vegan", "gluten-free"] },
@@ -601,7 +732,6 @@
         ]
     }
     </script>
-
     <script>
         (function() {
             const data = JSON.parse(document.getElementById('menuData').textContent);
@@ -616,23 +746,27 @@
             let velocity = 0;
             let lastTime = 0;
             let raf = null;
-            let snapTimeout = null;          // for reset timeout
+            let snapTimeout = null;
             let currentItems = [];
-            
+            let viewed = JSON.parse(localStorage.getItem('viewed') || '[]');
+          
             const els = {
                 track: document.getElementById('track'),
                 carousel: document.getElementById('carousel'),
                 catBar: document.getElementById('catBar'),
                 searchInput: document.getElementById('searchInput'),
                 clearBtn: document.getElementById('clearBtn'),
+                voiceBtn: document.getElementById('voiceBtn'),
                 modal: document.getElementById('modal'),
                 modalImg: document.getElementById('modalImg'),
                 modalBody: document.getElementById('modalBody'),
                 modalClose: document.getElementById('modalClose'),
                 themeBtn: document.getElementById('themeBtn'),
-                langBtn: document.getElementById('langBtn')
+                langBtn: document.getElementById('langBtn'),
+                backToTop: document.getElementById('backToTop'),
+                pagination: document.getElementById('pagination')
             };
-            
+          
             function generateStars() {
                 const container = document.getElementById('stars');
                 for (let i = 0; i < 92; i++) {
@@ -645,54 +779,69 @@
                     container.appendChild(s);
                 }
             }
-            
+          
+            function smartMatch(text, q) {
+                q = q.toLowerCase();
+                text = text.toLowerCase();
+                return text.includes(q) || text.replace(/\s/g, '').includes(q);
+            }
+          
             function getFiltered() {
                 let filtered = data.items;
-                if (activeCat !== 'all') filtered = filtered.filter(i => i.categoryId === activeCat);
+                if (activeCat === 'recommended') {
+                    filtered = filtered.filter(i => viewed.includes(i.id));
+                } else if (activeCat !== 'all') {
+                    filtered = filtered.filter(i => i.categoryId === activeCat);
+                }
                 if (searchQ) {
-                    const q = searchQ.toLowerCase();
-                    filtered = filtered.filter(i => 
-                        i.nameEn.toLowerCase().includes(q) || 
-                        (i.nameAr && i.nameAr.toLowerCase().includes(q)) ||
-                        i.descriptionEn.toLowerCase().includes(q)
+                    filtered = filtered.filter(i =>
+                        smartMatch(i.nameEn, searchQ) ||
+                        smartMatch(i.nameAr || '', searchQ) ||
+                        smartMatch(i.descriptionEn, searchQ)
                     );
                 }
+                filtered.sort((a, b) => viewed.includes(b.id) - viewed.includes(a.id));
                 return filtered;
             }
-            
+          
             function renderCats() {
-                let html = '';
+                els.catBar.innerHTML = '';
                 data.categories.forEach(c => {
-                    const name = lang === 'ar' ? c.nameAr : c.nameEn;
-                    html += `<button class="cat-btn ${c.id===activeCat?'active':''}" data-id="${c.id}">${name}</button>`;
-                });
-                els.catBar.innerHTML = html;
-                
-                els.catBar.querySelectorAll('.cat-btn').forEach(b => {
-                    b.addEventListener('click', () => {
-                        activeCat = b.dataset.id;
+                    const btn = document.createElement('button');
+                    btn.className = `cat-btn ${c.id === activeCat ? 'active' : ''}`;
+                    btn.dataset.id = c.id;
+                    btn.textContent = lang === 'ar' ? c.nameAr : c.nameEn;
+                    btn.setAttribute('aria-current', c.id === activeCat ? 'true' : 'false');
+                    els.catBar.appendChild(btn);
+                    btn.addEventListener('click', () => {
+                        activeCat = btn.dataset.id;
                         renderCats();
                         switchContent(getFiltered());
                     });
                 });
             }
-            
+          
             function createCardHTML(item) {
                 const name = lang === 'ar' ? item.nameAr : item.nameEn;
                 const nameAlt = lang === 'ar' ? item.nameEn : item.nameAr || '';
+                let tags = '';
+                item.dietary.forEach(tag => {
+                    tags += `<span class="dietary-tag"><i class="fas fa-leaf"></i>${tag}</span>`;
+                });
                 return `
                     <div class="figure">
-                        <img src="${IMAGE_BASE}${item.image}" alt="${name}" loading="lazy">
+                        <img src="${IMAGE_BASE}${item.image}" alt="${item.nameEn} - ${item.nameAr || ''}" loading="lazy" decoding="async">
                     </div>
                     <div class="content">
                         <div class="name">${name}</div>
                         ${nameAlt ? `<div class="name-ar">${nameAlt}</div>` : ''}
                         <div class="desc">${item.descriptionEn}</div>
                         <div class="price">${item.price} QAR</div>
+                        <div class="dietary-tags">${tags}</div>
                     </div>
                 `;
             }
-            
+          
             function renderTrack(items) {
                 els.track.innerHTML = '';
                 const extended = [...items, ...items, ...items];
@@ -701,64 +850,102 @@
                     card.className = 'carousel-card';
                     card.innerHTML = createCardHTML(item);
                     card.dataset.index = idx % items.length;
+                    card.tabIndex = 0;
+                    card.role = 'button';
+                    card.setAttribute('aria-label', item.nameEn);
                     card.addEventListener('click', () => openModal(items[card.dataset.index]));
+                    card.addEventListener('keydown', e => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            openModal(items[card.dataset.index]);
+                            e.preventDefault();
+                        }
+                    });
+                    card.addEventListener('mousemove', e => {
+                        const rect = card.getBoundingClientRect();
+                        card.style.setProperty('--x', `${e.clientX - rect.left}px`);
+                        card.style.setProperty('--y', `${e.clientY - rect.top}px`);
+                    });
                     els.track.appendChild(card);
                 });
-                
                 const cardW = 340 + 36;
-                translateX = -items.length * cardW;
+                translateX = lang === 'ar' ? items.length * cardW : -items.length * cardW;
                 els.track.style.transition = 'none';
                 els.track.style.transform = `translateX(${translateX}px)`;
-                
                 setTimeout(() => {
-                    const cards = els.track.children;
-                    for (let i = 0; i < cards.length; i++) {
+                    Array.from(els.track.children).forEach((card, i) => {
                         setTimeout(() => {
-                            cards[i].style.transition = 'all 0.9s var(--ease-out)';
-                            cards[i].style.opacity = '1';
-                            cards[i].style.transform = 'translateY(0) scale(1)';
+                            card.style.animation = 'fadeIn 0.9s var(--ease-out) forwards';
                         }, i * 22);
-                    }
+                    });
                 }, 80);
+                renderPagination(items.length);
                 update3D();
             }
-            
+          
+            function renderPagination(len) {
+                els.pagination.innerHTML = '';
+                for (let i = 0; i < len; i++) {
+                    const dot = document.createElement('div');
+                    dot.className = 'pagination-dot';
+                    dot.addEventListener('click', () => snapToIndex(i));
+                    els.pagination.appendChild(dot);
+                }
+            }
+          
+            function updatePagination() {
+                const dots = els.pagination.children;
+                if (!dots.length) return;
+                const cardW = 340 + 36;
+                const offset = Math.abs(translateX) / cardW % currentItems.length;
+                const activeIndex = Math.round(offset);
+                Array.from(dots).forEach((dot, i) => {
+                    dot.classList.toggle('active', i === activeIndex);
+                });
+            }
+          
+            function snapToIndex(index) {
+                const cardW = 340 + 36;
+                const direction = lang === 'ar' ? 1 : -1;
+                translateX = direction * (currentItems.length + index) * cardW;
+                els.track.style.transition = 'transform 0.65s var(--ease-out)';
+                els.track.style.transform = `translateX(${translateX}px)`;
+                update3D();
+            }
+          
             function update3D() {
                 const cards = els.track.children;
                 if (!cards.length) return;
                 const containerRect = els.carousel.getBoundingClientRect();
                 const center = containerRect.left + containerRect.width / 2;
-                
-                for (let card of cards) {
+                Array.from(cards).forEach(card => {
                     const rect = card.getBoundingClientRect();
                     const cardCenter = rect.left + rect.width / 2;
                     let offset = (cardCenter - center) / 380;
                     offset = Math.max(Math.min(offset, 2.2), -2.2);
-                    
                     const rotateY = offset * -36;
                     const scale = 1 - Math.abs(offset) * 0.24;
                     const z = (1 - Math.abs(offset)) * 110 - 65;
                     const op = 0.65 + (1 - Math.abs(offset)) * 0.35;
-                    
                     card.style.transform = `translateZ(${z}px) rotateY(${rotateY}deg) scale(${scale})`;
                     card.style.opacity = op;
-                    card.style.boxShadow = `0 ${30 + (1-Math.abs(offset))*35}px ${90}px rgba(0,0,0,${0.65 - Math.abs(offset)*0.35})`;
-                }
+                    card.style.boxShadow = `0 ${30 + (1 - Math.abs(offset)) * 35}px 90px rgba(0,0,0,${0.65 - Math.abs(offset) * 0.35})`;
+                });
+                updatePagination();
             }
-            
+          
             function animateMomentum() {
-                velocity *= 0.935;
-                translateX += velocity * 1.65;
+                translateX += velocity;
+                velocity *= 0.95;
+                if (Math.abs(velocity) < 0.01) velocity = 0;
                 els.track.style.transform = `translateX(${translateX}px)`;
                 update3D();
-                
-                if (Math.abs(velocity) > 0.6) {
+                if (Math.abs(velocity) > 0.1) {
                     raf = requestAnimationFrame(animateMomentum);
                 } else {
                     snapToCenter();
                 }
             }
-            
+          
             function snapToCenter() {
                 if (snapTimeout) clearTimeout(snapTimeout);
                 const cards = Array.from(els.track.children);
@@ -766,24 +953,19 @@
                 let closest = null;
                 let minDist = Infinity;
                 const center = els.carousel.getBoundingClientRect().left + els.carousel.offsetWidth / 2;
-                
                 cards.forEach(card => {
                     const r = card.getBoundingClientRect();
-                    const dist = Math.abs((r.left + r.width/2) - center);
+                    const dist = Math.abs((r.left + r.width / 2) - center);
                     if (dist < minDist) {
                         minDist = dist;
                         closest = card;
                     }
                 });
-                
                 if (!closest) return;
-                
-                const targetOffset = center - (closest.getBoundingClientRect().left + closest.offsetWidth/2);
+                const targetOffset = center - (closest.getBoundingClientRect().left + closest.offsetWidth / 2);
                 translateX += targetOffset;
-                
                 els.track.style.transition = 'transform 0.65s var(--ease-out)';
                 els.track.style.transform = `translateX(${translateX}px)`;
-                
                 const setWidth = currentItems.length * (340 + 36);
                 snapTimeout = setTimeout(() => {
                     if (!isDragging) {
@@ -792,7 +974,6 @@
                         } else if (translateX < -setWidth * 2.4) {
                             translateX += setWidth;
                         } else {
-                            els.track.style.transition = 'transform 0.65s var(--ease-out)';
                             update3D();
                             return;
                         }
@@ -800,23 +981,23 @@
                         els.track.style.transform = `translateX(${translateX}px)`;
                     }
                     update3D();
-                }, 700); // after snap animation
-                
+                }, 700);
                 update3D();
             }
-            
+          
             function startDrag(e) {
                 if (snapTimeout) clearTimeout(snapTimeout);
                 cancelAnimationFrame(raf);
                 isDragging = true;
+                els.track.classList.add('dragging');
                 const clientX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
                 startX = prevX = clientX;
                 velocity = 0;
                 lastTime = Date.now();
                 els.track.style.transition = 'none';
-                e.preventDefault(); // prevent selection / scroll
+                e.preventDefault();
             }
-            
+          
             function duringDrag(e) {
                 if (!isDragging) return;
                 e.preventDefault();
@@ -825,7 +1006,6 @@
                 translateX += delta;
                 els.track.style.transform = `translateX(${translateX}px)`;
                 prevX = clientX;
-                
                 const now = Date.now();
                 if (now - lastTime > 12) {
                     velocity = delta * 1.8;
@@ -833,13 +1013,14 @@
                 }
                 update3D();
             }
-            
+          
             function endDrag() {
                 if (!isDragging) return;
                 isDragging = false;
+                els.track.classList.remove('dragging');
                 animateMomentum();
             }
-            
+          
             function switchContent(newItems) {
                 if (snapTimeout) clearTimeout(snapTimeout);
                 cancelAnimationFrame(raf);
@@ -847,20 +1028,20 @@
                 currentItems = newItems;
                 els.track.style.transition = 'opacity 0.28s ease';
                 els.track.style.opacity = '0';
-                
                 setTimeout(() => {
                     renderTrack(newItems);
                     els.track.style.opacity = '1';
                     update3D();
                 }, 300);
             }
-            
+          
             function openModal(item) {
+                viewed.push(item.id);
+                viewed = [...new Set(viewed)];
+                localStorage.setItem('viewed', JSON.stringify(viewed));
                 const name = lang === 'ar' ? item.nameAr : item.nameEn;
                 const nameAlt = lang === 'ar' ? item.nameEn : item.nameAr || '';
-                
                 els.modalImg.innerHTML = `<img src="${IMAGE_BASE}${item.image}" style="width:100%;height:100%;object-fit:cover" alt="${name}">`;
-                
                 let extras = '';
                 if (item.hasMilkSelection) {
                     extras += '<div style="margin-top:24px;padding:14px 20px;background:rgba(226,182,117,0.1);border-radius:16px;font-size:0.95rem">Milk options: oat • almond • whole</div>';
@@ -868,7 +1049,6 @@
                 if (item.hasBeanSelection) {
                     extras += '<div style="margin-top:24px;padding:14px 20px;background:rgba(226,182,117,0.1);border-radius:16px;font-size:0.95rem">Bean selection available</div>';
                 }
-                
                 els.modalBody.innerHTML = `
                     <h2 style="font-family:var(--font-heading);font-size:2.4rem;color:var(--gold);margin-bottom:8px">${name}</h2>
                     ${nameAlt ? `<div style="font-family:var(--font-ar);font-size:1.35rem;color:var(--soft);margin-bottom:18px">${nameAlt}</div>` : ''}
@@ -876,75 +1056,80 @@
                     <p style="color:var(--soft);line-height:1.65">${item.descriptionEn}</p>
                     ${extras}
                 `;
-                
                 els.modal.showModal();
             }
-            
-            function initCarousel() {
-                currentItems = getFiltered();
-                renderTrack(currentItems);
-                
-                const track = els.track;
-                
-                track.addEventListener('mousedown', startDrag);
-                track.addEventListener('mousemove', duringDrag);
-                track.addEventListener('mouseup', endDrag);
-                track.addEventListener('mouseleave', endDrag);
-                
-                track.addEventListener('touchstart', startDrag, { passive: false });
-                track.addEventListener('touchmove', duringDrag, { passive: false });
-                track.addEventListener('touchend', endDrag);
-                
-                setTimeout(update3D, 120);
-                window.addEventListener('resize', update3D);
+          
+            function addParticle(e) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                p.style.left = `${e.clientX}px`;
+                p.style.top = `${e.clientY}px`;
+                document.body.appendChild(p);
+                setTimeout(() => p.remove(), 1200);
             }
-            
+          
+            function initVoice() {
+                if (!('webkitSpeechRecognition' in window)) return;
+                const rec = new webkitSpeechRecognition();
+                rec.lang = lang === 'ar' ? 'ar-SA' : 'en-US';
+                rec.onresult = e => {
+                    els.searchInput.value = e.results[0][0].transcript;
+                    searchQ = els.searchInput.value;
+                    switchContent(getFiltered());
+                };
+                els.voiceBtn.addEventListener('click', () => rec.start());
+            }
+          
             function init() {
                 generateStars();
-                
-                // Theme toggle with light class
+                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+                els.langBtn.textContent = lang.toUpperCase();
+                if (document.body.classList.contains('light')) els.themeBtn.textContent = '☀️';
                 els.themeBtn.addEventListener('click', () => {
                     document.body.classList.toggle('light');
                     els.themeBtn.textContent = document.body.classList.contains('light') ? '☀️' : '🌙';
                 });
-                
-                // Language
                 els.langBtn.addEventListener('click', () => {
                     lang = lang === 'en' ? 'ar' : 'en';
-                    els.langBtn.textContent = lang.toUpperCase();
+                    localStorage.setItem('lang', lang);
                     document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+                    els.langBtn.textContent = lang.toUpperCase();
                     renderCats();
                     switchContent(getFiltered());
                 });
-                
-                // Search
                 els.searchInput.addEventListener('input', () => {
                     searchQ = els.searchInput.value.trim();
                     els.clearBtn.style.display = searchQ ? 'block' : 'none';
                     switchContent(getFiltered());
-                    renderCats();
                 });
-                
                 els.clearBtn.addEventListener('click', () => {
                     els.searchInput.value = '';
                     searchQ = '';
                     els.clearBtn.style.display = 'none';
                     switchContent(getFiltered());
-                    renderCats();
                 });
-                
-                // Modal
                 els.modalClose.addEventListener('click', () => els.modal.close());
                 els.modal.addEventListener('click', e => { if (e.target === els.modal) els.modal.close(); });
-                
-                // Start
+                els.backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+                document.addEventListener('mousemove', addParticle);
+                initVoice();
                 renderCats();
-                initCarousel();
-                
-                // initial lang display
-                els.langBtn.textContent = lang.toUpperCase();
+                const track = els.track;
+                track.addEventListener('mousedown', startDrag);
+                track.addEventListener('mousemove', duringDrag);
+                track.addEventListener('mouseup', endDrag);
+                track.addEventListener('mouseleave', endDrag);
+                track.addEventListener('touchstart', startDrag, { passive: false });
+                track.addEventListener('touchmove', duringDrag, { passive: false });
+                track.addEventListener('touchend', endDrag);
+                switchContent(getFiltered());
+                setTimeout(update3D, 120);
+                window.addEventListener('resize', update3D);
+                if ('serviceWorker' in navigator) {
+                    navigator.serviceWorker.register('data:text/javascript,addEventListener("install",()=>skipWaiting());addEventListener("activate",()=>clients.claim());addEventListener("fetch",e=>e.respondWith(caches.match(e.request)||fetch(e.request)));');
+                }
             }
-            
+          
             window.onload = init;
         })();
     </script>
