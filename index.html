@@ -541,7 +541,35 @@
             margin-bottom: 12px;
         }
       
-        @media (max-width: 768px) {
+        /* Tablet optimizations */
+        @media (min-width: 768px) and (max-width: 1024px) {
+            .carousel-card {
+                flex: 0 0 300px;
+            }
+            .carousel-track {
+                gap: 24px;
+            }
+            .cat-btn {
+                padding: 10px 24px;
+            }
+            .search-float {
+                max-width: 600px;
+            }
+            .modal-content {
+                max-width: 90%;
+            }
+            .ctrl {
+                width: 60px;
+                height: 60px;
+                font-size: 1.8rem;
+            }
+            .crescent {
+                width: clamp(200px, 30vw, 300px);
+                height: clamp(200px, 30vw, 300px);
+            }
+        }
+      
+        @media (max-width: 767px) {
             .carousel-track {
                 gap: 16px;
                 flex-direction: row;
