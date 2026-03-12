@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Turkiana • Ottoman Nights 1447</title>
-    <meta name="description" content="Premium Turkish coffee & Ottoman sweets in Doha.">
+    <title>Turkiana • Ramadan Nights 1447</title>
+    <meta name="description" content="Premium Turkish coffee & Ottoman sweets in Doha – Ramadan special.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500&family=Scheherazade+New:wght@400;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
@@ -17,42 +17,43 @@
         :root {
             --night: #06090f;
             --deep: #0d1220;
-            --surface: rgba(13,18,32,0.55);
-            --surface-hover: rgba(18,24,42,0.8);
+            --surface: rgba(13,18,32,0.6);
+            --surface-hover: rgba(18,24,42,0.85);
             --text: #f0e6d0;
             --muted: #8a7b6a;
             --soft: #c4ad8e;
             --gold-dim: #9a7a40;
             --gold: #c9973d;
             --gold-bright: #e8b96a;
-            --gold-glow: rgba(201,151,61,0.22);
-            --border: rgba(201,151,61,0.18);
-            --border-hover: rgba(201,151,61,0.45);
+            --gold-glow: rgba(201,151,61,0.25);
+            --border: rgba(201,151,61,0.2);
+            --border-hover: rgba(201,151,61,0.5);
             --radius-sm: 14px;
             --radius: 22px;
             --radius-lg: 36px;
             --font-display: 'Cormorant Garamond', 'Times New Roman', serif;
             --font-body: 'DM Sans', system-ui, sans-serif;
             --font-ar: 'Scheherazade New', serif;
+            --font-ar-deco: 'Amiri', serif;
             --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
             --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-            --blur: blur(18px) saturate(160%);
+            --blur: blur(20px) saturate(180%);
         }
 
         body.light {
             --night: #f5ede0;
             --deep: #ede3d4;
-            --surface: rgba(245,237,224,0.65);
-            --surface-hover: rgba(235,225,210,0.9);
+            --surface: rgba(245,237,224,0.7);
+            --surface-hover: rgba(235,225,210,0.92);
             --text: #1e1208;
             --muted: #7a6553;
             --soft: #5c4835;
             --gold-dim: #8a6520;
             --gold: #a0720e;
             --gold-bright: #c08a20;
-            --gold-glow: rgba(160,114,14,0.15);
-            --border: rgba(160,114,14,0.2);
-            --border-hover: rgba(160,114,14,0.5);
+            --gold-glow: rgba(160,114,14,0.18);
+            --border: rgba(160,114,14,0.25);
+            --border-hover: rgba(160,114,14,0.55);
         }
 
         html { scroll-behavior: smooth; }
@@ -69,63 +70,88 @@
 
         body[dir="rtl"] { font-family: var(--font-ar); }
 
-        /* ── Canvas BG ── */
         #canvas-bg {
             position: fixed; inset: 0; z-index: 0;
             pointer-events: none; display: block;
         }
 
-        /* ── HEADER ── */
+        /* Ramadan special banner */
+        .ramadan-banner {
+            position: relative;
+            background: linear-gradient(145deg, rgba(160,114,14,0.15) 0%, rgba(201,151,61,0.25) 100%);
+            border-block: 1px solid var(--gold-dim);
+            padding: 10px 16px;
+            text-align: center;
+            font-family: var(--font-ar-deco);
+            font-size: clamp(1rem, 4vw, 1.6rem);
+            color: var(--gold-bright);
+            letter-spacing: 0.08em;
+            backdrop-filter: blur(8px);
+            margin-top: 8px;
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+        .ramadan-banner i {
+            font-size: 1.4em;
+            color: var(--gold);
+            text-shadow: 0 0 12px var(--gold-glow);
+        }
+        .ramadan-banner span {
+            font-weight: 500;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #fff3d1, var(--gold-bright));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
         .site-header {
             position: relative; z-index: 50;
             text-align: center;
-            padding: 64px 24px 32px;
+            padding: 40px 24px 16px;
         }
-
         .header-ornament {
             display: flex; align-items: center; justify-content: center;
-            gap: 16px; margin-bottom: 20px;
+            gap: 16px; margin-bottom: 16px;
         }
-
         .ornament-line {
             height: 1px; width: 80px;
             background: linear-gradient(90deg, transparent, var(--gold), transparent);
         }
-
         .ornament-diamond {
             width: 8px; height: 8px;
             background: var(--gold);
             transform: rotate(45deg);
             box-shadow: 0 0 12px var(--gold-glow);
         }
-
         .site-title {
             font-family: var(--font-display);
-            font-size: clamp(3.2rem, 10vw, 7rem);
+            font-size: clamp(3.5rem, 12vw, 8rem);
             font-weight: 300;
-            letter-spacing: 0.25em;
+            letter-spacing: 0.2em;
             color: var(--text);
             line-height: 1;
             text-transform: uppercase;
+            margin-bottom: 8px;
         }
-
         .site-title span {
             background: linear-gradient(135deg, var(--gold-dim) 0%, var(--gold-bright) 50%, var(--gold) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-
         .site-sub {
             font-family: var(--font-display);
             font-style: italic;
-            font-size: clamp(0.9rem, 2.5vw, 1.15rem);
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
             color: var(--soft);
             letter-spacing: 0.1em;
-            margin-top: 10px;
+            margin-top: 6px;
         }
 
-        /* ── CONTROLS (top right) ── */
         .controls {
             position: fixed; top: 20px; right: 20px;
             display: flex; gap: 10px; z-index: 300;
@@ -134,9 +160,8 @@
             backdrop-filter: var(--blur);
             border: 1px solid var(--border);
             border-radius: 60px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
         }
-
         .ctrl {
             width: 44px; height: 44px;
             border-radius: 50%;
@@ -151,7 +176,6 @@
             font-weight: 500;
             letter-spacing: 0.02em;
         }
-
         .ctrl:hover {
             background: var(--gold);
             color: var(--night);
@@ -160,15 +184,11 @@
             box-shadow: 0 0 18px var(--gold-glow);
         }
 
-        .ctrl:active { transform: scale(0.96); }
-
-        /* ── CATEGORY BAR ── */
         .cat-wrapper {
             position: sticky; top: 12px; z-index: 200;
             padding: 0 20px;
-            margin-bottom: 36px;
+            margin-bottom: 32px;
         }
-
         .cat-bar {
             display: flex; gap: 8px;
             overflow-x: auto; scrollbar-width: none;
@@ -177,11 +197,9 @@
             backdrop-filter: var(--blur);
             border: 1px solid var(--border);
             border-radius: 60px;
-            box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.4);
         }
-
         .cat-bar::-webkit-scrollbar { display: none; }
-
         .cat-btn {
             flex-shrink: 0;
             padding: 9px 22px;
@@ -190,42 +208,34 @@
             background: transparent;
             color: var(--muted);
             font-family: var(--font-body);
-            font-size: 0.82rem;
+            font-size: 0.85rem;
             font-weight: 500;
             letter-spacing: 0.04em;
             cursor: pointer;
             transition: all 0.3s var(--ease);
             white-space: nowrap;
         }
-
-        .cat-btn:hover {
-            color: var(--soft);
-            border-color: var(--border);
-        }
-
+        .cat-btn:hover { color: var(--soft); border-color: var(--border); }
         .cat-btn.active {
             background: linear-gradient(135deg, var(--gold-dim), var(--gold));
             color: var(--night);
             border-color: transparent;
             box-shadow: 0 4px 20px var(--gold-glow);
-            font-weight: 500;
+            font-weight: 600;
         }
 
-        /* ── GRID ── */
         .menu-container {
             position: relative; z-index: 10;
             padding: 0 20px 160px;
             max-width: 1280px;
             margin: 0 auto;
         }
-
         .menu-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
             gap: 28px;
         }
 
-        /* ── CARDS ── */
         .menu-card {
             border-radius: var(--radius-lg);
             overflow: hidden;
@@ -233,57 +243,42 @@
             background: var(--surface);
             backdrop-filter: var(--blur);
             border: 1px solid var(--border);
-            box-shadow: 0 8px 40px rgba(0,0,0,0.35);
+            box-shadow: 0 8px 40px rgba(0,0,0,0.4);
             transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.3s;
             opacity: 0;
             transform: translateY(28px);
             will-change: transform, opacity;
         }
-
-        .menu-card.visible {
-            animation: cardReveal 0.65s var(--ease) forwards;
-        }
-
-        @keyframes cardReveal {
-            to { opacity: 1; transform: translateY(0); }
-        }
-
+        .menu-card.visible { animation: cardReveal 0.65s var(--ease) forwards; }
+        @keyframes cardReveal { to { opacity: 1; transform: translateY(0); } }
         .menu-card:hover {
             transform: translateY(-6px) scale(1.012);
-            box-shadow: 0 24px 70px rgba(0,0,0,0.5), 0 0 40px var(--gold-glow);
+            box-shadow: 0 24px 70px rgba(0,0,0,0.6), 0 0 40px var(--gold-glow);
             border-color: var(--border-hover);
         }
-
-        .menu-card:active { transform: scale(0.98); }
 
         .card-figure {
             position: relative;
             aspect-ratio: 4/3;
             overflow: hidden;
         }
-
         .card-figure img {
             width: 100%; height: 100%;
             object-fit: cover;
             transition: transform 0.8s var(--ease);
             display: block;
         }
-
-        .menu-card:hover .card-figure img {
-            transform: scale(1.07);
-        }
-
+        .menu-card:hover .card-figure img { transform: scale(1.07); }
         .card-figure::after {
             content: '';
             position: absolute; inset: 0;
-            background: linear-gradient(to bottom, transparent 45%, rgba(6,9,15,0.72) 100%);
+            background: linear-gradient(to bottom, transparent 45%, rgba(6,9,15,0.75) 100%);
             pointer-events: none;
         }
-
         .card-price-badge {
             position: absolute;
             bottom: 14px; right: 14px;
-            background: rgba(6,9,15,0.75);
+            background: rgba(6,9,15,0.8);
             backdrop-filter: blur(10px);
             border: 1px solid var(--border-hover);
             border-radius: 30px;
@@ -296,27 +291,22 @@
             z-index: 1;
         }
 
-        .card-body {
-            padding: 18px 20px 22px;
-        }
-
+        .card-body { padding: 18px 20px 22px; }
         .card-name {
             font-family: var(--font-display);
-            font-size: 1.45rem;
+            font-size: 1.5rem;
             font-weight: 500;
             color: var(--text);
             line-height: 1.25;
             margin-bottom: 4px;
             letter-spacing: 0.01em;
         }
-
         .card-name-ar {
             font-family: var(--font-ar);
             font-size: 0.95rem;
             color: var(--muted);
             margin-bottom: 8px;
         }
-
         .card-desc {
             font-size: 0.82rem;
             color: var(--muted);
@@ -326,35 +316,24 @@
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
-
         .card-footer {
             display: flex; align-items: center; justify-content: space-between;
             margin-top: 14px;
             padding-top: 14px;
             border-top: 1px solid var(--border);
         }
-
         .card-cals {
             font-size: 0.75rem;
             color: var(--muted);
             letter-spacing: 0.04em;
         }
-
-        .card-diet {
-            display: flex; gap: 5px;
-        }
-
-        .diet-dot {
-            width: 7px; height: 7px;
-            border-radius: 50%;
-        }
-
+        .card-diet { display: flex; gap: 5px; }
+        .diet-dot { width: 7px; height: 7px; border-radius: 50%; }
         .dot-vegan { background: #4ade80; }
         .dot-dairy { background: #60a5fa; }
         .dot-nuts  { background: #fb923c; }
         .dot-gluten { background: #a78bfa; }
 
-        /* ── SEARCH ── */
         .search-float {
             position: fixed;
             bottom: 28px;
@@ -363,7 +342,6 @@
             width: min(520px, calc(100% - 32px));
             z-index: 400;
         }
-
         .search-box {
             display: flex; align-items: center; gap: 14px;
             padding: 14px 20px;
@@ -371,17 +349,14 @@
             backdrop-filter: var(--blur);
             border: 1px solid var(--border);
             border-radius: 60px;
-            box-shadow: 0 16px 50px rgba(0,0,0,0.5);
+            box-shadow: 0 16px 50px rgba(0,0,0,0.6);
             transition: border-color 0.3s, box-shadow 0.3s;
         }
-
         .search-box:focus-within {
             border-color: var(--border-hover);
-            box-shadow: 0 16px 50px rgba(0,0,0,0.5), 0 0 0 3px var(--gold-glow);
+            box-shadow: 0 16px 50px rgba(0,0,0,0.6), 0 0 0 3px var(--gold-glow);
         }
-
         .search-icon { color: var(--gold-dim); font-size: 0.95rem; flex-shrink: 0; }
-
         #searchInput {
             flex: 1; min-width: 0;
             background: none; border: none; outline: none;
@@ -389,9 +364,7 @@
             font-family: var(--font-body);
             font-size: 0.95rem;
         }
-
         #searchInput::placeholder { color: var(--muted); }
-
         #clearBtn {
             background: none; border: none;
             color: var(--muted); font-size: 1.1rem;
@@ -399,10 +372,8 @@
             padding: 0 2px;
             transition: color 0.2s;
         }
-
         #clearBtn:hover { color: var(--gold); }
 
-        /* ── MODAL ── */
         dialog {
             border: none; background: transparent;
             max-width: 680px; width: calc(100% - 24px);
@@ -410,45 +381,34 @@
             max-height: calc(100dvh - 24px);
             overflow: visible;
         }
-
         dialog::backdrop {
             background: rgba(4,6,12,0.85);
-            backdrop-filter: blur(6px);
+            backdrop-filter: blur(8px);
         }
-
         .modal-shell {
             background: var(--surface);
             backdrop-filter: var(--blur);
             border: 1px solid var(--border);
             border-radius: var(--radius-lg);
             overflow: hidden;
-            box-shadow: 0 40px 100px rgba(0,0,0,0.7), 0 0 0 1px var(--border);
+            box-shadow: 0 40px 100px rgba(0,0,0,0.8), 0 0 0 1px var(--border);
             animation: modalIn 0.4s var(--ease-spring);
         }
-
         @keyframes modalIn {
             from { opacity: 0; transform: scale(0.94) translateY(16px); }
-            to   { opacity: 1; transform: scale(1) translateY(0); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
         }
-
         .modal-img-wrap {
             position: relative;
             aspect-ratio: 16/9;
             overflow: hidden;
         }
-
-        .modal-img-wrap img {
-            width: 100%; height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
+        .modal-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
         .modal-img-wrap::after {
             content: '';
             position: absolute; inset: 0;
-            background: linear-gradient(to bottom, transparent 50%, rgba(6,9,15,0.85) 100%);
+            background: linear-gradient(to bottom, transparent 50%, rgba(6,9,15,0.9) 100%);
         }
-
         .modal-close {
             position: absolute; top: 14px; right: 14px; z-index: 10;
             width: 40px; height: 40px;
@@ -462,22 +422,13 @@
             cursor: pointer;
             transition: all 0.2s;
         }
-
         .modal-close:hover {
             background: var(--gold);
             color: var(--night);
             transform: scale(1.1) rotate(90deg);
         }
-
-        .modal-scroll {
-            overflow-y: auto;
-            max-height: 55vh;
-        }
-
-        .modal-body {
-            padding: 24px 26px 28px;
-        }
-
+        .modal-scroll { overflow-y: auto; max-height: 55vh; }
+        .modal-body { padding: 24px 26px 28px; }
         .modal-title {
             font-family: var(--font-display);
             font-size: clamp(1.8rem, 5vw, 2.5rem);
@@ -485,14 +436,12 @@
             color: var(--text);
             line-height: 1.15;
         }
-
         .modal-title-ar {
             font-family: var(--font-ar);
             font-size: 1.2rem;
             color: var(--muted);
             margin-top: 4px;
         }
-
         .modal-price {
             font-family: var(--font-display);
             font-size: 2rem;
@@ -503,27 +452,23 @@
             background-clip: text;
             margin: 12px 0;
         }
-
         .modal-desc {
             font-size: 0.9rem;
             color: var(--soft);
             line-height: 1.7;
         }
-
         .detail-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 10px;
             margin-top: 20px;
         }
-
         .detail-cell {
             background: rgba(201,151,61,0.07);
             border: 1px solid var(--border);
             border-radius: var(--radius-sm);
             padding: 12px 14px;
         }
-
         .detail-label {
             font-size: 0.68rem;
             letter-spacing: 0.08em;
@@ -531,13 +476,11 @@
             color: var(--muted);
             margin-bottom: 5px;
         }
-
         .detail-value {
             font-size: 0.9rem;
             font-weight: 500;
             color: var(--soft);
         }
-
         .milk-section {
             margin-top: 18px;
             padding: 16px;
@@ -545,7 +488,6 @@
             border: 1px solid var(--border);
             border-radius: var(--radius-sm);
         }
-
         .milk-title {
             font-size: 0.72rem;
             letter-spacing: 0.08em;
@@ -553,11 +495,9 @@
             color: var(--muted);
             margin-bottom: 10px;
         }
-
         .milk-chips {
             display: flex; flex-wrap: wrap; gap: 6px;
         }
-
         .milk-chip {
             padding: 5px 13px;
             border: 1px solid var(--border);
@@ -568,16 +508,11 @@
             transition: all 0.2s;
             cursor: pointer;
         }
-
         .milk-chip:hover {
             border-color: var(--gold);
             color: var(--gold);
         }
-
-        .reco-section {
-            padding: 0 26px 26px;
-        }
-
+        .reco-section { padding: 0 26px 26px; }
         .reco-title {
             font-size: 0.72rem;
             letter-spacing: 0.1em;
@@ -585,11 +520,9 @@
             color: var(--muted);
             margin-bottom: 12px;
         }
-
         .reco-chips {
             display: flex; flex-wrap: wrap; gap: 8px;
         }
-
         .reco-chip {
             padding: 8px 18px;
             background: rgba(201,151,61,0.08);
@@ -600,7 +533,6 @@
             cursor: pointer;
             transition: all 0.25s var(--ease);
         }
-
         .reco-chip:hover {
             background: var(--gold);
             color: var(--night);
@@ -608,7 +540,6 @@
             transform: translateY(-1px);
         }
 
-        /* ── QR MODAL ── */
         #qr-modal-content {
             text-align: center;
             padding: 44px 36px;
@@ -618,7 +549,6 @@
             border-radius: var(--radius-lg);
             animation: modalIn 0.4s var(--ease-spring);
         }
-
         #qr-modal-title {
             font-family: var(--font-display);
             font-size: 2rem;
@@ -626,7 +556,6 @@
             color: var(--gold);
             margin-bottom: 8px;
         }
-
         #qrCanvas {
             display: block;
             margin: 24px auto;
@@ -635,14 +564,12 @@
             border-radius: 18px;
         }
 
-        /* ── FOOTER ── */
         footer {
             position: relative; z-index: 10;
             text-align: center;
             padding: 72px 24px 56px;
             border-top: 1px solid var(--border);
         }
-
         .footer-brand {
             font-family: var(--font-display);
             font-size: clamp(2.5rem, 8vw, 4.5rem);
@@ -654,7 +581,6 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-
         .footer-details {
             margin-top: 16px;
             font-size: 0.85rem;
@@ -663,18 +589,13 @@
             line-height: 2;
         }
 
-        /* ── EMPTY STATE ── */
         .empty-state {
             grid-column: 1 / -1;
             text-align: center;
             padding: 80px 0;
             color: var(--muted);
         }
-
-        .empty-icon {
-            font-size: 3rem; opacity: 0.3; margin-bottom: 16px;
-        }
-
+        .empty-icon { font-size: 3rem; opacity: 0.3; margin-bottom: 16px; }
         .empty-text {
             font-family: var(--font-display);
             font-size: 1.4rem;
@@ -682,12 +603,11 @@
             font-style: italic;
         }
 
-        /* ── MOBILE ── */
         @media (max-width: 600px) {
-            .site-header { padding: 52px 20px 24px; }
+            .site-header { padding: 40px 16px 16px; }
             .controls { top: 12px; right: 12px; padding: 6px; gap: 7px; }
             .ctrl { width: 40px; height: 40px; font-size: 0.85rem; }
-            .cat-wrapper { padding: 0 12px; top: 8px; margin-bottom: 24px; }
+            .cat-wrapper { padding: 0 12px; top: 8px; margin-bottom: 20px; }
             .cat-bar { padding: 8px 10px; gap: 6px; }
             .cat-btn { padding: 8px 16px; font-size: 0.78rem; }
             .menu-container { padding: 0 12px 160px; }
@@ -695,53 +615,24 @@
             .card-body { padding: 13px 14px 16px; }
             .card-name { font-size: 1.1rem; }
             .card-desc { -webkit-line-clamp: 1; }
-            .card-footer { margin-top: 10px; padding-top: 10px; }
             .detail-grid { grid-template-columns: repeat(2, 1fr); }
             dialog { width: 100%; max-width: 100%; margin: auto 0 0; border-radius: 0; }
-            dialog::backdrop { background: rgba(4,6,12,0.8); }
             .modal-shell { border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
             .modal-scroll { max-height: 60vh; }
             .search-float { bottom: 20px; width: calc(100% - 24px); }
         }
+        @media (max-width: 380px) { .menu-grid { grid-template-columns: 1fr; } }
+        @media (min-width: 900px) { .menu-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (min-width: 1200px) { .menu-grid { grid-template-columns: repeat(4, 1fr); } }
 
-        @media (max-width: 380px) {
-            .menu-grid { grid-template-columns: 1fr; }
-            .card-figure { aspect-ratio: 16/9; }
-        }
-
-        @media (min-width: 900px) {
-            .menu-grid { grid-template-columns: repeat(3, 1fr); }
-        }
-
-        @media (min-width: 1200px) {
-            .menu-grid { grid-template-columns: repeat(4, 1fr); }
-        }
-
-        /* ── SCROLLBAR ── */
         ::-webkit-scrollbar { width: 5px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 10px; }
 
-        /* ── TRANSITIONS ── */
         .grid-fade { transition: opacity 0.2s var(--ease); }
         .grid-fade.fading { opacity: 0; }
 
-        /* ── LOADING SHIMMER ── */
-        @keyframes shimmer {
-            0%   { background-position: -200% center; }
-            100% { background-position: 200% center; }
-        }
-
-        .shimmer-card {
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            height: 320px;
-            background: linear-gradient(90deg, var(--surface) 25%, rgba(201,151,61,0.06) 50%, var(--surface) 75%);
-            background-size: 200% 100%;
-            animation: shimmer 1.5s infinite;
-        }
+        .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
     </style>
 </head>
 <body>
@@ -753,6 +644,13 @@
         <button id="qrBtn" class="ctrl" aria-label="QR menu"><i class="fas fa-qrcode"></i></button>
     </div>
 
+    <!-- Ramadan banner -->
+    <div class="ramadan-banner" aria-label="Ramadan Kareem">
+        <i class="fas fa-star-and-crescent"></i>
+        <span>رمضان كريم • Ramadan Kareem • 1447</span>
+        <i class="fas fa-star-and-crescent"></i>
+    </div>
+
     <header class="site-header">
         <div class="header-ornament">
             <div class="ornament-line"></div>
@@ -760,7 +658,7 @@
             <div class="ornament-line"></div>
         </div>
         <h1 class="site-title"><span>Turkiana</span></h1>
-        <p class="site-sub">Ottoman Nights &nbsp;·&nbsp; 1447</p>
+        <p class="site-sub">Ottoman Nights &nbsp;·&nbsp; Ramadan 1447</p>
     </header>
 
     <div class="cat-wrapper">
@@ -783,15 +681,14 @@
         <div class="footer-brand">Turkiana</div>
         <div class="footer-details">
             Mshreib Downtown, Doha<br>
-            7 PM – 2 AM &nbsp;·&nbsp; +974 5186 6671
+            7 PM – 2 AM (Ramadan hours) &nbsp;·&nbsp; +974 5186 6671
         </div>
     </footer>
 
-    <!-- Item Modal -->
     <dialog id="modal">
         <div class="modal-shell">
             <div class="modal-img-wrap" id="modalImg">
-                <button id="modalClose" class="modal-close" aria-label="Close"><i class="fas fa-times"></i></button>
+                <button id="modalCloseBtn" class="modal-close" aria-label="Close"><i class="fas fa-times"></i></button>
             </div>
             <div class="modal-scroll">
                 <div class="modal-body" id="modalBody"></div>
@@ -800,7 +697,6 @@
         </div>
     </dialog>
 
-    <!-- QR Modal -->
     <dialog id="qrModal">
         <div id="qr-modal-content">
             <p id="qr-modal-title">Open on your phone</p>
@@ -810,7 +706,7 @@
         </div>
     </dialog>
 
-    <!-- Menu Data -->
+    <!-- Menu Data: nuts and grill merged into "Ramadan Snacks" -->
     <script id="menuData" type="application/json">
     {
       "categories": [
@@ -821,112 +717,112 @@
         { "id": "specialty", "nameEn": "Specialty", "nameAr": "مميزة" },
         { "id": "refreshers", "nameEn": "Refreshers", "nameAr": "منعشات" },
         { "id": "baklava", "nameEn": "Sweets", "nameAr": "حلويات" },
-        { "id": "nuts", "nameEn": "Nuts", "nameAr": "مكسرات" },
-        { "id": "croissant", "nameEn": "Suhoor Creations", "nameAr": "إبداعات السحور" },
-        { "id": "grill", "nameEn": "Grill & Garden", "nameAr": "شواية وحديقة" }
+        { "id": "snacks", "nameEn": "Ramadan Snacks", "nameAr": "وجبات رمضان" },
+        { "id": "croissant", "nameEn": "Suhoor Creations", "nameAr": "إبداعات السحور" }
       ],
       "items": [
-        {"id":"brew1","categoryId":"brewed","nameEn":"Classic Turkish Coffee","nameAr":"قهوة تركية كلاسيكية","descriptionEn":"Finely ground coffee brewed in copper cezve. Served with foam crown and Turkish delight.","price":28,"image":"Turkishcoffee.jpg","calories":"5 kcal","dietary":["vegan","gluten-free"]},
-        {"id":"brew2","categoryId":"brewed","nameEn":"Double Turkish Coffee","nameAr":"قهوة تركية مزدوجة","descriptionEn":"Double the intensity with concentrated brewing.","price":40,"image":"Turkishcoffee.jpg","calories":"10 kcal","dietary":["vegan","gluten-free"]},
-        {"id":"brew3","categoryId":"brewed","nameEn":"Ottoman Mastic Coffee","nameAr":"قهوة عثمانية بالمستيك","descriptionEn":"Premium coffee with rare Chios mastic resin.","price":28,"image":"Ottomanmastica.jpg","calories":"5 kcal","dietary":["vegan","gluten-free"]},
-        {"id":"brew4","categoryId":"brewed","nameEn":"Hazelnut Turkish Coffee","nameAr":"قهوة تركية بالبندق","descriptionEn":"Blended with finely ground premium hazelnuts.","price":28,"image":"Ottomanhazelnut.jpg","calories":"20 kcal","dietary":["contains-nuts"]},
-        {"id":"brew5","categoryId":"brewed","nameEn":"Cardamom Turkish Coffee","nameAr":"قهوة تركية بالهيل","descriptionEn":"Infused with aromatic green cardamom pods.","price":28,"image":"Ottomancardamom.jpg","calories":"5 kcal","dietary":["vegan","gluten-free"]},
-        {"id":"brew6","categoryId":"brewed","nameEn":"Sahlep","nameAr":"شلهب","descriptionEn":"Ancient Anatolian comfort drink from wild orchid tubers.","price":38,"image":"Sahlep.jpg","calories":"200 kcal","dietary":["contains-dairy"]},
-        {"id":"brew7","categoryId":"brewed","nameEn":"Arabic Coffee – Full Dalla","nameAr":"قهوة عربية - دلة كاملة","descriptionEn":"Ceremonial centerpiece with cardamom and saffron.","price":90,"image":"Arabic.jpg","calories":"10 kcal","dietary":["vegan","gluten-free"]},
-        {"id":"brew8","categoryId":"brewed","nameEn":"Arabic Coffee – Half Dalla","nameAr":"قهوة عربية - نصف دلة","descriptionEn":"Perfect for intimate gatherings.","price":55,"image":"Arabic.jpg","calories":"10 kcal","dietary":["vegan","gluten-free"]},
-        {"id":"brew9","categoryId":"brewed","nameEn":"Arabic Coffee – Cup","nameAr":"قهوة عربية - فنجان","descriptionEn":"Personal serving of authentic Arabic coffee.","price":35,"image":"Arabiccup.jpeg","calories":"10 kcal","dietary":["vegan","gluten-free"]},
-        {"id":"tea1","categoryId":"tea","nameEn":"Turkish Tea","nameAr":"شاي تركي","descriptionEn":"Deep amber Rize tea, served in tulip glasses.","price":15,"image":"Tea.jpg","calories":"2 kcal","dietary":["vegan"]},
-        {"id":"tea2","categoryId":"tea","nameEn":"Turkish Tea Pot","nameAr":"إبريق شاي تركي","descriptionEn":"Generous pot for sharing.","price":45,"image":"Turkishteapot.jpeg","calories":"0 kcal","dietary":["vegan"]},
-        {"id":"tea3","categoryId":"tea","nameEn":"Apple Tea","nameAr":"شاي التفاح","descriptionEn":"Sun-ripened apple essence.","price":35,"image":"Appletea.jpg","calories":"2 kcal","dietary":["vegan"]},
-        {"id":"tea4","categoryId":"tea","nameEn":"Mulberry Tea","nameAr":"شاي التوت","descriptionEn":"White mulberry infusion.","price":35,"image":"Mulberrytea.jpg","calories":"2 kcal","dietary":["vegan"]},
-        {"id":"tea5","categoryId":"tea","nameEn":"Lemon Mint","nameAr":"ليمون بالنعناع","descriptionEn":"Zesty lemon and fresh mint leaves.","price":35,"image":"Lemontea.jpg","calories":"2 kcal","dietary":["vegan"]},
-        {"id":"tea6","categoryId":"tea","nameEn":"Pomegranate Tea","nameAr":"شاي الرمان","descriptionEn":"Vibrant infusion, sweet-tart notes.","price":35,"image":"Romantea.jpg","calories":"2 kcal","dietary":["vegan"]},
-        {"id":"tea7","categoryId":"tea","nameEn":"Matcha","nameAr":"ماتشا","descriptionEn":"Ceremonial-grade matcha from Japan.","price":36,"image":"Matcha.webp","calories":"95 kcal","dietary":["vegan"]},
-        {"id":"tea8","categoryId":"tea","nameEn":"Strawberry Matcha","nameAr":"ماتشا بالفراولة","descriptionEn":"Matcha with strawberry puree.","price":42,"image":"Strawberrymatcha.webp","calories":"135 kcal","dietary":["vegan"]},
-        {"id":"tea9","categoryId":"tea","nameEn":"Iced Apple Tea","nameAr":"شاي التفاح مثلج","descriptionEn":"Chilled orchard breeze.","price":35,"image":"Appletea.avif","calories":"35 kcal","dietary":["vegan"]},
-        {"id":"tea10","categoryId":"tea","nameEn":"Iced Mulberry Tea","nameAr":"شاي التوت المثلج","descriptionEn":"Frosted silk, subtle fruity.","price":35,"image":"Blackmulberrytea.png","calories":"35 kcal","dietary":["vegan"]},
-        {"id":"tea11","categoryId":"tea","nameEn":"Iced Pomegranate Tea","nameAr":"شاي الرمان المثلج","descriptionEn":"Jewel-toned refreshment.","price":35,"image":"Pomegranatetea.avif","calories":"45 kcal","dietary":["vegan"]},
-        {"id":"tea12","categoryId":"tea","nameEn":"Passion Fruit Tea","nameAr":"شاي باشن فروت","descriptionEn":"Tropical euphoria in a cup.","price":45,"image":"Passiontea.webp","calories":"40 kcal","dietary":["vegan"]},
-        {"id":"tea13","categoryId":"tea","nameEn":"Hibiscus Iced","nameAr":"كركديه مثلج","descriptionEn":"Ruby glacier, tangy floral.","price":36,"image":"Hibiscus.webp","calories":"25 kcal","dietary":["vegan"]},
-        {"id":"tea14","categoryId":"tea","nameEn":"Hibiscus Tea","nameAr":"شاي الكركديه","descriptionEn":"Soothing hot infusion.","price":36,"image":"Hibiscustea.webp","calories":"25 kcal","dietary":["vegan"]},
-        {"id":"tea15","categoryId":"tea","nameEn":"Winter Tea","nameAr":"شاي الشتاء","descriptionEn":"Warming seasonal blend.","price":38,"image":"Wintertea.webp","calories":"30 kcal","dietary":["vegan"]},
-        {"id":"tea16","categoryId":"tea","nameEn":"Chamomile Tea","nameAr":"شاي البابونج","descriptionEn":"Calming floral notes.","price":36,"image":"Chamomiletea.webp","calories":"0 kcal","dietary":["vegan"]},
-        {"id":"tea17","categoryId":"tea","nameEn":"Green Tea","nameAr":"شاي أخضر","descriptionEn":"Pure, clean taste.","price":36,"image":"Greentea.jpg","calories":"0 kcal","dietary":["vegan"]},
-        {"id":"cafe1","categoryId":"cafe","nameEn":"Ramadan Latte","nameAr":"لاتيه رمضان","descriptionEn":"Smooth microfoam.","price":29,"image":"Latteart.webp","calories":"170 kcal","dietary":["contains-dairy"],"hasMilk":true},
-        {"id":"cafe2","categoryId":"cafe","nameEn":"Ramadan Cappuccino","nameAr":"كابوتشينو رمضان","descriptionEn":"Equal parts espresso, milk, foam.","price":29,"image":"Art.webp","calories":"150 kcal","dietary":["contains-dairy"],"hasMilk":true},
-        {"id":"cafe3","categoryId":"cafe","nameEn":"Spanish Latte","nameAr":"لاتيه إسباني","descriptionEn":"Sweetened condensed milk base.","price":32,"image":"Latteart.webp","calories":"220 kcal","dietary":["contains-dairy"],"hasMilk":true},
-        {"id":"cafe4","categoryId":"cafe","nameEn":"Salted Caramel Latte","nameAr":"لاتيه كراميل مملح","descriptionEn":"House-made caramel with fleur de sel.","price":32,"image":"Latteart.webp","calories":"230 kcal","dietary":["contains-dairy"],"hasMilk":true},
-        {"id":"cafe5","categoryId":"cafe","nameEn":"Vanilla Latte","nameAr":"لاتيه فانيليا","descriptionEn":"Madagascar bourbon vanilla.","price":32,"image":"Art.webp","calories":"220 kcal","dietary":["contains-dairy"],"hasMilk":true},
-        {"id":"cafe6","categoryId":"cafe","nameEn":"Hazelnut Latte","nameAr":"لاتيه البندق","descriptionEn":"Rich nutty flavor.","price":32,"image":"Art.webp","calories":"180 kcal","dietary":["contains-dairy"],"hasMilk":true},
-        {"id":"cafe7","categoryId":"cafe","nameEn":"Toffee Nut Latte","nameAr":"لاتيه توفي مكسرات","descriptionEn":"Rich toffee and toasted nut.","price":32,"image":"Art.webp","calories":"190 kcal","dietary":["contains-dairy"],"hasMilk":true},
-        {"id":"cafe8","categoryId":"cafe","nameEn":"Pistachio Latte","nameAr":"لاتيه الفستق","descriptionEn":"Rich pistachio, velvety smooth.","price":36,"image":"Pistachiolatte.webp","calories":"210 kcal","dietary":["contains-dairy"],"hasMilk":true},
-        {"id":"cafe9","categoryId":"cafe","nameEn":"White Mocha","nameAr":"وايت موكا","descriptionEn":"Creamy white chocolate espresso.","price":32,"image":"Latteart.webp","calories":"260 kcal","dietary":["contains-dairy"],"hasMilk":true},
-        {"id":"cafe10","categoryId":"cafe","nameEn":"Mocha","nameAr":"موكا","descriptionEn":"Rich dark chocolate espresso.","price":32,"image":"Art.webp","calories":"260 kcal","dietary":["contains-dairy"],"hasMilk":true},
-        {"id":"cafe11","categoryId":"cafe","nameEn":"Flat White","nameAr":"فلات وايت","descriptionEn":"Double ristretto, velvety microfoam.","price":27,"image":"Flatwhite.webp","calories":"140 kcal","dietary":["contains-dairy"],"hasMilk":true},
-        {"id":"cafe12","categoryId":"cafe","nameEn":"Piccolo Latte","nameAr":"بيكولو لاتيه","descriptionEn":"Strong ristretto with steamed milk.","price":24,"image":"Piccololatte.jpg","calories":"120 kcal","dietary":["contains-dairy"],"hasMilk":true},
-        {"id":"cafe13","categoryId":"cafe","nameEn":"Cortado","nameAr":"كورتادو","descriptionEn":"Equal parts espresso and milk.","price":24,"image":"Cortado.webp","calories":"110 kcal","dietary":["contains-dairy"],"hasMilk":true},
-        {"id":"cafe14","categoryId":"cafe","nameEn":"Macchiato","nameAr":"ماكياتو","descriptionEn":"Espresso marked with foam.","price":24,"image":"Machiatto.jpg","calories":"40 kcal","dietary":["contains-dairy"],"hasMilk":true},
-        {"id":"cafe15","categoryId":"cafe","nameEn":"Espresso Single","nameAr":"إسپريسو مفرد","descriptionEn":"Pure coffee essence.","price":18,"image":"Espresso.webp","calories":"3 kcal","dietary":["vegan"]},
-        {"id":"cafe16","categoryId":"cafe","nameEn":"Espresso Double","nameAr":"إسپريسو مزدوج","descriptionEn":"Double intensity.","price":21,"image":"Espresso.webp","calories":"6 kcal","dietary":["vegan"]},
-        {"id":"cafe17","categoryId":"cafe","nameEn":"Americano","nameAr":"أمريكانو","descriptionEn":"Espresso with hot water.","price":21,"image":"Americano.webp","calories":"5 kcal","dietary":["vegan"]},
-        {"id":"cafe18","categoryId":"cafe","nameEn":"Hot Chocolate","nameAr":"هوت شوكولاتة","descriptionEn":"Artisanal cocoa.","price":36,"image":"Hotchocolate.jfif","calories":"360 kcal","dietary":["contains-dairy"],"hasMilk":true},
-        {"id":"cafe19","categoryId":"cafe","nameEn":"Iced Tiramisu Latte","nameAr":"لاتيه تيراميسو مثلج","descriptionEn":"Layered iced espresso latte.","price":36,"image":"Icetiramisu.webp","calories":"210 kcal","dietary":["contains-dairy"],"hasMilk":true},
-        {"id":"cafe20","categoryId":"cafe","nameEn":"Aerocano","nameAr":"أيرو كانو","descriptionEn":"Light and airy iced espresso.","price":28,"image":"Aerocano.webp","calories":"5 kcal","dietary":["vegan"]},
-        {"id":"spec1","categoryId":"specialty","nameEn":"V60 Pour Over","nameAr":"V60","descriptionEn":"Hand-poured, bright floral notes.","price":35,"image":"V60.webp","calories":"2 kcal","dietary":["vegan"]},
-        {"id":"spec2","categoryId":"specialty","nameEn":"Ice Drip","nameAr":"آيس دريب","descriptionEn":"8-hour cold extraction.","price":35,"image":"Drip.jpg","calories":"2 kcal","dietary":["vegan"]},
-        {"id":"spec3","categoryId":"specialty","nameEn":"Cold Brew","nameAr":"كولد برو","descriptionEn":"18+ hour steep, ultra smooth.","price":37,"image":"Coldbrew.webp","calories":"2 kcal","dietary":["vegan"]},
-        {"id":"ref1","categoryId":"refreshers","nameEn":"Ramadan Lemonade","nameAr":"ليموناضة رمضان","descriptionEn":"Fresh Sicilian lemons.","price":37,"image":"Lemonade.jpg","calories":"120 kcal","dietary":["vegan"]},
-        {"id":"ref2","categoryId":"refreshers","nameEn":"Fresh Orange Juice","nameAr":"عصير برتقال طازج","descriptionEn":"Valencia oranges.","price":37,"image":"Orange.jpeg","calories":"140 kcal","dietary":["vegan"]},
-        {"id":"ref3","categoryId":"refreshers","nameEn":"Orange Earl Grey","nameAr":"برتقال إيرل جراي","descriptionEn":"Citrus-bergamot duet.","price":47,"image":"Earl.jpeg","calories":"2 kcal","dietary":["vegan"]},
-        {"id":"ref4","categoryId":"refreshers","nameEn":"Strawberry Mojito","nameAr":"موهيتو فراولة","descriptionEn":"Fresh strawberries, mint, lime.","price":42,"image":"Strawberrymojito.jpg","calories":"160 kcal","dietary":[]},
-        {"id":"ref5","categoryId":"refreshers","nameEn":"Passion Fruit Mojito","nameAr":"موهيتو باشن فروت","descriptionEn":"Exotic passion fruit.","price":42,"image":"Passionfruit.webp","calories":"170 kcal","dietary":[]},
-        {"id":"ref6","categoryId":"refreshers","nameEn":"Blueberry Mojito","nameAr":"موهيتو توت أزرق","descriptionEn":"Wild blueberries.","price":38,"image":"Blueberrymojito.webp","calories":"150 kcal","dietary":[]},
-        {"id":"ref7","categoryId":"refreshers","nameEn":"Black Mulberry Mojito","nameAr":"موهيتو توت أسود","descriptionEn":"Rich black mulberries.","price":40,"image":"Mulberrymojito.jpg","calories":"170 kcal","dietary":[]},
-        {"id":"ref8","categoryId":"refreshers","nameEn":"Mix Berries Mojito","nameAr":"موهيتو توت مشكل","descriptionEn":"Berry symphony.","price":47,"image":"Mixberriesmojito.webp","calories":"176 kcal","dietary":[]},
-        {"id":"ref9","categoryId":"refreshers","nameEn":"Cooling Breeze","nameAr":"نسيم بارد","descriptionEn":"Mint, lime, sparkling water.","price":38,"image":"Coolingbreeze.jpg","calories":"110 kcal","dietary":[]},
-        {"id":"ref10","categoryId":"refreshers","nameEn":"Still Water","nameAr":"مياه عادية","descriptionEn":"330ml.","price":11,"image":"WaterBig.jpg","calories":"0 kcal","dietary":["vegan"]},
-        {"id":"ref11","categoryId":"refreshers","nameEn":"Still Water Large","nameAr":"مياه عادية كبير","descriptionEn":"750ml.","price":21,"image":"Watersmall.jpg","calories":"0 kcal","dietary":["vegan"]},
-        {"id":"ref12","categoryId":"refreshers","nameEn":"Sparkling Water","nameAr":"مياه غازية","descriptionEn":"Naturally carbonated.","price":21,"image":"Sparkling.jpg","calories":"0 kcal","dietary":["vegan"]},
-        {"id":"ref13","categoryId":"refreshers","nameEn":"Kinza Cola","nameAr":"كينزا كولا","descriptionEn":"Signature cola blend.","price":17,"image":"Cola.jpg","calories":"150 kcal","dietary":[]},
-        {"id":"ref14","categoryId":"refreshers","nameEn":"Kinza Cola Zero","nameAr":"كينزا كولا زيرو","descriptionEn":"Sugar-free cola.","price":17,"image":"Zero.jpg","calories":"0 kcal","dietary":[]},
-        {"id":"bak1","categoryId":"baklava","nameEn":"Ramadan Baklava Mix","nameAr":"بقلاوة رمضان مشكلة","descriptionEn":"Assortment of the finest baklava.","price":65,"image":"Mix.jpeg","calories":"450 kcal","dietary":["contains-nuts"]},
-        {"id":"bak2","categoryId":"baklava","nameEn":"Carrot Baklava","nameAr":"بقلاوة جزر","descriptionEn":"With carrot puree.","price":45,"image":"Carrot.jpeg","calories":"420 kcal","dietary":["contains-nuts"]},
-        {"id":"bak3","categoryId":"baklava","nameEn":"Carrot Baklava & Ice Cream","nameAr":"بقلاوة جزر مع آيس كريم","descriptionEn":"Warm baklava with vanilla ice cream.","price":55,"image":"Carroticecream.jpeg","calories":"620 kcal","dietary":["contains-nuts","contains-dairy"]},
-        {"id":"bak4","categoryId":"baklava","nameEn":"Trio Baklava","nameAr":"تريو بقلاوة","descriptionEn":"Three distinct styles.","price":45,"image":"TrioBaklava.jpeg","calories":"480 kcal","dietary":["contains-nuts"]},
-        {"id":"bak5","categoryId":"baklava","nameEn":"Honey Cake","nameAr":"كيك عسل","descriptionEn":"Layers with honey cream.","price":45,"image":"Honeycake.jfif","calories":"430 kcal","dietary":["contains-dairy"]},
-        {"id":"bak6","categoryId":"baklava","nameEn":"Fanzuella Sweets","nameAr":"فانزويلا","descriptionEn":"Layered pastry with cream.","price":45,"image":"Fanzuella.webp","calories":"420 kcal","dietary":["contains-dairy"]},
-        {"id":"bak7","categoryId":"baklava","nameEn":"Chocolate Flan","nameAr":"فلان شوكولاتة","descriptionEn":"Chocolate-infused flan.","price":25,"image":"Chocoflan.jpeg","calories":"380 kcal","dietary":["contains-dairy"]},
-        {"id":"bak8","categoryId":"baklava","nameEn":"Dark Chocolate Cake","nameAr":"كيكة شوكولاتة داكنة","descriptionEn":"Moist dark chocolate.","price":45,"image":"Darkchocolateopera.jpeg","calories":"540 kcal","dietary":["contains-dairy"]},
-        {"id":"bak9","categoryId":"baklava","nameEn":"Pistachio Cake","nameAr":"كيكة الفستق","descriptionEn":"Soft pistachio sponge.","price":45,"image":"Pistachiocake.jpeg","calories":"510 kcal","dietary":["contains-nuts","contains-dairy"]},
-        {"id":"bak10","categoryId":"baklava","nameEn":"Black Forest Cake","nameAr":"كيكة الغابة السوداء","descriptionEn":"Chocolate, cherry notes.","price":45,"image":"Darkforestopera.jpeg","calories":"560 kcal","dietary":["contains-dairy"]},
-        {"id":"bak11","categoryId":"baklava","nameEn":"Chocolate Mousse Cake","nameAr":"كيكة موس شوكولاتة","descriptionEn":"Light airy mousse.","price":45,"image":"Chocolatemousseopera.jpeg","calories":"530 kcal","dietary":["contains-dairy"]},
-        {"id":"bak12","categoryId":"baklava","nameEn":"Red Velvet Cake","nameAr":"ريد فلفت","descriptionEn":"Soft red sponge.","price":45,"image":"Redvelvetopera.jpeg","calories":"520 kcal","dietary":["contains-dairy"]},
-        {"id":"bak13","categoryId":"baklava","nameEn":"Kunafa","nameAr":"كنافة","descriptionEn":"Shredded kataifi with cheese.","price":45,"image":"Kunafa.jpeg","calories":"520 kcal","dietary":["contains-dairy"]},
-        {"id":"bak14","categoryId":"baklava","nameEn":"Brownies","nameAr":"براونيز","descriptionEn":"Dense, fudge-rich.","price":55,"image":"Brown.jpg","calories":"380 kcal","dietary":["contains-dairy"]},
-        {"id":"bak15","categoryId":"baklava","nameEn":"Tiramisu","nameAr":"تيراميسو","descriptionEn":"Espresso-soaked layers.","price":50,"image":"Tiramisu.jpg","calories":"420 kcal","dietary":["contains-dairy"]},
-        {"id":"bak16","categoryId":"baklava","nameEn":"Trileche","nameAr":"تريليتش","descriptionEn":"Three-milk cake.","price":45,"image":"Trileche.jpg","calories":"540 kcal","dietary":["contains-dairy"]},
-        {"id":"bak17","categoryId":"baklava","nameEn":"San Sebastian Cheesecake","nameAr":"تشيز كيك سان سيباستيان","descriptionEn":"Caramelized top, creamy.","price":45,"image":"Sebastian.jpg","calories":"520 kcal","dietary":["contains-dairy"]},
-        {"id":"bak18","categoryId":"baklava","nameEn":"Cheesecake Blueberry","nameAr":"تشيز كيك نيويورك","descriptionEn":"Creamy, graham crust.","price":45,"image":"Cheesecakeopera.jpeg","calories":"500 kcal","dietary":["contains-dairy"]},
-        {"id":"bak19","categoryId":"baklava","nameEn":"Turkish Ice Cream","nameAr":"آيس كريم تركي","descriptionEn":"Classic dondurma.","price":27,"image":"Icecream.webp","calories":"210 kcal","dietary":["contains-dairy"]},
-        {"id":"nut1","categoryId":"nuts","nameEn":"Nuts Stand – Tall","nameAr":"مكسرات - ستاند كبير","descriptionEn":"Premium roasted nuts.","price":99,"image":"Nuts.jpg","calories":"300 kcal","dietary":["contains-nuts"]},
-        {"id":"nut2","categoryId":"nuts","nameEn":"Nuts Stand – Small","nameAr":"مكسرات - ستاند صغير","descriptionEn":"Curated mix.","price":60,"image":"Nutsmall.jpg","calories":"180 kcal","dietary":["contains-nuts"]},
-        {"id":"nut3","categoryId":"nuts","nameEn":"Assorted Nut Platter","nameAr":"طبق مكسرات مشكل","descriptionEn":"Artfully arranged selection.","price":35,"image":"Nutsplatter.jpg","calories":"180 kcal","dietary":["contains-nuts"]},
-        {"id":"cro6","categoryId":"croissant","nameEn":"Plain Butter Croissant","nameAr":"كرواسون زبدة","descriptionEn":"Classic Parisian.","price":20,"image":"Plain.webp","calories":"320 kcal","dietary":["vegetarian"]},
-        {"id":"cro7","categoryId":"croissant","nameEn":"Cheese Croissant","nameAr":"كرواسون جبن","descriptionEn":"Cheese filling.","price":20,"image":"Cheese.jpg","calories":"360 kcal","dietary":["vegetarian"]},
-        {"id":"cro8","categoryId":"croissant","nameEn":"Chocolate Croissant","nameAr":"كرواسون شوكولاتة","descriptionEn":"Dark chocolate batons.","price":20,"image":"Chocolatecroissant.jpg","calories":"380 kcal","dietary":["vegetarian"]},
-        {"id":"cro9","categoryId":"croissant","nameEn":"Almond Croissant","nameAr":"كرواسون لوز","descriptionEn":"Almond cream, sliced almonds.","price":20,"image":"Almondcroissant.jpg","calories":"400 kcal","dietary":["vegetarian"]},
-        {"id":"cro10","categoryId":"croissant","nameEn":"Cinnamon Danish","nameAr":"دانش قرفة","descriptionEn":"Cinnamon-sugar spiral.","price":20,"image":"Cinnamon.jpg","calories":"390 kcal","dietary":["vegetarian"]},
-        {"id":"cro11","categoryId":"croissant","nameEn":"Danish Shell","nameAr":"دانش شل","descriptionEn":"Shell-shaped, delicate.","price":20,"image":"Danish.jpg","calories":"380 kcal","dietary":["vegetarian"]},
-        {"id":"cro12","categoryId":"croissant","nameEn":"Raisins Danish","nameAr":"دانش زبيب","descriptionEn":"Studded with raisins.","price":20,"image":"Raisin.jpg","calories":"390 kcal","dietary":["vegetarian"]},
-        {"id":"grill3","categoryId":"grill","nameEn":"French Fries","nameAr":"بطاطس مقلية","descriptionEn":"Golden crispy fries.","price":29,"image":"Patatas.jpg","calories":"340 kcal","dietary":["vegan"]},
-        {"id":"grill4","categoryId":"grill","nameEn":"Potato Wedges","nameAr":"بطاطس ويدجز","descriptionEn":"Thick-cut wedges.","price":32,"image":"Wedges.webp","calories":"380 kcal","dietary":["vegetarian"]}
+        {"id":"brew1","categoryId":"brewed","nameEn":"Classic Turkish Coffee","nameAr":"قهوة تركية كلاسيكية","descriptionEn":"Finely ground coffee brewed in copper cezve. Served with foam crown and Turkish delight.","descriptionAr":"قهوة مطحونة ناعماً تُعد في ركوة نحاسية. تقدم مع تاج من الرغوة والبقلاوة.","price":28,"image":"Turkishcoffee.jpg","calories":"5 kcal","dietary":["vegan","gluten-free"],"temp":"hot"},
+        {"id":"brew2","categoryId":"brewed","nameEn":"Double Turkish Coffee","nameAr":"قهوة تركية مزدوجة","descriptionEn":"Double the intensity with concentrated brewing.","descriptionAr":"ضعف القوة مع تخمير مركز.","price":40,"image":"Turkishcoffee.jpg","calories":"10 kcal","dietary":["vegan","gluten-free"],"temp":"hot"},
+        {"id":"brew3","categoryId":"brewed","nameEn":"Ottoman Mastic Coffee","nameAr":"قهوة عثمانية بالمستيك","descriptionEn":"Premium coffee with rare Chios mastic resin.","descriptionAr":"قهوة فاخرة مع صمغ المستيكا النادر.","price":28,"image":"Ottomanmastica.jpg","calories":"5 kcal","dietary":["vegan","gluten-free"],"temp":"hot"},
+        {"id":"brew4","categoryId":"brewed","nameEn":"Hazelnut Turkish Coffee","nameAr":"قهوة تركية بالبندق","descriptionEn":"Blended with finely ground premium hazelnuts.","descriptionAr":"مخلوطة مع بندق مطحون ناعماً.","price":28,"image":"Ottomanhazelnut.jpg","calories":"20 kcal","dietary":["contains-nuts"],"temp":"hot"},
+        {"id":"brew5","categoryId":"brewed","nameEn":"Cardamom Turkish Coffee","nameAr":"قهوة تركية بالهيل","descriptionEn":"Infused with aromatic green cardamom pods.","descriptionAr":"منقوعة بحبات الهيل الأخضر العطري.","price":28,"image":"Ottomancardamom.jpg","calories":"5 kcal","dietary":["vegan","gluten-free"],"temp":"hot"},
+        {"id":"brew6","categoryId":"brewed","nameEn":"Sahlep","nameAr":"سحلب","descriptionEn":"Ancient Anatolian comfort drink from wild orchid tubers.","descriptionAr":"مشروب الأناضول القديم من درنات السحلب البري.","price":38,"image":"Sahlep.jpg","calories":"200 kcal","dietary":["contains-dairy"],"temp":"hot"},
+        {"id":"brew7","categoryId":"brewed","nameEn":"Arabic Coffee – Full Dalla","nameAr":"قهوة عربية - دلة كاملة","descriptionEn":"Ceremonial centerpiece with cardamom and saffron.","descriptionAr":"قطعة مركزية احتفالية مع الهيل والزعفران.","price":90,"image":"Arabic.jpg","calories":"10 kcal","dietary":["vegan","gluten-free"],"temp":"hot"},
+        {"id":"brew8","categoryId":"brewed","nameEn":"Arabic Coffee – Half Dalla","nameAr":"قهوة عربية - نصف دلة","descriptionEn":"Perfect for intimate gatherings.","descriptionAr":"مثالي للتجمعات الحميمة.","price":55,"image":"Arabic.jpg","calories":"10 kcal","dietary":["vegan","gluten-free"],"temp":"hot"},
+        {"id":"brew9","categoryId":"brewed","nameEn":"Arabic Coffee – Cup","nameAr":"قهوة عربية - فنجان","descriptionEn":"Personal serving of authentic Arabic coffee.","descriptionAr":"حصة فردية من القهوة العربية الأصيلة.","price":35,"image":"Arabiccup.jpeg","calories":"10 kcal","dietary":["vegan","gluten-free"],"temp":"hot"},
+        {"id":"tea1","categoryId":"tea","nameEn":"Turkish Tea","nameAr":"شاي تركي","descriptionEn":"Deep amber Rize tea, served in tulip glasses.","descriptionAr":"شاي ريزي العنبري العميق، يقدم في أكواب التوليب.","price":15,"image":"Tea.jpg","calories":"2 kcal","dietary":["vegan"],"temp":"hot"},
+        {"id":"tea2","categoryId":"tea","nameEn":"Turkish Tea Pot","nameAr":"إبريق شاي تركي","descriptionEn":"Generous pot for sharing.","descriptionAr":"إبريق كبير للمشاركة.","price":45,"image":"Turkishteapot.jpeg","calories":"0 kcal","dietary":["vegan"],"temp":"hot"},
+        {"id":"tea3","categoryId":"tea","nameEn":"Apple Tea","nameAr":"شاي التفاح","descriptionEn":"Sun-ripened apple essence.","descriptionAr":"خلاصة تفاح ناضج تحت الشمس.","price":35,"image":"Appletea.jpg","calories":"2 kcal","dietary":["vegan"],"temp":"hot"},
+        {"id":"tea4","categoryId":"tea","nameEn":"Mulberry Tea","nameAr":"شاي التوت","descriptionEn":"White mulberry infusion.","descriptionAr":"منقوع التوت الأبيض.","price":35,"image":"Mulberrytea.jpg","calories":"2 kcal","dietary":["vegan"],"temp":"hot"},
+        {"id":"tea5","categoryId":"tea","nameEn":"Lemon Mint","nameAr":"ليمون بالنعناع","descriptionEn":"Zesty lemon and fresh mint leaves.","descriptionAr":"ليمون منعش وأوراق نعناع طازجة.","price":35,"image":"Lemontea.jpg","calories":"2 kcal","dietary":["vegan"],"temp":"hot"},
+        {"id":"tea6","categoryId":"tea","nameEn":"Pomegranate Tea","nameAr":"شاي الرمان","descriptionEn":"Vibrant infusion, sweet-tart notes.","descriptionAr":"منقوع نابض بالحياة، نكهات حلوة لاذعة.","price":35,"image":"Romantea.jpg","calories":"2 kcal","dietary":["vegan"],"temp":"hot"},
+        {"id":"tea7","categoryId":"tea","nameEn":"Matcha","nameAr":"ماتشا","descriptionEn":"Ceremonial-grade matcha from Japan.","descriptionAr":"ماتشا يابانية بجودة احتفالية.","price":36,"image":"Matcha.webp","calories":"95 kcal","dietary":["vegan"],"temp":"hot"},
+        {"id":"tea8","categoryId":"tea","nameEn":"Strawberry Matcha","nameAr":"ماتشا بالفراولة","descriptionEn":"Matcha with strawberry puree.","descriptionAr":"ماتشا مع هريس الفراولة.","price":42,"image":"Strawberrymatcha.webp","calories":"135 kcal","dietary":["vegan"],"temp":"iced"},
+        {"id":"tea9","categoryId":"tea","nameEn":"Iced Apple Tea","nameAr":"شاي التفاح مثلج","descriptionEn":"Chilled orchard breeze.","descriptionAr":"نسيم بستان بارد.","price":35,"image":"Appletea.avif","calories":"35 kcal","dietary":["vegan"],"temp":"iced"},
+        {"id":"tea10","categoryId":"tea","nameEn":"Iced Mulberry Tea","nameAr":"شاي التوت المثلج","descriptionEn":"Frosted silk, subtle fruity.","descriptionAr":"حرير مثلج، فاكهي خفيف.","price":35,"image":"Blackmulberrytea.png","calories":"35 kcal","dietary":["vegan"],"temp":"iced"},
+        {"id":"tea11","categoryId":"tea","nameEn":"Iced Pomegranate Tea","nameAr":"شاي الرمان المثلج","descriptionEn":"Jewel-toned refreshment.","descriptionAr":"منعش بلون الجواهر.","price":35,"image":"Pomegranatetea.avif","calories":"45 kcal","dietary":["vegan"],"temp":"iced"},
+        {"id":"tea12","categoryId":"tea","nameEn":"Passion Fruit Tea","nameAr":"شاي باشن فروت","descriptionEn":"Tropical euphoria in a cup.","descriptionAr":"نشوة استوائية في كوب.","price":45,"image":"Passiontea.webp","calories":"40 kcal","dietary":["vegan"],"temp":"both"},
+        {"id":"tea13","categoryId":"tea","nameEn":"Hibiscus Iced","nameAr":"كركديه مثلج","descriptionEn":"Ruby glacier, tangy floral.","descriptionAr":"نهر جليدي ياقوتي، زهري لاذع.","price":36,"image":"Hibiscus.webp","calories":"25 kcal","dietary":["vegan"],"temp":"iced"},
+        {"id":"tea14","categoryId":"tea","nameEn":"Hibiscus Tea","nameAr":"شاي الكركديه","descriptionEn":"Soothing hot infusion.","descriptionAr":"منقوع ساخن مهدئ.","price":36,"image":"Hibiscustea.webp","calories":"25 kcal","dietary":["vegan"],"temp":"hot"},
+        {"id":"tea15","categoryId":"tea","nameEn":"Winter Tea","nameAr":"شاي الشتاء","descriptionEn":"Warming seasonal blend.","descriptionAr":"مزيج موسمي دافئ.","price":38,"image":"Wintertea.webp","calories":"30 kcal","dietary":["vegan"],"temp":"hot"},
+        {"id":"tea16","categoryId":"tea","nameEn":"Chamomile Tea","nameAr":"شاي البابونج","descriptionEn":"Calming floral notes.","descriptionAr":"نوتات زهرية مهدئة.","price":36,"image":"Chamomiletea.webp","calories":"0 kcal","dietary":["vegan"],"temp":"hot"},
+        {"id":"tea17","categoryId":"tea","nameEn":"Green Tea","nameAr":"شاي أخضر","descriptionEn":"Pure, clean taste.","descriptionAr":"طعم نقي ونظيف.","price":36,"image":"Greentea.jpg","calories":"0 kcal","dietary":["vegan"],"temp":"hot"},
+        {"id":"cafe1","categoryId":"cafe","nameEn":"Ramadan Latte","nameAr":"لاتيه رمضان","descriptionEn":"Smooth microfoam.","descriptionAr":"ميكروفوم ناعم.","price":29,"image":"Latteart.webp","calories":"170 kcal","dietary":["contains-dairy"],"hasMilk":true,"temp":"hot"},
+        {"id":"cafe2","categoryId":"cafe","nameEn":"Ramadan Cappuccino","nameAr":"كابوتشينو رمضان","descriptionEn":"Equal parts espresso, milk, foam.","descriptionAr":"أجزاء متساوية من الإسبريسو والحليب والرغوة.","price":29,"image":"Art.webp","calories":"150 kcal","dietary":["contains-dairy"],"hasMilk":true,"temp":"hot"},
+        {"id":"cafe3","categoryId":"cafe","nameEn":"Spanish Latte","nameAr":"لاتيه إسباني","descriptionEn":"Sweetened condensed milk base.","descriptionAr":"قاعدة حليب مكثف محلى.","price":32,"image":"Latteart.webp","calories":"220 kcal","dietary":["contains-dairy"],"hasMilk":true,"temp":"hot"},
+        {"id":"cafe4","categoryId":"cafe","nameEn":"Salted Caramel Latte","nameAr":"لاتيه كراميل مملح","descriptionEn":"House-made caramel with fleur de sel.","descriptionAr":"كراميل منزلي مع ملح فلور دي سيل.","price":32,"image":"Latteart.webp","calories":"230 kcal","dietary":["contains-dairy"],"hasMilk":true,"temp":"hot"},
+        {"id":"cafe5","categoryId":"cafe","nameEn":"Vanilla Latte","nameAr":"لاتيه فانيليا","descriptionEn":"Madagascar bourbon vanilla.","descriptionAr":"فانيليا بوربون مدغشقر.","price":32,"image":"Art.webp","calories":"220 kcal","dietary":["contains-dairy"],"hasMilk":true,"temp":"hot"},
+        {"id":"cafe6","categoryId":"cafe","nameEn":"Hazelnut Latte","nameAr":"لاتيه البندق","descriptionEn":"Rich nutty flavor.","descriptionAr":"نكهة جوزية غنية.","price":32,"image":"Art.webp","calories":"180 kcal","dietary":["contains-dairy"],"hasMilk":true,"temp":"hot"},
+        {"id":"cafe7","categoryId":"cafe","nameEn":"Toffee Nut Latte","nameAr":"لاتيه توفي مكسرات","descriptionEn":"Rich toffee and toasted nut.","descriptionAr":"توفي غني وجوز محمص.","price":32,"image":"Art.webp","calories":"190 kcal","dietary":["contains-dairy"],"hasMilk":true,"temp":"hot"},
+        {"id":"cafe8","categoryId":"cafe","nameEn":"Pistachio Latte","nameAr":"لاتيه الفستق","descriptionEn":"Rich pistachio, velvety smooth.","descriptionAr":"فستق غني، مخملي ناعم.","price":36,"image":"Pistachiolatte.webp","calories":"210 kcal","dietary":["contains-dairy"],"hasMilk":true,"temp":"hot"},
+        {"id":"cafe9","categoryId":"cafe","nameEn":"White Mocha","nameAr":"وايت موكا","descriptionEn":"Creamy white chocolate espresso.","descriptionAr":"إسبريسو شوكولاتة بيضاء كريمية.","price":32,"image":"Latteart.webp","calories":"260 kcal","dietary":["contains-dairy"],"hasMilk":true,"temp":"hot"},
+        {"id":"cafe10","categoryId":"cafe","nameEn":"Mocha","nameAr":"موكا","descriptionEn":"Rich dark chocolate espresso.","descriptionAr":"إسبريسو شوكولاتة داكنة غنية.","price":32,"image":"Art.webp","calories":"260 kcal","dietary":["contains-dairy"],"hasMilk":true,"temp":"hot"},
+        {"id":"cafe11","categoryId":"cafe","nameEn":"Flat White","nameAr":"فلات وايت","descriptionEn":"Double ristretto, velvety microfoam.","descriptionAr":"ريستريتو مزدوج، ميكروفوم مخملي.","price":27,"image":"Flatwhite.webp","calories":"140 kcal","dietary":["contains-dairy"],"hasMilk":true,"temp":"hot"},
+        {"id":"cafe12","categoryId":"cafe","nameEn":"Piccolo Latte","nameAr":"بيكولو لاتيه","descriptionEn":"Strong ristretto with steamed milk.","descriptionAr":"ريستريتو قوي مع حليب مبخر.","price":24,"image":"Piccololatte.jpg","calories":"120 kcal","dietary":["contains-dairy"],"hasMilk":true,"temp":"hot"},
+        {"id":"cafe13","categoryId":"cafe","nameEn":"Cortado","nameAr":"كورتادو","descriptionEn":"Equal parts espresso and milk.","descriptionAr":"أجزاء متساوية من الإسبريسو والحليب.","price":24,"image":"Cortado.webp","calories":"110 kcal","dietary":["contains-dairy"],"hasMilk":true,"temp":"hot"},
+        {"id":"cafe14","categoryId":"cafe","nameEn":"Macchiato","nameAr":"ماكياتو","descriptionEn":"Espresso marked with foam.","descriptionAr":"إسبريسو مع علامة رغوة.","price":24,"image":"Machiatto.jpg","calories":"40 kcal","dietary":["contains-dairy"],"hasMilk":true,"temp":"hot"},
+        {"id":"cafe15","categoryId":"cafe","nameEn":"Espresso Single","nameAr":"إسپريسو مفرد","descriptionEn":"Pure coffee essence.","descriptionAr":"جوهر القهوة النقية.","price":18,"image":"Espresso.webp","calories":"3 kcal","dietary":["vegan"],"temp":"hot"},
+        {"id":"cafe16","categoryId":"cafe","nameEn":"Espresso Double","nameAr":"إسپريسو مزدوج","descriptionEn":"Double intensity.","descriptionAr":"ضعف القوة.","price":21,"image":"Espresso.webp","calories":"6 kcal","dietary":["vegan"],"temp":"hot"},
+        {"id":"cafe17","categoryId":"cafe","nameEn":"Americano","nameAr":"أمريكانو","descriptionEn":"Espresso with hot water.","descriptionAr":"إسبريسو مع ماء ساخن.","price":21,"image":"Americano.webp","calories":"5 kcal","dietary":["vegan"],"temp":"hot"},
+        {"id":"cafe18","categoryId":"cafe","nameEn":"Hot Chocolate","nameAr":"هوت شوكولاتة","descriptionEn":"Artisanal cocoa.","descriptionAr":"كاكاو حرفي.","price":36,"image":"Hotchocolate.jfif","calories":"360 kcal","dietary":["contains-dairy"],"hasMilk":true,"temp":"hot"},
+        {"id":"cafe19","categoryId":"cafe","nameEn":"Iced Tiramisu Latte","nameAr":"لاتيه تيراميسو مثلج","descriptionEn":"Layered iced espresso latte.","descriptionAr":"لاتيه إسبريسو مثلج متعدد الطبقات.","price":36,"image":"Icetiramisu.webp","calories":"210 kcal","dietary":["contains-dairy"],"hasMilk":true,"temp":"iced"},
+        {"id":"cafe20","categoryId":"cafe","nameEn":"Aerocano","nameAr":"أيرو كانو","descriptionEn":"Light and airy iced espresso.","descriptionAr":"إسبريسو مثلج خفيف وجيد التهوية.","price":28,"image":"Aerocano.webp","calories":"5 kcal","dietary":["vegan"],"temp":"iced"},
+        {"id":"spec1","categoryId":"specialty","nameEn":"V60 Pour Over","nameAr":"V60","descriptionEn":"Hand-poured, bright floral notes.","descriptionAr":"صب يدوي، نوتات زهرية مشرقة.","price":35,"image":"V60.webp","calories":"2 kcal","dietary":["vegan"],"temp":"hot"},
+        {"id":"spec2","categoryId":"specialty","nameEn":"Ice Drip","nameAr":"آيس دريب","descriptionEn":"8-hour cold extraction.","descriptionAr":"استخلاص بارد لمدة 8 ساعات.","price":35,"image":"Drip.jpg","calories":"2 kcal","dietary":["vegan"],"temp":"iced"},
+        {"id":"spec3","categoryId":"specialty","nameEn":"Cold Brew","nameAr":"كولد برو","descriptionEn":"18+ hour steep, ultra smooth.","descriptionAr":"نقع لأكثر من 18 ساعة، ناعم جداً.","price":37,"image":"Coldbrew.webp","calories":"2 kcal","dietary":["vegan"],"temp":"iced"},
+        {"id":"ref1","categoryId":"refreshers","nameEn":"Ramadan Lemonade","nameAr":"ليموناضة رمضان","descriptionEn":"Fresh Sicilian lemons.","descriptionAr":"ليمون صقلي طازج.","price":37,"image":"Lemonade.jpg","calories":"120 kcal","dietary":["vegan"],"temp":"iced"},
+        {"id":"ref2","categoryId":"refreshers","nameEn":"Fresh Orange Juice","nameAr":"عصير برتقال طازج","descriptionEn":"Valencia oranges.","descriptionAr":"برتقال فالنسيا.","price":37,"image":"Orange.jpeg","calories":"140 kcal","dietary":["vegan"],"temp":"iced"},
+        {"id":"ref3","categoryId":"refreshers","nameEn":"Orange Earl Grey","nameAr":"برتقال إيرل جراي","descriptionEn":"Citrus-bergamot duet.","descriptionAr":"ثنائي الحمضيات والبرغموت.","price":47,"image":"Earl.jpeg","calories":"2 kcal","dietary":["vegan"],"temp":"iced"},
+        {"id":"ref4","categoryId":"refreshers","nameEn":"Strawberry Mojito","nameAr":"موهيتو فراولة","descriptionEn":"Fresh strawberries, mint, lime.","descriptionAr":"فراولة طازجة، نعناع، ليم.","price":42,"image":"Strawberrymojito.jpg","calories":"160 kcal","dietary":[],"temp":"iced"},
+        {"id":"ref5","categoryId":"refreshers","nameEn":"Passion Fruit Mojito","nameAr":"موهيتو باشن فروت","descriptionEn":"Exotic passion fruit.","descriptionAr":"فاكهة الباشن الاستوائية.","price":42,"image":"Passionfruit.webp","calories":"170 kcal","dietary":[],"temp":"iced"},
+        {"id":"ref6","categoryId":"refreshers","nameEn":"Blueberry Mojito","nameAr":"موهيتو توت أزرق","descriptionEn":"Wild blueberries.","descriptionAr":"توت بري.","price":38,"image":"Blueberrymojito.webp","calories":"150 kcal","dietary":[],"temp":"iced"},
+        {"id":"ref7","categoryId":"refreshers","nameEn":"Black Mulberry Mojito","nameAr":"موهيتو توت أسود","descriptionEn":"Rich black mulberries.","descriptionAr":"توت أسود غني.","price":40,"image":"Mulberrymojito.jpg","calories":"170 kcal","dietary":[],"temp":"iced"},
+        {"id":"ref8","categoryId":"refreshers","nameEn":"Mix Berries Mojito","nameAr":"موهيتو توت مشكل","descriptionEn":"Berry symphony.","descriptionAr":"سيمفونية التوت.","price":47,"image":"Mixberriesmojito.webp","calories":"176 kcal","dietary":[],"temp":"iced"},
+        {"id":"ref9","categoryId":"refreshers","nameEn":"Cooling Breeze","nameAr":"نسيم بارد","descriptionEn":"Mint, lime, sparkling water.","descriptionAr":"نعناع، ليم، ماء فوار.","price":38,"image":"Coolingbreeze.jpg","calories":"110 kcal","dietary":[],"temp":"iced"},
+        {"id":"ref10","categoryId":"refreshers","nameEn":"Still Water","nameAr":"مياه عادية","descriptionEn":"330ml.","descriptionAr":"330 مل.","price":11,"image":"WaterBig.jpg","calories":"0 kcal","dietary":["vegan"],"temp":"iced"},
+        {"id":"ref11","categoryId":"refreshers","nameEn":"Still Water Large","nameAr":"مياه عادية كبير","descriptionEn":"750ml.","descriptionAr":"750 مل.","price":21,"image":"Watersmall.jpg","calories":"0 kcal","dietary":["vegan"],"temp":"iced"},
+        {"id":"ref12","categoryId":"refreshers","nameEn":"Sparkling Water","nameAr":"مياه غازية","descriptionEn":"Naturally carbonated.","descriptionAr":"مكربن طبيعياً.","price":21,"image":"Sparkling.jpg","calories":"0 kcal","dietary":["vegan"],"temp":"iced"},
+        {"id":"ref13","categoryId":"refreshers","nameEn":"Kinza Cola","nameAr":"كينزا كولا","descriptionEn":"Signature cola blend.","descriptionAr":"مزيج الكولا المميز.","price":17,"image":"Cola.jpg","calories":"150 kcal","dietary":[],"temp":"iced"},
+        {"id":"ref14","categoryId":"refreshers","nameEn":"Kinza Cola Zero","nameAr":"كينزا كولا زيرو","descriptionEn":"Sugar-free cola.","descriptionAr":"كولا خالية من السكر.","price":17,"image":"Zero.jpg","calories":"0 kcal","dietary":[],"temp":"iced"},
+        {"id":"bak1","categoryId":"baklava","nameEn":"Ramadan Baklava Mix","nameAr":"بقلاوة رمضان مشكلة","descriptionEn":"Assortment of the finest baklava.","descriptionAr":"تشكيلة من أرقى البقلاوة.","price":65,"image":"Mix.jpeg","calories":"450 kcal","dietary":["contains-nuts"],"temp":"room"},
+        {"id":"bak2","categoryId":"baklava","nameEn":"Carrot Baklava","nameAr":"بقلاوة جزر","descriptionEn":"With carrot puree.","descriptionAr":"مع هريس الجزر.","price":45,"image":"Carrot.jpeg","calories":"420 kcal","dietary":["contains-nuts"],"temp":"room"},
+        {"id":"bak3","categoryId":"baklava","nameEn":"Carrot Baklava & Ice Cream","nameAr":"بقلاوة جزر مع آيس كريم","descriptionEn":"Warm baklava with vanilla ice cream.","descriptionAr":"بقلاوة دافئة مع آيس كريم فانيليا.","price":55,"image":"Carroticecream.jpeg","calories":"620 kcal","dietary":["contains-nuts","contains-dairy"],"temp":"both"},
+        {"id":"bak4","categoryId":"baklava","nameEn":"Trio Baklava","nameAr":"تريو بقلاوة","descriptionEn":"Three distinct styles.","descriptionAr":"ثلاثة أنماط متميزة.","price":45,"image":"TrioBaklava.jpeg","calories":"480 kcal","dietary":["contains-nuts"],"temp":"room"},
+        {"id":"bak5","categoryId":"baklava","nameEn":"Honey Cake","nameAr":"كيك عسل","descriptionEn":"Layers with honey cream.","descriptionAr":"طبقات مع كريمة العسل.","price":45,"image":"Honeycake.jfif","calories":"430 kcal","dietary":["contains-dairy"],"temp":"room"},
+        {"id":"bak6","categoryId":"baklava","nameEn":"Fanzuella Sweets","nameAr":"فانزويلا","descriptionEn":"Layered pastry with cream.","descriptionAr":"معجنات ذات طبقات مع كريمة.","price":45,"image":"Fanzuella.webp","calories":"420 kcal","dietary":["contains-dairy"],"temp":"room"},
+        {"id":"bak7","categoryId":"baklava","nameEn":"Chocolate Flan","nameAr":"فلان شوكولاتة","descriptionEn":"Chocolate-infused flan.","descriptionAr":"فلان بالشوكولاتة.","price":25,"image":"Chocoflan.jpeg","calories":"380 kcal","dietary":["contains-dairy"],"temp":"cold"},
+        {"id":"bak8","categoryId":"baklava","nameEn":"Dark Chocolate Cake","nameAr":"كيكة شوكولاتة داكنة","descriptionEn":"Moist dark chocolate.","descriptionAr":"شوكولاتة داكنة رطبة.","price":45,"image":"Darkchocolateopera.jpeg","calories":"540 kcal","dietary":["contains-dairy"],"temp":"room"},
+        {"id":"bak9","categoryId":"baklava","nameEn":"Pistachio Cake","nameAr":"كيكة الفستق","descriptionEn":"Soft pistachio sponge.","descriptionAr":"إسفنجة فستق ناعمة.","price":45,"image":"Pistachiocake.jpeg","calories":"510 kcal","dietary":["contains-nuts","contains-dairy"],"temp":"room"},
+        {"id":"bak10","categoryId":"baklava","nameEn":"Black Forest Cake","nameAr":"كيكة الغابة السوداء","descriptionEn":"Chocolate, cherry notes.","descriptionAr":"شوكولاتة، نوتات كرز.","price":45,"image":"Darkforestopera.jpeg","calories":"560 kcal","dietary":["contains-dairy"],"temp":"room"},
+        {"id":"bak11","categoryId":"baklava","nameEn":"Chocolate Mousse Cake","nameAr":"كيكة موس شوكولاتة","descriptionEn":"Light airy mousse.","descriptionAr":"موس خفيف وجيد التهوية.","price":45,"image":"Chocolatemousseopera.jpeg","calories":"530 kcal","dietary":["contains-dairy"],"temp":"cold"},
+        {"id":"bak12","categoryId":"baklava","nameEn":"Red Velvet Cake","nameAr":"ريد فلفت","descriptionEn":"Soft red sponge.","descriptionAr":"إسفنجة حمراء ناعمة.","price":45,"image":"Redvelvetopera.jpeg","calories":"520 kcal","dietary":["contains-dairy"],"temp":"room"},
+        {"id":"bak13","categoryId":"baklava","nameEn":"Kunafa","nameAr":"كنافة","descriptionEn":"Shredded kataifi with cheese.","descriptionAr":"كنافة مبروشة مع الجبن.","price":45,"image":"Kunafa.jpeg","calories":"520 kcal","dietary":["contains-dairy"],"temp":"hot"},
+        {"id":"bak14","categoryId":"baklava","nameEn":"Brownies","nameAr":"براونيز","descriptionEn":"Dense, fudge-rich.","descriptionAr":"كثيف، غني بالفدج.","price":55,"image":"Brown.jpg","calories":"380 kcal","dietary":["contains-dairy"],"temp":"room"},
+        {"id":"bak15","categoryId":"baklava","nameEn":"Tiramisu","nameAr":"تيراميسو","descriptionEn":"Espresso-soaked layers.","descriptionAr":"طبقات منقوعة بالإسبريسو.","price":50,"image":"Tiramisu.jpg","calories":"420 kcal","dietary":["contains-dairy"],"temp":"cold"},
+        {"id":"bak16","categoryId":"baklava","nameEn":"Trileche","nameAr":"تريليتش","descriptionEn":"Three-milk cake.","descriptionAr":"كيكة ثلاثة حليب.","price":45,"image":"Trileche.jpg","calories":"540 kcal","dietary":["contains-dairy"],"temp":"cold"},
+        {"id":"bak17","categoryId":"baklava","nameEn":"San Sebastian Cheesecake","nameAr":"تشيز كيك سان سيباستيان","descriptionEn":"Caramelized top, creamy.","descriptionAr":"قمة مكرملة، كريمية.","price":45,"image":"Sebastian.jpg","calories":"520 kcal","dietary":["contains-dairy"],"temp":"cold"},
+        {"id":"bak18","categoryId":"baklava","nameEn":"Cheesecake Blueberry","nameAr":"تشيز كيك نيويورك","descriptionEn":"Creamy, graham crust.","descriptionAr":"كريمية، قاعدة غراهام.","price":45,"image":"Cheesecakeopera.jpeg","calories":"500 kcal","dietary":["contains-dairy"],"temp":"cold"},
+        {"id":"bak19","categoryId":"baklava","nameEn":"Turkish Ice Cream","nameAr":"آيس كريم تركي","descriptionEn":"Classic dondurma.","descriptionAr":"دوندورما كلاسيكي.","price":27,"image":"Icecream.webp","calories":"210 kcal","dietary":["contains-dairy"],"temp":"cold"},
+        {"id":"snack1","categoryId":"snacks","nameEn":"Nuts Stand – Tall","nameAr":"مكسرات - ستاند كبير","descriptionEn":"Premium roasted nuts.","descriptionAr":"مكسرات محمصة فاخرة.","price":99,"image":"Nuts.jpg","calories":"300 kcal","dietary":["contains-nuts"],"temp":"room"},
+        {"id":"snack2","categoryId":"snacks","nameEn":"Nuts Stand – Small","nameAr":"مكسرات - ستاند صغير","descriptionEn":"Curated mix.","descriptionAr":"مزيق منسق.","price":60,"image":"Nutsmall.jpg","calories":"180 kcal","dietary":["contains-nuts"],"temp":"room"},
+        {"id":"snack3","categoryId":"snacks","nameEn":"Assorted Nut Platter","nameAr":"طبق مكسرات مشكل","descriptionEn":"Artfully arranged selection.","descriptionAr":"تشكيلة مرتبة بفن.","price":35,"image":"Nutsplatter.jpg","calories":"180 kcal","dietary":["contains-nuts"],"temp":"room"},
+        {"id":"snack4","categoryId":"snacks","nameEn":"French Fries","nameAr":"بطاطس مقلية","descriptionEn":"Golden crispy fries.","descriptionAr":"بطاطس مقلية ذهبية مقرمشة.","price":29,"image":"Patatas.jpg","calories":"340 kcal","dietary":["vegan"],"temp":"hot"},
+        {"id":"snack5","categoryId":"snacks","nameEn":"Potato Wedges","nameAr":"بطاطس ويدجز","descriptionEn":"Thick-cut wedges.","descriptionAr":"شرائح سميكة.","price":32,"image":"Wedges.webp","calories":"380 kcal","dietary":["vegetarian"],"temp":"hot"},
+        {"id":"cro1","categoryId":"croissant","nameEn":"Plain Butter Croissant","nameAr":"كرواسون زبدة","descriptionEn":"Classic Parisian.","descriptionAr":"كلاسيكي باريسي.","price":20,"image":"Plain.webp","calories":"320 kcal","dietary":["vegetarian"],"temp":"room"},
+        {"id":"cro2","categoryId":"croissant","nameEn":"Cheese Croissant","nameAr":"كرواسون جبن","descriptionEn":"Cheese filling.","descriptionAr":"محشو بالجبن.","price":20,"image":"Cheese.jpg","calories":"360 kcal","dietary":["vegetarian"],"temp":"room"},
+        {"id":"cro3","categoryId":"croissant","nameEn":"Chocolate Croissant","nameAr":"كرواسون شوكولاتة","descriptionEn":"Dark chocolate batons.","descriptionAr":"أصابع شوكولاتة داكنة.","price":20,"image":"Chocolatecroissant.jpg","calories":"380 kcal","dietary":["vegetarian"],"temp":"room"},
+        {"id":"cro4","categoryId":"croissant","nameEn":"Almond Croissant","nameAr":"كرواسون لوز","descriptionEn":"Almond cream, sliced almonds.","descriptionAr":"كريمة لوز، شرائح لوز.","price":20,"image":"Almondcroissant.jpg","calories":"400 kcal","dietary":["vegetarian"],"temp":"room"},
+        {"id":"cro5","categoryId":"croissant","nameEn":"Cinnamon Danish","nameAr":"دانش قرفة","descriptionEn":"Cinnamon-sugar spiral.","descriptionAr":"حلزوني بالقرفة والسكر.","price":20,"image":"Cinnamon.jpg","calories":"390 kcal","dietary":["vegetarian"],"temp":"room"},
+        {"id":"cro6","categoryId":"croissant","nameEn":"Danish Shell","nameAr":"دانش شل","descriptionEn":"Shell-shaped, delicate.","descriptionAr":"شكل صدفة، رقيق.","price":20,"image":"Danish.jpg","calories":"380 kcal","dietary":["vegetarian"],"temp":"room"},
+        {"id":"cro7","categoryId":"croissant","nameEn":"Raisins Danish","nameAr":"دانش زبيب","descriptionEn":"Studded with raisins.","descriptionAr":"محشو بالزبيب.","price":20,"image":"Raisin.jpg","calories":"390 kcal","dietary":["vegetarian"],"temp":"room"}
       ]
     }
     </script>
 
     <script>
-    (function () {
+    (function() {
         const IMAGE_BASE = 'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/';
+        const PLACEHOLDER_SVG = 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'200\' viewBox=\'0 0 200 200\'%3E%3Crect width=\'200\' height=\'200\' fill=\'%233d2e1b\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-family=\'Arial\' font-size=\'16\' fill=\'%23c9973d\'%3E☕ Turkiana%3C/text%3E%3C/svg%3E';
         const data = JSON.parse(document.getElementById('menuData').textContent);
 
         let lang = localStorage.getItem('tk_lang') || 'en';
@@ -939,189 +835,52 @@
             searchInput: $('searchInput'), clearBtn: $('clearBtn'),
             modal: $('modal'), modalImg: $('modalImg'),
             modalBody: $('modalBody'), recoSection: $('recoSection'),
-            modalClose: $('modalClose'),
+            modalCloseBtn: $('modalCloseBtn'),
             themeBtn: $('themeBtn'), langBtn: $('langBtn'),
             qrBtn: $('qrBtn'), qrModal: $('qrModal'),
             qrCanvas: $('qrCanvas'), closeQrBtn: $('closeQrBtn')
         };
 
-        /* ─── THREE.JS BACKGROUND ─── */
-        const canvas = document.getElementById('canvas-bg');
-        const renderer = new THREE.WebGLRenderer({ canvas, alpha: false, antialias: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
-        const scene = new THREE.Scene();
-        scene.background = new THREE.Color(0x06090f);
-        scene.fog = new THREE.FogExp2(0x06090f, 0.0018);
-        const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.set(0, 2, 18);
+        window.handleImageError = (e) => e.target.src = PLACEHOLDER_SVG;
 
-        scene.add(new THREE.AmbientLight(0x303050, 1));
-        const dirLight = new THREE.DirectionalLight(0xffe0aa, 1.0);
-        dirLight.position.set(-4, 10, 6);
-        scene.add(dirLight);
-
-        /* Moon */
-        const moonGroup = new THREE.Group();
-        const moonMesh = new THREE.Mesh(
-            new THREE.SphereGeometry(2.2, 64, 64),
-            new THREE.MeshStandardMaterial({ color: 0xf0e0b0, emissive: 0x221800, roughness: 0.6 })
-        );
-        moonGroup.add(moonMesh);
-        const darkMesh = new THREE.Mesh(
-            new THREE.SphereGeometry(2.0, 64, 64),
-            new THREE.MeshStandardMaterial({ color: 0x06090f, emissive: 0x06090f })
-        );
-        darkMesh.position.set(1.4, 0.2, 0.3);
-        moonGroup.add(darkMesh);
-        const moonLight = new THREE.PointLight(0xffcc77, 1.2, 28);
-        moonGroup.add(moonLight);
-
-        // Glow halo
-        const haloC = document.createElement('canvas'); haloC.width = haloC.height = 64;
-        const hCtx = haloC.getContext('2d');
-        const hGrad = hCtx.createRadialGradient(32,32,0,32,32,32);
-        hGrad.addColorStop(0,'rgba(255,230,160,0.7)'); hGrad.addColorStop(0.5,'rgba(180,120,50,0.15)'); hGrad.addColorStop(1,'rgba(0,0,0,0)');
-        hCtx.fillStyle = hGrad; hCtx.fillRect(0,0,64,64);
-        const halo = new THREE.Sprite(new THREE.SpriteMaterial({ map: new THREE.CanvasTexture(haloC), blending: THREE.AdditiveBlending }));
-        halo.scale.set(5,5,1);
-        moonGroup.add(halo);
-        moonGroup.position.set(-6, 5, -15);
-        scene.add(moonGroup);
-
-        /* Lanterns */
-        function mkLantern(pos) {
-            const g = new THREE.Group();
-            const metalMat = new THREE.MeshStandardMaterial({ color: 0xccaa66, roughness: 0.35, metalness: 0.75 });
-            const glassMat = new THREE.MeshStandardMaterial({ color: 0xff9933, emissive: 0x441100, transparent: true, opacity: 0.28 });
-            g.add(Object.assign(new THREE.Mesh(new THREE.CylinderGeometry(0.65, 0.65, 1.5, 14), glassMat)));
-            [0.8, -0.8].forEach(y => {
-                const cap = new THREE.Mesh(new THREE.CylinderGeometry(0.75, 0.75, 0.12, 8), metalMat);
-                cap.position.y = y; g.add(cap);
-            });
-            [0.25,-0.25].forEach(y => {
-                const ring = new THREE.Mesh(new THREE.TorusGeometry(0.68,0.035,8,20), new THREE.MeshStandardMaterial({color:0xaa8844}));
-                ring.rotation.x = Math.PI/2; ring.position.y = y; g.add(ring);
-            });
-            const fc = document.createElement('canvas'); fc.width = fc.height = 32;
-            const ft = new THREE.CanvasTexture(fc);
-            const fs = new THREE.Sprite(new THREE.SpriteMaterial({ map: ft, blending: THREE.AdditiveBlending }));
-            fs.scale.set(0.45,0.6,0.45); fs.position.y = 0.18; g.add(fs);
-            const pl = new THREE.PointLight(0xff9922, 1.6, 7);
-            pl.position.y = 0.2; g.add(pl);
-            g.position.copy(pos);
-            return { g, fc, ft, pl };
-        }
-
-        const lanterns = [
-            new THREE.Vector3(-5,1.5,-5), new THREE.Vector3(2,2,-8),
-            new THREE.Vector3(6,1.2,-4), new THREE.Vector3(-3,2.5,2),
-            new THREE.Vector3(4,1.8,0), new THREE.Vector3(-6,2.2,2)
-        ].map(p => { const l = mkLantern(p); scene.add(l.g); return l; });
-
-        /* Particles */
-        const pCount = 1000;
-        const pPos = new Float32Array(pCount * 3);
-        const pCol = new Float32Array(pCount * 3);
-        for (let i = 0; i < pCount; i++) {
-            const r = 12 + Math.random()*15, theta = Math.random()*Math.PI*2, phi = Math.acos(2*Math.random()-1);
-            pPos[i*3]   = Math.sin(phi)*Math.cos(theta)*r;
-            pPos[i*3+1] = Math.sin(phi)*Math.sin(theta)*r*0.4;
-            pPos[i*3+2] = Math.cos(phi)*r - 5;
-            const g = 0.65 + Math.random()*0.45;
-            pCol[i*3] = g; pCol[i*3+1] = g*0.55; pCol[i*3+2] = 0.05;
-        }
-        const pGeo = new THREE.BufferGeometry();
-        pGeo.setAttribute('position', new THREE.BufferAttribute(pPos,3));
-        pGeo.setAttribute('color', new THREE.BufferAttribute(pCol,3));
-        const particles = new THREE.Points(pGeo, new THREE.PointsMaterial({
-            size:0.15, vertexColors:true, transparent:true, blending:THREE.AdditiveBlending
-        }));
-        scene.add(particles);
-
-        /* Stars */
-        const sPos = [];
-        for (let i=0;i<700;i++) sPos.push((Math.random()-.5)*200,(Math.random()-.5)*200,(Math.random()-.5)*200-50);
-        const stars = new THREE.Points(
-            Object.assign(new THREE.BufferGeometry(), {attributes:{position:new THREE.Float32BufferAttribute(sPos,3)}}),
-            new THREE.PointsMaterial({color:0xffffff,size:0.18})
-        );
-        scene.add(stars);
-
-        let mx = 0, my = 0;
-        window.addEventListener('mousemove', e => {
-            mx = (e.clientX/window.innerWidth-.5)*2;
-            my = (e.clientY/window.innerHeight-.5)*2;
-        });
-
-        let flameFrame = 0;
-        function animateBg() {
-            requestAnimationFrame(animateBg);
-            const t = performance.now()*.001;
-            lanterns.forEach((l,i) => {
-                l.g.position.y += Math.sin(t*.7+i)*.0012;
-                l.g.position.x += Math.cos(t*.4+i)*.0008;
-                l.g.rotation.y += .001;
-            });
-            if (flameFrame++ % 3 === 0) {
-                lanterns.forEach(l => {
-                    const ctx = l.fc.getContext('2d'); ctx.clearRect(0,0,32,32);
-                    const r = 10+Math.random()*10;
-                    const g2 = ctx.createRadialGradient(16,16,0,16,16,r);
-                    g2.addColorStop(0,`rgba(255,190,90,${.85+Math.random()*.15})`);
-                    g2.addColorStop(.5,'rgba(240,80,0,.7)');
-                    g2.addColorStop(1,'rgba(0,0,0,0)');
-                    ctx.fillStyle = g2; ctx.fillRect(0,0,32,32);
-                    l.ft.needsUpdate = true;
-                    l.pl.intensity = 1.1 + Math.random()*.6;
-                });
-            }
-            stars.rotation.y += (mx*.015 - stars.rotation.y)*.008;
-            stars.rotation.x += (my*.015 - stars.rotation.x)*.008;
-            particles.rotation.y += (mx*.01 - particles.rotation.y)*.008;
-            particles.rotation.x += (my*.008 - particles.rotation.x)*.008;
-            renderer.render(scene, camera);
-        }
-        animateBg();
-
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth/window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        });
-
-        /* ─── DIETARY DOT HELPERS ─── */
         function dietDots(dietary) {
             if (!dietary || !dietary.length) return '';
-            const map = { 'vegan':'dot-vegan','contains-dairy':'dot-dairy','contains-nuts':'dot-nuts','gluten-free':'dot-gluten' };
-            return `<div class="card-diet">${dietary.map(d => map[d] ? `<span class="diet-dot ${map[d]}" title="${d}"></span>` : '').join('')}</div>`;
+            const map = { 
+                'vegan': { class: 'dot-vegan', label: 'Vegan' },
+                'contains-dairy': { class: 'dot-dairy', label: 'Contains dairy' },
+                'contains-nuts': { class: 'dot-nuts', label: 'Contains nuts' },
+                'gluten-free': { class: 'dot-gluten', label: 'Gluten free' }
+            };
+            return `<div class="card-diet" aria-label="Dietary: ${dietary.map(d => map[d]?.label || d).join(', ')}">${dietary.map(d => map[d] ? `<span class="diet-dot ${map[d].class}" title="${map[d].label}"><span class="sr-only">${map[d].label}</span></span>` : '').join('')}</div>`;
         }
 
-        /* ─── TEMPERATURE ─── */
-        function getTemp(item) {
-            const n = item.nameEn.toLowerCase();
-            if (n.includes('iced') || n.includes('cold brew') || n.includes('ice drip')) return '❄️ Iced';
-            if (item.categoryId === 'refreshers') return '❄️ Cold';
-            if (n.includes('classic turkish') || n.includes('double turkish') || n.includes('sahlep') || n.includes('arabic coffee')) return '☕ Hot';
-            return '☕ Hot · ❄️ Iced';
+        function getTempDisplay(item) {
+            if (!item.temp) return '☕ Hot';
+            switch(item.temp) {
+                case 'hot': return '☕ Hot';
+                case 'iced': return '❄️ Iced';
+                case 'both': return '☕ Hot · ❄️ Iced';
+                case 'cold': return '❄️ Cold';
+                case 'room': return '🏠 Room temp';
+                default: return '☕ Hot';
+            }
         }
 
-        /* ─── FILTERED ITEMS ─── */
         function getFiltered() {
             let items = data.items;
             if (activeCat !== 'all') items = items.filter(i => i.categoryId === activeCat);
             if (searchQ) {
                 const q = searchQ.toLowerCase();
-                items = items.filter(i =>
+                items = items.filter(i => 
                     i.nameEn.toLowerCase().includes(q) ||
                     i.nameAr.includes(q) ||
-                    i.descriptionEn.toLowerCase().includes(q)
+                    (i.descriptionEn && i.descriptionEn.toLowerCase().includes(q)) ||
+                    (i.descriptionAr && i.descriptionAr.includes(q))
                 );
             }
             return items;
         }
 
-        /* ─── RENDER CATEGORIES ─── */
         function renderCats() {
             els.catBar.innerHTML = data.categories.map(c => {
                 const nm = lang === 'ar' ? c.nameAr : c.nameEn;
@@ -1136,38 +895,32 @@
             });
         }
 
-        /* ─── INTERSECTION OBSERVER FOR SCROLL REVEALS ─── */
         const io = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    io.unobserve(entry.target);
-                }
-            });
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
         }, { threshold: 0.08 });
 
-        /* ─── RENDER GRID ─── */
         function renderGrid(items) {
             els.grid.innerHTML = '';
             if (!items.length) {
-                els.grid.innerHTML = `<div class="empty-state"><div class="empty-icon">☕</div><div class="empty-text">No items found…</div></div>`;
+                els.grid.innerHTML = `<div class="empty-state"><div class="empty-icon">🌙</div><div class="empty-text">No items found…</div></div>`;
                 return;
             }
             items.forEach((item, idx) => {
                 const name = lang === 'ar' ? item.nameAr : item.nameEn;
                 const nameAlt = lang === 'ar' ? item.nameEn : (item.nameAr || '');
+                const desc = lang === 'ar' ? (item.descriptionAr || item.descriptionEn) : item.descriptionEn;
                 const card = document.createElement('div');
                 card.className = 'menu-card';
                 card.style.animationDelay = Math.min(idx * 0.04, 0.8) + 's';
                 card.innerHTML = `
                     <div class="card-figure">
-                        <img src="${IMAGE_BASE}${item.image}" alt="${name}" loading="lazy">
+                        <img src="${IMAGE_BASE}${item.image}" alt="${name}" loading="lazy" onerror="handleImageError(event)">
                         <div class="card-price-badge">${item.price} QAR</div>
                     </div>
                     <div class="card-body">
                         <div class="card-name">${name}</div>
                         ${nameAlt ? `<div class="card-name-ar">${nameAlt}</div>` : ''}
-                        <div class="card-desc">${item.descriptionEn}</div>
+                        <div class="card-desc">${desc}</div>
                         <div class="card-footer">
                             <span class="card-cals">${item.calories}</span>
                             ${dietDots(item.dietary)}
@@ -1179,7 +932,6 @@
             });
         }
 
-        /* ─── SWITCH GRID WITH FADE ─── */
         function switchGrid(items) {
             els.grid.classList.add('fading');
             setTimeout(() => {
@@ -1188,75 +940,159 @@
             }, 180);
         }
 
-        /* ─── MODAL ─── */
+        function trapFocus(element) {
+            const focusable = element.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+            element.addEventListener('keydown', (e) => {
+                if (e.key !== 'Tab') return;
+                if (e.shiftKey) {
+                    if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+                } else {
+                    if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+                }
+            });
+        }
+
         function openModal(item) {
             const name = lang === 'ar' ? item.nameAr : item.nameEn;
             const nameAlt = lang === 'ar' ? item.nameEn : (item.nameAr || '');
+            const desc = lang === 'ar' ? (item.descriptionAr || item.descriptionEn) : item.descriptionEn;
 
             els.modalImg.innerHTML = `
-                <img src="${IMAGE_BASE}${item.image}" alt="${name}">
-                <button id="modalClose" class="modal-close" aria-label="Close"><i class="fas fa-times"></i></button>`;
-            document.getElementById('modalClose').addEventListener('click', () => els.modal.close());
+                <img src="${IMAGE_BASE}${item.image}" alt="${name}" onerror="handleImageError(event)">
+                <button id="modalCloseBtn" class="modal-close" aria-label="Close"><i class="fas fa-times"></i></button>`;
+            const newClose = document.getElementById('modalCloseBtn');
+            newClose.addEventListener('click', () => els.modal.close());
 
-            const milk = (item.hasMilk || (item.dietary && item.dietary.includes('contains-dairy')))
-                ? ['Full Fat', 'Low-Fat', 'Skim', 'Lactose Free', 'Oat', 'Almond', 'Soy', 'Coconut'] : [];
+            const isDrink = ['cafe', 'tea', 'brewed'].includes(item.categoryId);
+            const showMilk = isDrink && (item.hasMilk || (item.dietary && item.dietary.includes('contains-dairy')));
+            const milkOptions = showMilk ? ['Full Fat', 'Low-Fat', 'Skim', 'Lactose Free', 'Oat', 'Almond', 'Soy', 'Coconut'] : [];
 
-            const allergens = item.dietary?.length
-                ? item.dietary.map(d => d.replace('contains-', '')).join(', ')
-                : 'None';
+            const allergens = item.dietary?.length ? item.dietary.map(d => d.replace('contains-', '')).join(', ') : 'None';
 
             els.modalBody.innerHTML = `
                 <div class="modal-title">${name}</div>
                 ${nameAlt ? `<div class="modal-title-ar">${nameAlt}</div>` : ''}
                 <div class="modal-price">${item.price} QAR</div>
-                <p class="modal-desc">${item.descriptionEn}</p>
+                <p class="modal-desc">${desc}</p>
                 <div class="detail-grid">
                     <div class="detail-cell"><div class="detail-label">Calories</div><div class="detail-value">${item.calories}</div></div>
                     <div class="detail-cell"><div class="detail-label">Allergens</div><div class="detail-value">${allergens}</div></div>
-                    <div class="detail-cell"><div class="detail-label">Temperature</div><div class="detail-value">${getTemp(item)}</div></div>
+                    <div class="detail-cell"><div class="detail-label">Temperature</div><div class="detail-value">${getTempDisplay(item)}</div></div>
                 </div>
-                ${milk.length ? `
+                ${milkOptions.length ? `
                 <div class="milk-section">
                     <div class="milk-title">🥛 Milk Options</div>
-                    <div class="milk-chips">${milk.map(m=>`<span class="milk-chip">${m}</span>`).join('')}</div>
+                    <div class="milk-chips">${milkOptions.map(m=>`<span class="milk-chip" tabindex="0">${m}</span>`).join('')}</div>
                 </div>` : ''}`;
 
             const recos = data.items.filter(i => i.categoryId === item.categoryId && i.id !== item.id).slice(0, 4);
             if (recos.length) {
                 els.recoSection.innerHTML = `
                     <div class="reco-title">You might also like</div>
-                    <div class="reco-chips">${recos.map(r => `<span class="reco-chip" data-id="${r.id}">${lang==='ar'?r.nameAr:r.nameEn}</span>`).join('')}</div>`;
+                    <div class="reco-chips">${recos.map(r => `<span class="reco-chip" data-id="${r.id}" tabindex="0">${lang==='ar'?r.nameAr:r.nameEn}</span>`).join('')}</div>`;
                 els.recoSection.querySelectorAll('.reco-chip').forEach(c =>
                     c.addEventListener('click', () => openModal(data.items.find(i => i.id === c.dataset.id)))
                 );
             } else els.recoSection.innerHTML = '';
 
             els.modal.showModal();
+            trapFocus(els.modal);
         }
 
-        /* ─── EVENTS ─── */
-        els.modal.addEventListener('click', e => { if (e.target === els.modal) els.modal.close(); });
+        // Simplified Three.js background with mosque lamp feel
+        function initThree() {
+            const canvas = document.getElementById('canvas-bg');
+            const renderer = new THREE.WebGLRenderer({ canvas, alpha: false, antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+            const scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x06090f);
+            scene.fog = new THREE.FogExp2(0x06090f, 0.002);
+            const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.set(0, 2, 18);
 
+            scene.add(new THREE.AmbientLight(0x404060, 1));
+            const dirLight = new THREE.DirectionalLight(0xffe0aa, 1.0);
+            dirLight.position.set(-4, 10, 6);
+            scene.add(dirLight);
+
+            // Central moon with crescent silhouette
+            const moonGroup = new THREE.Group();
+            const moonMat = new THREE.MeshStandardMaterial({ color: 0xf0e0b0, emissive: 0x221800, roughness: 0.6 });
+            const moon = new THREE.Mesh(new THREE.SphereGeometry(2.0, 64, 64), moonMat);
+            moonGroup.add(moon);
+            const dark = new THREE.Mesh(new THREE.SphereGeometry(1.8, 64, 64), new THREE.MeshStandardMaterial({ color: 0x06090f, emissive: 0x06090f }));
+            dark.position.set(1.2, 0.2, 0.3);
+            moonGroup.add(dark);
+            moonGroup.position.set(-6, 5, -15);
+            scene.add(moonGroup);
+
+            // Lanterns (reduced count, but more glow)
+            const lanternPos = [new THREE.Vector3(-4,1.5,-5), new THREE.Vector3(3,2,-7), new THREE.Vector3(5,1.2,-3), new THREE.Vector3(-2,2.5,2)];
+            lanternPos.forEach(pos => {
+                const g = new THREE.Group();
+                const metal = new THREE.MeshStandardMaterial({ color: 0xccaa66, roughness: 0.3, metalness: 0.8 });
+                const glass = new THREE.MeshStandardMaterial({ color: 0xffaa44, emissive: 0x331100, transparent: true, opacity: 0.3 });
+                g.add(new THREE.Mesh(new THREE.CylinderGeometry(0.6, 0.6, 1.2, 10), glass));
+                [0.6, -0.6].forEach(y => {
+                    const cap = new THREE.Mesh(new THREE.CylinderGeometry(0.7, 0.7, 0.1, 8), metal);
+                    cap.position.y = y; g.add(cap);
+                });
+                const light = new THREE.PointLight(0xff9933, 1.5, 8);
+                light.position.y = 0.2;
+                g.add(light);
+                g.position.copy(pos);
+                scene.add(g);
+            });
+
+            // Stars and floating particles (Ramadan sparkle)
+            const starsGeo = new THREE.BufferGeometry();
+            const starsPos = [];
+            for (let i=0;i<400;i++) starsPos.push((Math.random()-0.5)*200, (Math.random()-0.5)*200, (Math.random()-0.5)*200-50);
+            starsGeo.setAttribute('position', new THREE.Float32BufferAttribute(starsPos, 3));
+            const stars = new THREE.Points(starsGeo, new THREE.PointsMaterial({color:0xffffff,size:0.2}));
+            scene.add(stars);
+
+            let mouseX = 0, mouseY = 0;
+            window.addEventListener('mousemove', (e) => {
+                mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+                mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+            });
+
+            function animate() {
+                requestAnimationFrame(animate);
+                stars.rotation.y += (mouseX * 0.01 - stars.rotation.y) * 0.01;
+                stars.rotation.x += (mouseY * 0.01 - stars.rotation.x) * 0.01;
+                renderer.render(scene, camera);
+            }
+            animate();
+
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+        }
+
+        // Event listeners
+        els.modal.addEventListener('click', e => { if (e.target === els.modal) els.modal.close(); });
         els.searchInput.addEventListener('input', () => {
             searchQ = els.searchInput.value.trim();
             els.clearBtn.style.display = searchQ ? 'block' : 'none';
             switchGrid(getFiltered());
         });
-
         els.clearBtn.addEventListener('click', () => {
             els.searchInput.value = '';
             searchQ = '';
             els.clearBtn.style.display = 'none';
             switchGrid(getFiltered());
         });
-
         els.themeBtn.addEventListener('click', () => {
             const isLight = document.body.classList.toggle('light');
-            scene.background.set(isLight ? 0xf5ede0 : 0x06090f);
-            scene.fog.color.set(isLight ? 0xf5ede0 : 0x06090f);
             els.themeBtn.textContent = isLight ? '☀️' : '🌙';
         });
-
         els.langBtn.addEventListener('click', () => {
             lang = lang === 'en' ? 'ar' : 'en';
             localStorage.setItem('tk_lang', lang);
@@ -1265,7 +1101,6 @@
             renderCats();
             switchGrid(getFiltered());
         });
-
         els.qrBtn.addEventListener('click', () => {
             const qr = qrcode(0, 'H');
             qr.addData(window.location.href);
@@ -1278,11 +1113,11 @@
         });
         els.closeQrBtn.addEventListener('click', () => els.qrModal.close());
 
-        /* Touch swipe on cat bar */
-        let touchX = 0;
-        els.catBar.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
+        // Category swipe
+        let touchStartX = 0;
+        els.catBar.addEventListener('touchstart', e => touchStartX = e.touches[0].clientX, { passive: true });
         els.catBar.addEventListener('touchend', e => {
-            const diff = e.changedTouches[0].clientX - touchX;
+            const diff = e.changedTouches[0].clientX - touchStartX;
             if (Math.abs(diff) > 45) {
                 const cats = data.categories.map(c => c.id);
                 const idx = cats.indexOf(activeCat);
@@ -1292,11 +1127,12 @@
             }
         }, { passive: true });
 
-        /* ─── INIT ─── */
+        // Init
         renderCats();
         renderGrid(getFiltered());
         els.langBtn.textContent = lang.toUpperCase();
         document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+        initThree();
     })();
     </script>
 </body>
