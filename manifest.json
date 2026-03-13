@@ -4,24 +4,21 @@
   "start_url": "/Turkiana-Cafe-Sweets/index.html",
   "scope": "/Turkiana-Cafe-Sweets/",
   "display": "standalone",
-  "background_color": "#2A0F1A",
-  "theme_color": "#2A0F1A",
+  "background_color": "#06090f",
+  "theme_color": "#c9973d",
   "description": "Luxury Turkish coffee and authentic Arabic sweets in Doha",
   "icons": [
     {
-      "src": "/Turkiana-Cafe-Sweets/Turkishcoffee.jpg",
+      "src": "/Turkiana-Cafe-Sweets/icon-192.png",
       "sizes": "192x192",
-      "type": "image/jpeg"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
-      "src": "/Turkiana-Cafe-Sweets/Turkishcoffee.jpg",
+      "src": "/Turkiana-Cafe-Sweets/icon-512.png",
       "sizes": "512x512",
-      "type": "image/jpeg"
-    },
-    {
-      "src": "/Turkiana-Cafe-Sweets/Turkishcoffee.jpg",
-      "sizes": "1024x1024",
-      "type": "image/jpeg"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }
