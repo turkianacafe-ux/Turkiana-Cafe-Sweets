@@ -664,8 +664,170 @@
         .grid-fade.fading { opacity: 0; }
         .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
     </style>
+    <!-- ~~~~~~~~~~ LOADING SCREEN (EID GREETING + ANIMATIONS) ~~~~~~~~~~ -->
+    <style>
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 30%, #0f1422, #03050a);
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cormorant Garamond', serif;
+            color: #e8b96a;
+            transition: opacity 1s ease;
+            pointer-events: auto; /* block interaction until hidden */
+            backdrop-filter: blur(2px);
+        }
+        #loading-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        /* glowing / rotating crescent */
+        .loading-moon {
+            width: 120px;
+            height: 120px;
+            background: transparent;
+            border-radius: 50%;
+            box-shadow: -24px 0 0 0 #e8b96a, 0 0 50px #e8b96a, 0 0 90px #c9973d;
+            transform: rotate(0deg);
+            animation: rotateMoon 12s infinite linear;
+            margin-bottom: 15px;
+        }
+        @keyframes rotateMoon {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        /* swinging lantern (fanous) */
+        .loading-lantern {
+            width: 70px;
+            height: 110px;
+            background: #c9973d;
+            border-radius: 35% 35% 25% 25%;
+            position: relative;
+            margin: 20px auto;
+            transform-origin: top center;
+            animation: swing 2.5s infinite ease-in-out;
+            box-shadow: 0 0 70px #e8b96a, 0 0 120px #b57c2a;
+        }
+        .loading-lantern::before {
+            content: '';
+            position: absolute;
+            top: -18px;
+            left: 22px;
+            width: 26px;
+            height: 26px;
+            background: #b57c2a;
+            border-radius: 50%;
+            box-shadow: 0 0 20px #ffd966;
+        }
+        .loading-lantern::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 28px;
+            width: 14px;
+            height: 25px;
+            background: #b57c2a;
+            border-radius: 5px;
+            box-shadow: 0 0 15px #ffd966;
+        }
+        @keyframes swing {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(6deg); }
+            75% { transform: rotate(-6deg); }
+            100% { transform: rotate(0deg); }
+        }
+        .loading-text {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .loading-text h1 {
+            font-size: 4.5rem;
+            margin: 0;
+            font-weight: 400;
+            text-shadow: 0 0 30px #e8b96a, 0 0 70px #c9973d;
+            animation: glowPulse 2.2s infinite;
+            letter-spacing: 0.1em;
+        }
+        .loading-text p {
+            font-size: 1.8rem;
+            color: #f5e6d3;
+            text-shadow: 0 0 25px #b57c2a;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+        @keyframes glowPulse {
+            0% { text-shadow: 0 0 30px #e8b96a, 0 0 60px #c9973d; }
+            50% { text-shadow: 0 0 55px #ffd966, 0 0 90px #e8b96a; }
+            100% { text-shadow: 0 0 30px #e8b96a, 0 0 60px #c9973d; }
+        }
+        .particle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: #f5c45e;
+            border-radius: 50%;
+            filter: blur(1px);
+            opacity: 0.7;
+            pointer-events: none;
+            animation: floatParticle 6s infinite ease-in-out;
+        }
+        @keyframes floatParticle {
+            0% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 0.9; }
+            90% { opacity: 0.8; }
+            100% { transform: translateY(-120px) translateX(40px); opacity: 0; }
+        }
+    </style>
 </head>
 <body>
+    <!-- ~~~~~~~~~~ LOADING OVERLAY ~~~~~~~~~~ -->
+    <div id="loading-screen">
+        <div class="loading-moon"></div>
+        <div class="loading-lantern"></div>
+        <div class="loading-text">
+            <h1>Eid Mubarak</h1>
+            <p>Wishing you a joyful and blessed celebration of Eid with us</p>
+        </div>
+        <!-- particles injected via script -->
+    </div>
+    <script>
+        (function() {
+            // generate golden floating particles
+            const loadingScreen = document.getElementById('loading-screen');
+            for (let i = 0; i < 60; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = (Math.random() * 5) + 's';
+                particle.style.animationDuration = (4 + Math.random() * 6) + 's';
+                particle.style.width = (3 + Math.random() * 5) + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.background = `rgb(255, ${200 + Math.floor(Math.random()*55)}, 100)`;
+                loadingScreen.appendChild(particle);
+            }
+            // hide loading screen after 4 seconds (between 3-5)
+            setTimeout(() => {
+                const ls = document.getElementById('loading-screen');
+                if (ls) {
+                    ls.classList.add('hidden');
+                    // remove from DOM after fade
+                    setTimeout(() => {
+                        if (ls.parentNode) ls.parentNode.removeChild(ls);
+                    }, 1200);
+                }
+            }, 4000); // 4 seconds
+        })();
+    </script>
+    <!-- ~~~~~~~~~~ END LOADING SCREEN ~~~~~~~~~~ -->
+
     <canvas id="canvas-bg"></canvas>
     <div class="controls">
         <button id="themeBtn" class="ctrl" aria-label="Toggle theme">🌙</button>
