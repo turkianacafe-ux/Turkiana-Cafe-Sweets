@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Turkiana • Ramadan Nights 1447</title>
     <meta name="description" content="Premium Turkish coffee & Ottoman sweets in Doha – Ramadan special.">
-    <!-- PWA Manifest -->
     <link rel="manifest" href="/Turkiana-Cafe-Sweets/manifest.json">
-    <!-- Fonts & Styles -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500&family=Scheherazade+New:wght@400;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
@@ -15,7 +13,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
     <style>
-        /* (Keep your existing CSS exactly as you have it – no changes needed) */
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
             --night: #06090f;
@@ -31,6 +28,8 @@
             --gold-glow: rgba(201,151,61,0.25);
             --border: rgba(201,151,61,0.2);
             --border-hover: rgba(201,151,61,0.5);
+            --price-badge-bg: rgba(6,9,15,0.85);
+            --price-badge-color: #e8b96a;
             --radius-sm: 14px;
             --radius: 22px;
             --radius-lg: 36px;
@@ -56,6 +55,9 @@
             --gold-glow: rgba(160,114,14,0.18);
             --border: rgba(160,114,14,0.25);
             --border-hover: rgba(160,114,14,0.55);
+            /* FIX: light-mode price badge uses opaque warm background for readability */
+            --price-badge-bg: rgba(30,18,8,0.82);
+            --price-badge-color: #e8b96a;
         }
         html { scroll-behavior: smooth; }
         body {
@@ -72,7 +74,6 @@
             position: fixed; inset: 0; z-index: 0;
             pointer-events: none; display: block;
         }
-        /* Ramadan special banner */
         .ramadan-banner {
             position: relative;
             background: linear-gradient(145deg, rgba(160,114,14,0.15) 0%, rgba(201,151,61,0.25) 100%);
@@ -91,11 +92,7 @@
             justify-content: center;
             gap: 20px;
         }
-        .ramadan-banner i {
-            font-size: 1.4em;
-            color: var(--gold);
-            text-shadow: 0 0 12px var(--gold-glow);
-        }
+        .ramadan-banner i { font-size: 1.4em; color: var(--gold); text-shadow: 0 0 12px var(--gold-glow); }
         .ramadan-banner span {
             font-weight: 500;
             text-transform: uppercase;
@@ -113,16 +110,8 @@
             display: flex; align-items: center; justify-content: center;
             gap: 16px; margin-bottom: 16px;
         }
-        .ornament-line {
-            height: 1px; width: 80px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
-        }
-        .ornament-diamond {
-            width: 8px; height: 8px;
-            background: var(--gold);
-            transform: rotate(45deg);
-            box-shadow: 0 0 12px var(--gold-glow);
-        }
+        .ornament-line { height: 1px; width: 80px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+        .ornament-diamond { width: 8px; height: 8px; background: var(--gold); transform: rotate(45deg); box-shadow: 0 0 12px var(--gold-glow); }
         .site-title {
             font-family: var(--font-display);
             font-size: clamp(3.5rem, 12vw, 8rem);
@@ -183,7 +172,6 @@
             padding: 0 20px;
             margin-bottom: 32px;
         }
-        /* NEW: Diet filters (placed inside sticky wrapper, above categories) */
         .diet-bar {
             display: flex; gap: 6px;
             overflow-x: auto; scrollbar-width: none;
@@ -253,6 +241,12 @@
             box-shadow: 0 4px 20px var(--gold-glow);
             font-weight: 600;
         }
+        /* FIX: ARIA live region for screen readers */
+        #resultsAnnounce {
+            position: absolute; width: 1px; height: 1px;
+            padding: 0; margin: -1px; overflow: hidden;
+            clip: rect(0,0,0,0); border: 0;
+        }
         .menu-container {
             position: relative; z-index: 10;
             padding: 0 20px 160px;
@@ -275,8 +269,9 @@
             transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.3s;
             opacity: 0;
             transform: translateY(28px);
-            will-change: transform, opacity;
+            /* FIX: will-change only applied during animation via .animating class */
         }
+        .menu-card.animating { will-change: transform, opacity; }
         .menu-card.visible { animation: cardReveal 0.65s var(--ease) forwards; }
         @keyframes cardReveal { to { opacity: 1; transform: translateY(0); } }
         .menu-card:hover {
@@ -302,10 +297,11 @@
             background: linear-gradient(to bottom, transparent 45%, rgba(6,9,15,0.75) 100%);
             pointer-events: none;
         }
+        /* FIX: Price badge uses CSS vars so it adapts to both themes */
         .card-price-badge {
             position: absolute;
             bottom: 14px; right: 14px;
-            background: rgba(6,9,15,0.8);
+            background: var(--price-badge-bg);
             backdrop-filter: blur(10px);
             border: 1px solid var(--border-hover);
             border-radius: 30px;
@@ -313,7 +309,7 @@
             font-family: var(--font-display);
             font-size: 1.1rem;
             font-weight: 600;
-            color: var(--gold-bright);
+            color: var(--price-badge-color);
             letter-spacing: 0.03em;
             z-index: 1;
         }
@@ -327,12 +323,7 @@
             margin-bottom: 4px;
             letter-spacing: 0.01em;
         }
-        .card-name-ar {
-            font-family: var(--font-ar);
-            font-size: 0.95rem;
-            color: var(--muted);
-            margin-bottom: 8px;
-        }
+        .card-name-ar { font-family: var(--font-ar); font-size: 0.95rem; color: var(--muted); margin-bottom: 8px; }
         .card-desc {
             font-size: 0.82rem;
             color: var(--muted);
@@ -348,16 +339,12 @@
             padding-top: 14px;
             border-top: 1px solid var(--border);
         }
-        .card-cals {
-            font-size: 0.75rem;
-            color: var(--muted);
-            letter-spacing: 0.04em;
-        }
+        .card-cals { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.04em; }
         .card-diet { display: flex; gap: 5px; }
         .diet-dot { width: 7px; height: 7px; border-radius: 50%; }
         .dot-vegan { background: #4ade80; }
         .dot-dairy { background: #60a5fa; }
-        .dot-nuts { background: #fb923c; }
+        .dot-nuts  { background: #fb923c; }
         .dot-gluten { background: #a78bfa; }
         .dot-vegetarian { background: #f59e0b; }
         .search-float {
@@ -406,10 +393,7 @@
             max-height: calc(100dvh - 24px);
             overflow: visible;
         }
-        dialog::backdrop {
-            background: rgba(4,6,12,0.85);
-            backdrop-filter: blur(8px);
-        }
+        dialog::backdrop { background: rgba(4,6,12,0.85); backdrop-filter: blur(8px); }
         .modal-shell {
             background: var(--surface);
             backdrop-filter: var(--blur);
@@ -419,15 +403,8 @@
             box-shadow: 0 40px 100px rgba(0,0,0,0.8), 0 0 0 1px var(--border);
             animation: modalIn 0.4s var(--ease-spring);
         }
-        @keyframes modalIn {
-            from { opacity: 0; transform: scale(0.94) translateY(16px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
-        }
-        .modal-img-wrap {
-            position: relative;
-            aspect-ratio: 16/9;
-            overflow: hidden;
-        }
+        @keyframes modalIn { from { opacity: 0; transform: scale(0.94) translateY(16px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+        .modal-img-wrap { position: relative; aspect-ratio: 16/9; overflow: hidden; }
         .modal-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
         .modal-img-wrap::after {
             content: '';
@@ -447,26 +424,11 @@
             cursor: pointer;
             transition: all 0.2s;
         }
-        .modal-close:hover {
-            background: var(--gold);
-            color: var(--night);
-            transform: scale(1.1) rotate(90deg);
-        }
+        .modal-close:hover { background: var(--gold); color: var(--night); transform: scale(1.1) rotate(90deg); }
         .modal-scroll { overflow-y: auto; max-height: 55vh; }
         .modal-body { padding: 24px 26px 28px; }
-        .modal-title {
-            font-family: var(--font-display);
-            font-size: clamp(1.8rem, 5vw, 2.5rem);
-            font-weight: 400;
-            color: var(--text);
-            line-height: 1.15;
-        }
-        .modal-title-ar {
-            font-family: var(--font-ar);
-            font-size: 1.2rem;
-            color: var(--muted);
-            margin-top: 4px;
-        }
+        .modal-title { font-family: var(--font-display); font-size: clamp(1.8rem, 5vw, 2.5rem); font-weight: 400; color: var(--text); line-height: 1.15; }
+        .modal-title-ar { font-family: var(--font-ar); font-size: 1.2rem; color: var(--muted); margin-top: 4px; }
         .modal-price {
             font-family: var(--font-display);
             font-size: 2rem;
@@ -477,86 +439,21 @@
             background-clip: text;
             margin: 12px 0;
         }
-        .modal-desc {
-            font-size: 0.9rem;
-            color: var(--soft);
-            line-height: 1.7;
-        }
-        .detail-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin-top: 20px;
-        }
-        .detail-cell {
-            background: rgba(201,151,61,0.07);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-            padding: 12px 14px;
-        }
-        .detail-label {
-            font-size: 0.68rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: var(--muted);
-            margin-bottom: 5px;
-        }
-        .detail-value {
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: var(--soft);
-        }
-        .milk-section {
-            margin-top: 18px;
-            padding: 16px;
-            background: rgba(201,151,61,0.06);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-        }
-        .milk-title {
-            font-size: 0.72rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: var(--muted);
-            margin-bottom: 10px;
-        }
-        .milk-chips {
-            display: flex; flex-wrap: wrap; gap: 6px;
-        }
-        .milk-chip {
-            padding: 5px 13px;
-            border: 1px solid var(--border);
-            border-radius: 30px;
-            font-size: 0.78rem;
-            color: var(--soft);
-            background: transparent;
-            transition: all 0.2s;
-            cursor: pointer;
-        }
-        .milk-chip:hover, .milk-chip.active {
-            border-color: var(--gold);
-            background: var(--gold);
-            color: var(--night);
-        }
-        .selected-milk {
-            margin-top: 12px;
-            padding: 8px 12px;
-            background: rgba(201,151,61,0.08);
-            border-radius: var(--radius-sm);
-            font-size: 0.82rem;
-            color: var(--soft);
-        }
+        .modal-desc { font-size: 0.9rem; color: var(--soft); line-height: 1.7; }
+        .detail-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 20px; }
+        .detail-cell { background: rgba(201,151,61,0.07); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 14px; }
+        .detail-label { font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 5px; }
+        .detail-value { font-size: 0.9rem; font-weight: 500; color: var(--soft); }
+        .milk-section { margin-top: 18px; padding: 16px; background: rgba(201,151,61,0.06); border: 1px solid var(--border); border-radius: var(--radius-sm); }
+        .milk-title { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+        .milk-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+        .milk-chip { padding: 5px 13px; border: 1px solid var(--border); border-radius: 30px; font-size: 0.78rem; color: var(--soft); background: transparent; transition: all 0.2s; cursor: pointer; }
+        .milk-chip:hover, .milk-chip.active { border-color: var(--gold); background: var(--gold); color: var(--night); }
+        .selected-milk { margin-top: 12px; padding: 8px 12px; background: rgba(201,151,61,0.08); border-radius: var(--radius-sm); font-size: 0.82rem; color: var(--soft); }
         .reco-section { padding: 0 26px 26px; }
-        .reco-title {
-            font-size: 0.72rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--muted);
-            margin-bottom: 12px;
-        }
-        .reco-chips {
-            display: flex; flex-wrap: wrap; gap: 8px;
-        }
+        .reco-title { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+        .reco-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+        /* FIX: role="button" moved to HTML, not CSS */
         .reco-chip {
             padding: 8px 18px;
             background: rgba(201,151,61,0.08);
@@ -566,14 +463,8 @@
             color: var(--soft);
             cursor: pointer;
             transition: all 0.25s var(--ease);
-            role: button;
         }
-        .reco-chip:hover {
-            background: var(--gold);
-            color: var(--night);
-            border-color: var(--gold);
-            transform: translateY(-1px);
-        }
+        .reco-chip:hover { background: var(--gold); color: var(--night); border-color: var(--gold); transform: translateY(-1px); }
         #qr-modal-content {
             text-align: center;
             padding: 44px 36px;
@@ -583,20 +474,8 @@
             border-radius: var(--radius-lg);
             animation: modalIn 0.4s var(--ease-spring);
         }
-        #qr-modal-title {
-            font-family: var(--font-display);
-            font-size: 2rem;
-            font-weight: 400;
-            color: var(--gold);
-            margin-bottom: 8px;
-        }
-        #qrCanvas {
-            display: block;
-            margin: 24px auto;
-            background: white;
-            padding: 16px;
-            border-radius: 18px;
-        }
+        #qr-modal-title { font-family: var(--font-display); font-size: 2rem; font-weight: 400; color: var(--gold); margin-bottom: 8px; }
+        #qrCanvas { display: block; margin: 24px auto; background: white; padding: 16px; border-radius: 18px; }
         footer {
             position: relative; z-index: 10;
             text-align: center;
@@ -614,26 +493,10 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        .footer-details {
-            margin-top: 16px;
-            font-size: 0.85rem;
-            color: var(--muted);
-            letter-spacing: 0.06em;
-            line-height: 2;
-        }
-        .empty-state {
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: 80px 0;
-            color: var(--muted);
-        }
+        .footer-details { margin-top: 16px; font-size: 0.85rem; color: var(--muted); letter-spacing: 0.06em; line-height: 2; }
+        .empty-state { grid-column: 1 / -1; text-align: center; padding: 80px 0; color: var(--muted); }
         .empty-icon { font-size: 3rem; opacity: 0.3; margin-bottom: 16px; }
-        .empty-text {
-            font-family: var(--font-display);
-            font-size: 1.4rem;
-            font-weight: 300;
-            font-style: italic;
-        }
+        .empty-text { font-family: var(--font-display); font-size: 1.4rem; font-weight: 300; font-style: italic; }
         @media (max-width: 600px) {
             .site-header { padding: 40px 16px 16px; }
             .controls { top: 12px; right: 12px; padding: 6px; gap: 7px; }
@@ -664,34 +527,24 @@
         .grid-fade.fading { opacity: 0; }
         .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
     </style>
-    <!-- ~~~~~~~~~~ LOADING SCREEN (EID GREETING + ANIMATIONS) ~~~~~~~~~~ -->
+
+    <!-- LOADING SCREEN STYLES -->
     <style>
         #loading-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%;
             background: radial-gradient(circle at 30% 30%, #0f1422, #03050a);
             z-index: 10000;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
             font-family: 'Cormorant Garamond', serif;
             color: #e8b96a;
             transition: opacity 1s ease;
-            pointer-events: auto; /* block interaction until hidden */
-            backdrop-filter: blur(2px);
+            pointer-events: auto;
         }
-        #loading-screen.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-        /* glowing / rotating crescent */
+        #loading-screen.hidden { opacity: 0; pointer-events: none; }
         .loading-moon {
-            width: 120px;
-            height: 120px;
+            width: 120px; height: 120px;
             background: transparent;
             border-radius: 50%;
             box-shadow: -24px 0 0 0 #e8b96a, 0 0 50px #e8b96a, 0 0 90px #c9973d;
@@ -699,14 +552,9 @@
             animation: rotateMoon 12s infinite linear;
             margin-bottom: 15px;
         }
-        @keyframes rotateMoon {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        /* swinging lantern (fanous) */
+        @keyframes rotateMoon { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         .loading-lantern {
-            width: 70px;
-            height: 110px;
+            width: 70px; height: 110px;
             background: #c9973d;
             border-radius: 35% 35% 25% 25%;
             position: relative;
@@ -717,60 +565,63 @@
         }
         .loading-lantern::before {
             content: '';
-            position: absolute;
-            top: -18px;
-            left: 22px;
-            width: 26px;
-            height: 26px;
-            background: #b57c2a;
-            border-radius: 50%;
+            position: absolute; top: -18px; left: 22px;
+            width: 26px; height: 26px;
+            background: #b57c2a; border-radius: 50%;
             box-shadow: 0 0 20px #ffd966;
         }
         .loading-lantern::after {
             content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 28px;
-            width: 14px;
-            height: 25px;
-            background: #b57c2a;
-            border-radius: 5px;
+            position: absolute; bottom: -15px; left: 28px;
+            width: 14px; height: 25px;
+            background: #b57c2a; border-radius: 5px;
             box-shadow: 0 0 15px #ffd966;
         }
         @keyframes swing {
-            0% { transform: rotate(0deg); }
-            25% { transform: rotate(6deg); }
-            75% { transform: rotate(-6deg); }
+            0%   { transform: rotate(0deg); }
+            25%  { transform: rotate(6deg); }
+            75%  { transform: rotate(-6deg); }
             100% { transform: rotate(0deg); }
         }
-        .loading-text {
-            text-align: center;
-            margin-top: 30px;
-        }
+        .loading-text { text-align: center; margin-top: 30px; }
+        /* FIX: Changed "Eid Mubarak" to "Ramadan Kareem" to match site theme */
         .loading-text h1 {
-            font-size: 4.5rem;
-            margin: 0;
-            font-weight: 400;
+            font-size: 4.5rem; margin: 0; font-weight: 400;
             text-shadow: 0 0 30px #e8b96a, 0 0 70px #c9973d;
             animation: glowPulse 2.2s infinite;
             letter-spacing: 0.1em;
         }
         .loading-text p {
-            font-size: 1.8rem;
-            color: #f5e6d3;
+            font-size: 1.8rem; color: #f5e6d3;
             text-shadow: 0 0 25px #b57c2a;
-            margin-top: 0.5rem;
-            font-style: italic;
+            margin-top: 0.5rem; font-style: italic;
         }
         @keyframes glowPulse {
-            0% { text-shadow: 0 0 30px #e8b96a, 0 0 60px #c9973d; }
-            50% { text-shadow: 0 0 55px #ffd966, 0 0 90px #e8b96a; }
+            0%   { text-shadow: 0 0 30px #e8b96a, 0 0 60px #c9973d; }
+            50%  { text-shadow: 0 0 55px #ffd966, 0 0 90px #e8b96a; }
             100% { text-shadow: 0 0 30px #e8b96a, 0 0 60px #c9973d; }
         }
+        /* FIX: Skip button – fades in after 1.5s */
+        #skipBtn {
+            margin-top: 32px;
+            padding: 10px 28px;
+            border-radius: 40px;
+            border: 1px solid rgba(201,151,61,0.5);
+            background: transparent;
+            color: #c9973d;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.6s ease, background 0.2s, color 0.2s;
+            pointer-events: none;
+        }
+        #skipBtn.visible { opacity: 1; pointer-events: auto; }
+        #skipBtn:hover { background: rgba(201,151,61,0.15); color: #e8b96a; }
         .particle {
             position: absolute;
-            width: 5px;
-            height: 5px;
+            width: 5px; height: 5px;
             background: #f5c45e;
             border-radius: 50%;
             filter: blur(1px);
@@ -779,67 +630,78 @@
             animation: floatParticle 6s infinite ease-in-out;
         }
         @keyframes floatParticle {
-            0% { transform: translateY(0) translateX(0); opacity: 0; }
-            10% { opacity: 0.9; }
-            90% { opacity: 0.8; }
+            0%   { transform: translateY(0) translateX(0); opacity: 0; }
+            10%  { opacity: 0.9; }
+            90%  { opacity: 0.8; }
             100% { transform: translateY(-120px) translateX(40px); opacity: 0; }
         }
     </style>
 </head>
 <body>
-    <!-- ~~~~~~~~~~ LOADING OVERLAY ~~~~~~~~~~ -->
+    <!-- LOADING SCREEN -->
     <div id="loading-screen">
         <div class="loading-moon"></div>
         <div class="loading-lantern"></div>
         <div class="loading-text">
-            <h1>Eid Mubarak</h1>
-            <p>Wishing you a joyful and blessed celebration of Eid with us</p>
+            <!-- FIX: Corrected to Ramadan Kareem -->
+            <h1>رمضان كريم</h1>
+            <p>Ramadan Kareem · Wishing you blessed nights with us</p>
         </div>
-        <!-- particles injected via script -->
+        <!-- FIX: Skip button, shown after 1.5s -->
+        <button id="skipBtn" aria-label="Skip intro">Enter ✦</button>
     </div>
     <script>
         (function() {
-            // generate golden floating particles
-            const loadingScreen = document.getElementById('loading-screen');
+            const ls = document.getElementById('loading-screen');
+            const skipBtn = document.getElementById('skipBtn');
+
+            // Generate particles
             for (let i = 0; i < 60; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                particle.style.animationDelay = (Math.random() * 5) + 's';
-                particle.style.animationDuration = (4 + Math.random() * 6) + 's';
-                particle.style.width = (3 + Math.random() * 5) + 'px';
-                particle.style.height = particle.style.width;
-                particle.style.background = `rgb(255, ${200 + Math.floor(Math.random()*55)}, 100)`;
-                loadingScreen.appendChild(particle);
+                const p = document.createElement('div');
+                p.className = 'particle';
+                p.style.left = Math.random() * 100 + '%';
+                p.style.top  = Math.random() * 100 + '%';
+                p.style.animationDelay    = (Math.random() * 5) + 's';
+                p.style.animationDuration = (4 + Math.random() * 6) + 's';
+                const sz = (3 + Math.random() * 5) + 'px';
+                p.style.width  = sz;
+                p.style.height = sz;
+                p.style.background = `rgb(255, ${200 + Math.floor(Math.random() * 55)}, 100)`;
+                ls.appendChild(p);
             }
-            // hide loading screen after 4 seconds (between 3-5)
-            setTimeout(() => {
-                const ls = document.getElementById('loading-screen');
-                if (ls) {
-                    ls.classList.add('hidden');
-                    // remove from DOM after fade
-                    setTimeout(() => {
-                        if (ls.parentNode) ls.parentNode.removeChild(ls);
-                    }, 1200);
-                }
-            }, 4000); // 4 seconds
+
+            function dismissLoading() {
+                ls.classList.add('hidden');
+                setTimeout(() => { if (ls.parentNode) ls.parentNode.removeChild(ls); }, 1200);
+            }
+
+            // FIX: Show skip button after 1.5s
+            setTimeout(() => { skipBtn.classList.add('visible'); }, 1500);
+            skipBtn.addEventListener('click', dismissLoading);
+
+            // Auto-dismiss after 4s
+            setTimeout(dismissLoading, 4000);
         })();
     </script>
-    <!-- ~~~~~~~~~~ END LOADING SCREEN ~~~~~~~~~~ -->
+    <!-- END LOADING SCREEN -->
 
     <canvas id="canvas-bg"></canvas>
+
+    <!-- FIX: ARIA live region for search result announcements -->
+    <div id="resultsAnnounce" aria-live="polite" aria-atomic="true" role="status"></div>
+
     <div class="controls">
         <button id="themeBtn" class="ctrl" aria-label="Toggle theme">🌙</button>
-        <button id="langBtn" class="ctrl" aria-label="Switch language">EN</button>
-        <button id="qrBtn" class="ctrl" aria-label="QR menu"><i class="fas fa-qrcode"></i></button>
+        <button id="langBtn"  class="ctrl" aria-label="Switch language">EN</button>
+        <button id="qrBtn"   class="ctrl" aria-label="QR menu"><i class="fas fa-qrcode"></i></button>
     </div>
-    <!-- Ramadan banner -->
+
     <div class="ramadan-banner" aria-label="Ramadan Kareem">
         <i class="fas fa-star-and-crescent"></i>
         <span>رمضان كريم • Ramadan Kareem • 1447</span>
         <i class="fas fa-star-and-crescent"></i>
     </div>
+
     <header class="site-header">
         <div class="header-ornament">
             <div class="ornament-line"></div>
@@ -849,21 +711,25 @@
         <h1 class="site-title"><span>Turkiana</span></h1>
         <p class="site-sub">Ottoman Nights &nbsp;·&nbsp; Ramadan 1447</p>
     </header>
+
     <div class="cat-wrapper">
-        <!-- NEW: Dietary filters (above categories) -->
         <div class="diet-bar" id="dietFilters" aria-label="Dietary filters"></div>
-        <nav class="cat-bar" id="catBar" aria-label="Menu categories"></nav>
+        <!-- FIX: role="tablist" + keyboard navigation via JS -->
+        <nav class="cat-bar" id="catBar" aria-label="Menu categories" role="tablist"></nav>
     </div>
+
     <div class="menu-container">
         <div class="menu-grid grid-fade" id="grid"></div>
     </div>
+
     <div class="search-float">
         <div class="search-box">
-            <i class="fas fa-search search-icon"></i>
+            <i class="fas fa-search search-icon" aria-hidden="true"></i>
             <input type="text" id="searchInput" placeholder="Search Ottoman delights…" aria-label="Search menu" autocomplete="off">
             <button id="clearBtn" aria-label="Clear search">✕</button>
         </div>
     </div>
+
     <footer>
         <div class="footer-brand">Turkiana</div>
         <div class="footer-details">
@@ -871,6 +737,7 @@
             7 PM – 2 AM (Ramadan hours) &nbsp;·&nbsp; +974 5186 6671
         </div>
     </footer>
+
     <dialog id="modal">
         <div class="modal-shell">
             <div class="modal-img-wrap" id="modalImg">
@@ -882,27 +749,29 @@
             </div>
         </div>
     </dialog>
+
     <dialog id="qrModal">
         <div id="qr-modal-content">
             <p id="qr-modal-title">Open on your phone</p>
             <canvas id="qrCanvas"></canvas>
             <p style="color:var(--muted);font-size:0.85rem;">Scan to open the menu on any device.</p>
-            <button id="closeQrBtn" class="ctrl" style="margin: 20px auto 0; width: auto; padding: 0 24px; border-radius: 40px; height: 40px;">Close</button>
+            <button id="closeQrBtn" class="ctrl" style="margin:20px auto 0;width:auto;padding:0 24px;border-radius:40px;height:40px;">Close</button>
         </div>
     </dialog>
-    <!-- Menu Data: nuts and grill merged into "Ramadan Snacks" -->
+
+    <!-- Menu Data -->
     <script id="menuData" type="application/json">
     {
       "categories": [
-        { "id": "all", "nameEn": "✦ All Menu", "nameAr": "✦ كل القائمة" },
-        { "id": "brewed", "nameEn": "Arabic & Turkish Brews", "nameAr": "مغلي عربي وتركي" },
-        { "id": "tea", "nameEn": "Tea", "nameAr": "شاي" },
-        { "id": "cafe", "nameEn": "Café & Chill", "nameAr": "كافيه" },
-        { "id": "specialty", "nameEn": "Specialty", "nameAr": "مميزة" },
-        { "id": "refreshers", "nameEn": "Refreshers", "nameAr": "منعشات" },
-        { "id": "baklava", "nameEn": "Sweets", "nameAr": "حلويات" },
-        { "id": "snacks", "nameEn": "Ramadan Snacks", "nameAr": "وجبات رمضان" },
-        { "id": "croissant", "nameEn": "Suhoor Creations", "nameAr": "إبداعات السحور" }
+        { "id": "all",       "nameEn": "✦ All Menu",           "nameAr": "✦ كل القائمة" },
+        { "id": "brewed",    "nameEn": "Arabic & Turkish Brews","nameAr": "مغلي عربي وتركي" },
+        { "id": "tea",       "nameEn": "Tea",                   "nameAr": "شاي" },
+        { "id": "cafe",      "nameEn": "Café & Chill",          "nameAr": "كافيه" },
+        { "id": "specialty", "nameEn": "Specialty",             "nameAr": "مميزة" },
+        { "id": "refreshers","nameEn": "Refreshers",            "nameAr": "منعشات" },
+        { "id": "baklava",   "nameEn": "Sweets",                "nameAr": "حلويات" },
+        { "id": "snacks",    "nameEn": "Ramadan Snacks",        "nameAr": "وجبات رمضان" },
+        { "id": "croissant", "nameEn": "Suhoor Creations",      "nameAr": "إبداعات السحور" }
       ],
       "items": [
         {"id":"brew1","categoryId":"brewed","nameEn":"Classic Turkish Coffee","nameAr":"قهوة تركية كلاسيكية","descriptionEn":"Finely ground coffee brewed in copper cezve. Served with foam crown and Turkish delight.","descriptionAr":"قهوة مطحونة ناعماً تُعد في ركوة نحاسية. تقدم مع تاج من الرغوة والبقلاوة.","price":28,"image":"Turkishcoffee.jpg","calories":"5 kcal","dietary":["vegan","gluten-free"],"temp":"hot"},
@@ -957,10 +826,8 @@
         {"id":"ref1","categoryId":"refreshers","nameEn":"Ramadan Lemonade","nameAr":"ليموناضة رمضان","descriptionEn":"Fresh Sicilian lemons.","descriptionAr":"ليمون صقلي طازج.","price":37,"image":"Lemonade.jpg","calories":"120 kcal","dietary":["vegan"],"temp":"iced"},
         {"id":"ref2","categoryId":"refreshers","nameEn":"Fresh Orange Juice","nameAr":"عصير برتقال طازج","descriptionEn":"Valencia oranges.","descriptionAr":"برتقال فالنسيا.","price":37,"image":"Orange.jpeg","calories":"140 kcal","dietary":["vegan"],"temp":"iced"},
         {"id":"ref3","categoryId":"refreshers","nameEn":"Orange Earl Grey","nameAr":"برتقال إيرل جراي","descriptionEn":"Citrus-bergamot duet.","descriptionAr":"ثنائي الحمضيات والبرغموت.","price":47,"image":"Earl.jpeg","calories":"2 kcal","dietary":["vegan"],"temp":"iced"},
-        {"id":"ref4","categoryId":"refreshers","nameEn":"Strawberry Mojito","nameAr":"موهيتو فراولة","descriptionEn":"Fresh strawberries, mint, lime.","descriptionAr":"فراولة طازجة، نعناع، ليم.","price":42,"image":"Strawberrymojito.jpg","calories":"160 kcal","dietary":[],"temp":"iced"},
         {"id":"ref5","categoryId":"refreshers","nameEn":"Passion Fruit Mojito","nameAr":"موهيتو باشن فروت","descriptionEn":"Exotic passion fruit.","descriptionAr":"فاكهة الباشن الاستوائية.","price":42,"image":"Passionfruit.webp","calories":"170 kcal","dietary":[],"temp":"iced"},
         {"id":"ref6","categoryId":"refreshers","nameEn":"Blueberry Mojito","nameAr":"موهيتو توت أزرق","descriptionEn":"Wild blueberries.","descriptionAr":"توت بري.","price":38,"image":"Blueberrymojito.webp","calories":"150 kcal","dietary":[],"temp":"iced"},
-        {"id":"ref7","categoryId":"refreshers","nameEn":"Black Mulberry Mojito","nameAr":"موهيتو توت أسود","descriptionEn":"Rich black mulberries.","descriptionAr":"توت أسود غني.","price":40,"image":"Mulberrymojito.jpg","calories":"170 kcal","dietary":[],"temp":"iced"},
         {"id":"ref8","categoryId":"refreshers","nameEn":"Mix Berries Mojito","nameAr":"موهيتو توت مشكل","descriptionEn":"Berry symphony.","descriptionAr":"سيمفونية التوت.","price":47,"image":"Mixberriesmojito.webp","calories":"176 kcal","dietary":[],"temp":"iced"},
         {"id":"ref9","categoryId":"refreshers","nameEn":"Cooling Breeze","nameAr":"نسيم بارد","descriptionEn":"Mint, lime, sparkling water.","descriptionAr":"نعناع، ليم، ماء فوار.","price":38,"image":"Coolingbreeze.jpg","calories":"110 kcal","dietary":[],"temp":"iced"},
         {"id":"ref10","categoryId":"refreshers","nameEn":"Still Water","nameAr":"مياه عادية","descriptionEn":"330ml.","descriptionAr":"330 مل.","price":11,"image":"WaterBig.jpg","calories":"0 kcal","dietary":["vegan"],"temp":"iced"},
@@ -972,11 +839,8 @@
         {"id":"bak2","categoryId":"baklava","nameEn":"Carrot Baklava","nameAr":"بقلاوة جزر","descriptionEn":"With carrot puree.","descriptionAr":"مع هريس الجزر.","price":45,"image":"Carrot.jpeg","calories":"420 kcal","dietary":["contains-nuts"],"temp":"room"},
         {"id":"bak3","categoryId":"baklava","nameEn":"Carrot Baklava & Ice Cream","nameAr":"بقلاوة جزر مع آيس كريم","descriptionEn":"Warm baklava with vanilla ice cream.","descriptionAr":"بقلاوة دافئة مع آيس كريم فانيليا.","price":55,"image":"Carroticecream.jpeg","calories":"620 kcal","dietary":["contains-nuts","contains-dairy"],"temp":"both"},
         {"id":"bak4","categoryId":"baklava","nameEn":"Trio Baklava","nameAr":"تريو بقلاوة","descriptionEn":"Three distinct styles.","descriptionAr":"ثلاثة أنماط متميزة.","price":45,"image":"TrioBaklava.jpeg","calories":"480 kcal","dietary":["contains-nuts"],"temp":"room"},
-        {"id":"bak5","categoryId":"baklava","nameEn":"Honey Cake","nameAr":"كيك عسل","descriptionEn":"Layers with honey cream.","descriptionAr":"طبقات مع كريمة العسل.","price":45,"image":"Honeycake.jfif","calories":"430 kcal","dietary":["contains-dairy"],"temp":"room"},
         {"id":"bak6","categoryId":"baklava","nameEn":"Fanzuella Sweets","nameAr":"فانزويلا","descriptionEn":"Layered pastry with cream.","descriptionAr":"معجنات ذات طبقات مع كريمة.","price":45,"image":"Fanzuella.webp","calories":"420 kcal","dietary":["contains-dairy"],"temp":"room"},
-        {"id":"bak7","categoryId":"baklava","nameEn":"Chocolate Flan","nameAr":"فلان شوكولاتة","descriptionEn":"Chocolate-infused flan.","descriptionAr":"فلان بالشوكولاتة.","price":25,"image":"Chocoflan.jpeg","calories":"380 kcal","dietary":["contains-dairy"],"temp":"cold"},
         {"id":"bak8","categoryId":"baklava","nameEn":"Dark Chocolate Cake","nameAr":"كيكة شوكولاتة داكنة","descriptionEn":"Moist dark chocolate.","descriptionAr":"شوكولاتة داكنة رطبة.","price":45,"image":"Darkchocolateopera.jpeg","calories":"540 kcal","dietary":["contains-dairy"],"temp":"room"},
-        {"id":"bak9","categoryId":"baklava","nameEn":"Pistachio Cake","nameAr":"كيكة الفستق","descriptionEn":"Soft pistachio sponge.","descriptionAr":"إسفنجة فستق ناعمة.","price":45,"image":"Pistachiocake.jpeg","calories":"510 kcal","dietary":["contains-nuts","contains-dairy"],"temp":"room"},
         {"id":"bak10","categoryId":"baklava","nameEn":"Black Forest Cake","nameAr":"كيكة الغابة السوداء","descriptionEn":"Chocolate, cherry notes.","descriptionAr":"شوكولاتة، نوتات كرز.","price":45,"image":"Darkforestopera.jpeg","calories":"560 kcal","dietary":["contains-dairy"],"temp":"room"},
         {"id":"bak11","categoryId":"baklava","nameEn":"Chocolate Mousse Cake","nameAr":"كيكة موس شوكولاتة","descriptionEn":"Light airy mousse.","descriptionAr":"موس خفيف وجيد التهوية.","price":45,"image":"Chocolatemousseopera.jpeg","calories":"530 kcal","dietary":["contains-dairy"],"temp":"cold"},
         {"id":"bak12","categoryId":"baklava","nameEn":"Red Velvet Cake","nameAr":"ريد فلفت","descriptionEn":"Soft red sponge.","descriptionAr":"إسفنجة حمراء ناعمة.","price":45,"image":"Redvelvetopera.jpeg","calories":"520 kcal","dietary":["contains-dairy"],"temp":"room"},
@@ -988,7 +852,7 @@
         {"id":"bak18","categoryId":"baklava","nameEn":"Cheesecake Blueberry","nameAr":"تشيز كيك نيويورك","descriptionEn":"Creamy, graham crust.","descriptionAr":"كريمية، قاعدة غراهام.","price":45,"image":"Cheesecakeopera.jpeg","calories":"500 kcal","dietary":["contains-dairy"],"temp":"cold"},
         {"id":"bak19","categoryId":"baklava","nameEn":"Turkish Ice Cream","nameAr":"آيس كريم تركي","descriptionEn":"Classic dondurma.","descriptionAr":"دوندورما كلاسيكي.","price":27,"image":"Icecream.webp","calories":"210 kcal","dietary":["contains-dairy"],"temp":"cold"},
         {"id":"snack1","categoryId":"snacks","nameEn":"Nuts Stand – Tall","nameAr":"مكسرات - ستاند كبير","descriptionEn":"Premium roasted nuts.","descriptionAr":"مكسرات محمصة فاخرة.","price":99,"image":"Nuts.jpg","calories":"300 kcal","dietary":["contains-nuts"],"temp":"room"},
-        {"id":"snack2","categoryId":"snacks","nameEn":"Nuts Stand – Small","nameAr":"مكسرات - ستاند صغير","descriptionEn":"Curated mix.","descriptionAr":"مزيق منسق.","price":60,"image":"Nutsmall.jpg","calories":"180 kcal","dietary":["contains-nuts"],"temp":"room"},
+        {"id":"snack2","categoryId":"snacks","nameEn":"Nuts Stand – Small","nameAr":"مكسرات - ستاند صغير","descriptionEn":"Curated mix.","descriptionAr":"مزيج منسق.","price":60,"image":"Nutsmall.jpg","calories":"180 kcal","dietary":["contains-nuts"],"temp":"room"},
         {"id":"snack3","categoryId":"snacks","nameEn":"Assorted Nut Platter","nameAr":"طبق مكسرات مشكل","descriptionEn":"Artfully arranged selection.","descriptionAr":"تشكيلة مرتبة بفن.","price":35,"image":"Nutsplatter.jpg","calories":"180 kcal","dietary":["contains-nuts"],"temp":"room"},
         {"id":"snack4","categoryId":"snacks","nameEn":"French Fries","nameAr":"بطاطس مقلية","descriptionEn":"Golden crispy fries.","descriptionAr":"بطاطس مقلية ذهبية مقرمشة.","price":29,"image":"Patatas.jpg","calories":"340 kcal","dietary":["vegan"],"temp":"hot"},
         {"id":"snack5","categoryId":"snacks","nameEn":"Potato Wedges","nameAr":"بطاطس ويدجز","descriptionEn":"Thick-cut wedges.","descriptionAr":"شرائح سميكة.","price":32,"image":"Wedges.webp","calories":"380 kcal","dietary":["vegetarian"],"temp":"hot"},
@@ -1002,60 +866,79 @@
       ]
     }
     </script>
+
     <script>
     (function() {
+        'use strict';
+
         const IMAGE_BASE = 'https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/';
-        const PLACEHOLDER_SVG = 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'200\' viewBox=\'0 0 200 200\'%3E%3Crect width=\'200\' height=\'200\' fill=\'%233d2e1b\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-family=\'Arial\' font-size=\'16\' fill=\'%23c9973d\'%3E☕ Turkiana%3C/text%3E%3C/svg%3E';
+        const PLACEHOLDER_SVG = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%233d2e1b'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='16' fill='%23c9973d'%3E%E2%98%95 Turkiana%3C/text%3E%3C/svg%3E";
+
         const data = JSON.parse(document.getElementById('menuData').textContent);
-        let lang = localStorage.getItem('tk_lang') || 'en';
-        let activeCat = 'all';
-        let searchQ = '';
-        let dietaryFilters = []; // NEW: active dietary filters
+        let lang           = localStorage.getItem('tk_lang') || 'en';
+        let activeCat      = 'all';
+        let searchQ        = '';
+        let dietaryFilters = [];
+        let debounceTimer  = null; // FIX: search debounce
+        let rafId          = null; // FIX: Three.js RAF id for pause/resume
 
         const dietFilterDefs = [
-            { id: "vegan", labelEn: "Vegan", labelAr: "نباتي" },
-            { id: "no-nuts", labelEn: "No Nuts", labelAr: "بدون مكسرات" },
-            { id: "dairy-free", labelEn: "Dairy-Free", labelAr: "خالي من الألبان" },
-            { id: "gluten-free", labelEn: "Gluten-Free", labelAr: "خالي من الغلوتين" }
+            { id: 'vegan',       labelEn: 'Vegan',       labelAr: 'نباتي' },
+            { id: 'no-nuts',     labelEn: 'No Nuts',     labelAr: 'بدون مكسرات' },
+            { id: 'dairy-free',  labelEn: 'Dairy-Free',  labelAr: 'خالي من الألبان' },
+            { id: 'gluten-free', labelEn: 'Gluten-Free', labelAr: 'خالي من الغلوتين' }
         ];
 
         const $ = id => document.getElementById(id);
         const els = {
-            grid: $('grid'), catBar: $('catBar'), dietFilters: $('dietFilters'),
-            searchInput: $('searchInput'), clearBtn: $('clearBtn'),
-            modal: $('modal'), modalImg: $('modalImg'),
-            modalBody: $('modalBody'), recoSection: $('recoSection'),
-            modalCloseBtn: $('modalCloseBtn'),
-            themeBtn: $('themeBtn'), langBtn: $('langBtn'),
-            qrBtn: $('qrBtn'), qrModal: $('qrModal'),
-            qrCanvas: $('qrCanvas'), closeQrBtn: $('closeQrBtn')
+            grid:             $('grid'),
+            catBar:           $('catBar'),
+            dietFilters:      $('dietFilters'),
+            resultsAnnounce:  $('resultsAnnounce'), // FIX: ARIA live region
+            searchInput:      $('searchInput'),
+            clearBtn:         $('clearBtn'),
+            modal:            $('modal'),
+            modalImg:         $('modalImg'),
+            modalBody:        $('modalBody'),
+            recoSection:      $('recoSection'),
+            themeBtn:         $('themeBtn'),
+            langBtn:          $('langBtn'),
+            qrBtn:            $('qrBtn'),
+            qrModal:          $('qrModal'),
+            qrCanvas:         $('qrCanvas'),
+            closeQrBtn:       $('closeQrBtn')
         };
-        window.handleImageError = (e) => e.target.src = PLACEHOLDER_SVG;
 
+        window.handleImageError = e => { e.target.src = PLACEHOLDER_SVG; };
+
+        /* ── Dietary dot badges ─────────────────────────────── */
         function dietDots(dietary) {
             if (!dietary || !dietary.length) return '';
             const map = {
-                'vegan': { class: 'dot-vegan', label: 'Vegan' },
-                'contains-dairy': { class: 'dot-dairy', label: 'Contains dairy' },
-                'contains-nuts': { class: 'dot-nuts', label: 'Contains nuts' },
-                'gluten-free': { class: 'dot-gluten', label: 'Gluten free' },
-                'vegetarian': { class: 'dot-vegetarian', label: 'Vegetarian' }
+                'vegan':          { cls: 'dot-vegan',      label: 'Vegan' },
+                'contains-dairy': { cls: 'dot-dairy',      label: 'Contains dairy' },
+                'contains-nuts':  { cls: 'dot-nuts',       label: 'Contains nuts' },
+                'gluten-free':    { cls: 'dot-gluten',     label: 'Gluten free' },
+                'vegetarian':     { cls: 'dot-vegetarian', label: 'Vegetarian' }
             };
-            return `<div class="card-diet" aria-label="Dietary: ${dietary.map(d => map[d]?.label || d).join(', ')}">${dietary.map(d => map[d] ? `<span class="diet-dot ${map[d].class}" title="${map[d].label}"><span class="sr-only">${map[d].label}</span></span>` : '').join('')}</div>`;
+            const dots = dietary.map(d => map[d]
+                ? `<span class="diet-dot ${map[d].cls}" title="${map[d].label}"><span class="sr-only">${map[d].label}</span></span>`
+                : '').join('');
+            return `<div class="card-diet" aria-label="Dietary: ${dietary.map(d => map[d]?.label || d).join(', ')}">${dots}</div>`;
         }
 
         function getTempDisplay(item) {
-            if (!item.temp) return '☕ Hot';
-            switch(item.temp) {
-                case 'hot': return '☕ Hot';
+            switch (item.temp) {
+                case 'hot':  return '☕ Hot';
                 case 'iced': return '❄️ Iced';
                 case 'both': return '☕ Hot · ❄️ Iced';
                 case 'cold': return '❄️ Cold';
                 case 'room': return '🏠 Room temp';
-                default: return '☕ Hot';
+                default:     return '☕ Hot';
             }
         }
 
+        /* ── Filtering ──────────────────────────────────────── */
         function getFiltered() {
             let items = data.items;
             if (activeCat !== 'all') items = items.filter(i => i.categoryId === activeCat);
@@ -1068,14 +951,13 @@
                     (i.descriptionAr && i.descriptionAr.includes(q))
                 );
             }
-            // NEW: Apply dietary filters (all must match)
             if (dietaryFilters.length > 0) {
                 items = items.filter(item => {
+                    const d = item.dietary || [];
                     return dietaryFilters.every(f => {
-                        const d = item.dietary || [];
-                        if (f === 'vegan') return d.includes('vegan');
-                        if (f === 'no-nuts') return !d.includes('contains-nuts');
-                        if (f === 'dairy-free') return !d.includes('contains-dairy');
+                        if (f === 'vegan')       return d.includes('vegan');
+                        if (f === 'no-nuts')     return !d.includes('contains-nuts');
+                        if (f === 'dairy-free')  return !d.includes('contains-dairy');
                         if (f === 'gluten-free') return d.includes('gluten-free');
                         return true;
                     });
@@ -1084,11 +966,14 @@
             return items;
         }
 
+        /* ── Category bar ───────────────────────────────────── */
         function renderCats() {
-            els.catBar.innerHTML = data.categories.map(c => {
-                const nm = lang === 'ar' ? c.nameAr : c.nameEn;
-                return `<button class="cat-btn ${c.id === activeCat ? 'active' : ''}" data-id="${c.id}">${nm}</button>`;
+            els.catBar.innerHTML = data.categories.map((c, idx) => {
+                const nm     = lang === 'ar' ? c.nameAr : c.nameEn;
+                const active = c.id === activeCat;
+                return `<button class="cat-btn ${active ? 'active' : ''}" data-id="${c.id}" role="tab" aria-selected="${active}" tabindex="${active ? '0' : '-1'}">${nm}</button>`;
             }).join('');
+
             els.catBar.querySelectorAll('.cat-btn').forEach(b => {
                 b.addEventListener('click', () => {
                     activeCat = b.dataset.id;
@@ -1097,46 +982,89 @@
                     switchGrid(getFiltered());
                 });
             });
+
+            // FIX: Arrow-key keyboard navigation on the category bar
+            els.catBar.addEventListener('keydown', handleCatKeydown);
         }
 
-        // NEW: Render dietary filter chips
+        function handleCatKeydown(e) {
+            const cats = data.categories.map(c => c.id);
+            const idx  = cats.indexOf(activeCat);
+            let next   = -1;
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown')  next = (idx + 1) % cats.length;
+            if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')    next = (idx - 1 + cats.length) % cats.length;
+            if (next === -1) return;
+            e.preventDefault();
+            activeCat = cats[next];
+            renderCats();
+            renderDietFilters();
+            switchGrid(getFiltered());
+            // Move focus to newly active button
+            const focusBtn = els.catBar.querySelector('.cat-btn.active');
+            if (focusBtn) focusBtn.focus();
+        }
+
+        /* ── Diet filter bar ────────────────────────────────── */
         function renderDietFilters() {
             els.dietFilters.innerHTML = dietFilterDefs.map(f => {
-                const label = lang === 'ar' ? f.labelAr : f.labelEn;
+                const label  = lang === 'ar' ? f.labelAr : f.labelEn;
                 const active = dietaryFilters.includes(f.id) ? 'active' : '';
                 return `<button class="diet-filter-btn ${active}" data-id="${f.id}">${label}</button>`;
             }).join('');
+
             els.dietFilters.querySelectorAll('.diet-filter-btn').forEach(b => {
                 b.addEventListener('click', () => {
                     const id = b.dataset.id;
-                    if (dietaryFilters.includes(id)) {
-                        dietaryFilters = dietaryFilters.filter(x => x !== id);
-                    } else {
-                        dietaryFilters.push(id);
-                    }
+                    dietaryFilters = dietaryFilters.includes(id)
+                        ? dietaryFilters.filter(x => x !== id)
+                        : [...dietaryFilters, id];
                     renderDietFilters();
                     switchGrid(getFiltered());
                 });
             });
         }
 
+        /* ── IntersectionObserver ───────────────────────────── */
+        // FIX: single observer; disconnect() called before each grid rebuild
         const io = new IntersectionObserver(entries => {
-            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('visible');
+                    // FIX: remove will-change after animation settles
+                    e.target.addEventListener('animationend', () => {
+                        e.target.classList.remove('animating');
+                    }, { once: true });
+                    io.unobserve(e.target);
+                }
+            });
         }, { threshold: 0.08 });
 
+        /* ── Grid rendering ─────────────────────────────────── */
         function renderGrid(items) {
+            // FIX: disconnect observer before clearing DOM to avoid ghost observations
+            io.disconnect();
             els.grid.innerHTML = '';
+
             if (!items.length) {
                 els.grid.innerHTML = `<div class="empty-state"><div class="empty-icon">🌙</div><div class="empty-text">No items found…</div></div>`;
+                // FIX: announce empty state to screen readers
+                els.resultsAnnounce.textContent = 'No items found.';
                 return;
             }
+
+            // FIX: Announce result count to screen readers
+            els.resultsAnnounce.textContent = `${items.length} item${items.length === 1 ? '' : 's'} found.`;
+
             items.forEach((item, idx) => {
-                const name = lang === 'ar' ? item.nameAr : item.nameEn;
-                const nameAlt = lang === 'ar' ? item.nameEn : (item.nameAr || '');
-                const desc = lang === 'ar' ? (item.descriptionAr || item.descriptionEn) : item.descriptionEn;
+                const name    = lang === 'ar' ? item.nameAr : item.nameEn;
+                const nameAlt = lang === 'ar' ? item.nameEn  : (item.nameAr || '');
+                const desc    = lang === 'ar' ? (item.descriptionAr || item.descriptionEn) : item.descriptionEn;
+
                 const card = document.createElement('div');
-                card.className = 'menu-card';
+                card.className = 'menu-card animating'; // FIX: animating class for will-change
                 card.style.animationDelay = Math.min(idx * 0.04, 0.8) + 's';
+                card.setAttribute('tabindex', '0');
+                card.setAttribute('aria-label', `${name}, ${item.price} QAR`);
                 card.innerHTML = `
                     <div class="card-figure">
                         <img src="${IMAGE_BASE}${item.image}" alt="${name}" loading="lazy" decoding="async" onerror="handleImageError(event)">
@@ -1151,7 +1079,11 @@
                             ${dietDots(item.dietary)}
                         </div>
                     </div>`;
-                card.addEventListener('click', () => openModal(item));
+
+                const open = () => openModal(item);
+                card.addEventListener('click', open);
+                card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
+
                 els.grid.appendChild(card);
                 io.observe(card);
             });
@@ -1165,33 +1097,46 @@
             }, 180);
         }
 
+        /* ── Modal / Focus trap ─────────────────────────────── */
+        // FIX: Store trap handler reference to remove it when modal closes (no stacking)
+        let _trapHandler = null;
+
         function trapFocus(element) {
-            const focusable = element.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-            const first = focusable[0];
-            const last = focusable[focusable.length - 1];
-            element.addEventListener('keydown', (e) => {
+            // Remove any previous listener first
+            if (_trapHandler) element.removeEventListener('keydown', _trapHandler);
+
+            _trapHandler = (e) => {
                 if (e.key !== 'Tab') return;
+                const focusable = element.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+                const first = focusable[0];
+                const last  = focusable[focusable.length - 1];
                 if (e.shiftKey) {
                     if (document.activeElement === first) { e.preventDefault(); last.focus(); }
                 } else {
-                    if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+                    if (document.activeElement === last)  { e.preventDefault(); first.focus(); }
                 }
-            });
+            };
+            element.addEventListener('keydown', _trapHandler);
         }
 
         function openModal(item) {
-            const name = lang === 'ar' ? item.nameAr : item.nameEn;
-            const nameAlt = lang === 'ar' ? item.nameEn : (item.nameAr || '');
-            const desc = lang === 'ar' ? (item.descriptionAr || item.descriptionEn) : item.descriptionEn;
+            const name    = lang === 'ar' ? item.nameAr : item.nameEn;
+            const nameAlt = lang === 'ar' ? item.nameEn  : (item.nameAr || '');
+            const desc    = lang === 'ar' ? (item.descriptionAr || item.descriptionEn) : item.descriptionEn;
+
             els.modalImg.innerHTML = `
                 <img src="${IMAGE_BASE}${item.image}" alt="${name}" decoding="async" onerror="handleImageError(event)">
                 <button id="modalCloseBtn" class="modal-close" aria-label="Close"><i class="fas fa-times"></i></button>`;
-            const newClose = document.getElementById('modalCloseBtn');
-            newClose.addEventListener('click', () => els.modal.close());
-            const isDrink = ['cafe', 'tea', 'brewed'].includes(item.categoryId);
+
+            document.getElementById('modalCloseBtn').addEventListener('click', () => els.modal.close());
+
+            const isDrink  = ['cafe', 'tea', 'brewed'].includes(item.categoryId);
             const showMilk = isDrink && (item.hasMilk || (item.dietary && item.dietary.includes('contains-dairy')));
             const milkOptions = showMilk ? ['Full Fat', 'Low-Fat', 'Skim', 'Lactose Free', 'Oat', 'Almond', 'Soy', 'Coconut'] : [];
-            const allergens = item.dietary?.length ? item.dietary.map(d => d.replace('contains-', '').replace('vegetarian', 'Vegetarian')).join(', ') : 'None';
+            const allergens    = item.dietary?.length
+                ? item.dietary.map(d => d.replace('contains-', '').replace('vegetarian', 'Vegetarian')).join(', ')
+                : 'None';
+
             els.modalBody.innerHTML = `
                 <div class="modal-title">${name}</div>
                 ${nameAlt ? `<div class="modal-title-ar">${nameAlt}</div>` : ''}
@@ -1205,13 +1150,13 @@
                 ${milkOptions.length ? `
                 <div class="milk-section">
                     <div class="milk-title">🥛 Milk Options</div>
-                    <div class="milk-chips">${milkOptions.map(m => `<span class="milk-chip" role="button" tabindex="0">${m}</span>`).join('')}</div>
+                    <div class="milk-chips">${milkOptions.map(m => `<button class="milk-chip" type="button">${m}</button>`).join('')}</div>
                     <div class="selected-milk">Selected: <strong>Full Fat</strong> • +0 QAR</div>
                 </div>` : ''}`;
-            // NEW: Make milk chips interactive (single select)
+
             if (showMilk) {
                 setTimeout(() => {
-                    const chips = els.modalBody.querySelectorAll('.milk-chip');
+                    const chips        = els.modalBody.querySelectorAll('.milk-chip');
                     const selectedStrong = els.modalBody.querySelector('.selected-milk strong');
                     chips.forEach(chip => {
                         chip.addEventListener('click', () => {
@@ -1220,57 +1165,77 @@
                             if (selectedStrong) selectedStrong.textContent = chip.textContent;
                         });
                     });
-                    // default
                     const defaultChip = Array.from(chips).find(c => c.textContent === 'Full Fat');
                     if (defaultChip) defaultChip.classList.add('active');
                 }, 30);
             }
+
             const recos = data.items.filter(i => i.categoryId === item.categoryId && i.id !== item.id).slice(0, 4);
             if (recos.length) {
                 els.recoSection.innerHTML = `
                     <div class="reco-title">You might also like</div>
-                    <div class="reco-chips">${recos.map(r => `<span class="reco-chip" role="button" tabindex="0" data-id="${r.id}">${lang==='ar'?r.nameAr:r.nameEn}</span>`).join('')}</div>`;
-                els.recoSection.querySelectorAll('.reco-chip').forEach(c =>
-                    c.addEventListener('click', () => openModal(data.items.find(i => i.id === c.dataset.id)))
-                );
-            } else els.recoSection.innerHTML = '';
+                    <div class="reco-chips">${recos.map(r =>
+                        // FIX: role="button" is now in the HTML markup, not CSS
+                        `<span class="reco-chip" role="button" tabindex="0" data-id="${r.id}">${lang === 'ar' ? r.nameAr : r.nameEn}</span>`
+                    ).join('')}</div>`;
+                els.recoSection.querySelectorAll('.reco-chip').forEach(c => {
+                    c.addEventListener('click', () => openModal(data.items.find(i => i.id === c.dataset.id)));
+                    c.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(data.items.find(i => i.id === c.dataset.id)); } });
+                });
+            } else {
+                els.recoSection.innerHTML = '';
+            }
+
             els.modal.showModal();
             trapFocus(els.modal);
         }
 
-        // Three.js background with mobile optimisation
+        /* ── Three.js background ────────────────────────────── */
         function initThree() {
-            const canvas = document.getElementById('canvas-bg');
+            const canvas   = document.getElementById('canvas-bg');
             const renderer = new THREE.WebGLRenderer({ canvas, alpha: false, antialias: true });
             renderer.setSize(window.innerWidth, window.innerHeight);
-            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
-            const scene = new THREE.Scene();
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, window.innerWidth < 768 ? 1 : 1.5));
+
+            const scene  = new THREE.Scene();
             scene.background = new THREE.Color(0x06090f);
+
             const isMobile = window.innerWidth < 768 || 'ontouchstart' in window;
             if (!isMobile) scene.fog = new THREE.FogExp2(0x06090f, 0.002);
+
             const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
             camera.position.set(0, 2, 18);
             scene.add(new THREE.AmbientLight(0x404060, 1));
             const dirLight = new THREE.DirectionalLight(0xffe0aa, 1.0);
             dirLight.position.set(-4, 10, 6);
             scene.add(dirLight);
-            // Central moon
+
+            // Moon
             const moonGroup = new THREE.Group();
-            const moonMat = new THREE.MeshStandardMaterial({ color: 0xf0e0b0, emissive: 0x221800, roughness: 0.6 });
-            const moon = new THREE.Mesh(new THREE.SphereGeometry(2.0, 64, 64), moonMat);
-            moonGroup.add(moon);
-            const dark = new THREE.Mesh(new THREE.SphereGeometry(1.8, 64, 64), new THREE.MeshStandardMaterial({ color: 0x06090f, emissive: 0x06090f }));
+            const moonMat   = new THREE.MeshStandardMaterial({ color: 0xf0e0b0, emissive: 0x221800, roughness: 0.6 });
+            moonGroup.add(new THREE.Mesh(new THREE.SphereGeometry(2.0, 64, 64), moonMat));
+            const dark = new THREE.Mesh(
+                new THREE.SphereGeometry(1.8, 64, 64),
+                new THREE.MeshStandardMaterial({ color: 0x06090f, emissive: 0x06090f })
+            );
             dark.position.set(1.2, 0.2, 0.3);
             moonGroup.add(dark);
             moonGroup.position.set(-6, 5, -15);
             scene.add(moonGroup);
-            // Lanterns (reduced on mobile)
-            let lanternPos = [new THREE.Vector3(-4,1.5,-5), new THREE.Vector3(3,2,-7), new THREE.Vector3(5,1.2,-3), new THREE.Vector3(-2,2.5,2)];
-            if (isMobile) lanternPos = lanternPos.slice(0, 2);
-            lanternPos.forEach(pos => {
-                const g = new THREE.Group();
-                const metal = new THREE.MeshStandardMaterial({ color: 0xccaa66, roughness: 0.3, metalness: 0.8 });
-                const glass = new THREE.MeshStandardMaterial({ color: 0xffaa44, emissive: 0x331100, transparent: true, opacity: 0.3 });
+
+            // Lanterns
+            let lanternPositions = [
+                new THREE.Vector3(-4, 1.5, -5),
+                new THREE.Vector3( 3, 2,   -7),
+                new THREE.Vector3( 5, 1.2, -3),
+                new THREE.Vector3(-2, 2.5,  2)
+            ];
+            if (isMobile) lanternPositions = lanternPositions.slice(0, 2);
+
+            lanternPositions.forEach(pos => {
+                const g      = new THREE.Group();
+                const metal  = new THREE.MeshStandardMaterial({ color: 0xccaa66, roughness: 0.3, metalness: 0.8 });
+                const glass  = new THREE.MeshStandardMaterial({ color: 0xffaa44, emissive: 0x331100, transparent: true, opacity: 0.3 });
                 g.add(new THREE.Mesh(new THREE.CylinderGeometry(0.6, 0.6, 1.2, 10), glass));
                 [0.6, -0.6].forEach(y => {
                     const cap = new THREE.Mesh(new THREE.CylinderGeometry(0.7, 0.7, 0.1, 8), metal);
@@ -1282,26 +1247,46 @@
                 g.position.copy(pos);
                 scene.add(g);
             });
-            // Stars (reduced on mobile)
+
+            // Stars
             const starCount = isMobile ? 180 : 400;
-            const starsGeo = new THREE.BufferGeometry();
-            const starsPos = [];
-            for (let i = 0; i < starCount; i++) starsPos.push((Math.random()-0.5)*200, (Math.random()-0.5)*200, (Math.random()-0.5)*200-50);
+            const starsGeo  = new THREE.BufferGeometry();
+            const starsPos  = [];
+            for (let i = 0; i < starCount; i++) {
+                starsPos.push(
+                    (Math.random() - 0.5) * 200,
+                    (Math.random() - 0.5) * 200,
+                    (Math.random() - 0.5) * 200 - 50
+                );
+            }
             starsGeo.setAttribute('position', new THREE.Float32BufferAttribute(starsPos, 3));
-            const stars = new THREE.Points(starsGeo, new THREE.PointsMaterial({color:0xffffff,size:0.2}));
+            const stars = new THREE.Points(starsGeo, new THREE.PointsMaterial({ color: 0xffffff, size: 0.2 }));
             scene.add(stars);
+
             let mouseX = 0, mouseY = 0;
-            window.addEventListener('mousemove', (e) => {
-                mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+            window.addEventListener('mousemove', e => {
+                mouseX = (e.clientX / window.innerWidth  - 0.5) * 2;
                 mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
             });
+
             function animate() {
-                requestAnimationFrame(animate);
+                rafId = requestAnimationFrame(animate);
                 stars.rotation.y += (mouseX * 0.01 - stars.rotation.y) * 0.01;
                 stars.rotation.x += (mouseY * 0.01 - stars.rotation.x) * 0.01;
                 renderer.render(scene, camera);
             }
+
             animate();
+
+            // FIX: Pause Three.js loop when tab is hidden to save GPU/battery
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden) {
+                    cancelAnimationFrame(rafId);
+                } else {
+                    animate();
+                }
+            });
+
             window.addEventListener('resize', () => {
                 camera.aspect = window.innerWidth / window.innerHeight;
                 camera.updateProjectionMatrix();
@@ -1309,23 +1294,30 @@
             });
         }
 
-        // Event listeners
+        /* ── Event listeners ────────────────────────────────── */
         els.modal.addEventListener('click', e => { if (e.target === els.modal) els.modal.close(); });
+
+        // FIX: Debounced search (150ms) to prevent layout thrashing on fast typing
         els.searchInput.addEventListener('input', () => {
             searchQ = els.searchInput.value.trim();
             els.clearBtn.style.display = searchQ ? 'block' : 'none';
-            switchGrid(getFiltered());
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(() => switchGrid(getFiltered()), 150);
         });
+
         els.clearBtn.addEventListener('click', () => {
             els.searchInput.value = '';
             searchQ = '';
             els.clearBtn.style.display = 'none';
+            clearTimeout(debounceTimer);
             switchGrid(getFiltered());
         });
+
         els.themeBtn.addEventListener('click', () => {
             const isLight = document.body.classList.toggle('light');
             els.themeBtn.textContent = isLight ? '☀️' : '🌙';
         });
+
         els.langBtn.addEventListener('click', () => {
             lang = lang === 'en' ? 'ar' : 'en';
             localStorage.setItem('tk_lang', lang);
@@ -1335,35 +1327,37 @@
             renderDietFilters();
             switchGrid(getFiltered());
         });
+
         els.qrBtn.addEventListener('click', () => {
             const qr = qrcode(0, 'H');
             qr.addData(window.location.href);
             qr.make();
-            const c = els.qrCanvas;
+            const c       = els.qrCanvas;
             const modules = qr.getModuleCount();
             c.width = c.height = modules * 8;
             qr.renderTo2dContext(c.getContext('2d'), 8);
             els.qrModal.showModal();
         });
+
         els.closeQrBtn.addEventListener('click', () => els.qrModal.close());
 
-        // Category swipe
+        // Category swipe (touch)
         let touchStartX = 0;
-        els.catBar.addEventListener('touchstart', e => touchStartX = e.touches[0].clientX, { passive: true });
+        els.catBar.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
         els.catBar.addEventListener('touchend', e => {
             const diff = e.changedTouches[0].clientX - touchStartX;
             if (Math.abs(diff) > 45) {
                 const cats = data.categories.map(c => c.id);
-                const idx = cats.indexOf(activeCat);
-                if (diff < 0 && idx < cats.length-1) activeCat = cats[idx+1];
-                else if (diff > 0 && idx > 0) activeCat = cats[idx-1];
+                const idx  = cats.indexOf(activeCat);
+                if (diff < 0 && idx < cats.length - 1) activeCat = cats[idx + 1];
+                else if (diff > 0 && idx > 0)          activeCat = cats[idx - 1];
                 renderCats();
                 renderDietFilters();
                 switchGrid(getFiltered());
             }
         }, { passive: true });
 
-        // Init
+        /* ── Init ───────────────────────────────────────────── */
         renderCats();
         renderDietFilters();
         renderGrid(getFiltered());
@@ -1372,39 +1366,35 @@
         initThree();
     })();
     </script>
- 
-  <!-- Service Worker Registration -->
-<script>
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function() {
-            navigator.serviceWorker.register('/Turkiana-Cafe-Sweets/sw.js')
-                .then(function(registration) {
-                    console.log('ServiceWorker registered with scope:', registration.scope);
-                })
-                .catch(function(error) {
-                    console.log('ServiceWorker registration failed:', error);
-                });
-        });
-    }
-</script>
 
-<!-- Simple Schema.org markup (SEO / accessibility boost) -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "CafeOrCoffeeShop",
-  "name": "Turkiana",
-  "description": "Premium Turkish coffee & Ottoman sweets in Doha – Ramadan special 1447",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Mshreib Downtown",
-    "addressLocality": "Doha",
-    "addressCountry": "QA"
-  },
-  "openingHours": "Mo-Su 19:00-02:00",
-  "telephone": "+974 5186 6671",
-  "hasMenu": "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/"
-}
-</script>
+    <!-- Service Worker -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/Turkiana-Cafe-Sweets/sw.js')
+                    .then(r => console.log('SW registered:', r.scope))
+                    .catch(e => console.log('SW failed:', e));
+            });
+        }
+    </script>
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CafeOrCoffeeShop",
+      "name": "Turkiana",
+      "description": "Premium Turkish coffee & Ottoman sweets in Doha – Ramadan special 1447",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Mshreib Downtown",
+        "addressLocality": "Doha",
+        "addressCountry": "QA"
+      },
+      "openingHours": "Mo-Su 19:00-02:00",
+      "telephone": "+974 5186 6671",
+      "hasMenu": "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/"
+    }
+    </script>
 </body>
 </html>
