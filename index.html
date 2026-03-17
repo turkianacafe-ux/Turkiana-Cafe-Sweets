@@ -40,6 +40,9 @@
             --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
             --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
             --blur: blur(20px) saturate(180%);
+            /* IMPROVEMENT: shimmer gradient for skeleton loading */
+            --shimmer-from: rgba(255,255,255,0.03);
+            --shimmer-to: rgba(255,255,255,0.09);
         }
         body.light {
             --night: #f5ede0;
@@ -55,9 +58,10 @@
             --gold-glow: rgba(160,114,14,0.18);
             --border: rgba(160,114,14,0.25);
             --border-hover: rgba(160,114,14,0.55);
-            /* FIX: light-mode price badge uses opaque warm background for readability */
             --price-badge-bg: rgba(30,18,8,0.82);
             --price-badge-color: #e8b96a;
+            --shimmer-from: rgba(0,0,0,0.04);
+            --shimmer-to: rgba(0,0,0,0.08);
         }
         html { scroll-behavior: smooth; }
         body {
@@ -74,6 +78,55 @@
             position: fixed; inset: 0; z-index: 0;
             pointer-events: none; display: block;
         }
+
+        /* ── IMPROVEMENT: Skeleton loader ─────────────────── */
+        @keyframes shimmer {
+            0%   { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        .img-skeleton {
+            background: linear-gradient(90deg,
+                var(--shimmer-from) 25%,
+                var(--shimmer-to) 50%,
+                var(--shimmer-from) 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.8s ease-in-out infinite;
+        }
+        .card-figure img.loading {
+            opacity: 0;
+            transition: opacity 0.4s var(--ease);
+        }
+        .card-figure img.loaded {
+            opacity: 1;
+        }
+
+        /* ── IMPROVEMENT: Golden shimmer border on hover ── */
+        @keyframes borderSweep {
+            0%   { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+        .menu-card::before {
+            content: '';
+            position: absolute; inset: -1px;
+            border-radius: calc(var(--radius-lg) + 1px);
+            background: linear-gradient(90deg,
+                transparent 0%,
+                rgba(232,185,106,0.6) 40%,
+                rgba(201,151,61,0.9) 50%,
+                rgba(232,185,106,0.6) 60%,
+                transparent 100%);
+            background-size: 200% 100%;
+            opacity: 0;
+            transition: opacity 0.35s var(--ease);
+            pointer-events: none;
+            z-index: -1;
+        }
+        .menu-card:hover::before {
+            opacity: 1;
+            animation: borderSweep 1.6s linear infinite;
+        }
+
+        /* ── Ramadan banner ───────────────────────────────── */
         .ramadan-banner {
             position: relative;
             background: linear-gradient(145deg, rgba(160,114,14,0.15) 0%, rgba(201,151,61,0.25) 100%);
@@ -101,6 +154,8 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
+
+        /* ── Site header ──────────────────────────────────── */
         .site-header {
             position: relative; z-index: 50;
             text-align: center;
@@ -111,7 +166,18 @@
             gap: 16px; margin-bottom: 16px;
         }
         .ornament-line { height: 1px; width: 80px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
-        .ornament-diamond { width: 8px; height: 8px; background: var(--gold); transform: rotate(45deg); box-shadow: 0 0 12px var(--gold-glow); }
+        .ornament-diamond {
+            width: 8px; height: 8px;
+            background: var(--gold);
+            transform: rotate(45deg);
+            box-shadow: 0 0 12px var(--gold-glow);
+            /* IMPROVEMENT: subtle pulse */
+            animation: diamondPulse 3s ease-in-out infinite;
+        }
+        @keyframes diamondPulse {
+            0%, 100% { box-shadow: 0 0 12px var(--gold-glow); }
+            50%       { box-shadow: 0 0 24px rgba(201,151,61,0.5); }
+        }
         .site-title {
             font-family: var(--font-display);
             font-size: clamp(3.5rem, 12vw, 8rem);
@@ -136,6 +202,8 @@
             letter-spacing: 0.1em;
             margin-top: 6px;
         }
+
+        /* ── Controls ─────────────────────────────────────── */
         .controls {
             position: fixed; top: 20px; right: 20px;
             display: flex; gap: 10px; z-index: 300;
@@ -167,6 +235,17 @@
             transform: scale(1.1);
             box-shadow: 0 0 18px var(--gold-glow);
         }
+        /* IMPROVEMENT: focus-visible rings for keyboard users */
+        .ctrl:focus-visible,
+        .cat-btn:focus-visible,
+        .diet-filter-btn:focus-visible,
+        .menu-card:focus-visible,
+        .reco-chip:focus-visible {
+            outline: 2px solid var(--gold-bright);
+            outline-offset: 3px;
+        }
+
+        /* ── Category wrapper ─────────────────────────────── */
         .cat-wrapper {
             position: sticky; top: 12px; z-index: 200;
             padding: 0 20px;
@@ -198,6 +277,8 @@
             cursor: pointer;
             transition: all 0.3s var(--ease);
             white-space: nowrap;
+            /* IMPROVEMENT: min touch target */
+            min-height: 36px;
         }
         .diet-filter-btn:hover { color: var(--soft); border-color: var(--border); }
         .diet-filter-btn.active {
@@ -207,22 +288,43 @@
             box-shadow: 0 3px 15px var(--gold-glow);
             font-weight: 600;
         }
-        .cat-bar {
-            display: flex; gap: 8px;
-            overflow-x: auto; scrollbar-width: none;
-            padding: 10px 14px;
+
+        /* IMPROVEMENT: Category bar with sliding pill indicator */
+        .cat-bar-wrap {
+            position: relative;
             background: var(--surface);
             backdrop-filter: var(--blur);
             border: 1px solid var(--border);
             border-radius: 60px;
             box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+            overflow: hidden;
+        }
+        .cat-bar {
+            display: flex; gap: 4px;
+            overflow-x: auto; scrollbar-width: none;
+            padding: 6px 8px;
+            position: relative;
+            z-index: 1;
         }
         .cat-bar::-webkit-scrollbar { display: none; }
+        /* Sliding indicator pill */
+        .cat-indicator {
+            position: absolute;
+            top: 6px; left: 0;
+            height: calc(100% - 12px);
+            background: linear-gradient(135deg, var(--gold-dim), var(--gold));
+            border-radius: 40px;
+            pointer-events: none;
+            z-index: 0;
+            transition: left 0.35s var(--ease-spring), width 0.35s var(--ease-spring);
+            box-shadow: 0 4px 20px var(--gold-glow);
+        }
         .cat-btn {
             flex-shrink: 0;
+            position: relative; z-index: 2;
             padding: 9px 22px;
             border-radius: 40px;
-            border: 1px solid transparent;
+            border: none;
             background: transparent;
             color: var(--muted);
             font-family: var(--font-body);
@@ -230,23 +332,22 @@
             font-weight: 500;
             letter-spacing: 0.04em;
             cursor: pointer;
-            transition: all 0.3s var(--ease);
+            transition: color 0.3s var(--ease);
             white-space: nowrap;
+            /* IMPROVEMENT: min touch target */
+            min-height: 40px;
         }
-        .cat-btn:hover { color: var(--soft); border-color: var(--border); }
-        .cat-btn.active {
-            background: linear-gradient(135deg, var(--gold-dim), var(--gold));
-            color: var(--night);
-            border-color: transparent;
-            box-shadow: 0 4px 20px var(--gold-glow);
-            font-weight: 600;
-        }
-        /* FIX: ARIA live region for screen readers */
+        .cat-btn:hover { color: var(--soft); }
+        .cat-btn.active { color: var(--night); font-weight: 600; }
+
+        /* ARIA live region */
         #resultsAnnounce {
             position: absolute; width: 1px; height: 1px;
             padding: 0; margin: -1px; overflow: hidden;
             clip: rect(0,0,0,0); border: 0;
         }
+
+        /* ── Menu grid ────────────────────────────────────── */
         .menu-container {
             position: relative; z-index: 10;
             padding: 0 20px 160px;
@@ -258,7 +359,10 @@
             grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
             gap: 28px;
         }
+
+        /* ── Cards ────────────────────────────────────────── */
         .menu-card {
+            position: relative; /* needed for ::before shimmer border */
             border-radius: var(--radius-lg);
             overflow: hidden;
             cursor: pointer;
@@ -269,38 +373,60 @@
             transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.3s;
             opacity: 0;
             transform: translateY(28px);
-            /* FIX: will-change only applied during animation via .animating class */
         }
         .menu-card.animating { will-change: transform, opacity; }
         .menu-card.visible { animation: cardReveal 0.65s var(--ease) forwards; }
         @keyframes cardReveal { to { opacity: 1; transform: translateY(0); } }
         .menu-card:hover {
             transform: translateY(-6px) scale(1.012);
-            box-shadow: 0 24px 70px rgba(0,0,0,0.6), 0 0 40px var(--gold-glow);
-            border-color: var(--border-hover);
+            box-shadow: 0 28px 80px rgba(0,0,0,0.65), 0 0 50px var(--gold-glow);
+            border-color: transparent; /* hidden behind shimmer ::before */
         }
+
+        /* IMPROVEMENT: noise texture overlay for depth */
+        .menu-card::after-texture {
+            content: '';
+            position: absolute; inset: 0;
+            border-radius: inherit;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+            pointer-events: none; z-index: 10;
+        }
+
         .card-figure {
             position: relative;
             aspect-ratio: 4/3;
             overflow: hidden;
         }
+        /* IMPROVEMENT: skeleton while image loads */
+        .card-figure .skeleton-layer {
+            position: absolute; inset: 0;
+            background: linear-gradient(90deg,
+                var(--shimmer-from) 25%,
+                var(--shimmer-to) 50%,
+                var(--shimmer-from) 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.8s ease-in-out infinite;
+            transition: opacity 0.3s ease;
+        }
         .card-figure img {
+            position: relative; z-index: 1;
             width: 100%; height: 100%;
             object-fit: cover;
-            transition: transform 0.8s var(--ease);
+            transition: transform 0.8s var(--ease), opacity 0.4s ease;
             display: block;
+            opacity: 0;
         }
+        .card-figure img.loaded { opacity: 1; }
         .menu-card:hover .card-figure img { transform: scale(1.07); }
         .card-figure::after {
             content: '';
-            position: absolute; inset: 0;
+            position: absolute; inset: 0; z-index: 2;
             background: linear-gradient(to bottom, transparent 45%, rgba(6,9,15,0.75) 100%);
             pointer-events: none;
         }
-        /* FIX: Price badge uses CSS vars so it adapts to both themes */
         .card-price-badge {
             position: absolute;
-            bottom: 14px; right: 14px;
+            bottom: 14px; right: 14px; z-index: 3;
             background: var(--price-badge-bg);
             backdrop-filter: blur(10px);
             border: 1px solid var(--border-hover);
@@ -311,7 +437,6 @@
             font-weight: 600;
             color: var(--price-badge-color);
             letter-spacing: 0.03em;
-            z-index: 1;
         }
         .card-body { padding: 18px 20px 22px; }
         .card-name {
@@ -347,6 +472,8 @@
         .dot-nuts  { background: #fb923c; }
         .dot-gluten { background: #a78bfa; }
         .dot-vegetarian { background: #f59e0b; }
+
+        /* ── Search ───────────────────────────────────────── */
         .search-float {
             position: fixed;
             bottom: 28px;
@@ -383,9 +510,22 @@
             color: var(--muted); font-size: 1.1rem;
             cursor: pointer; display: none;
             padding: 0 2px;
-            transition: color 0.2s;
+            transition: color 0.2s, transform 0.2s;
         }
-        #clearBtn:hover { color: var(--gold); }
+        #clearBtn:hover { color: var(--gold); transform: scale(1.2) rotate(90deg); }
+
+        /* ── IMPROVEMENT: Search result count badge ─────── */
+        .search-count {
+            font-size: 0.75rem;
+            color: var(--gold-dim);
+            white-space: nowrap;
+            font-variant-numeric: tabular-nums;
+            opacity: 0;
+            transition: opacity 0.25s;
+        }
+        .search-count.visible { opacity: 1; }
+
+        /* ── Modal ────────────────────────────────────────── */
         dialog {
             border: none; background: transparent;
             max-width: 680px; width: calc(100% - 24px);
@@ -393,7 +533,13 @@
             max-height: calc(100dvh - 24px);
             overflow: visible;
         }
-        dialog::backdrop { background: rgba(4,6,12,0.85); backdrop-filter: blur(8px); }
+        dialog::backdrop {
+            background: rgba(4,6,12,0.88);
+            backdrop-filter: blur(10px);
+            /* IMPROVEMENT: smoother backdrop fade */
+            animation: backdropIn 0.3s ease;
+        }
+        @keyframes backdropIn { from { opacity: 0; } to { opacity: 1; } }
         .modal-shell {
             background: var(--surface);
             backdrop-filter: var(--blur);
@@ -404,12 +550,26 @@
             animation: modalIn 0.4s var(--ease-spring);
         }
         @keyframes modalIn { from { opacity: 0; transform: scale(0.94) translateY(16px); } to { opacity: 1; transform: scale(1) translateY(0); } }
-        .modal-img-wrap { position: relative; aspect-ratio: 16/9; overflow: hidden; }
-        .modal-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .modal-img-wrap {
+            position: relative; aspect-ratio: 16/9; overflow: hidden;
+            /* IMPROVEMENT: skeleton behind modal image too */
+            background: linear-gradient(90deg,
+                var(--shimmer-from) 25%,
+                var(--shimmer-to) 50%,
+                var(--shimmer-from) 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.8s ease-in-out infinite;
+        }
+        .modal-img-wrap img {
+            width: 100%; height: 100%; object-fit: cover; display: block;
+            opacity: 0; transition: opacity 0.5s ease;
+        }
+        .modal-img-wrap img.loaded { opacity: 1; animation: none; }
         .modal-img-wrap::after {
             content: '';
             position: absolute; inset: 0;
             background: linear-gradient(to bottom, transparent 50%, rgba(6,9,15,0.9) 100%);
+            pointer-events: none; z-index: 1;
         }
         .modal-close {
             position: absolute; top: 14px; right: 14px; z-index: 10;
@@ -426,6 +586,10 @@
         }
         .modal-close:hover { background: var(--gold); color: var(--night); transform: scale(1.1) rotate(90deg); }
         .modal-scroll { overflow-y: auto; max-height: 55vh; }
+        /* IMPROVEMENT: custom scrollbar on modal scroll */
+        .modal-scroll::-webkit-scrollbar { width: 4px; }
+        .modal-scroll::-webkit-scrollbar-track { background: transparent; }
+        .modal-scroll::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 4px; }
         .modal-body { padding: 24px 26px 28px; }
         .modal-title { font-family: var(--font-display); font-size: clamp(1.8rem, 5vw, 2.5rem); font-weight: 400; color: var(--text); line-height: 1.15; }
         .modal-title-ar { font-family: var(--font-ar); font-size: 1.2rem; color: var(--muted); margin-top: 4px; }
@@ -441,7 +605,15 @@
         }
         .modal-desc { font-size: 0.9rem; color: var(--soft); line-height: 1.7; }
         .detail-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 20px; }
-        .detail-cell { background: rgba(201,151,61,0.07); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 14px; }
+        .detail-cell {
+            background: rgba(201,151,61,0.07);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 12px 14px;
+            /* IMPROVEMENT: subtle hover on detail cells */
+            transition: background 0.2s, border-color 0.2s;
+        }
+        .detail-cell:hover { background: rgba(201,151,61,0.12); border-color: var(--border-hover); }
         .detail-label { font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 5px; }
         .detail-value { font-size: 0.9rem; font-weight: 500; color: var(--soft); }
         .milk-section { margin-top: 18px; padding: 16px; background: rgba(201,151,61,0.06); border: 1px solid var(--border); border-radius: var(--radius-sm); }
@@ -453,7 +625,6 @@
         .reco-section { padding: 0 26px 26px; }
         .reco-title { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
         .reco-chips { display: flex; flex-wrap: wrap; gap: 8px; }
-        /* FIX: role="button" moved to HTML, not CSS */
         .reco-chip {
             padding: 8px 18px;
             background: rgba(201,151,61,0.08);
@@ -465,6 +636,8 @@
             transition: all 0.25s var(--ease);
         }
         .reco-chip:hover { background: var(--gold); color: var(--night); border-color: var(--gold); transform: translateY(-1px); }
+
+        /* ── QR Modal ─────────────────────────────────────── */
         #qr-modal-content {
             text-align: center;
             padding: 44px 36px;
@@ -476,6 +649,8 @@
         }
         #qr-modal-title { font-family: var(--font-display); font-size: 2rem; font-weight: 400; color: var(--gold); margin-bottom: 8px; }
         #qrCanvas { display: block; margin: 24px auto; background: white; padding: 16px; border-radius: 18px; }
+
+        /* ── Footer ───────────────────────────────────────── */
         footer {
             position: relative; z-index: 10;
             text-align: center;
@@ -494,15 +669,32 @@
             background-clip: text;
         }
         .footer-details { margin-top: 16px; font-size: 0.85rem; color: var(--muted); letter-spacing: 0.06em; line-height: 2; }
-        .empty-state { grid-column: 1 / -1; text-align: center; padding: 80px 0; color: var(--muted); }
+
+        /* ── Empty state ──────────────────────────────────── */
+        .empty-state {
+            grid-column: 1 / -1; text-align: center;
+            padding: 80px 0; color: var(--muted);
+            animation: cardReveal 0.5s var(--ease) forwards;
+        }
         .empty-icon { font-size: 3rem; opacity: 0.3; margin-bottom: 16px; }
         .empty-text { font-family: var(--font-display); font-size: 1.4rem; font-weight: 300; font-style: italic; }
+
+        /* ── Grid fade transition ─────────────────────────── */
+        .grid-fade { transition: opacity 0.2s var(--ease); }
+        .grid-fade.fading { opacity: 0; }
+
+        /* ── Utility ──────────────────────────────────────── */
+        .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 10px; }
+
+        /* ── Responsive ───────────────────────────────────── */
         @media (max-width: 600px) {
             .site-header { padding: 40px 16px 16px; }
             .controls { top: 12px; right: 12px; padding: 6px; gap: 7px; }
             .ctrl { width: 40px; height: 40px; font-size: 0.85rem; }
             .cat-wrapper { padding: 0 12px; top: 8px; margin-bottom: 20px; }
-            .cat-bar { padding: 8px 10px; gap: 6px; }
             .cat-btn { padding: 8px 16px; font-size: 0.78rem; }
             .diet-bar { padding: 6px 10px; gap: 5px; }
             .diet-filter-btn { padding: 5px 14px; font-size: 0.78rem; }
@@ -512,20 +704,27 @@
             .card-name { font-size: 1.1rem; }
             .card-desc { -webkit-line-clamp: 1; }
             .detail-grid { grid-template-columns: repeat(2, 1fr); }
-            dialog { width: 100%; max-width: 100%; margin: auto 0 0; border-radius: 0; }
+            dialog { width: 100%; max-width: 100%; margin: auto 0 0; }
             .modal-shell { border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
             .modal-scroll { max-height: 60vh; }
             .search-float { bottom: 20px; width: calc(100% - 24px); }
+            /* IMPROVEMENT: hide search count on very small screens */
+            .search-count { display: none; }
         }
         @media (max-width: 380px) { .menu-grid { grid-template-columns: 1fr; } }
-        @media (min-width: 900px) { .menu-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (min-width: 900px)  { .menu-grid { grid-template-columns: repeat(3, 1fr); } }
         @media (min-width: 1200px) { .menu-grid { grid-template-columns: repeat(4, 1fr); } }
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 10px; }
-        .grid-fade { transition: opacity 0.2s var(--ease); }
-        .grid-fade.fading { opacity: 0; }
-        .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+
+        /* IMPROVEMENT: Reduce motion for users who prefer it */
+        @media (prefers-reduced-motion: reduce) {
+            .menu-card, .menu-card.visible,
+            .modal-shell, .cat-indicator,
+            .ornament-diamond, .card-figure img {
+                animation: none !important;
+                transition: none !important;
+            }
+            .menu-card { opacity: 1; transform: none; }
+        }
     </style>
 
     <!-- LOADING SCREEN STYLES -->
@@ -548,7 +747,6 @@
             background: transparent;
             border-radius: 50%;
             box-shadow: -24px 0 0 0 #e8b96a, 0 0 50px #e8b96a, 0 0 90px #c9973d;
-            transform: rotate(0deg);
             animation: rotateMoon 12s infinite linear;
             margin-bottom: 15px;
         }
@@ -584,7 +782,6 @@
             100% { transform: rotate(0deg); }
         }
         .loading-text { text-align: center; margin-top: 30px; }
-        /* FIX: Changed "Eid Mubarak" to "Ramadan Kareem" to match site theme */
         .loading-text h1 {
             font-size: 4.5rem; margin: 0; font-weight: 400;
             text-shadow: 0 0 30px #e8b96a, 0 0 70px #c9973d;
@@ -601,7 +798,6 @@
             50%  { text-shadow: 0 0 55px #ffd966, 0 0 90px #e8b96a; }
             100% { text-shadow: 0 0 30px #e8b96a, 0 0 60px #c9973d; }
         }
-        /* FIX: Skip button – fades in after 1.5s */
         #skipBtn {
             margin-top: 32px;
             padding: 10px 28px;
@@ -643,19 +839,15 @@
         <div class="loading-moon"></div>
         <div class="loading-lantern"></div>
         <div class="loading-text">
-            <!-- FIX: Corrected to Ramadan Kareem -->
             <h1>رمضان كريم</h1>
             <p>Ramadan Kareem · Wishing you blessed nights with us</p>
         </div>
-        <!-- FIX: Skip button, shown after 1.5s -->
         <button id="skipBtn" aria-label="Skip intro">Enter ✦</button>
     </div>
     <script>
         (function() {
             const ls = document.getElementById('loading-screen');
             const skipBtn = document.getElementById('skipBtn');
-
-            // Generate particles
             for (let i = 0; i < 60; i++) {
                 const p = document.createElement('div');
                 p.className = 'particle';
@@ -669,17 +861,12 @@
                 p.style.background = `rgb(255, ${200 + Math.floor(Math.random() * 55)}, 100)`;
                 ls.appendChild(p);
             }
-
             function dismissLoading() {
                 ls.classList.add('hidden');
                 setTimeout(() => { if (ls.parentNode) ls.parentNode.removeChild(ls); }, 1200);
             }
-
-            // FIX: Show skip button after 1.5s
             setTimeout(() => { skipBtn.classList.add('visible'); }, 1500);
             skipBtn.addEventListener('click', dismissLoading);
-
-            // Auto-dismiss after 4s
             setTimeout(dismissLoading, 4000);
         })();
     </script>
@@ -687,8 +874,9 @@
 
     <canvas id="canvas-bg"></canvas>
 
-    <!-- FIX: ARIA live region for search result announcements -->
-    <div id="resultsAnnounce" aria-live="polite" aria-atomic="true" role="status"></div>
+    <!-- ARIA live region -->
+    <div id="resultsAnnounce" aria-live="polite" aria-atomic="true" role="status"
+         style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;"></div>
 
     <div class="controls">
         <button id="themeBtn" class="ctrl" aria-label="Toggle theme">🌙</button>
@@ -714,8 +902,11 @@
 
     <div class="cat-wrapper">
         <div class="diet-bar" id="dietFilters" aria-label="Dietary filters"></div>
-        <!-- FIX: role="tablist" + keyboard navigation via JS -->
-        <nav class="cat-bar" id="catBar" aria-label="Menu categories" role="tablist"></nav>
+        <div class="cat-bar-wrap">
+            <!-- IMPROVEMENT: sliding indicator pill -->
+            <div class="cat-indicator" id="catIndicator"></div>
+            <nav class="cat-bar" id="catBar" aria-label="Menu categories" role="tablist"></nav>
+        </div>
     </div>
 
     <div class="menu-container">
@@ -726,6 +917,8 @@
         <div class="search-box">
             <i class="fas fa-search search-icon" aria-hidden="true"></i>
             <input type="text" id="searchInput" placeholder="Search Ottoman delights…" aria-label="Search menu" autocomplete="off">
+            <!-- IMPROVEMENT: live result count in search bar -->
+            <span id="searchCount" class="search-count" aria-hidden="true"></span>
             <button id="clearBtn" aria-label="Clear search">✕</button>
         </div>
     </div>
@@ -844,7 +1037,7 @@
         {"id":"bak16","categoryId":"baklava","nameEn":"Trileche","nameAr":"تريليتش","descriptionEn":"Three-milk cake.","descriptionAr":"كيكة ثلاثة حليب.","price":45,"image":"Trileche.jpg","calories":"540 kcal","dietary":["contains-dairy"],"temp":"cold"},
         {"id":"bak17","categoryId":"baklava","nameEn":"San Sebastian Cheesecake","nameAr":"تشيز كيك سان سيباستيان","descriptionEn":"Caramelized top, creamy.","descriptionAr":"قمة مكرملة، كريمية.","price":45,"image":"Sebastian.jpg","calories":"520 kcal","dietary":["contains-dairy"],"temp":"cold"},
         {"id":"bak18","categoryId":"baklava","nameEn":"Cheesecake Blueberry","nameAr":"تشيز كيك نيويورك","descriptionEn":"Creamy, graham crust.","descriptionAr":"كريمية، قاعدة غراهام.","price":45,"image":"Cheesecakeopera.jpeg","calories":"500 kcal","dietary":["contains-dairy"],"temp":"cold"},
-        {"id":"bak19","categoryId":"baklava","nameEn":"Turkish Ice Cream","nameAr":"آيس كريم تركي","descriptionEn":"Classic dondurma.","descriptionAr":"دوندورما كلاسيكي.","price":27,"image":"Icecream.webp","calories":"210 kcal","dietary":["contains-dairy"],"temp":"cold"},
+        {"id":"snakc01","categoryId":"snacks","nameEn":"Turkish Ice Cream","nameAr":"آيس كريم تركي","descriptionEn":"Classic dondurma.","descriptionAr":"دوندورما كلاسيكي.","price":27,"image":"Icecream.webp","calories":"210 kcal","dietary":["contains-dairy"],"temp":"cold"},
         {"id":"snack1","categoryId":"snacks","nameEn":"Nuts Stand – Tall","nameAr":"مكسرات - ستاند كبير","descriptionEn":"Premium roasted nuts.","descriptionAr":"مكسرات محمصة فاخرة.","price":99,"image":"Nuts.jpg","calories":"300 kcal","dietary":["contains-nuts"],"temp":"room"},
         {"id":"snack2","categoryId":"snacks","nameEn":"Nuts Stand – Small","nameAr":"مكسرات - ستاند صغير","descriptionEn":"Curated mix.","descriptionAr":"مزيج منسق.","price":60,"image":"Nutsmall.jpg","calories":"180 kcal","dietary":["contains-nuts"],"temp":"room"},
         {"id":"snack3","categoryId":"snacks","nameEn":"Assorted Nut Platter","nameAr":"طبق مكسرات مشكل","descriptionEn":"Artfully arranged selection.","descriptionAr":"تشكيلة مرتبة بفن.","price":35,"image":"Nutsplatter.jpg","calories":"180 kcal","dietary":["contains-nuts"],"temp":"room"},
@@ -873,8 +1066,11 @@
         let activeCat      = 'all';
         let searchQ        = '';
         let dietaryFilters = [];
-        let debounceTimer  = null; // FIX: search debounce
-        let rafId          = null; // FIX: Three.js RAF id for pause/resume
+        let debounceTimer  = null;
+        let rafId          = null;
+
+        // IMPROVEMENT: QR generated only once
+        let qrGenerated = false;
 
         const dietFilterDefs = [
             { id: 'vegan',       labelEn: 'Vegan',       labelAr: 'نباتي' },
@@ -885,27 +1081,29 @@
 
         const $ = id => document.getElementById(id);
         const els = {
-            grid:             $('grid'),
-            catBar:           $('catBar'),
-            dietFilters:      $('dietFilters'),
-            resultsAnnounce:  $('resultsAnnounce'), // FIX: ARIA live region
-            searchInput:      $('searchInput'),
-            clearBtn:         $('clearBtn'),
-            modal:            $('modal'),
-            modalImg:         $('modalImg'),
-            modalBody:        $('modalBody'),
-            recoSection:      $('recoSection'),
-            themeBtn:         $('themeBtn'),
-            langBtn:          $('langBtn'),
-            qrBtn:            $('qrBtn'),
-            qrModal:          $('qrModal'),
-            qrCanvas:         $('qrCanvas'),
-            closeQrBtn:       $('closeQrBtn')
+            grid:            $('grid'),
+            catBar:          $('catBar'),
+            catIndicator:    $('catIndicator'),
+            dietFilters:     $('dietFilters'),
+            resultsAnnounce: $('resultsAnnounce'),
+            searchInput:     $('searchInput'),
+            searchCount:     $('searchCount'),
+            clearBtn:        $('clearBtn'),
+            modal:           $('modal'),
+            modalImg:        $('modalImg'),
+            modalBody:       $('modalBody'),
+            recoSection:     $('recoSection'),
+            themeBtn:        $('themeBtn'),
+            langBtn:         $('langBtn'),
+            qrBtn:           $('qrBtn'),
+            qrModal:         $('qrModal'),
+            qrCanvas:        $('qrCanvas'),
+            closeQrBtn:      $('closeQrBtn')
         };
 
-        window.handleImageError = e => { e.target.src = PLACEHOLDER_SVG; };
+        window.handleImageError = e => { e.target.src = PLACEHOLDER_SVG; e.target.classList.add('loaded'); };
 
-        /* ── Dietary dot badges ─────────────────────────────── */
+        /* ── Dietary dot badges ───────────────────────────── */
         function dietDots(dietary) {
             if (!dietary || !dietary.length) return '';
             const map = {
@@ -932,7 +1130,7 @@
             }
         }
 
-        /* ── Filtering ──────────────────────────────────────── */
+        /* ── Filtering ────────────────────────────────────── */
         function getFiltered() {
             let items = data.items;
             if (activeCat !== 'all') items = items.filter(i => i.categoryId === activeCat);
@@ -960,9 +1158,21 @@
             return items;
         }
 
-        /* ── Category bar ───────────────────────────────────── */
+        /* ── IMPROVEMENT: Sliding category indicator ─────── */
+        function updateIndicator() {
+            const activeBtn = els.catBar.querySelector('.cat-btn.active');
+            if (!activeBtn || !els.catIndicator) return;
+            // Position relative to cat-bar-wrap (parent of indicator)
+            const wrap    = els.catIndicator.parentElement;
+            const wrapRect = wrap.getBoundingClientRect();
+            const btnRect  = activeBtn.getBoundingClientRect();
+            els.catIndicator.style.left  = (btnRect.left - wrapRect.left) + 'px';
+            els.catIndicator.style.width = btnRect.width + 'px';
+        }
+
+        /* ── Category bar ─────────────────────────────────── */
         function renderCats() {
-            els.catBar.innerHTML = data.categories.map((c, idx) => {
+            els.catBar.innerHTML = data.categories.map((c) => {
                 const nm     = lang === 'ar' ? c.nameAr : c.nameEn;
                 const active = c.id === activeCat;
                 return `<button class="cat-btn ${active ? 'active' : ''}" data-id="${c.id}" role="tab" aria-selected="${active}" tabindex="${active ? '0' : '-1'}">${nm}</button>`;
@@ -977,8 +1187,10 @@
                 });
             });
 
-            // FIX: Arrow-key keyboard navigation on the category bar
             els.catBar.addEventListener('keydown', handleCatKeydown);
+
+            // Position the indicator after a brief paint pass
+            requestAnimationFrame(updateIndicator);
         }
 
         function handleCatKeydown(e) {
@@ -993,12 +1205,11 @@
             renderCats();
             renderDietFilters();
             switchGrid(getFiltered());
-            // Move focus to newly active button
             const focusBtn = els.catBar.querySelector('.cat-btn.active');
             if (focusBtn) focusBtn.focus();
         }
 
-        /* ── Diet filter bar ────────────────────────────────── */
+        /* ── Diet filter bar ──────────────────────────────── */
         function renderDietFilters() {
             els.dietFilters.innerHTML = dietFilterDefs.map(f => {
                 const label  = lang === 'ar' ? f.labelAr : f.labelEn;
@@ -1018,36 +1229,34 @@
             });
         }
 
-        /* ── IntersectionObserver ───────────────────────────── */
-        // FIX: single observer; disconnect() called before each grid rebuild
+        /* ── IntersectionObserver ─────────────────────────── */
         const io = new IntersectionObserver(entries => {
             entries.forEach(e => {
                 if (e.isIntersecting) {
                     e.target.classList.add('visible');
-                    // FIX: remove will-change after animation settles
                     e.target.addEventListener('animationend', () => {
                         e.target.classList.remove('animating');
+                        e.target.style.willChange = 'auto';
                     }, { once: true });
                     io.unobserve(e.target);
                 }
             });
         }, { threshold: 0.08 });
 
-        /* ── Grid rendering ─────────────────────────────────── */
+        /* ── Grid rendering ───────────────────────────────── */
         function renderGrid(items) {
-            // FIX: disconnect observer before clearing DOM to avoid ghost observations
             io.disconnect();
             els.grid.innerHTML = '';
 
             if (!items.length) {
                 els.grid.innerHTML = `<div class="empty-state"><div class="empty-icon">🌙</div><div class="empty-text">No items found…</div></div>`;
-                // FIX: announce empty state to screen readers
                 els.resultsAnnounce.textContent = 'No items found.';
+                updateSearchCount(0, false);
                 return;
             }
 
-            // FIX: Announce result count to screen readers
             els.resultsAnnounce.textContent = `${items.length} item${items.length === 1 ? '' : 's'} found.`;
+            updateSearchCount(items.length, !!searchQ);
 
             items.forEach((item, idx) => {
                 const name    = lang === 'ar' ? item.nameAr : item.nameEn;
@@ -1055,12 +1264,13 @@
                 const desc    = lang === 'ar' ? (item.descriptionAr || item.descriptionEn) : item.descriptionEn;
 
                 const card = document.createElement('div');
-                card.className = 'menu-card animating'; // FIX: animating class for will-change
+                card.className = 'menu-card animating';
                 card.style.animationDelay = Math.min(idx * 0.04, 0.8) + 's';
                 card.setAttribute('tabindex', '0');
                 card.setAttribute('aria-label', `${name}, ${item.price} QAR`);
                 card.innerHTML = `
                     <div class="card-figure">
+                        <div class="skeleton-layer"></div>
                         <img src="${IMAGE_BASE}${item.image}" alt="${name}" loading="lazy" decoding="async" onerror="handleImageError(event)">
                         <div class="card-price-badge">${item.price} QAR</div>
                     </div>
@@ -1074,6 +1284,15 @@
                         </div>
                     </div>`;
 
+                // IMPROVEMENT: hide skeleton once image loaded
+                const img = card.querySelector('img');
+                const skeleton = card.querySelector('.skeleton-layer');
+                img.addEventListener('load', () => {
+                    img.classList.add('loaded');
+                    skeleton.style.opacity = '0';
+                    setTimeout(() => skeleton.remove(), 400);
+                }, { once: true });
+
                 const open = () => openModal(item);
                 card.addEventListener('click', open);
                 card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
@@ -1081,6 +1300,17 @@
                 els.grid.appendChild(card);
                 io.observe(card);
             });
+        }
+
+        /* ── IMPROVEMENT: Search count display ───────────── */
+        function updateSearchCount(count, visible) {
+            if (!els.searchCount) return;
+            if (visible && count > 0) {
+                els.searchCount.textContent = count;
+                els.searchCount.classList.add('visible');
+            } else {
+                els.searchCount.classList.remove('visible');
+            }
         }
 
         function switchGrid(items) {
@@ -1091,14 +1321,11 @@
             }, 180);
         }
 
-        /* ── Modal / Focus trap ─────────────────────────────── */
-        // FIX: Store trap handler reference to remove it when modal closes (no stacking)
+        /* ── Modal / Focus trap ───────────────────────────── */
         let _trapHandler = null;
 
         function trapFocus(element) {
-            // Remove any previous listener first
             if (_trapHandler) element.removeEventListener('keydown', _trapHandler);
-
             _trapHandler = (e) => {
                 if (e.key !== 'Tab') return;
                 const focusable = element.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
@@ -1122,12 +1349,16 @@
                 <img src="${IMAGE_BASE}${item.image}" alt="${name}" decoding="async" onerror="handleImageError(event)">
                 <button id="modalCloseBtn" class="modal-close" aria-label="Close"><i class="fas fa-times"></i></button>`;
 
+            // Fade in modal image
+            const mImg = els.modalImg.querySelector('img');
+            mImg.addEventListener('load', () => mImg.classList.add('loaded'), { once: true });
+
             document.getElementById('modalCloseBtn').addEventListener('click', () => els.modal.close());
 
             const isDrink  = ['cafe', 'tea', 'brewed'].includes(item.categoryId);
             const showMilk = isDrink && (item.hasMilk || (item.dietary && item.dietary.includes('contains-dairy')));
             const milkOptions = showMilk ? ['Full Fat', 'Low-Fat', 'Skim', 'Lactose Free', 'Oat', 'Almond', 'Soy', 'Coconut'] : [];
-            const allergens    = item.dietary?.length
+            const allergens = item.dietary?.length
                 ? item.dietary.map(d => d.replace('contains-', '').replace('vegetarian', 'Vegetarian')).join(', ')
                 : 'None';
 
@@ -1150,7 +1381,7 @@
 
             if (showMilk) {
                 setTimeout(() => {
-                    const chips        = els.modalBody.querySelectorAll('.milk-chip');
+                    const chips          = els.modalBody.querySelectorAll('.milk-chip');
                     const selectedStrong = els.modalBody.querySelector('.selected-milk strong');
                     chips.forEach(chip => {
                         chip.addEventListener('click', () => {
@@ -1169,7 +1400,6 @@
                 els.recoSection.innerHTML = `
                     <div class="reco-title">You might also like</div>
                     <div class="reco-chips">${recos.map(r =>
-                        // FIX: role="button" is now in the HTML markup, not CSS
                         `<span class="reco-chip" role="button" tabindex="0" data-id="${r.id}">${lang === 'ar' ? r.nameAr : r.nameEn}</span>`
                     ).join('')}</div>`;
                 els.recoSection.querySelectorAll('.reco-chip').forEach(c => {
@@ -1184,18 +1414,24 @@
             trapFocus(els.modal);
         }
 
-        /* ── Three.js background ────────────────────────────── */
+        /* ── IMPROVEMENT: Adaptive Three.js background ────── */
         function initThree() {
+            // Detect device capability
+            const memory    = navigator.deviceMemory   || 4;  // GB, default 4
+            const threads   = navigator.hardwareConcurrency || 4;
+            const isMobile  = window.innerWidth < 768 || 'ontouchstart' in window;
+            // Quality tiers: low (memory<2 || threads<=2 || mobile), medium, high
+            const isLow     = memory < 2 || threads <= 2 || isMobile;
+            const isMedium  = !isLow && (memory < 4 || threads <= 4);
+
             const canvas   = document.getElementById('canvas-bg');
-            const renderer = new THREE.WebGLRenderer({ canvas, alpha: false, antialias: true });
+            const renderer = new THREE.WebGLRenderer({ canvas, alpha: false, antialias: !isLow });
             renderer.setSize(window.innerWidth, window.innerHeight);
-            renderer.setPixelRatio(Math.min(window.devicePixelRatio, window.innerWidth < 768 ? 1 : 1.5));
+            renderer.setPixelRatio(isLow ? 1 : Math.min(window.devicePixelRatio, isMedium ? 1.5 : 2));
 
-            const scene  = new THREE.Scene();
+            const scene    = new THREE.Scene();
             scene.background = new THREE.Color(0x06090f);
-
-            const isMobile = window.innerWidth < 768 || 'ontouchstart' in window;
-            if (!isMobile) scene.fog = new THREE.FogExp2(0x06090f, 0.002);
+            if (!isLow) scene.fog = new THREE.FogExp2(0x06090f, 0.002);
 
             const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
             camera.position.set(0, 2, 18);
@@ -1207,9 +1443,9 @@
             // Moon
             const moonGroup = new THREE.Group();
             const moonMat   = new THREE.MeshStandardMaterial({ color: 0xf0e0b0, emissive: 0x221800, roughness: 0.6 });
-            moonGroup.add(new THREE.Mesh(new THREE.SphereGeometry(2.0, 64, 64), moonMat));
+            moonGroup.add(new THREE.Mesh(new THREE.SphereGeometry(2.0, isLow ? 32 : 64, isLow ? 32 : 64), moonMat));
             const dark = new THREE.Mesh(
-                new THREE.SphereGeometry(1.8, 64, 64),
+                new THREE.SphereGeometry(1.8, isLow ? 32 : 64, isLow ? 32 : 64),
                 new THREE.MeshStandardMaterial({ color: 0x06090f, emissive: 0x06090f })
             );
             dark.position.set(1.2, 0.2, 0.3);
@@ -1217,20 +1453,21 @@
             moonGroup.position.set(-6, 5, -15);
             scene.add(moonGroup);
 
-            // Lanterns
+            // Lanterns (fewer on low-end)
             let lanternPositions = [
                 new THREE.Vector3(-4, 1.5, -5),
                 new THREE.Vector3( 3, 2,   -7),
                 new THREE.Vector3( 5, 1.2, -3),
                 new THREE.Vector3(-2, 2.5,  2)
             ];
-            if (isMobile) lanternPositions = lanternPositions.slice(0, 2);
+            if (isLow) lanternPositions = lanternPositions.slice(0, 1);
+            else if (isMedium) lanternPositions = lanternPositions.slice(0, 2);
 
             lanternPositions.forEach(pos => {
-                const g      = new THREE.Group();
-                const metal  = new THREE.MeshStandardMaterial({ color: 0xccaa66, roughness: 0.3, metalness: 0.8 });
-                const glass  = new THREE.MeshStandardMaterial({ color: 0xffaa44, emissive: 0x331100, transparent: true, opacity: 0.3 });
-                g.add(new THREE.Mesh(new THREE.CylinderGeometry(0.6, 0.6, 1.2, 10), glass));
+                const g     = new THREE.Group();
+                const metal = new THREE.MeshStandardMaterial({ color: 0xccaa66, roughness: 0.3, metalness: 0.8 });
+                const glass = new THREE.MeshStandardMaterial({ color: 0xffaa44, emissive: 0x331100, transparent: true, opacity: 0.3 });
+                g.add(new THREE.Mesh(new THREE.CylinderGeometry(0.6, 0.6, 1.2, isLow ? 6 : 10), glass));
                 [0.6, -0.6].forEach(y => {
                     const cap = new THREE.Mesh(new THREE.CylinderGeometry(0.7, 0.7, 0.1, 8), metal);
                     cap.position.y = y; g.add(cap);
@@ -1242,8 +1479,8 @@
                 scene.add(g);
             });
 
-            // Stars
-            const starCount = isMobile ? 180 : 400;
+            // Stars — scale to device capability
+            const starCount = isLow ? 120 : isMedium ? 250 : 400;
             const starsGeo  = new THREE.BufferGeometry();
             const starsPos  = [];
             for (let i = 0; i < starCount; i++) {
@@ -1254,17 +1491,24 @@
                 );
             }
             starsGeo.setAttribute('position', new THREE.Float32BufferAttribute(starsPos, 3));
-            const stars = new THREE.Points(starsGeo, new THREE.PointsMaterial({ color: 0xffffff, size: 0.2 }));
+            const stars = new THREE.Points(starsGeo, new THREE.PointsMaterial({ color: 0xffffff, size: isLow ? 0.3 : 0.2 }));
             scene.add(stars);
 
             let mouseX = 0, mouseY = 0;
             window.addEventListener('mousemove', e => {
                 mouseX = (e.clientX / window.innerWidth  - 0.5) * 2;
                 mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
-            });
+            }, { passive: true });
 
-            function animate() {
+            // IMPROVEMENT: throttle rendering on low-end (target 30fps)
+            let lastFrame = 0;
+            const FPS_CAP = isLow ? 30 : 60;
+            const FRAME_MS = 1000 / FPS_CAP;
+
+            function animate(ts = 0) {
                 rafId = requestAnimationFrame(animate);
+                if (ts - lastFrame < FRAME_MS) return;
+                lastFrame = ts;
                 stars.rotation.y += (mouseX * 0.01 - stars.rotation.y) * 0.01;
                 stars.rotation.x += (mouseY * 0.01 - stars.rotation.x) * 0.01;
                 renderer.render(scene, camera);
@@ -1272,7 +1516,7 @@
 
             animate();
 
-            // FIX: Pause Three.js loop when tab is hidden to save GPU/battery
+            // Pause when tab hidden
             document.addEventListener('visibilitychange', () => {
                 if (document.hidden) {
                     cancelAnimationFrame(rafId);
@@ -1285,13 +1529,13 @@
                 camera.aspect = window.innerWidth / window.innerHeight;
                 camera.updateProjectionMatrix();
                 renderer.setSize(window.innerWidth, window.innerHeight);
+                requestAnimationFrame(updateIndicator);
             });
         }
 
-        /* ── Event listeners ────────────────────────────────── */
+        /* ── Event listeners ──────────────────────────────── */
         els.modal.addEventListener('click', e => { if (e.target === els.modal) els.modal.close(); });
 
-        // FIX: Debounced search (150ms) to prevent layout thrashing on fast typing
         els.searchInput.addEventListener('input', () => {
             searchQ = els.searchInput.value.trim();
             els.clearBtn.style.display = searchQ ? 'block' : 'none';
@@ -1304,6 +1548,7 @@
             searchQ = '';
             els.clearBtn.style.display = 'none';
             clearTimeout(debounceTimer);
+            updateSearchCount(0, false);
             switchGrid(getFiltered());
         });
 
@@ -1322,20 +1567,24 @@
             switchGrid(getFiltered());
         });
 
+        // IMPROVEMENT: QR generated only once, cached
         els.qrBtn.addEventListener('click', () => {
-            const qr = qrcode(0, 'H');
-            qr.addData(window.location.href);
-            qr.make();
-            const c       = els.qrCanvas;
-            const modules = qr.getModuleCount();
-            c.width = c.height = modules * 8;
-            qr.renderTo2dContext(c.getContext('2d'), 8);
+            if (!qrGenerated) {
+                const qr = qrcode(0, 'H');
+                qr.addData(window.location.href);
+                qr.make();
+                const c       = els.qrCanvas;
+                const modules = qr.getModuleCount();
+                c.width = c.height = modules * 8;
+                qr.renderTo2dContext(c.getContext('2d'), 8);
+                qrGenerated = true;
+            }
             els.qrModal.showModal();
         });
 
         els.closeQrBtn.addEventListener('click', () => els.qrModal.close());
 
-        // Category swipe (touch)
+        // Category swipe (touch) — passive
         let touchStartX = 0;
         els.catBar.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
         els.catBar.addEventListener('touchend', e => {
@@ -1351,7 +1600,7 @@
             }
         }, { passive: true });
 
-        /* ── Init ───────────────────────────────────────────── */
+        /* ── Init ─────────────────────────────────────────── */
         renderCats();
         renderDietFilters();
         renderGrid(getFiltered());
@@ -1390,5 +1639,6 @@
       "hasMenu": "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/"
     }
     </script>
+  
 </body>
 </html>
