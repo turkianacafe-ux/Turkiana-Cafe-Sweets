@@ -10,7 +10,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Outfit:wght@300;400;500;600&family=Noto+Naskh+Arabic:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400;1,700&family=Outfit:wght@300;400;500;600&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
   <style>
@@ -27,11 +27,13 @@
       --black: #000000;
       --text-light: #f2eadc;
       --text-dim: #c4b090;
+      --accent: #e8a030;
       
       --font-display: 'Playfair Display', Georgia, serif;
       --font-ui: 'Outfit', system-ui, sans-serif;
       --font-arabic: 'Noto Naskh Arabic', serif;
       
+      --r1: 8px; --r2: 16px; --r3: 24px; --r4: 40px;
       --ease: cubic-bezier(.25,.46,.45,.94);
       --out: cubic-bezier(.16,1,.3,1);
       --blur: blur(24px) saturate(180%);
@@ -49,6 +51,7 @@
       overflow-x: hidden;
       min-height: 100dvh;
       -webkit-font-smoothing: antialiased;
+      overscroll-behavior: none;
     }
 
     /* Islamic Geometric Pattern Overlay */
@@ -58,9 +61,9 @@
       inset: 0;
       z-index: 1;
       pointer-events: none;
-      opacity: 0.05;
-      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l5.878 18.09h19.022l-15.389 11.18 5.878 18.09L30 36.18l-15.389 11.18 5.878-18.09L5.1 18.09h19.022L30 0z' fill='%23d4af37' fill-opacity='1'/%3E%3C/svg%3E");
-      background-size: 60px 60px;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 0l8 24h24l-20 14 8 24-20-14-20 14 8-24-20-14h24z' fill='%23d4af37'/%3E%3C/svg%3E");
+      background-size: 80px 80px;
     }
 
     /* ════════════════════════════════════════
@@ -76,27 +79,29 @@
     #loader.gone { opacity: 0; visibility: hidden; pointer-events: none; }
 
     .moon-wrap {
-      position: relative; width: 120px; height: 120px;
+      position: relative; width: 140px; height: 140px;
       margin-bottom: 30px;
-      filter: drop-shadow(0 0 20px var(--gold));
-      animation: float 4s ease-in-out infinite;
+      filter: drop-shadow(0 0 30px var(--gold));
+      animation: float 5s ease-in-out infinite;
     }
-    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    @keyframes float { 0%, 100% { transform: translateY(0) rotate(-5deg); } 50% { transform: translateY(-15px) rotate(5deg); } }
 
     .leid-ar {
       font-family: var(--font-arabic);
-      font-size: clamp(3rem, 10vw, 5rem);
+      font-size: clamp(3.5rem, 12vw, 6rem);
       font-weight: 700;
       background: linear-gradient(to bottom, var(--gold-bright), var(--gold));
       -webkit-background-clip: text; background-clip: text; color: transparent;
       margin-bottom: 10px;
+      filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.4));
     }
     .leid-en {
       font-family: var(--font-display);
       font-style: italic;
-      font-size: 1.2rem;
+      font-size: 1.4rem;
       color: var(--gold);
-      letter-spacing: 0.2em;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
     }
 
     /* ════════════════════════════════════════
@@ -105,17 +110,19 @@
     .hd {
       position: sticky; top: 0; z-index: 300;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0 24px; height: 70px;
-      background: rgba(45, 10, 10, 0.9);
+      padding: 0 32px; height: 80px;
+      background: rgba(45, 10, 10, 0.85);
       backdrop-filter: var(--blur);
-      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.15);
     }
     .logo {
       font-family: var(--font-display);
       font-weight: 700; font-style: italic;
-      font-size: 1.8rem;
-      color: var(--gold);
+      font-size: 2.2rem;
+      background: linear-gradient(135deg, var(--gold-bright), var(--gold));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
       text-decoration: none;
+      letter-spacing: 0.05em;
     }
 
     /* ════════════════════════════════════════
@@ -123,43 +130,47 @@
     ════════════════════════════════════════ */
     .hero {
       position: relative;
-      height: 80vh;
+      height: 85vh;
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
       text-align: center;
-      padding: 0 20px;
+      padding: 0 24px;
       background: radial-gradient(circle at center, var(--burgundy), var(--black));
       overflow: hidden;
     }
     .hero-eid-badge {
       border: 1px solid var(--gold);
-      padding: 5px 15px;
-      border-radius: 20px;
-      font-size: 0.8rem;
+      padding: 6px 20px;
+      border-radius: 30px;
+      font-size: 0.85rem;
       color: var(--gold);
-      margin-bottom: 20px;
+      margin-bottom: 24px;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.15em;
+      background: rgba(212, 175, 55, 0.05);
     }
     .hero-t {
       font-family: var(--font-display);
-      font-size: clamp(3.5rem, 12vw, 6rem);
+      font-size: clamp(4rem, 15vw, 8rem);
       font-weight: 900;
       color: var(--white);
-      line-height: 1;
-      margin-bottom: 15px;
+      line-height: 0.9;
+      margin-bottom: 20px;
+      text-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
     .hero-it {
       font-family: var(--font-display);
       font-style: italic;
-      font-size: 1.2rem;
+      font-size: 1.5rem;
       color: var(--text-dim);
-      margin-bottom: 20px;
+      margin-bottom: 24px;
+      max-width: 600px;
     }
     .hero-ar {
       font-family: var(--font-arabic);
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       color: var(--gold);
+      filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3));
     }
 
     /* ════════════════════════════════════════
@@ -167,83 +178,120 @@
     ════════════════════════════════════════ */
     .sh {
       text-align: center;
-      padding: 60px 20px 40px;
+      padding: 80px 24px 50px;
     }
     .sh-t {
       font-family: var(--font-display);
-      font-size: 2.5rem;
+      font-size: 3.5rem;
       color: var(--gold);
-      margin-bottom: 10px;
+      margin-bottom: 15px;
+      letter-spacing: 0.1em;
     }
     .sh-s {
       color: var(--text-dim);
-      max-width: 600px;
+      max-width: 700px;
       margin: 0 auto;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    .cats {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      padding: 0 24px 40px;
+      flex-wrap: wrap;
+    }
+    .cat-btn {
+      padding: 10px 24px;
+      border-radius: 40px;
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      background: transparent;
+      color: var(--text-dim);
+      cursor: pointer;
+      font-family: var(--font-ui);
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    .cat-btn.active, .cat-btn:hover {
+      background: var(--gold);
+      color: var(--burgundy-dark);
+      border-color: var(--gold);
     }
 
     .menu-wrap {
-      padding: 0 20px 100px;
-      max-width: 1200px;
+      padding: 0 24px 120px;
+      max-width: 1400px;
       margin: 0 auto;
     }
     .mgrid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 30px;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 32px;
     }
     .card {
       background: var(--burgundy-dark);
       border: 1px solid rgba(212, 175, 55, 0.1);
-      border-radius: 15px;
+      border-radius: var(--r2);
       overflow: hidden;
-      transition: transform 0.3s ease, border-color 0.3s ease;
+      transition: all 0.4s var(--out);
+      position: relative;
     }
     .card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-10px);
       border-color: var(--gold);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
     }
-    .cimg-z { height: 200px; background: #1a0505; }
-    .cimg { width: 100%; height: 100%; object-fit: cover; }
-    .cbody { padding: 20px; }
-    .cn { font-family: var(--font-display); font-size: 1.2rem; color: var(--white); margin-bottom: 5px; }
-    .cna { font-family: var(--font-arabic); font-size: 0.9rem; color: var(--gold-dim); margin-bottom: 10px; }
-    .cdesc { font-size: 0.85rem; color: var(--text-dim); line-height: 1.5; }
-    .cfoot { margin-top: 15px; display: flex; justify-content: space-between; align-items: center; }
-    .cprice { font-family: var(--font-display); font-weight: 700; color: var(--gold); }
+    .cimg-z { height: 240px; background: #1a0505; overflow: hidden; position: relative; }
+    .cimg { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+    .card:hover .cimg { transform: scale(1.1); }
+    .ceid {
+      position: absolute; top: 15px; left: 15px;
+      background: var(--gold); color: var(--burgundy-dark);
+      padding: 4px 12px; border-radius: 20px;
+      font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+    }
+    .cbody { padding: 24px; }
+    .cn { font-family: var(--font-display); font-size: 1.4rem; color: var(--white); margin-bottom: 6px; }
+    .cna { font-family: var(--font-arabic); font-size: 1rem; color: var(--gold-dim); margin-bottom: 12px; }
+    .cdesc { font-size: 0.9rem; color: var(--text-dim); line-height: 1.6; height: 3.2em; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+    .cfoot { margin-top: 20px; display: flex; justify-content: space-between; align-items: center; }
+    .cprice { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; color: var(--gold); }
 
     /* ════════════════════════════════════════
        FOOTER & BOTTOM INFO
     ════════════════════════════════════════ */
     .fstrip {
       background: var(--burgundy-dark);
-      padding: 40px 20px;
+      padding: 60px 32px;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 30px;
-      border-top: 1px solid rgba(212, 175, 55, 0.1);
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      border-top: 1px solid rgba(212, 175, 55, 0.15);
     }
-    .fi { text-align: center; }
-    .fi-ico { font-size: 2rem; margin-bottom: 10px; display: block; }
-    .fi-t { font-family: var(--font-display); font-weight: 700; color: var(--gold); margin-bottom: 5px; }
-    .fi-s { font-size: 0.85rem; color: var(--text-dim); }
+    .fi { text-align: center; padding: 20px; border: 1px solid rgba(212, 175, 55, 0.05); border-radius: var(--r2); }
+    .fi-ico { font-size: 2.5rem; margin-bottom: 15px; display: block; filter: drop-shadow(0 0 10px var(--gold)); }
+    .fi-t { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; color: var(--gold); margin-bottom: 8px; }
+    .fi-s { font-size: 0.95rem; color: var(--text-dim); line-height: 1.5; }
 
     .foot {
       background: var(--black);
-      padding: 60px 20px;
+      padding: 80px 32px;
       text-align: center;
-      border-top: 1px solid var(--gold);
+      border-top: 2px solid var(--gold);
     }
-    .f-logo { font-family: var(--font-display); font-size: 2rem; color: var(--gold); margin-bottom: 10px; }
-    .f-eid { font-family: var(--font-arabic); font-size: 1.2rem; color: var(--white); margin-bottom: 20px; }
-    .f-info { font-size: 0.9rem; color: var(--text-dim); line-height: 1.8; }
-    .f-info a { color: var(--gold); text-decoration: none; }
+    .f-logo { font-family: var(--font-display); font-size: 3rem; color: var(--gold); margin-bottom: 15px; font-style: italic; }
+    .f-eid { font-family: var(--font-arabic); font-size: 1.5rem; color: var(--white); margin-bottom: 30px; }
+    .f-info { font-size: 1rem; color: var(--text-dim); line-height: 2; }
+    .f-info a { color: var(--gold); text-decoration: none; font-weight: 600; }
 
     /* ════════════════════════════════════════
        UTILITIES
     ════════════════════════════════════════ */
-    .orn { display: flex; align-items: center; justify-content: center; gap: 20px; padding: 40px 0; }
-    .orn-l, .orn-r { height: 1px; width: 100px; background: linear-gradient(to right, transparent, var(--gold), transparent); }
-    .orn-ico { color: var(--gold); font-size: 1.2rem; }
+    .orn { display: flex; align-items: center; justify-content: center; gap: 30px; padding: 60px 0; }
+    .orn-l, .orn-r { height: 1px; width: 150px; background: linear-gradient(to right, transparent, var(--gold), transparent); }
+    .orn-ico { color: var(--gold); font-size: 1.5rem; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 0.5; transform: scale(1); } 50% { opacity: 1; transform: scale(1.2); } }
 
   </style>
 </head>
@@ -277,7 +325,7 @@
     <section class="hero">
       <div class="hero-eid-badge">★ Mshreib Downtown · Doha ★</div>
       <h1 class="hero-t">Turkiana</h1>
-      <p class="hero-it">Ottoman Coffee Experience</p>
+      <p class="hero-it">Where Ottoman tradition meets the art of the perfect cup</p>
       <p class="hero-ar">قهوة تركية فاخرة وحلويات عثمانية أصيلة</p>
     </section>
 
@@ -286,6 +334,11 @@
       <h2 class="sh-t">MENU</h2>
       <p class="sh-s">From ceremonial Turkish coffee to layered Ottoman pastries — every item crafted with intention.</p>
     </div>
+
+    <!-- Categories -->
+    <nav class="cats" id="catNav">
+      <!-- Categories will be injected -->
+    </nav>
 
     <div class="orn">
       <div class="orn-l"></div>
@@ -335,40 +388,76 @@
     </footer>
   </div>
 
-  <script>
-    // Simple Menu Data
-    const menuData = [
-      { name: "Classic Turkish Coffee", ar: "قهوة تركية كلاسيكية", price: "28 QAR", desc: "Finely ground coffee brewed in copper cezve.", img: "Turkishcoffee.jpg" },
-      { name: "Ottoman Baklava", ar: "بقلاوة عثمانية", price: "45 QAR", desc: "Layered filo pastry with premium pistachios.", img: "TrioBaklava.jpeg" },
-      { name: "Arabic Coffee", ar: "قهوة عربية", price: "55 QAR", desc: "Authentic blend with cardamom and saffron.", img: "Arabic.jpg" },
-      { name: "Kunafa", ar: "كنافة", price: "40 QAR", desc: "Warm cheese pastry soaked in sweet syrup.", img: "Kunafa.jpeg" }
-    ];
+  <script id="md" type="application/json">
+  {
+    "categories":[
+      {"id":"all", "en":"✦ Full Menu", "ar":"✦ القائمة الكاملة"},
+      {"id":"brewed", "en":"Arabic & Turkish", "ar":"مغلي عربي وتركي"},
+      {"id":"tea", "en":"Tea", "ar":"شاي"},
+      {"id":"cafe", "en":"Café", "ar":"كافيه"},
+      {"id":"baklava", "en":"Sweets", "ar":"حلويات"},
+      {"id":"snacks", "en":"Eid Snacks", "ar":"مأكولات العيد"}
+    ],
+    "items":[
+      {"id":"brew1","cat":"brewed","en":"Classic Turkish Coffee","ar":"قهوة تركية كلاسيكية","desc":"Finely ground coffee brewed in copper cezve.","price":28,"img":"Turkishcoffee.jpg","eid":true},
+      {"id":"brew7","cat":"brewed","en":"Arabic Coffee – Full Dalla","ar":"قهوة عربية – دلة كاملة","desc":"Ceremonial centerpiece with cardamom and saffron.","price":90,"img":"Arabic.jpg","eid":true},
+      {"id":"bak1","cat":"baklava","en":"Eid Baklava Mix","ar":"بقلاوة العيد المشكلة","desc":"A stunning assortment of Ottoman baklava varieties.","price":65,"img":"Mix.jpeg","eid":true},
+      {"id":"bak13","cat":"baklava","en":"Kunafa","ar":"كنافة","desc":"Shredded kataifi with rich cheese filling.","price":45,"img":"Kunafa.jpeg","eid":true},
+      {"id":"bak4","cat":"baklava","en":"Trio Baklava","ar":"تريو بقلاوة","desc":"Three distinct baklava styles beautifully presented.","price":45,"img":"TrioBaklava.jpeg"},
+      {"id":"cafe1","cat":"cafe","en":"Eid Latte","ar":"لاتيه العيد","desc":"Silky microfoam espresso with festive notes.","price":29,"img":"Latteart.webp","eid":true},
+      {"id":"tea2","cat":"tea","en":"Turkish Tea Pot","ar":"إبريق شاي تركي","desc":"Generous pot of Rize tea — perfect for gatherings.","price":45,"img":"Turkishteapot.jpeg","eid":true},
+      {"id":"snack01","cat":"snacks","en":"Turkish Ice Cream","ar":"آيس كريم تركي","desc":"Classic stretchy dondurma — a beloved Eid treat.","price":27,"img":"Icecream.webp","eid":true}
+    ]
+  }
+  </script>
 
-    // Inject Menu Items
-    const grid = document.getElementById('mg');
-    menuData.forEach(item => {
-      grid.innerHTML += `
+  <script>
+    const CFG = JSON.parse(document.getElementById('md').textContent);
+    let currentCat = 'all';
+
+    function renderCats() {
+      const nav = document.getElementById('catNav');
+      nav.innerHTML = CFG.categories.map(c => `
+        <button class="cat-btn ${currentCat === c.id ? 'active' : ''}" onclick="filterCat('${c.id}')">
+          ${c.en}
+        </button>
+      `).join('');
+    }
+
+    function renderItems() {
+      const grid = document.getElementById('mg');
+      const filtered = currentCat === 'all' ? CFG.items : CFG.items.filter(i => i.cat === currentCat);
+      
+      grid.innerHTML = filtered.map(item => `
         <div class="card">
           <div class="cimg-z">
-            <img src="${item.img}" class="cimg" alt="${item.name}">
+            <img src="${item.img}" class="cimg" alt="${item.en}">
+            ${item.eid ? '<span class="ceid">Eid Special</span>' : ''}
           </div>
           <div class="cbody">
-            <div class="cn">${item.name}</div>
+            <div class="cn">${item.en}</div>
             <div class="cna">${item.ar}</div>
             <p class="cdesc">${item.desc}</p>
             <div class="cfoot">
-              <span class="cprice">${item.price}</span>
+              <span class="cprice">${item.price} QAR</span>
             </div>
           </div>
         </div>
-      `;
-    });
+      `).join('');
+    }
 
-    // Loader logic
+    function filterCat(id) {
+      currentCat = id;
+      renderCats();
+      renderItems();
+    }
+
     window.addEventListener('load', () => {
+      renderCats();
+      renderItems();
       setTimeout(() => {
         document.getElementById('loader').classList.add('gone');
-      }, 2000);
+      }, 2500);
     });
   </script>
 </body>
