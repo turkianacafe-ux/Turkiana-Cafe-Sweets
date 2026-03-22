@@ -1,24 +1,26 @@
 {
-  "name": "Turkiana Cafe & Sweets",
+  "name": "Turkiana Café & Sweets",
   "short_name": "Turkiana",
-  "start_url": "/Turkiana-Cafe-Sweets/index.html",
-  "scope": "/Turkiana-Cafe-Sweets/",
+  "id": "/",
+  "start_url": "./index.html?source=pwa",
+  "scope": "./",
   "display": "standalone",
+  "orientation": "portrait",
   "background_color": "#06090f",
   "theme_color": "#c9973d",
-  "description": "Luxury Turkish coffee and authentic Arabic sweets in Doha",
+  "description": "Luxury Turkish coffee, Ottoman desserts, and authentic Arabic sweets experience in Doha, Qatar",
   "icons": [
     {
-      "src": "/Turkiana-Cafe-Sweets/icon-192.png",
+      "src": "./icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "maskable"
     },
     {
-      "src": "/Turkiana-Cafe-Sweets/Video.mp4",
-      "sizes": "1024x1024",
+      "src": "./icon-512.png",
+      "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "maskable"
     }
   ]
 }
