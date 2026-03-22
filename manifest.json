@@ -1,26 +1,26 @@
 {
   "name": "Turkiana Café & Sweets",
   "short_name": "Turkiana",
+  "description": "Premium Turkish coffee & Ottoman sweets • Msheireb Downtown, Doha, Qatar",
   "id": "/",
   "start_url": "./index.html?source=pwa",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#06090f",
-  "theme_color": "#c9973d",
-  "description": "Luxury Turkish coffee, Ottoman desserts, and authentic Arabic sweets experience in Doha, Qatar",
+  "background_color": "#0a0807",
+  "theme_color": "#c9a66b",
   "icons": [
     {
       "src": "./icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "maskable"
+      "purpose": "any maskable"
     },
     {
       "src": "./icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "maskable"
+      "purpose": "any maskable"
     }
   ]
 }
