@@ -8,7 +8,7 @@ const urlsToCache = [
   BASE_PATH + 'icon-192.png',
   BASE_PATH + 'icon-512.png',
 
-  // ALL menu images (complete list - no missing photos offline)
+  // All menu images (as listed in the HTML)
   BASE_PATH + 'Turkishcoffee.jpg',
   BASE_PATH + 'Ottomanmastica.jpg',
   BASE_PATH + 'Ottomanhazelnut.jpg',
