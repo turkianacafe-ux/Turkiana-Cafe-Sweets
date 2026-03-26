@@ -1,1959 +1,2236 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Turkiana — Ottoman Coffee · Doha</title>
-<meta name="description" content="Premium Turkish coffee &amp; Ottoman sweets. Msheireb Downtown, Doha, Qatar.">
-<meta name="theme-color" content="#c9a66b">
-<link rel="manifest" href="manifest.json">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<link rel="apple-touch-icon" href="icon-192.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&amp;family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&amp;family=Noto+Naskh+Arabic:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
-<style>
-:root {
-  --bg: #0a0807;
-  --bg2: #12100c;
-  --bg3: #1a1612;
-  --accent: #d4b88a;
-  --accent-light: #e8d4b0;
-  --accent-dark: #b38b5e;
-  --text: #f5f0e8;
-  --text2: #d4c4a8;
-  --text3: #a38d6e;
-  --text4: #6b5c4a;
-  --border: rgba(212,184,138,.15);
-  --shadow: 0 10px 30px -10px rgb(212 184 138 / 0.15);
-  --r: 16px;
-  --ease: cubic-bezier(0.4, 0, 0.2, 1);
-  --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-  --ff-display: 'Cormorant Garamond', Georgia, serif;
-  --ff-ui: 'DM Sans', system-ui, sans-serif;
-  --ff-ar: 'Noto Naskh Arabic', serif;
-}
-*,
-*::before,
-*::after { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior:smooth; font-size:16px; }
-body {
-  background:var(--bg);
-  color:var(--text);
-  font-family:var(--ff-ui);
-  font-weight:400;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  overflow-x:hidden;
-  min-height:100dvh;
-  line-height:1.5;
-}
-:focus-visible {
-  outline:2px solid var(--accent);
-  outline-offset:3px;
-  border-radius:4px;
-}
-button,
-input {
-  font-family:inherit;
-}
-img {
-  display:block;
-  max-width:100%;
-  height:auto;
-}
-a {
-  color:inherit;
-  text-decoration:none;
-}
-#splash {
-  position:fixed;
-  inset:0;
-  z-index:9000;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  background:radial-gradient(circle at 50% 30%, #1f1a14 0%, #0a0807 70%);
-  transition:opacity 800ms var(--ease), transform 900ms var(--ease);
-}
-#splash.exit {
-  opacity:0;
-  transform:scale(1.03);
-  pointer-events:none;
-}
-#splashCanvas {
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  pointer-events:none;
-  opacity:.65;
-}
-.splash-content {
-  position:relative;
-  z-index:10;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  text-align:center;
-  padding:2rem 1.5rem;
-  max-width:680px;
-}
-.splash-brand {
-  font-size:0.7rem;
-  letter-spacing:0.6em;
-  text-transform:uppercase;
-  color:var(--accent);
-  opacity:0;
-  margin-bottom:2rem;
-  animation:fadeUp 800ms var(--ease) 200ms forwards;
-}
-.splash-name {
-  font-family:var(--ff-display);
-  font-weight:300;
-  font-size:clamp(3rem, 10vw, 5.8rem);
-  letter-spacing:-0.02em;
-  line-height:1;
-  background:linear-gradient(90deg, #f5f0e8, var(--accent-light));
-  -webkit-background-clip:text;
-  background-clip:text;
-  -webkit-text-fill-color:transparent;
-  opacity:0;
-  animation:fadeUp 900ms var(--ease) 400ms forwards;
-  margin-bottom:0.4rem;
-}
-.splash-tagline {
-  font-family:var(--ff-display);
-  font-style:italic;
-  font-size:clamp(1.05rem, 2.8vw, 1.25rem);
-  color:var(--text2);
-  letter-spacing:0.04em;
-  opacity:0;
-  animation:fadeUp 700ms var(--ease) 700ms forwards;
-  margin-bottom:0.3rem;
-}
-.splash-tagline-ar {
-  font-family:var(--ff-ar);
-  font-size:clamp(0.95rem, 2.4vw, 1.1rem);
-  color:rgba(212,184,138,.65);
-  opacity:0;
-  animation:fadeUp 700ms var(--ease) 850ms forwards;
-  margin-bottom:3rem;
-}
-.splash-cta {
-  display:inline-flex;
-  align-items:center;
-  gap:14px;
-  padding:16px 52px;
-  border-radius:9999px;
-  background:linear-gradient(90deg, var(--accent-dark), var(--accent));
-  color:#fff;
-  font-size:0.78rem;
-  font-weight:500;
-  letter-spacing:0.25em;
-  text-transform:uppercase;
-  border:none;
-  cursor:pointer;
-  box-shadow:0 8px 28px -6px rgb(212 184 138 / 0.3);
-  transition:transform 400ms var(--spring), box-shadow 400ms var(--ease);
-  opacity:0;
-  animation:fadeUp 800ms var(--ease) 1100ms forwards;
-}
-.splash-cta:hover {
-  transform:translateY(-3px) scale(1.04);
-  box-shadow:0 20px 40px -10px rgb(212 184 138 / 0.4);
-}
-.splash-cta-arrow {
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  width:26px;
-  height:26px;
-  border-radius:50%;
-  border:1px solid rgba(255,255,255,.35);
-  font-size:1rem;
-  transition:transform 350ms var(--spring);
-}
-.splash-cta:hover .splash-cta-arrow {
-  transform:rotate(90deg);
-}
-#app {
-  opacity:0;
-  transition:opacity 900ms var(--ease);
-}
-#app.visible { display:block; }
-#app.shown { opacity:1; }
-.site-header {
-  position:sticky;
-  top:0;
-  z-index:500;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0 28px;
-  height:68px;
-  background:rgba(10,8,7,.92);
-  backdrop-filter:blur(24px);
-  border-bottom:1px solid var(--border);
-}
-.header-logo {
-  font-family:var(--ff-display);
-  font-weight:400;
-  font-size:1.65rem;
-  letter-spacing:0.08em;
-  text-transform:uppercase;
-  background:linear-gradient(90deg, var(--accent), #f5f0e8);
-  -webkit-background-clip:text;
-  background-clip:text;
-  -webkit-text-fill-color:transparent;
-  cursor:pointer;
-  transition:opacity .2s;
-}
-.header-logo:hover { opacity:.85; }
-.header-search {
-  flex:1;
-  max-width:380px;
-  margin:0 32px;
-  position:relative;
-}
-.header-search-input {
-  width:100%;
-  height:42px;
-  padding:0 18px 0 48px;
-  background:rgba(255,255,255,.06);
-  border:1px solid var(--border);
-  border-radius:9999px;
-  color:var(--text);
-  font-size:0.85rem;
-  outline:none;
-  transition:all .3s var(--ease);
-}
-.header-search-input:focus {
-  border-color:var(--accent);
-  background:rgba(255,255,255,.1);
-  box-shadow:0 0 0 4px rgba(212,184,138,.12);
-}
-.header-search-icon {
-  position:absolute;
-  left:19px;
-  top:50%;
-  transform:translateY(-50%);
-  color:var(--text3);
-  font-size:1.1rem;
-}
-.header-search-clear {
-  position:absolute;
-  right:18px;
-  top:50%;
-  transform:translateY(-50%);
-  background:none;
-  border:none;
-  color:var(--text3);
-  cursor:pointer;
-  font-size:1.1rem;
-  opacity:0;
-  pointer-events:none;
-  transition:opacity .2s;
-}
-.header-search-clear.show {
-  opacity:1;
-  pointer-events:auto;
-}
-.header-actions {
-  display:flex;
-  gap:10px;
-}
-.hbtn {
-  height:42px;
-  padding:0 20px;
-  border-radius:9999px;
-  border:1px solid var(--border);
-  background:rgba(255,255,255,.06);
-  color:var(--text2);
-  font-size:0.73rem;
-  letter-spacing:0.12em;
-  text-transform:uppercase;
-  cursor:pointer;
-  display:flex;
-  align-items:center;
-  gap:7px;
-  transition:all .3s var(--ease);
-}
-.hbtn:hover {
-  background:var(--accent);
-  color:#fff;
-  border-color:var(--accent);
-  transform:translateY(-1px);
-}
-.marquee-strip {
-  border-top:1px solid var(--border);
-  border-bottom:1px solid var(--border);
-  background:rgba(10,8,7,.85);
-  backdrop-filter:blur(12px);
-  padding:11px 0;
-  overflow:hidden;
-  position:relative;
-}
-.marquee-track {
-  display:flex;
-  width:max-content;
-  animation:marqueeScroll 35s linear infinite;
-}
-.marquee-track:hover { animation-play-state:paused; }
-@keyframes marqueeScroll {
-  to { transform:translateX(-50%); }
-}
-.marquee-item {
-  display:flex;
-  align-items:center;
-  padding:0 22px;
-}
-.marquee-text {
-  font-size:0.72rem;
-  letter-spacing:0.25em;
-  text-transform:uppercase;
-  color:var(--text3);
-  white-space:nowrap;
-}
-.marquee-text.gold {
-  color:var(--accent);
-}
-.marquee-gem {
-  color:var(--accent);
-  font-size:0.8rem;
-  margin:0 6px;
-}
-#quoteBar {
-  position:fixed;
-  bottom:0;
-  left:0;
-  right:0;
-  z-index:700;
-  background:rgba(10,8,7,.96);
-  backdrop-filter:blur(24px);
-  border-top:1px solid var(--border);
-  box-shadow:0 -8px 30px -10px rgb(0 0 0 / 0.4);
-  transform:translateY(100%);
-  transition:transform .6s cubic-bezier(0.32,0,0,1);
-  opacity:0;
-}
-#quoteBar.visible {
-  transform:translateY(0);
-  opacity:1;
-}
-.qbar-inner {
-  display:flex;
-  align-items:center;
-  gap:16px;
-  max-width:940px;
-  margin:0 auto;
-  padding:14px 24px;
-}
-.qbar-gem {
-  color:var(--accent);
-  font-size:0.9rem;
-  flex-shrink:0;
-}
-.qbar-text-wrap {
-  flex:1;
-  min-width:0;
-}
-.qbar-text {
-  font-family:var(--ff-display);
-  font-style:italic;
-  font-size:clamp(0.8rem, 1.7vw, 0.96rem);
-  color:var(--text2);
-  line-height:1.4;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-}
-.qbar-attr {
-  font-size:0.62rem;
-  letter-spacing:0.2em;
-  text-transform:uppercase;
-  color:var(--accent-dark);
-  margin-top:3px;
-}
-.qbar-dots {
-  display:flex;
-  gap:6px;
-  flex-shrink:0;
-}
-.qbdot {
-  width:6px;
-  height:6px;
-  border-radius:50%;
-  background:var(--border);
-  cursor:pointer;
-  transition:all .3s var(--ease);
-}
-.qbdot.active {
-  background:var(--accent);
-  transform:scale(1.5);
-}
-.qbar-close {
-  flex-shrink:0;
-  background:none;
-  border:1px solid var(--border);
-  border-radius:50%;
-  width:32px;
-  height:32px;
-  color:var(--text4);
-  cursor:pointer;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  transition:all .3s var(--ease);
-}
-.qbar-close:hover {
-  background:rgba(212,184,138,.1);
-  color:var(--text3);
-}
-body.qbar-open { padding-bottom:64px; }
-.sig-section {
-  padding:clamp(72px,9vw,108px) 0;
-  background:#f8f1e3;
-  color:#1f1a14;
-}
-.sig-inner {
-  max-width:1180px;
-  margin:0 auto;
-  padding:0 28px;
-}
-.sig-tag {
-  font-size:0.62rem;
-  letter-spacing:0.45em;
-  text-transform:uppercase;
-  color:#b38b5e;
-  margin-bottom:12px;
-}
-.sig-title {
-  font-family:var(--ff-display);
-  font-weight:300;
-  font-size:clamp(2.1rem,5vw,3.4rem);
-  line-height:1.05;
-  margin-bottom:14px;
-}
-.sig-title em {
-  font-style:italic;
-  color:#9e7a4f;
-}
-.sig-rule {
-  width:52px;
-  height:2px;
-  background:linear-gradient(to right,#b38b5e,#d4b88a);
-  margin-bottom:14px;
-}
-.sig-lead {
-  font-family:var(--ff-display);
-  font-style:italic;
-  font-size:1rem;
-  color:rgba(31,26,20,.7);
-  max-width:420px;
-  margin-bottom:clamp(32px,5vw,52px);
-}
-.sig-grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));
-  gap:28px;
-}
-.sig-card {
-  background:#fff;
-  border-radius:var(--r);
-  overflow:hidden;
-  box-shadow:var(--shadow);
-  transition:transform .4s var(--spring), box-shadow .4s var(--ease);
-  cursor:pointer;
-}
-.sig-card:hover {
-  transform:translateY(-10px);
-  box-shadow:0 25px 50px -12px rgb(179 139 94 / 0.2);
-}
-.sig-img-wrap {
-  height:228px;
-  overflow:hidden;
-  position:relative;
-}
-.sig-img {
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  transition:transform .6s var(--ease);
-}
-.sig-card:hover .sig-img {
-  transform:scale(1.06);
-}
-.sig-img-ph {
-  position:absolute;
-  inset:0;
-  background:linear-gradient(135deg,#f8f1e3,#e8d4b0);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:3rem;
-  transition:opacity .4s;
-}
-.sig-badge {
-  position:absolute;
-  top:14px;
-  left:14px;
-  background:rgba(31,26,20,.85);
-  color:#f8f1e3;
-  font-size:0.6rem;
-  letter-spacing:0.18em;
-  text-transform:uppercase;
-  padding:5px 14px;
-  border-radius:9999px;
-  backdrop-filter:blur(6px);
-}
-.sig-body {
-  padding:22px 26px 26px;
-}
-.sig-cat {
-  font-size:0.6rem;
-  letter-spacing:0.4em;
-  text-transform:uppercase;
-  color:#b38b5e;
-  margin-bottom:8px;
-}
-.sig-name {
-  font-family:var(--ff-display);
-  font-size:1.45rem;
-  font-weight:400;
-  line-height:1.1;
-  margin-bottom:8px;
-}
-.sig-price {
-  font-family:var(--ff-display);
-  font-size:1.05rem;
-  color:#9e7a4f;
-  margin-bottom:12px;
-}
-.sig-note {
-  font-family:var(--ff-display);
-  font-style:italic;
-  font-size:0.88rem;
-  line-height:1.6;
-  color:rgba(31,26,20,.75);
-}
-.geo-divider {
-  height:48px;
-  overflow:hidden;
-  opacity:.12;
-}
-.geo-divider svg {
-  width:100%;
-  height:100%;
-}
-.menu-header {
-  text-align:center;
-  padding:64px 28px 16px;
-}
-.menu-eyebrow {
-  font-size:0.62rem;
-  letter-spacing:0.4em;
-  text-transform:uppercase;
-  color:var(--accent);
-  margin-bottom:10px;
-}
-.menu-title {
-  font-family:var(--ff-display);
-  font-weight:300;
-  font-size:clamp(2.2rem,5.2vw,3.5rem);
-  letter-spacing:-0.02em;
-  margin-bottom:10px;
-}
-.menu-sub {
-  font-family:var(--ff-display);
-  font-style:italic;
-  font-size:0.95rem;
-  color:var(--text3);
-  max-width:480px;
-  margin:0 auto;
-  line-height:1.7;
-}
-.cat-nav {
-  position:sticky;
-  top:68px;
-  z-index:400;
-  background:rgba(10,8,7,.95);
-  backdrop-filter:blur(24px);
-  border-bottom:1px solid var(--border);
-}
-.cat-scroll {
-  overflow-x:auto;
-  scrollbar-width:none;
-}
-.cat-scroll::-webkit-scrollbar { display:none; }
-.cat-track {
-  display:flex;
-  align-items:center;
-  gap:10px;
-  padding:14px 28px;
-  width:max-content;
-  min-width:100%;
-}
-.cat-pill {
-  flex-shrink:0;
-  padding:10px 28px;
-  border-radius:9999px;
-  border:1px solid var(--border);
-  background:transparent;
-  color:var(--text3);
-  font-family:var(--ff-display);
-  font-size:0.95rem;
-  letter-spacing:0.04em;
-  cursor:pointer;
-  white-space:nowrap;
-  transition:all .3s var(--ease);
-}
-.cat-pill:hover {
-  background:rgba(212,184,138,.08);
-  color:var(--accent);
-}
-.cat-pill.active {
-  background:var(--accent);
-  color:#fff;
-  border-color:var(--accent);
-  box-shadow:0 4px 20px -4px rgb(212 184 138 / 0.3);
-}
-.diet-bar {
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-  flex-wrap:wrap;
-  padding:14px 28px;
-  border-bottom:1px solid var(--border);
-}
-.dpill {
-  padding:7px 18px;
-  border-radius:9999px;
-  border:1px solid var(--border);
-  background:transparent;
-  color:var(--text3);
-  font-size:0.73rem;
-  cursor:pointer;
-  transition:all .3s var(--ease);
-  letter-spacing:0.03em;
-}
-.dpill:hover {
-  background:rgba(212,184,138,.08);
-  color:var(--accent);
-}
-.dpill.on {
-  background:rgba(212,184,138,.15);
-  color:var(--accent-dark);
-  border-color:var(--accent);
-}
-.menu-orn {
-  display:flex;
-  align-items:center;
-  gap:16px;
-  padding:28px 28px 8px;
-}
-.orn-line {
-  flex:1;
-  height:1px;
-  background:linear-gradient(to right, transparent, var(--border), transparent);
-}
-.orn-gem {
-  color:var(--accent);
-  font-size:0.9rem;
-}
-.menu-area {
-  padding:0 18px 140px;
-}
-.menu-grid {
-  display:grid;
-  gap:24px;
-  max-width:1280px;
-  margin:0 auto;
-  grid-template-columns:repeat(auto-fill, minmax(min(280px,100%),1fr));
-  transition:opacity .3s var(--ease);
-}
-.menu-grid.fading { opacity:0; }
-.menu-card {
-  background:var(--bg3);
-  border:1px solid var(--border);
-  border-radius:var(--r);
-  overflow:hidden;
-  cursor:pointer;
-  transition:all .4s var(--ease);
-}
-.menu-card:hover {
-  border-color:var(--accent);
-  box-shadow:var(--shadow);
-  transform:translateY(-6px);
-}
-.card-img-wrap {
-  height:200px;
-  overflow:hidden;
-  position:relative;
-}
-.card-img-skel {
-  position:absolute;
-  inset:0;
-  background:linear-gradient(110deg, var(--bg3) 30%, var(--bg2) 50%, var(--bg3) 70%);
-  background-size:200%;
-  animation:shimmer 1.8s infinite linear;
-}
-.card-img-skel.done { opacity:0; }
-@keyframes shimmer { to { background-position:-200% 0; } }
-.card-img {
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  opacity:0;
-  transition:opacity .5s, transform .6s var(--ease);
-}
-.card-img.loaded { opacity:1; }
-.menu-card:hover .card-img { transform:scale(1.06); }
-.card-overlay {
-  position:absolute;
-  inset:0;
-  background:linear-gradient(to top, rgba(10,8,7,.75) 0%, transparent 60%);
-}
-.card-price {
-  position:absolute;
-  bottom:14px;
-  right:14px;
-  font-family:var(--ff-display);
-  font-weight:400;
-  font-size:1.1rem;
-  color:var(--accent-light);
-  text-shadow:0 2px 8px rgb(0 0 0 / 0.6);
-}
-.card-body {
-  padding:18px 20px 22px;
-}
-.card-name {
-  font-family:var(--ff-display);
-  font-size:1.1rem;
-  font-weight:400;
-  line-height:1.3;
-  margin-bottom:4px;
-}
-.card-name-ar {
-  font-family:var(--ff-ar);
-  font-size:0.82rem;
-  color:var(--text3);
-  margin-bottom:8px;
-}
-.card-desc {
-  font-size:0.78rem;
-  color:var(--text3);
-  line-height:1.55;
-  display:-webkit-box;
-  -webkit-line-clamp:2;
-  -webkit-box-orient:vertical;
-  overflow:hidden;
-  margin-bottom:14px;
-}
-.card-foot {
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
-.card-cal {
-  font-size:0.68rem;
-  color:var(--text4);
-}
-.card-dots {
-  display:flex;
-  gap:5px;
-}
-.cdot {
-  width:7px;
-  height:7px;
-  border-radius:50%;
-}
-.cdot.vg { background:#7dd88a; }
-.cdot.gf { background:#c4e06b; }
-.cdot.df { background:#6bc4e0; }
-.empty-state {
-  grid-column:1/-1;
-  text-align:center;
-  padding:100px 28px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:18px;
-}
-.empty-icon {
-  font-size:3rem;
-  opacity:.4;
-}
-.empty-lbl {
-  font-family:var(--ff-display);
-  font-style:italic;
-  color:var(--text3);
-  font-size:1.05rem;
-}
-dialog {
-  background:transparent;
-  border:none;
-  padding:0;
-  max-width:100vw;
-  max-height:100dvh;
-  width:min(560px,96vw);
-  margin:auto;
-}
-dialog::backdrop {
-  background:rgba(10,8,7,.9);
-  backdrop-filter:blur(20px);
-}
-.modal-inner {
-  background:#1a1612;
-  border:1px solid var(--border);
-  border-radius:24px;
-  overflow:hidden;
-  max-height:94dvh;
-  display:flex;
-  flex-direction:column;
-}
-.modal-img-wrap {
-  height:260px;
-  overflow:hidden;
-  position:relative;
-  flex-shrink:0;
-}
-.modal-img-wrap img {
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  opacity:0;
-  transition:opacity .5s;
-}
-.modal-img-wrap img.loaded { opacity:1; }
-.modal-img-ph {
-  position:absolute;
-  inset:0;
-  background:var(--bg2);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:3.5rem;
-}
-.modal-close {
-  position:absolute;
-  top:16px;
-  right:16px;
-  z-index:10;
-  width:40px;
-  height:40px;
-  border-radius:50%;
-  border:1px solid rgba(255,255,255,.2);
-  background:rgba(10,8,7,.7);
-  color:#fff;
-  cursor:pointer;
-  backdrop-filter:blur(10px);
-  transition:all .3s var(--ease);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-.modal-close:hover {
-  background:var(--accent);
-  border-color:var(--accent);
-}
-.modal-scroll {
-  overflow-y:auto;
-  padding:28px 28px 32px;
-  flex:1;
-  scrollbar-width:thin;
-  scrollbar-color:var(--accent) transparent;
-}
-.modal-name {
-  font-family:var(--ff-display);
-  font-size:1.75rem;
-  font-weight:400;
-  margin-bottom:4px;
-}
-.modal-name-ar {
-  font-family:var(--ff-ar);
-  font-size:0.95rem;
-  color:var(--text3);
-  margin-bottom:12px;
-}
-.modal-price {
-  font-family:var(--ff-display);
-  font-size:2.2rem;
-  font-weight:300;
-  color:var(--accent-light);
-  line-height:1;
-  margin-bottom:18px;
-}
-.modal-price span {
-  font-size:0.8rem;
-  color:var(--text3);
-  margin-left:4px;
-}
-.modal-desc {
-  font-size:0.9rem;
-  color:var(--text2);
-  line-height:1.75;
-  margin-bottom:24px;
-}
-.modal-meta {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-  margin-bottom:24px;
-}
-.mmeta {
-  background:rgba(255,255,255,.06);
-  border-radius:12px;
-  padding:12px 16px;
-  border:1px solid var(--border);
-}
-.mmeta-l {
-  font-size:0.6rem;
-  color:var(--text4);
-  letter-spacing:0.12em;
-  text-transform:uppercase;
-  margin-bottom:4px;
-}
-.mmeta-v {
-  font-size:0.85rem;
-  color:var(--text2);
-  font-weight:500;
-}
-.modal-milk {
-  margin-bottom:24px;
-}
-.modal-milk-label {
-  font-size:0.7rem;
-  color:var(--text3);
-  letter-spacing:0.1em;
-  text-transform:uppercase;
-  margin-bottom:10px;
-}
-.modal-milk-opts {
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-}
-.milk-opt {
-  padding:8px 18px;
-  border-radius:9999px;
-  border:1px solid var(--border);
-  background:transparent;
-  color:var(--text3);
-  font-size:0.8rem;
-  cursor:pointer;
-  transition:all .3s var(--ease);
-}
-.milk-opt.on {
-  background:var(--accent);
-  color:#fff;
-  border-color:var(--accent);
-}
-.modal-recos {
-  margin-top:24px;
-}
-.modal-recos-title {
-  font-size:0.68rem;
-  color:var(--text4);
-  letter-spacing:0.2em;
-  text-transform:uppercase;
-  margin-bottom:12px;
-}
-.modal-recos-list {
-  display:flex;
-  gap:12px;
-  overflow-x:auto;
-  padding-bottom:8px;
-  scrollbar-width:none;
-}
-.modal-recos-list::-webkit-scrollbar { display:none; }
-.reco-card {
-  flex-shrink:0;
-  width:118px;
-  border-radius:14px;
-  border:1px solid var(--border);
-  background:rgba(255,255,255,.06);
-  overflow:hidden;
-  cursor:pointer;
-  transition:all .3s var(--ease);
-}
-.reco-card:hover {
-  border-color:var(--accent);
-  transform:translateY(-3px);
-}
-.reco-img {
-  width:100%;
-  height:78px;
-  object-fit:cover;
-}
-.reco-name {
-  padding:8px 10px 4px;
-  font-size:0.75rem;
-  color:var(--text2);
-  line-height:1.3;
-}
-.reco-price {
-  padding:0 10px 10px;
-  font-size:0.8rem;
-  color:var(--accent);
-  font-weight:500;
-}
-.site-footer {
-  text-align:center;
-  padding:72px 28px 52px;
-  border-top:1px solid var(--border);
-  background:linear-gradient(to bottom, transparent, rgba(10,8,7,.7));
-}
-.footer-logo {
-  font-family:var(--ff-display);
-  font-size:clamp(2.4rem,6vw,3.6rem);
-  font-weight:300;
-  letter-spacing:0.1em;
-  text-transform:uppercase;
-  background:linear-gradient(90deg, var(--accent), #f5f0e8);
-  -webkit-background-clip:text;
-  background-clip:text;
-  -webkit-text-fill-color:transparent;
-  margin-bottom:12px;
-}
-.footer-ar {
-  font-family:var(--ff-ar);
-  font-size:1.05rem;
-  color:var(--text3);
-  margin-bottom:20px;
-  opacity:.8;
-}
-.footer-rule {
-  width:56px;
-  height:1px;
-  background:var(--border);
-  margin:0 auto 22px;
-}
-.footer-info {
-  font-size:0.85rem;
-  color:var(--text3);
-  line-height:2;
-}
-.footer-info a {
-  color:var(--accent);
-  transition:color .3s;
-}
-.footer-info a:hover { color:var(--accent-light); }
-.footer-hours {
-  padding-top:32px;
-  border-top:1px solid var(--border);
-  margin-top:32px;
-}
-.footer-hours h4 {
-  font-family:var(--ff-display);
-  font-size:0.9rem;
-  color:var(--accent);
-  letter-spacing:0.15em;
-  text-transform:uppercase;
-  margin-bottom:16px;
-}
-.hours-grid {
-  display:grid;
-  grid-template-columns:1fr auto;
-  gap:8px 48px;
-  font-size:0.85rem;
-  color:var(--text3);
-  line-height:1.9;
-  max-width:420px;
-  margin:0 auto;
-}
-.footer-copy {
-  margin-top:32px;
-  font-size:0.68rem;
-  letter-spacing:0.2em;
-  color:var(--text4);
-}
-#btt {
-  position:fixed;
-  bottom:84px;
-  right:24px;
-  z-index:600;
-  width:52px;
-  height:52px;
-  border-radius:50%;
-  background:rgba(26,22,18,.95);
-  border:1px solid var(--border);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  cursor:pointer;
-  backdrop-filter:blur(12px);
-  box-shadow:0 8px 24px -6px rgb(0 0 0 / 0.4);
-  transition:all .4s var(--spring);
-  opacity:0;
-  pointer-events:none;
-  transform:translateY(16px);
-}
-#btt.show {
-  opacity:1;
-  pointer-events:auto;
-  transform:translateY(0);
-}
-#btt:hover {
-  background:var(--accent);
-  border-color:var(--accent);
-  transform:translateY(-4px) scale(1.1);
-}
-#btt svg {
-  width:22px;
-  height:22px;
-  fill:#f5f0e8;
-}
-.search-highlight {
-  background:rgba(212,184,138,.25);
-  color:var(--accent-dark);
-  border-radius:3px;
-  padding:0 3px;
-}
-@keyframes fadeUp {
-  from { opacity:0; transform:translateY(24px); }
-  to { opacity:1; transform:translateY(0); }
-}
-.sr-only {
-  position:absolute;
-  width:1px;
-  height:1px;
-  padding:0;
-  margin:-1px;
-  overflow:hidden;
-  clip:rect(0,0,0,0);
-  white-space:nowrap;
-  border:0;
-}
-@media (max-width:640px) {
-  .header-search { max-width:none; margin:0 12px; }
-  .hbtn.lang { display:none; }
-  .menu-grid { gap:18px; }
-  .card-img-wrap { height:178px; }
-  .sig-grid { grid-template-columns:1fr; }
-  .hours-grid { grid-template-columns:1fr; gap:4px; }
-}
-@media (min-width:1024px) {
-  .menu-grid { grid-template-columns:repeat(auto-fill,minmax(268px,1fr)); }
-}
-.mobile-search-wrap {
-  display:none;
-  padding:12px 20px;
-  border-bottom:1px solid var(--border);
-  background:rgba(10,8,7,.96);
-}
-.mobile-search-wrap input {
-  width:100%;
-  height:46px;
-  padding:0 18px 0 46px;
-  background:rgba(255,255,255,.06);
-  border:1px solid var(--border);
-  border-radius:9999px;
-  color:var(--text);
-  font-size:0.9rem;
-}
-.mobile-search-wrap input:focus { border-color:var(--accent); }
-.mobile-search-wrap .m-icon {
-  position:absolute;
-  left:30px;
-  top:50%;
-  transform:translateY(-50%);
-  color:var(--text3);
-  font-size:1.05rem;
-}
-@media (max-width:480px) {
-  .header-search { display:none; }
-  .mobile-search-wrap { display:flex !important; }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Turkiana — Ottoman Coffee · Doha</title>
+    <meta name="description" content="Premium Turkish coffee &amp; Ottoman sweets. Msheireb Downtown, Doha, Qatar.">
+    <meta name="theme-color" content="#c9a66b">
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@300;400;500;600;700&amp;family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&amp;family=Noto+Naskh+Arabic:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0807;
+            --bg2: #12100c;
+            --bg3: #1a1612;
+            --accent: #d4b88a;
+            --accent-light: #e8d4b0;
+            --accent-dark: #b38b5e;
+            --text: #f5f0e8;
+            --text2: #d4c4a8;
+            --text3: #a38d6e;
+            --text4: #6b5c4a;
+            --border: rgba(212,184,138,.12);
+            --shadow: 0 20px 40px -15px rgb(212 184 138 / 0.18);
+            --r: 20px;
+            --ease: cubic-bezier(0.4, 0, 0.2, 1);
+            --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+            --ff-display: 'Cormorant Garamond', Georgia, serif;
+            --ff-ui: 'DM Sans', system-ui, sans-serif;
+            --ff-ar: 'Noto Naskh Arabic', serif;
+        }
+        
+        *,
+        *::before,
+        *::after { margin:0; padding:0; box-sizing:border-box; }
+        
+        html { scroll-behavior:smooth; font-size:16px; }
+        
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--ff-ui);
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+            min-height: 100dvh;
+            line-height: 1.6;
+        }
+        
+        :focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 4px;
+            border-radius: 8px;
+        }
+        
+        button,
+        input { font-family: inherit; }
+        
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+        
+        a { color: inherit; text-decoration: none; }
+        
+        /* SPLASH */
+        #splash {
+            position: fixed;
+            inset: 0;
+            z-index: 9000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at 50% 30%, #1f1a14 0%, #0a0807 75%);
+            transition: opacity 900ms var(--ease), transform 1000ms var(--spring);
+        }
+        
+        #splash.exit {
+            opacity: 0;
+            transform: scale(1.04);
+            pointer-events: none;
+        }
+        
+        #splashCanvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.7;
+        }
+        
+        .splash-content {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 2rem 1.5rem;
+            max-width: 720px;
+        }
+        
+        .splash-brand {
+            font-size: 0.75rem;
+            letter-spacing: 0.65em;
+            text-transform: uppercase;
+            color: var(--accent);
+            opacity: 0;
+            margin-bottom: 2rem;
+            animation: fadeUp 800ms var(--ease) 180ms forwards;
+        }
+        
+        .splash-name {
+            font-family: var(--ff-display);
+            font-weight: 300;
+            font-size: clamp(3.2rem, 9vw, 6.2rem);
+            letter-spacing: -0.03em;
+            line-height: 1;
+            background: linear-gradient(90deg, #f5f0e8, var(--accent-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0;
+            animation: fadeUp 950ms var(--ease) 380ms forwards;
+            margin-bottom: 0.5rem;
+        }
+        
+        .splash-tagline {
+            font-family: var(--ff-display);
+            font-style: italic;
+            font-size: clamp(1.1rem, 3vw, 1.35rem);
+            color: var(--text2);
+            letter-spacing: 0.05em;
+            opacity: 0;
+            animation: fadeUp 800ms var(--ease) 650ms forwards;
+            margin-bottom: 0.4rem;
+        }
+        
+        .splash-tagline-ar {
+            font-family: var(--ff-ar);
+            font-size: clamp(1rem, 2.6vw, 1.15rem);
+            color: rgba(212,184,138,.7);
+            opacity: 0;
+            animation: fadeUp 800ms var(--ease) 800ms forwards;
+            margin-bottom: 3.2rem;
+        }
+        
+        .splash-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
+            padding: 18px 58px;
+            border-radius: 9999px;
+            background: linear-gradient(90deg, var(--accent-dark), var(--accent));
+            color: #fff;
+            font-size: 0.82rem;
+            font-weight: 500;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 12px 32px -8px rgb(212 184 138 / 0.35);
+            transition: transform 400ms var(--spring), box-shadow 400ms var(--ease);
+            opacity: 0;
+            animation: fadeUp 900ms var(--ease) 1050ms forwards;
+        }
+        
+        .splash-cta:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 24px 48px -12px rgb(212 184 138 / 0.45);
+        }
+        
+        .splash-cta-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,.4);
+            font-size: 1.1rem;
+            transition: transform 400ms var(--spring);
+        }
+        
+        .splash-cta:hover .splash-cta-arrow {
+            transform: rotate(90deg);
+        }
+        
+        /* APP */
+        #app {
+            opacity: 0;
+            transition: opacity 1100ms var(--ease);
+        }
+        
+        #app.visible { display: block; }
+        #app.shown { opacity: 1; }
+        
+        /* HEADER */
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 500;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 28px;
+            height: 72px;
+            background: rgba(10,8,7,.94);
+            backdrop-filter: blur(28px);
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 4px 20px -10px rgb(0 0 0 / 0.3);
+        }
+        
+        .header-logo {
+            font-family: var(--ff-display);
+            font-weight: 400;
+            font-size: 1.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, var(--accent), #f5f0e8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            cursor: pointer;
+            transition: all .3s var(--ease);
+        }
+        
+        .header-logo:hover { opacity: .9; transform: scale(1.03); }
+        
+        .header-search {
+            flex: 1;
+            max-width: 400px;
+            margin: 0 32px;
+            position: relative;
+        }
+        
+        .header-search-input {
+            width: 100%;
+            height: 46px;
+            padding: 0 20px 0 52px;
+            background: rgba(255,255,255,.07);
+            border: 1px solid var(--border);
+            border-radius: 9999px;
+            color: var(--text);
+            font-size: 0.9rem;
+            outline: none;
+            transition: all .3s var(--ease);
+        }
+        
+        .header-search-input:focus {
+            border-color: var(--accent);
+            background: rgba(255,255,255,.12);
+            box-shadow: 0 0 0 5px rgba(212,184,138,.15);
+        }
+        
+        .header-search-icon {
+            position: absolute;
+            left: 22px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text3);
+            font-size: 1.15rem;
+        }
+        
+        .header-search-clear {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--text3);
+            cursor: pointer;
+            font-size: 1.15rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .25s var(--ease);
+        }
+        
+        .header-search-clear.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .header-actions {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .hbtn {
+            height: 46px;
+            padding: 0 22px;
+            border-radius: 9999px;
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,.07);
+            color: var(--text2);
+            font-size: 0.78rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all .3s var(--ease);
+        }
+        
+        .hbtn:hover {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+        
+        /* MARQUEE */
+        .marquee-strip {
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            background: rgba(10,8,7,.9);
+            backdrop-filter: blur(16px);
+            padding: 12px 0;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            animation: marqueeScroll 32s linear infinite;
+        }
+        
+        .marquee-track:hover { animation-play-state: paused; }
+        
+        @keyframes marqueeScroll {
+            to { transform: translateX(-50%); }
+        }
+        
+        .marquee-item {
+            display: flex;
+            align-items: center;
+            padding: 0 26px;
+        }
+        
+        .marquee-text {
+            font-size: 0.75rem;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: var(--text3);
+            white-space: nowrap;
+        }
+        
+        .marquee-text.gold { color: var(--accent); }
+        
+        .marquee-gem {
+            color: var(--accent);
+            font-size: 0.85rem;
+            margin: 0 8px;
+        }
+        
+        /* QUOTE BAR */
+        #quoteBar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 700;
+            background: rgba(10,8,7,.96);
+            backdrop-filter: blur(28px);
+            border-top: 1px solid var(--border);
+            box-shadow: 0 -12px 40px -12px rgb(0 0 0 / 0.4);
+            transform: translateY(100%);
+            transition: transform .7s cubic-bezier(0.32,0,0,1);
+            opacity: 0;
+        }
+        
+        #quoteBar.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .qbar-inner {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 16px 28px;
+        }
+        
+        .qbar-gem {
+            color: var(--accent);
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        
+        .qbar-text-wrap { flex: 1; min-width: 0; }
+        
+        .qbar-text {
+            font-family: var(--ff-display);
+            font-style: italic;
+            font-size: clamp(0.85rem, 1.8vw, 1rem);
+            color: var(--text2);
+            line-height: 1.45;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .qbar-attr {
+            font-size: 0.65rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--accent-dark);
+            margin-top: 4px;
+        }
+        
+        .qbar-dots {
+            display: flex;
+            gap: 7px;
+            flex-shrink: 0;
+        }
+        
+        .qbdot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--border);
+            cursor: pointer;
+            transition: all .3s var(--ease);
+        }
+        
+        .qbdot.active {
+            background: var(--accent);
+            transform: scale(1.6);
+        }
+        
+        .qbar-close {
+            flex-shrink: 0;
+            background: none;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            width: 34px;
+            height: 34px;
+            color: var(--text4);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all .3s var(--ease);
+        }
+        
+        .qbar-close:hover {
+            background: rgba(212,184,138,.12);
+            color: var(--text3);
+        }
+        
+        body.qbar-open { padding-bottom: 68px; }
+        
+        /* SIGNATURE SECTION */
+        .sig-section {
+            padding: clamp(80px, 10vw, 120px) 0;
+            background: #f8f1e3;
+            color: #1f1a14;
+        }
+        
+        .sig-inner {
+            max-width: 1220px;
+            margin: 0 auto;
+            padding: 0 28px;
+        }
+        
+        .sig-tag {
+            font-size: 0.68rem;
+            letter-spacing: 0.48em;
+            text-transform: uppercase;
+            color: #b38b5e;
+            margin-bottom: 14px;
+        }
+        
+        .sig-title {
+            font-family: var(--ff-display);
+            font-weight: 300;
+            font-size: clamp(2.3rem, 5.5vw, 3.6rem);
+            line-height: 1.05;
+            margin-bottom: 16px;
+        }
+        
+        .sig-title em {
+            font-style: italic;
+            color: #9e7a4f;
+        }
+        
+        .sig-rule {
+            width: 64px;
+            height: 3px;
+            background: linear-gradient(to right, #b38b5e, #d4b88a);
+            margin-bottom: 18px;
+        }
+        
+        .sig-lead {
+            font-family: var(--ff-display);
+            font-style: italic;
+            font-size: 1.05rem;
+            color: rgba(31,26,20,.75);
+            max-width: 460px;
+            margin-bottom: clamp(36px, 6vw, 58px);
+        }
+        
+        .sig-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr));
+            gap: 32px;
+        }
+        
+        .sig-card {
+            background: #fff;
+            border-radius: var(--r);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform .5s var(--spring), box-shadow .4s var(--ease);
+            cursor: pointer;
+        }
+        
+        .sig-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 32px 60px -16px rgb(179 139 94 / 0.25);
+        }
+        
+        .sig-img-wrap {
+            height: 248px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .sig-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .7s var(--ease);
+        }
+        
+        .sig-card:hover .sig-img {
+            transform: scale(1.08);
+        }
+        
+        .sig-img-ph {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, #f8f1e3, #e8d4b0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.2rem;
+            transition: opacity .5s var(--ease);
+        }
+        
+        .sig-badge {
+            position: absolute;
+            top: 18px;
+            left: 18px;
+            background: rgba(31,26,20,.9);
+            color: #f8f1e3;
+            font-size: 0.64rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            padding: 6px 18px;
+            border-radius: 9999px;
+            backdrop-filter: blur(8px);
+        }
+        
+        .sig-body {
+            padding: 26px 30px 30px;
+        }
+        
+        .sig-cat {
+            font-size: 0.64rem;
+            letter-spacing: 0.42em;
+            text-transform: uppercase;
+            color: #b38b5e;
+            margin-bottom: 10px;
+        }
+        
+        .sig-name {
+            font-family: var(--ff-display);
+            font-size: 1.55rem;
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 10px;
+        }
+        
+        .sig-price {
+            font-family: var(--ff-display);
+            font-size: 1.15rem;
+            color: #9e7a4f;
+            margin-bottom: 14px;
+        }
+        
+        .sig-note {
+            font-family: var(--ff-display);
+            font-style: italic;
+            font-size: 0.95rem;
+            line-height: 1.55;
+            color: rgba(31,26,20,.78);
+        }
+        
+        /* DIVIDER */
+        .geo-divider {
+            height: 52px;
+            overflow: hidden;
+            opacity: .14;
+        }
+        
+        .geo-divider svg {
+            width: 100%;
+            height: 100%;
+        }
+        
+        /* MENU HEADER */
+        .menu-header {
+            text-align: center;
+            padding: 72px 28px 20px;
+        }
+        
+        .menu-eyebrow {
+            font-size: 0.68rem;
+            letter-spacing: 0.42em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+        
+        .menu-title {
+            font-family: var(--ff-display);
+            font-weight: 300;
+            font-size: clamp(2.4rem, 5.8vw, 3.8rem);
+            letter-spacing: -0.03em;
+            margin-bottom: 12px;
+        }
+        
+        .menu-sub {
+            font-family: var(--ff-display);
+            font-style: italic;
+            font-size: 1rem;
+            color: var(--text3);
+            max-width: 520px;
+            margin: 0 auto;
+            line-height: 1.65;
+        }
+        
+        /* CATEGORY NAV */
+        .cat-nav {
+            position: sticky;
+            top: 72px;
+            z-index: 400;
+            background: rgba(10,8,7,.96);
+            backdrop-filter: blur(28px);
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .cat-scroll {
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+        
+        .cat-scroll::-webkit-scrollbar { display: none; }
+        
+        .cat-track {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 28px;
+            width: max-content;
+            min-width: 100%;
+        }
+        
+        .cat-pill {
+            flex-shrink: 0;
+            padding: 12px 32px;
+            border-radius: 9999px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text3);
+            font-family: var(--ff-display);
+            font-size: 1rem;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all .35s var(--ease);
+        }
+        
+        .cat-pill:hover {
+            background: rgba(212,184,138,.1);
+            color: var(--accent);
+        }
+        
+        .cat-pill.active {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+            box-shadow: 0 6px 24px -6px rgb(212 184 138 / 0.35);
+        }
+        
+        /* DIET BAR */
+        .diet-bar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            padding: 16px 28px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .dpill {
+            padding: 8px 22px;
+            border-radius: 9999px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text3);
+            font-size: 0.78rem;
+            cursor: pointer;
+            transition: all .3s var(--ease);
+            letter-spacing: 0.04em;
+        }
+        
+        .dpill:hover {
+            background: rgba(212,184,138,.1);
+            color: var(--accent);
+        }
+        
+        .dpill.on {
+            background: rgba(212,184,138,.18);
+            color: var(--accent-dark);
+            border-color: var(--accent);
+        }
+        
+        /* MENU ORNAMENT */
+        .menu-orn {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding: 32px 28px 12px;
+        }
+        
+        .orn-line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--border), transparent);
+        }
+        
+        .orn-gem {
+            color: var(--accent);
+            font-size: 1rem;
+        }
+        
+        /* MENU AREA */
+        .menu-area {
+            padding: 0 20px 160px;
+        }
+        
+        .menu-grid {
+            display: grid;
+            gap: 28px;
+            max-width: 1320px;
+            margin: 0 auto;
+            grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+            transition: opacity .4s var(--ease);
+        }
+        
+        .menu-grid.fading { opacity: 0; }
+        
+        .menu-card {
+            background: var(--bg3);
+            border: 1px solid var(--border);
+            border-radius: var(--r);
+            overflow: hidden;
+            cursor: pointer;
+            transition: all .45s var(--ease);
+        }
+        
+        .menu-card:hover {
+            border-color: var(--accent);
+            box-shadow: var(--shadow);
+            transform: translateY(-8px);
+        }
+        
+        .card-img-wrap {
+            height: 218px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .card-img-skel {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(110deg, var(--bg3) 30%, var(--bg2) 50%, var(--bg3) 70%);
+            background-size: 220%;
+            animation: shimmer 1.6s infinite linear;
+        }
+        
+        .card-img-skel.done { opacity: 0; }
+        
+        @keyframes shimmer { to { background-position: -220% 0; } }
+        
+        .card-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity .6s var(--ease), transform .7s var(--ease);
+        }
+        
+        .card-img.loaded { opacity: 1; }
+        
+        .menu-card:hover .card-img { transform: scale(1.07); }
+        
+        .card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(10,8,7,.8) 0%, transparent 65%);
+        }
+        
+        .card-price {
+            position: absolute;
+            bottom: 18px;
+            right: 18px;
+            font-family: var(--ff-display);
+            font-weight: 400;
+            font-size: 1.2rem;
+            color: var(--accent-light);
+            text-shadow: 0 3px 10px rgb(0 0 0 / 0.7);
+        }
+        
+        .card-body {
+            padding: 22px 24px 26px;
+        }
+        
+        .card-name {
+            font-family: var(--ff-display);
+            font-size: 1.2rem;
+            font-weight: 400;
+            line-height: 1.3;
+            margin-bottom: 6px;
+        }
+        
+        .card-name-ar {
+            font-family: var(--ff-ar);
+            font-size: 0.88rem;
+            color: var(--text3);
+            margin-bottom: 10px;
+        }
+        
+        .card-desc {
+            font-size: 0.82rem;
+            color: var(--text3);
+            line-height: 1.6;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            margin-bottom: 16px;
+        }
+        
+        .card-foot {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .card-cal {
+            font-size: 0.72rem;
+            color: var(--text4);
+        }
+        
+        .card-dots {
+            display: flex;
+            gap: 6px;
+        }
+        
+        .cdot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+        
+        .cdot.vg { background: #7dd88a; }
+        .cdot.gf { background: #c4e06b; }
+        .cdot.df { background: #6bc4e0; }
+        
+        .empty-state {
+            grid-column: 1/-1;
+            text-align: center;
+            padding: 120px 28px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 22px;
+        }
+        
+        .empty-icon {
+            font-size: 3.4rem;
+            opacity: .35;
+        }
+        
+        .empty-lbl {
+            font-family: var(--ff-display);
+            font-style: italic;
+            color: var(--text3);
+            font-size: 1.15rem;
+        }
+        
+        /* MODALS */
+        dialog {
+            background: transparent;
+            border: none;
+            padding: 0;
+            max-width: 100vw;
+            max-height: 100dvh;
+            width: min(580px, 96vw);
+            margin: auto;
+        }
+        
+        dialog::backdrop {
+            background: rgba(10,8,7,.92);
+            backdrop-filter: blur(24px);
+        }
+        
+        .modal-inner {
+            background: #1a1612;
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            overflow: hidden;
+            max-height: 94dvh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .modal-img-wrap {
+            height: 280px;
+            overflow: hidden;
+            position: relative;
+            flex-shrink: 0;
+        }
+        
+        .modal-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity .6s var(--ease);
+        }
+        
+        .modal-img-wrap img.loaded { opacity: 1; }
+        
+        .modal-img-ph {
+            position: absolute;
+            inset: 0;
+            background: var(--bg2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.8rem;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 10;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,.25);
+            background: rgba(10,8,7,.75);
+            color: #fff;
+            cursor: pointer;
+            backdrop-filter: blur(12px);
+            transition: all .35s var(--ease);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-close:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+        
+        .modal-scroll {
+            overflow-y: auto;
+            padding: 32px 32px 40px;
+            flex: 1;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent) transparent;
+        }
+        
+        .modal-name {
+            font-family: var(--ff-display);
+            font-size: 1.85rem;
+            font-weight: 400;
+            margin-bottom: 6px;
+        }
+        
+        .modal-name-ar {
+            font-family: var(--ff-ar);
+            font-size: 1rem;
+            color: var(--text3);
+            margin-bottom: 14px;
+        }
+        
+        .modal-price {
+            font-family: var(--ff-display);
+            font-size: 2.4rem;
+            font-weight: 300;
+            color: var(--accent-light);
+            line-height: 1;
+            margin-bottom: 22px;
+        }
+        
+        .modal-price span {
+            font-size: 0.85rem;
+            color: var(--text3);
+            margin-left: 6px;
+        }
+        
+        .modal-desc {
+            font-size: 0.95rem;
+            color: var(--text2);
+            line-height: 1.7;
+            margin-bottom: 28px;
+        }
+        
+        .modal-meta {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-bottom: 28px;
+        }
+        
+        .mmeta {
+            background: rgba(255,255,255,.07);
+            border-radius: 14px;
+            padding: 14px 18px;
+            border: 1px solid var(--border);
+        }
+        
+        .mmeta-l {
+            font-size: 0.64rem;
+            color: var(--text4);
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+        
+        .mmeta-v {
+            font-size: 0.9rem;
+            color: var(--text2);
+            font-weight: 500;
+        }
+        
+        .modal-milk {
+            margin-bottom: 28px;
+        }
+        
+        .modal-milk-label {
+            font-size: 0.74rem;
+            color: var(--text3);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+        
+        .modal-milk-opts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .milk-opt {
+            padding: 10px 22px;
+            border-radius: 9999px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text3);
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all .3s var(--ease);
+        }
+        
+        .milk-opt.on {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+        }
+        
+        .modal-recos {
+            margin-top: 28px;
+        }
+        
+        .modal-recos-title {
+            font-size: 0.72rem;
+            color: var(--text4);
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+        
+        .modal-recos-list {
+            display: flex;
+            gap: 14px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            scrollbar-width: none;
+        }
+        
+        .modal-recos-list::-webkit-scrollbar { display: none; }
+        
+        .reco-card {
+            flex-shrink: 0;
+            width: 128px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,.07);
+            overflow: hidden;
+            cursor: pointer;
+            transition: all .35s var(--ease);
+        }
+        
+        .reco-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+        }
+        
+        .reco-img {
+            width: 100%;
+            height: 84px;
+            object-fit: cover;
+        }
+        
+        .reco-name {
+            padding: 10px 12px 6px;
+            font-size: 0.8rem;
+            color: var(--text2);
+            line-height: 1.35;
+        }
+        
+        .reco-price {
+            padding: 0 12px 12px;
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-weight: 500;
+        }
+        
+        /* FOOTER */
+        .site-footer {
+            text-align: center;
+            padding: 80px 28px 60px;
+            border-top: 1px solid var(--border);
+            background: linear-gradient(to bottom, transparent, rgba(10,8,7,.75));
+        }
+        
+        .footer-logo {
+            font-family: var(--ff-display);
+            font-size: clamp(2.6rem, 7vw, 3.8rem);
+            font-weight: 300;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, var(--accent), #f5f0e8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 14px;
+        }
+        
+        .footer-ar {
+            font-family: var(--ff-ar);
+            font-size: 1.1rem;
+            color: var(--text3);
+            margin-bottom: 24px;
+            opacity: .85;
+        }
+        
+        .footer-rule {
+            width: 64px;
+            height: 1px;
+            background: var(--border);
+            margin: 0 auto 26px;
+        }
+        
+        .footer-info {
+            font-size: 0.9rem;
+            color: var(--text3);
+            line-height: 2;
+        }
+        
+        .footer-info a {
+            color: var(--accent);
+            transition: color .3s var(--ease);
+        }
+        
+        .footer-info a:hover { color: var(--accent-light); }
+        
+        .footer-hours {
+            padding-top: 36px;
+            border-top: 1px solid var(--border);
+            margin-top: 36px;
+        }
+        
+        .footer-hours h4 {
+            font-family: var(--ff-display);
+            font-size: 0.95rem;
+            color: var(--accent);
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+        }
+        
+        .hours-grid {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 10px 52px;
+            font-size: 0.9rem;
+            color: var(--text3);
+            line-height: 1.95;
+            max-width: 440px;
+            margin: 0 auto;
+        }
+        
+        .footer-copy {
+            margin-top: 36px;
+            font-size: 0.7rem;
+            letter-spacing: 0.22em;
+            color: var(--text4);
+        }
+        
+        /* BACK TO TOP */
+        #btt {
+            position: fixed;
+            bottom: 92px;
+            right: 28px;
+            z-index: 600;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: rgba(26,22,18,.96);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            backdrop-filter: blur(16px);
+            box-shadow: 0 12px 32px -8px rgb(0 0 0 / 0.45);
+            transition: all .45s var(--spring);
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(20px);
+        }
+        
+        #btt.show {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+        
+        #btt:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            transform: translateY(-6px) scale(1.12);
+        }
+        
+        #btt svg {
+            width: 24px;
+            height: 24px;
+            fill: #f5f0e8;
+        }
+        
+        .search-highlight {
+            background: rgba(212,184,138,.3);
+            color: var(--accent-dark);
+            border-radius: 4px;
+            padding: 0 4px;
+        }
+        
+        @keyframes fadeUp {
+            from { opacity:0; transform:translateY(28px); }
+            to { opacity:1; transform:translateY(0); }
+        }
+        
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 640px) {
+            .header-search { max-width: none; margin: 0 14px; }
+            .hbtn.lang { display: none; }
+            .menu-grid { gap: 20px; }
+            .card-img-wrap { height: 192px; }
+            .sig-grid { grid-template-columns: 1fr; }
+            .hours-grid { grid-template-columns: 1fr; gap: 8px; }
+            .menu-area { padding-bottom: 120px; }
+        }
+        
+        @media (min-width: 1024px) {
+            .menu-grid { grid-template-columns: repeat(auto-fill, minmax(288px, 1fr)); }
+        }
+        
+        .mobile-search-wrap {
+            display: none;
+            padding: 14px 24px;
+            border-bottom: 1px solid var(--border);
+            background: rgba(10,8,7,.96);
+        }
+        
+        .mobile-search-wrap input {
+            width: 100%;
+            height: 48px;
+            padding: 0 20px 0 52px;
+            background: rgba(255,255,255,.08);
+            border: 1px solid var(--border);
+            border-radius: 9999px;
+            color: var(--text);
+            font-size: 0.95rem;
+        }
+        
+        .mobile-search-wrap input:focus { border-color: var(--accent); }
+        
+        .mobile-search-wrap .m-icon {
+            position: absolute;
+            left: 32px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text3);
+            font-size: 1.1rem;
+        }
+        
+        @media (max-width: 480px) {
+            .header-search { display: none; }
+            .mobile-search-wrap { display: flex !important; }
+        }
+    </style>
 </head>
 <body>
-<span class="sr-only" aria-live="polite" id="a11y"></span>
-<div id="splash" role="main" aria-label="Turkiana — Welcome">
-  <canvas id="splashCanvas" aria-hidden="true"></canvas>
-  <div class="splash-content">
-    <p class="splash-brand">
-      Msheireb Downtown · Doha, Qatar
-    </p>
-    <h1 class="splash-name">Turkiana</h1>
-    <p class="splash-tagline">Where Ottoman tradition meets the art of every cup</p>
-    <p class="splash-tagline-ar">قهوة تركية فاخرة وحلويات عثمانية أصيلة</p>
-    <button class="splash-cta" id="enterBtn" aria-label="Enter the menu">
-      Discover
-      <span class="splash-cta-arrow" aria-hidden="true">↓</span>
-    </button>
-  </div>
-</div>
-<div id="app">
-  <header class="site-header">
-    <div class="header-logo" id="headerLogo" role="button" tabindex="0" aria-label="Turkiana — scroll to top">Turkiana</div>
-    <div class="header-search" role="search" aria-label="Search menu">
-      <span class="header-search-icon" aria-hidden="true">🔍</span>
-      <input type="search" id="searchInput" class="header-search-input" placeholder="Search coffee, sweets, tea…" autocomplete="off" spellcheck="false" aria-label="Search menu items">
-      <button class="header-search-clear" id="searchClear" aria-label="Clear search">✕</button>
-    </div>
-    <div class="header-actions">
-      <button class="hbtn" id="qrBtn" aria-label="Show QR code">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 3h7v7H3V3zm1 1v5h5V4H4zm1 1h3v3H5V5zm8-2h7v7h-7V3zm1 1v5h5V4h-5zm1 1h3v3h-3V5zM3 13h7v7H3v-7zm1 1v5h5v-5H4zm1 1h3v3H5v-3zm8 0h2v2h-2v-2zm3 0h2v2h-2v-2zm-3 3h2v2h-2v-2zm3 0h2v2h-2v-2zm-3 3h2v2h-2v-2zm3 0h2v2h-2v-2z"/></svg>
-        QR
-      </button>
-      <button class="hbtn lang" id="langBtn" aria-label="Switch language">AR</button>
-    </div>
-  </header>
-  <div class="mobile-search-wrap" id="mobileSearchWrap">
-    <span class="m-icon" aria-hidden="true">🔍</span>
-    <input type="search" id="mobileSearch" placeholder="Search menu…" autocomplete="off">
-  </div>
-  <div class="marquee-strip" aria-hidden="true">
-    <div class="marquee-track" id="marqueeTrack"></div>
-  </div>
-  <section class="sig-section" aria-label="Signature picks">
-    <div class="sig-inner">
-      <p class="sig-tag">Costumers Best</p>
-      <h2 class="sig-title">Our <em>Signature</em> Three</h2>
-      <div class="sig-rule" aria-hidden="true"></div>
-      <p class="sig-lead">What our team orders every single shift. No exceptions.</p>
-      <div class="sig-grid" id="sigGrid"></div>
-    </div>
-  </section>
-  <div class="geo-divider" aria-hidden="true">
-    <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-      <defs>
-        <pattern id="gp" x="0" y="0" width="48" height="48" patternUnits="userSpaceOnUse">
-          <g fill="none" stroke="#d4b88a" stroke-width=".8">
-            <polygon points="24,2 35,13 46,13 37,24 46,35 35,35 24,46 13,35 2,35 11,24 2,13 13,13"/>
-            <circle cx="24" cy="24" r="5.5"/>
-          </g>
-        </pattern>
-      </defs>
-      <rect width="100%" height="100%" fill="url(#gp)"/>
-    </svg>
-  </div>
-  <div id="menu-anchor" style="scroll-margin-top:120px"></div>
-  <div class="menu-header">
-    <p class="menu-eyebrow">Selections</p>
-    <h2 class="menu-title">Menu</h2>
-    <p class="menu-sub">From ceremonial Turkish coffee to layered Ottoman pastries — every item crafted with intention.</p>
-  </div>
-  <nav class="cat-nav" aria-label="Menu categories">
-    <div class="cat-scroll">
-      <div class="cat-track" id="catTrack" role="tablist"></div>
-    </div>
-  </nav>
-  <div class="diet-bar" id="dietBar" aria-label="Dietary filters"></div>
-  <div class="menu-orn" aria-hidden="true">
-    <div class="orn-line"></div>
-    <span class="orn-gem">✦</span>
-    <div class="orn-line"></div>
-  </div>
-  <main class="menu-area">
-    <div class="menu-grid" id="menuGrid" aria-label="Menu items" aria-live="polite"></div>
-  </main>
-  <footer class="site-footer">
-    <div class="footer-logo">Turkiana</div>
-    <div class="footer-rule" aria-hidden="true"></div>
-    <p class="footer-info">
-      Msheireb Downtown, Doha, Qatar<br>
-      <a href="tel:+97451866671">+974 5186 6671</a> &nbsp;·&nbsp;
-      <a href="https://instagram.com/turkianacafe" target="_blank" rel="noopener">@turkianacafe</a>
-    </p>
-    <div class="footer-hours">
-      <h4>Opening Hours</h4>
-      <div class="hours-grid">
-        <div>Saturday — Wednesday</div><div>9:00 AM — 12:00 AM</div>
-        <div>Thursday — Friday</div><div>9:00 AM — 1:00 AM</div>
-      </div>
-    </div>
-    <p class="footer-copy">© 2026 Turkiana · Msheireb Downtown · Doha, Qatar</p>
-  </footer>
-</div>
-<dialog id="qrModal" aria-modal="true" aria-label="QR Code">
-  <div class="modal-inner" style="max-width:340px;border-radius:20px">
-    <div style="padding:32px 32px 28px;text-align:center;position:relative;">
-      <button class="modal-close" id="qrClose" aria-label="Close" style="position:absolute;top:16px;right:16px">✕</button>
-      <p style="font-family:var(--ff-display);font-size:1.15rem;color:var(--text);margin-bottom:8px;font-weight:400">Scan to Open Menu</p>
-      <p style="font-size:0.72rem;color:var(--text3);letter-spacing:0.1em;margin-bottom:24px">Point your camera at this code</p>
-      <div id="qrOutput" style="background:#fff;border-radius:12px;padding:18px;display:inline-block;line-height:0"></div>
-      <p style="font-size:0.68rem;color:var(--text4);margin-top:18px;letter-spacing:0.1em">turkianacafe.qa</p>
-    </div>
-  </div>
-</dialog>
-<dialog id="itemModal" aria-modal="true" aria-label="Menu item details">
-  <div class="modal-inner">
-    <div class="modal-img-wrap" id="modalImg"></div>
-    <div class="modal-scroll">
-      <div id="modalBody"></div>
-      <div id="modalRecos"></div>
-    </div>
-  </div>
-</dialog>
-<div id="quoteBar" aria-live="polite" role="complementary" aria-label="Quote of the moment">
-  <div class="qbar-inner">
-    <span class="qbar-gem" aria-hidden="true">✦</span>
-    <div class="qbar-text-wrap">
-      <div id="qbarText" class="qbar-text"></div>
-      <div id="qbarAttr" class="qbar-attr"></div>
-    </div>
-    <div class="qbar-dots" id="qbarDots" role="tablist" aria-label="Quote navigation"></div>
-    <button class="qbar-close" id="qbarClose" aria-label="Dismiss quote bar">✕</button>
-  </div>
-</div>
-<button id="btt" aria-label="Back to top">
-  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
-</button>
-<script id="menuData" type="application/json">
-{
-  "BASE": "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/",
-  "FB": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='240'%3E%3Crect width='400' height='240' fill='%23221b15'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia' font-size='22' fill='%23c9a66b'%3E✦ Turkiana%3C/text%3E%3C/svg%3E",
-  "categories": [
-    {"id":"all","en":"✦ Full Menu","ar":"✦ القائمة الكاملة"},
-    {"id":"brewed","en":"Turkish & Arabic","ar":"تركي وعربي"},
-    {"id":"tea","en":"Tea","ar":"شاي"},
-    {"id":"cafe","en":"Café Classics","ar":"كلاسيك"},
-    {"id":"specialty","en":"Specialty","ar":"مميزة"},
-    {"id":"refreshers","en":"Refreshers","ar":"منعشات"},
-    {"id":"baklava","en":"Sweets","ar":"حلويات"},
-    {"id":"snacks","en":"Eid Snacks","ar":"مأكولات العيد"},
-    {"id":"croissant","en":"Eid Morning","ar":"صباح العيد"}
-  ],
-  "diets": [
-    {"id":"vegan","en":"🌱 Vegan","ar":"🌱 نباتي"},
-    {"id":"no-nuts","en":"🚫 No Nuts","ar":"🚫 بدون مكسرات"},
-    {"id":"dairy-free","en":"🥛 Dairy-Free","ar":"🥛 خالي ألبان"},
-    {"id":"gluten-free","en":"✓ Gluten-Free","ar":"✓ خالي غلوتين"}
-  ],
-  "quotes": [
-    {"text":"Coffee is the common man's gold, and like gold it brings to every person the feeling of luxury and nobility.", "attr":"Sheikh Abd-al-Kadir al-Jaziri · 1587"},
-    {"text":"Coffee should be black as hell, strong as death, and sweet as love.", "attr":"Turkish Proverb"},
-    {"text":"A cup of coffee commits one to forty years of friendship.", "attr":"Ottoman Saying"},
-    {"text":"The morning cup of coffee has an exhilaration about it which the cheering influence of the afternoon or evening cup cannot be expected to reproduce.", "attr":"Oliver Wendell Holmes"},
-    {"text":"In Turkey, a cup of coffee is remembered for forty years.", "attr":"Ancient Anatolian Proverb"}
-  ],
-  "items": [
-    {"id":"brew1","cat":"brewed","en":"Classic Turkish Coffee","ar":"قهوة تركية كلاسيكية","descEn":"Finely ground coffee brewed in copper cezve. Served with foam crown and Turkish delight.","descAr":"قهوة مطحونة في ركوة نحاسية مع تاج رغوة.","price":28,"img":"Turkishcoffee.jpg","cal":"5 kcal","diet":["vegan","gluten-free"],"temp":"hot"},
-    {"id":"brew2","cat":"brewed","en":"Double Turkish Coffee","ar":"قهوة تركية مزدوجة","descEn":"Double the intensity with concentrated brewing for true coffee lovers.","descAr":"ضعف القوة مع تخمير مركز.","price":40,"img":"Turkishcoffee.jpg","cal":"10 kcal","diet":["vegan","gluten-free"],"temp":"hot"},
-    {"id":"brew3","cat":"brewed","en":"Ottoman Mastic Coffee","ar":"قهوة عثمانية بالمستيك","descEn":"Premium coffee enriched with rare Chios mastic resin — a timeless Ottoman secret.","descAr":"مع صمغ المستيكا النادر من جزيرة خيوس.","price":28,"img":"Ottomanmastica.jpg","cal":"5 kcal","diet":["vegan","gluten-free"],"temp":"hot","eid":false},
-    {"id":"brew4","cat":"brewed","en":"Hazelnut Turkish Coffee","ar":"قهوة تركية بالبندق","descEn":"Classic Turkish coffee blended with finely ground premium hazelnuts.","descAr":"مع بندق مطحون ناعماً.","price":28,"img":"Ottomanhazelnut.jpg","cal":"20 kcal","diet":[],"temp":"hot"},
-    {"id":"brew5","cat":"brewed","en":"Cardamom Turkish Coffee","ar":"قهوة تركية بالهيل","descEn":"Infused with aromatic green cardamom pods for a spiced warmth.","descAr":"منقوعة بالهيل الأخضر العطري.","price":28,"img":"Ottomancardamom.jpg","cal":"5 kcal","diet":["vegan","gluten-free"],"temp":"hot"},
-    {"id":"brew6","cat":"brewed","en":"Sahlep","ar":"سحلب","descEn":"Ancient Anatolian comfort drink made from wild orchid tubers — warming and creamy.","descAr":"مشروب الأناضول القديم.","price":38,"img":"Sahlep.jpg","cal":"200 kcal","diet":["contains-dairy"],"hasMilk":true,"temp":"hot"},
-    {"id":"brew7","cat":"brewed","en":"Arabic Coffee – Full Dalla","ar":"قهوة عربية – دلة كاملة","descEn":"Ceremonial centerpiece with cardamom and saffron. Perfect for Eid hosting.","descAr":"قطعة احتفالية بالهيل والزعفران.","price":90,"img":"Arabic.jpg","cal":"10 kcal","diet":["vegan","gluten-free"],"temp":"hot","eid":true},
-    {"id":"brew8","cat":"brewed","en":"Arabic Coffee – Half Dalla","ar":"قهوة عربية – نصف دلة","descEn":"Half-serving of ceremonial Arabic coffee with cardamom and saffron.","descAr":"مثالي لتجمعات العيد الصغيرة.","price":55,"img":"Arabic.jpg","cal":"10 kcal","diet":["vegan","gluten-free"],"temp":"hot"},
-    {"id":"brew9","cat":"brewed","en":"Arabic Coffee – Cup","ar":"قهوة عربية – فنجان","descEn":"Personal serving of authentic Arabic coffee with cardamom.","descAr":"حصة فردية أصيلة بالهيل.","price":35,"img":"Arabiccup.jpeg","cal":"10 kcal","diet":["vegan","gluten-free"],"temp":"hot"},
-    {"id":"tea1","cat":"tea","en":"Turkish Tea","ar":"شاي تركي","descEn":"Deep amber Rize tea served in classic tulip glasses.","descAr":"شاي ريزي عنبري في أكواب التوليب.","price":15,"img":"Tea.jpg","cal":"2 kcal","diet":["vegan"],"temp":"hot"},
-    {"id":"tea2","cat":"tea","en":"Turkish Tea Pot","ar":"إبريق شاي تركي","descEn":"Generous pot of Rize tea — perfect for Eid gatherings.","descAr":"إبريق كبير للمشاركة.","price":45,"img":"Turkishteapot.jpeg","cal":"0 kcal","diet":["vegan"],"temp":"hot","eid":true},
-    {"id":"tea3","cat":"tea","en":"Apple Tea","ar":"شاي التفاح","descEn":"Sun-ripened apple essence, delicate and wonderfully fragrant.","descAr":"خلاصة تفاح ناضج عطري.","price":35,"img":"Appletea.jpg","cal":"2 kcal","diet":["vegan"],"temp":"hot"},
-    {"id":"tea4","cat":"tea","en":"Mulberry Tea","ar":"شاي التوت","descEn":"White mulberry infusion — soft, sweet and calming.","descAr":"منقوع التوت الأبيض الناعم.","price":35,"img":"Mulberrytea.jpg","cal":"2 kcal","diet":["vegan"],"temp":"hot"},
-    {"id":"tea5","cat":"tea","en":"Lemon Mint","ar":"ليمون بالنعناع","descEn":"Zesty squeezed lemon and fresh garden mint leaves.","descAr":"ليمون ونعناع طازج.","price":35,"img":"Lemontea.jpg","cal":"2 kcal","diet":["vegan"],"temp":"hot"},
-    {"id":"tea6","cat":"tea","en":"Pomegranate Tea","ar":"شاي الرمان","descEn":"Vibrant pomegranate infusion with sweet-tart notes.","descAr":"منقوع رمان حلو لاذع.","price":35,"img":"Romantea.jpg","cal":"2 kcal","diet":["vegan"],"temp":"hot"},
-    {"id":"tea7","cat":"tea","en":"Matcha Latte","ar":"ماتشا لاتيه","descEn":"Ceremonial-grade matcha from Japan, whisked to a silky finish.","descAr":"ماتشا يابانية بجودة احتفالية.","price":36,"img":"Matcha.webp","cal":"95 kcal","diet":["vegan"],"hasMilk":true,"temp":"hot"},
-    {"id":"tea9","cat":"tea","en":"Iced Apple Tea","ar":"شاي تفاح مثلج","descEn":"Chilled apple essence over ice — a cool garden breeze.","descAr":"نسيم بستان بارد.","price":35,"img":"Appletea.avif","cal":"35 kcal","diet":["vegan"],"temp":"iced"},
-    {"id":"tea10","cat":"tea","en":"Iced Mulberry Tea","ar":"شاي توت مثلج","descEn":"Frosted mulberry silk — subtle and fruity.","descAr":"حرير مثلج فاكهي.","price":35,"img":"Blackmulberrytea.png","cal":"35 kcal","diet":["vegan"],"temp":"iced"},
-    {"id":"tea11","cat":"tea","en":"Iced Pomegranate Tea","ar":"شاي رمان مثلج","descEn":"Jewel-toned refreshment, chilled and vibrant.","descAr":"منعش بلون الجواهر.","price":35,"img":"Pomegranatetea.avif","cal":"45 kcal","diet":["vegan"],"temp":"iced"},
-    {"id":"tea13","cat":"tea","en":"Hibiscus Iced","ar":"كركديه مثلج","descEn":"Ruby-red glacier with tangy floral notes.","descAr":"نهر جليدي ياقوتي.","price":36,"img":"Hibiscus.webp","cal":"25 kcal","diet":["vegan"],"temp":"iced"},
-    {"id":"tea14","cat":"tea","en":"Hibiscus Tea","ar":"شاي الكركديه","descEn":"Soothing hot hibiscus infusion, naturally caffeine free.","descAr":"منقوع ساخن مهدئ.","price":36,"img":"Hibiscustea.webp","cal":"25 kcal","diet":["vegan"],"temp":"hot"},
-    {"id":"tea15","cat":"tea","en":"Winter Tea","ar":"شاي الشتاء","descEn":"Warming seasonal spice blend with cinnamon and clove.","descAr":"مزيج توابل موسمي دافئ.","price":38,"img":"Wintertea.webp","cal":"30 kcal","diet":["vegan"],"temp":"hot"},
-    {"id":"tea16","cat":"tea","en":"Chamomile","ar":"شاي البابونج","descEn":"Calming golden chamomile flowers for peaceful moments.","descAr":"بابونج ذهبي مهدئ.","price":36,"img":"Chamomiletea.webp","cal":"0 kcal","diet":["vegan"],"temp":"hot"},
-    {"id":"tea17","cat":"tea","en":"Green Tea","ar":"شاي أخضر","descEn":"Pure, clean Japanese green tea — light and refreshing.","descAr":"شاي أخضر ياباني نقي.","price":36,"img":"Greentea.jpg","cal":"0 kcal","diet":["vegan"],"temp":"hot"},
-    {"id":"cafe1","cat":"cafe","en":"Eid Latte","ar":"لاتيه العيد","descEn":"Silky microfoam espresso with exclusive festive seasonal notes. Our Eid signature.","descAr":"إسبريسو ناعم مع نكهات احتفالية.","price":29,"img":"Latteart.webp","cal":"170 kcal","diet":["contains-dairy"],"hasMilk":true,"temp":"hot","eid":true},
-    {"id":"cafe2","cat":"cafe","en":"Cappuccino","ar":"كابوتشينو","descEn":"Equal parts espresso, steamed milk and velvety foam.","descAr":"أجزاء متساوية من الإسبريسو والحليب.","price":29,"img":"Art.webp","cal":"150 kcal","diet":["contains-dairy"],"hasMilk":true,"temp":"hot"},
-    {"id":"cafe3","cat":"cafe","en":"Spanish Latte","ar":"لاتيه إسباني","descEn":"Sweetened condensed milk base beneath bold espresso.","descAr":"حليب مكثف مع إسبريسو.","price":32,"img":"Latteart.webp","cal":"220 kcal","diet":["contains-dairy"],"hasMilk":true,"temp":"hot"},
-    {"id":"cafe4","cat":"cafe","en":"Salted Caramel Latte","ar":"لاتيه كراميل مملح","descEn":"House-made caramel with a touch of fleur de sel — addictive sweetness.","descAr":"كراميل منزلي مع ملح فلور دي سيل.","price":32,"img":"Latteart.webp","cal":"230 kcal","diet":["contains-dairy"],"hasMilk":true,"temp":"hot"},
-    {"id":"cafe5","cat":"cafe","en":"Vanilla Latte","ar":"لاتيه فانيليا","descEn":"Madagascar bourbon vanilla with silky steamed milk.","descAr":"فانيليا بوربون مدغشقر.","price":32,"img":"Art.webp","cal":"220 kcal","diet":["contains-dairy"],"hasMilk":true,"temp":"hot"},
-    {"id":"cafe6","cat":"cafe","en":"Hazelnut Latte","ar":"لاتيه البندق","descEn":"Roasted hazelnut syrup with espresso and steamed milk.","descAr":"نكهة بندق محمص غنية.","price":32,"img":"Art.webp","cal":"180 kcal","diet":["contains-dairy"],"hasMilk":true,"temp":"hot"},
-    {"id":"cafe9","cat":"cafe","en":"White Mocha","ar":"وايت موكا","descEn":"White chocolate blended with espresso and steamed milk.","descAr":"إسبريسو شوكولاتة بيضاء.","price":32,"img":"Latteart.webp","cal":"260 kcal","diet":["contains-dairy"],"hasMilk":true,"temp":"hot"},
-    {"id":"cafe10","cat":"cafe","en":"Mocha","ar":"موكا","descEn":"Dark chocolate and bold espresso in perfect harmony.","descAr":"مزيج إسبريسو شوكولاتة داكنة.","price":32,"img":"Art.webp","cal":"260 kcal","diet":["contains-dairy"],"hasMilk":true,"temp":"hot"},
-    {"id":"cafe11","cat":"cafe","en":"Flat White","ar":"فلات وايت","descEn":"Double ristretto with silky velvety microfoam.","descAr":"ريستريتو مزدوج مخملي.","price":27,"img":"Flatwhite.webp","cal":"140 kcal","diet":["contains-dairy"],"hasMilk":true,"temp":"hot"},
-    {"id":"cafe14","cat":"cafe","en":"Macchiato","ar":"ماكياتو","descEn":"Espresso marked with a delicate touch of silky foam.","descAr":"إسبريسو مع رغوة ناعمة.","price":24,"img":"Latteart.webp","cal":"60 kcal","diet":["contains-dairy"],"hasMilk":true,"temp":"hot"},
-    {"id":"cafe15","cat":"cafe","en":"Espresso Single","ar":"إسبريسو مفرد","descEn":"Pure concentrated coffee essence — no distractions.","descAr":"جوهر القهوة النقية.","price":18,"img":"Espresso.webp","cal":"3 kcal","diet":["vegan"],"temp":"hot"},
-    {"id":"cafe17","cat":"cafe","en":"Americano","ar":"أمريكانو","descEn":"Espresso pulled long with hot water for a smooth cup.","descAr":"إسبريسو مع ماء ساخن.","price":21,"img":"Americano.webp","cal":"5 kcal","diet":["vegan"],"temp":"hot"},
-    {"id":"cafe18","cat":"cafe","en":"Hot Chocolate","ar":"هوت شوكولاتة","descEn":"Artisanal dark cocoa, velvety and rich — pure comfort.","descAr":"كاكاو حرفي مخملي غني.","price":36,"img":"Hotchocolate.jfif","cal":"360 kcal","diet":["contains-dairy"],"hasMilk":true,"temp":"hot"},
-    {"id":"spec1","cat":"specialty","en":"V60 Pour Over","ar":"V60 بور أوفر","descEn":"Single origin beans hand-poured through V60 with bright floral notes.","descAr":"صب يدوي بنوتات زهرية.","price":35,"img":"V60.webp","cal":"2 kcal","diet":["vegan"],"temp":"hot"},
-    {"id":"spec2","cat":"specialty","en":"Ice Drip","ar":"آيس دريب","descEn":"8-hour cold drip extraction for crystal clarity and smooth depth.","descAr":"استخلاص بارد 8 ساعات.","price":35,"img":"Drip.jpg","cal":"2 kcal","diet":["vegan"],"temp":"iced"},
-    {"id":"spec3","cat":"specialty","en":"Cold Brew","ar":"كولد برو","descEn":"18+ hour steep — ultra smooth, ultra low acidity. Game-changer.","descAr":"نقع أكثر من 18 ساعة.","price":37,"img":"Coldbrew.webp","cal":"2 kcal","diet":["vegan"],"temp":"iced"},
-    {"id":"ref1","cat":"refreshers","en":"Eid Lemonade","ar":"ليموناضة العيد","descEn":"Hand-pressed Sicilian lemons with a festive touch.","descAr":"ليمون صقلي طازج.","price":37,"img":"Lemonade.jpg","cal":"120 kcal","diet":["vegan"],"temp":"iced","eid":true},
-    {"id":"ref2","cat":"refreshers","en":"Fresh Orange Juice","ar":"عصير برتقال طازج","descEn":"Valencia oranges, freshly squeezed to order. Pure sunshine.","descAr":"برتقال فالنسيا طازج.","price":37,"img":"Orange.jpeg","cal":"140 kcal","diet":["vegan"],"temp":"iced"},
-    {"id":"ref3","cat":"refreshers","en":"Orange Earl Grey","ar":"برتقال إيرل جراي","descEn":"Citrus-bergamot duet over ice — elegant and unexpected.","descAr":"ثنائي الحمضيات مثلج.","price":47,"img":"Earl.jpeg","cal":"2 kcal","diet":["vegan"],"temp":"iced"},
-    {"id":"ref6","cat":"refreshers","en":"Blueberry Mojito","ar":"موهيتو توت أزرق","descEn":"Wild blueberries with fresh mint and lime over crushed ice.","descAr":"توت بري مع نعناع وليم.","price":38,"img":"Blueberrymojito.webp","cal":"150 kcal","diet":[],"temp":"iced"},
-    {"id":"ref8","cat":"refreshers","en":"Mix Berries Mojito","ar":"موهيتو توت مشكل","descEn":"A berry symphony in sparkling water — vivid and refreshing.","descAr":"سيمفونية التوت المشكل.","price":47,"img":"Mixberriesmojito.webp","cal":"176 kcal","diet":[],"temp":"iced"},
-    {"id":"ref10","cat":"refreshers","en":"Still Water","ar":"مياه عادية","descEn":"330ml still mineral water.","descAr":"330 مل مياه معدنية.","price":11,"img":"WaterBig.jpg","cal":"0 kcal","diet":["vegan"],"temp":"iced"},
-    {"id":"ref12","cat":"refreshers","en":"Sparkling Water","ar":"مياه غازية","descEn":"Naturally carbonated sparkling mineral water.","descAr":"مياه معدنية مكربنة.","price":21,"img":"Sparkling.jpg","cal":"0 kcal","diet":["vegan"],"temp":"iced"},
-    {"id":"ref13","cat":"refreshers","en":"Kinza Cola","ar":"كينزا كولا","descEn":"Our signature house cola blend — a local favourite.","descAr":"مزيج الكولا المميز.","price":17,"img":"Cola.jpg","cal":"150 kcal","diet":[],"temp":"iced"},
-    {"id":"bak1","cat":"baklava","en":"Eid Baklava Mix","ar":"بقلاوة العيد المشكلة","descEn":"Stunning assortment of Ottoman baklava varieties — perfect for Eid gifting.","descAr":"تشكيلة رائعة من أرقى أنواع البقلاوة.","price":65,"img":"Mix.jpeg","cal":"450 kcal","diet":["contains-nuts"],"temp":"room","eid":true},
-    {"id":"bak2","cat":"baklava","en":"Carrot Baklava","ar":"بقلاوة جزر","descEn":"Traditional Ottoman baklava with luscious carrot purée filling.","descAr":"بقلاوة عثمانية مع هريس الجزر.","price":45,"img":"Carrot.jpeg","cal":"420 kcal","diet":["contains-nuts"],"temp":"room"},
-    {"id":"bak3","cat":"baklava","en":"Carrot Baklava & Ice Cream","ar":"بقلاوة جزر مع آيس كريم","descEn":"Warm carrot baklava with cold vanilla ice cream — contrast perfected.","descAr":"بقلاوة دافئة مع آيس كريم فانيليا.","price":55,"img":"Carroticecream.jpeg","cal":"620 kcal","diet":["contains-nuts","contains-dairy"],"temp":"both"},
-    {"id":"bak4","cat":"baklava","en":"Trio Baklava","ar":"تريو بقلاوة","descEn":"Three distinct baklava styles on one plate — a tasting journey.","descAr":"ثلاثة أنماط من البقلاوة.","price":45,"img":"TrioBaklava.jpeg","cal":"480 kcal","diet":["contains-nuts"],"temp":"room"},
-    {"id":"bak6","cat":"baklava","en":"Fanzuella Sweets","ar":"فانزويلا","descEn":"Delicate layered pastry with luscious cream filling.","descAr":"معجنات طبقية مع كريمة.","price":45,"img":"Fanzuella.webp","cal":"420 kcal","diet":["contains-dairy"],"temp":"room"},
-    {"id":"bak8","cat":"baklava","en":"Dark Chocolate Opera","ar":"كيكة شوكولاتة داكنة أوبرا","descEn":"Moist dark chocolate opera cake with intense cocoa layers.","descAr":"كيك أوبرا بالشوكولاتة الداكنة.","price":45,"img":"Darkchocolateopera.jpeg","cal":"540 kcal","diet":["contains-dairy"],"temp":"room"},
-    {"id":"bak9","cat":"baklava","en":"Black Forest Opera","ar":"كيكة الغابة السوداء","descEn":"Rich chocolate sponge with cherry cream layers — a classic.","descAr":"إسفنجة شوكولاتة مع كريمة الكرز.","price":45,"img":"Darkforestopera.jpeg","cal":"560 kcal","diet":["contains-dairy"],"temp":"room"},
-    {"id":"bak10","cat":"baklava","en":"Chocolate Mousse Cake","ar":"كيكة موس شوكولاتة","descEn":"Light airy chocolate mousse cake — clouds of chocolate.","descAr":"موس شوكولاتة خفيف وهوائي.","price":45,"img":"Chocolatemousseopera.jpeg","cal":"530 kcal","diet":["contains-dairy"],"temp":"cold"},
-    {"id":"bak11","cat":"baklava","en":"Red Velvet Cake","ar":"كيكة ريد فلفت","descEn":"Classic soft red sponge with cream cheese frosting.","descAr":"إسفنجة حمراء مع فروستينج كريم جبن.","price":45,"img":"Redvelvetopera.jpeg","cal":"520 kcal","diet":["contains-dairy"],"temp":"room"},
-    {"id":"bak12","cat":"baklava","en":"New York Cheesecake","ar":"تشيز كيك نيويورك","descEn":"Creamy classic cheesecake on graham cracker crust.","descAr":"تشيز كيك كريمي على قاعدة غراهام.","price":45,"img":"Cheesecakeopera.jpeg","cal":"500 kcal","diet":["contains-dairy"],"temp":"cold"},
-    {"id":"bak13","cat":"baklava","en":"Kunafa","ar":"كنافة","descEn":"Shredded kataifi with rich cheese, soaked in orange blossom syrup. Fresh daily.","descAr":"كنافة مبروشة مع الجبن الغني.","price":45,"img":"Kunafa.jpeg","cal":"520 kcal","diet":["contains-dairy"],"temp":"hot","eid":true},
-    {"id":"bak14","cat":"baklava","en":"Brownies","ar":"براونيز","descEn":"Dense, fudge-rich dark chocolate brownies — the ultimate indulgence.","descAr":"كثيف وغني بالشوكولاتة.","price":55,"img":"Brown.jpg","cal":"380 kcal","diet":["contains-dairy"],"temp":"room"},
-    {"id":"bak15","cat":"baklava","en":"Tiramisu","ar":"تيراميسو","descEn":"Classic Italian tiramisu with mascarpone and espresso-soaked ladyfingers.","descAr":"تيراميسو كلاسيكي بالمسكاربوني.","price":50,"img":"Tiramisu.jpg","cal":"420 kcal","diet":["contains-dairy"],"temp":"cold"},
-    {"id":"bak17","cat":"baklava","en":"San Sebastian Cheesecake","ar":"تشيز كيك سان سيباستيان","descEn":"Basque burnt cheesecake — caramelised top, creamy inside. Extraordinary.","descAr":"قمة مكرملة وكريمية.","price":45,"img":"Sebastian.jpg","cal":"520 kcal","diet":["contains-dairy"],"temp":"cold"},
-    {"id":"bak_cd","cat":"baklava","en":"Chocolate Delight","ar":"لذة الشوكولاتة","descEn":"Rich chocolate mousse with dark chocolate glaze and edible gold leaf.","descAr":"موس شوكولاتة مع ورق الذهب.","price":45,"img":"Chocolatenew.jpeg","cal":"420 kcal","diet":["contains-dairy"],"temp":"cold"},
-    {"id":"bak_pb","cat":"baklava","en":"Pistachio Baklava Roll","ar":"لفة بقلاوة بالفستق","descEn":"Crispy phyllo rolls with pistachios and rose syrup — beautifully delicate.","descAr":"لفائف فيلو مع الفستق وشراب الورد.","price":48,"img":"Pistachionew.jpeg","cal":"480 kcal","diet":["contains-nuts"],"temp":"room","eid":true},
-    {"id":"bak_sc","cat":"baklava","en":"Snickers-Style Cake","ar":"كيك سنيكرز","descEn":"Chocolate sponge, caramel, peanut nougat, milk chocolate — layers of joy.","descAr":"طبقات كيك الشوكولاتة والكراميل.","price":52,"img":"Snickernew.jpeg","cal":"580 kcal","diet":["contains-dairy","contains-nuts"],"temp":"cold"},
-    {"id":"snack01","cat":"snacks","en":"Turkish Ice Cream","ar":"آيس كريم تركي","descEn":"Classic stretchy dondurma — the beloved Eid crowd pleaser.","descAr":"دوندورما كلاسيكي مطاطي.","price":27,"img":"Icecream.webp","cal":"210 kcal","diet":["contains-dairy"],"temp":"cold","eid":true},
-    {"id":"snack1","cat":"snacks","en":"Nuts Stand – Tall","ar":"مكسرات – ستاند كبير","descEn":"Premium roasted nuts — the centrepiece of Eid tables.","descAr":"مكسرات محمصة فاخرة.","price":99,"img":"Nuts.jpg","cal":"300 kcal","diet":["contains-nuts"],"temp":"room","eid":true},
-    {"id":"snack2","cat":"snacks","en":"Nuts Stand – Small","ar":"مكسرات – ستاند صغير","descEn":"Curated premium roasted nuts — perfectly portioned.","descAr":"مزيج منسق من المكسرات.","price":60,"img":"Nutsmall.jpg","cal":"180 kcal","diet":["contains-nuts"],"temp":"room"},
-    {"id":"snack4","cat":"snacks","en":"French Fries","ar":"بطاطس مقلية","descEn":"Golden crispy seasoned fries — irresistibly good.","descAr":"بطاطس ذهبية مقرمشة.","price":29,"img":"Patatas.jpg","cal":"340 kcal","diet":["vegan"],"temp":"hot"},
-    {"id":"cro1","cat":"croissant","en":"Plain Butter Croissant","ar":"كرواسون زبدة","descEn":"Classic Parisian all-butter croissant — flaky perfection.","descAr":"كرواسون زبدة باريسي.","price":20,"img":"Plain.webp","cal":"320 kcal","diet":["vegetarian"],"temp":"room"},
-    {"id":"cro2","cat":"croissant","en":"Cheese Croissant","ar":"كرواسون جبن","descEn":"Flaky buttery croissant with perfectly melted cheese inside.","descAr":"محشو بالجبن المذاب.","price":20,"img":"Cheese.jpg","cal":"360 kcal","diet":["vegetarian"],"temp":"room"},
-    {"id":"cro3","cat":"croissant","en":"Chocolate Croissant","ar":"كرواسون شوكولاتة","descEn":"Buttery laminated pastry encasing dark chocolate batons.","descAr":"أصابع شوكولاتة داكنة.","price":20,"img":"Chocolatecroissant.jpg","cal":"380 kcal","diet":["vegetarian"],"temp":"room"},
-    {"id":"cro4","cat":"croissant","en":"Almond Croissant","ar":"كرواسون لوز","descEn":"Almond frangipane cream topped with toasted almond slices.","descAr":"كريمة لوز بشرائح اللوز المحمص.","price":20,"img":"Almondcroissant.jpg","cal":"400 kcal","diet":["vegetarian","contains-nuts"],"temp":"room"},
-    {"id":"cro5","cat":"croissant","en":"Cinnamon Danish","ar":"دانش قرفة","descEn":"Cinnamon sugar spiral with warm spiced icing — morning luxury.","descAr":"حلزوني قرفة وسكر.","price":20,"img":"Cinnamon.jpg","cal":"390 kcal","diet":["vegetarian"],"temp":"room"}
-  ]
-}
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-<script>
-(function () {
-'use strict';
-const D = JSON.parse(document.getElementById('menuData').textContent);
-const BASE = D.BASE;
-const FB = D.FB;
-const MILK = ['Full Fat','Low Fat','Skim','Almond','Soy','Oat','Coconut','Lactose Free'];
-const TEMP_LABEL = { hot:'☕ Hot', iced:'❄️ Iced', cold:'❄️ Cold', both:'☕/❄️', room:'🏠 Ambient' };
-const PAGE_SIZE = 16;
-let lang = 'en';
-let activeCat = 'all';
-let activeDiets = [];
-let eidOnly = false;
-let searchQuery = '';
-let filtered = [];
-let offset = 0;
-let sentinelIO = null;
-let debounceTimer = null;
-const $ = id => document.getElementById(id);
-const el = {
-  splash: $('splash'),
-  enterBtn: $('enterBtn'),
-  app: $('app'),
-  searchInput: $('searchInput'),
-  searchClear: $('searchClear'),
-  mobileSearch: $('mobileSearch'),
-  catTrack: $('catTrack'),
-  dietBar: $('dietBar'),
-  menuGrid: $('menuGrid'),
-  itemModal: $('itemModal'),
-  modalImg: $('modalImg'),
-  modalBody: $('modalBody'),
-  modalRecos: $('modalRecos'),
-  sigGrid: $('sigGrid'),
-  marqueeTrack: $('marqueeTrack'),
-  btt: $('btt'),
-  a11y: $('a11y'),
-  langBtn: $('langBtn'),
-  headerLogo: $('headerLogo')
-};
-function initSplashStars() {
-  const cv = $('splashCanvas');
-  if (!cv) return;
-  cv.width = innerWidth;
-  cv.height = innerHeight;
-  const ctx = cv.getContext('2d');
-  const stars = Array.from({length: 180}, () => ({
-    x: Math.random() * cv.width,
-    y: Math.random() * cv.height,
-    r: Math.random() * 1.6 + 0.2,
-    speed: Math.random() * 0.015 + 0.004,
-    phase: Math.random() * Math.PI * 2
-  }));
-  let t = 0;
-  function tick() {
-    if (!$('splash')) return;
-    requestAnimationFrame(tick);
-    t += 0.012;
-    ctx.clearRect(0, 0, cv.width, cv.height);
-    stars.forEach(s => {
-      const opacity = 0.4 + 0.6 * Math.sin(t * s.speed * 60 + s.phase);
-      ctx.globalAlpha = opacity;
-      ctx.fillStyle = '#f5f0e8';
-      ctx.shadowBlur = s.r * 3.5;
-      ctx.shadowColor = 'rgba(212,184,138,.7)';
-      ctx.fillRect(s.x, s.y, s.r, s.r);
-    });
-  }
-  tick();
-  window.addEventListener('resize', () => {
-    cv.width = innerWidth;
-    cv.height = innerHeight;
-  });
-}
-function enterApp() {
-  el.splash.classList.add('exit');
-  el.app.classList.add('visible');
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => el.app.classList.add('shown'));
-  });
-  setTimeout(() => el.splash.remove(), 1200);
-}
-el.enterBtn.addEventListener('click', enterApp);
-el.splash.addEventListener('keydown', e => {
-  if (e.key === 'Enter' || e.key === ' ') enterApp();
-});
-function initMarquee() {
-  const items = [
-    {t:'Classic Turkish Coffee',g:true},
-    {t:'Ottoman Mastic Coffee',g:false},
-    {t:'Eid Baklava Mix',g:true},
-    {t:'Kunafa · Fresh Daily',g:false},
-    {t:'Turkish Tea Pot',g:true},
-    {t:'Pistachio Baklava Roll',g:false},
-    {t:'V60 Pour Over',g:true},
-    {t:'San Sebastian Cheesecake',g:false}
-  ];
-  const all = [...items, ...items];
-  el.marqueeTrack.innerHTML = all.map(i => 
-    `<div class="marquee-item"><span class="marquee-text${i.g?' gold':''}">${i.t}</span><span class="marquee-gem" aria-hidden="true">◆</span></div>`
-  ).join('');
-}
-let qbIdx = 0;
-let qbTimer = null;
-const qBar = document.getElementById('quoteBar');
-const qbText = document.getElementById('qbarText');
-const qbAttr = document.getElementById('qbarAttr');
-const qbDots = document.getElementById('qbarDots');
-const qbClose = document.getElementById('qbarClose');
-function initQuoteBar() {
-  const quotes = D.quotes;
-  qbDots.innerHTML = quotes.map((_, i) => 
-    `<button class="qbdot${i===0?' active':''}" data-i="${i}" role="tab" aria-label="Quote ${i+1}" aria-selected="${i===0}"></button>`
-  ).join('');
-  qbDots.querySelectorAll('.qbdot').forEach(dot => {
-    dot.addEventListener('click', () => {
-      const i = parseInt(dot.dataset.i);
-      goQBar(i);
-      resetQBTimer();
-    });
-  });
-  qbText.textContent = '"' + quotes[0].text + '"';
-  qbAttr.textContent = '— ' + quotes[0].attr;
-  setTimeout(() => {
-    qBar.classList.add('visible');
-    document.body.classList.add('qbar-open');
-  }, 1200);
-  startQBTimer();
-  qbClose.addEventListener('click', () => {
-    qBar.classList.add('hidden');
-    setTimeout(() => {
-      qBar.classList.remove('visible','hidden');
-      document.body.classList.remove('qbar-open');
-    }, 600);
-    clearInterval(qbTimer);
-  });
-}
-function goQBar(idx) {
-  const quotes = D.quotes;
-  qbText.style.transition = 'opacity .4s ease';
-  qbAttr.style.transition = 'opacity .4s ease';
-  qbText.style.opacity = 0;
-  qbAttr.style.opacity = 0;
-  setTimeout(() => {
-    qbText.textContent = '"' + quotes[idx].text + '"';
-    qbAttr.textContent = '— ' + quotes[idx].attr;
-    qbText.style.opacity = 1;
-    qbAttr.style.opacity = 1;
-  }, 400);
-  qbDots.querySelectorAll('.qbdot').forEach((d, i) => {
-    d.classList.toggle('active', i === idx);
-    d.setAttribute('aria-selected', String(i === idx));
-  });
-  qbIdx = idx;
-}
-function nextQB() { goQBar((qbIdx + 1) % D.quotes.length); }
-function startQBTimer() { qbTimer = setInterval(nextQB, 5200); }
-function resetQBTimer() { clearInterval(qbTimer); startQBTimer(); }
-const qrModal = document.getElementById('qrModal');
-const qrOutput = document.getElementById('qrOutput');
-const qrBtn = document.getElementById('qrBtn');
-const qrClose = document.getElementById('qrClose');
-function generateQR(text) {
-  qrOutput.innerHTML = '';
-  if (typeof QRCode !== 'undefined') {
-    new QRCode(qrOutput, {
-      text: text || 'https://turkianacafe.qa',
-      width: 210,
-      height: 210,
-      colorDark: '#1f1a14',
-      colorLight: '#fff',
-      correctLevel: QRCode.CorrectLevel.H
-    });
-  }
-}
-qrBtn.addEventListener('click', () => {
-  generateQR(location.href);
-  qrModal.showModal();
-});
-qrClose.addEventListener('click', () => qrModal.close());
-qrModal.addEventListener('click', e => {
-  if (e.target === qrModal) qrModal.close();
-});
-function renderSig() {
-  const picks = [
-    { id: 'brew3', badge: 'Staff Pick', cat: 'Turkish Coffee' },
-    { id: 'bak1', badge: 'Signature', cat: 'Ottoman Sweets' },
-    { id: 'bak13', badge: 'Fresh Daily', cat: 'Kunafa' }
-  ];
-  el.sigGrid.innerHTML = picks.map(p => {
-    const item = D.items.find(x => x.id === p.id);
-    if (!item) return '';
-    const name = lang === 'ar' ? item.ar : item.en;
-    const desc = lang === 'ar' ? (item.descAr || item.descEn) : item.descEn;
-    return `<article class="sig-card" tabindex="0" data-id="${item.id}" aria-label="${name}">
-      <div class="sig-img-wrap">
-        <div class="sig-img-ph" aria-hidden="true">☕</div>
-        <img class="sig-img" src="${BASE}${item.img}" alt="${name}" loading="lazy"
-          onload="this.classList.add('loaded');this.previousElementSibling.style.opacity='0'"
-          onerror="this.src='${FB}';this.classList.add('loaded');this.previousElementSibling.style.opacity='0'">
-        <div class="sig-badge">${p.badge}</div>
-      </div>
-      <div class="sig-body">
-        <p class="sig-cat">${p.cat}</p>
-        <h3 class="sig-name">${name}</h3>
-        <p class="sig-price">${item.price} QAR</p>
-        <p class="sig-note">${desc}</p>
-      </div>
-    </article>`;
-  }).join('');
-  el.sigGrid.querySelectorAll('.sig-card').forEach(card => {
-    card.addEventListener('click', () => {
-      const item = D.items.find(x => x.id === card.dataset.id);
-      if (item) openModal(item);
-    });
-  });
-}
-function applyLang() {
-  const isAr = lang === 'ar';
-  document.documentElement.lang = lang;
-  document.documentElement.dir = isAr ? 'rtl' : 'ltr';
-  el.langBtn.textContent = isAr ? 'EN' : 'AR';
-}
-el.langBtn.addEventListener('click', () => {
-  lang = lang === 'en' ? 'ar' : 'en';
-  applyLang();
-  renderCats();
-  renderDiets();
-  renderSig();
-  refreshGrid();
-});
-function renderCats() {
-  el.catTrack.innerHTML = D.categories.map(c => {
-    const label = lang === 'ar' ? c.ar : c.en;
-    const active = c.id === activeCat;
-    return `<button class="cat-pill${active ? ' active' : ''}" data-id="${c.id}" role="tab" aria-selected="${active}">${label}</button>`;
-  }).join('');
-  el.catTrack.querySelectorAll('.cat-pill').forEach(btn => {
-    btn.addEventListener('click', () => {
-      activeCat = btn.dataset.id;
-      renderCats();
-      refreshGrid();
-      btn.scrollIntoView({ behavior: 'smooth', inline: 'center' });
-    });
-  });
-}
-function renderDiets() {
-  const eidLabel = lang === 'ar' ? '★ مختارات العيد' : '★ Eid Picks';
-  el.dietBar.innerHTML = 
-    `<button class="dpill eid-pill${eidOnly ? ' on' : ''}">${eidLabel}</button>` +
-    D.diets.map(d => {
-      const label = lang === 'ar' ? d.ar : d.en;
-      const active = activeDiets.includes(d.id);
-      return `<button class="dpill${active ? ' on' : ''}" data-d="${d.id}">${label}</button>`;
-    }).join('');
-  el.dietBar.querySelectorAll('button').forEach(btn => {
-    if (btn.classList.contains('eid-pill')) {
-      btn.addEventListener('click', () => {
-        eidOnly = !eidOnly;
-        renderDiets();
-        refreshGrid();
-      });
-    } else {
-      btn.addEventListener('click', () => {
-        const id = btn.dataset.d;
-        if (activeDiets.includes(id)) {
-          activeDiets = activeDiets.filter(x => x !== id);
-        } else {
-          activeDiets.push(id);
-        }
-        renderDiets();
-        refreshGrid();
-      });
-    }
-  });
-}
-function getFiltered() {
-  let items = D.items;
-  if (activeCat !== 'all') items = items.filter(i => i.cat === activeCat);
-  if (eidOnly) items = items.filter(i => i.eid === true);
-  if (searchQuery) {
-    const q = searchQuery.toLowerCase();
-    items = items.filter(i => 
-      (i.en && i.en.toLowerCase().includes(q)) ||
-      (i.ar && i.ar.toLowerCase().includes(q)) ||
-      (i.descEn && i.descEn.toLowerCase().includes(q))
-    );
-  }
-  if (activeDiets.length) {
-    items = items.filter(item => {
-      const diets = item.diet || [];
-      return activeDiets.every(filter => {
-        if (filter === 'vegan') return diets.includes('vegan');
-        if (filter === 'no-nuts') return !diets.includes('contains-nuts');
-        if (filter === 'dairy-free') return !diets.includes('contains-dairy');
-        if (filter === 'gluten-free') return diets.includes('gluten-free');
-        return true;
-      });
-    });
-  }
-  return items;
-}
-const cardObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('revealed');
-      cardObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.15 });
-function buildCard(item) {
-  const name = lang === 'ar' ? item.ar : item.en;
-  const altName = lang === 'ar' ? item.en : item.ar;
-  const desc = lang === 'ar' ? (item.descAr || item.descEn) : item.descEn;
-  const dietDots = (item.diet || []).map(d => {
-    if (d === 'vegan') return '<span class="cdot vg" title="Vegan"></span>';
-    if (d === 'gluten-free') return '<span class="cdot gf" title="Gluten-free"></span>';
-    if (d === 'dairy-free') return '<span class="cdot df" title="Dairy-free"></span>';
-    return '';
-  }).join('');
-  const cardHTML = `
-    <div class="card-img-wrap">
-      <div class="card-img-skel"></div>
-      <img class="card-img" src="${BASE}${item.img}" alt="${name}" loading="lazy" decoding="async">
-      <div class="card-overlay"></div>
-      <div class="card-price">${item.price} QAR</div>
-      ${item.eid ? `<div class="card-eid-badge" style="background:rgba(179,139,94,.9);color:#f5f0e8">★ Eid</div>` : ''}
-    </div>
-    <div class="card-body">
-      <div class="card-name">${name}</div>
-      ${altName ? `<div class="card-name-ar">${altName}</div>` : ''}
-      <div class="card-desc">${desc}</div>
-      <div class="card-foot">
-        <span class="card-cal">${item.cal}</span>
-        <div class="card-dots">${dietDots}</div>
-      </div>
-    </div>`;
-  const card = document.createElement('div');
-  card.className = 'menu-card';
-  card.innerHTML = cardHTML;
-  card.setAttribute('role', 'button');
-  card.setAttribute('tabindex', '0');
-  card.setAttribute('aria-label', `${name} · ${item.price} QAR`);
-  card.dataset.id = item.id;
-  const img = card.querySelector('.card-img');
-  const skel = card.querySelector('.card-img-skel');
-  img.onload = () => {
-    img.classList.add('loaded');
-    skel.classList.add('done');
-  };
-  img.onerror = () => {
-    img.src = FB;
-    img.classList.add('loaded');
-    skel.classList.add('done');
-  };
-  const open = () => openModal(item);
-  card.addEventListener('click', open);
-  card.addEventListener('keydown', e => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      open();
-    }
-  });
-  return card;
-}
-function renderGrid(items) {
-  if (sentinelIO) sentinelIO.disconnect();
-  cardObserver.disconnect();
-  el.menuGrid.innerHTML = '';
-  filtered = items;
-  offset = 0;
-  el.a11y.textContent = `${items.length} items`;
-  if (!items.length) {
-    el.menuGrid.innerHTML = `<div class="empty-state"><div class="empty-icon">☕</div><div class="empty-lbl">${searchQuery ? `No results for “${searchQuery}”` : 'Nothing found'}</div></div>`;
-    return;
-  }
-  renderNextPage();
-}
-function renderNextPage() {
-  const slice = filtered.slice(offset, offset + PAGE_SIZE);
-  offset += slice.length;
-  slice.forEach(item => {
-    const card = buildCard(item);
-    el.menuGrid.appendChild(card);
-    cardObserver.observe(card);
-  });
-  if (offset < filtered.length) {
-    const sentinel = document.createElement('div');
-    sentinel.style.height = '20px';
-    el.menuGrid.appendChild(sentinel);
-    sentinelIO = new IntersectionObserver(e => {
-      if (e[0].isIntersecting) {
-        sentinelIO.disconnect();
-        sentinel.remove();
-        renderNextPage();
-      }
-    }, { threshold: 0.3 });
-    sentinelIO.observe(sentinel);
-  }
-}
-function refreshGrid() {
-  el.menuGrid.classList.add('fading');
-  setTimeout(() => {
-    renderGrid(getFiltered());
-    el.menuGrid.classList.remove('fading');
-  }, 180);
-}
-function handleSearch(val) {
-  searchQuery = val.trim();
-  el.searchClear.classList.toggle('show', !!searchQuery);
-  clearTimeout(debounceTimer);
-  debounceTimer = setTimeout(refreshGrid, 140);
-}
-el.searchInput.addEventListener('input', e => handleSearch(e.target.value));
-el.mobileSearch.addEventListener('input', e => {
-  el.searchInput.value = e.target.value;
-  handleSearch(e.target.value);
-});
-el.searchClear.addEventListener('click', () => {
-  el.searchInput.value = '';
-  el.mobileSearch.value = '';
-  handleSearch('');
-});
-function trapFocus(modal) {
-  const focusable = modal.querySelectorAll('button, [href], input, [tabindex]:not([tabindex="-1"])');
-  const first = focusable[0];
-  const last = focusable[focusable.length - 1];
-  function handler(e) {
-    if (e.key !== 'Tab') return;
-    if (e.shiftKey) {
-      if (document.activeElement === first) { e.preventDefault(); last.focus(); }
-    } else {
-      if (document.activeElement === last) { e.preventDefault(); first.focus(); }
-    }
-  }
-  modal.addEventListener('keydown', handler);
-  return () => modal.removeEventListener('keydown', handler);
-}
-let currentTrap = null;
-function openModal(item) {
-  const name = lang === 'ar' ? item.ar : item.en;
-  const altName = lang === 'ar' ? item.en : item.ar;
-  const desc = lang === 'ar' ? (item.descAr || item.descEn) : item.descEn;
-  const hasMilk = item.hasMilk || (item.diet || []).some(d => d.includes('dairy'));
-  el.modalImg.innerHTML = `
-    <div class="modal-img-ph" aria-hidden="true">☕</div>
-    <img src="${BASE}${item.img}" alt="${name}" decoding="async">
-    <button class="modal-close" id="modalClose" aria-label="Close">✕</button>`;
-  const modalImgEl = el.modalImg.querySelector('img');
-  modalImgEl.onload = () => {
-    modalImgEl.classList.add('loaded');
-    el.modalImg.querySelector('.modal-img-ph').style.opacity = '0';
-  };
-  modalImgEl.onerror = () => {
-    modalImgEl.src = FB;
-    modalImgEl.classList.add('loaded');
-    el.modalImg.querySelector('.modal-img-ph').style.opacity = '0';
-  };
-  document.getElementById('modalClose').addEventListener('click', () => el.itemModal.close());
-  const allergens = (item.diet || []).length ? item.diet.join(', ').replace('contains-', '') : 'None';
-  const milkHTML = hasMilk ? `
-    <div class="modal-milk">
-      <div class="modal-milk-label">Milk preference</div>
-      <div class="modal-milk-opts">
-        ${MILK.map((m,i) => `<button class="milk-opt${i===0?' on':''}" data-m="${m}">${m}</button>`).join('')}
-      </div>
-    </div>` : '';
-  el.modalBody.innerHTML = `
-    <div class="modal-name">${name}</div>
-    ${altName ? `<div class="modal-name-ar">${altName}</div>` : ''}
-    <div class="modal-price">${item.price}<span>QAR</span></div>
-    <div class="modal-desc">${desc}</div>
-    <div class="modal-meta">
-      <div class="mmeta"><div class="mmeta-l">Calories</div><div class="mmeta-v">${item.cal}</div></div>
-      <div class="mmeta"><div class="mmeta-l">Served</div><div class="mmeta-v">${TEMP_LABEL[item.temp] || '—'}</div></div>
-      <div class="mmeta"><div class="mmeta-l">Allergens</div><div class="mmeta-v" style="text-transform:capitalize">${allergens}</div></div>
-      <div class="mmeta"><div class="mmeta-l">Category</div><div class="mmeta-v" style="text-transform:capitalize">${item.cat}</div></div>
-    </div>
-    ${milkHTML}`;
-  el.modalBody.querySelectorAll('.milk-opt').forEach(opt => {
-    opt.addEventListener('click', () => {
-      el.modalBody.querySelectorAll('.milk-opt').forEach(o => o.classList.remove('on'));
-      opt.classList.add('on');
-    });
-  });
-  const recos = D.items.filter(x => x.id !== item.id && x.cat === item.cat).slice(0, 5);
-  if (recos.length) {
-    el.modalRecos.innerHTML = `
-      <div class="modal-recos">
-        <div class="modal-recos-title">You might also like</div>
-        <div class="modal-recos-list">
-          ${recos.map(r => {
-            const rn = lang === 'ar' ? r.ar : r.en;
-            return `<div class="reco-card" data-id="${r.id}">
-              <img class="reco-img" src="${BASE}${r.img}" alt="${rn}" onerror="this.src='${FB}'">
-              <div class="reco-name">${rn}</div>
-              <div class="reco-price">${r.price} QAR</div>
-            </div>`;
-          }).join('')}
+    <span class="sr-only" aria-live="polite" id="a11y"></span>
+    
+    <div id="splash" role="main" aria-label="Turkiana — Welcome">
+        <canvas id="splashCanvas" aria-hidden="true"></canvas>
+        <div class="splash-content">
+            <p class="splash-brand">Msheireb Downtown · Doha, Qatar</p>
+            <h1 class="splash-name">Turkiana</h1>
+            <p class="splash-tagline">Where Ottoman tradition meets the art of every cup</p>
+            <p class="splash-tagline-ar">قهوة تركية فاخرة وحلويات عثمانية أصيلة</p>
+            <button class="splash-cta" id="enterBtn" aria-label="Enter the menu">
+                Discover
+                <span class="splash-cta-arrow" aria-hidden="true">↓</span>
+            </button>
         </div>
-      </div>`;
-    el.modalRecos.querySelectorAll('.reco-card').forEach(c => {
-      c.addEventListener('click', () => {
-        const it = D.items.find(x => x.id === c.dataset.id);
-        if (it) {
-          el.itemModal.close();
-          setTimeout(() => openModal(it), 120);
-        }
-      });
-    });
-  } else {
-    el.modalRecos.innerHTML = '';
-  }
-  el.itemModal.showModal();
-  el.itemModal.querySelector('.modal-scroll').scrollTop = 0;
-  if (currentTrap) currentTrap();
-  currentTrap = trapFocus(el.itemModal);
-}
-el.itemModal.addEventListener('click', e => {
-  if (e.target === el.itemModal) el.itemModal.close();
-});
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') {
-    if (el.itemModal.open) el.itemModal.close();
-    else if (qrModal.open) qrModal.close();
-  }
-});
-window.addEventListener('scroll', () => {
-  el.btt.classList.toggle('show', window.scrollY > 520);
-}, { passive: true });
-el.btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-el.headerLogo.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-initSplashStars();
-applyLang();
-renderCats();
-renderDiets();
-renderSig();
-initMarquee();
-initQuoteBar();
-renderGrid(getFiltered());
-})();
-</script>
+    </div>
+    
+    <div id="app">
+        <header class="site-header">
+            <div class="header-logo" id="headerLogo" role="button" tabindex="0" aria-label="Turkiana — scroll to top">Turkiana</div>
+            
+            <div class="header-search" role="search" aria-label="Search menu">
+                <span class="header-search-icon" aria-hidden="true">🔍</span>
+                <input type="search" id="searchInput" class="header-search-input" placeholder="Search coffee, sweets, tea…" autocomplete="off" spellcheck="false" aria-label="Search menu items">
+                <button class="header-search-clear" id="searchClear" aria-label="Clear search">✕</button>
+            </div>
+            
+            <div class="header-actions">
+                <button class="hbtn" id="qrBtn" aria-label="Show QR code">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 3h7v7H3V3zm1 1v5h5V4H4zm1 1h3v3H5V5zm8-2h7v7h-7V3zm1 1v5h5V4h-5zm1 1h3v3h-3V5zM3 13h7v7H3v-7zm1 1v5h5v-5H4zm1 1h3v3H5v-3zm8 0h2v2h-2v-2zm3 0h2v2h-2v-2zm-3 3h2v2h-2v-2zm3 0h2v2h-2v-2zm-3 3h2v2h-2v-2zm3 0h2v2h-2v-2z"/></svg>
+                    QR
+                </button>
+                <button class="hbtn lang" id="langBtn" aria-label="Switch language">AR</button>
+            </div>
+        </header>
+        
+        <div class="mobile-search-wrap" id="mobileSearchWrap">
+            <span class="m-icon" aria-hidden="true">🔍</span>
+            <input type="search" id="mobileSearch" placeholder="Search menu…" autocomplete="off">
+        </div>
+        
+        <div class="marquee-strip" aria-hidden="true">
+            <div class="marquee-track" id="marqueeTrack"></div>
+        </div>
+        
+        <section class="sig-section" aria-label="Signature picks">
+            <div class="sig-inner">
+                <p class="sig-tag">Customers’ Best</p>
+                <h2 class="sig-title">Our <em>Signature</em> Three</h2>
+                <div class="sig-rule" aria-hidden="true"></div>
+                <p class="sig-lead">What our team orders every single shift. No exceptions.</p>
+                <div class="sig-grid" id="sigGrid"></div>
+            </div>
+        </section>
+        
+        <div class="geo-divider" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                <defs>
+                    <pattern id="gp" x="0" y="0" width="48" height="48" patternUnits="userSpaceOnUse">
+                        <g fill="none" stroke="#d4b88a" stroke-width=".8">
+                            <polygon points="24,2 35,13 46,13 37,24 46,35 35,35 24,46 13,35 2,35 11,24 2,13 13,13"/>
+                            <circle cx="24" cy="24" r="5.5"/>
+                        </g>
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#gp)"/>
+            </svg>
+        </div>
+        
+        <div id="menu-anchor" style="scroll-margin-top: 132px"></div>
+        
+        <div class="menu-header">
+            <p class="menu-eyebrow">Selections</p>
+            <h2 class="menu-title">Menu</h2>
+            <p class="menu-sub">From ceremonial Turkish coffee to layered Ottoman pastries — every item crafted with intention.</p>
+        </div>
+        
+        <nav class="cat-nav" aria-label="Menu categories">
+            <div class="cat-scroll">
+                <div class="cat-track" id="catTrack" role="tablist"></div>
+            </div>
+        </nav>
+        
+        <div class="diet-bar" id="dietBar" aria-label="Dietary filters"></div>
+        
+        <div class="menu-orn" aria-hidden="true">
+            <div class="orn-line"></div>
+            <span class="orn-gem">✦</span>
+            <div class="orn-line"></div>
+        </div>
+        
+        <main class="menu-area">
+            <div class="menu-grid" id="menuGrid" aria-label="Menu items" aria-live="polite"></div>
+        </main>
+        
+        <footer class="site-footer">
+            <div class="footer-logo">Turkiana</div>
+            <div class="footer-rule" aria-hidden="true"></div>
+            <p class="footer-info">
+                Msheireb Downtown, Doha, Qatar<br>
+                <a href="tel:+97451866671">+974 5186 6671</a> &nbsp;·&nbsp;
+                <a href="https://instagram.com/turkianacafe" target="_blank" rel="noopener">@turkianacafe</a>
+            </p>
+            <div class="footer-hours">
+                <h4>Opening Hours</h4>
+                <div class="hours-grid">
+                    <div>Saturday — Wednesday</div><div>9:00 AM — 12:00 AM</div>
+                    <div>Thursday — Friday</div><div>9:00 AM — 1:00 AM</div>
+                </div>
+            </div>
+            <p class="footer-copy">© 2026 Turkiana · Msheireb Downtown · Doha, Qatar</p>
+        </footer>
+    </div>
+    
+    <dialog id="qrModal" aria-modal="true" aria-label="QR Code">
+        <div class="modal-inner" style="max-width:340px;border-radius:24px">
+            <div style="padding:36px 36px 32px;text-align:center;position:relative;">
+                <button class="modal-close" id="qrClose" aria-label="Close" style="position:absolute;top:20px;right:20px">✕</button>
+                <p style="font-family:var(--ff-display);font-size:1.2rem;color:var(--text);margin-bottom:8px;font-weight:400">Scan to Open Menu</p>
+                <p style="font-size:0.75rem;color:var(--text3);letter-spacing:0.12em;margin-bottom:26px">Point your camera at this code</p>
+                <div id="qrOutput" style="background:#fff;border-radius:16px;padding:22px;display:inline-block;line-height:0"></div>
+                <p style="font-size:0.7rem;color:var(--text4);margin-top:22px;letter-spacing:0.12em">turkianacafe.qa</p>
+            </div>
+        </div>
+    </dialog>
+    
+    <dialog id="itemModal" aria-modal="true" aria-label="Menu item details">
+        <div class="modal-inner">
+            <div class="modal-img-wrap" id="modalImg"></div>
+            <div class="modal-scroll">
+                <div id="modalBody"></div>
+                <div id="modalRecos"></div>
+            </div>
+        </div>
+    </dialog>
+    
+    <div id="quoteBar" aria-live="polite" role="complementary" aria-label="Quote of the moment">
+        <div class="qbar-inner">
+            <span class="qbar-gem" aria-hidden="true">✦</span>
+            <div class="qbar-text-wrap">
+                <div id="qbarText" class="qbar-text"></div>
+                <div id="qbarAttr" class="qbar-attr"></div>
+            </div>
+            <div class="qbar-dots" id="qbarDots" role="tablist" aria-label="Quote navigation"></div>
+            <button class="qbar-close" id="qbarClose" aria-label="Dismiss quote bar">✕</button>
+        </div>
+    </div>
+    
+    <button id="btt" aria-label="Back to top">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
+    </button>
+    
+    <script id="menuData" type="application/json">
+    {
+      "BASE": "https://turkianacafe-ux.github.io/Turkiana-Cafe-Sweets/",
+      "FB": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='240'%3E%3Crect width='400' height='240' fill='%23221b15'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia' font-size='22' fill='%23c9a66b'%3E✦ Turkiana%3C/text%3E%3C/svg%3E",
+      "categories": [
+        {"id":"all","en":"✦ Full Menu","ar":"✦ القائمة الكاملة"},
+        {"id":"brewed","en":"Turkish & Arabic","ar":"تركي وعربي"},
+        {"id":"tea","en":"Tea","ar":"شاي"},
+        {"id":"cafe","en":"Café Classics","ar":"كلاسيك"},
+        {"id":"specialty","en":"Specialty","ar":"مميزة"},
+        {"id":"refreshers","en":"Refreshers","ar":"منعشات"},
+        {"id":"baklava","en":"Sweets","ar":"حلويات"},
+        {"id":"snacks","en":"Eid Snacks","ar":"مأكولات العيد"},
+        {"id":"croissant","en":"Eid Morning","ar":"صباح العيد"}
+      ],
+      "diets": [
+        {"id":"vegan","en":"🌱 Vegan","ar":"🌱 نباتي"},
+        {"id":"no-nuts","en":"🚫 No Nuts","ar":"🚫 بدون مكسرات"},
+        {"id":"dairy-free","en":"🥛 Dairy-Free","ar":"🥛 خالي ألبان"},
+        {"id":"gluten-free","en":"✓ Gluten-Free","ar":"✓ خالي غلوتين"}
+      ],
+      "quotes": [
+        {"text":"Coffee is the common man's gold, and like gold it brings to every person the feeling of luxury and nobility.", "attr":"Sheikh Abd-al-Kadir al-Jaziri · 1587"},
+        {"text":"Coffee should be black as hell, strong as death, and sweet as love.", "attr":"Turkish Proverb"},
+        {"text":"A cup of coffee commits one to forty years of friendship.", "attr":"Ottoman Saying"},
+        {"text":"The morning cup of coffee has an exhilaration about it which the cheering influence of the afternoon or evening cup cannot be expected to reproduce.", "attr":"Oliver Wendell Holmes"},
+        {"text":"In Turkey, a cup of coffee is remembered for forty years.", "attr":"Ancient Anatolian Proverb"}
+      ],
+      "items": [
+        {"id":"brew1","cat":"brewed","en":"Classic Turkish Coffee","ar":"قهوة تركية كلاسيكية","descEn":"Finely ground coffee brewed in copper cezve. Served with foam crown and Turkish delight.","descAr":"قهوة مطحونة في ركوة نحاسية مع تاج رغوة.","price":28,"img":"Turkishcoffee.jpg","cal":"5 kcal","diet":["vegan","gluten-free"],"temp":"hot"},
+        {"id":"brew2","cat":"brewed","en":"Double Turkish Coffee","ar":"قهوة تركية مزدوجة","descEn":"Double the intensity with concentrated brewing for true coffee lovers.","descAr":"ضعف القوة مع تخمير مركز.","price":40,"img":"Turkishcoffee.jpg","cal":"10 kcal","diet":["vegan","gluten-free"],"temp":"hot"},
+        {"id":"brew3","cat":"brewed","en":"Ottoman Mastic Coffee","ar":"قهوة عثمانية بالمستيك","descEn":"Premium coffee enriched with rare Chios mastic resin — a timeless Ottoman secret.","descAr":"مع صمغ المستيكا النادر من جزيرة خيوس.","price":28,"img":"Ottomanmastica.jpg","cal":"5 kcal","diet":["vegan","gluten-free"],"temp":"hot","eid":false},
+        {"id":"brew4","cat":"brewed","en":"Hazelnut Turkish Coffee","ar":"قهوة تركية بالبندق","descEn":"Classic Turkish coffee blended with finely ground premium hazelnuts.","descAr":"مع بندق مطحون ناعماً.","price":28,"img":"Ottomanhazelnut.jpg","cal":"20 kcal","diet":[],"temp":"hot"},
+        {"id":"brew5","cat":"brewed","en":"Cardamom Turkish Coffee","ar":"قهوة تركية بالهيل","descEn":"Infused with aromatic green cardamom pods for a spiced warmth.","descAr":"منقوعة بالهيل الأخضر العطري.","price":28,"img":"Ottomancardamom.jpg","cal":"5 kcal","diet":["vegan","gluten-free"],"temp":"hot"},
+        {"id":"brew6","cat":"brewed","en":"Sahlep","ar":"سحلب","descEn":"Ancient Anatolian comfort drink made from wild orchid tubers — warming and creamy.","descAr":"مشروب الأناضول القديم.","price":38,"img":"Sahlep.jpg","cal":"200 kcal","diet":["contains-dairy"],"hasMilk":true,"temp":"hot"},
+        {"id":"brew7","cat":"brewed","en":"Arabic Coffee – Full Dalla","ar":"قهوة عربية – دلة كاملة","descEn":"Ceremonial centerpiece with cardamom and saffron. Perfect for Eid hosting.","descAr":"قطعة احتفالية بالهيل والزعفران.","price":90,"img":"Arabic.jpg","cal":"10 kcal","diet":["vegan","gluten-free"],"temp":"hot","eid":true},
+        {"id":"brew8","cat":"brewed","en":"Arabic Coffee – Half Dalla","ar":"قهوة عربية – نصف دلة","descEn":"Half-serving of ceremonial Arabic coffee with cardamom and saffron.","descAr":"مثالي لتجمعات العيد الصغيرة.","price":55,"img":"Arabic.jpg","cal":"10 kcal","diet":["vegan","gluten-free"],"temp":"hot"},
+        {"id":"brew9","cat":"brewed","en":"Arabic Coffee – Cup","ar":"قهوة عربية – فنجان","descEn":"Personal serving of authentic Arabic coffee with cardamom.","descAr":"حصة فردية أصيلة بالهيل.","price":35,"img":"Arabiccup.jpeg","cal":"10 kcal","diet":["vegan","gluten-free"],"temp":"hot"},
+        {"id":"tea1","cat":"tea","en":"Turkish Tea","ar":"شاي تركي","descEn":"Deep amber Rize tea served in classic tulip glasses.","descAr":"شاي ريزي عنبري في أكواب التوليب.","price":15,"img":"Tea.jpg","cal":"2 kcal","diet":["vegan"],"temp":"hot"},
+        {"id":"tea2","cat":"tea","en":"Turkish Tea Pot","ar":"إبريق شاي تركي","descEn":"Generous pot of Rize tea — perfect for Eid gatherings.","descAr":"إبريق كبير للمشاركة.","price":45,"img":"Turkishteapot.jpeg","cal":"0 kcal","diet":["vegan"],"temp":"hot","eid":true},
+        {"id":"tea3","cat":"tea","en":"Apple Tea","ar":"شاي التفاح","descEn":"Sun-ripened apple essence, delicate and wonderfully fragrant.","descAr":"خلاصة تفاح ناضج عطري.","price":35,"img":"Appletea.jpg","cal":"2 kcal","diet":["vegan"],"temp":"hot"},
+        {"id":"tea4","cat":"tea","en":"Mulberry Tea","ar":"شاي التوت","descEn":"White mulberry infusion — soft, sweet and calming.","descAr":"منقوع التوت الأبيض الناعم.","price":35,"img":"Mulberrytea.jpg","cal":"2 kcal","diet":["vegan"],"temp":"hot"},
+        {"id":"tea5","cat":"tea","en":"Lemon Mint","ar":"ليمون بالنعناع","descEn":"Zesty squeezed lemon and fresh garden mint leaves.","descAr":"ليمون ونعناع طازج.","price":35,"img":"Lemontea.jpg","cal":"2 kcal","diet":["vegan"],"temp":"hot"},
+        {"id":"tea6","cat":"tea","en":"Pomegranate Tea","ar":"شاي الرمان","descEn":"Vibrant pomegranate infusion with sweet-tart notes.","descAr":"منقوع رمان حلو لاذع.","price":35,"img":"Romantea.jpg","cal":"2 kcal","diet":["vegan"],"temp":"hot"},
+        {"id":"tea7","cat":"tea","en":"Matcha Latte","ar":"ماتشا لاتيه","descEn":"Ceremonial-grade matcha from Japan, whisked to a silky finish.","descAr":"ماتشا يابانية بجودة احتفالية.","price":36,"img":"Matcha.webp","cal":"95 kcal","diet":["vegan"],"hasMilk":true,"temp":"hot"},
+        {"id":"tea9","cat":"tea","en":"Iced Apple Tea","ar":"شاي تفاح مثلج","descEn":"Chilled apple essence over ice — a cool garden breeze.","descAr":"نسيم بستان بارد.","price":35,"img":"Appletea.avif","cal":"35 kcal","diet":["vegan"],"temp":"iced"},
+        {"id":"tea10","cat":"tea","en":"Iced Mulberry Tea","ar":"شاي توت مثلج","descEn":"Frosted mulberry silk — subtle and fruity.","descAr":"حرير مثلج فاكهي.","price":35,"img":"Blackmulberrytea.png","cal":"35 kcal","diet":["vegan"],"temp":"iced"},
+        {"id":"tea11","cat":"tea","en":"Iced Pomegranate Tea","ar":"شاي رمان مثلج","descEn":"Jewel-toned refreshment, chilled and vibrant.","descAr":"منعش بلون الجواهر.","price":35,"img":"Pomegranatetea.avif","cal":"45 kcal","diet":["vegan"],"temp":"iced"},
+        {"id":"tea13","cat":"tea","en":"Hibiscus Iced","ar":"كركديه مثلج","descEn":"Ruby-red glacier with tangy floral notes.","descAr":"نهر جليدي ياقوتي.","price":36,"img":"Hibiscus.webp","cal":"25 kcal","diet":["vegan"],"temp":"iced"},
+        {"id":"tea14","cat":"tea","en":"Hibiscus Tea","ar":"شاي الكركديه","descEn":"Soothing hot hibiscus infusion, naturally caffeine free.","descAr":"منقوع ساخن مهدئ.","price":36,"img":"Hibiscustea.webp","cal":"25 kcal","diet":["vegan"],"temp":"hot"},
+        {"id":"tea15","cat":"tea","en":"Winter Tea","ar":"شاي الشتاء","descEn":"Warming seasonal spice blend with cinnamon and clove.","descAr":"مزيج توابل موسمي دافئ.","price":38,"img":"Wintertea.webp","cal":"30 kcal","diet":["vegan"],"temp":"hot"},
+        {"id":"tea16","cat":"tea","en":"Chamomile","ar":"شاي البابونج","descEn":"Calming golden chamomile flowers for peaceful moments.","descAr":"بابونج ذهبي مهدئ.","price":36,"img":"Chamomiletea.webp","cal":"0 kcal","diet":["vegan"],"temp":"hot"},
+        {"id":"tea17","cat":"tea","en":"Green Tea","ar":"شاي أخضر","descEn":"Pure, clean Japanese green tea — light and refreshing.","descAr":"شاي أخضر ياباني نقي.","price":36,"img":"Greentea.jpg","cal":"0 kcal","diet":["vegan"],"temp":"hot"},
+        {"id":"cafe1","cat":"cafe","en":"Eid Latte","ar":"لاتيه العيد","descEn":"Silky microfoam espresso with exclusive festive seasonal notes. Our Eid signature.","descAr":"إسبريسو ناعم مع نكهات احتفالية.","price":29,"img":"Latteart.webp","cal":"170 kcal","diet":["contains-dairy"],"hasMilk":true,"temp":"hot","eid":true},
+        {"id":"cafe2","cat":"cafe","en":"Cappuccino","ar":"كابوتشينو","descEn":"Equal parts espresso, steamed milk and velvety foam.","descAr":"أجزاء متساوية من الإسبريسو والحليب.","price":29,"img":"Art.webp","cal":"150 kcal","diet":["contains-dairy"],"hasMilk":true,"temp":"hot"},
+        {"id":"cafe3","cat":"cafe","en":"Spanish Latte","ar":"لاتيه إسباني","descEn":"Sweetened condensed milk base beneath bold espresso.","descAr":"حليب مكثف مع إسبريسو.","price":32,"img":"Latteart.webp","cal":"220 kcal","diet":["contains-dairy"],"hasMilk":true,"temp":"hot"},
+        {"id":"cafe4","cat":"cafe","en":"Salted Caramel Latte","ar":"لاتيه كراميل مملح","descEn":"House-made caramel with a touch of fleur de sel — addictive sweetness.","descAr":"كراميل منزلي مع ملح فلور دي سيل.","price":32,"img":"Latteart.webp","cal":"230 kcal","diet":["contains-dairy"],"hasMilk":true,"temp":"hot"},
+        {"id":"cafe5","cat":"cafe","en":"Vanilla Latte","ar":"لاتيه فانيليا","descEn":"Madagascar bourbon vanilla with silky steamed milk.","descAr":"فانيليا بوربون مدغشقر.","price":32,"img":"Art.webp","cal":"220 kcal","diet":["contains-dairy"],"hasMilk":true,"temp":"hot"},
+        {"id":"cafe6","cat":"cafe","en":"Hazelnut Latte","ar":"لاتيه البندق","descEn":"Roasted hazelnut syrup with espresso and steamed milk.","descAr":"نكهة بندق محمص غنية.","price":32,"img":"Art.webp","cal":"180 kcal","diet":["contains-dairy"],"hasMilk":true,"temp":"hot"},
+        {"id":"cafe9","cat":"cafe","en":"White Mocha","ar":"وايت موكا","descEn":"White chocolate blended with espresso and steamed milk.","descAr":"إسبريسو شوكولاتة بيضاء.","price":32,"img":"Latteart.webp","cal":"260 kcal","diet":["contains-dairy"],"hasMilk":true,"temp":"hot"},
+        {"id":"cafe10","cat":"cafe","en":"Mocha","ar":"موكا","descEn":"Dark chocolate and bold espresso in perfect harmony.","descAr":"مزيج إسبريسو شوكولاتة داكنة.","price":32,"img":"Art.webp","cal":"260 kcal","diet":["contains-dairy"],"hasMilk":true,"temp":"hot"},
+        {"id":"cafe11","cat":"cafe","en":"Flat White","ar":"فلات وايت","descEn":"Double ristretto with silky velvety microfoam.","descAr":"ريستريتو مزدوج مخملي.","price":27,"img":"Flatwhite.webp","cal":"140 kcal","diet":["contains-dairy"],"hasMilk":true,"temp":"hot"},
+        {"id":"cafe14","cat":"cafe","en":"Macchiato","ar":"ماكياتو","descEn":"Espresso marked with a delicate touch of silky foam.","descAr":"إسبريسو مع رغوة ناعمة.","price":24,"img":"Latteart.webp","cal":"60 kcal","diet":["contains-dairy"],"hasMilk":true,"temp":"hot"},
+        {"id":"cafe15","cat":"cafe","en":"Espresso Single","ar":"إسبريسو مفرد","descEn":"Pure concentrated coffee essence — no distractions.","descAr":"جوهر القهوة النقية.","price":18,"img":"Espresso.webp","cal":"3 kcal","diet":["vegan"],"temp":"hot"},
+        {"id":"cafe17","cat":"cafe","en":"Americano","ar":"أمريكانو","descEn":"Espresso pulled long with hot water for a smooth cup.","descAr":"إسبريسو مع ماء ساخن.","price":21,"img":"Americano.webp","cal":"5 kcal","diet":["vegan"],"temp":"hot"},
+        {"id":"cafe18","cat":"cafe","en":"Hot Chocolate","ar":"هوت شوكولاتة","descEn":"Artisanal dark cocoa, velvety and rich — pure comfort.","descAr":"كاكاو حرفي مخملي غني.","price":36,"img":"Hotchocolate.jfif","cal":"360 kcal","diet":["contains-dairy"],"hasMilk":true,"temp":"hot"},
+        {"id":"spec1","cat":"specialty","en":"V60 Pour Over","ar":"V60 بور أوفر","descEn":"Single origin beans hand-poured through V60 with bright floral notes.","descAr":"صب يدوي بنوتات زهرية.","price":35,"img":"V60.webp","cal":"2 kcal","diet":["vegan"],"temp":"hot"},
+        {"id":"spec2","cat":"specialty","en":"Ice Drip","ar":"آيس دريب","descEn":"8-hour cold drip extraction for crystal clarity and smooth depth.","descAr":"استخلاص بارد 8 ساعات.","price":35,"img":"Drip.jpg","cal":"2 kcal","diet":["vegan"],"temp":"iced"},
+        {"id":"spec3","cat":"specialty","en":"Cold Brew","ar":"كولد برو","descEn":"18+ hour steep — ultra smooth, ultra low acidity. Game-changer.","descAr":"نقع أكثر من 18 ساعة.","price":37,"img":"Coldbrew.webp","cal":"2 kcal","diet":["vegan"],"temp":"iced"},
+        {"id":"ref1","cat":"refreshers","en":"Eid Lemonade","ar":"ليموناضة العيد","descEn":"Hand-pressed Sicilian lemons with a festive touch.","descAr":"ليمون صقلي طازج.","price":37,"img":"Lemonade.jpg","cal":"120 kcal","diet":["vegan"],"temp":"iced","eid":true},
+        {"id":"ref2","cat":"refreshers","en":"Fresh Orange Juice","ar":"عصير برتقال طازج","descEn":"Valencia oranges, freshly squeezed to order. Pure sunshine.","descAr":"برتقال فالنسيا طازج.","price":37,"img":"Orange.jpeg","cal":"140 kcal","diet":["vegan"],"temp":"iced"},
+        {"id":"ref3","cat":"refreshers","en":"Orange Earl Grey","ar":"برتقال إيرل جراي","descEn":"Citrus-bergamot duet over ice — elegant and unexpected.","descAr":"ثنائي الحمضيات مثلج.","price":47,"img":"Earl.jpeg","cal":"2 kcal","diet":["vegan"],"temp":"iced"},
+        {"id":"ref6","cat":"refreshers","en":"Blueberry Mojito","ar":"موهيتو توت أزرق","descEn":"Wild blueberries with fresh mint and lime over crushed ice.","descAr":"توت بري مع نعناع وليم.","price":38,"img":"Blueberrymojito.webp","cal":"150 kcal","diet":[],"temp":"iced"},
+        {"id":"ref8","cat":"refreshers","en":"Mix Berries Mojito","ar":"موهيتو توت مشكل","descEn":"A berry symphony in sparkling water — vivid and refreshing.","descAr":"سيمفونية التوت المشكل.","price":47,"img":"Mixberriesmojito.webp","cal":"176 kcal","diet":[],"temp":"iced"},
+        {"id":"ref10","cat":"refreshers","en":"Still Water","ar":"مياه عادية","descEn":"330ml still mineral water.","descAr":"330 مل مياه معدنية.","price":11,"img":"WaterBig.jpg","cal":"0 kcal","diet":["vegan"],"temp":"iced"},
+        {"id":"ref12","cat":"refreshers","en":"Sparkling Water","ar":"مياه غازية","descEn":"Naturally carbonated sparkling mineral water.","descAr":"مياه معدنية مكربنة.","price":21,"img":"Sparkling.jpg","cal":"0 kcal","diet":["vegan"],"temp":"iced"},
+        {"id":"ref13","cat":"refreshers","en":"Kinza Cola","ar":"كينزا كولا","descEn":"Our signature house cola blend — a local favourite.","descAr":"مزيج الكولا المميز.","price":17,"img":"Cola.jpg","cal":"150 kcal","diet":[],"temp":"iced"},
+        {"id":"bak1","cat":"baklava","en":"Eid Baklava Mix","ar":"بقلاوة العيد المشكلة","descEn":"Stunning assortment of Ottoman baklava varieties — perfect for Eid gifting.","descAr":"تشكيلة رائعة من أرقى أنواع البقلاوة.","price":65,"img":"Mix.jpeg","cal":"450 kcal","diet":["contains-nuts"],"temp":"room","eid":true},
+        {"id":"bak2","cat":"baklava","en":"Carrot Baklava","ar":"بقلاوة جزر","descEn":"Traditional Ottoman baklava with luscious carrot purée filling.","descAr":"بقلاوة عثمانية مع هريس الجزر.","price":45,"img":"Carrot.jpeg","cal":"420 kcal","diet":["contains-nuts"],"temp":"room"},
+        {"id":"bak3","cat":"baklava","en":"Carrot Baklava & Ice Cream","ar":"بقلاوة جزر مع آيس كريم","descEn":"Warm carrot baklava with cold vanilla ice cream — contrast perfected.","descAr":"بقلاوة دافئة مع آيس كريم فانيليا.","price":55,"img":"Carroticecream.jpeg","cal":"620 kcal","diet":["contains-nuts","contains-dairy"],"temp":"both"},
+        {"id":"bak4","cat":"baklava","en":"Trio Baklava","ar":"تريو بقلاوة","descEn":"Three distinct baklava styles on one plate — a tasting journey.","descAr":"ثلاثة أنماط من البقلاوة.","price":45,"img":"TrioBaklava.jpeg","cal":"480 kcal","diet":["contains-nuts"],"temp":"room"},
+        {"id":"bak6","cat":"baklava","en":"Fanzuella Sweets","ar":"فانزويلا","descEn":"Delicate layered pastry with luscious cream filling.","descAr":"معجنات طبقية مع كريمة.","price":45,"img":"Fanzuella.webp","cal":"420 kcal","diet":["contains-dairy"],"temp":"room"},
+        {"id":"bak8","cat":"baklava","en":"Dark Chocolate Opera","ar":"كيكة شوكولاتة داكنة أوبرا","descEn":"Moist dark chocolate opera cake with intense cocoa layers.","descAr":"كيك أوبرا بالشوكولاتة الداكنة.","price":45,"img":"Darkchocolateopera.jpeg","cal":"540 kcal","diet":["contains-dairy"],"temp":"room"},
+        {"id":"bak9","cat":"baklava","en":"Black Forest Opera","ar":"كيكة الغابة السوداء","descEn":"Rich chocolate sponge with cherry cream layers — a classic.","descAr":"إسفنجة شوكولاتة مع كريمة الكرز.","price":45,"img":"Darkforestopera.jpeg","cal":"560 kcal","diet":["contains-dairy"],"temp":"room"},
+        {"id":"bak10","cat":"baklava","en":"Chocolate Mousse Cake","ar":"كيكة موس شوكولاتة","descEn":"Light airy chocolate mousse cake — clouds of chocolate.","descAr":"موس شوكولاتة خفيف وهوائي.","price":45,"img":"Chocolatemousseopera.jpeg","cal":"530 kcal","diet":["contains-dairy"],"temp":"cold"},
+        {"id":"bak11","cat":"baklava","en":"Red Velvet Cake","ar":"كيكة ريد فلفت","descEn":"Classic soft red sponge with cream cheese frosting.","descAr":"إسفنجة حمراء مع فروستينج كريم جبن.","price":45,"img":"Redvelvetopera.jpeg","cal":"520 kcal","diet":["contains-dairy"],"temp":"room"},
+        {"id":"bak12","cat":"baklava","en":"New York Cheesecake","ar":"تشيز كيك نيويورك","descEn":"Creamy classic cheesecake on graham cracker crust.","descAr":"تشيز كيك كريمي على قاعدة غراهام.","price":45,"img":"Cheesecakeopera.jpeg","cal":"500 kcal","diet":["contains-dairy"],"temp":"cold"},
+        {"id":"bak13","cat":"baklava","en":"Kunafa","ar":"كنافة","descEn":"Shredded kataifi with rich cheese, soaked in orange blossom syrup. Fresh daily.","descAr":"كنافة مبروشة مع الجبن الغني.","price":45,"img":"Kunafa.jpeg","cal":"520 kcal","diet":["contains-dairy"],"temp":"hot","eid":true},
+        {"id":"bak14","cat":"baklava","en":"Brownies","ar":"براونيز","descEn":"Dense, fudge-rich dark chocolate brownies — the ultimate indulgence.","descAr":"كثيف وغني بالشوكولاتة.","price":55,"img":"Brown.jpg","cal":"380 kcal","diet":["contains-dairy"],"temp":"room"},
+        {"id":"bak15","cat":"baklava","en":"Tiramisu","ar":"تيراميسو","descEn":"Classic Italian tiramisu with mascarpone and espresso-soaked ladyfingers.","descAr":"تيراميسو كلاسيكي بالمسكاربوني.","price":50,"img":"Tiramisu.jpg","cal":"420 kcal","diet":["contains-dairy"],"temp":"cold"},
+        {"id":"bak17","cat":"baklava","en":"San Sebastian Cheesecake","ar":"تشيز كيك سان سيباستيان","descEn":"Basque burnt cheesecake — caramelised top, creamy inside. Extraordinary.","descAr":"قمة مكرملة وكريمية.","price":45,"img":"Sebastian.jpg","cal":"520 kcal","diet":["contains-dairy"],"temp":"cold"},
+        {"id":"bak_cd","cat":"baklava","en":"Chocolate Delight","ar":"لذة الشوكولاتة","descEn":"Rich chocolate mousse with dark chocolate glaze and edible gold leaf.","descAr":"موس شوكولاتة مع ورق الذهب.","price":45,"img":"Chocolatenew.jpeg","cal":"420 kcal","diet":["contains-dairy"],"temp":"cold"},
+        {"id":"bak_pb","cat":"baklava","en":"Pistachio Baklava Roll","ar":"لفة بقلاوة بالفستق","descEn":"Crispy phyllo rolls with pistachios and rose syrup — beautifully delicate.","descAr":"لفائف فيلو مع الفستق وشراب الورد.","price":48,"img":"Pistachionew.jpeg","cal":"480 kcal","diet":["contains-nuts"],"temp":"room","eid":true},
+        {"id":"bak_sc","cat":"baklava","en":"Snickers-Style Cake","ar":"كيك سنيكرز","descEn":"Chocolate sponge, caramel, peanut nougat, milk chocolate — layers of joy.","descAr":"طبقات كيك الشوكولاتة والكراميل.","price":52,"img":"Snickernew.jpeg","cal":"580 kcal","diet":["contains-dairy","contains-nuts"],"temp":"cold"},
+        {"id":"snack01","cat":"snacks","en":"Turkish Ice Cream","ar":"آيس كريم تركي","descEn":"Classic stretchy dondurma — the beloved Eid crowd pleaser.","descAr":"دوندورما كلاسيكي مطاطي.","price":27,"img":"Icecream.webp","cal":"210 kcal","diet":["contains-dairy"],"temp":"cold","eid":true},
+        {"id":"snack1","cat":"snacks","en":"Nuts Stand – Tall","ar":"مكسرات – ستاند كبير","descEn":"Premium roasted nuts — the centrepiece of Eid tables.","descAr":"مكسرات محمصة فاخرة.","price":99,"img":"Nuts.jpg","cal":"300 kcal","diet":["contains-nuts"],"temp":"room","eid":true},
+        {"id":"snack2","cat":"snacks","en":"Nuts Stand – Small","ar":"مكسرات – ستاند صغير","descEn":"Curated premium roasted nuts — perfectly portioned.","descAr":"مزيج منسق من المكسرات.","price":60,"img":"Nutsmall.jpg","cal":"180 kcal","diet":["contains-nuts"],"temp":"room"},
+        {"id":"snack4","cat":"snacks","en":"French Fries","ar":"بطاطس مقلية","descEn":"Golden crispy seasoned fries — irresistibly good.","descAr":"بطاطس ذهبية مقرمشة.","price":29,"img":"Patatas.jpg","cal":"340 kcal","diet":["vegan"],"temp":"hot"},
+        {"id":"cro1","cat":"croissant","en":"Plain Butter Croissant","ar":"كرواسون زبدة","descEn":"Classic Parisian all-butter croissant — flaky perfection.","descAr":"كرواسون زبدة باريسي.","price":20,"img":"Plain.webp","cal":"320 kcal","diet":["vegetarian"],"temp":"room"},
+        {"id":"cro2","cat":"croissant","en":"Cheese Croissant","ar":"كرواسون جبن","descEn":"Flaky buttery croissant with perfectly melted cheese inside.","descAr":"محشو بالجبن المذاب.","price":20,"img":"Cheese.jpg","cal":"360 kcal","diet":["vegetarian"],"temp":"room"},
+        {"id":"cro3","cat":"croissant","en":"Chocolate Croissant","ar":"كرواسون شوكولاتة","descEn":"Buttery laminated pastry encasing dark chocolate batons.","descAr":"أصابع شوكولاتة داكنة.","price":20,"img":"Chocolatecroissant.jpg","cal":"380 kcal","diet":["vegetarian"],"temp":"room"},
+        {"id":"cro4","cat":"croissant","en":"Almond Croissant","ar":"كرواسون لوز","descEn":"Almond frangipane cream topped with toasted almond slices.","descAr":"كريمة لوز بشرائح اللوز المحمص.","price":20,"img":"Almondcroissant.jpg","cal":"400 kcal","diet":["vegetarian","contains-nuts"],"temp":"room"},
+        {"id":"cro5","cat":"croissant","en":"Cinnamon Danish","ar":"دانش قرفة","descEn":"Cinnamon sugar spiral with warm spiced icing — morning luxury.","descAr":"حلزوني قرفة وسكر.","price":20,"img":"Cinnamon.jpg","cal":"390 kcal","diet":["vegetarian"],"temp":"room"}
+      ]
+    }
+    </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    
+    <script>
+        (function () {
+            'use strict';
+            
+            const D = JSON.parse(document.getElementById('menuData').textContent);
+            const BASE = D.BASE;
+            const FB = D.FB;
+            
+            const MILK = ['Full Fat','Low Fat','Skim','Almond','Soy','Oat','Coconut','Lactose Free'];
+            const TEMP_LABEL = { hot:'☕ Hot', iced:'❄️ Iced', cold:'❄️ Cold', both:'☕/❄️', room:'🏠 Ambient' };
+            const PAGE_SIZE = 16;
+            
+            let lang = 'en';
+            let activeCat = 'all';
+            let activeDiets = [];
+            let eidOnly = false;
+            let searchQuery = '';
+            let filtered = [];
+            let offset = 0;
+            let sentinelIO = null;
+            let debounceTimer = null;
+            
+            const $ = id => document.getElementById(id);
+            
+            const el = {
+                splash: $('splash'),
+                enterBtn: $('enterBtn'),
+                app: $('app'),
+                searchInput: $('searchInput'),
+                searchClear: $('searchClear'),
+                mobileSearch: $('mobileSearch'),
+                catTrack: $('catTrack'),
+                dietBar: $('dietBar'),
+                menuGrid: $('menuGrid'),
+                itemModal: $('itemModal'),
+                modalImg: $('modalImg'),
+                modalBody: $('modalBody'),
+                modalRecos: $('modalRecos'),
+                sigGrid: $('sigGrid'),
+                marqueeTrack: $('marqueeTrack'),
+                btt: $('btt'),
+                a11y: $('a11y'),
+                langBtn: $('langBtn'),
+                headerLogo: $('headerLogo')
+            };
+            
+            function initSplashStars() {
+                const cv = $('splashCanvas');
+                if (!cv) return;
+                cv.width = window.innerWidth;
+                cv.height = window.innerHeight;
+                const ctx = cv.getContext('2d');
+                const stars = Array.from({length: 220}, () => ({
+                    x: Math.random() * cv.width,
+                    y: Math.random() * cv.height,
+                    r: Math.random() * 1.8 + 0.3,
+                    speed: Math.random() * 0.018 + 0.006,
+                    phase: Math.random() * Math.PI * 2
+                }));
+                let t = 0;
+                function tick() {
+                    if (!$('splash')) return;
+                    requestAnimationFrame(tick);
+                    t += 0.014;
+                    ctx.clearRect(0, 0, cv.width, cv.height);
+                    stars.forEach(s => {
+                        const opacity = 0.35 + 0.65 * Math.sin(t * s.speed * 55 + s.phase);
+                        ctx.globalAlpha = opacity;
+                        ctx.fillStyle = '#f5f0e8';
+                        ctx.shadowBlur = s.r * 4;
+                        ctx.shadowColor = 'rgba(212,184,138,.75)';
+                        ctx.fillRect(s.x, s.y, s.r, s.r);
+                    });
+                }
+                tick();
+                window.addEventListener('resize', () => {
+                    cv.width = window.innerWidth;
+                    cv.height = window.innerHeight;
+                });
+            }
+            
+            function enterApp() {
+                el.splash.classList.add('exit');
+                el.app.classList.add('visible');
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => el.app.classList.add('shown'));
+                });
+                setTimeout(() => el.splash.remove(), 1300);
+            }
+            
+            el.enterBtn.addEventListener('click', enterApp);
+            el.splash.addEventListener('keydown', e => {
+                if (e.key === 'Enter' || e.key === ' ') enterApp();
+            });
+            
+            function initMarquee() {
+                const items = [
+                    {t:'Classic Turkish Coffee',g:true},
+                    {t:'Ottoman Mastic Coffee',g:false},
+                    {t:'Eid Baklava Mix',g:true},
+                    {t:'Kunafa · Fresh Daily',g:false},
+                    {t:'Turkish Tea Pot',g:true},
+                    {t:'Pistachio Baklava Roll',g:false},
+                    {t:'V60 Pour Over',g:true},
+                    {t:'San Sebastian Cheesecake',g:false}
+                ];
+                const all = [...items, ...items];
+                el.marqueeTrack.innerHTML = all.map(i =>
+                    `<div class="marquee-item"><span class="marquee-text${i.g?' gold':''}">${i.t}</span><span class="marquee-gem" aria-hidden="true">◆</span></div>`
+                ).join('');
+            }
+            
+            let qbIdx = 0;
+            let qbTimer = null;
+            const qBar = document.getElementById('quoteBar');
+            const qbText = document.getElementById('qbarText');
+            const qbAttr = document.getElementById('qbarAttr');
+            const qbDots = document.getElementById('qbarDots');
+            const qbClose = document.getElementById('qbarClose');
+            
+            function initQuoteBar() {
+                const quotes = D.quotes;
+                qbDots.innerHTML = quotes.map((_, i) =>
+                    `<button class="qbdot${i===0?' active':''}" data-i="${i}" role="tab" aria-label="Quote ${i+1}" aria-selected="${i===0}"></button>`
+                ).join('');
+                qbDots.querySelectorAll('.qbdot').forEach(dot => {
+                    dot.addEventListener('click', () => {
+                        const i = parseInt(dot.dataset.i);
+                        goQBar(i);
+                        resetQBTimer();
+                    });
+                });
+                qbText.textContent = '"' + quotes[0].text + '"';
+                qbAttr.textContent = '— ' + quotes[0].attr;
+                setTimeout(() => {
+                    qBar.classList.add('visible');
+                    document.body.classList.add('qbar-open');
+                }, 1400);
+                startQBTimer();
+                qbClose.addEventListener('click', () => {
+                    qBar.classList.add('hidden');
+                    setTimeout(() => {
+                        qBar.classList.remove('visible','hidden');
+                        document.body.classList.remove('qbar-open');
+                    }, 650);
+                    clearInterval(qbTimer);
+                });
+            }
+            
+            function goQBar(idx) {
+                const quotes = D.quotes;
+                qbText.style.transition = 'opacity .45s var(--ease)';
+                qbAttr.style.transition = 'opacity .45s var(--ease)';
+                qbText.style.opacity = 0;
+                qbAttr.style.opacity = 0;
+                setTimeout(() => {
+                    qbText.textContent = '"' + quotes[idx].text + '"';
+                    qbAttr.textContent = '— ' + quotes[idx].attr;
+                    qbText.style.opacity = 1;
+                    qbAttr.style.opacity = 1;
+                }, 420);
+                qbDots.querySelectorAll('.qbdot').forEach((d, i) => {
+                    d.classList.toggle('active', i === idx);
+                    d.setAttribute('aria-selected', String(i === idx));
+                });
+                qbIdx = idx;
+            }
+            
+            function nextQB() { goQBar((qbIdx + 1) % D.quotes.length); }
+            function startQBTimer() { qbTimer = setInterval(nextQB, 5200); }
+            function resetQBTimer() { clearInterval(qbTimer); startQBTimer(); }
+            
+            const qrModal = document.getElementById('qrModal');
+            const qrOutput = document.getElementById('qrOutput');
+            const qrBtn = document.getElementById('qrBtn');
+            const qrClose = document.getElementById('qrClose');
+            
+            function generateQR(text) {
+                qrOutput.innerHTML = '';
+                if (typeof QRCode !== 'undefined') {
+                    new QRCode(qrOutput, {
+                        text: text || 'https://turkianacafe.qa',
+                        width: 228,
+                        height: 228,
+                        colorDark: '#1f1a14',
+                        colorLight: '#fff',
+                        correctLevel: QRCode.CorrectLevel.H
+                    });
+                }
+            }
+            
+            qrBtn.addEventListener('click', () => {
+                generateQR(location.href);
+                qrModal.showModal();
+            });
+            
+            qrClose.addEventListener('click', () => qrModal.close());
+            qrModal.addEventListener('click', e => {
+                if (e.target === qrModal) qrModal.close();
+            });
+            
+            function renderSig() {
+                const picks = [
+                    { id: 'brew3', badge: 'Staff Pick', cat: 'Turkish Coffee' },
+                    { id: 'bak1', badge: 'Signature', cat: 'Ottoman Sweets' },
+                    { id: 'bak13', badge: 'Fresh Daily', cat: 'Kunafa' }
+                ];
+                el.sigGrid.innerHTML = picks.map(p => {
+                    const item = D.items.find(x => x.id === p.id);
+                    if (!item) return '';
+                    const name = lang === 'ar' ? item.ar : item.en;
+                    const desc = lang === 'ar' ? (item.descAr || item.descEn) : item.descEn;
+                    return `<article class="sig-card" tabindex="0" data-id="${item.id}" aria-label="${name}">
+                        <div class="sig-img-wrap">
+                            <div class="sig-img-ph" aria-hidden="true">☕</div>
+                            <img class="sig-img" src="${BASE}${item.img}" alt="${name}" loading="lazy"
+                                onload="this.classList.add('loaded');this.previousElementSibling.style.opacity='0'"
+                                onerror="this.src='${FB}';this.classList.add('loaded');this.previousElementSibling.style.opacity='0'">
+                            <div class="sig-badge">${p.badge}</div>
+                        </div>
+                        <div class="sig-body">
+                            <p class="sig-cat">${p.cat}</p>
+                            <h3 class="sig-name">${name}</h3>
+                            <p class="sig-price">${item.price} QAR</p>
+                            <p class="sig-note">${desc}</p>
+                        </div>
+                    </article>`;
+                }).join('');
+                
+                el.sigGrid.querySelectorAll('.sig-card').forEach(card => {
+                    card.addEventListener('click', () => {
+                        const item = D.items.find(x => x.id === card.dataset.id);
+                        if (item) openModal(item);
+                    });
+                });
+            }
+            
+            function applyLang() {
+                const isAr = lang === 'ar';
+                document.documentElement.lang = lang;
+                document.documentElement.dir = isAr ? 'rtl' : 'ltr';
+                el.langBtn.textContent = isAr ? 'EN' : 'AR';
+            }
+            
+            el.langBtn.addEventListener('click', () => {
+                lang = lang === 'en' ? 'ar' : 'en';
+                applyLang();
+                renderCats();
+                renderDiets();
+                renderSig();
+                refreshGrid();
+            });
+            
+            function renderCats() {
+                el.catTrack.innerHTML = D.categories.map(c => {
+                    const label = lang === 'ar' ? c.ar : c.en;
+                    const active = c.id === activeCat;
+                    return `<button class="cat-pill${active ? ' active' : ''}" data-id="${c.id}" role="tab" aria-selected="${active}">${label}</button>`;
+                }).join('');
+                
+                el.catTrack.querySelectorAll('.cat-pill').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        activeCat = btn.dataset.id;
+                        renderCats();
+                        refreshGrid();
+                        btn.scrollIntoView({ behavior: 'smooth', inline: 'center' });
+                    });
+                });
+            }
+            
+            function renderDiets() {
+                const eidLabel = lang === 'ar' ? '★ مختارات العيد' : '★ Eid Picks';
+                el.dietBar.innerHTML =
+                    `<button class="dpill eid-pill${eidOnly ? ' on' : ''}">${eidLabel}</button>` +
+                    D.diets.map(d => {
+                        const label = lang === 'ar' ? d.ar : d.en;
+                        const active = activeDiets.includes(d.id);
+                        return `<button class="dpill${active ? ' on' : ''}" data-d="${d.id}">${label}</button>`;
+                    }).join('');
+                
+                el.dietBar.querySelectorAll('button').forEach(btn => {
+                    if (btn.classList.contains('eid-pill')) {
+                        btn.addEventListener('click', () => {
+                            eidOnly = !eidOnly;
+                            renderDiets();
+                            refreshGrid();
+                        });
+                    } else {
+                        btn.addEventListener('click', () => {
+                            const id = btn.dataset.d;
+                            if (activeDiets.includes(id)) {
+                                activeDiets = activeDiets.filter(x => x !== id);
+                            } else {
+                                activeDiets.push(id);
+                            }
+                            renderDiets();
+                            refreshGrid();
+                        });
+                    }
+                });
+            }
+            
+            function getFiltered() {
+                let items = D.items;
+                if (activeCat !== 'all') items = items.filter(i => i.cat === activeCat);
+                if (eidOnly) items = items.filter(i => i.eid === true);
+                if (searchQuery) {
+                    const q = searchQuery.toLowerCase();
+                    items = items.filter(i =>
+                        (i.en && i.en.toLowerCase().includes(q)) ||
+                        (i.ar && i.ar.toLowerCase().includes(q)) ||
+                        (i.descEn && i.descEn.toLowerCase().includes(q))
+                    );
+                }
+                if (activeDiets.length) {
+                    items = items.filter(item => {
+                        const diets = item.diet || [];
+                        return activeDiets.every(filter => {
+                            if (filter === 'vegan') return diets.includes('vegan');
+                            if (filter === 'no-nuts') return !diets.includes('contains-nuts');
+                            if (filter === 'dairy-free') return !diets.includes('contains-dairy');
+                            if (filter === 'gluten-free') return diets.includes('gluten-free');
+                            return true;
+                        });
+                    });
+                }
+                return items;
+            }
+            
+            const cardObserver = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed');
+                        cardObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.2 });
+            
+            function buildCard(item) {
+                const name = lang === 'ar' ? item.ar : item.en;
+                const altName = lang === 'ar' ? item.en : item.ar;
+                const desc = lang === 'ar' ? (item.descAr || item.descEn) : item.descEn;
+                
+                const dietDots = (item.diet || []).map(d => {
+                    if (d === 'vegan') return '<span class="cdot vg" title="Vegan"></span>';
+                    if (d === 'gluten-free') return '<span class="cdot gf" title="Gluten-free"></span>';
+                    if (d === 'dairy-free') return '<span class="cdot df" title="Dairy-free"></span>';
+                    return '';
+                }).join('');
+                
+                const eidBadge = item.eid ? `<div class="card-eid-badge" style="position:absolute;top:16px;left:16px;background:rgba(179,139,94,.92);color:#f5f0e8;font-size:0.65rem;letter-spacing:0.2em;padding:4px 14px;border-radius:9999px;">★ Eid</div>` : '';
+                
+                const cardHTML = `
+                    <div class="card-img-wrap">
+                        <div class="card-img-skel"></div>
+                        <img class="card-img" src="${BASE}${item.img}" alt="${name}" loading="lazy" decoding="async">
+                        <div class="card-overlay"></div>
+                        <div class="card-price">${item.price} QAR</div>
+                        ${eidBadge}
+                    </div>
+                    <div class="card-body">
+                        <div class="card-name">${name}</div>
+                        ${altName ? `<div class="card-name-ar">${altName}</div>` : ''}
+                        <div class="card-desc">${desc}</div>
+                        <div class="card-foot">
+                            <span class="card-cal">${item.cal}</span>
+                            <div class="card-dots">${dietDots}</div>
+                        </div>
+                    </div>`;
+                
+                const card = document.createElement('div');
+                card.className = 'menu-card';
+                card.innerHTML = cardHTML;
+                card.setAttribute('role', 'button');
+                card.setAttribute('tabindex', '0');
+                card.setAttribute('aria-label', `${name} · ${item.price} QAR`);
+                card.dataset.id = item.id;
+                
+                const img = card.querySelector('.card-img');
+                const skel = card.querySelector('.card-img-skel');
+                
+                img.onload = () => {
+                    img.classList.add('loaded');
+                    skel.classList.add('done');
+                };
+                
+                img.onerror = () => {
+                    img.src = FB;
+                    img.classList.add('loaded');
+                    skel.classList.add('done');
+                };
+                
+                const open = () => openModal(item);
+                card.addEventListener('click', open);
+                card.addEventListener('keydown', e => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        open();
+                    }
+                });
+                
+                return card;
+            }
+            
+            function renderGrid(items) {
+                if (sentinelIO) sentinelIO.disconnect();
+                cardObserver.disconnect();
+                el.menuGrid.innerHTML = '';
+                filtered = items;
+                offset = 0;
+                el.a11y.textContent = `${items.length} items found`;
+                
+                if (!items.length) {
+                    el.menuGrid.innerHTML = `<div class="empty-state"><div class="empty-icon">☕</div><div class="empty-lbl">${searchQuery ? `No results for “${searchQuery}”` : 'Nothing found in this selection'}</div></div>`;
+                    return;
+                }
+                
+                renderNextPage();
+            }
+            
+            function renderNextPage() {
+                const slice = filtered.slice(offset, offset + PAGE_SIZE);
+                offset += slice.length;
+                slice.forEach(item => {
+                    const card = buildCard(item);
+                    el.menuGrid.appendChild(card);
+                    cardObserver.observe(card);
+                });
+                
+                if (offset < filtered.length) {
+                    const sentinel = document.createElement('div');
+                    sentinel.style.height = '32px';
+                    el.menuGrid.appendChild(sentinel);
+                    sentinelIO = new IntersectionObserver(e => {
+                        if (e[0].isIntersecting) {
+                            sentinelIO.disconnect();
+                            sentinel.remove();
+                            renderNextPage();
+                        }
+                    }, { threshold: 0.3 });
+                    sentinelIO.observe(sentinel);
+                }
+            }
+            
+            function refreshGrid() {
+                el.menuGrid.classList.add('fading');
+                setTimeout(() => {
+                    renderGrid(getFiltered());
+                    el.menuGrid.classList.remove('fading');
+                }, 220);
+            }
+            
+            function handleSearch(val) {
+                searchQuery = val.trim();
+                el.searchClear.classList.toggle('show', !!searchQuery);
+                clearTimeout(debounceTimer);
+                debounceTimer = setTimeout(refreshGrid, 160);
+            }
+            
+            el.searchInput.addEventListener('input', e => handleSearch(e.target.value));
+            el.mobileSearch.addEventListener('input', e => {
+                el.searchInput.value = e.target.value;
+                handleSearch(e.target.value);
+            });
+            
+            el.searchClear.addEventListener('click', () => {
+                el.searchInput.value = '';
+                el.mobileSearch.value = '';
+                handleSearch('');
+            });
+            
+            function trapFocus(modal) {
+                const focusable = modal.querySelectorAll('button, [href], input, [tabindex]:not([tabindex="-1"])');
+                const first = focusable[0];
+                const last = focusable[focusable.length - 1];
+                function handler(e) {
+                    if (e.key !== 'Tab') return;
+                    if (e.shiftKey) {
+                        if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+                    } else {
+                        if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+                    }
+                }
+                modal.addEventListener('keydown', handler);
+                return () => modal.removeEventListener('keydown', handler);
+            }
+            
+            let currentTrap = null;
+            
+            function openModal(item) {
+                const name = lang === 'ar' ? item.ar : item.en;
+                const altName = lang === 'ar' ? item.en : item.ar;
+                const desc = lang === 'ar' ? (item.descAr || item.descEn) : item.descEn;
+                const hasMilk = item.hasMilk || (item.diet || []).some(d => d.includes('dairy'));
+                
+                el.modalImg.innerHTML = `
+                    <div class="modal-img-ph" aria-hidden="true">☕</div>
+                    <img src="${BASE}${item.img}" alt="${name}" decoding="async">
+                    <button class="modal-close" id="modalClose" aria-label="Close">✕</button>`;
+                
+                const modalImgEl = el.modalImg.querySelector('img');
+                modalImgEl.onload = () => {
+                    modalImgEl.classList.add('loaded');
+                    el.modalImg.querySelector('.modal-img-ph').style.opacity = '0';
+                };
+                modalImgEl.onerror = () => {
+                    modalImgEl.src = FB;
+                    modalImgEl.classList.add('loaded');
+                    el.modalImg.querySelector('.modal-img-ph').style.opacity = '0';
+                };
+                
+                document.getElementById('modalClose').addEventListener('click', () => el.itemModal.close());
+                
+                const allergens = (item.diet || []).length ? item.diet.join(', ').replace('contains-', '') : 'None';
+                
+                const milkHTML = hasMilk ? `
+                    <div class="modal-milk">
+                        <div class="modal-milk-label">Milk preference</div>
+                        <div class="modal-milk-opts">
+                            ${MILK.map((m,i) => `<button class="milk-opt${i===0?' on':''}" data-m="${m}">${m}</button>`).join('')}
+                        </div>
+                    </div>` : '';
+                
+                el.modalBody.innerHTML = `
+                    <div class="modal-name">${name}</div>
+                    ${altName ? `<div class="modal-name-ar">${altName}</div>` : ''}
+                    <div class="modal-price">${item.price}<span>QAR</span></div>
+                    <div class="modal-desc">${desc}</div>
+                    <div class="modal-meta">
+                        <div class="mmeta"><div class="mmeta-l">Calories</div><div class="mmeta-v">${item.cal}</div></div>
+                        <div class="mmeta"><div class="mmeta-l">Served</div><div class="mmeta-v">${TEMP_LABEL[item.temp] || '—'}</div></div>
+                        <div class="mmeta"><div class="mmeta-l">Allergens</div><div class="mmeta-v" style="text-transform:capitalize">${allergens}</div></div>
+                        <div class="mmeta"><div class="mmeta-l">Category</div><div class="mmeta-v" style="text-transform:capitalize">${item.cat}</div></div>
+                    </div>
+                    ${milkHTML}`;
+                
+                el.modalBody.querySelectorAll('.milk-opt').forEach(opt => {
+                    opt.addEventListener('click', () => {
+                        el.modalBody.querySelectorAll('.milk-opt').forEach(o => o.classList.remove('on'));
+                        opt.classList.add('on');
+                    });
+                });
+                
+                const recos = D.items.filter(x => x.id !== item.id && x.cat === item.cat).slice(0, 5);
+                
+                if (recos.length) {
+                    el.modalRecos.innerHTML = `
+                        <div class="modal-recos">
+                            <div class="modal-recos-title">You might also like</div>
+                            <div class="modal-recos-list">
+                                ${recos.map(r => {
+                                    const rn = lang === 'ar' ? r.ar : r.en;
+                                    return `<div class="reco-card" data-id="${r.id}">
+                                        <img class="reco-img" src="${BASE}${r.img}" alt="${rn}" onerror="this.src='${FB}'">
+                                        <div class="reco-name">${rn}</div>
+                                        <div class="reco-price">${r.price} QAR</div>
+                                    </div>`;
+                                }).join('')}
+                            </div>
+                        </div>`;
+                    
+                    el.modalRecos.querySelectorAll('.reco-card').forEach(c => {
+                        c.addEventListener('click', () => {
+                            const it = D.items.find(x => x.id === c.dataset.id);
+                            if (it) {
+                                el.itemModal.close();
+                                setTimeout(() => openModal(it), 140);
+                            }
+                        });
+                    });
+                } else {
+                    el.modalRecos.innerHTML = '';
+                }
+                
+                el.itemModal.showModal();
+                el.itemModal.querySelector('.modal-scroll').scrollTop = 0;
+                
+                if (currentTrap) currentTrap();
+                currentTrap = trapFocus(el.itemModal);
+            }
+            
+            el.itemModal.addEventListener('click', e => {
+                if (e.target === el.itemModal) el.itemModal.close();
+            });
+            
+            document.addEventListener('keydown', e => {
+                if (e.key === 'Escape') {
+                    if (el.itemModal.open) el.itemModal.close();
+                    else if (qrModal.open) qrModal.close();
+                }
+            });
+            
+            window.addEventListener('scroll', () => {
+                el.btt.classList.toggle('show', window.scrollY > 580);
+            }, { passive: true });
+            
+            el.btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+            el.headerLogo.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+            
+            // Initialize everything
+            initSplashStars();
+            applyLang();
+            renderCats();
+            renderDiets();
+            renderSig();
+            initMarquee();
+            initQuoteBar();
+            renderGrid(getFiltered());
+            
+            // Final keyboard accessibility for modals
+            console.log('%cTurkiana — Premium Ottoman Cafe Experience ready', 'font-family:Georgia;font-size:10px;color:#d4b88a;letter-spacing:1px');
+        })();
+    </script>
 </body>
 </html>
