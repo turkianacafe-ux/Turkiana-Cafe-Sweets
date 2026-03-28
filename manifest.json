@@ -1,80 +1,29 @@
 {
-  "name": "Turkiana Café & Sweets",
+  "name": "Turkiana — Ottoman Coffee · Doha",
   "short_name": "Turkiana",
-  "description": "Premium Turkish coffee & Ottoman sweets · Msheireb Downtown, Doha, Qatar",
-  "id": "/Turkiana-Cafe-Sweets/",
-  "start_url": "/Turkiana-Cafe-Sweets/index.html?source=pwa",
-  "scope": "/Turkiana-Cafe-Sweets/",
+  "description": "Premium Turkish coffee & Ottoman sweets. Msheireb Downtown, Doha, Qatar.",
+  "start_url": "/Turkiana-Cafe-Sweets/",
   "display": "standalone",
-  "orientation": "portrait-primary",
   "background_color": "#080604",
   "theme_color": "#c9a96e",
-  "categories": ["food", "lifestyle"],
-  "lang": "en-QA",
-  "dir": "ltr",
+  "orientation": "portrait",
   "icons": [
+    {
+      "src": "/Turkiana-Cafe-Sweets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/Turkiana-Cafe-Sweets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
     {
       "src": "/Turkiana-Cafe-Sweets/icon.svg",
       "sizes": "any",
-      "type": "image/svg+xml",
-      "purpose": "any"
-    },
-    {
-      "src": "/Turkiana-Cafe-Sweets/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "/Turkiana-Cafe-Sweets/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "maskable"
-    },
-    {
-      "src": "/Turkiana-Cafe-Sweets/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "/Turkiana-Cafe-Sweets/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "maskable"
+      "type": "image/svg+xml"
     }
   ],
-  "screenshots": [
-    {
-      "src": "/Turkiana-Cafe-Sweets/Ottomanmastica.jpg",
-      "sizes": "800x600",
-      "type": "image/jpeg",
-      "form_factor": "wide",
-      "label": "Turkiana Ottoman Menu"
-    },
-    {
-      "src": "/Turkiana-Cafe-Sweets/Ottomanmastica.jpg",
-      "sizes": "390x844",
-      "type": "image/jpeg",
-      "form_factor": "narrow",
-      "label": "Turkiana on Mobile"
-    }
-  ],
-  "shortcuts": [
-    {
-      "name": "Full Menu",
-      "short_name": "Menu",
-      "description": "Browse the full Turkiana menu",
-      "url": "/Turkiana-Cafe-Sweets/index.html#menu-anchor",
-      "icons": [{ "src": "/Turkiana-Cafe-Sweets/icon-192.png", "sizes": "192x192", "type": "image/png" }]
-    },
-    {
-      "name": "Turkish Coffee",
-      "short_name": "Coffee",
-      "description": "Explore Turkish & Arabic coffees",
-      "url": "/Turkiana-Cafe-Sweets/index.html#menu-anchor",
-      "icons": [{ "src": "/Turkiana-Cafe-Sweets/icon-192.png", "sizes": "192x192", "type": "image/png" }]
-    }
-  ],
-  "prefer_related_applications": false
+  "lang": "en",
+  "dir": "ltr"
 }
