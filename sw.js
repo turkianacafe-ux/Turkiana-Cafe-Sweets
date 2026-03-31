@@ -1,8 +1,3 @@
-/* ================================================
-   Turkiana Café — Service Worker  v5
-   Uses relative paths — works on any host/subpath
-   ================================================ */
-
 const VER         = 'v5';
 const SHELL_CACHE = 'turkiana-shell-'  + VER;
 const IMG_CACHE   = 'turkiana-images-' + VER;
@@ -10,11 +5,11 @@ const FONT_CACHE  = 'turkiana-fonts-'  + VER;
 const NET_CACHE   = 'turkiana-net-'    + VER;
 const ALL_CACHES  = [SHELL_CACHE, IMG_CACHE, FONT_CACHE, NET_CACHE];
 
-/* Derive base path from SW location so it works on any subpath */
+// Base path derived from service worker location
 const SW_URL  = self.location.href;
 const BASE    = SW_URL.substring(0, SW_URL.lastIndexOf('/') + 1);
 
-/* Shell — must all succeed */
+// Core shell files (must succeed)
 const SHELL_URLS = [
   BASE + 'index.html',
   BASE + 'manifest.json',
@@ -23,7 +18,7 @@ const SHELL_URLS = [
   BASE + 'icon.svg'
 ];
 
-/* Images — best-effort */
+// All images (best‑effort)
 const IMG_FILES = [
   'Turkishcoffee.jpg','Ottomanmastica.jpg','Ottomanhazelnut.jpg',
   'Ottomancardamom.jpg','Sahlep.jpg','Arabic.jpg','Arabiccup.jpeg',
@@ -46,82 +41,64 @@ const IMG_FILES = [
   'Almondcroissant.jpg','Cinnamon.jpg'
 ].map(f => BASE + f);
 
-/* ── INSTALL ─────────────────────────────────── */
+// ----- Install: cache shell and best‑effort images -----
 self.addEventListener('install', event => {
   event.waitUntil((async () => {
-    /* Shell must succeed */
     const sc = await caches.open(SHELL_CACHE);
     await sc.addAll(SHELL_URLS);
-
-    /* Images are best-effort */
     const ic = await caches.open(IMG_CACHE);
-    await Promise.allSettled(
-      IMG_FILES.map(url => ic.add(url).catch(() => {}))
-    );
-
+    await Promise.allSettled(IMG_FILES.map(url => ic.add(url).catch(() => {})));
     await self.skipWaiting();
     console.log('[SW] Installed ' + VER);
   })());
 });
 
-/* ── ACTIVATE ────────────────────────────────── */
+// ----- Activate: remove old caches -----
 self.addEventListener('activate', event => {
   event.waitUntil((async () => {
     const keys = await caches.keys();
-    await Promise.all(
-      keys.filter(k => !ALL_CACHES.includes(k)).map(k => caches.delete(k))
-    );
+    await Promise.all(keys.filter(k => !ALL_CACHES.includes(k)).map(k => caches.delete(k)));
     await self.clients.claim();
     console.log('[SW] Active ' + VER);
   })());
 });
 
-/* ── FETCH ───────────────────────────────────── */
+// ----- Fetch: apply strategies -----
 self.addEventListener('fetch', event => {
   const req = event.request;
   if (req.method !== 'GET') return;
-
   const url = new URL(req.url);
 
-  /* Google Fonts → cache-first */
-  if (url.hostname === 'fonts.googleapis.com' ||
-      url.hostname === 'fonts.gstatic.com') {
+  // Google Fonts -> cache‑first
+  if (url.hostname === 'fonts.googleapis.com' || url.hostname === 'fonts.gstatic.com') {
     return event.respondWith(cacheFirst(req, FONT_CACHE));
   }
-
-  /* CDN (QRCode lib) → network-first */
+  // QRCode CDN -> network‑first
   if (url.hostname === 'cdnjs.cloudflare.com') {
     return event.respondWith(networkFirst(req, NET_CACHE));
   }
-
-  /* Only handle our own origin */
+  // Only handle same‑origin requests
   if (url.origin !== self.location.origin) return;
 
-  /* HTML → cache-first + offline fallback */
+  // HTML (document) -> cache‑first with offline fallback
   if (req.destination === 'document') {
     return event.respondWith(cacheFirst(req, SHELL_CACHE, offlinePage));
   }
-
-  /* Manifest & icons → cache-first */
-  if (url.pathname.endsWith('manifest.json') ||
-      /\.(png|svg)$/.test(url.pathname)) {
+  // Manifest & icons -> cache‑first
+  if (url.pathname.endsWith('manifest.json') || /\.(png|svg)$/.test(url.pathname)) {
     return event.respondWith(cacheFirst(req, SHELL_CACHE));
   }
-
-  /* Images → stale-while-revalidate */
-  if (req.destination === 'image' ||
-      /\.(jpe?g|png|gif|webp|avif|svg|ico|jfif)$/i.test(url.pathname)) {
+  // Images -> stale‑while‑revalidate
+  if (req.destination === 'image' || /\.(jpe?g|png|gif|webp|avif|svg|ico|jfif)$/i.test(url.pathname)) {
     return event.respondWith(staleWhileRevalidate(req, IMG_CACHE));
   }
-
-  /* Everything else → network-first */
+  // Everything else -> network‑first
   event.respondWith(networkFirst(req, NET_CACHE));
 });
 
-/* ── STRATEGIES ──────────────────────────────── */
-
+// ----- Helper strategies -----
 async function cacheFirst(req, name, fallback) {
-  const cache  = await caches.open(name);
+  const cache = await caches.open(name);
   const cached = await cache.match(req);
   if (cached) return cached;
   try {
@@ -147,9 +124,9 @@ async function networkFirst(req, name, fallback) {
 }
 
 async function staleWhileRevalidate(req, name) {
-  const cache  = await caches.open(name);
+  const cache = await caches.open(name);
   const cached = await cache.match(req);
-  const fresh  = fetch(req).then(res => {
+  const fresh = fetch(req).then(res => {
     if (res.ok) cache.put(req, res.clone()).catch(() => {});
     return res;
   }).catch(() => null);
