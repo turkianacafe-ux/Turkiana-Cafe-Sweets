@@ -1,25 +1,59 @@
 {
-  "name": "Turkiana - Ottoman Coffee",
+  "name": "Turkiana · Ottoman Coffee House",
   "short_name": "Turkiana",
   "description": "Premium Turkish coffee & Ottoman sweets in Msheireb Downtown, Doha",
-  "start_url": "/turkiana/",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
-  "theme_color": "#c9a96e",
-  "background_color": "#080604",
-  "orientation": "portrait",
-  "scope": "/turkiana/",
+  "orientation": "portrait-primary",
+  "theme_color": "#B8962A",
+  "background_color": "#F8F3EC",
+  "lang": "en",
+  "categories": ["food", "lifestyle"],
   "icons": [
     {
-      "src": "/turkiana/icons/icon-192.jpg",
+      "src": "icon-192.jpg",
       "sizes": "192x192",
       "type": "image/jpeg",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
-      "src": "/turkiana/icons/icon-512.jpg",
+      "src": "icon-512.jpg",
       "sizes": "512x512",
       "type": "image/jpeg",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "maskable"
     }
-  ]
+  ],
+  "screenshots": [
+    {
+      "src": "icon-512.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "form_factor": "narrow",
+      "label": "Turkiana Menu"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Coffee Menu",
+      "short_name": "Coffee",
+      "description": "Browse our coffee selections",
+      "url": "/?cat=brewed",
+      "icons": [{ "src": "icon-192.jpg", "sizes": "192x192" }]
+    },
+    {
+      "name": "Sweets",
+      "short_name": "Sweets",
+      "description": "Browse our sweets and baklava",
+      "url": "/?cat=baklava",
+      "icons": [{ "src": "icon-192.jpg", "sizes": "192x192" }]
+    }
+  ],
+  "prefer_related_applications": false
 }
