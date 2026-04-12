@@ -1673,8 +1673,9 @@ darkToggle.addEventListener('click', () => {
 // ═══════════════════════════════════════════════════════════════════════════
 // SERVICE WORKER REGISTRATION
 // ═══════════════════════════════════════════════════════════════════════════
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/turkiana/sw.js', { scope: '/turkiana/' })
+
+  if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/Turkiana-Cafe-Sweets/sw.js', { scope: '/Turkiana-Cafe-Sweets/' })
     .then(reg => console.log('SW registered:', reg))
     .catch(err => console.log('SW registration failed:', err));
 }
