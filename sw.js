@@ -3,8 +3,8 @@
    Cache strategy: Cache-first for assets, Network-first for HTML
    ============================================================ */
 
-const CACHE_VERSION = 'turkiana-v3';
-const IMAGE_CACHE   = 'turkiana-images-v3';
+const CACHE_VERSION = 'turkiana-v4';
+const IMAGE_CACHE   = 'turkiana-images-v4';
 
 const SHELL_ASSETS = [
   '/',
@@ -41,10 +41,7 @@ self.addEventListener('fetch', event => {
   const { request } = event;
   const url = new URL(request.url);
 
-  // Only handle GET requests
   if (request.method !== 'GET') return;
-
-  // Skip chrome-extension, analytics, etc.
   if (!url.protocol.startsWith('http')) return;
 
   // Image requests → Cache-first with network fallback, long-lived image cache
@@ -78,8 +75,7 @@ self.addEventListener('fetch', event => {
 /* ── STRATEGIES ──────────────────────────────────────── */
 
 function isImageRequest(url) {
-  return /\.(jpg|jpeg|png|webp|avif|gif|svg|ico)(\?.*)?$/i.test(url.pathname)
-    || url.hostname === 'raw.githubusercontent.com';
+  return /\.(jpg|jpeg|png|webp|avif|gif|svg|ico)(\?.*)?$/i.test(url.pathname);
 }
 
 async function handleImage(request) {
@@ -121,3 +117,10 @@ async function networkFirst(request) {
     return cached || caches.match('/index.html');
   }
 }
+
+/* ── UPDATE NOTIFICATION ────────────────────────────── */
+self.addEventListener('message', event => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
+});
