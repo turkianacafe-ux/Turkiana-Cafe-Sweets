@@ -1,58 +1,123 @@
-const CACHE_NAME = 'turkiana-v2';
-const BASE_PATH = '/Turkiana-Cafe-Sweets/';   // ← exact repository name
+/* ============================================================
+   Turkiana PWA · Service Worker · sw.js
+   Cache strategy: Cache-first for assets, Network-first for HTML
+   ============================================================ */
 
-const ASSETS = [
-  BASE_PATH,
-  BASE_PATH + 'index.html',
-  BASE_PATH + 'manifest.json',
-  'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Cormorant:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400;500&family=Noto+Naskh+Arabic:wght@400;500&display=swap',
-  'https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js'
+const CACHE_VERSION = 'turkiana-v3';
+const IMAGE_CACHE   = 'turkiana-images-v3';
+
+const SHELL_ASSETS = [
+  '/',
+  '/index.html',
+  '/manifest.json',
+  '/icon-192.jpg',
+  '/icon-512.jpg'
 ];
 
+/* ── INSTALL ─────────────────────────────────────────── */
 self.addEventListener('install', event => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS))
+    caches.open(CACHE_VERSION)
+      .then(cache => cache.addAll(SHELL_ASSETS))
+      .then(() => self.skipWaiting())
   );
-  self.skipWaiting();
 });
 
+/* ── ACTIVATE ────────────────────────────────────────── */
 self.addEventListener('activate', event => {
   event.waitUntil(
-    caches.keys().then(keys => Promise.all(
-      keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key))
-    ))
+    caches.keys().then(keys =>
+      Promise.all(
+        keys
+          .filter(key => key !== CACHE_VERSION && key !== IMAGE_CACHE)
+          .map(key => caches.delete(key))
+      )
+    ).then(() => self.clients.claim())
   );
-  self.clients.claim();
 });
 
+/* ── FETCH ───────────────────────────────────────────── */
 self.addEventListener('fetch', event => {
-  const url = new URL(event.request.url);
+  const { request } = event;
+  const url = new URL(request.url);
 
-  // Network-first for GitHub raw images (menu photos)
-  if (url.hostname === 'raw.githubusercontent.com' && url.pathname.match(/\.(jpg|jpeg|png|webp|avif|gif|svg)$/i)) {
-    event.respondWith(
-      caches.open(CACHE_NAME).then(cache => {
-        return fetch(event.request)
-          .then(response => {
-            cache.put(event.request, response.clone());
-            return response;
-          })
-          .catch(() => cache.match(event.request));
-      })
-    );
+  // Only handle GET requests
+  if (request.method !== 'GET') return;
+
+  // Skip chrome-extension, analytics, etc.
+  if (!url.protocol.startsWith('http')) return;
+
+  // Image requests → Cache-first with network fallback, long-lived image cache
+  if (isImageRequest(url)) {
+    event.respondWith(handleImage(request));
     return;
   }
 
-  // Cache-first for everything else
-  event.respondWith(
-    caches.match(event.request).then(cachedResponse => {
-      return cachedResponse || fetch(event.request).then(response => {
-        if (event.request.method === 'GET' && response.status === 200) {
-          const responseClone = response.clone();
-          caches.open(CACHE_NAME).then(cache => cache.put(event.request, responseClone));
-        }
-        return response;
-      });
-    })
-  );
+  // Google Fonts → Cache-first
+  if (url.hostname === 'fonts.googleapis.com' || url.hostname === 'fonts.gstatic.com') {
+    event.respondWith(cacheFirst(request, CACHE_VERSION));
+    return;
+  }
+
+  // CDN scripts → Cache-first
+  if (url.hostname === 'cdn.jsdelivr.net' || url.hostname === 'cdnjs.cloudflare.com') {
+    event.respondWith(cacheFirst(request, CACHE_VERSION));
+    return;
+  }
+
+  // Shell HTML → Network-first with cache fallback
+  if (url.pathname === '/' || url.pathname.endsWith('.html')) {
+    event.respondWith(networkFirst(request));
+    return;
+  }
+
+  // Everything else → Cache-first
+  event.respondWith(cacheFirst(request, CACHE_VERSION));
 });
+
+/* ── STRATEGIES ──────────────────────────────────────── */
+
+function isImageRequest(url) {
+  return /\.(jpg|jpeg|png|webp|avif|gif|svg|ico)(\?.*)?$/i.test(url.pathname)
+    || url.hostname === 'raw.githubusercontent.com';
+}
+
+async function handleImage(request) {
+  const cache = await caches.open(IMAGE_CACHE);
+  const cached = await cache.match(request);
+  if (cached) return cached;
+  try {
+    const response = await fetch(request);
+    if (response.ok) cache.put(request, response.clone());
+    return response;
+  } catch {
+    return cached || new Response('', { status: 404 });
+  }
+}
+
+async function cacheFirst(request, cacheName) {
+  const cache  = await caches.open(cacheName);
+  const cached = await cache.match(request);
+  if (cached) return cached;
+  try {
+    const response = await fetch(request);
+    if (response.ok) cache.put(request, response.clone());
+    return response;
+  } catch {
+    return new Response('Offline', { status: 503 });
+  }
+}
+
+async function networkFirst(request) {
+  try {
+    const response = await fetch(request);
+    if (response.ok) {
+      const cache = await caches.open(CACHE_VERSION);
+      cache.put(request, response.clone());
+    }
+    return response;
+  } catch {
+    const cached = await caches.match(request);
+    return cached || caches.match('/index.html');
+  }
+}
