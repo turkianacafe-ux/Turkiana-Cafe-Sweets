@@ -4,26 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Turkiana · Ottoman Coffee House</title>
-  
-  <!-- PWA Manifest -->
-  <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22Turkiana%20%7C%20Ottoman%20Coffee%22%2C%22short_name%22%3A%22Turkiana%22%2C%22description%22%3A%22Luxury%20Ottoman%20cafe%20menu%20%E2%80%94%20coffee%2C%20sweets%2C%20and%20tradition.%22%2C%22start_url%22%3A%22.%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23F8F3EC%22%2C%22theme_color%22%3A%22%23B8962A%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%2520xmlns%253D%2522http%253A%252F%252Fwww.w3.org%252F2000%252Fsvg%2522%2520viewBox%253D%25220%25200%2520100%2520100%2522%253E%253Ccircle%2520cx%253D%252250%2522%2520cy%253D%252250%2522%2520r%253D%252245%2522%2520fill%253D%2522%2523B8962A%2522%252F%253E%253Ctext%2520x%253D%252250%2522%2520y%253D%252268%2522%2520font-family%253D%2522Georgia%2522%2520font-size%253D%252238%2522%2520fill%253D%2522%2523F8F3EC%2522%2520text-anchor%253D%2522middle%2522%253E%25E2%259C%25A6%253C%252Ftext%253E%253C%252Fsvg%253E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%7D%5D%7D">
-  <meta name="theme-color" content="#B8962A">
+
+  <!-- PWA Manifest (external file) -->
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#c9a96e">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  
+
   <!-- Preconnect & Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Cormorant:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400;500&family=Noto+Naskh+Arabic:wght@400;500&display=swap" rel="stylesheet">
 
-  <!-- QR Code Generator (lightweight) -->
+  <!-- QR Code Generator -->
   <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
 
   <style>
-    /* ═══════════════════════════════════════════
-       DESIGN TOKENS — Ivory & Gold Maison
-       (Enhanced with Dark Mode & Print)
-       ═══════════════════════════════════════════ */
+    /* ---------- DESIGN TOKENS ---------- */
     :root {
       --ivory:        #F8F3EC;
       --ivory-deep:   #F0E9DF;
@@ -44,6 +41,7 @@
       --white:        #FFFFFF;
       --shadow-sm:    0 2px 16px rgba(30,20,10,0.06);
       --shadow-md:    0 8px 40px rgba(30,20,10,0.10);
+      
       --shadow-lg:    0 24px 80px rgba(30,20,10,0.14);
       --shadow-gold:  0 8px 40px rgba(184,150,42,0.18);
       --r:            4px;
@@ -53,7 +51,6 @@
       --ease-silk:    cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
-    /* Dark mode variables */
     body.dark-mode {
       --ivory:        #1A1510;
       --ivory-deep:   #2A241E;
@@ -87,19 +84,16 @@
       font-family: 'Jost', system-ui, sans-serif;
       font-weight: 300;
       line-height: 1.6;
-      overflow-x: hidden;
       min-height: 100dvh;
       transition: background-color 0.3s, color 0.3s;
     }
 
-    /* Grain texture overlay */
     body::after {
       content: '';
       position: fixed; inset: 0; z-index: 0;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
       background-size: 256px;
       pointer-events: none;
-      opacity: 1;
     }
     body.dark-mode::after { opacity: 0.08; }
 
@@ -109,7 +103,6 @@
     :focus-visible { outline: 1.5px solid var(--gold); outline-offset: 4px; border-radius: 2px; }
     .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
 
-    /* Offline indicator */
     #offlineBanner {
       position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
       background: var(--ink); color: var(--gold);
@@ -119,16 +112,10 @@
     }
     #offlineBanner.show { transform: translateY(0); }
 
-    /* A2HS button */
-    .install-btn {
-      display: none;
-      margin-left: 8px;
-    }
+    .install-btn { display: none; margin-left: 8px; }
     .install-btn.show { display: inline-flex; }
 
-    /* ═══════════════════════════════════════════
-       SPLASH
-       ═══════════════════════════════════════════ */
+    /* ---------- SPLASH ---------- */
     #splash {
       position: fixed; inset: 0; z-index: 9000;
       background: var(--ivory);
@@ -141,10 +128,7 @@
       animation: splashOut 1.1s var(--ease-out) forwards;
       pointer-events: none;
     }
-    @keyframes splashOut {
-      0%   { opacity: 1; }
-      100% { opacity: 0; }
-    }
+    @keyframes splashOut { 0% { opacity: 1; } 100% { opacity: 0; } }
 
     .splash-corner {
       position: absolute;
@@ -161,23 +145,17 @@
     .splash-inner { position: relative; z-index: 2; text-align: center; max-width: 680px; width: 100%; }
 
     .splash-overline {
-      font-family: 'Jost', sans-serif;
-      font-weight: 400;
+      font-family: 'Jost', sans-serif; font-weight: 400;
       font-size: clamp(0.58rem, 1.1vw, 0.66rem);
-      letter-spacing: 0.5em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: clamp(24px, 5vw, 44px);
+      letter-spacing: 0.5em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: clamp(24px, 5vw, 44px);
       opacity: 0; animation: riseUp 0.7s var(--ease-out) 0.2s forwards;
     }
     .splash-wordmark {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-weight: 400;
+      font-family: 'Playfair Display', Georgia, serif; font-weight: 400;
       font-size: clamp(5rem, 14vw, 10rem);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--ink);
-      line-height: 0.9;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--ink); line-height: 0.9;
       margin-bottom: clamp(24px, 4vw, 40px);
       opacity: 0; animation: riseUp 1s var(--ease-out) 0.35s forwards;
     }
@@ -194,36 +172,28 @@
       opacity: 0; animation: fadeIn 0.6s var(--ease-out) 0.8s forwards;
     }
     .splash-tagline {
-      font-family: 'Cormorant', Georgia, serif;
-      font-style: italic;
+      font-family: 'Cormorant', Georgia, serif; font-style: italic;
       font-size: clamp(1rem, 2.5vw, 1.3rem);
-      color: var(--ink-soft);
-      margin-bottom: clamp(40px, 7vw, 70px);
+      color: var(--ink-soft); margin-bottom: clamp(40px, 7vw, 70px);
       opacity: 0; animation: riseUp 0.7s var(--ease-out) 0.85s forwards;
       font-weight: 300;
     }
     .splash-btn {
       display: inline-flex; align-items: center; gap: 20px;
       padding: 18px clamp(36px, 6vw, 60px);
-      border: 1px solid var(--gold);
-      border-radius: 0;
+      border: 1px solid var(--gold); border-radius: 0;
       color: var(--gold);
-      font-family: 'Jost', sans-serif;
-      font-weight: 400;
+      font-family: 'Jost', sans-serif; font-weight: 400;
       font-size: clamp(0.62rem, 1.2vw, 0.7rem);
-      letter-spacing: 0.4em;
-      text-transform: uppercase;
-      position: relative;
-      overflow: hidden;
+      letter-spacing: 0.4em; text-transform: uppercase;
+      position: relative; overflow: hidden;
       opacity: 0; animation: riseUp 0.7s var(--ease-out) 1.1s forwards;
       transition: color 0.55s var(--ease-silk);
     }
     .splash-btn::before {
-      content: '';
-      position: absolute; inset: 0;
+      content: ''; position: absolute; inset: 0;
       background: var(--gold);
-      transform: scaleX(0);
-      transform-origin: left;
+      transform: scaleX(0); transform-origin: left;
       transition: transform 0.55s var(--ease-silk);
     }
     .splash-btn:hover::before { transform: scaleX(1); }
@@ -232,9 +202,7 @@
     .splash-btn svg { transition: transform 0.4s var(--ease-spring); }
     .splash-btn:hover svg { transform: translateX(6px); }
 
-    /* ═══════════════════════════════════════════
-       HEADER
-       ═══════════════════════════════════════════ */
+    /* ---------- HEADER ---------- */
     #app { display: none; }
     #app.visible { display: block; animation: fadeIn 0.8s var(--ease-out) forwards; }
 
@@ -253,12 +221,9 @@
     .header-mark {
       font-family: 'Playfair Display', serif;
       font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-      font-weight: 400;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--ink);
-      cursor: pointer;
-      flex-shrink: 0;
+      font-weight: 400; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--ink);
+      cursor: pointer; flex-shrink: 0;
       transition: color 0.3s;
     }
     .header-mark:hover { color: var(--gold); }
@@ -269,14 +234,10 @@
       width: 100%; height: 42px;
       padding: 0 40px 0 48px;
       border: 1px solid var(--parchment);
-      border-radius: 0;
-      background: var(--white);
+      border-radius: 0; background: var(--white);
       color: var(--ink);
-      font-family: 'Jost', sans-serif;
-      font-size: 0.84rem;
-      font-weight: 300;
-      letter-spacing: 0.05em;
-      outline: none;
+      font-family: 'Jost', sans-serif; font-size: 0.84rem; font-weight: 300;
+      letter-spacing: 0.05em; outline: none;
       transition: border-color 0.3s, box-shadow 0.3s, background 0.3s, color 0.3s;
     }
     .header-search::placeholder { color: var(--ink-ghost); }
@@ -292,23 +253,18 @@
     .hbtn {
       height: 38px; padding: 0 18px;
       border: 1px solid var(--parchment);
-      background: transparent;
-      color: var(--ink-soft);
-      font-family: 'Jost', sans-serif;
-      font-size: 0.64rem;
-      font-weight: 400;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
+      background: transparent; color: var(--ink-soft);
+      font-family: 'Jost', sans-serif; font-size: 0.64rem; font-weight: 400;
+      letter-spacing: 0.22em; text-transform: uppercase;
       display: flex; align-items: center; gap: 7px;
       transition: all 0.3s var(--ease-out);
       border-radius: 0;
     }
     .hbtn:hover { border-color: var(--gold); color: var(--gold); background: var(--gold-hover); }
 
-    /* Dark mode toggle */
     #darkModeToggle { margin-left: 4px; }
 
-    /* Mobile search */
+    /* Mobile search bar */
     .mobile-search-bar {
       display: none;
       padding: 10px 16px;
@@ -321,11 +277,8 @@
       width: 100%; height: 42px;
       padding: 0 40px 0 44px;
       border: 1px solid var(--parchment);
-      background: var(--white);
-      color: var(--ink);
-      font-family: 'Jost', sans-serif;
-      font-size: 0.88rem;
-      font-weight: 300;
+      background: var(--white); color: var(--ink);
+      font-family: 'Jost', sans-serif; font-size: 0.88rem; font-weight: 300;
       outline: none;
       transition: border-color 0.3s, background 0.3s, color 0.3s;
     }
@@ -342,9 +295,7 @@
       .mobile-search-bar { display: block; }
     }
 
-    /* ═══════════════════════════════════════════
-       MARQUEE RIBBON
-       ═══════════════════════════════════════════ */
+    /* ---------- MARQUEE ---------- */
     .ribbon {
       background: var(--ink);
       border-bottom: 1px solid rgba(255,255,255,0.06);
@@ -359,20 +310,14 @@
     .ribbon-item {
       display: flex; align-items: center;
       padding: 0 clamp(20px, 3vw, 36px);
-      font-family: 'Jost', sans-serif;
-      font-size: 0.6rem;
-      font-weight: 400;
-      letter-spacing: 0.38em;
-      text-transform: uppercase;
-      color: var(--ink-faint);
-      white-space: nowrap;
+      font-family: 'Jost', sans-serif; font-size: 0.6rem; font-weight: 400;
+      letter-spacing: 0.38em; text-transform: uppercase;
+      color: var(--ink-faint); white-space: nowrap;
     }
     .ribbon-item.accent { color: var(--gold-rich); }
     .ribbon-dot { color: var(--gold); opacity: 0.5; font-size: 0.4rem; margin: 0 clamp(14px, 2vw, 24px); }
 
-    /* ═══════════════════════════════════════════
-       MENU HERO
-       ═══════════════════════════════════════════ */
+    /* ---------- HERO ---------- */
     .menu-hero {
       padding: clamp(64px, 12vw, 140px) clamp(20px, 6vw, 80px) clamp(40px, 6vw, 72px);
       text-align: center;
@@ -383,35 +328,24 @@
       margin-bottom: clamp(20px, 3vw, 32px);
     }
     .hero-line { width: 40px; height: 1px; background: var(--gold-line); }
-    .hero-diamond {
-      font-size: 0.5rem; color: var(--gold); opacity: 0.7;
-    }
+    .hero-diamond { font-size: 0.5rem; color: var(--gold); opacity: 0.7; }
     .hero-sub {
       font-family: 'Jost', sans-serif; font-weight: 400;
       font-size: clamp(0.58rem, 1.1vw, 0.65rem);
       letter-spacing: 0.48em; text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: clamp(16px, 2.5vw, 24px);
+      color: var(--gold); margin-bottom: clamp(16px, 2.5vw, 24px);
     }
     .menu-hero-title {
-      font-family: 'Playfair Display', serif;
-      font-weight: 400;
+      font-family: 'Playfair Display', serif; font-weight: 400;
       font-size: clamp(3.5rem, 9vw, 7.5rem);
-      letter-spacing: 0.08em;
-      line-height: 0.92;
-      color: var(--ink);
-      margin-bottom: clamp(20px, 3vw, 32px);
+      letter-spacing: 0.08em; line-height: 0.92;
+      color: var(--ink); margin-bottom: clamp(20px, 3vw, 32px);
     }
-    .menu-hero-title em {
-      font-style: italic;
-      color: var(--gold);
-    }
+    .menu-hero-title em { font-style: italic; color: var(--gold); }
     .menu-hero-desc {
-      font-family: 'Cormorant', serif;
-      font-style: italic;
+      font-family: 'Cormorant', serif; font-style: italic;
       font-size: clamp(1.05rem, 2.2vw, 1.3rem);
-      color: var(--ink-soft);
-      max-width: 520px; margin: 0 auto;
+      color: var(--ink-soft); max-width: 520px; margin: 0 auto;
       font-weight: 300; line-height: 1.7;
     }
     .hero-rule {
@@ -420,9 +354,7 @@
       margin: clamp(24px, 3.5vw, 36px) auto 0;
     }
 
-    /* ═══════════════════════════════════════════
-       CATEGORY NAV
-       ═══════════════════════════════════════════ */
+    /* ---------- CATEGORY NAV ---------- */
     .cat-nav {
       position: sticky;
       top: clamp(64px, 8vw, 80px);
@@ -442,32 +374,23 @@
       display: inline-flex; align-items: center; justify-content: center;
       height: clamp(52px, 6vw, 62px);
       padding: 0 clamp(22px, 3.5vw, 40px);
-      border: none;
-      background: transparent;
+      border: none; background: transparent;
       color: var(--ink-faint);
-      font-family: 'Jost', sans-serif;
-      font-size: clamp(0.7rem, 1.3vw, 0.78rem);
-      font-weight: 400;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      white-space: nowrap;
-      position: relative;
+      font-family: 'Jost', sans-serif; font-size: clamp(0.7rem, 1.3vw, 0.78rem);
+      font-weight: 400; letter-spacing: 0.18em; text-transform: uppercase;
+      white-space: nowrap; position: relative;
       transition: color 0.35s var(--ease-silk);
     }
     .cat-pill::after {
-      content: '';
-      position: absolute; bottom: 0; left: 50%; right: 50%;
-      height: 1.5px;
-      background: var(--gold);
+      content: ''; position: absolute; bottom: 0; left: 50%; right: 50%;
+      height: 1.5px; background: var(--gold);
       transition: left 0.4s var(--ease-silk), right 0.4s var(--ease-silk);
     }
     .cat-pill:hover { color: var(--ink-mid); }
     .cat-pill.active { color: var(--gold); font-weight: 500; }
     .cat-pill.active::after { left: clamp(22px, 3.5vw, 40px); right: clamp(22px, 3.5vw, 40px); }
 
-    /* ═══════════════════════════════════════════
-       DIET BAR
-       ═══════════════════════════════════════════ */
+    /* ---------- DIET BAR ---------- */
     .diet-bar {
       display: flex; justify-content: center; align-items: center;
       gap: clamp(6px, 1.5vw, 10px); flex-wrap: wrap;
@@ -478,22 +401,16 @@
     .dpill {
       padding: 7px clamp(14px, 2.5vw, 20px);
       border: 1px solid var(--parchment);
-      background: transparent;
-      color: var(--ink-faint);
-      font-family: 'Jost', sans-serif;
-      font-size: clamp(0.64rem, 1.2vw, 0.7rem);
-      font-weight: 400;
-      letter-spacing: 0.12em;
-      border-radius: 0;
-      transition: all 0.3s var(--ease-out);
+      background: transparent; color: var(--ink-faint);
+      font-family: 'Jost', sans-serif; font-size: clamp(0.64rem, 1.2vw, 0.7rem);
+      font-weight: 400; letter-spacing: 0.12em;
+      border-radius: 0; transition: all 0.3s var(--ease-out);
       white-space: nowrap;
     }
     .dpill:hover { border-color: var(--gold); color: var(--gold); background: var(--gold-hover); }
     .dpill.on { border-color: var(--gold); color: var(--gold); background: var(--gold-hover); }
 
-    /* ═══════════════════════════════════════════
-       SECTION LABEL
-       ═══════════════════════════════════════════ */
+    /* ---------- SECTION LABEL ---------- */
     .section-label {
       display: flex; align-items: center; gap: 20px;
       padding: clamp(28px, 4vw, 48px) clamp(20px, 5vw, 64px) clamp(16px, 2.5vw, 28px);
@@ -502,11 +419,8 @@
     .section-line { flex: 1; height: 1px; background: var(--parchment); }
     .section-orn { font-size: 0.45rem; color: var(--gold); opacity: 0.7; }
 
-    /* ═══════════════════════════════════════════
-       MENU GRID & CARDS
-       ═══════════════════════════════════════════ */
+    /* ---------- MENU GRID ---------- */
     .menu-area { padding: 0 clamp(16px, 4vw, 48px) clamp(80px, 12vw, 160px); }
-
     .menu-grid {
       display: grid;
       gap: clamp(12px, 2vw, 20px);
@@ -516,18 +430,13 @@
     }
     .menu-grid.fading { opacity: 0; }
 
-    /* CARD */
+    /* Card */
     .menu-card {
       background: var(--white);
       border: 1px solid var(--ivory-warm);
-      position: relative;
-      overflow: hidden;
-      transition:
-        border-color 0.45s var(--ease-silk),
-        box-shadow 0.45s var(--ease-silk),
-        transform 0.45s var(--ease-spring);
-      opacity: 0;
-      transform: translateY(18px);
+      position: relative; overflow: hidden;
+      transition: border-color 0.45s var(--ease-silk), box-shadow 0.45s var(--ease-silk), transform 0.45s var(--ease-spring);
+      opacity: 0; transform: translateY(18px);
     }
     .menu-card.in { opacity: 1; transform: translateY(0); }
     .menu-card:not(.oos):hover {
@@ -536,11 +445,8 @@
       transform: translateY(-6px);
     }
     .menu-card.oos { cursor: default; }
-
-    /* Gold shimmer on hover */
     .menu-card::before {
-      content: '';
-      position: absolute; inset: 0; z-index: 5;
+      content: ''; position: absolute; inset: 0; z-index: 5;
       background: linear-gradient(105deg, transparent 40%, rgba(184,150,42,0.04) 60%, transparent 80%);
       background-size: 200% 100%; background-position: 200% 0;
       transition: background-position 0.7s var(--ease-silk);
@@ -550,8 +456,7 @@
 
     .card-img-wrap {
       height: clamp(180px, 20vw, 220px);
-      position: relative;
-      overflow: hidden;
+      position: relative; overflow: hidden;
       background: var(--ivory-deep);
     }
     .card-img-skel {
@@ -573,7 +478,6 @@
     .menu-card:not(.oos):hover .card-img { transform: scale(1.05); }
     .menu-card.oos .card-img { filter: saturate(0.2) brightness(0.85); }
 
-    /* Gradient overlay on image */
     .card-img-overlay {
       position: absolute; inset: 0;
       background: linear-gradient(to top, rgba(248,243,236,0.55) 0%, transparent 55%);
@@ -583,8 +487,7 @@
       position: absolute; bottom: 14px; right: 14px;
       font-family: 'Playfair Display', serif;
       font-size: clamp(0.95rem, 1.8vw, 1.1rem);
-      font-weight: 400;
-      color: var(--ink);
+      font-weight: 400; color: var(--ink);
       background: rgba(250,247,242,0.92);
       border: 1px solid var(--gold-line);
       padding: 4px 12px;
@@ -592,7 +495,6 @@
       letter-spacing: 0.04em;
     }
 
-    /* OOS */
     .oos-overlay {
       position: absolute; inset: 0; z-index: 10;
       background: rgba(248,243,236,0.70);
@@ -609,20 +511,16 @@
       backdrop-filter: blur(8px);
     }
 
-    /* Badges */
     .card-badge {
       position: absolute; top: 12px; right: 12px; z-index: 6;
-      font-family: 'Jost', sans-serif;
-      font-size: 0.55rem; font-weight: 500;
+      font-family: 'Jost', sans-serif; font-size: 0.55rem; font-weight: 500;
       letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--ink);
-      background: var(--gold-rich);
+      color: var(--ink); background: var(--gold-rich);
       padding: 4px 11px;
     }
     .card-oos-badge {
       position: absolute; top: 12px; left: 12px; z-index: 6;
-      font-family: 'Jost', sans-serif;
-      font-size: 0.55rem; font-weight: 400;
+      font-family: 'Jost', sans-serif; font-size: 0.55rem; font-weight: 400;
       letter-spacing: 0.18em; text-transform: uppercase;
       color: var(--ink-soft);
       background: rgba(250,247,242,0.92);
@@ -630,36 +528,28 @@
       padding: 4px 10px;
     }
 
-    /* Card body */
     .card-body { padding: clamp(16px, 2.5vw, 22px) clamp(18px, 2.5vw, 24px) clamp(18px, 2.5vw, 24px); }
-
     .card-cat-label {
-      font-family: 'Jost', sans-serif;
-      font-size: 0.58rem; font-weight: 400;
+      font-family: 'Jost', sans-serif; font-size: 0.58rem; font-weight: 400;
       letter-spacing: 0.3em; text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 8px;
+      color: var(--gold); margin-bottom: 8px;
     }
     .card-name {
       font-family: 'Playfair Display', serif;
       font-size: clamp(1.05rem, 2vw, 1.2rem);
-      font-weight: 400;
-      color: var(--ink);
-      line-height: 1.2;
-      margin-bottom: 3px;
+      font-weight: 400; color: var(--ink);
+      line-height: 1.2; margin-bottom: 3px;
     }
     .card-name-ar {
       font-family: 'Noto Naskh Arabic', serif;
       font-size: clamp(0.78rem, 1.4vw, 0.86rem);
-      color: var(--ink-ghost);
-      margin-bottom: 10px;
+      color: var(--ink-ghost); margin-bottom: 10px;
       line-height: 1.5;
     }
     .card-desc {
       font-family: 'Jost', sans-serif;
       font-size: clamp(0.76rem, 1.3vw, 0.82rem);
-      font-weight: 300;
-      color: var(--ink-soft);
+      font-weight: 300; color: var(--ink-soft);
       line-height: 1.65;
       display: -webkit-box;
       -webkit-line-clamp: 2; -webkit-box-orient: vertical;
@@ -668,8 +558,7 @@
     }
     .card-bake-note {
       font-size: 0.68rem; font-weight: 400;
-      color: var(--gold);
-      letter-spacing: 0.08em;
+      color: var(--gold); letter-spacing: 0.08em;
       margin-bottom: 10px;
       display: flex; align-items: center; gap: 6px;
     }
@@ -694,9 +583,7 @@
       font-size: 1.2rem; color: var(--ink-soft); font-weight: 300;
     }
 
-    /* ═══════════════════════════════════════════
-       ITEM MODAL
-       ═══════════════════════════════════════════ */
+    /* ---------- MODAL ---------- */
     dialog {
       background: transparent; border: none; padding: 0;
       max-width: 100vw; max-height: 100dvh;
@@ -770,8 +657,7 @@
     .modal-name {
       font-family: 'Playfair Display', serif;
       font-size: clamp(1.8rem, 4vw, 2.4rem);
-      font-weight: 400;
-      line-height: 1.1; margin-bottom: 4px;
+      font-weight: 400; line-height: 1.1; margin-bottom: 4px;
     }
     .modal-name-ar {
       font-family: 'Noto Naskh Arabic', serif;
@@ -781,8 +667,7 @@
     .modal-price {
       font-family: 'Playfair Display', serif;
       font-size: clamp(1.6rem, 3.5vw, 2.1rem);
-      font-weight: 400;
-      color: var(--gold);
+      font-weight: 400; color: var(--gold);
       margin-bottom: clamp(18px, 3vw, 28px);
     }
     .modal-price sup { font-size: 0.7rem; font-family: 'Jost', sans-serif; font-weight: 300; color: var(--ink-faint); margin-left: 4px; }
@@ -805,16 +690,13 @@
     .milk-opt {
       padding: 7px 16px;
       border: 1px solid var(--parchment);
-      background: transparent;
-      color: var(--ink-soft);
+      background: transparent; color: var(--ink-soft);
       font-family: 'Jost', sans-serif; font-size: 0.8rem; font-weight: 300;
-      cursor: pointer;
-      transition: all 0.3s;
+      cursor: pointer; transition: all 0.3s;
     }
     .milk-opt:hover { border-color: var(--gold); color: var(--gold); }
     .milk-opt.on { border-color: var(--gold); color: var(--gold); background: var(--gold-hover); }
 
-    /* Reco strip */
     .modal-recos { padding-top: clamp(18px, 3vw, 24px); border-top: 1px solid var(--ivory-warm); margin-top: clamp(18px, 3vw, 24px); }
     .modal-recos-label { font-size: 0.6rem; font-weight: 400; letter-spacing: 0.32em; text-transform: uppercase; color: var(--ink-ghost); margin-bottom: 14px; }
     .modal-recos-list { display: flex; gap: 12px; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; padding-bottom: 4px; }
@@ -826,9 +708,7 @@
     .reco-name { font-family: 'Playfair Display', serif; font-size: 0.82rem; color: var(--ink); margin-top: 7px; line-height: 1.3; }
     .reco-price { font-size: 0.7rem; color: var(--gold); margin-top: 3px; font-family: 'Jost', sans-serif; }
 
-    /* ═══════════════════════════════════════════
-       QR MODAL
-       ═══════════════════════════════════════════ */
+    /* ---------- QR DIALOG ---------- */
     #qrDialog { width: min(360px, 92vw); }
     .qr-inner { background: var(--white); border: 1px solid var(--ivory-warm); box-shadow: var(--shadow-lg); }
     .qr-body { padding: clamp(32px, 5vw, 48px); text-align: center; position: relative; }
@@ -837,9 +717,7 @@
     #qrOutput { background: var(--white); display: inline-block; padding: 16px; border: 1px solid var(--ivory-warm); }
     .qr-url { font-size: 0.65rem; color: var(--ink-ghost); margin-top: 14px; letter-spacing: 0.15em; }
 
-    /* ═══════════════════════════════════════════
-       QUOTE BAR
-       ═══════════════════════════════════════════ */
+    /* ---------- QUOTE BAR ---------- */
     #quoteBar {
       position: fixed; bottom: 0; left: 0; right: 0; z-index: 700;
       background: rgba(26,21,16,0.97);
@@ -883,9 +761,7 @@
     }
     .qbar-close:hover { border-color: var(--gold); color: var(--gold); }
 
-    /* ═══════════════════════════════════════════
-       FOOTER
-       ═══════════════════════════════════════════ */
+    /* ---------- FOOTER ---------- */
     .footer {
       background: var(--ink);
       color: rgba(255,255,255,0.6);
@@ -895,9 +771,7 @@
     .footer-mark {
       font-family: 'Playfair Display', serif;
       font-size: clamp(3rem, 8vw, 5.5rem);
-      font-weight: 400;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
+      font-weight: 400; letter-spacing: 0.14em; text-transform: uppercase;
       background: linear-gradient(135deg, var(--gold) 0%, var(--gold-rich) 60%, var(--gold-pale) 100%);
       -webkit-background-clip: text; background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -913,9 +787,7 @@
     .hours-grid { display: grid; grid-template-columns: 1fr auto; gap: 8px 48px; font-size: 0.86rem; max-width: 380px; margin: 0 auto; }
     .footer-copy { font-size: 0.62rem; color: rgba(255,255,255,0.2); margin-top: 32px; letter-spacing: 0.14em; }
 
-    /* ═══════════════════════════════════════════
-       BACK TO TOP
-       ═══════════════════════════════════════════ */
+    /* ---------- BACK TO TOP ---------- */
     #btt {
       position: fixed; bottom: 80px; right: clamp(16px, 3vw, 28px);
       width: 46px; height: 46px;
@@ -933,21 +805,11 @@
     #btt svg { fill: var(--ink-mid); width: 16px; height: 16px; transition: fill 0.3s; }
     #btt:hover svg { fill: var(--white); }
 
-    /* ═══════════════════════════════════════════
-       ANIMATIONS
-       ═══════════════════════════════════════════ */
-    @keyframes riseUp {
-      from { opacity: 0; transform: translateY(22px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-    }
+    /* Animations */
+    @keyframes riseUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-    /* ═══════════════════════════════════════════
-       RESPONSIVE
-       ═══════════════════════════════════════════ */
+    /* Responsive */
     @media (max-width: 768px) {
       .hours-grid { grid-template-columns: 1fr; }
       .modal-meta { grid-template-columns: 1fr; }
@@ -957,9 +819,7 @@
       *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
     }
 
-    /* ═══════════════════════════════════════════
-       PRINT STYLES
-       ═══════════════════════════════════════════ */
+    /* Print */
     @media print {
       .header, .cat-nav, .diet-bar, .ribbon, #btt, #quoteBar, .splash, .modal-close, .hbtn, .search-clear, .mobile-search-bar, .install-btn, #darkModeToggle, .hero-sub, .menu-hero-orn, .section-label, #offlineBanner { display: none !important; }
       body { background: white; color: black; }
@@ -1079,9 +939,7 @@
     </p>
     <div class="footer-hours">
       <h4 id="footerHoursTitle">Opening Hours</h4>
-      <div class="hours-grid" id="hoursGrid">
-        <!-- Populated by JS -->
-      </div>
+      <div class="hours-grid" id="hoursGrid"></div>
     </div>
     <p class="footer-copy" id="footerCopy">© 2026 Turkiana · Msheireb Downtown · Doha, Qatar</p>
   </footer>
@@ -1129,7 +987,6 @@
   <svg viewBox="0 0 24 24"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
 </button>
 
-<!-- Continue in Part 2 -->
 <script>
 (function(){
 'use strict';
@@ -1137,10 +994,10 @@
 // ═══════════════════════════════════════════════════════════════════════════
 // CONFIGURATION
 // ═══════════════════════════════════════════════════════════════════════════
-const IMAGE_BASE = "https://raw.githubusercontent.com/turkianacafe-ux/Turkiana-Cafe-Sweets/main/"; // Change to your CDN
+const IMAGE_BASE = "https://raw.githubusercontent.com/turkianacafe-ux/Turkiana-Cafe-Sweets/main/";
 
 // ═══════════════════════════════════════════════════════════════════════════
-// TRANSLATIONS — full localization for all UI strings
+// TRANSLATIONS
 // ═══════════════════════════════════════════════════════════════════════════
 const I18n = {
   en: {
@@ -1809,55 +1666,16 @@ const darkToggle = document.getElementById('darkModeToggle');
 darkToggle.addEventListener('click', () => {
   document.body.classList.toggle('dark-mode');
   const isDark = document.body.classList.contains('dark-mode');
-  document.querySelector('meta[name="theme-color"]').setAttribute('content', isDark ? '#1A1510' : '#B8962A');
+  document.querySelector('meta[name="theme-color"]').setAttribute('content', isDark ? '#1A1510' : '#c9a96e');
 });
 
 // ═══════════════════════════════════════════════════════════════════════════
-// SERVICE WORKER (versioned)
+// SERVICE WORKER REGISTRATION
 // ═══════════════════════════════════════════════════════════════════════════
 if ('serviceWorker' in navigator) {
-  const CACHE_VERSION = 'turkiana-v2';
-  const swCode = `
-    const CACHE = '${CACHE_VERSION}';
-    const STATIC = ['./','./?standalone=true'];
-    
-    self.addEventListener('install', e => {
-      e.waitUntil(caches.open(CACHE).then(c => c.addAll(STATIC)));
-      self.skipWaiting();
-    });
-    
-    self.addEventListener('activate', e => {
-      e.waitUntil(caches.keys().then(keys => Promise.all(
-        keys.filter(key => key !== CACHE).map(key => caches.delete(key))
-      )));
-      self.clients.claim();
-    });
-    
-    self.addEventListener('fetch', e => {
-      const url = new URL(e.request.url);
-      if (url.hostname === 'raw.githubusercontent.com' || url.pathname.match(/\\.(jpg|jpeg|png|webp|avif|gif|svg)/i)) {
-        e.respondWith(
-          fetch(e.request).then(res => {
-            const clone = res.clone();
-            caches.open(CACHE).then(c => c.put(e.request, clone));
-            return res;
-          }).catch(() => caches.match(e.request))
-        );
-      } else {
-        e.respondWith(
-          caches.match(e.request).then(cached => cached || fetch(e.request).then(res => {
-            if (e.request.method === 'GET') {
-              const clone = res.clone();
-              caches.open(CACHE).then(c => c.put(e.request, clone));
-            }
-            return res;
-          }))
-        );
-      }
-    });
-  `;
-  const blob = new Blob([swCode], {type: 'application/javascript'});
-  navigator.serviceWorker.register(URL.createObjectURL(blob));
+  navigator.serviceWorker.register('/turkiana/sw.js', { scope: '/turkiana/' })
+    .then(reg => console.log('SW registered:', reg))
+    .catch(err => console.log('SW registration failed:', err));
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -1872,8 +1690,5 @@ updateUIText();
 
 })();
 </script>
-
-<!-- End of Turkiana PWA -->
 </body>
-  
 </html>
