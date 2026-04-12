@@ -1,40 +1,58 @@
 const CACHE_NAME = 'turkiana-v2';
-const ASSETS_TO_CACHE = [
-  '/',
-  '/index.html',
-  'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=Noto+Naskh+Arabic:wght@400;500;600&display=swap',
-  'https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js'
+const BASE_PATH = '/turkiana/';   // ← change to your repository name
+
+const ASSETS = [
+  BASE_PATH,
+  BASE_PATH + 'index.html',
+  BASE_PATH + 'manifest.json',
+  'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Cormorant:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400;500&family=Noto+Naskh+Arabic:wght@400;500&display=swap',
+  'https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js'
 ];
 
-self.addEventListener('install', e => {
-  e.waitUntil(
-    caches.open(CACHE_NAME).then(c => c.addAll(ASSETS_TO_CACHE))
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS))
   );
   self.skipWaiting();
 });
 
-self.addEventListener('fetch', e => {
-  const u = new URL(e.request.url);
-  /* Always go to network for JSON data, fall back to cache */
-  if (u.pathname.includes('.json')) {
-    e.respondWith(
-      fetch(e.request)
-        .then(r => { caches.open(CACHE_NAME).then(c => c.put(e.request, r.clone())); return r; })
-        .catch(() => caches.match(e.request))
+self.addEventListener('activate', event => {
+  event.waitUntil(
+    caches.keys().then(keys => Promise.all(
+      keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key))
+    ))
+  );
+  self.clients.claim();
+});
+
+self.addEventListener('fetch', event => {
+  const url = new URL(event.request.url);
+
+  // Network-first for GitHub raw images (menu photos)
+  if (url.hostname === 'raw.githubusercontent.com' && url.pathname.match(/\.(jpg|jpeg|png|webp|avif|gif|svg)$/i)) {
+    event.respondWith(
+      caches.open(CACHE_NAME).then(cache => {
+        return fetch(event.request)
+          .then(response => {
+            cache.put(event.request, response.clone());
+            return response;
+          })
+          .catch(() => cache.match(event.request));
+      })
     );
     return;
   }
-  /* Cache-first for everything else */
-  e.respondWith(
-    caches.match(e.request).then(c => c || fetch(e.request))
-  );
-});
 
-self.addEventListener('activate', e => {
-  e.waitUntil(
-    caches.keys().then(keys =>
-      Promise.all(keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k)))
-    )
+  // Cache-first for everything else
+  event.respondWith(
+    caches.match(event.request).then(cachedResponse => {
+      return cachedResponse || fetch(event.request).then(response => {
+        if (event.request.method === 'GET' && response.status === 200) {
+          const responseClone = response.clone();
+          caches.open(CACHE_NAME).then(cache => cache.put(event.request, responseClone));
+        }
+        return response;
+      });
+    })
   );
-  self.clients.claim();
 });
