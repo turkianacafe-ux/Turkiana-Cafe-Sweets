@@ -1,5 +1,5 @@
 const CACHE_NAME = 'turkiana-v2';
-const BASE_PATH = '/turkiana/';   // ← change to your repository name
+const BASE_PATH = '/Turkiana-Cafe-Sweets/';   // ← exact repository name
 
 const ASSETS = [
   BASE_PATH,
