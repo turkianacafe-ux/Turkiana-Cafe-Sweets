@@ -5,903 +5,747 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Turkiana · Ottoman Coffee House</title>
 
-  <!-- PWA Manifest (external file) -->
-  
-  <link rel="manifest" href="/Turkiana-Cafe-Sweets/manifest.json">
-  <meta name="theme-color" content="#c9a96e">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- ── PWA MANIFEST ─────────────────────────────────── -->
+  <link rel="manifest" href="manifest.json">
 
-  <!-- Preconnect & Fonts -->
+  <!-- ── THEME & APPLE PWA META ───────────────────────── -->
+  <meta name="theme-color"                        content="#B8962A">
+  <meta name="apple-mobile-web-app-capable"       content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title"         content="Turkiana">
+  <link rel="apple-touch-icon"                    href="icon-192.jpg">
+  <link rel="apple-touch-icon" sizes="192x192"    href="icon-192.jpg">
+  <link rel="apple-touch-icon" sizes="512x512"    href="icon-512.jpg">
+  <link rel="icon"             sizes="192x192"    href="icon-192.jpg">
+
+  <!-- ── SEO ──────────────────────────────────────────── -->
+  <meta name="description" content="Premium Turkish coffee, Ottoman baklava and artisanal sweets at Msheireb Downtown Doha.">
+  <meta name="robots"      content="index, follow">
+  <meta property="og:title"       content="Turkiana · Ottoman Coffee House">
+  <meta property="og:description" content="Premium Turkish coffee & Ottoman sweets in Msheireb Downtown, Doha">
+  <meta property="og:image"       content="icon-512.jpg">
+  <meta property="og:type"        content="restaurant.menu">
+
+  <!-- ── FONTS ─────────────────────────────────────────── -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Cormorant:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400;500&family=Noto+Naskh+Arabic:wght@400;500&display=swap" rel="stylesheet">
 
-  <!-- QR Code Generator -->
-  <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+  <!-- ── QR CODE LIB ───────────────────────────────────── -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js" defer></script>
 
   <style>
-    /* ---------- DESIGN TOKENS ---------- */
-    :root {
-      --ivory:        #F8F3EC;
-      --ivory-deep:   #F0E9DF;
-      --ivory-warm:   #EDE3D5;
-      --cream:        #FAF7F2;
-      --parchment:    #E8DDD0;
-      --gold:         #B8962A;
-      --gold-rich:    #C9A96E;
-      --gold-pale:    #E8D5A8;
-      --gold-line:    rgba(184,150,42,0.28);
-      --gold-glow:    rgba(184,150,42,0.12);
-      --gold-hover:   rgba(184,150,42,0.08);
-      --ink:          #1A1510;
-      --ink-mid:      #3D3328;
-      --ink-soft:     #6B5E4E;
-      --ink-faint:    #A89880;
-      --ink-ghost:    #C8B9A8;
-      --white:        #FFFFFF;
-      --shadow-sm:    0 2px 16px rgba(30,20,10,0.06);
-      --shadow-md:    0 8px 40px rgba(30,20,10,0.10);
-      
-      --shadow-lg:    0 24px 80px rgba(30,20,10,0.14);
-      --shadow-gold:  0 8px 40px rgba(184,150,42,0.18);
-      --r:            4px;
-      --r-lg:         8px;
-      --ease-out:     cubic-bezier(0.0, 0.0, 0.2, 1);
-      --ease-spring:  cubic-bezier(0.34, 1.56, 0.64, 1);
-      --ease-silk:    cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
+/* ═══════════════════════════════════════════════════════
+   DESIGN TOKENS
+═══════════════════════════════════════════════════════ */
+:root {
+  --ivory:       #F8F3EC;
+  --ivory-deep:  #F0E9DF;
+  --ivory-warm:  #EDE3D5;
+  --cream:       #FAF7F2;
+  --parchment:   #E8DDD0;
+  --gold:        #B8962A;
+  --gold-rich:   #C9A96E;
+  --gold-pale:   #E8D5A8;
+  --gold-line:   rgba(184,150,42,.28);
+  --gold-glow:   rgba(184,150,42,.12);
+  --gold-hover:  rgba(184,150,42,.08);
+  --ink:         #1A1510;
+  --ink-mid:     #3D3328;
+  --ink-soft:    #6B5E4E;
+  --ink-faint:   #A89880;
+  --ink-ghost:   #C8B9A8;
+  --white:       #FFFFFF;
+  --shadow-sm:   0 2px 16px rgba(30,20,10,.06);
+  --shadow-md:   0 8px 40px rgba(30,20,10,.10);
+  --shadow-lg:   0 24px 80px rgba(30,20,10,.14);
+  --shadow-gold: 0 8px 40px rgba(184,150,42,.18);
+  --r:           4px;
+  --ease-out:    cubic-bezier(0,0,.2,1);
+  --ease-spring: cubic-bezier(.34,1.56,.64,1);
+  --ease-silk:   cubic-bezier(.25,.46,.45,.94);
+}
+body.dark {
+  --ivory:       #1A1510;
+  --ivory-deep:  #2A241E;
+  --ivory-warm:  #352E26;
+  --cream:       #1E1914;
+  --parchment:   #3D3328;
+  --gold:        #D4AF37;
+  --gold-rich:   #E8C87A;
+  --gold-pale:   #C9A96E;
+  --gold-line:   rgba(212,175,55,.28);
+  --gold-glow:   rgba(212,175,55,.15);
+  --gold-hover:  rgba(212,175,55,.10);
+  --ink:         #F8F3EC;
+  --ink-mid:     #EDE3D5;
+  --ink-soft:    #C8B9A8;
+  --ink-faint:   #A89880;
+  --ink-ghost:   #6B5E4E;
+  --white:       #2A241E;
+  --shadow-sm:   0 2px 16px rgba(0,0,0,.4);
+  --shadow-md:   0 8px 40px rgba(0,0,0,.5);
+  --shadow-lg:   0 24px 80px rgba(0,0,0,.6);
+  --shadow-gold: 0 8px 40px rgba(212,175,55,.25);
+}
 
-    body.dark-mode {
-      --ivory:        #1A1510;
-      --ivory-deep:   #2A241E;
-      --ivory-warm:   #352E26;
-      --cream:        #1E1914;
-      --parchment:    #3D3328;
-      --gold:         #D4AF37;
-      --gold-rich:    #E8C87A;
-      --gold-pale:    #C9A96E;
-      --gold-line:    rgba(212,175,55,0.28);
-      --gold-glow:    rgba(212,175,55,0.15);
-      --gold-hover:   rgba(212,175,55,0.1);
-      --ink:          #F8F3EC;
-      --ink-mid:      #EDE3D5;
-      --ink-soft:     #C8B9A8;
-      --ink-faint:    #A89880;
-      --ink-ghost:    #6B5E4E;
-      --white:        #2A241E;
-      --shadow-sm:    0 2px 16px rgba(0,0,0,0.4);
-      --shadow-md:    0 8px 40px rgba(0,0,0,0.5);
-      --shadow-lg:    0 24px 80px rgba(0,0,0,0.6);
-      --shadow-gold:  0 8px 40px rgba(212,175,55,0.25);
-    }
+/* ── RESET ──────────────────────────────────────────── */
+*,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+html { font-size:16px; scroll-behavior:smooth; }
+body {
+  background:var(--cream); color:var(--ink);
+  font-family:'Jost',system-ui,sans-serif; font-weight:300;
+  line-height:1.6; overflow-x:hidden; min-height:100dvh;
+  transition:background-color .3s,color .3s;
+}
+/* Grain overlay */
+body::after {
+  content:''; position:fixed; inset:0; z-index:0; pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size:256px; opacity:.8;
+}
+body.dark::after { opacity:1.5; }
+a { color:inherit; text-decoration:none; }
+img { display:block; max-width:100%; height:auto; }
+button { font-family:inherit; cursor:pointer; border:none; background:none; }
+:focus-visible { outline:1.5px solid var(--gold); outline-offset:4px; border-radius:2px; }
+.sr-only { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); }
 
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    html { font-size: 16px; scroll-behavior: smooth; }
+/* ═══════════════════════════════════════════════════════
+   OFFLINE BANNER
+═══════════════════════════════════════════════════════ */
+#offlineBanner {
+  position:fixed; top:0; left:0; right:0; z-index:9999;
+  background:var(--ink); color:var(--gold);
+  text-align:center; padding:7px;
+  font-size:.68rem; letter-spacing:.22em; text-transform:uppercase;
+  transform:translateY(-100%); transition:transform .3s;
+}
+#offlineBanner.show { transform:translateY(0); }
 
-    body {
-      background: var(--cream);
-      color: var(--ink);
-      font-family: 'Jost', system-ui, sans-serif;
-      font-weight: 300;
-      line-height: 1.6;
-      min-height: 100dvh;
-      transition: background-color 0.3s, color 0.3s;
-    }
+/* ═══════════════════════════════════════════════════════
+   INSTALL TOAST  (bottom-sheet style A2HS prompt)
+═══════════════════════════════════════════════════════ */
+#installToast {
+  position:fixed; bottom:0; left:0; right:0; z-index:8000;
+  background:var(--ink);
+  border-top:1px solid var(--gold-line);
+  padding:18px clamp(16px,5vw,40px);
+  display:flex; align-items:center; gap:16px;
+  transform:translateY(100%); transition:transform .5s var(--ease-out);
+}
+#installToast.show { transform:translateY(0); }
+.toast-icon { font-size:1.5rem; flex-shrink:0; }
+.toast-texts { flex:1; }
+.toast-title {
+  font-family:'Playfair Display',serif; font-size:1rem;
+  color:rgba(255,255,255,.9); margin-bottom:2px;
+}
+.toast-sub { font-size:.72rem; color:var(--ink-faint); font-weight:300; letter-spacing:.06em; }
+.toast-install {
+  padding:10px 24px; border:1px solid var(--gold);
+  color:var(--gold); font-size:.7rem; font-weight:400;
+  letter-spacing:.18em; text-transform:uppercase;
+  transition:all .3s; white-space:nowrap; flex-shrink:0;
+}
+.toast-install:hover { background:var(--gold); color:var(--ink); }
+.toast-dismiss {
+  width:30px; height:30px; border:1px solid rgba(255,255,255,.15);
+  border-radius:50%; color:rgba(255,255,255,.4); font-size:.7rem;
+  display:flex; align-items:center; justify-content:center;
+  transition:all .3s; flex-shrink:0;
+}
+.toast-dismiss:hover { border-color:var(--gold); color:var(--gold); }
 
-    body::after {
-      content: '';
-      position: fixed; inset: 0; z-index: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
-      background-size: 256px;
-      pointer-events: none;
-    }
-    body.dark-mode::after { opacity: 0.08; }
+/* ═══════════════════════════════════════════════════════
+   SPLASH
+═══════════════════════════════════════════════════════ */
+#splash {
+  position:fixed; inset:0; z-index:7000;
+  background:var(--ivory);
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  padding:40px 24px;
+  transition:background-color .3s;
+}
+#splash.out { animation:splashFade 1.1s var(--ease-out) forwards; pointer-events:none; }
+@keyframes splashFade { to { opacity:0; } }
 
-    a { color: inherit; text-decoration: none; }
-    img { display: block; max-width: 100%; height: auto; }
-    button { font-family: inherit; cursor: pointer; border: none; background: none; }
-    :focus-visible { outline: 1.5px solid var(--gold); outline-offset: 4px; border-radius: 2px; }
-    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
+.splash-corner { position:absolute; width:64px; height:64px; border-color:var(--gold-rich); border-style:solid; opacity:.45; }
+.splash-corner.tl { top:32px; left:32px; border-width:1px 0 0 1px; }
+.splash-corner.tr { top:32px; right:32px; border-width:1px 1px 0 0; }
+.splash-corner.bl { bottom:32px; left:32px; border-width:0 0 1px 1px; }
+.splash-corner.br { bottom:32px; right:32px; border-width:0 1px 1px 0; }
 
-    #offlineBanner {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
-      background: var(--ink); color: var(--gold);
-      text-align: center; padding: 6px;
-      font-size: 0.7rem; letter-spacing: 0.2em;
-      transform: translateY(-100%); transition: transform 0.3s;
-    }
-    #offlineBanner.show { transform: translateY(0); }
+.splash-inner { position:relative; z-index:2; text-align:center; max-width:680px; width:100%; }
+.splash-over {
+  font-size:clamp(.58rem,1.1vw,.66rem); letter-spacing:.5em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:clamp(24px,5vw,44px);
+  opacity:0; animation:riseUp .7s var(--ease-out) .2s forwards;
+}
+.splash-word {
+  font-family:'Playfair Display',serif; font-weight:400;
+  font-size:clamp(5rem,14vw,10rem); letter-spacing:.12em; text-transform:uppercase;
+  color:var(--ink); line-height:.9;
+  margin-bottom:clamp(24px,4vw,40px);
+  opacity:0; animation:riseUp 1s var(--ease-out) .35s forwards;
+}
+.splash-word em {
+  font-style:italic;
+  background:linear-gradient(135deg,var(--gold) 0%,var(--gold-rich) 60%,#E8C87A 100%);
+  -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+}
+.splash-rule {
+  width:48px; height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  margin:0 auto clamp(20px,3.5vw,32px);
+  opacity:0; animation:fadeIn .6s var(--ease-out) .8s forwards;
+}
+.splash-tag {
+  font-family:'Cormorant',serif; font-style:italic;
+  font-size:clamp(1rem,2.5vw,1.3rem); color:var(--ink-soft);
+  margin-bottom:clamp(40px,7vw,70px); font-weight:300;
+  opacity:0; animation:riseUp .7s var(--ease-out) .85s forwards;
+}
+.splash-btn {
+  display:inline-flex; align-items:center; gap:20px;
+  padding:18px clamp(36px,6vw,60px);
+  border:1px solid var(--gold);
+  color:var(--gold);
+  font-size:clamp(.62rem,1.2vw,.7rem); font-weight:400;
+  letter-spacing:.4em; text-transform:uppercase;
+  position:relative; overflow:hidden;
+  opacity:0; animation:riseUp .7s var(--ease-out) 1.1s forwards;
+  transition:color .55s var(--ease-silk);
+}
+.splash-btn::before {
+  content:''; position:absolute; inset:0;
+  background:var(--gold); transform:scaleX(0); transform-origin:left;
+  transition:transform .55s var(--ease-silk);
+}
+.splash-btn:hover::before { transform:scaleX(1); }
+.splash-btn:hover { color:var(--white); }
+.splash-btn span,.splash-btn svg { position:relative; z-index:1; }
+.splash-btn svg { transition:transform .4s var(--ease-spring); }
+.splash-btn:hover svg { transform:translateX(6px); }
 
-    .install-btn { display: none; margin-left: 8px; }
-    .install-btn.show { display: inline-flex; }
+/* ═══════════════════════════════════════════════════════
+   APP SHELL
+═══════════════════════════════════════════════════════ */
+#app { display:none; }
+#app.visible { display:block; animation:fadeIn .8s var(--ease-out) forwards; }
 
-    /* ---------- SPLASH ---------- */
-    #splash {
-      position: fixed; inset: 0; z-index: 9000;
-      background: var(--ivory);
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      padding: 40px 24px;
-      transition: background-color 0.3s;
-    }
-    #splash.out {
-      animation: splashOut 1.1s var(--ease-out) forwards;
-      pointer-events: none;
-    }
-    @keyframes splashOut { 0% { opacity: 1; } 100% { opacity: 0; } }
+/* ── HEADER ──────────────────────────────────────────── */
+.header {
+  position:sticky; top:0; z-index:500;
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+  padding:0 clamp(20px,5vw,56px);
+  height:clamp(64px,8vw,80px);
+  background:rgba(248,243,236,.95);
+  backdrop-filter:blur(24px) saturate(1.2);
+  border-bottom:1px solid var(--gold-line);
+  transition:background-color .3s;
+}
+body.dark .header { background:rgba(26,21,16,.95); }
 
-    .splash-corner {
-      position: absolute;
-      width: 64px; height: 64px;
-      border-color: var(--gold-rich);
-      border-style: solid;
-      opacity: 0.45;
-    }
-    .splash-corner.tl { top: 32px; left: 32px; border-width: 1px 0 0 1px; }
-    .splash-corner.tr { top: 32px; right: 32px; border-width: 1px 1px 0 0; }
-    .splash-corner.bl { bottom: 32px; left: 32px; border-width: 0 0 1px 1px; }
-    .splash-corner.br { bottom: 32px; right: 32px; border-width: 0 1px 1px 0; }
+.header-mark {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.1rem,2.5vw,1.4rem); font-weight:400;
+  letter-spacing:.22em; text-transform:uppercase;
+  color:var(--ink); cursor:pointer; flex-shrink:0;
+  transition:color .3s;
+}
+.header-mark:hover { color:var(--gold); }
 
-    .splash-inner { position: relative; z-index: 2; text-align: center; max-width: 680px; width: 100%; }
+.header-search-wrap { flex:1; max-width:380px; position:relative; }
+.search-ico { position:absolute; left:18px; top:50%; transform:translateY(-50%); color:var(--ink-ghost); pointer-events:none; }
+.header-search {
+  width:100%; height:42px; padding:0 40px 0 48px;
+  border:1px solid var(--parchment); background:var(--white); color:var(--ink);
+  font-family:'Jost',sans-serif; font-size:.84rem; font-weight:300; letter-spacing:.05em;
+  outline:none;
+  transition:border-color .3s,box-shadow .3s,background .3s,color .3s;
+}
+.header-search::placeholder { color:var(--ink-ghost); }
+.header-search:focus { border-color:var(--gold); box-shadow:0 0 0 3px var(--gold-glow); }
+.search-clear {
+  position:absolute; right:14px; top:50%; transform:translateY(-50%);
+  color:var(--ink-ghost); font-size:.75rem;
+  opacity:0; pointer-events:none; transition:opacity .2s;
+}
+.search-clear.show { opacity:1; pointer-events:auto; }
 
-    .splash-overline {
-      font-family: 'Jost', sans-serif; font-weight: 400;
-      font-size: clamp(0.58rem, 1.1vw, 0.66rem);
-      letter-spacing: 0.5em; text-transform: uppercase;
-      color: var(--gold); margin-bottom: clamp(24px, 5vw, 44px);
-      opacity: 0; animation: riseUp 0.7s var(--ease-out) 0.2s forwards;
-    }
-    .splash-wordmark {
-      font-family: 'Playfair Display', Georgia, serif; font-weight: 400;
-      font-size: clamp(5rem, 14vw, 10rem);
-      letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--ink); line-height: 0.9;
-      margin-bottom: clamp(24px, 4vw, 40px);
-      opacity: 0; animation: riseUp 1s var(--ease-out) 0.35s forwards;
-    }
-    .splash-wordmark em {
-      font-style: italic;
-      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-rich) 60%, #E8C87A 100%);
-      -webkit-background-clip: text; background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .splash-rule {
-      width: 48px; height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
-      margin: 0 auto clamp(20px, 3.5vw, 32px);
-      opacity: 0; animation: fadeIn 0.6s var(--ease-out) 0.8s forwards;
-    }
-    .splash-tagline {
-      font-family: 'Cormorant', Georgia, serif; font-style: italic;
-      font-size: clamp(1rem, 2.5vw, 1.3rem);
-      color: var(--ink-soft); margin-bottom: clamp(40px, 7vw, 70px);
-      opacity: 0; animation: riseUp 0.7s var(--ease-out) 0.85s forwards;
-      font-weight: 300;
-    }
-    .splash-btn {
-      display: inline-flex; align-items: center; gap: 20px;
-      padding: 18px clamp(36px, 6vw, 60px);
-      border: 1px solid var(--gold); border-radius: 0;
-      color: var(--gold);
-      font-family: 'Jost', sans-serif; font-weight: 400;
-      font-size: clamp(0.62rem, 1.2vw, 0.7rem);
-      letter-spacing: 0.4em; text-transform: uppercase;
-      position: relative; overflow: hidden;
-      opacity: 0; animation: riseUp 0.7s var(--ease-out) 1.1s forwards;
-      transition: color 0.55s var(--ease-silk);
-    }
-    .splash-btn::before {
-      content: ''; position: absolute; inset: 0;
-      background: var(--gold);
-      transform: scaleX(0); transform-origin: left;
-      transition: transform 0.55s var(--ease-silk);
-    }
-    .splash-btn:hover::before { transform: scaleX(1); }
-    .splash-btn:hover { color: var(--white); }
-    .splash-btn span, .splash-btn svg { position: relative; z-index: 1; }
-    .splash-btn svg { transition: transform 0.4s var(--ease-spring); }
-    .splash-btn:hover svg { transform: translateX(6px); }
+.header-actions { display:flex; align-items:center; gap:8px; }
+.hbtn {
+  height:38px; padding:0 16px;
+  border:1px solid var(--parchment); background:transparent; color:var(--ink-soft);
+  font-family:'Jost',sans-serif; font-size:.64rem; font-weight:400;
+  letter-spacing:.22em; text-transform:uppercase;
+  display:flex; align-items:center; gap:7px;
+  transition:all .3s var(--ease-out);
+}
+.hbtn:hover { border-color:var(--gold); color:var(--gold); background:var(--gold-hover); }
+.hbtn.hidden { display:none; }
 
-    /* ---------- HEADER ---------- */
-    #app { display: none; }
-    #app.visible { display: block; animation: fadeIn 0.8s var(--ease-out) forwards; }
+/* mobile search bar */
+.mobile-bar {
+  display:none; padding:10px 16px;
+  border-bottom:1px solid var(--gold-line);
+  background:var(--ivory); position:relative;
+  transition:background-color .3s;
+}
+.mobile-bar input {
+  width:100%; height:42px; padding:0 40px 0 44px;
+  border:1px solid var(--parchment); background:var(--white); color:var(--ink);
+  font-family:'Jost',sans-serif; font-size:.88rem; font-weight:300;
+  outline:none; transition:border-color .3s,background .3s,color .3s;
+}
+.mobile-bar input:focus { border-color:var(--gold); }
+.m-ico { position:absolute; left:30px; top:50%; transform:translateY(-50%); color:var(--ink-ghost); pointer-events:none; }
+.m-clr {
+  position:absolute; right:30px; top:50%; transform:translateY(-50%);
+  color:var(--ink-ghost); font-size:.75rem;
+  opacity:0; pointer-events:none; transition:opacity .2s;
+}
+.m-clr.show { opacity:1; pointer-events:auto; }
+@media (max-width:560px) {
+  .header-search-wrap { display:none; }
+  .mobile-bar { display:block; }
+}
 
-    .header {
-      position: sticky; top: 0; z-index: 500;
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 16px;
-      padding: 0 clamp(20px, 5vw, 56px);
-      height: clamp(64px, 8vw, 80px);
-      background: rgba(248, 243, 236, 0.95);
-      backdrop-filter: blur(24px) saturate(1.2);
-      border-bottom: 1px solid var(--gold-line);
-      transition: background-color 0.3s;
-    }
-    body.dark-mode .header { background: rgba(26, 21, 16, 0.95); }
-    .header-mark {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-      font-weight: 400; letter-spacing: 0.22em;
-      text-transform: uppercase; color: var(--ink);
-      cursor: pointer; flex-shrink: 0;
-      transition: color 0.3s;
-    }
-    .header-mark:hover { color: var(--gold); }
+/* ── RIBBON ──────────────────────────────────────────── */
+.ribbon { background:var(--ink); border-bottom:1px solid rgba(255,255,255,.06); padding:11px 0; overflow:hidden; }
+.ribbon-track { display:flex; width:max-content; animation:ribbonScroll 45s linear infinite; }
+@keyframes ribbonScroll { to { transform:translateX(-50%); } }
+.ribbon-item {
+  display:flex; align-items:center;
+  padding:0 clamp(20px,3vw,36px);
+  font-size:.6rem; font-weight:400;
+  letter-spacing:.38em; text-transform:uppercase;
+  color:var(--ink-faint); white-space:nowrap;
+}
+.ribbon-item.gold { color:var(--gold-rich); }
+.ribbon-dot { color:var(--gold); opacity:.5; font-size:.4rem; margin:0 clamp(14px,2vw,24px); }
 
-    .header-search-wrap { flex: 1; max-width: 380px; position: relative; }
-    .header-search-icon { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: var(--ink-ghost); font-size: 0.9rem; pointer-events: none; }
-    .header-search {
-      width: 100%; height: 42px;
-      padding: 0 40px 0 48px;
-      border: 1px solid var(--parchment);
-      border-radius: 0; background: var(--white);
-      color: var(--ink);
-      font-family: 'Jost', sans-serif; font-size: 0.84rem; font-weight: 300;
-      letter-spacing: 0.05em; outline: none;
-      transition: border-color 0.3s, box-shadow 0.3s, background 0.3s, color 0.3s;
-    }
-    .header-search::placeholder { color: var(--ink-ghost); }
-    .header-search:focus { border-color: var(--gold); box-shadow: 0 0 0 3px var(--gold-glow); }
-    .search-clear {
-      position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
-      color: var(--ink-ghost); font-size: 0.75rem;
-      opacity: 0; pointer-events: none; transition: opacity 0.2s;
-    }
-    .search-clear.show { opacity: 1; pointer-events: auto; }
+/* ── HERO ────────────────────────────────────────────── */
+.menu-hero {
+  padding:clamp(64px,12vw,140px) clamp(20px,6vw,80px) clamp(40px,6vw,72px);
+  text-align:center; position:relative;
+}
+.hero-orn { display:flex; align-items:center; justify-content:center; gap:16px; margin-bottom:clamp(20px,3vw,32px); }
+.hero-line { width:40px; height:1px; background:var(--gold-line); }
+.hero-diamond { font-size:.5rem; color:var(--gold); opacity:.7; }
+.hero-sub {
+  font-size:clamp(.58rem,1.1vw,.65rem); letter-spacing:.48em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:clamp(16px,2.5vw,24px);
+}
+.hero-title {
+  font-family:'Playfair Display',serif; font-weight:400;
+  font-size:clamp(3.5rem,9vw,7.5rem); letter-spacing:.08em; line-height:.92;
+  color:var(--ink); margin-bottom:clamp(20px,3vw,32px);
+}
+.hero-title em { font-style:italic; color:var(--gold); }
+.hero-desc {
+  font-family:'Cormorant',serif; font-style:italic;
+  font-size:clamp(1.05rem,2.2vw,1.3rem); color:var(--ink-soft);
+  max-width:520px; margin:0 auto; font-weight:300; line-height:1.7;
+}
+.hero-rule {
+  width:52px; height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  margin:clamp(24px,3.5vw,36px) auto 0;
+}
 
-    .header-actions { display: flex; align-items: center; gap: 8px; }
-    .hbtn {
-      height: 38px; padding: 0 18px;
-      border: 1px solid var(--parchment);
-      background: transparent; color: var(--ink-soft);
-      font-family: 'Jost', sans-serif; font-size: 0.64rem; font-weight: 400;
-      letter-spacing: 0.22em; text-transform: uppercase;
-      display: flex; align-items: center; gap: 7px;
-      transition: all 0.3s var(--ease-out);
-      border-radius: 0;
-    }
-    .hbtn:hover { border-color: var(--gold); color: var(--gold); background: var(--gold-hover); }
+/* ── CATEGORY NAV ────────────────────────────────────── */
+.cat-nav {
+  position:sticky; top:clamp(64px,8vw,80px); z-index:400;
+  background:rgba(250,247,242,.97);
+  backdrop-filter:blur(24px) saturate(1.3);
+  border-bottom:1px solid var(--gold-line);
+}
+body.dark .cat-nav { background:rgba(26,21,16,.97); }
+.cat-scroll { overflow-x:auto; scrollbar-width:none; -webkit-overflow-scrolling:touch; }
+.cat-scroll::-webkit-scrollbar { display:none; }
+.cat-track {
+  display:flex; padding:0 clamp(16px,4vw,40px);
+  width:max-content; min-width:100%;
+}
+.cat-pill {
+  display:inline-flex; align-items:center; justify-content:center;
+  height:clamp(52px,6vw,62px); padding:0 clamp(22px,3.5vw,40px);
+  border:none; background:transparent; color:var(--ink-faint);
+  font-size:clamp(.7rem,1.3vw,.78rem); font-weight:400;
+  letter-spacing:.18em; text-transform:uppercase; white-space:nowrap;
+  position:relative; transition:color .35s var(--ease-silk);
+}
+.cat-pill::after {
+  content:''; position:absolute; bottom:0; left:50%; right:50%; height:1.5px;
+  background:var(--gold); transition:left .4s var(--ease-silk),right .4s var(--ease-silk);
+}
+.cat-pill:hover { color:var(--ink-mid); }
+.cat-pill.active { color:var(--gold); font-weight:500; }
+.cat-pill.active::after { left:clamp(22px,3.5vw,40px); right:clamp(22px,3.5vw,40px); }
 
-    #darkModeToggle { margin-left: 4px; }
+/* ── DIET FILTERS ────────────────────────────────────── */
+.diet-bar {
+  display:flex; justify-content:center; align-items:center;
+  gap:clamp(6px,1.5vw,10px); flex-wrap:wrap;
+  padding:clamp(12px,2vw,18px) clamp(16px,4vw,40px);
+  border-bottom:1px solid rgba(184,150,42,.1);
+  background:var(--ivory-deep);
+}
+.dpill {
+  padding:7px clamp(14px,2.5vw,20px);
+  border:1px solid var(--parchment); background:transparent; color:var(--ink-faint);
+  font-size:clamp(.64rem,1.2vw,.7rem); font-weight:400; letter-spacing:.12em;
+  white-space:nowrap; transition:all .3s var(--ease-out);
+}
+.dpill:hover { border-color:var(--gold); color:var(--gold); background:var(--gold-hover); }
+.dpill.on { border-color:var(--gold); color:var(--gold); background:var(--gold-hover); }
 
-    /* Mobile search bar */
-    .mobile-search-bar {
-      display: none;
-      padding: 10px 16px;
-      border-bottom: 1px solid var(--gold-line);
-      background: var(--ivory);
-      position: relative;
-      transition: background-color 0.3s;
-    }
-    .mobile-search-bar input {
-      width: 100%; height: 42px;
-      padding: 0 40px 0 44px;
-      border: 1px solid var(--parchment);
-      background: var(--white); color: var(--ink);
-      font-family: 'Jost', sans-serif; font-size: 0.88rem; font-weight: 300;
-      outline: none;
-      transition: border-color 0.3s, background 0.3s, color 0.3s;
-    }
-    .mobile-search-bar input:focus { border-color: var(--gold); }
-    .mobile-search-bar .m-icon { position: absolute; left: 30px; top: 50%; transform: translateY(-50%); color: var(--ink-ghost); pointer-events: none; }
-    .mobile-search-clear {
-      position: absolute; right: 30px; top: 50%; transform: translateY(-50%);
-      color: var(--ink-ghost); font-size: 0.75rem;
-      opacity: 0; pointer-events: none; transition: opacity 0.2s;
-    }
-    .mobile-search-clear.show { opacity: 1; pointer-events: auto; }
-    @media (max-width: 560px) {
-      .header-search-wrap { display: none; }
-      .mobile-search-bar { display: block; }
-    }
+/* ── SECTION ORNAMENT ────────────────────────────────── */
+.section-orn {
+  display:flex; align-items:center; gap:20px;
+  padding:clamp(28px,4vw,48px) clamp(20px,5vw,64px) clamp(16px,2.5vw,28px);
+  max-width:1480px; margin:0 auto;
+}
+.section-line { flex:1; height:1px; background:var(--parchment); }
+.section-gem { font-size:.45rem; color:var(--gold); opacity:.7; }
 
-    /* ---------- MARQUEE ---------- */
-    .ribbon {
-      background: var(--ink);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      padding: 11px 0;
-      overflow: hidden;
-    }
-    .ribbon-track {
-      display: flex; width: max-content;
-      animation: ribbonScroll 45s linear infinite;
-    }
-    @keyframes ribbonScroll { to { transform: translateX(-50%); } }
-    .ribbon-item {
-      display: flex; align-items: center;
-      padding: 0 clamp(20px, 3vw, 36px);
-      font-family: 'Jost', sans-serif; font-size: 0.6rem; font-weight: 400;
-      letter-spacing: 0.38em; text-transform: uppercase;
-      color: var(--ink-faint); white-space: nowrap;
-    }
-    .ribbon-item.accent { color: var(--gold-rich); }
-    .ribbon-dot { color: var(--gold); opacity: 0.5; font-size: 0.4rem; margin: 0 clamp(14px, 2vw, 24px); }
+/* ═══════════════════════════════════════════════════════
+   MENU GRID & CARDS
+═══════════════════════════════════════════════════════ */
+.menu-area { padding:0 clamp(16px,4vw,48px) clamp(80px,12vw,160px); }
+.menu-grid {
+  display:grid; gap:clamp(12px,2vw,20px);
+  max-width:1480px; margin:0 auto;
+  grid-template-columns:repeat(auto-fill,minmax(clamp(260px,26vw,320px),1fr));
+  transition:opacity .25s var(--ease-out);
+}
+.menu-grid.fading { opacity:0; }
 
-    /* ---------- HERO ---------- */
-    .menu-hero {
-      padding: clamp(64px, 12vw, 140px) clamp(20px, 6vw, 80px) clamp(40px, 6vw, 72px);
-      text-align: center;
-      position: relative;
-    }
-    .menu-hero-orn {
-      display: flex; align-items: center; justify-content: center; gap: 16px;
-      margin-bottom: clamp(20px, 3vw, 32px);
-    }
-    .hero-line { width: 40px; height: 1px; background: var(--gold-line); }
-    .hero-diamond { font-size: 0.5rem; color: var(--gold); opacity: 0.7; }
-    .hero-sub {
-      font-family: 'Jost', sans-serif; font-weight: 400;
-      font-size: clamp(0.58rem, 1.1vw, 0.65rem);
-      letter-spacing: 0.48em; text-transform: uppercase;
-      color: var(--gold); margin-bottom: clamp(16px, 2.5vw, 24px);
-    }
-    .menu-hero-title {
-      font-family: 'Playfair Display', serif; font-weight: 400;
-      font-size: clamp(3.5rem, 9vw, 7.5rem);
-      letter-spacing: 0.08em; line-height: 0.92;
-      color: var(--ink); margin-bottom: clamp(20px, 3vw, 32px);
-    }
-    .menu-hero-title em { font-style: italic; color: var(--gold); }
-    .menu-hero-desc {
-      font-family: 'Cormorant', serif; font-style: italic;
-      font-size: clamp(1.05rem, 2.2vw, 1.3rem);
-      color: var(--ink-soft); max-width: 520px; margin: 0 auto;
-      font-weight: 300; line-height: 1.7;
-    }
-    .hero-rule {
-      width: 52px; height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
-      margin: clamp(24px, 3.5vw, 36px) auto 0;
-    }
+/* CARD */
+.menu-card {
+  background:var(--white); border:1px solid var(--ivory-warm);
+  position:relative; overflow:hidden;
+  transition:border-color .45s var(--ease-silk),box-shadow .45s var(--ease-silk),transform .45s var(--ease-spring);
+  opacity:0; transform:translateY(18px);
+}
+.menu-card.in { opacity:1; transform:translateY(0); }
+.menu-card:not(.oos):hover {
+  border-color:var(--gold-line);
+  box-shadow:var(--shadow-md),var(--shadow-gold);
+  transform:translateY(-6px);
+}
+/* Gold shimmer */
+.menu-card::before {
+  content:''; position:absolute; inset:0; z-index:5;
+  background:linear-gradient(105deg,transparent 40%,rgba(184,150,42,.04) 60%,transparent 80%);
+  background-size:200% 100%; background-position:200% 0;
+  transition:background-position .7s var(--ease-silk); pointer-events:none;
+}
+.menu-card:hover::before { background-position:-200% 0; }
 
-    /* ---------- CATEGORY NAV ---------- */
-    .cat-nav {
-      position: sticky;
-      top: clamp(64px, 8vw, 80px);
-      z-index: 400;
-      background: rgba(250, 247, 242, 0.97);
-      backdrop-filter: blur(24px) saturate(1.3);
-      border-bottom: 1px solid var(--gold-line);
-    }
-    .cat-scroll { overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
-    .cat-scroll::-webkit-scrollbar { display: none; }
-    .cat-track {
-      display: flex; gap: 0;
-      padding: 0 clamp(16px, 4vw, 40px);
-      width: max-content; min-width: 100%;
-    }
-    .cat-pill {
-      display: inline-flex; align-items: center; justify-content: center;
-      height: clamp(52px, 6vw, 62px);
-      padding: 0 clamp(22px, 3.5vw, 40px);
-      border: none; background: transparent;
-      color: var(--ink-faint);
-      font-family: 'Jost', sans-serif; font-size: clamp(0.7rem, 1.3vw, 0.78rem);
-      font-weight: 400; letter-spacing: 0.18em; text-transform: uppercase;
-      white-space: nowrap; position: relative;
-      transition: color 0.35s var(--ease-silk);
-    }
-    .cat-pill::after {
-      content: ''; position: absolute; bottom: 0; left: 50%; right: 50%;
-      height: 1.5px; background: var(--gold);
-      transition: left 0.4s var(--ease-silk), right 0.4s var(--ease-silk);
-    }
-    .cat-pill:hover { color: var(--ink-mid); }
-    .cat-pill.active { color: var(--gold); font-weight: 500; }
-    .cat-pill.active::after { left: clamp(22px, 3.5vw, 40px); right: clamp(22px, 3.5vw, 40px); }
+/* Image */
+.card-img-wrap { height:clamp(180px,20vw,220px); position:relative; overflow:hidden; background:var(--ivory-deep); }
+.card-skel {
+  position:absolute; inset:0;
+  background:linear-gradient(105deg,#EFE8DE 25%,#F8F3EC 50%,#EFE8DE 75%);
+  background-size:250%; animation:shimmer 2s infinite linear;
+}
+.card-skel.done { opacity:0; transition:opacity .4s; }
+@keyframes shimmer { to { background-position:-250% 0; } }
+.card-img {
+  position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+  opacity:0; transition:opacity .5s var(--ease-out),transform .65s var(--ease-silk);
+}
+.card-img.loaded { opacity:1; }
+.menu-card:not(.oos):hover .card-img { transform:scale(1.05); }
+.menu-card.oos .card-img { filter:saturate(.2) brightness(.85); }
+.card-overlay {
+  position:absolute; inset:0;
+  background:linear-gradient(to top,rgba(248,243,236,.55) 0%,transparent 55%);
+  pointer-events:none;
+}
+.card-price {
+  position:absolute; bottom:14px; right:14px;
+  font-family:'Playfair Display',serif; font-size:clamp(.95rem,1.8vw,1.1rem);
+  color:var(--ink); background:rgba(250,247,242,.92);
+  border:1px solid var(--gold-line); padding:4px 12px;
+  backdrop-filter:blur(8px); letter-spacing:.04em;
+}
+/* OOS */
+.oos-overlay {
+  position:absolute; inset:0; z-index:10;
+  background:rgba(248,243,236,.7);
+  display:flex; align-items:center; justify-content:center;
+}
+.oos-tag {
+  font-size:.6rem; font-weight:400; letter-spacing:.3em; text-transform:uppercase;
+  color:var(--ink-soft); border:1px solid var(--parchment); padding:7px 18px;
+  background:rgba(250,247,242,.95); backdrop-filter:blur(8px);
+}
+/* Badges */
+.card-badge {
+  position:absolute; top:12px; right:12px; z-index:6;
+  font-size:.55rem; font-weight:500; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink); background:var(--gold-rich); padding:4px 11px;
+}
+.card-oos-badge {
+  position:absolute; top:12px; left:12px; z-index:6;
+  font-size:.55rem; font-weight:400; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--ink-soft); background:rgba(250,247,242,.92);
+  border:1px solid var(--parchment); padding:4px 10px;
+}
+/* Body */
+.card-body { padding:clamp(16px,2.5vw,22px) clamp(18px,2.5vw,24px) clamp(18px,2.5vw,24px); }
+.card-cat { font-size:.58rem; font-weight:400; letter-spacing:.3em; text-transform:uppercase; color:var(--gold); margin-bottom:8px; }
+.card-name { font-family:'Playfair Display',serif; font-size:clamp(1.05rem,2vw,1.2rem); font-weight:400; color:var(--ink); line-height:1.2; margin-bottom:3px; }
+.card-name-ar { font-family:'Noto Naskh Arabic',serif; font-size:clamp(.78rem,1.4vw,.86rem); color:var(--ink-ghost); margin-bottom:10px; line-height:1.5; }
+.card-desc { font-size:clamp(.76rem,1.3vw,.82rem); font-weight:300; color:var(--ink-soft); line-height:1.65; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; margin-bottom:clamp(12px,2vw,16px); }
+.card-bake { font-size:.68rem; font-weight:400; color:var(--gold); letter-spacing:.08em; margin-bottom:10px; display:flex; align-items:center; gap:6px; }
+.card-bake::before { content:''; display:inline-block; width:18px; height:1px; background:var(--gold); flex-shrink:0; }
+.card-foot { display:flex; justify-content:space-between; align-items:center; }
+.card-cal { font-size:.62rem; color:var(--ink-ghost); font-weight:300; letter-spacing:.08em; }
+.card-dots { display:flex; gap:5px; }
+.cdot { width:6px; height:6px; border-radius:50%; }
+.cdot.vg { background:#7BC47F; }
+.cdot.gf { background:#C4D65A; }
+.cdot.df { background:#5ABFD6; }
+/* Empty state */
+.empty-state { grid-column:1/-1; text-align:center; padding:clamp(64px,14vw,140px) 28px; }
+.empty-icon { font-size:2.5rem; opacity:.15; margin-bottom:20px; color:var(--gold); }
+.empty-text { font-family:'Cormorant',serif; font-style:italic; font-size:1.2rem; color:var(--ink-soft); font-weight:300; }
 
-    /* ---------- DIET BAR ---------- */
-    .diet-bar {
-      display: flex; justify-content: center; align-items: center;
-      gap: clamp(6px, 1.5vw, 10px); flex-wrap: wrap;
-      padding: clamp(12px, 2vw, 18px) clamp(16px, 4vw, 40px);
-      border-bottom: 1px solid rgba(184,150,42,0.1);
-      background: var(--ivory-deep);
-    }
-    .dpill {
-      padding: 7px clamp(14px, 2.5vw, 20px);
-      border: 1px solid var(--parchment);
-      background: transparent; color: var(--ink-faint);
-      font-family: 'Jost', sans-serif; font-size: clamp(0.64rem, 1.2vw, 0.7rem);
-      font-weight: 400; letter-spacing: 0.12em;
-      border-radius: 0; transition: all 0.3s var(--ease-out);
-      white-space: nowrap;
-    }
-    .dpill:hover { border-color: var(--gold); color: var(--gold); background: var(--gold-hover); }
-    .dpill.on { border-color: var(--gold); color: var(--gold); background: var(--gold-hover); }
+/* ═══════════════════════════════════════════════════════
+   MODAL
+═══════════════════════════════════════════════════════ */
+dialog { background:transparent; border:none; padding:0; max-width:100vw; max-height:100dvh; width:min(600px,96vw); margin:auto; }
+dialog::backdrop { background:rgba(20,15,10,.75); backdrop-filter:blur(16px); }
+.modal-inner {
+  background:var(--white); border:1px solid var(--ivory-warm);
+  max-height:92dvh; display:flex; flex-direction:column;
+  box-shadow:0 40px 120px rgba(20,15,10,.25); position:relative;
+}
+.modal-img { height:clamp(220px,28vw,280px); overflow:hidden; position:relative; flex-shrink:0; }
+.modal-img img { width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity .5s; }
+.modal-img img.loaded { opacity:1; }
+.modal-ph { position:absolute; inset:0; background:var(--ivory-deep); display:flex; align-items:center; justify-content:center; font-size:2.5rem; transition:opacity .3s; }
+.modal-grad { position:absolute; bottom:0; left:0; right:0; height:100px; background:linear-gradient(to top,var(--white),transparent); }
+.modal-close {
+  position:absolute; top:14px; right:14px; z-index:10;
+  width:38px; height:38px; background:rgba(250,247,242,.9);
+  border:1px solid var(--ivory-warm); color:var(--ink-mid); font-size:.8rem;
+  display:flex; align-items:center; justify-content:center;
+  backdrop-filter:blur(8px); transition:all .3s;
+}
+.modal-close:hover { background:var(--gold); color:var(--white); border-color:var(--gold); }
+.modal-scroll { overflow-y:auto; padding:clamp(22px,4vw,34px); flex:1; }
+.modal-oos { border:1px solid var(--parchment); border-left:3px solid var(--gold-rich); padding:12px 16px; margin-bottom:22px; font-size:.82rem; color:var(--ink-soft); font-weight:300; letter-spacing:.04em; }
+.modal-bake { border:1px solid var(--gold-line); border-left:3px solid var(--gold); background:var(--gold-hover); padding:13px 16px; margin-bottom:22px; font-size:.82rem; color:var(--ink-mid); display:flex; gap:12px; align-items:flex-start; font-weight:300; }
+.modal-bake-ico { flex-shrink:0; font-size:1.1rem; }
+.modal-eye { font-size:.58rem; font-weight:400; letter-spacing:.38em; text-transform:uppercase; color:var(--gold); margin-bottom:10px; }
+.modal-name { font-family:'Playfair Display',serif; font-size:clamp(1.8rem,4vw,2.4rem); font-weight:400; line-height:1.1; margin-bottom:4px; }
+.modal-name-ar { font-family:'Noto Naskh Arabic',serif; font-size:1rem; color:var(--ink-ghost); margin-bottom:16px; }
+.modal-price { font-family:'Playfair Display',serif; font-size:clamp(1.6rem,3.5vw,2.1rem); font-weight:400; color:var(--gold); margin-bottom:clamp(18px,3vw,28px); }
+.modal-price sup { font-size:.7rem; font-family:'Jost',sans-serif; font-weight:300; color:var(--ink-faint); margin-left:4px; }
+.modal-rule { height:1px; background:var(--ivory-warm); margin-bottom:clamp(18px,3vw,24px); }
+.modal-desc { font-size:.92rem; color:var(--ink-soft); line-height:1.8; font-weight:300; margin-bottom:clamp(20px,3vw,28px); }
+.modal-meta { display:grid; grid-template-columns:1fr 1fr; gap:1px; border:1px solid var(--ivory-warm); margin-bottom:clamp(20px,3vw,28px); background:var(--ivory-warm); }
+.mmeta { background:var(--white); padding:clamp(10px,2vw,14px) clamp(12px,2vw,18px); }
+.mmeta-l { font-size:.58rem; font-weight:400; letter-spacing:.22em; text-transform:uppercase; color:var(--ink-ghost); margin-bottom:5px; }
+.mmeta-v { font-size:.86rem; color:var(--ink-mid); font-weight:300; }
+.milk-label { font-size:.62rem; font-weight:400; letter-spacing:.22em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:10px; }
+.milk-opts { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:clamp(20px,3vw,28px); }
+.milk-opt { padding:7px 16px; border:1px solid var(--parchment); background:transparent; color:var(--ink-soft); font-family:'Jost',sans-serif; font-size:.8rem; font-weight:300; cursor:pointer; transition:all .3s; }
+.milk-opt:hover { border-color:var(--gold); color:var(--gold); }
+.milk-opt.on { border-color:var(--gold); color:var(--gold); background:var(--gold-hover); }
+/* Recommendations */
+.modal-recos { padding-top:clamp(18px,3vw,24px); border-top:1px solid var(--ivory-warm); margin-top:clamp(18px,3vw,24px); }
+.recos-label { font-size:.6rem; font-weight:400; letter-spacing:.32em; text-transform:uppercase; color:var(--ink-ghost); margin-bottom:14px; }
+.recos-list { display:flex; gap:12px; overflow-x:auto; scrollbar-width:none; -webkit-overflow-scrolling:touch; padding-bottom:4px; }
+.recos-list::-webkit-scrollbar { display:none; }
+.reco-card { flex-shrink:0; width:120px; cursor:pointer; }
+.reco-img-wrap { width:120px; height:84px; overflow:hidden; background:var(--ivory-deep); }
+.reco-img { width:100%; height:100%; object-fit:cover; transition:transform .4s var(--ease-silk); }
+.reco-card:hover .reco-img { transform:scale(1.06); }
+.reco-name { font-family:'Playfair Display',serif; font-size:.82rem; color:var(--ink); margin-top:7px; line-height:1.3; }
+.reco-price { font-size:.7rem; color:var(--gold); margin-top:3px; }
 
-    /* ---------- SECTION LABEL ---------- */
-    .section-label {
-      display: flex; align-items: center; gap: 20px;
-      padding: clamp(28px, 4vw, 48px) clamp(20px, 5vw, 64px) clamp(16px, 2.5vw, 28px);
-      max-width: 1480px; margin: 0 auto;
-    }
-    .section-line { flex: 1; height: 1px; background: var(--parchment); }
-    .section-orn { font-size: 0.45rem; color: var(--gold); opacity: 0.7; }
+/* ── QR DIALOG ───────────────────────────────────────── */
+#qrDialog { width:min(360px,92vw); }
+.qr-inner { background:var(--white); border:1px solid var(--ivory-warm); box-shadow:var(--shadow-lg); }
+.qr-body { padding:clamp(32px,5vw,48px); text-align:center; }
+.qr-title { font-family:'Playfair Display',serif; font-size:1.15rem; color:var(--ink); margin-bottom:4px; }
+.qr-sub { font-size:.7rem; color:var(--ink-ghost); margin-bottom:24px; letter-spacing:.08em; font-weight:300; }
+#qrOutput { background:var(--white); display:inline-block; padding:16px; border:1px solid var(--ivory-warm); }
+.qr-url { font-size:.65rem; color:var(--ink-ghost); margin-top:14px; letter-spacing:.15em; }
 
-    /* ---------- MENU GRID ---------- */
-    .menu-area { padding: 0 clamp(16px, 4vw, 48px) clamp(80px, 12vw, 160px); }
-    .menu-grid {
-      display: grid;
-      gap: clamp(12px, 2vw, 20px);
-      max-width: 1480px; margin: 0 auto;
-      grid-template-columns: repeat(auto-fill, minmax(clamp(260px, 26vw, 320px), 1fr));
-      transition: opacity 0.25s var(--ease-out);
-    }
-    .menu-grid.fading { opacity: 0; }
+/* ── QUOTE BAR ───────────────────────────────────────── */
+#quoteBar {
+  position:fixed; bottom:0; left:0; right:0; z-index:700;
+  background:rgba(26,21,16,.97); backdrop-filter:blur(24px);
+  border-top:1px solid rgba(184,150,42,.25);
+  transform:translateY(100%); transition:transform .65s cubic-bezier(.32,0,0,1);
+}
+#quoteBar.up { transform:translateY(0); }
+.qbar-wrap {
+  display:flex; align-items:center; gap:14px;
+  max-width:1000px; margin:0 auto;
+  padding:clamp(12px,2vw,16px) clamp(16px,4vw,28px);
+}
+.qbar-gem { color:var(--gold); font-size:.5rem; flex-shrink:0; }
+.qbar-texts { flex:1; overflow:hidden; }
+.qbar-quote { font-family:'Cormorant',serif; font-style:italic; font-size:clamp(.82rem,1.8vw,1rem); color:rgba(255,255,255,.75); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; font-weight:300; }
+.qbar-attr { font-size:.58rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin-top:2px; opacity:.7; }
+.qbar-dots { display:flex; gap:6px; flex-shrink:0; }
+.qbdot { width:5px; height:5px; border-radius:50%; background:rgba(255,255,255,.2); cursor:pointer; transition:all .3s; }
+.qbdot.on { background:var(--gold); transform:scale(1.4); }
+.qbar-close { width:30px; height:30px; border:1px solid rgba(255,255,255,.15); border-radius:50%; color:rgba(255,255,255,.4); font-size:.7rem; display:flex; align-items:center; justify-content:center; cursor:pointer; flex-shrink:0; transition:all .3s; }
+.qbar-close:hover { border-color:var(--gold); color:var(--gold); }
 
-    /* Card */
-    .menu-card {
-      background: var(--white);
-      border: 1px solid var(--ivory-warm);
-      position: relative; overflow: hidden;
-      transition: border-color 0.45s var(--ease-silk), box-shadow 0.45s var(--ease-silk), transform 0.45s var(--ease-spring);
-      opacity: 0; transform: translateY(18px);
-    }
-    .menu-card.in { opacity: 1; transform: translateY(0); }
-    .menu-card:not(.oos):hover {
-      border-color: var(--gold-line);
-      box-shadow: var(--shadow-md), var(--shadow-gold);
-      transform: translateY(-6px);
-    }
-    .menu-card.oos { cursor: default; }
-    .menu-card::before {
-      content: ''; position: absolute; inset: 0; z-index: 5;
-      background: linear-gradient(105deg, transparent 40%, rgba(184,150,42,0.04) 60%, transparent 80%);
-      background-size: 200% 100%; background-position: 200% 0;
-      transition: background-position 0.7s var(--ease-silk);
-      pointer-events: none;
-    }
-    .menu-card:hover::before { background-position: -200% 0; }
+/* ── FOOTER ──────────────────────────────────────────── */
+.footer {
+  background:var(--ink); color:rgba(255,255,255,.6);
+  padding:clamp(60px,10vw,120px) clamp(20px,6vw,80px) clamp(40px,6vw,64px);
+  text-align:center;
+}
+.footer-mark {
+  font-family:'Playfair Display',serif; font-size:clamp(3rem,8vw,5.5rem);
+  font-weight:400; letter-spacing:.14em; text-transform:uppercase;
+  background:linear-gradient(135deg,var(--gold) 0%,var(--gold-rich) 60%,var(--gold-pale) 100%);
+  -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+  margin-bottom:6px;
+}
+.footer-ar { font-family:'Noto Naskh Arabic',serif; font-size:1rem; color:rgba(255,255,255,.3); margin-bottom:24px; }
+.footer-rule { width:44px; height:1px; background:linear-gradient(90deg,transparent,rgba(184,150,42,.6),transparent); margin:0 auto 28px; }
+.footer-info { font-size:clamp(.82rem,1.6vw,.9rem); font-weight:300; line-height:2.2; }
+.footer-info a { color:var(--gold-rich); transition:color .2s; }
+.footer-info a:hover { color:var(--gold-pale); }
+.footer-hours { border-top:1px solid rgba(255,255,255,.08); margin-top:32px; padding-top:32px; }
+.footer-hours h4 { font-family:'Playfair Display',serif; font-size:1rem; font-weight:400; color:rgba(255,255,255,.5); margin-bottom:18px; letter-spacing:.06em; }
+.hours-grid { display:grid; grid-template-columns:1fr auto; gap:8px 48px; font-size:.86rem; max-width:380px; margin:0 auto; }
+.footer-copy { font-size:.62rem; color:rgba(255,255,255,.2); margin-top:32px; letter-spacing:.14em; }
 
-    .card-img-wrap {
-      height: clamp(180px, 20vw, 220px);
-      position: relative; overflow: hidden;
-      background: var(--ivory-deep);
-    }
-    .card-img-skel {
-      position: absolute; inset: 0;
-      background: linear-gradient(105deg, #EFE8DE 25%, #F8F3EC 50%, #EFE8DE 75%);
-      background-size: 250%;
-      animation: shimmer 2s infinite linear;
-    }
-    .card-img-skel.done { opacity: 0; transition: opacity 0.4s; }
-    @keyframes shimmer { to { background-position: -250% 0; } }
-    .card-img {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%;
-      object-fit: cover;
-      opacity: 0;
-      transition: opacity 0.5s var(--ease-out), transform 0.65s var(--ease-silk);
-    }
-    .card-img.loaded { opacity: 1; }
-    .menu-card:not(.oos):hover .card-img { transform: scale(1.05); }
-    .menu-card.oos .card-img { filter: saturate(0.2) brightness(0.85); }
+/* ── BACK TO TOP ─────────────────────────────────────── */
+#btt {
+  position:fixed; bottom:80px; right:clamp(16px,3vw,28px);
+  width:46px; height:46px; background:var(--white);
+  border:1px solid var(--parchment);
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; opacity:0; pointer-events:none;
+  transition:all .4s var(--ease-spring); z-index:600;
+  box-shadow:var(--shadow-sm);
+}
+#btt.show { opacity:1; pointer-events:auto; }
+#btt:hover { background:var(--gold); border-color:var(--gold); transform:translateY(-4px); }
+#btt svg { fill:var(--ink-mid); width:16px; height:16px; transition:fill .3s; }
+#btt:hover svg { fill:var(--white); }
 
-    .card-img-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(248,243,236,0.55) 0%, transparent 55%);
-      pointer-events: none;
-    }
-    .card-price-badge {
-      position: absolute; bottom: 14px; right: 14px;
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(0.95rem, 1.8vw, 1.1rem);
-      font-weight: 400; color: var(--ink);
-      background: rgba(250,247,242,0.92);
-      border: 1px solid var(--gold-line);
-      padding: 4px 12px;
-      backdrop-filter: blur(8px);
-      letter-spacing: 0.04em;
-    }
+/* ── KEYFRAMES ───────────────────────────────────────── */
+@keyframes riseUp { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:translateY(0); } }
+@keyframes fadeIn  { from { opacity:0; } to { opacity:1; } }
 
-    .oos-overlay {
-      position: absolute; inset: 0; z-index: 10;
-      background: rgba(248,243,236,0.70);
-      display: flex; align-items: center; justify-content: center;
-    }
-    .oos-tag {
-      font-family: 'Jost', sans-serif;
-      font-size: 0.6rem; font-weight: 400;
-      letter-spacing: 0.3em; text-transform: uppercase;
-      color: var(--ink-soft);
-      border: 1px solid var(--parchment);
-      padding: 7px 18px;
-      background: rgba(250,247,242,0.95);
-      backdrop-filter: blur(8px);
-    }
+/* ── RESPONSIVE ──────────────────────────────────────── */
+@media (max-width:768px) {
+  .hours-grid { grid-template-columns:1fr; }
+  .modal-meta { grid-template-columns:1fr; }
+}
+@media (prefers-reduced-motion:reduce) {
+  *,*::before,*::after { animation-duration:.01ms !important; transition-duration:.01ms !important; }
+}
 
-    .card-badge {
-      position: absolute; top: 12px; right: 12px; z-index: 6;
-      font-family: 'Jost', sans-serif; font-size: 0.55rem; font-weight: 500;
-      letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--ink); background: var(--gold-rich);
-      padding: 4px 11px;
-    }
-    .card-oos-badge {
-      position: absolute; top: 12px; left: 12px; z-index: 6;
-      font-family: 'Jost', sans-serif; font-size: 0.55rem; font-weight: 400;
-      letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--ink-soft);
-      background: rgba(250,247,242,0.92);
-      border: 1px solid var(--parchment);
-      padding: 4px 10px;
-    }
-
-    .card-body { padding: clamp(16px, 2.5vw, 22px) clamp(18px, 2.5vw, 24px) clamp(18px, 2.5vw, 24px); }
-    .card-cat-label {
-      font-family: 'Jost', sans-serif; font-size: 0.58rem; font-weight: 400;
-      letter-spacing: 0.3em; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 8px;
-    }
-    .card-name {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.05rem, 2vw, 1.2rem);
-      font-weight: 400; color: var(--ink);
-      line-height: 1.2; margin-bottom: 3px;
-    }
-    .card-name-ar {
-      font-family: 'Noto Naskh Arabic', serif;
-      font-size: clamp(0.78rem, 1.4vw, 0.86rem);
-      color: var(--ink-ghost); margin-bottom: 10px;
-      line-height: 1.5;
-    }
-    .card-desc {
-      font-family: 'Jost', sans-serif;
-      font-size: clamp(0.76rem, 1.3vw, 0.82rem);
-      font-weight: 300; color: var(--ink-soft);
-      line-height: 1.65;
-      display: -webkit-box;
-      -webkit-line-clamp: 2; -webkit-box-orient: vertical;
-      overflow: hidden;
-      margin-bottom: clamp(12px, 2vw, 16px);
-    }
-    .card-bake-note {
-      font-size: 0.68rem; font-weight: 400;
-      color: var(--gold); letter-spacing: 0.08em;
-      margin-bottom: 10px;
-      display: flex; align-items: center; gap: 6px;
-    }
-    .card-bake-note::before { content: ''; display: inline-block; width: 18px; height: 1px; background: var(--gold); flex-shrink: 0; }
-    .card-foot { display: flex; justify-content: space-between; align-items: center; }
-    .card-cal { font-size: 0.62rem; color: var(--ink-ghost); font-weight: 300; letter-spacing: 0.08em; }
-    .card-dots { display: flex; gap: 5px; }
-    .cdot { width: 6px; height: 6px; border-radius: 50%; }
-    .cdot.vg { background: #7BC47F; }
-    .cdot.gf { background: #C4D65A; }
-    .cdot.df { background: #5ABFD6; }
-
-    /* Empty state */
-    .empty-state {
-      grid-column: 1/-1;
-      text-align: center;
-      padding: clamp(64px, 14vw, 140px) 28px;
-    }
-    .empty-icon { font-size: 2.5rem; opacity: 0.15; margin-bottom: 20px; color: var(--gold); }
-    .empty-text {
-      font-family: 'Cormorant', serif; font-style: italic;
-      font-size: 1.2rem; color: var(--ink-soft); font-weight: 300;
-    }
-
-    /* ---------- MODAL ---------- */
-    dialog {
-      background: transparent; border: none; padding: 0;
-      max-width: 100vw; max-height: 100dvh;
-      width: min(600px, 96vw);
-      margin: auto;
-    }
-    dialog::backdrop { background: rgba(20,15,10,0.75); backdrop-filter: blur(16px); }
-
-    .modal-inner {
-      background: var(--white);
-      border: 1px solid var(--ivory-warm);
-      max-height: 92dvh;
-      display: flex; flex-direction: column;
-      box-shadow: 0 40px 120px rgba(20,15,10,0.25);
-      position: relative;
-    }
-
-    .modal-img-wrap { height: clamp(220px, 28vw, 280px); overflow: hidden; position: relative; flex-shrink: 0; }
-    .modal-img-wrap img {
-      width: 100%; height: 100%; object-fit: cover;
-      opacity: 0; transition: opacity 0.5s;
-    }
-    .modal-img-wrap img.loaded { opacity: 1; }
-    .modal-img-ph {
-      position: absolute; inset: 0; background: var(--ivory-deep);
-      display: flex; align-items: center; justify-content: center; font-size: 2.5rem;
-      transition: opacity 0.3s;
-    }
-    .modal-img-grad {
-      position: absolute; bottom: 0; left: 0; right: 0; height: 100px;
-      background: linear-gradient(to top, var(--white), transparent);
-    }
-    .modal-close {
-      position: absolute; top: 14px; right: 14px; z-index: 10;
-      width: 38px; height: 38px;
-      background: rgba(250,247,242,0.9);
-      border: 1px solid var(--ivory-warm);
-      color: var(--ink-mid); font-size: 0.8rem;
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer;
-      backdrop-filter: blur(8px);
-      transition: all 0.3s;
-    }
-    .modal-close:hover { background: var(--gold); color: var(--white); border-color: var(--gold); }
-
-    .modal-scroll { overflow-y: auto; padding: clamp(22px, 4vw, 34px); flex: 1; }
-
-    .modal-oos-banner {
-      border: 1px solid var(--parchment);
-      border-left: 3px solid var(--gold-rich);
-      padding: 12px 16px; margin-bottom: 22px;
-      font-size: 0.82rem; color: var(--ink-soft); font-weight: 300;
-      letter-spacing: 0.04em;
-    }
-    .modal-bake-note {
-      border: 1px solid var(--gold-line);
-      border-left: 3px solid var(--gold);
-      background: var(--gold-hover);
-      padding: 13px 16px; margin-bottom: 22px;
-      font-size: 0.82rem; color: var(--ink-mid);
-      display: flex; gap: 12px; align-items: flex-start;
-      font-weight: 300;
-    }
-    .modal-bake-icon { flex-shrink: 0; font-size: 1.1rem; }
-
-    .modal-eyebrow {
-      font-size: 0.58rem; font-weight: 400;
-      letter-spacing: 0.38em; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 10px;
-    }
-    .modal-name {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.8rem, 4vw, 2.4rem);
-      font-weight: 400; line-height: 1.1; margin-bottom: 4px;
-    }
-    .modal-name-ar {
-      font-family: 'Noto Naskh Arabic', serif;
-      font-size: 1rem; color: var(--ink-ghost);
-      margin-bottom: 16px;
-    }
-    .modal-price {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.6rem, 3.5vw, 2.1rem);
-      font-weight: 400; color: var(--gold);
-      margin-bottom: clamp(18px, 3vw, 28px);
-    }
-    .modal-price sup { font-size: 0.7rem; font-family: 'Jost', sans-serif; font-weight: 300; color: var(--ink-faint); margin-left: 4px; }
-
-    .modal-rule { height: 1px; background: var(--ivory-warm); margin-bottom: clamp(18px, 3vw, 24px); }
-    .modal-desc { font-size: 0.92rem; color: var(--ink-soft); line-height: 1.8; font-weight: 300; margin-bottom: clamp(20px, 3vw, 28px); }
-
-    .modal-meta {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
-      border: 1px solid var(--ivory-warm);
-      margin-bottom: clamp(20px, 3vw, 28px);
-      background: var(--ivory-warm);
-    }
-    .mmeta { background: var(--white); padding: clamp(10px,2vw,14px) clamp(12px,2vw,18px); }
-    .mmeta-l { font-size: 0.58rem; font-weight: 400; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-ghost); margin-bottom: 5px; }
-    .mmeta-v { font-size: 0.86rem; color: var(--ink-mid); font-weight: 300; }
-
-    .modal-milk-label { font-size: 0.62rem; font-weight: 400; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 10px; }
-    .modal-milk-opts { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: clamp(20px, 3vw, 28px); }
-    .milk-opt {
-      padding: 7px 16px;
-      border: 1px solid var(--parchment);
-      background: transparent; color: var(--ink-soft);
-      font-family: 'Jost', sans-serif; font-size: 0.8rem; font-weight: 300;
-      cursor: pointer; transition: all 0.3s;
-    }
-    .milk-opt:hover { border-color: var(--gold); color: var(--gold); }
-    .milk-opt.on { border-color: var(--gold); color: var(--gold); background: var(--gold-hover); }
-
-    .modal-recos { padding-top: clamp(18px, 3vw, 24px); border-top: 1px solid var(--ivory-warm); margin-top: clamp(18px, 3vw, 24px); }
-    .modal-recos-label { font-size: 0.6rem; font-weight: 400; letter-spacing: 0.32em; text-transform: uppercase; color: var(--ink-ghost); margin-bottom: 14px; }
-    .modal-recos-list { display: flex; gap: 12px; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; padding-bottom: 4px; }
-    .modal-recos-list::-webkit-scrollbar { display: none; }
-    .reco-card { flex-shrink: 0; width: 120px; cursor: pointer; }
-    .reco-img-wrap { width: 120px; height: 84px; overflow: hidden; background: var(--ivory-deep); }
-    .reco-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s var(--ease-silk); }
-    .reco-card:hover .reco-img { transform: scale(1.06); }
-    .reco-name { font-family: 'Playfair Display', serif; font-size: 0.82rem; color: var(--ink); margin-top: 7px; line-height: 1.3; }
-    .reco-price { font-size: 0.7rem; color: var(--gold); margin-top: 3px; font-family: 'Jost', sans-serif; }
-
-    /* ---------- QR DIALOG ---------- */
-    #qrDialog { width: min(360px, 92vw); }
-    .qr-inner { background: var(--white); border: 1px solid var(--ivory-warm); box-shadow: var(--shadow-lg); }
-    .qr-body { padding: clamp(32px, 5vw, 48px); text-align: center; position: relative; }
-    .qr-title { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--ink); margin-bottom: 4px; }
-    .qr-sub { font-size: 0.7rem; color: var(--ink-ghost); margin-bottom: 24px; letter-spacing: 0.08em; font-weight: 300; }
-    #qrOutput { background: var(--white); display: inline-block; padding: 16px; border: 1px solid var(--ivory-warm); }
-    .qr-url { font-size: 0.65rem; color: var(--ink-ghost); margin-top: 14px; letter-spacing: 0.15em; }
-
-    /* ---------- QUOTE BAR ---------- */
-    #quoteBar {
-      position: fixed; bottom: 0; left: 0; right: 0; z-index: 700;
-      background: rgba(26,21,16,0.97);
-      backdrop-filter: blur(24px);
-      border-top: 1px solid rgba(184,150,42,0.25);
-      transform: translateY(100%);
-      transition: transform 0.65s cubic-bezier(0.32,0,0,1);
-    }
-    #quoteBar.up { transform: translateY(0); }
-    .qbar-wrap {
-      display: flex; align-items: center; gap: 14px;
-      max-width: 1000px; margin: 0 auto;
-      padding: clamp(12px, 2vw, 16px) clamp(16px, 4vw, 28px);
-    }
-    .qbar-gem { color: var(--gold); font-size: 0.5rem; flex-shrink: 0; }
-    .qbar-texts { flex: 1; overflow: hidden; }
-    .qbar-quote {
-      font-family: 'Cormorant', serif; font-style: italic;
-      font-size: clamp(0.82rem, 1.8vw, 1rem);
-      color: rgba(255,255,255,0.75);
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-      font-weight: 300;
-    }
-    .qbar-attr { font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-top: 2px; opacity: 0.7; }
-    .qbar-dots { display: flex; gap: 6px; flex-shrink: 0; }
-    .qbdot {
-      width: 5px; height: 5px; border-radius: 50%;
-      background: rgba(255,255,255,0.2);
-      border: none; cursor: pointer;
-      transition: all 0.3s;
-    }
-    .qbdot.on { background: var(--gold); transform: scale(1.4); }
-    .qbar-close {
-      width: 30px; height: 30px;
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 50%;
-      color: rgba(255,255,255,0.4); font-size: 0.7rem;
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer; flex-shrink: 0;
-      transition: all 0.3s;
-    }
-    .qbar-close:hover { border-color: var(--gold); color: var(--gold); }
-
-    /* ---------- FOOTER ---------- */
-    .footer {
-      background: var(--ink);
-      color: rgba(255,255,255,0.6);
-      padding: clamp(60px, 10vw, 120px) clamp(20px, 6vw, 80px) clamp(40px, 6vw, 64px);
-      text-align: center;
-    }
-    .footer-mark {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(3rem, 8vw, 5.5rem);
-      font-weight: 400; letter-spacing: 0.14em; text-transform: uppercase;
-      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-rich) 60%, var(--gold-pale) 100%);
-      -webkit-background-clip: text; background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 6px;
-    }
-    .footer-ar { font-family: 'Noto Naskh Arabic', serif; font-size: 1rem; color: rgba(255,255,255,0.3); margin-bottom: 24px; }
-    .footer-rule { width: 44px; height: 1px; background: linear-gradient(90deg, transparent, rgba(184,150,42,0.6), transparent); margin: 0 auto 28px; }
-    .footer-info { font-size: clamp(0.82rem, 1.6vw, 0.9rem); font-weight: 300; line-height: 2.2; }
-    .footer-info a { color: var(--gold-rich); transition: color 0.2s; }
-    .footer-info a:hover { color: var(--gold-pale); }
-    .footer-hours { border-top: 1px solid rgba(255,255,255,0.08); margin-top: 32px; padding-top: 32px; }
-    .footer-hours h4 { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 400; color: rgba(255,255,255,0.5); margin-bottom: 18px; letter-spacing: 0.06em; }
-    .hours-grid { display: grid; grid-template-columns: 1fr auto; gap: 8px 48px; font-size: 0.86rem; max-width: 380px; margin: 0 auto; }
-    .footer-copy { font-size: 0.62rem; color: rgba(255,255,255,0.2); margin-top: 32px; letter-spacing: 0.14em; }
-
-    /* ---------- BACK TO TOP ---------- */
-    #btt {
-      position: fixed; bottom: 80px; right: clamp(16px, 3vw, 28px);
-      width: 46px; height: 46px;
-      background: var(--white);
-      border: 1px solid var(--parchment);
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer;
-      opacity: 0; pointer-events: none;
-      transition: all 0.4s var(--ease-spring);
-      z-index: 600;
-      box-shadow: var(--shadow-sm);
-    }
-    #btt.show { opacity: 1; pointer-events: auto; }
-    #btt:hover { background: var(--gold); border-color: var(--gold); transform: translateY(-4px); }
-    #btt svg { fill: var(--ink-mid); width: 16px; height: 16px; transition: fill 0.3s; }
-    #btt:hover svg { fill: var(--white); }
-
-    /* Animations */
-    @keyframes riseUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .hours-grid { grid-template-columns: 1fr; }
-      .modal-meta { grid-template-columns: 1fr; }
-      .cat-pill { font-size: 0.72rem; padding: 0 18px; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-    }
-
-    /* Print */
-    @media print {
-      .header, .cat-nav, .diet-bar, .ribbon, #btt, #quoteBar, .splash, .modal-close, .hbtn, .search-clear, .mobile-search-bar, .install-btn, #darkModeToggle, .hero-sub, .menu-hero-orn, .section-label, #offlineBanner { display: none !important; }
-      body { background: white; color: black; }
-      .menu-card { break-inside: avoid; border: 1px solid #ccc; box-shadow: none; page-break-inside: avoid; }
-      .card-img-wrap { height: 120px; }
-      .footer { background: white; color: black; }
-      .footer-mark { -webkit-text-fill-color: black; background: none; color: black; }
-    }
+/* ── PRINT ───────────────────────────────────────────── */
+@media print {
+  .header,.cat-nav,.diet-bar,.ribbon,#btt,#quoteBar,#splash,.modal-close,
+  .hbtn,.search-clear,.mobile-bar,#offlineBanner,#installToast { display:none !important; }
+  body { background:white; color:black; }
+  .menu-card { break-inside:avoid; border:1px solid #ccc; box-shadow:none; }
+  .card-img-wrap { height:120px; }
+  .footer { background:white; color:black; }
+  .footer-mark { -webkit-text-fill-color:black; background:none; color:black; }
+}
   </style>
 </head>
 <body>
 
-<!-- Offline banner -->
-<div id="offlineBanner">You are offline — menu items may be limited</div>
+<!-- ── OFFLINE BANNER ──────────────────────────────────── -->
+<div id="offlineBanner"></div>
 
+<!-- ── A11Y LIVE REGION ────────────────────────────────── -->
 <span class="sr-only" aria-live="polite" id="a11y"></span>
 
-<!-- SPLASH -->
+<!-- ═══════════════════════════════════════════════════════
+     SPLASH
+═══════════════════════════════════════════════════════ -->
 <div id="splash">
   <div class="splash-corner tl"></div>
   <div class="splash-corner tr"></div>
   <div class="splash-corner bl"></div>
   <div class="splash-corner br"></div>
   <div class="splash-inner">
-    <p class="splash-overline" id="splashOvertitle">Msheireb Downtown · Doha, Qatar</p>
-    <h1 class="splash-wordmark">Turki<em>ana</em></h1>
+    <p class="splash-over" id="splashOver">Msheireb Downtown · Doha, Qatar</p>
+    <h1 class="splash-word">Turki<em>ana</em></h1>
     <div class="splash-rule"></div>
-    <p class="splash-tagline" id="splashTagline">Where Ottoman tradition meets the art of every cup</p>
+    <p class="splash-tag" id="splashTag">Where Ottoman tradition meets the art of every cup</p>
     <button class="splash-btn" id="enterBtn">
-      <span id="enterBtnText">Discover the Menu</span>
-      <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <span id="enterTxt">Discover the Menu</span>
+      <svg width="18" height="14" viewBox="0 0 18 14" fill="none">
         <path d="M11 1L17 7M17 7L11 13M17 7H1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </button>
   </div>
 </div>
 
-<!-- APP -->
+<!-- ═══════════════════════════════════════════════════════
+     APP
+═══════════════════════════════════════════════════════ -->
 <div id="app">
+
+  <!-- Header -->
   <header class="header">
-    <div class="header-mark" id="headerMark" tabindex="0" role="button">Turkiana</div>
+    <div class="header-mark" id="headerMark" tabindex="0" role="button" aria-label="Back to top">Turkiana</div>
     <div class="header-search-wrap">
-      <span class="header-search-icon">⌕</span>
-      <input type="search" class="header-search" id="searchDesktop" placeholder="Search coffee, sweets, tea…" autocomplete="off" aria-label="Search">
-      <button class="search-clear" id="searchClear" aria-label="Clear">✕</button>
+      <span class="search-ico">⌕</span>
+      <input type="search" class="header-search" id="searchD" placeholder="Search coffee, sweets, tea…" autocomplete="off" aria-label="Search menu">
+      <button class="search-clear" id="searchClear" aria-label="Clear search">✕</button>
     </div>
     <div class="header-actions">
-      <button class="hbtn install-btn" id="installBtn" title="Install App">
+      <button class="hbtn hidden" id="installBtn" aria-label="Install app">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-        <span id="installBtnText">Install</span>
+        <span id="installTxt">Install</span>
       </button>
-      <button class="hbtn" id="darkModeToggle" aria-label="Toggle dark mode">
+      <button class="hbtn" id="darkBtn" aria-label="Toggle dark mode">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/></svg>
       </button>
       <button class="hbtn" id="qrBtn">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3h7v7H3V3zm1 1v5h5V4H4zm1 1h3v3H5V5zm8-2h7v7h-7V3zm1 1v5h5V4h-5zm1 1h3v3h-3V5zM3 13h7v7H3v-7zm1 1v5h5v-5H4zm1 1h3v3H5v-3zm8 0h2v2h-2v-2zm3 0h2v2h-2v-2zm-3 3h2v2h-2v-2zm3 0h2v2h-2v-2zm-3 3h2v2h-2v-2zm3 0h2v2h-2v-2z"/></svg>
-        <span id="qrBtnText">QR</span>
+        <span id="qrTxt">QR</span>
       </button>
       <button class="hbtn" id="langBtn">AR</button>
     </div>
   </header>
 
-  <div class="mobile-search-bar" id="mobileBar">
-    <span class="m-icon">⌕</span>
-    <input type="search" id="searchMobile" placeholder="Search menu…" autocomplete="off" aria-label="Search">
-    <button class="mobile-search-clear" id="mobileSearchClear" aria-label="Clear">✕</button>
+  <!-- Mobile search -->
+  <div class="mobile-bar" id="mobileBar">
+    <span class="m-ico">⌕</span>
+    <input type="search" id="searchM" placeholder="Search menu…" autocomplete="off" aria-label="Search menu">
+    <button class="m-clr" id="mSearchClear" aria-label="Clear search">✕</button>
   </div>
 
-  <!-- Ribbon marquee -->
+  <!-- Ribbon -->
   <div class="ribbon" aria-hidden="true">
     <div class="ribbon-track" id="ribbonTrack"></div>
   </div>
 
-  <div id="menu-anchor"></div>
+  <div id="menuAnchor"></div>
 
   <!-- Hero -->
   <div class="menu-hero">
-    <div class="menu-hero-orn"><div class="hero-line"></div><span class="hero-diamond">◆</span><div class="hero-line"></div></div>
+    <div class="hero-orn"><div class="hero-line"></div><span class="hero-diamond">◆</span><div class="hero-line"></div></div>
     <p class="hero-sub" id="heroSub">Our Selections</p>
-    <h2 class="menu-hero-title">The <em>Menu</em></h2>
-    <p class="menu-hero-desc" id="heroDesc">From ceremonial Turkish coffee to layered Ottoman pastries — every item crafted with intention.</p>
+    <h2 class="hero-title">The <em>Menu</em></h2>
+    <p class="hero-desc" id="heroDesc">From ceremonial Turkish coffee to layered Ottoman pastries — every item crafted with intention.</p>
     <div class="hero-rule"></div>
   </div>
 
@@ -913,19 +757,17 @@
   </nav>
 
   <!-- Diet filters -->
-  <div class="diet-bar" id="dietBar"></div>
+  <div class="diet-bar" id="dietBar" role="group" aria-label="Dietary filters"></div>
 
   <!-- Section ornament -->
-  <div class="section-label" aria-hidden="true">
-    <div class="section-line"></div>
-    <span class="section-orn">✦</span>
-    <div class="section-line"></div>
+  <div class="section-orn" aria-hidden="true">
+    <div class="section-line"></div><span class="section-gem">✦</span><div class="section-line"></div>
   </div>
 
   <!-- Grid -->
   <main class="menu-area">
     <div class="menu-grid" id="menuGrid" role="list" aria-label="Menu items" aria-live="polite"></div>
-    <div id="gridSentinel" style="height:1px;margin-top:1px"></div>
+    <div id="sentinel" style="height:1px;margin-top:1px"></div>
   </main>
 
   <!-- Footer -->
@@ -936,7 +778,7 @@
     <p class="footer-info">
       Msheireb Downtown, Doha, Qatar<br>
       <a href="tel:+97451866671">+974 5186 6671</a>&nbsp;&nbsp;·&nbsp;&nbsp;
-      <a href="https://instagram.com/turkianacafe" target="_blank" rel="noopener">@turkianacafe</a>
+      <a href="https://instagram.com/turkianacafe" target="_blank" rel="noopener noreferrer">@turkianacafe</a>
     </p>
     <div class="footer-hours">
       <h4 id="footerHoursTitle">Opening Hours</h4>
@@ -946,7 +788,18 @@
   </footer>
 </div>
 
-<!-- QR Dialog -->
+<!-- ── INSTALL TOAST ───────────────────────────────────── -->
+<div id="installToast" role="dialog" aria-label="Install app">
+  <div class="toast-icon">☕</div>
+  <div class="toast-texts">
+    <div class="toast-title">Add to Home Screen</div>
+    <div class="toast-sub" id="toastSub">Get the full Turkiana experience</div>
+  </div>
+  <button class="toast-install" id="toastInstall">Install</button>
+  <button class="toast-dismiss" id="toastDismiss" aria-label="Dismiss">✕</button>
+</div>
+
+<!-- ── QR DIALOG ──────────────────────────────────────── -->
 <dialog id="qrDialog" aria-label="QR Code">
   <div class="qr-inner">
     <div class="qr-body">
@@ -959,10 +812,10 @@
   </div>
 </dialog>
 
-<!-- Item modal -->
-<dialog id="itemModal" aria-label="Menu item">
+<!-- ── ITEM MODAL ─────────────────────────────────────── -->
+<dialog id="itemModal" aria-label="Menu item details">
   <div class="modal-inner">
-    <div class="modal-img-wrap" id="modalImgWrap"></div>
+    <div class="modal-img" id="modalImgWrap"></div>
     <div class="modal-scroll">
       <div id="modalBody"></div>
       <div id="modalRecos"></div>
@@ -970,8 +823,8 @@
   </div>
 </dialog>
 
-<!-- Quote bar -->
-<div id="quoteBar" role="complementary">
+<!-- ── QUOTE BAR ──────────────────────────────────────── -->
+<div id="quoteBar" role="complementary" aria-label="Inspirational quote">
   <div class="qbar-wrap">
     <span class="qbar-gem">✦</span>
     <div class="qbar-texts">
@@ -979,718 +832,870 @@
       <div id="qbarA" class="qbar-attr"></div>
     </div>
     <div class="qbar-dots" id="qbarDots"></div>
-    <button class="qbar-close" id="qbarClose">✕</button>
+    <button class="qbar-close" id="qbarClose" aria-label="Close quote bar">✕</button>
   </div>
 </div>
 
-<!-- BTT -->
+<!-- ── BACK TO TOP ────────────────────────────────────── -->
 <button id="btt" aria-label="Back to top">
   <svg viewBox="0 0 24 24"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
 </button>
 
 <script>
-(function(){
+/* ═══════════════════════════════════════════════════════════════════
+   TURKIANA MENU APP  ·  Complete rewrite
+═══════════════════════════════════════════════════════════════════ */
+(function () {
 'use strict';
 
-// ═══════════════════════════════════════════════════════════════════════════
-// CONFIGURATION
-// ═══════════════════════════════════════════════════════════════════════════
-const IMAGE_BASE = "https://raw.githubusercontent.com/turkianacafe-ux/Turkiana-Cafe-Sweets/main/";
+/* ── CONFIG ──────────────────────────────────────────── */
+const IMG_BASE = 'https://raw.githubusercontent.com/turkianacafe-ux/Turkiana-Cafe-Sweets/main/';
+const FB_IMG   = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='240'%3E%3Crect width='400' height='240' fill='%23F0E9DF'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia' font-size='20' fill='%23B8962A'%3E%E2%9C%A6 Turkiana%3C/text%3E%3C/svg%3E";
+const PAGE_SIZE = 16;
 
-// ═══════════════════════════════════════════════════════════════════════════
-// TRANSLATIONS
-// ═══════════════════════════════════════════════════════════════════════════
+/* ── I18N ────────────────────────────────────────────── */
 const I18n = {
   en: {
-    splashOvertitle: "Msheireb Downtown · Doha, Qatar",
-    splashTagline: "Where Ottoman tradition meets the art of every cup",
-    enterBtn: "Discover the Menu",
-    searchPlaceholder: "Search coffee, sweets, tea…",
-    mobileSearchPlaceholder: "Search menu…",
-    installBtn: "Install",
-    qrBtn: "QR",
-    langBtn: "AR",
-    offlineBanner: "You are offline — menu items may be limited",
-    outOfStock: "Out of Stock",
-    currentlyUnavailable: "Currently Unavailable",
-    freshBakeBadge: "15–20 min",
-    freshBakeNote: "Baked fresh to order",
-    freshBakeDetail: "Please allow 15–20 minutes.",
-    milkPreference: "Milk Preference",
-    youMightLike: "You might also like",
-    calories: "Calories",
-    served: "Served",
-    allergens: "Allergens",
-    category: "Category",
-    none: "None",
-    hot: "☕ Hot",
-    iced: "❄️ Iced",
-    cold: "❄️ Cold",
-    both: "🌡️ Hot / Iced",
-    room: "🏠 Ambient",
-    footerHours: "Opening Hours",
-    satWed: "Saturday — Wednesday",
-    thuFri: "Thursday — Friday",
-    hoursSatWed: "9:00 AM – 12:00 AM",
-    hoursThuFri: "9:00 AM – 1:00 AM",
-    copy: "© 2026 Turkiana · Msheireb Downtown · Doha, Qatar",
-    emptySearch: "No results for",
-    emptyDefault: "Nothing here",
-    heroSub: "Our Selections",
-    heroDesc: "From ceremonial Turkish coffee to layered Ottoman pastries — every item crafted with intention.",
-    qrTitle: "Scan to Open Menu",
-    qrSub: "Point your camera at this code",
-    dietVegan: "🌱 Vegan",
-    dietNoNuts: "🚫 No Nuts",
-    dietDairyFree: "🥛 Dairy-Free",
-    dietGlutenFree: "✓ Gluten-Free",
-    catAll: "✦ Full Menu",
-    catBrewed: "Turkish & Arabic",
-    catTea: "Tea",
-    catCafe: "Café Classics",
-    catSpecialty: "Specialty",
-    catRefreshers: "Refreshers",
-    catBaklava: "Sweets",
-    catSnacks: "Snacks",
-    catCroissant: "Croissants"
+    splashOver:'Msheireb Downtown · Doha, Qatar',
+    splashTag:'Where Ottoman tradition meets the art of every cup',
+    enterBtn:'Discover the Menu',
+    searchPH:'Search coffee, sweets, tea…',
+    mSearchPH:'Search menu…',
+    installTxt:'Install',
+    qrTxt:'QR',
+    langBtn:'AR',
+    offline:'You are offline — menu may be limited',
+    oos:'Out of Stock',
+    unavail:'Currently Unavailable',
+    bakeBadge:'15–20 min',
+    bakeNote:'Baked fresh to order',
+    bakeDetail:'Please allow 15–20 minutes.',
+    milkPref:'Milk Preference',
+    youLike:'You might also like',
+    cals:'Calories',
+    served:'Served',
+    allergens:'Allergens',
+    category:'Category',
+    none:'None',
+    hot:'☕ Hot', iced:'❄️ Iced', cold:'❄️ Cold', both:'🌡️ Hot / Iced', room:'🏠 Ambient',
+    hoursTitle:'Opening Hours',
+    satWed:'Saturday — Wednesday', thuFri:'Thursday — Friday',
+    hSatWed:'9:00 AM – 12:00 AM', hThuFri:'9:00 AM – 1:00 AM',
+    copy:'© 2026 Turkiana · Msheireb Downtown · Doha, Qatar',
+    emptyQ:'No results for',
+    emptyD:'Nothing here',
+    heroSub:'Our Selections',
+    heroDesc:'From ceremonial Turkish coffee to layered Ottoman pastries — every item crafted with intention.',
+    qrTitle:'Scan to Open Menu', qrSub:'Point your camera at this code',
+    toastSub:'Get the full Turkiana experience',
+    dietV:'🌱 Vegan', dietN:'🚫 No Nuts', dietDF:'🥛 Dairy-Free', dietGF:'✓ Gluten-Free'
   },
   ar: {
-    splashOvertitle: "مشيرب قلب الدوحة · الدوحة، قطر",
-    splashTagline: "حيث تلتقي التقاليد العثمانية بفن كل فنجان",
-    enterBtn: "اكتشف القائمة",
-    searchPlaceholder: "ابحث عن قهوة، حلويات، شاي…",
-    mobileSearchPlaceholder: "ابحث في القائمة…",
-    installBtn: "تثبيت",
-    qrBtn: "QR",
-    langBtn: "EN",
-    offlineBanner: "أنت غير متصل — قد تكون بعض العناصر محدودة",
-    outOfStock: "غير متوفر",
-    currentlyUnavailable: "غير متوفر حالياً",
-    freshBakeBadge: "١٥–٢٠ دقيقة",
-    freshBakeNote: "يُخبز طازجاً حسب الطلب",
-    freshBakeDetail: "يُرجى الانتظار ١٥–٢٠ دقيقة.",
-    milkPreference: "تفضيلات الحليب",
-    youMightLike: "قد يعجبك أيضاً",
-    calories: "السعرات",
-    served: "يُقدم",
-    allergens: "مسببات الحساسية",
-    category: "الفئة",
-    none: "لا يوجد",
-    hot: "☕ ساخن",
-    iced: "❄️ مثلج",
-    cold: "❄️ بارد",
-    both: "🌡️ ساخن / مثلج",
-    room: "🏠 بدرجة حرارة الغرفة",
-    footerHours: "ساعات العمل",
-    satWed: "السبت — الأربعاء",
-    thuFri: "الخميس — الجمعة",
-    hoursSatWed: "٩:٠٠ ص – ١٢:٠٠ ص",
-    hoursThuFri: "٩:٠٠ ص – ١:٠٠ ص",
-    copy: "© ٢٠٢٦ تركانا · مشيرب قلب الدوحة · الدوحة، قطر",
-    emptySearch: "لا توجد نتائج لـ",
-    emptyDefault: "لا توجد عناصر",
-    heroSub: "اختياراتنا",
-    heroDesc: "من القهوة التركية الاحتفالية إلى الحلويات العثمانية المتعددة الطبقات — كل قطعة مصنوعة بعناية.",
-    qrTitle: "امسح لفتح القائمة",
-    qrSub: "وجه كاميرتك نحو الرمز",
-    dietVegan: "🌱 نباتي",
-    dietNoNuts: "🚫 بدون مكسرات",
-    dietDairyFree: "🥛 خالي من الألبان",
-    dietGlutenFree: "✓ خالي من الغلوتين",
-    catAll: "✦ القائمة الكاملة",
-    catBrewed: "تركي وعربي",
-    catTea: "شاي",
-    catCafe: "كلاسيكيات",
-    catSpecialty: "مميزة",
-    catRefreshers: "منعشات",
-    catBaklava: "حلويات",
-    catSnacks: "وجبات خفيفة",
-    catCroissant: "كرواسون"
+    splashOver:'مشيرب قلب الدوحة · الدوحة، قطر',
+    splashTag:'حيث تلتقي التقاليد العثمانية بفن كل فنجان',
+    enterBtn:'اكتشف القائمة',
+    searchPH:'ابحث عن قهوة، حلويات، شاي…',
+    mSearchPH:'ابحث في القائمة…',
+    installTxt:'تثبيت',
+    qrTxt:'QR',
+    langBtn:'EN',
+    offline:'أنت غير متصل — قد تكون بعض العناصر محدودة',
+    oos:'غير متوفر',
+    unavail:'غير متوفر حالياً',
+    bakeBadge:'١٥–٢٠ دقيقة',
+    bakeNote:'يُخبز طازجاً حسب الطلب',
+    bakeDetail:'يُرجى الانتظار ١٥–٢٠ دقيقة.',
+    milkPref:'تفضيلات الحليب',
+    youLike:'قد يعجبك أيضاً',
+    cals:'السعرات',
+    served:'يُقدم',
+    allergens:'مسببات الحساسية',
+    category:'الفئة',
+    none:'لا يوجد',
+    hot:'☕ ساخن', iced:'❄️ مثلج', cold:'❄️ بارد', both:'🌡️ ساخن / مثلج', room:'🏠 درجة الغرفة',
+    hoursTitle:'ساعات العمل',
+    satWed:'السبت — الأربعاء', thuFri:'الخميس — الجمعة',
+    hSatWed:'٩:٠٠ ص – ١٢:٠٠ ص', hThuFri:'٩:٠٠ ص – ١:٠٠ ص',
+    copy:'© ٢٠٢٦ تركانا · مشيرب قلب الدوحة · الدوحة، قطر',
+    emptyQ:'لا توجد نتائج لـ',
+    emptyD:'لا توجد عناصر',
+    heroSub:'اختياراتنا',
+    heroDesc:'من القهوة التركية الاحتفالية إلى الحلويات العثمانية — كل قطعة مصنوعة بعناية.',
+    qrTitle:'امسح لفتح القائمة', qrSub:'وجه كاميرتك نحو الرمز',
+    toastSub:'احصل على تجربة تركانا الكاملة',
+    dietV:'🌱 نباتي', dietN:'🚫 بدون مكسرات', dietDF:'🥛 خالي ألبان', dietGF:'✓ خالي غلوتين'
   }
 };
-
 let lang = 'en';
-function t(key) { return I18n[lang]?.[key] || key; }
+const t = k => I18n[lang][k] || k;
 
-// ═══════════════════════════════════════════════════════════════════════════
-// DATA
-// ═══════════════════════════════════════════════════════════════════════════
-const D = {
-  BASE: IMAGE_BASE,
-  FB: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='240'%3E%3Crect width='400' height='240' fill='%23F0E9DF'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia' font-size='20' fill='%23B8962A'%3E✦ Turkiana%3C/text%3E%3C/svg%3E",
-  MILK: ["Full Fat","Low Fat","Skim","Almond","Soy","Oat","Coconut","Lactose Free"],
-  TEMP_LABEL: {hot:"☕ Hot",iced:"❄️ Iced",cold:"❄️ Cold",both:"🌡️ Hot / Iced",room:"🏠 Ambient"},
-  categories: [
-    {id:"all",en:"✦ Full Menu",ar:"✦ القائمة"},
-    {id:"brewed",en:"Turkish & Arabic",ar:"تركي وعربي"},
-    {id:"tea",en:"Tea",ar:"شاي"},
-    {id:"cafe",en:"Café Classics",ar:"كلاسيك"},
-    {id:"specialty",en:"Specialty",ar:"مميزة"},
-    {id:"refreshers",en:"Refreshers",ar:"منعشات"},
-    {id:"baklava",en:"Sweets",ar:"حلويات"},
-    {id:"snacks",en:"Snacks",ar:"مأكولات"},
-    {id:"croissant",en:"Croissants",ar:"كرواسون"}
-  ],
-  diets: [
-    {id:"vegan",en:"🌱 Vegan",ar:"🌱 نباتي"},
-    {id:"no-nuts",en:"🚫 No Nuts",ar:"🚫 بدون مكسرات"},
-    {id:"dairy-free",en:"🥛 Dairy-Free",ar:"🥛 خالي ألبان"},
-    {id:"gluten-free",en:"✓ Gluten-Free",ar:"✓ خالي غلوتين"}
-  ],
-  quotes: [
-    {text:"Coffee is the common man's gold, and like gold it brings to every person the feeling of luxury and nobility.",attr:"Sheikh Abd-al-Kadir al-Jaziri · 1587"},
-    {text:"Coffee should be black as hell, strong as death, and sweet as love.",attr:"Turkish Proverb"},
-    {text:"A cup of coffee commits one to forty years of friendship.",attr:"Ottoman Saying"},
-    {text:"The morning cup of coffee has an exhilaration about it which the afternoon or evening cup cannot reproduce.",attr:"Oliver Wendell Holmes"},
-    {text:"In Turkey, a cup of coffee is remembered for forty years.",attr:"Ancient Anatolian Proverb"}
-  ],
-  items: [
-    {id:"brew1",cat:"brewed",en:"Classic Turkish Coffee",ar:"قهوة تركية كلاسيكية",descEn:"Finely ground coffee brewed in copper cezve. Served with foam crown and Turkish delight.",descAr:"قهوة مطحونة في ركوة نحاسية مع تاج رغوة.",price:28,img:"Turkishcoffee.jpg",cal:"5 kcal",diet:["vegan","gluten-free"],temp:"hot"},
-    {id:"brew2",cat:"brewed",en:"Double Turkish Coffee",ar:"قهوة تركية مزدوجة",descEn:"Double the intensity with concentrated brewing for true coffee lovers.",descAr:"ضعف القوة مع تخمير مركز.",price:40,img:"Turkishcoffee.jpg",cal:"10 kcal",diet:["vegan","gluten-free"],temp:"hot"},
-    {id:"brew3",cat:"brewed",en:"Ottoman Mastic Coffee",ar:"قهوة عثمانية بالمستيك",descEn:"Premium coffee enriched with rare Chios mastic resin — a timeless Ottoman secret.",descAr:"مع صمغ المستيكا النادر من جزيرة خيوس.",price:28,img:"Ottomanmastica.jpg",cal:"5 kcal",diet:["vegan","gluten-free"],temp:"hot"},
-    {id:"brew4",cat:"brewed",en:"Hazelnut Turkish Coffee",ar:"قهوة تركية بالبندق",descEn:"Classic Turkish coffee blended with finely ground premium hazelnuts.",descAr:"مع بندق مطحون ناعماً.",price:28,img:"Ottomanhazelnut.jpg",cal:"20 kcal",diet:[],temp:"hot",outOfStock:true},
-    {id:"brew5",cat:"brewed",en:"Cardamom Turkish Coffee",ar:"قهوة تركية بالهيل",descEn:"Infused with aromatic green cardamom pods for a spiced warmth.",descAr:"منقوعة بالهيل الأخضر العطري.",price:28,img:"Ottomancardamom.jpg",cal:"5 kcal",diet:["vegan","gluten-free"],temp:"hot"},
-    {id:"brew6",cat:"brewed",en:"Sahlep",ar:"سحلب",descEn:"Ancient Anatolian comfort drink made from wild orchid tubers — warming and creamy.",descAr:"مشروب الأناضول القديم.",price:38,img:"Sahlep.jpg",cal:"200 kcal",diet:["contains-dairy"],hasMilk:true,temp:"hot"},
-    {id:"brew7",cat:"brewed",en:"Arabic Coffee – Full Dalla",ar:"قهوة عربية – دلة كاملة",descEn:"Ceremonial centerpiece with cardamom and saffron. Perfect for hosting.",descAr:"قطعة احتفالية بالهيل والزعفران.",price:90,img:"Arabic.jpg",cal:"10 kcal",diet:["vegan","gluten-free"],temp:"hot"},
-    {id:"brew8",cat:"brewed",en:"Arabic Coffee – Half Dalla",ar:"قهوة عربية – نصف دلة",descEn:"Half-serving of ceremonial Arabic coffee with cardamom and saffron.",descAr:"مثالي للتجمعات الصغيرة.",price:55,img:"Arabic.jpg",cal:"10 kcal",diet:["vegan","gluten-free"],temp:"hot"},
-    {id:"brew9",cat:"brewed",en:"Arabic Coffee – Cup",ar:"قهوة عربية – فنجان",descEn:"Personal serving of authentic Arabic coffee with cardamom.",descAr:"حصة فردية أصيلة بالهيل.",price:35,img:"Arabiccup.jpeg",cal:"10 kcal",diet:["vegan","gluten-free"],temp:"hot"},
-    {id:"tea1",cat:"tea",en:"Turkish Tea",ar:"شاي تركي",descEn:"Deep amber Rize tea served in classic tulip glasses.",descAr:"شاي ريزي عنبري في أكواب التوليب.",price:15,img:"Tea.jpg",cal:"2 kcal",diet:["vegan"],temp:"hot"},
-    {id:"tea2",cat:"tea",en:"Turkish Tea Pot",ar:"إبريق شاي تركي",descEn:"Generous pot of Rize tea — perfect for gatherings.",descAr:"إبريق كبير للمشاركة.",price:45,img:"Turkishteapot.jpeg",cal:"0 kcal",diet:["vegan"],temp:"hot"},
-    {id:"tea3",cat:"tea",en:"Apple Tea",ar:"شاي التفاح",descEn:"Sun-ripened apple essence, delicate and wonderfully fragrant.",descAr:"خلاصة تفاح ناضج عطري.",price:35,img:"Appletea.jpg",cal:"2 kcal",diet:["vegan"],temp:"hot"},
-    {id:"tea4",cat:"tea",en:"Mulberry Tea",ar:"شاي التوت",descEn:"White mulberry infusion — soft, sweet and calming.",descAr:"منقوع التوت الأبيض الناعم.",price:35,img:"Mulberrytea.jpg",cal:"2 kcal",diet:["vegan"],temp:"hot"},
-    {id:"tea5",cat:"tea",en:"Lemon Mint",ar:"ليمون بالنعناع",descEn:"Zesty squeezed lemon and fresh garden mint leaves.",descAr:"ليمون ونعناع طازج.",price:35,img:"Lemontea.jpg",cal:"2 kcal",diet:["vegan"],temp:"hot"},
-    {id:"tea6",cat:"tea",en:"Pomegranate Tea",ar:"شاي الرمان",descEn:"Vibrant pomegranate infusion with sweet-tart notes.",descAr:"منقوع رمان حلو لاذع.",price:35,img:"Romantea.jpg",cal:"2 kcal",diet:["vegan"],temp:"hot"},
-    {id:"tea7",cat:"tea",en:"Matcha Latte",ar:"ماتشا لاتيه",descEn:"Ceremonial-grade matcha from Japan, whisked to a silky finish.",descAr:"ماتشا يابانية بجودة احتفالية.",price:36,img:"Matcha.webp",cal:"95 kcal",diet:["vegan"],hasMilk:true,temp:"hot"},
-    {id:"tea9",cat:"tea",en:"Iced Apple Tea",ar:"شاي تفاح مثلج",descEn:"Chilled apple essence over ice — a cool garden breeze.",descAr:"نسيم بستان بارد.",price:35,img:"Appletea.avif",cal:"35 kcal",diet:["vegan"],temp:"iced"},
-    {id:"tea10",cat:"tea",en:"Iced Mulberry Tea",ar:"شاي توت مثلج",descEn:"Frosted mulberry silk — subtle and fruity.",descAr:"حرير مثلج فاكهي.",price:35,img:"Blackmulberrytea.png",cal:"35 kcal",diet:["vegan"],temp:"iced"},
-    {id:"tea11",cat:"tea",en:"Iced Pomegranate Tea",ar:"شاي رمان مثلج",descEn:"Jewel-toned refreshment, chilled and vibrant.",descAr:"منعش بلون الجواهر.",price:35,img:"Pomegranatetea.avif",cal:"45 kcal",diet:["vegan"],temp:"iced"},
-    {id:"tea13",cat:"tea",en:"Hibiscus Iced",ar:"كركديه مثلج",descEn:"Ruby-red glacier with tangy floral notes.",descAr:"نهر جليدي ياقوتي.",price:36,img:"Hibiscus.webp",cal:"25 kcal",diet:["vegan"],temp:"iced"},
-    {id:"tea14",cat:"tea",en:"Hibiscus Tea",ar:"شاي الكركديه",descEn:"Soothing hot hibiscus infusion, naturally caffeine free.",descAr:"منقوع ساخن مهدئ.",price:36,img:"Hibiscustea.webp",cal:"25 kcal",diet:["vegan"],temp:"hot"},
-    {id:"tea15",cat:"tea",en:"Winter Tea",ar:"شاي الشتاء",descEn:"Warming seasonal spice blend with cinnamon and clove.",descAr:"مزيج توابل موسمي دافئ.",price:38,img:"Wintertea.webp",cal:"30 kcal",diet:["vegan"],temp:"hot"},
-    {id:"tea16",cat:"tea",en:"Chamomile",ar:"شاي البابونج",descEn:"Calming golden chamomile flowers for peaceful moments.",descAr:"بابونج ذهبي مهدئ.",price:36,img:"Chamomiletea.webp",cal:"0 kcal",diet:["vegan"],temp:"hot"},
-    {id:"tea17",cat:"tea",en:"Green Tea",ar:"شاي أخضر",descEn:"Pure, clean Japanese green tea — light and refreshing.",descAr:"شاي أخضر ياباني نقي.",price:36,img:"Greentea.jpg",cal:"0 kcal",diet:["vegan"],temp:"hot"},
-    {id:"cafe1",cat:"cafe",en:"Latte",ar:"لاتيه",descEn:"Silky microfoam espresso with exclusive seasonal notes. Our house signature.",descAr:"إسبريسو ناعم مع نكهات موسمية.",price:29,img:"Latteart.webp",cal:"170 kcal",diet:["contains-dairy"],hasMilk:true,temp:"hot"},
-    {id:"cafe2",cat:"cafe",en:"Cappuccino",ar:"كابوتشينو",descEn:"Equal parts espresso, steamed milk and velvety foam.",descAr:"أجزاء متساوية من الإسبريسو والحليب.",price:29,img:"Art.webp",cal:"150 kcal",diet:["contains-dairy"],hasMilk:true,temp:"hot"},
-    {id:"cafe3",cat:"cafe",en:"Spanish Latte",ar:"لاتيه إسباني",descEn:"Sweetened condensed milk base beneath bold espresso.",descAr:"حليب مكثف مع إسبريسو.",price:32,img:"Latteart.webp",cal:"220 kcal",diet:["contains-dairy"],hasMilk:true,temp:"hot"},
-    {id:"cafe4",cat:"cafe",en:"Salted Caramel Latte",ar:"لاتيه كراميل مملح",descEn:"House-made caramel with a touch of fleur de sel — addictive sweetness.",descAr:"كراميل منزلي مع ملح فلور دي سيل.",price:32,img:"Latteart.webp",cal:"230 kcal",diet:["contains-dairy"],hasMilk:true,temp:"hot"},
-    {id:"cafe5",cat:"cafe",en:"Vanilla Latte",ar:"لاتيه فانيليا",descEn:"Madagascar bourbon vanilla with silky steamed milk.",descAr:"فانيليا بوربون مدغشقر.",price:32,img:"Art.webp",cal:"220 kcal",diet:["contains-dairy"],hasMilk:true,temp:"hot"},
-    {id:"cafe6",cat:"cafe",en:"Hazelnut Latte",ar:"لاتيه البندق",descEn:"Roasted hazelnut syrup with espresso and steamed milk.",descAr:"نكهة بندق محمص غنية.",price:32,img:"Art.webp",cal:"180 kcal",diet:["contains-dairy"],hasMilk:true,temp:"hot"},
-    {id:"cafe9",cat:"cafe",en:"White Mocha",ar:"وايت موكا",descEn:"White chocolate blended with espresso and steamed milk.",descAr:"إسبريسو شوكولاتة بيضاء.",price:32,img:"Latteart.webp",cal:"260 kcal",diet:["contains-dairy"],hasMilk:true,temp:"hot"},
-    {id:"cafe10",cat:"cafe",en:"Mocha",ar:"موكا",descEn:"Dark chocolate and bold espresso in perfect harmony.",descAr:"مزيج إسبريسو شوكولاتة داكنة.",price:32,img:"Art.webp",cal:"260 kcal",diet:["contains-dairy"],hasMilk:true,temp:"hot"},
-    {id:"cafe11",cat:"cafe",en:"Flat White",ar:"فلات وايت",descEn:"Double ristretto with silky velvety microfoam.",descAr:"ريستريتو مزدوج مخملي.",price:27,img:"Flatwhite.webp",cal:"140 kcal",diet:["contains-dairy"],hasMilk:true,temp:"hot"},
-    {id:"cafe14",cat:"cafe",en:"Macchiato",ar:"ماكياتو",descEn:"Espresso marked with a delicate touch of silky foam.",descAr:"إسبريسو مع رغوة ناعمة.",price:24,img:"Latteart.webp",cal:"60 kcal",diet:["contains-dairy"],hasMilk:true,temp:"hot"},
-    {id:"cafe15",cat:"cafe",en:"Espresso Single",ar:"إسبريسو مفرد",descEn:"Pure concentrated coffee essence — no distractions.",descAr:"جوهر القهوة النقية.",price:18,img:"Espresso.webp",cal:"3 kcal",diet:["vegan"],temp:"hot"},
-    {id:"cafe17",cat:"cafe",en:"Americano",ar:"أمريكانو",descEn:"Espresso pulled long with hot water for a smooth cup.",descAr:"إسبريسو مع ماء ساخن.",price:21,img:"Americano.webp",cal:"5 kcal",diet:["vegan"],temp:"hot"},
-    {id:"cafe18",cat:"cafe",en:"Hot Chocolate",ar:"هوت شوكولاتة",descEn:"Artisanal dark cocoa, velvety and rich — pure comfort.",descAr:"كاكاو حرفي مخملي غني.",price:36,img:"Hotchocolate.jfif",cal:"360 kcal",diet:["contains-dairy"],hasMilk:true,temp:"hot"},
-    {id:"spec1",cat:"specialty",en:"V60 Pour Over",ar:"V60 بور أوفر",descEn:"Single origin beans hand-poured through V60 with bright floral notes.",descAr:"صب يدوي بنوتات زهرية.",price:33,img:"V60.webp",cal:"2 kcal",diet:["vegan"],temp:"hot"},
-    {id:"spec2",cat:"specialty",en:"Ice Drip",ar:"آيس دريب",descEn:"8-hour cold drip extraction for crystal clarity and smooth depth.",descAr:"استخلاص بارد 8 ساعات.",price:35,img:"Drip.jpg",cal:"2 kcal",diet:["vegan"],temp:"iced"},
-    {id:"spec3",cat:"specialty",en:"Cold Brew",ar:"كولد برو",descEn:"18+ hour steep — ultra smooth, ultra low acidity. Game-changer.",descAr:"نقع أكثر من 18 ساعة.",price:37,img:"Coldbrew.webp",cal:"2 kcal",diet:["vegan"],temp:"iced"},
-    {id:"ref16",cat:"refreshers",en:"Lemonade",ar:"ليمونادة",descEn:"Zesty lemon drink with a perfect balance of sweet and sour.",descAr:"مشروب ليمون منعش.",price:18,img:"Lemonada.JPG",cal:"120 kcal",diet:[],temp:"cold"},
-    {id:"ref15",cat:"refreshers",en:"Orange Juice",ar:"عصير برتقال",descEn:"Freshly squeezed orange juice — bright, juicy, and naturally sweet.",descAr:"عصير برتقال طازج.",price:18,img:"Orangejuice.jpg",cal:"110 kcal",diet:[],temp:"cold"},
-    {id:"ref10",cat:"refreshers",en:"Cooling Breeze",ar:"نسيم منعش",descEn:"A chilled blend of citrus and mint — light, cooling, and effortlessly refreshing.",descAr:"مزيج بارد من الحمضيات والنعناع.",price:45,img:"Coolingbreeze.jpg",cal:"150 kcal",diet:[],temp:"iced"},
-    {id:"ref3",cat:"refreshers",en:"Orange Earl Grey",ar:"برتقال إيرل جراي",descEn:"Citrus-bergamot duet over ice — elegant and unexpected.",descAr:"ثنائي الحمضيات مثلج.",price:47,img:"Earl.jpeg",cal:"2 kcal",diet:["vegan"],temp:"iced"},
-    {id:"ref6",cat:"refreshers",en:"Blueberry Mojito",ar:"موهيتو توت أزرق",descEn:"Wild blueberries with fresh mint and lime over crushed ice.",descAr:"توت بري مع نعناع وليم.",price:38,img:"Blueberrymojito.webp",cal:"150 kcal",diet:[],temp:"iced"},
-    {id:"ref7",cat:"refreshers",en:"Strawberry Mojito",ar:"موهيتو فراولة",descEn:"Fresh strawberries muddled with mint and lime — crisp, fruity, vibrant.",descAr:"فراولة طازجة مع النعناع والليمون.",price:42,img:"Strawberrymojito.jpg",cal:"170 kcal",diet:[],temp:"iced"},
-    {id:"ref13a",cat:"refreshers",en:"Still Water (Small)",ar:"مياه عادية (صغير)",descEn:"Pure still water — clean and refreshing.",descAr:"مياه نقية ومنعشة.",price:11,img:"Avantwater.webp",cal:"0 kcal",diet:[],temp:"cold"},
-    {id:"ref14",cat:"refreshers",en:"Still Water (Large)",ar:"مياه عادية (كبير)",descEn:"Pure still water — clean and refreshing.",descAr:"مياه نقية ومنعشة.",price:21,img:"Avantwater.webp",cal:"0 kcal",diet:[],temp:"cold"},
-    {id:"ref12a",cat:"refreshers",en:"Sparkling Water",ar:"مياه غازية",descEn:"Naturally carbonated sparkling mineral water.",descAr:"مياه معدنية مكربنة.",price:23,img:"Sparklingwater.jpg",cal:"0 kcal",diet:["vegan"],temp:"iced"},
-    {id:"ref13b",cat:"refreshers",en:"Kinza Cola",ar:"كينزا كولا",descEn:"Our signature house cola blend — a local favourite.",descAr:"مزيج الكولا المميز.",price:17,img:"Cola.jpg",cal:"150 kcal",diet:[],temp:"iced"},
-    {id:"ref12b",cat:"refreshers",en:"Kinza Cola Diet",ar:"كينزا كولا دايت",descEn:"Diet cola with a smooth, refreshing taste and zero sugar.",descAr:"كولا دايت بطعم منعش وبدون سكر.",price:12,img:"Zero.jpg",cal:"0 kcal",diet:[],temp:"iced"},
-    {id:"bak1",cat:"baklava",en:"Baklava Mix",ar:"بقلاوة مشكلة",descEn:"Stunning assortment of Ottoman baklava varieties.",descAr:"تشكيلة رائعة من أرقى أنواع البقلاوة.",price:65,img:"Mix.jpeg",cal:"450 kcal",diet:["contains-nuts"],temp:"room"},
-    {id:"bak2",cat:"baklava",en:"Carrot Slice Baklava",ar:"بقلاوة جزر",descEn:"Traditional Ottoman baklava with luscious carrot purée filling.",descAr:"بقلاوة عثمانية مع هريس الجزر.",price:45,img:"Carrot.jpeg",cal:"420 kcal",diet:["contains-nuts"],temp:"room"},
-    {id:"bak3",cat:"baklava",en:"Carrot Baklava With Ice Cream",ar:"بقلاوة جزر مع آيس كريم",descEn:"Warm carrot baklava with cold vanilla ice cream — contrast perfected.",descAr:"بقلاوة دافئة مع آيس كريم فانيليا.",price:55,img:"Carroticecream.jpeg",cal:"620 kcal",diet:["contains-nuts","contains-dairy"],temp:"both"},
-    {id:"bak4",cat:"baklava",en:"Trio Baklava",ar:"تريو بقلاوة",descEn:"Three distinct baklava styles on one plate — a tasting journey.",descAr:"ثلاثة أنماط من البقلاوة.",price:45,img:"TrioBaklava.jpeg",cal:"480 kcal",diet:["contains-nuts"],temp:"room"},
-    {id:"bak8",cat:"baklava",en:"Dark Chocolate Opera",ar:"كيكة أوبرا شوكولاتة",descEn:"Moist dark chocolate opera cake with intense cocoa layers.",descAr:"كيك أوبرا بالشوكولاتة الداكنة.",price:45,img:"Darkchocolateopera.jpeg",cal:"540 kcal",diet:["contains-dairy"],temp:"room"},
-    {id:"bak9",cat:"baklava",en:"Black Forest",ar:"كيكة الغابة السوداء",descEn:"Rich chocolate sponge with cherry cream layers — a classic.",descAr:"إسفنجة شوكولاتة مع كريمة الكرز.",price:45,img:"Darkforestopera.jpeg",cal:"560 kcal",diet:["contains-dairy"],temp:"room"},
-    {id:"bak10",cat:"baklava",en:"Mousse Cake",ar:"كيكة موس شوكولاتة",descEn:"Light airy chocolate mousse cake — clouds of chocolate.",descAr:"موس شوكولاتة خفيف وهوائي.",price:45,img:"Chocolatemousseopera.jpeg",cal:"530 kcal",diet:["contains-dairy"],temp:"cold"},
-    {id:"bak11",cat:"baklava",en:"Red Velvet",ar:"ريد فلفت",descEn:"Classic soft red sponge with cream cheese frosting.",descAr:"إسفنجة حمراء مع فروستينج كريم جبن.",price:45,img:"Redvelvetopera.jpeg",cal:"520 kcal",diet:["contains-dairy"],temp:"room"},
-    {id:"bak13",cat:"baklava",en:"Kunafa",ar:"كنافة",descEn:"Shredded kataifi with rich cheese, soaked in orange blossom syrup. Fresh daily.",descAr:"كنافة مبروشة مع الجبن الغني.",price:45,img:"Kunafa.jpeg",cal:"520 kcal",diet:["contains-dairy"],temp:"hot"},
-    {id:"bak14",cat:"baklava",en:"Brownies",ar:"براونيز",descEn:"Dense, fudge-rich dark chocolate brownies — the ultimate indulgence.",descAr:"كثيف وغني بالشوكولاتة.",price:55,img:"Brown.jpg",cal:"380 kcal",diet:["contains-dairy"],temp:"room"},
-    {id:"bak15",cat:"baklava",en:"Honey Cake",ar:"كيكة العسل",descEn:"Soft layered honey cake with creamy filling.",descAr:"كيكة عسل بطبقات ناعمة وكريمة.",price:45,img:"Honeycakenew.jpeg",cal:"520 kcal",diet:["contains-dairy"],temp:"cold"},
-    {id:"bak16",cat:"baklava",en:"Tiramisu",ar:"تيراميسو",descEn:"Classic Italian dessert with coffee-soaked layers and mascarpone.",descAr:"حلوى إيطالية بطبقات القهوة.",price:45,img:"Tiramisunew.jpeg",cal:"480 kcal",diet:["contains-dairy"],temp:"cold"},
-    {id:"bak17",cat:"baklava",en:"Mango Cake",ar:"كيكة المانجو",descEn:"Light sponge cake with fresh mango cream.",descAr:"كيكة خفيفة بكريمة المانجو الطازجة.",price:45,img:"Mangocakenew.jpeg",cal:"450 kcal",diet:["contains-dairy"],temp:"cold"},
-    {id:"bak18",cat:"baklava",en:"Pistachio Cake",ar:"كيكة الفستق",descEn:"Rich pistachio cake with nutty cream layers.",descAr:"كيكة فستق غنية بطبقات كريمية.",price:45,img:"Pistachiocakenew.jpeg",cal:"530 kcal",diet:["contains-dairy","contains-nuts"],temp:"cold"},
-    {id:"bak19",cat:"baklava",en:"San Sebastian Cheesecake",ar:"تشيزكيك سان سيباستيان",descEn:"Burnt Basque cheesecake with creamy soft center.",descAr:"تشيزكيك محروق بقلب كريمي.",price:45,img:"Sebastian.jpg",cal:"480 kcal",diet:["contains-dairy"],temp:"cold"},
-    {id:"bak20",cat:"baklava",en:"Fanzuella Sweet",ar:"فانزويلا سويت",descEn:"Sweet creamy dessert with rich hazelnut flavour.",descAr:"حلى فانزويلا كريمي بنكهة البندق.",price:45,img:"Fanzuella.webp",cal:"350 kcal",diet:["contains-dairy","contains-nuts"],temp:"cold"},
-    {id:"bak21",cat:"baklava",en:"Trileche",ar:"تريليتشي",descEn:"Soft sponge cake soaked in three kinds of milk, light and creamy.",descAr:"كيك إسفنجي منقوع بثلاثة أنواع من الحليب، خفيف وكريمي.",price:45,img:"Trileche.jpg",cal:"400 kcal",diet:["contains-dairy"],temp:"cold"},
-    {id:"snack01",cat:"snacks",en:"Turkish Ice Cream",ar:"آيس كريم تركي",descEn:"Classic stretchy dondurma — beloved by all.",descAr:"دوندورما كلاسيكي مطاطي.",price:27,img:"Icecream.webp",cal:"210 kcal",diet:["contains-dairy"],temp:"cold"},
-    {id:"snack1",cat:"snacks",en:"Nuts Stand – Tall",ar:"مكسرات – ستاند كبير",descEn:"Premium roasted nuts — the centrepiece of any gathering.",descAr:"مكسرات محمصة فاخرة.",price:99,img:"Nuts.jpg",cal:"300 kcal",diet:["contains-nuts"],temp:"room"},
-    {id:"snack2",cat:"snacks",en:"Nuts Stand – Small",ar:"مكسرات – ستاند صغير",descEn:"Curated premium roasted nuts — perfectly portioned.",descAr:"مزيج منسق من المكسرات.",price:60,img:"Nutsmall.jpg",cal:"180 kcal",diet:["contains-nuts"],temp:"room"},
-    {id:"cro1",cat:"croissant",en:"Plain Butter Croissant",ar:"كرواسون زبدة",descEn:"Classic Parisian all-butter croissant — flaky perfection.",descAr:"كرواسون زبدة باريسي.",price:20,img:"Plain.webp",cal:"320 kcal",diet:["vegetarian"],temp:"room",freshBake:true},
-    {id:"cro2",cat:"croissant",en:"Cheese Croissant",ar:"كرواسون جبن",descEn:"Flaky buttery croissant with perfectly melted cheese inside.",descAr:"محشو بالجبن المذاب.",price:20,img:"Cheese.jpg",cal:"360 kcal",diet:["vegetarian"],temp:"room",freshBake:true},
-    {id:"cro3",cat:"croissant",en:"Chocolate Croissant",ar:"كرواسون شوكولاتة",descEn:"Buttery laminated pastry encasing dark chocolate batons.",descAr:"أصابع شوكولاتة داكنة.",price:20,img:"Chocolatecroissant.jpg",cal:"380 kcal",diet:["vegetarian"],temp:"room",freshBake:true},
-    {id:"cro4",cat:"croissant",en:"Almond Croissant",ar:"كرواسون لوز",descEn:"Almond frangipane cream topped with toasted almond slices.",descAr:"كريمة لوز بشرائح اللوز المحمص.",price:20,img:"Almondcroissant.jpg",cal:"400 kcal",diet:["vegetarian","contains-nuts"],temp:"room",freshBake:true},
-    {id:"cro5",cat:"croissant",en:"Cinnamon Danish",ar:"دانش قرفة",descEn:"Cinnamon sugar spiral with warm spiced icing — morning luxury.",descAr:"حلزوني قرفة وسكر.",price:20,img:"Cinnamon.jpg",cal:"390 kcal",diet:["vegetarian"],temp:"room",freshBake:true}
-  ]
+/* ── QUOTES ──────────────────────────────────────────── */
+const QUOTES = [
+  {q:'Coffee is the common man\'s gold, and like gold it brings to every person the feeling of luxury and nobility.',a:'Sheikh Abd-al-Kadir al-Jaziri · 1587'},
+  {q:'Coffee should be black as hell, strong as death, and sweet as love.',a:'Turkish Proverb'},
+  {q:'A cup of coffee commits one to forty years of friendship.',a:'Ottoman Saying'},
+  {q:'The morning cup of coffee has an exhilaration about it which the afternoon or evening cup cannot reproduce.',a:'Oliver Wendell Holmes'},
+  {q:'In Turkey, a cup of coffee is remembered for forty years.',a:'Ancient Anatolian Proverb'}
+];
+
+/* ── CATEGORIES ──────────────────────────────────────── */
+const CATS = [
+  {id:'all',      en:'✦ Full Menu',     ar:'✦ القائمة الكاملة'},
+  {id:'brewed',   en:'Turkish & Arabic',ar:'تركي وعربي'},
+  {id:'tea',      en:'Tea',             ar:'شاي'},
+  {id:'cafe',     en:'Café Classics',   ar:'كلاسيكيات'},
+  {id:'specialty',en:'Specialty',       ar:'مميزة'},
+  {id:'refreshers',en:'Refreshers',     ar:'منعشات'},
+  {id:'baklava',  en:'Sweets',          ar:'حلويات'},
+  {id:'snacks',   en:'Snacks',          ar:'مأكولات'},
+  {id:'croissant',en:'Croissants',      ar:'كرواسون'}
+];
+
+/* ── DIET FILTERS ────────────────────────────────────── */
+const DIETS = [
+  {id:'vegan',       en:'🌱 Vegan',       ar:'🌱 نباتي'},
+  {id:'no-nuts',     en:'🚫 No Nuts',     ar:'🚫 بدون مكسرات'},
+  {id:'dairy-free',  en:'🥛 Dairy-Free',  ar:'🥛 خالي ألبان'},
+  {id:'gluten-free', en:'✓ Gluten-Free',  ar:'✓ خالي غلوتين'}
+];
+
+/* ── MILK OPTIONS ────────────────────────────────────── */
+const MILKS = ['Full Fat','Low Fat','Skim','Almond','Soy','Oat','Coconut','Lactose Free'];
+
+/* ── MENU DATA ───────────────────────────────────────── */
+const ITEMS = [
+  /* ── BREWED ── */
+  {id:'brew1', cat:'brewed', en:'Classic Turkish Coffee',      ar:'قهوة تركية كلاسيكية',      descEn:'Finely ground coffee brewed in copper cezve. Served with foam crown and Turkish delight.',            descAr:'قهوة مطحونة في ركوة نحاسية مع تاج رغوة.',             price:28, img:'Turkishcoffee.jpg',       cal:'5 kcal',   diet:['vegan','gluten-free'], temp:'hot'},
+  {id:'brew2', cat:'brewed', en:'Double Turkish Coffee',       ar:'قهوة تركية مزدوجة',        descEn:'Double the intensity with concentrated brewing for true coffee lovers.',                               descAr:'ضعف القوة مع تخمير مركز.',                             price:40, img:'Turkishcoffee.jpg',       cal:'10 kcal',  diet:['vegan','gluten-free'], temp:'hot'},
+  {id:'brew3', cat:'brewed', en:'Ottoman Mastic Coffee',       ar:'قهوة عثمانية بالمستيك',    descEn:'Premium coffee enriched with rare Chios mastic resin — a timeless Ottoman secret.',                  descAr:'مع صمغ المستيكا النادر من جزيرة خيوس.',               price:28, img:'Ottomanmastica.jpg',      cal:'5 kcal',   diet:['vegan','gluten-free'], temp:'hot'},
+  {id:'brew4', cat:'brewed', en:'Hazelnut Turkish Coffee',     ar:'قهوة تركية بالبندق',       descEn:'Classic Turkish coffee blended with finely ground premium hazelnuts.',                                descAr:'مع بندق مطحون ناعماً.',                                price:28, img:'Ottomanhazelnut.jpg',     cal:'20 kcal',  diet:[], temp:'hot', outOfStock:true},
+  {id:'brew5', cat:'brewed', en:'Cardamom Turkish Coffee',     ar:'قهوة تركية بالهيل',        descEn:'Infused with aromatic green cardamom pods for a spiced warmth.',                                     descAr:'منقوعة بالهيل الأخضر العطري.',                         price:28, img:'Ottomancardamom.jpg',     cal:'5 kcal',   diet:['vegan','gluten-free'], temp:'hot'},
+  {id:'brew6', cat:'brewed', en:'Sahlep',                      ar:'سحلب',                     descEn:'Ancient Anatolian comfort drink made from wild orchid tubers — warming and creamy.',                  descAr:'مشروب الأناضول القديم.',                               price:38, img:'Sahlep.jpg',              cal:'200 kcal', diet:['contains-dairy'], hasMilk:true, temp:'hot'},
+  {id:'brew7', cat:'brewed', en:'Arabic Coffee – Full Dalla',  ar:'قهوة عربية – دلة كاملة',  descEn:'Ceremonial centerpiece with cardamom and saffron. Perfect for hosting.',                             descAr:'قطعة احتفالية بالهيل والزعفران.',                      price:90, img:'Arabic.jpg',              cal:'10 kcal',  diet:['vegan','gluten-free'], temp:'hot'},
+  {id:'brew8', cat:'brewed', en:'Arabic Coffee – Half Dalla',  ar:'قهوة عربية – نصف دلة',    descEn:'Half-serving of ceremonial Arabic coffee with cardamom and saffron.',                                descAr:'مثالي للتجمعات الصغيرة.',                              price:55, img:'Arabic.jpg',              cal:'10 kcal',  diet:['vegan','gluten-free'], temp:'hot'},
+  {id:'brew9', cat:'brewed', en:'Arabic Coffee – Cup',         ar:'قهوة عربية – فنجان',       descEn:'Personal serving of authentic Arabic coffee with cardamom.',                                         descAr:'حصة فردية أصيلة بالهيل.',                              price:35, img:'Arabiccup.jpeg',          cal:'10 kcal',  diet:['vegan','gluten-free'], temp:'hot'},
+  /* ── TEA ── */
+  {id:'tea1',  cat:'tea', en:'Turkish Tea',          ar:'شاي تركي',          descEn:'Deep amber Rize tea served in classic tulip glasses.',                descAr:'شاي ريزي عنبري في أكواب التوليب.',   price:15, img:'Tea.jpg',              cal:'2 kcal',   diet:['vegan'], temp:'hot'},
+  {id:'tea2',  cat:'tea', en:'Turkish Tea Pot',      ar:'إبريق شاي تركي',    descEn:'Generous pot of Rize tea — perfect for gatherings.',                 descAr:'إبريق كبير للمشاركة.',               price:45, img:'Turkishteapot.jpeg',   cal:'0 kcal',   diet:['vegan'], temp:'hot'},
+  {id:'tea3',  cat:'tea', en:'Apple Tea',             ar:'شاي التفاح',        descEn:'Sun-ripened apple essence, delicate and wonderfully fragrant.',      descAr:'خلاصة تفاح ناضج عطري.',              price:35, img:'Appletea.jpg',         cal:'2 kcal',   diet:['vegan'], temp:'hot'},
+  {id:'tea4',  cat:'tea', en:'Mulberry Tea',          ar:'شاي التوت',         descEn:'White mulberry infusion — soft, sweet and calming.',                 descAr:'منقوع التوت الأبيض الناعم.',          price:35, img:'Mulberrytea.jpg',      cal:'2 kcal',   diet:['vegan'], temp:'hot'},
+  {id:'tea5',  cat:'tea', en:'Lemon Mint',            ar:'ليمون بالنعناع',    descEn:'Zesty squeezed lemon and fresh garden mint leaves.',                 descAr:'ليمون ونعناع طازج.',                  price:35, img:'Lemontea.jpg',         cal:'2 kcal',   diet:['vegan'], temp:'hot'},
+  {id:'tea6',  cat:'tea', en:'Pomegranate Tea',       ar:'شاي الرمان',        descEn:'Vibrant pomegranate infusion with sweet-tart notes.',                descAr:'منقوع رمان حلو لاذع.',               price:35, img:'Romantea.jpg',         cal:'2 kcal',   diet:['vegan'], temp:'hot'},
+  {id:'tea7',  cat:'tea', en:'Matcha Latte',          ar:'ماتشا لاتيه',       descEn:'Ceremonial-grade matcha from Japan, whisked to a silky finish.',     descAr:'ماتشا يابانية بجودة احتفالية.',       price:36, img:'Matcha.webp',          cal:'95 kcal',  diet:['vegan'], hasMilk:true, temp:'hot'},
+  {id:'tea9',  cat:'tea', en:'Iced Apple Tea',        ar:'شاي تفاح مثلج',     descEn:'Chilled apple essence over ice — a cool garden breeze.',             descAr:'نسيم بستان بارد.',                    price:35, img:'Appletea.avif',        cal:'35 kcal',  diet:['vegan'], temp:'iced'},
+  {id:'tea10', cat:'tea', en:'Iced Mulberry Tea',     ar:'شاي توت مثلج',      descEn:'Frosted mulberry silk — subtle and fruity.',                         descAr:'حرير مثلج فاكهي.',                    price:35, img:'Blackmulberrytea.png', cal:'35 kcal',  diet:['vegan'], temp:'iced'},
+  {id:'tea11', cat:'tea', en:'Iced Pomegranate Tea',  ar:'شاي رمان مثلج',     descEn:'Jewel-toned refreshment, chilled and vibrant.',                      descAr:'منعش بلون الجواهر.',                  price:35, img:'Pomegranatetea.avif',  cal:'45 kcal',  diet:['vegan'], temp:'iced'},
+  {id:'tea13', cat:'tea', en:'Hibiscus Iced',         ar:'كركديه مثلج',       descEn:'Ruby-red glacier with tangy floral notes.',                          descAr:'نهر جليدي ياقوتي.',                   price:36, img:'Hibiscus.webp',        cal:'25 kcal',  diet:['vegan'], temp:'iced'},
+  {id:'tea14', cat:'tea', en:'Hibiscus Tea',          ar:'شاي الكركديه',      descEn:'Soothing hot hibiscus infusion, naturally caffeine free.',            descAr:'منقوع ساخن مهدئ.',                    price:36, img:'Hibiscustea.webp',     cal:'25 kcal',  diet:['vegan'], temp:'hot'},
+  {id:'tea15', cat:'tea', en:'Winter Tea',            ar:'شاي الشتاء',        descEn:'Warming seasonal spice blend with cinnamon and clove.',               descAr:'مزيج توابل موسمي دافئ.',              price:38, img:'Wintertea.webp',       cal:'30 kcal',  diet:['vegan'], temp:'hot'},
+  {id:'tea16', cat:'tea', en:'Chamomile',             ar:'شاي البابونج',      descEn:'Calming golden chamomile flowers for peaceful moments.',              descAr:'بابونج ذهبي مهدئ.',                   price:36, img:'Chamomiletea.webp',    cal:'0 kcal',   diet:['vegan'], temp:'hot'},
+  {id:'tea17', cat:'tea', en:'Green Tea',             ar:'شاي أخضر',          descEn:'Pure, clean Japanese green tea — light and refreshing.',              descAr:'شاي أخضر ياباني نقي.',               price:36, img:'Greentea.jpg',         cal:'0 kcal',   diet:['vegan'], temp:'hot'},
+  /* ── CAFÉ ── */
+  {id:'cafe1',  cat:'cafe', en:'Latte',              ar:'لاتيه',             descEn:'Silky microfoam espresso with exclusive seasonal notes. Our house signature.',descAr:'إسبريسو ناعم مع نكهات موسمية.',    price:29, img:'Latteart.webp',    cal:'170 kcal', diet:['contains-dairy'], hasMilk:true, temp:'hot'},
+  {id:'cafe2',  cat:'cafe', en:'Cappuccino',         ar:'كابوتشينو',         descEn:'Equal parts espresso, steamed milk and velvety foam.',               descAr:'أجزاء متساوية إسبريسو وحليب.',         price:29, img:'Art.webp',          cal:'150 kcal', diet:['contains-dairy'], hasMilk:true, temp:'hot'},
+  {id:'cafe3',  cat:'cafe', en:'Spanish Latte',      ar:'لاتيه إسباني',      descEn:'Sweetened condensed milk base beneath bold espresso.',               descAr:'حليب مكثف مع إسبريسو.',                price:32, img:'Latteart.webp',    cal:'220 kcal', diet:['contains-dairy'], hasMilk:true, temp:'hot'},
+  {id:'cafe4',  cat:'cafe', en:'Salted Caramel Latte',ar:'لاتيه كراميل مملح',descEn:'House-made caramel with a touch of fleur de sel — addictive sweetness.',descAr:'كراميل منزلي مع ملح فلور دي سيل.',  price:32, img:'Latteart.webp',    cal:'230 kcal', diet:['contains-dairy'], hasMilk:true, temp:'hot'},
+  {id:'cafe5',  cat:'cafe', en:'Vanilla Latte',      ar:'لاتيه فانيليا',     descEn:'Madagascar bourbon vanilla with silky steamed milk.',                descAr:'فانيليا بوربون مدغشقر.',               price:32, img:'Art.webp',          cal:'220 kcal', diet:['contains-dairy'], hasMilk:true, temp:'hot'},
+  {id:'cafe6',  cat:'cafe', en:'Hazelnut Latte',     ar:'لاتيه البندق',      descEn:'Roasted hazelnut syrup with espresso and steamed milk.',             descAr:'نكهة بندق محمص غنية.',                 price:32, img:'Art.webp',          cal:'180 kcal', diet:['contains-dairy'], hasMilk:true, temp:'hot'},
+  {id:'cafe9',  cat:'cafe', en:'White Mocha',        ar:'وايت موكا',         descEn:'White chocolate blended with espresso and steamed milk.',            descAr:'إسبريسو شوكولاتة بيضاء.',             price:32, img:'Latteart.webp',    cal:'260 kcal', diet:['contains-dairy'], hasMilk:true, temp:'hot'},
+  {id:'cafe10', cat:'cafe', en:'Mocha',              ar:'موكا',              descEn:'Dark chocolate and bold espresso in perfect harmony.',               descAr:'مزيج إسبريسو شوكولاتة داكنة.',         price:32, img:'Art.webp',          cal:'260 kcal', diet:['contains-dairy'], hasMilk:true, temp:'hot'},
+  {id:'cafe11', cat:'cafe', en:'Flat White',         ar:'فلات وايت',         descEn:'Double ristretto with silky velvety microfoam.',                    descAr:'ريستريتو مزدوج مخملي.',                price:27, img:'Flatwhite.webp',    cal:'140 kcal', diet:['contains-dairy'], hasMilk:true, temp:'hot'},
+  {id:'cafe14', cat:'cafe', en:'Macchiato',          ar:'ماكياتو',           descEn:'Espresso marked with a delicate touch of silky foam.',              descAr:'إسبريسو مع رغوة ناعمة.',               price:24, img:'Latteart.webp',    cal:'60 kcal',  diet:['contains-dairy'], hasMilk:true, temp:'hot'},
+  {id:'cafe15', cat:'cafe', en:'Espresso Single',    ar:'إسبريسو مفرد',      descEn:'Pure concentrated coffee essence — no distractions.',               descAr:'جوهر القهوة النقية.',                   price:18, img:'Espresso.webp',     cal:'3 kcal',   diet:['vegan'], temp:'hot'},
+  {id:'cafe17', cat:'cafe', en:'Americano',          ar:'أمريكانو',          descEn:'Espresso pulled long with hot water for a smooth cup.',              descAr:'إسبريسو مع ماء ساخن.',                 price:21, img:'Americano.webp',    cal:'5 kcal',   diet:['vegan'], temp:'hot'},
+  {id:'cafe18', cat:'cafe', en:'Hot Chocolate',      ar:'هوت شوكولاتة',      descEn:'Artisanal dark cocoa, velvety and rich — pure comfort.',             descAr:'كاكاو حرفي مخملي غني.',                price:36, img:'Hotchocolate.jfif', cal:'360 kcal', diet:['contains-dairy'], hasMilk:true, temp:'hot'},
+  /* ── SPECIALTY ── */
+  {id:'spec1', cat:'specialty', en:'V60 Pour Over', ar:'V60 بور أوفر', descEn:'Single origin beans hand-poured through V60 with bright floral notes.',  descAr:'صب يدوي بنوتات زهرية.', price:33, img:'V60.webp',      cal:'2 kcal', diet:['vegan'], temp:'hot'},
+  {id:'spec2', cat:'specialty', en:'Ice Drip',      ar:'آيس دريب',      descEn:'8-hour cold drip extraction for crystal clarity and smooth depth.',     descAr:'استخلاص بارد 8 ساعات.', price:35, img:'Drip.jpg',       cal:'2 kcal', diet:['vegan'], temp:'iced'},
+  {id:'spec3', cat:'specialty', en:'Cold Brew',     ar:'كولد برو',      descEn:'18+ hour steep — ultra smooth, ultra low acidity. Game-changer.',     descAr:'نقع أكثر من 18 ساعة.',  price:37, img:'Coldbrew.webp',  cal:'2 kcal', diet:['vegan'], temp:'iced'},
+  /* ── REFRESHERS ── */
+  {id:'ref16',  cat:'refreshers', en:'Lemonade',             ar:'ليمونادة',         descEn:'Zesty lemon drink with a perfect balance of sweet and sour.',           descAr:'مشروب ليمون منعش.',                   price:18, img:'Lemonada.JPG',       cal:'120 kcal', diet:[], temp:'cold'},
+  {id:'ref15',  cat:'refreshers', en:'Orange Juice',         ar:'عصير برتقال',      descEn:'Freshly squeezed orange juice — bright, juicy, and naturally sweet.',    descAr:'عصير برتقال طازج.',                   price:18, img:'Orangejuice.jpg',    cal:'110 kcal', diet:[], temp:'cold'},
+  {id:'ref10',  cat:'refreshers', en:'Cooling Breeze',       ar:'نسيم منعش',        descEn:'A chilled blend of citrus and mint — light, cooling, refreshing.',       descAr:'مزيج بارد من الحمضيات والنعناع.',     price:45, img:'Coolingbreeze.jpg',  cal:'150 kcal', diet:[], temp:'iced'},
+  {id:'ref3',   cat:'refreshers', en:'Orange Earl Grey',     ar:'برتقال إيرل جراي', descEn:'Citrus-bergamot duet over ice — elegant and unexpected.',                descAr:'ثنائي الحمضيات مثلج.',                price:47, img:'Earl.jpeg',           cal:'2 kcal',   diet:['vegan'], temp:'iced'},
+  {id:'ref6',   cat:'refreshers', en:'Blueberry Mojito',     ar:'موهيتو توت أزرق',  descEn:'Wild blueberries with fresh mint and lime over crushed ice.',            descAr:'توت بري مع نعناع وليم.',              price:38, img:'Blueberrymojito.webp',cal:'150 kcal', diet:[], temp:'iced'},
+  {id:'ref7',   cat:'refreshers', en:'Strawberry Mojito',    ar:'موهيتو فراولة',    descEn:'Fresh strawberries muddled with mint and lime — crisp, fruity, vibrant.',descAr:'فراولة طازجة مع النعناع والليمون.',   price:42, img:'Strawberrymojito.jpg',cal:'170 kcal', diet:[], temp:'iced'},
+  {id:'ref13a', cat:'refreshers', en:'Still Water (Small)',  ar:'مياه عادية (صغير)',descEn:'Pure still water — clean and refreshing.',                               descAr:'مياه نقية ومنعشة.',                   price:11, img:'Avantwater.webp',    cal:'0 kcal',   diet:[], temp:'cold'},
+  {id:'ref14',  cat:'refreshers', en:'Still Water (Large)',  ar:'مياه عادية (كبير)',descEn:'Pure still water — clean and refreshing.',                               descAr:'مياه نقية ومنعشة.',                   price:21, img:'Avantwater.webp',    cal:'0 kcal',   diet:[], temp:'cold'},
+  {id:'ref12a', cat:'refreshers', en:'Sparkling Water',      ar:'مياه غازية',       descEn:'Naturally carbonated sparkling mineral water.',                          descAr:'مياه معدنية مكربنة.',                 price:23, img:'Sparklingwater.jpg', cal:'0 kcal',   diet:['vegan'], temp:'iced'},
+  {id:'ref13b', cat:'refreshers', en:'Kinza Cola',           ar:'كينزا كولا',       descEn:'Our signature house cola blend — a local favourite.',                    descAr:'مزيج الكولا المميز.',                 price:17, img:'Cola.jpg',            cal:'150 kcal', diet:[], temp:'iced'},
+  {id:'ref12b', cat:'refreshers', en:'Kinza Cola Diet',      ar:'كينزا كولا دايت',  descEn:'Diet cola with a smooth, refreshing taste and zero sugar.',              descAr:'كولا دايت بطعم منعش وبدون سكر.',      price:12, img:'Zero.jpg',            cal:'0 kcal',   diet:[], temp:'iced'},
+  /* ── SWEETS ── */
+  {id:'bak1',  cat:'baklava', en:'Baklava Mix',                    ar:'بقلاوة مشكلة',            descEn:'Stunning assortment of Ottoman baklava varieties.',                           descAr:'تشكيلة رائعة من أرقى أنواع البقلاوة.',       price:65, img:'Mix.jpeg',                   cal:'450 kcal', diet:['contains-nuts'], temp:'room'},
+  {id:'bak2',  cat:'baklava', en:'Carrot Slice Baklava',           ar:'بقلاوة جزر',              descEn:'Traditional Ottoman baklava with luscious carrot purée filling.',             descAr:'بقلاوة عثمانية مع هريس الجزر.',              price:45, img:'Carrot.jpeg',                cal:'420 kcal', diet:['contains-nuts'], temp:'room'},
+  {id:'bak3',  cat:'baklava', en:'Carrot Baklava With Ice Cream',  ar:'بقلاوة جزر مع آيس كريم', descEn:'Warm carrot baklava with cold vanilla ice cream — contrast perfected.',        descAr:'بقلاوة دافئة مع آيس كريم فانيليا.',          price:55, img:'Carroticecream.jpeg',        cal:'620 kcal', diet:['contains-nuts','contains-dairy'], temp:'both'},
+  {id:'bak4',  cat:'baklava', en:'Trio Baklava',                   ar:'تريو بقلاوة',             descEn:'Three distinct baklava styles on one plate — a tasting journey.',              descAr:'ثلاثة أنماط من البقلاوة.',                   price:45, img:'TrioBaklava.jpeg',           cal:'480 kcal', diet:['contains-nuts'], temp:'room'},
+  {id:'bak8',  cat:'baklava', en:'Dark Chocolate Opera',           ar:'كيكة أوبرا شوكولاتة',    descEn:'Moist dark chocolate opera cake with intense cocoa layers.',                   descAr:'كيك أوبرا بالشوكولاتة الداكنة.',             price:45, img:'Darkchocolateopera.jpeg',    cal:'540 kcal', diet:['contains-dairy'], temp:'room'},
+  {id:'bak9',  cat:'baklava', en:'Black Forest',                   ar:'كيكة الغابة السوداء',    descEn:'Rich chocolate sponge with cherry cream layers — a classic.',                  descAr:'إسفنجة شوكولاتة مع كريمة الكرز.',            price:45, img:'Darkforestopera.jpeg',       cal:'560 kcal', diet:['contains-dairy'], temp:'room'},
+  {id:'bak10', cat:'baklava', en:'Mousse Cake',                    ar:'كيكة موس شوكولاتة',      descEn:'Light airy chocolate mousse cake — clouds of chocolate.',                     descAr:'موس شوكولاتة خفيف وهوائي.',                  price:45, img:'Chocolatemousseopera.jpeg',  cal:'530 kcal', diet:['contains-dairy'], temp:'cold'},
+  {id:'bak11', cat:'baklava', en:'Red Velvet',                     ar:'ريد فلفت',                descEn:'Classic soft red sponge with cream cheese frosting.',                         descAr:'إسفنجة حمراء مع فروستينج كريم جبن.',         price:45, img:'Redvelvetopera.jpeg',        cal:'520 kcal', diet:['contains-dairy'], temp:'room'},
+  {id:'bak13', cat:'baklava', en:'Kunafa',                         ar:'كنافة',                   descEn:'Shredded kataifi with rich cheese, soaked in orange blossom syrup. Fresh daily.',descAr:'كنافة مبروشة مع الجبن الغني.',               price:45, img:'Kunafa.jpeg',                cal:'520 kcal', diet:['contains-dairy'], temp:'hot'},
+  {id:'bak14', cat:'baklava', en:'Brownies',                       ar:'براونيز',                 descEn:'Dense, fudge-rich dark chocolate brownies — the ultimate indulgence.',          descAr:'كثيف وغني بالشوكولاتة.',                     price:55, img:'Brown.jpg',                  cal:'380 kcal', diet:['contains-dairy'], temp:'room'},
+  {id:'bak15', cat:'baklava', en:'Honey Cake',                     ar:'كيكة العسل',              descEn:'Soft layered honey cake with creamy filling.',                                 descAr:'كيكة عسل بطبقات ناعمة وكريمة.',              price:45, img:'Honeycakenew.jpeg',          cal:'520 kcal', diet:['contains-dairy'], temp:'cold'},
+  {id:'bak16', cat:'baklava', en:'Tiramisu',                       ar:'تيراميسو',                descEn:'Classic Italian dessert with coffee-soaked layers and mascarpone.',             descAr:'حلوى إيطالية بطبقات القهوة.',                price:45, img:'Tiramisunew.jpeg',           cal:'480 kcal', diet:['contains-dairy'], temp:'cold'},
+  {id:'bak17', cat:'baklava', en:'Mango Cake',                     ar:'كيكة المانجو',            descEn:'Light sponge cake with fresh mango cream.',                                   descAr:'كيكة خفيفة بكريمة المانجو الطازجة.',         price:45, img:'Mangocakenew.jpeg',          cal:'450 kcal', diet:['contains-dairy'], temp:'cold'},
+  {id:'bak18', cat:'baklava', en:'Pistachio Cake',                 ar:'كيكة الفستق',             descEn:'Rich pistachio cake with nutty cream layers.',                                 descAr:'كيكة فستق غنية بطبقات كريمية.',              price:45, img:'Pistachiocakenew.jpeg',      cal:'530 kcal', diet:['contains-dairy','contains-nuts'], temp:'cold'},
+  {id:'bak19', cat:'baklava', en:'San Sebastian Cheesecake',       ar:'تشيزكيك سان سيباستيان',  descEn:'Burnt Basque cheesecake with creamy soft center.',                             descAr:'تشيزكيك محروق بقلب كريمي.',                  price:45, img:'Sebastian.jpg',              cal:'480 kcal', diet:['contains-dairy'], temp:'cold'},
+  {id:'bak20', cat:'baklava', en:'Fanzuella Sweet',                ar:'فانزويلا سويت',           descEn:'Sweet creamy dessert with rich hazelnut flavour.',                             descAr:'حلى فانزويلا كريمي بنكهة البندق.',           price:45, img:'Fanzuella.webp',             cal:'350 kcal', diet:['contains-dairy','contains-nuts'], temp:'cold'},
+  {id:'bak21', cat:'baklava', en:'Trileche',                       ar:'تريليتشي',                descEn:'Soft sponge cake soaked in three kinds of milk, light and creamy.',              descAr:'كيك إسفنجي منقوع بثلاثة أنواع من الحليب.',   price:45, img:'Trileche.jpg',               cal:'400 kcal', diet:['contains-dairy'], temp:'cold'},
+  /* ── SNACKS ── */
+  {id:'snack01', cat:'snacks', en:'Turkish Ice Cream',      ar:'آيس كريم تركي',        descEn:'Classic stretchy dondurma — beloved by all.',                          descAr:'دوندورما كلاسيكي مطاطي.',              price:27, img:'Icecream.webp',  cal:'210 kcal', diet:['contains-dairy'], temp:'cold'},
+  {id:'snack1',  cat:'snacks', en:'Nuts Stand – Tall',      ar:'مكسرات – ستاند كبير',  descEn:'Premium roasted nuts — the centrepiece of any gathering.',             descAr:'مكسرات محمصة فاخرة.',                  price:99, img:'Nuts.jpg',        cal:'300 kcal', diet:['contains-nuts'], temp:'room'},
+  {id:'snack2',  cat:'snacks', en:'Nuts Stand – Small',     ar:'مكسرات – ستاند صغير',  descEn:'Curated premium roasted nuts — perfectly portioned.',                  descAr:'مزيج منسق من المكسرات.',               price:60, img:'Nutsmall.jpg',    cal:'180 kcal', diet:['contains-nuts'], temp:'room'},
+  /* ── CROISSANTS ── */
+  {id:'cro1', cat:'croissant', en:'Plain Butter Croissant', ar:'كرواسون زبدة',      descEn:'Classic Parisian all-butter croissant — flaky perfection.',   descAr:'كرواسون زبدة باريسي.',                    price:20, img:'Plain.webp',              cal:'320 kcal', diet:['vegetarian'], temp:'room', freshBake:true},
+  {id:'cro2', cat:'croissant', en:'Cheese Croissant',       ar:'كرواسون جبن',       descEn:'Flaky buttery croissant with perfectly melted cheese inside.',descAr:'محشو بالجبن المذاب.',                       price:20, img:'Cheese.jpg',              cal:'360 kcal', diet:['vegetarian'], temp:'room', freshBake:true},
+  {id:'cro3', cat:'croissant', en:'Chocolate Croissant',    ar:'كرواسون شوكولاتة',  descEn:'Buttery laminated pastry encasing dark chocolate batons.',    descAr:'أصابع شوكولاتة داكنة.',                    price:20, img:'Chocolatecroissant.jpg',  cal:'380 kcal', diet:['vegetarian'], temp:'room', freshBake:true},
+  {id:'cro4', cat:'croissant', en:'Almond Croissant',       ar:'كرواسون لوز',       descEn:'Almond frangipane cream topped with toasted almond slices.',  descAr:'كريمة لوز بشرائح اللوز المحمص.',           price:20, img:'Almondcroissant.jpg',    cal:'400 kcal', diet:['vegetarian','contains-nuts'], temp:'room', freshBake:true},
+  {id:'cro5', cat:'croissant', en:'Cinnamon Danish',        ar:'دانش قرفة',         descEn:'Cinnamon sugar spiral with warm spiced icing — morning luxury.',descAr:'حلزوني قرفة وسكر.',                        price:20, img:'Cinnamon.jpg',            cal:'390 kcal', diet:['vegetarian'], temp:'room', freshBake:true}
+];
+
+/* ═══════════════════════════════════════════════════════
+   STATE
+═══════════════════════════════════════════════════════ */
+let activeCat   = 'all';
+let activeDiets = [];
+let searchQuery = '';
+let filtered    = [];
+let offset      = 0;
+let sentinelIO  = null;
+let debounceT   = null;
+let qTimer      = null;
+let qVisible    = false;
+let qIdx        = 0;
+
+/* ── DOM REFS ────────────────────────────────────────── */
+const $ = id => document.getElementById(id);
+const E = {
+  splash:      $('splash'),
+  enterBtn:    $('enterBtn'),
+  enterTxt:    $('enterTxt'),
+  app:         $('app'),
+  searchD:     $('searchD'),
+  searchM:     $('searchM'),
+  searchClear: $('searchClear'),
+  mSearchClear:$('mSearchClear'),
+  catTrack:    $('catTrack'),
+  dietBar:     $('dietBar'),
+  menuGrid:    $('menuGrid'),
+  sentinel:    $('sentinel'),
+  itemModal:   $('itemModal'),
+  modalImgWrap:$('modalImgWrap'),
+  modalBody:   $('modalBody'),
+  modalRecos:  $('modalRecos'),
+  ribbonTrack: $('ribbonTrack'),
+  btt:         $('btt'),
+  a11y:        $('a11y'),
+  langBtn:     $('langBtn'),
+  headerMark:  $('headerMark'),
+  qrBtn:       $('qrBtn'),
+  qrDialog:    $('qrDialog'),
+  qrClose:     $('qrClose'),
+  qrOutput:    $('qrOutput'),
+  quoteBar:    $('quoteBar'),
+  qbarQ:       $('qbarQ'),
+  qbarA:       $('qbarA'),
+  qbarDots:    $('qbarDots'),
+  qbarClose:   $('qbarClose'),
+  darkBtn:     $('darkBtn'),
+  installBtn:  $('installBtn'),
+  installToast:$('installToast'),
+  toastInstall:$('toastInstall'),
+  toastDismiss:$('toastDismiss'),
+  offlineBanner:$('offlineBanner')
 };
 
-// ═══════════════════════════════════════════════════════════════════════════
-// STATE & DOM
-// ═══════════════════════════════════════════════════════════════════════════
-let activeCat = 'all', activeDiets = [], searchQuery = '';
-let filtered = [], offset = 0, sentinelIO = null, debounce = null;
-let qTimer = null, qVisible = false, qIndex = 0;
-const PAGE = 16;
-
-const el = {
-  splash:       document.getElementById('splash'),
-  enterBtn:     document.getElementById('enterBtn'),
-  app:          document.getElementById('app'),
-  searchD:      document.getElementById('searchDesktop'),
-  searchM:      document.getElementById('searchMobile'),
-  searchClear:  document.getElementById('searchClear'),
-  mobileSearchClear: document.getElementById('mobileSearchClear'),
-  catTrack:     document.getElementById('catTrack'),
-  dietBar:      document.getElementById('dietBar'),
-  menuGrid:     document.getElementById('menuGrid'),
-  sentinel:     document.getElementById('gridSentinel'),
-  itemModal:    document.getElementById('itemModal'),
-  modalImgWrap: document.getElementById('modalImgWrap'),
-  modalBody:    document.getElementById('modalBody'),
-  modalRecos:   document.getElementById('modalRecos'),
-  ribbonTrack:  document.getElementById('ribbonTrack'),
-  btt:          document.getElementById('btt'),
-  a11y:         document.getElementById('a11y'),
-  langBtn:      document.getElementById('langBtn'),
-  headerMark:   document.getElementById('headerMark'),
-  qrBtn:        document.getElementById('qrBtn'),
-  qrDialog:     document.getElementById('qrDialog'),
-  qrClose:      document.getElementById('qrClose'),
-  qrOutput:     document.getElementById('qrOutput'),
-  quoteBar:     document.getElementById('quoteBar'),
-  qbarQ:        document.getElementById('qbarQ'),
-  qbarA:        document.getElementById('qbarA'),
-  qbarDots:     document.getElementById('qbarDots'),
-  qbarClose:    document.getElementById('qbarClose')
-};
-
-// ═══════════════════════════════════════════════════════════════════════════
-// UTILITIES
-// ═══════════════════════════════════════════════════════════════════════════
-function esc(s){ return s ? s.replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])) : ''; }
-function filterOK(item, diets){
-  if(!diets.length) return true;
-  const d = item.diet||[];
-  return diets.every(f=>
-    f==='vegan'?d.includes('vegan'):
-    f==='no-nuts'?!d.includes('contains-nuts'):
-    f==='dairy-free'?!d.includes('contains-dairy'):
-    f==='gluten-free'?d.includes('gluten-free'):true
-  );
-}
-function catLabel(id){ const c=D.categories.find(x=>x.id===id); return c?(lang==='ar'?c.ar:c.en):id; }
-function dietLabel(id){ const d=D.diets.find(x=>x.id===id); return d?(lang==='ar'?d.ar:d.en):id; }
-
-// ═══════════════════════════════════════════════════════════════════════════
-// UPDATE UI TEXT
-// ═══════════════════════════════════════════════════════════════════════════
-function updateUIText() {
-  document.getElementById('splashOvertitle').textContent = t('splashOvertitle');
-  document.getElementById('splashTagline').textContent = t('splashTagline');
-  document.getElementById('enterBtnText').textContent = t('enterBtn');
-  document.getElementById('searchDesktop').placeholder = t('searchPlaceholder');
-  document.getElementById('searchMobile').placeholder = t('mobileSearchPlaceholder');
-  document.getElementById('installBtnText').textContent = t('installBtn');
-  document.getElementById('qrBtnText').textContent = t('qrBtn');
-  document.getElementById('langBtn').textContent = lang === 'en' ? 'AR' : 'EN';
-  document.getElementById('heroSub').textContent = t('heroSub');
-  document.getElementById('heroDesc').textContent = t('heroDesc');
-  document.getElementById('footerHoursTitle').textContent = t('footerHours');
-  document.getElementById('footerCopy').textContent = t('copy');
-  document.getElementById('qrTitle').textContent = t('qrTitle');
-  document.getElementById('qrSub').textContent = t('qrSub');
-  document.getElementById('offlineBanner').textContent = t('offlineBanner');
-  const hoursGrid = document.getElementById('hoursGrid');
-  hoursGrid.innerHTML = `
-    <div>${t('satWed')}</div><div>${t('hoursSatWed')}</div>
-    <div>${t('thuFri')}</div><div>${t('hoursThuFri')}</div>
-  `;
-  renderCats();
-  renderDiets();
-  refreshGrid();
+/* ═══════════════════════════════════════════════════════
+   HELPERS
+═══════════════════════════════════════════════════════ */
+function esc(s) {
+  if (!s) return '';
+  return s.replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 }
 
-// ═══════════════════════════════════════════════════════════════════════════
-// CARD OBSERVER
-// ═══════════════════════════════════════════════════════════════════════════
-const cardObs = new IntersectionObserver(entries=>{
-  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); cardObs.unobserve(e.target); } });
-},{threshold:0.08});
+function catLabel(id) {
+  const c = CATS.find(x => x.id === id);
+  return c ? (lang === 'ar' ? c.ar : c.en) : id;
+}
 
-// ═══════════════════════════════════════════════════════════════════════════
-// RIBBON
-// ═══════════════════════════════════════════════════════════════════════════
-function initRibbon(){
-  const items=[
-    {t:'Classic Turkish Coffee',a:true},{t:'Ottoman Baklava Mix',a:false},
-    {t:'Kunafa · Fresh Daily',a:true},{t:'V60 Pour Over',a:false},
-    {t:'Turkish Tea Pot',a:true},{t:'San Sebastian Cheesecake',a:false},
-    {t:'Cold Brew · 18h Steep',a:true},{t:'Sahlep · Ancient Comfort',a:false}
+function filterOK(item, diets) {
+  if (!diets.length) return true;
+  const d = item.diet || [];
+  return diets.every(f => {
+    if (f === 'vegan')       return d.includes('vegan');
+    if (f === 'no-nuts')     return !d.includes('contains-nuts');
+    if (f === 'dairy-free')  return !d.includes('contains-dairy');
+    if (f === 'gluten-free') return d.includes('gluten-free');
+    return true;
+  });
+}
+
+/* ═══════════════════════════════════════════════════════
+   CARD INTERSECTION OBSERVER
+═══════════════════════════════════════════════════════ */
+const cardObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in');
+      cardObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+/* ═══════════════════════════════════════════════════════
+   RIBBON
+═══════════════════════════════════════════════════════ */
+function initRibbon() {
+  const items = [
+    { t: 'Classic Turkish Coffee', g: true },
+    { t: 'Ottoman Baklava Mix',    g: false },
+    { t: 'Kunafa · Fresh Daily',   g: true },
+    { t: 'V60 Pour Over',          g: false },
+    { t: 'Turkish Tea Pot',        g: true },
+    { t: 'San Sebastian Cheesecake', g: false },
+    { t: 'Cold Brew · 18h Steep',  g: true },
+    { t: 'Sahlep · Ancient Comfort', g: false }
   ];
-  const all=[...items,...items];
-  el.ribbonTrack.innerHTML = all.map(i=>
-    `<div class="ribbon-item${i.a?' accent':''}">${esc(i.t)}<span class="ribbon-dot">◆</span></div>`
+  const all = [...items, ...items];
+  E.ribbonTrack.innerHTML = all.map(i =>
+    `<div class="ribbon-item${i.g ? ' gold' : ''}">${esc(i.t)}<span class="ribbon-dot">◆</span></div>`
   ).join('');
 }
 
-// ═══════════════════════════════════════════════════════════════════════════
-// QUOTE BAR
-// ═══════════════════════════════════════════════════════════════════════════
-function setQuote(i){
-  const q=D.quotes[i];
-  el.qbarQ.textContent='\u201c'+q.text+'\u201d';
-  el.qbarA.textContent='— '+q.attr;
-  el.qbarDots.querySelectorAll('.qbdot').forEach((d,j)=>d.classList.toggle('on',j===i));
-  qIndex=i;
+/* ═══════════════════════════════════════════════════════
+   QUOTE BAR
+═══════════════════════════════════════════════════════ */
+function setQuote(i) {
+  const q = QUOTES[i];
+  E.qbarQ.textContent = '\u201c' + q.q + '\u201d';
+  E.qbarA.textContent = '— ' + q.a;
+  E.qbarDots.querySelectorAll('.qbdot').forEach((d, j) => d.classList.toggle('on', j === i));
+  qIdx = i;
 }
-function startQTimer(){ if(qTimer) clearInterval(qTimer); qTimer=setInterval(()=>{ if(qVisible) setQuote((qIndex+1)%D.quotes.length); },5500); }
-function initQuotes(){
-  el.qbarDots.innerHTML=D.quotes.map((_,i)=>`<button class="qbdot${i===0?' on':''}" data-i="${i}"></button>`).join('');
-  el.qbarDots.querySelectorAll('.qbdot').forEach(d=>d.addEventListener('click',()=>{ setQuote(+d.dataset.i); startQTimer(); }));
+
+function startQTimer() {
+  if (qTimer) clearInterval(qTimer);
+  qTimer = setInterval(() => {
+    if (qVisible) setQuote((qIdx + 1) % QUOTES.length);
+  }, 5500);
+}
+
+function initQuotes() {
+  E.qbarDots.innerHTML = QUOTES.map((_, i) =>
+    `<button class="qbdot${i === 0 ? ' on' : ''}" data-i="${i}" aria-label="Quote ${i + 1}"></button>`
+  ).join('');
+  E.qbarDots.querySelectorAll('.qbdot').forEach(d => {
+    d.addEventListener('click', () => { setQuote(+d.dataset.i); startQTimer(); });
+  });
   setQuote(0);
-  setTimeout(()=>{ el.quoteBar.classList.add('up'); qVisible=true; startQTimer(); },2000);
-  el.qbarClose.addEventListener('click',()=>{ el.quoteBar.classList.remove('up'); qVisible=false; clearInterval(qTimer); });
+  setTimeout(() => {
+    E.quoteBar.classList.add('up');
+    qVisible = true;
+    startQTimer();
+  }, 2200);
+  E.qbarClose.addEventListener('click', () => {
+    E.quoteBar.classList.remove('up');
+    qVisible = false;
+    clearInterval(qTimer);
+  });
 }
 
-// ═══════════════════════════════════════════════════════════════════════════
-// SEARCH
-// ═══════════════════════════════════════════════════════════════════════════
-function syncSearch(v){
-  searchQuery=v.trim();
-  if(el.searchD) el.searchD.value=v;
-  if(el.searchM) el.searchM.value=v;
-  if(el.searchClear) el.searchClear.classList.toggle('show',!!searchQuery);
-  if(el.mobileSearchClear) el.mobileSearchClear.classList.toggle('show',!!searchQuery);
-  clearTimeout(debounce);
-  debounce=setTimeout(refreshGrid,180);
+/* ═══════════════════════════════════════════════════════
+   SEARCH
+═══════════════════════════════════════════════════════ */
+function syncSearch(v) {
+  searchQuery = v.trim();
+  if (E.searchD) E.searchD.value = v;
+  if (E.searchM) E.searchM.value = v;
+  E.searchClear.classList.toggle('show', !!searchQuery);
+  E.mSearchClear.classList.toggle('show', !!searchQuery);
+  clearTimeout(debounceT);
+  debounceT = setTimeout(refreshGrid, 180);
 }
-el.searchD.addEventListener('input',e=>syncSearch(e.target.value));
-el.searchM.addEventListener('input',e=>syncSearch(e.target.value));
-el.searchClear.addEventListener('click',()=>syncSearch(''));
-el.mobileSearchClear.addEventListener('click',()=>syncSearch(''));
 
-// ═══════════════════════════════════════════════════════════════════════════
-// FILTERING
-// ═══════════════════════════════════════════════════════════════════════════
-function getFiltered(){
-  let it=D.items;
-  if(activeCat!=='all') it=it.filter(i=>i.cat===activeCat);
-  if(searchQuery){ const q=searchQuery.toLowerCase(); it=it.filter(i=>(i.en||'').toLowerCase().includes(q)||(i.ar||'').toLowerCase().includes(q)||(i.descEn||'').toLowerCase().includes(q)); }
-  if(activeDiets.length) it=it.filter(i=>filterOK(i,activeDiets));
+E.searchD.addEventListener('input',    e => syncSearch(e.target.value));
+E.searchM.addEventListener('input',    e => syncSearch(e.target.value));
+E.searchClear.addEventListener('click',  () => syncSearch(''));
+E.mSearchClear.addEventListener('click', () => syncSearch(''));
+
+/* ═══════════════════════════════════════════════════════
+   FILTERING
+═══════════════════════════════════════════════════════ */
+function getFiltered() {
+  let it = ITEMS;
+  if (activeCat !== 'all') it = it.filter(i => i.cat === activeCat);
+  if (searchQuery) {
+    const q = searchQuery.toLowerCase();
+    it = it.filter(i =>
+      (i.en || '').toLowerCase().includes(q) ||
+      (i.ar || '').toLowerCase().includes(q) ||
+      (i.descEn || '').toLowerCase().includes(q)
+    );
+  }
+  if (activeDiets.length) it = it.filter(i => filterOK(i, activeDiets));
   return it;
 }
 
-// ═══════════════════════════════════════════════════════════════════════════
-// BUILD CARD
-// ═══════════════════════════════════════════════════════════════════════════
-function buildCard(item){
-  const isOos=item.outOfStock===true, isBake=item.freshBake===true;
-  const name=lang==='ar'?item.ar:item.en;
-  const secName=lang==='ar'?item.en:item.ar;
-  const desc=lang==='ar'?(item.descAr||item.descEn):item.descEn;
-  const cat=catLabel(item.cat);
+/* ═══════════════════════════════════════════════════════
+   BUILD CARD
+═══════════════════════════════════════════════════════ */
+function buildCard(item) {
+  const isOos  = item.outOfStock === true;
+  const isBake = item.freshBake  === true;
+  const name   = lang === 'ar' ? item.ar : item.en;
+  const altN   = lang === 'ar' ? item.en : item.ar;
+  const desc   = lang === 'ar' ? (item.descAr || item.descEn) : item.descEn;
+  const cat    = catLabel(item.cat);
+  const d      = item.diet || [];
 
-  const dietDots=(item.diet||[]).map(d=>
-    d==='vegan'?'<span class="cdot vg" title="Vegan"></span>':
-    d==='gluten-free'?'<span class="cdot gf" title="Gluten-free"></span>':
-    d==='dairy-free'?'<span class="cdot df" title="Dairy-free"></span>':''
+  const dots = d.map(x =>
+    x === 'vegan'        ? '<span class="cdot vg" title="Vegan"></span>' :
+    x === 'gluten-free'  ? '<span class="cdot gf" title="Gluten-free"></span>' :
+    x === 'dairy-free'   ? '<span class="cdot df" title="Dairy-free"></span>' : ''
   ).join('');
 
-  const card=document.createElement('article');
-  card.className=`menu-card${isOos?' oos':''}`;
-  card.setAttribute('role','listitem');
-  if(!isOos){ card.setAttribute('tabindex','0'); card.setAttribute('aria-label',`${name} · ${item.price} QAR`); }
+  const card = document.createElement('article');
+  card.className = `menu-card${isOos ? ' oos' : ''}`;
+  card.setAttribute('role', 'listitem');
+  if (!isOos) {
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('aria-label', `${name}, ${item.price} QAR`);
+  }
 
-  card.innerHTML=`
+  card.innerHTML = `
     <div class="card-img-wrap">
-      <div class="card-img-skel"></div>
-      <img class="card-img" src="${D.BASE}${item.img}" alt="${esc(name)}" loading="lazy" decoding="async">
-      <div class="card-img-overlay"></div>
-      <div class="card-price-badge">${item.price} <small style="font-size:0.65em;opacity:0.7">QAR</small></div>
-      ${isOos?`<div class="card-oos-badge">${t('outOfStock')}</div>`:''}
-      ${isBake?`<div class="card-badge">${t('freshBakeBadge')}</div>`:''}
-      ${isOos?`<div class="oos-overlay"><span class="oos-tag">${t('currentlyUnavailable')}</span></div>`:''}
+      <div class="card-skel"></div>
+      <img class="card-img" src="${IMG_BASE}${item.img}" alt="${esc(name)}" loading="lazy" decoding="async">
+      <div class="card-overlay"></div>
+      <div class="card-price">${item.price} <small style="font-size:.65em;opacity:.7">QAR</small></div>
+      ${isOos  ? `<div class="card-oos-badge">${t('oos')}</div>` : ''}
+      ${isBake ? `<div class="card-badge">${t('bakeBadge')}</div>` : ''}
+      ${isOos  ? `<div class="oos-overlay"><span class="oos-tag">${t('unavail')}</span></div>` : ''}
     </div>
     <div class="card-body">
-      <div class="card-cat-label">${esc(cat)}</div>
+      <div class="card-cat">${esc(cat)}</div>
       <div class="card-name">${esc(name)}</div>
-      ${secName?`<div class="card-name-ar">${esc(secName)}</div>`:''}
+      ${altN ? `<div class="card-name-ar">${esc(altN)}</div>` : ''}
       <div class="card-desc">${esc(desc)}</div>
-      ${isBake?`<div class="card-bake-note">${t('freshBakeNote')}</div>`:''}
+      ${isBake ? `<div class="card-bake">${t('bakeNote')}</div>` : ''}
       <div class="card-foot">
         <span class="card-cal">${item.cal}</span>
-        <div class="card-dots">${dietDots}</div>
+        <div class="card-dots">${dots}</div>
       </div>
     </div>`;
 
-  const img=card.querySelector('.card-img'), skel=card.querySelector('.card-img-skel');
-  img.onload=()=>{ img.classList.add('loaded'); skel.classList.add('done'); };
-  img.onerror=()=>{ img.src=D.FB; img.classList.add('loaded'); skel.classList.add('done'); };
+  const img  = card.querySelector('.card-img');
+  const skel = card.querySelector('.card-skel');
+  img.onload  = () => { img.classList.add('loaded'); skel.classList.add('done'); };
+  img.onerror = () => { img.src = FB_IMG; img.classList.add('loaded'); skel.classList.add('done'); };
 
-  if(!isOos){
-    const open=()=>openModal(item);
-    card.addEventListener('click',open);
-    card.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); open(); } });
+  if (!isOos) {
+    const open = () => openModal(item);
+    card.addEventListener('click', open);
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
+    });
   }
 
   cardObs.observe(card);
   return card;
 }
 
-// ═══════════════════════════════════════════════════════════════════════════
-// RENDER GRID (with pagination)
-// ═══════════════════════════════════════════════════════════════════════════
-function renderGrid(items){
-  if(sentinelIO){ sentinelIO.disconnect(); sentinelIO=null; }
-  el.menuGrid.innerHTML='';
-  filtered=items; offset=0;
-  if(el.a11y) el.a11y.textContent=`${items.length} items found`;
-  if(!items.length){
-    const emptyMsg = searchQuery ? `${t('emptySearch')} "${esc(searchQuery)}"` : t('emptyDefault');
-    el.menuGrid.innerHTML=`<div class="empty-state"><div class="empty-icon">☕</div><div class="empty-text">${emptyMsg}</div></div>`;
+/* ═══════════════════════════════════════════════════════
+   GRID RENDER  (paginated with IntersectionObserver)
+═══════════════════════════════════════════════════════ */
+function renderGrid(items) {
+  if (sentinelIO) { sentinelIO.disconnect(); sentinelIO = null; }
+  E.menuGrid.innerHTML = '';
+  filtered = items;
+  offset   = 0;
+  if (E.a11y) E.a11y.textContent = `${items.length} items`;
+
+  if (!items.length) {
+    const msg = searchQuery
+      ? `${t('emptyQ')} "${esc(searchQuery)}"`
+      : t('emptyD');
+    E.menuGrid.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-icon">☕</div>
+        <div class="empty-text">${msg}</div>
+      </div>`;
     return;
   }
   renderPage();
 }
-function renderPage(){
-  const slice=filtered.slice(offset,offset+PAGE);
-  offset+=slice.length;
-  const frag=document.createDocumentFragment();
-  slice.forEach(i=>frag.appendChild(buildCard(i)));
-  el.menuGrid.appendChild(frag);
-  if(offset<filtered.length&&el.sentinel){
-    sentinelIO=new IntersectionObserver(e=>{ if(e[0].isIntersecting){ sentinelIO.disconnect(); renderPage(); } },{threshold:0.2});
-    sentinelIO.observe(el.sentinel);
+
+function renderPage() {
+  const slice = filtered.slice(offset, offset + PAGE_SIZE);
+  offset += slice.length;
+  const frag = document.createDocumentFragment();
+  slice.forEach(i => frag.appendChild(buildCard(i)));
+  E.menuGrid.appendChild(frag);
+
+  if (offset < filtered.length && E.sentinel) {
+    sentinelIO = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) {
+        sentinelIO.disconnect();
+        renderPage();
+      }
+    }, { threshold: 0.2 });
+    sentinelIO.observe(E.sentinel);
   }
 }
-function refreshGrid(){
-  el.menuGrid.classList.add('fading');
-  setTimeout(()=>{ renderGrid(getFiltered()); el.menuGrid.classList.remove('fading'); },200);
+
+function refreshGrid() {
+  E.menuGrid.classList.add('fading');
+  setTimeout(() => {
+    renderGrid(getFiltered());
+    E.menuGrid.classList.remove('fading');
+  }, 200);
 }
 
-// ═══════════════════════════════════════════════════════════════════════════
-// CATEGORIES
-// ═══════════════════════════════════════════════════════════════════════════
-function renderCats(){
-  el.catTrack.innerHTML=D.categories.map(c=>{
-    const label=lang==='ar'?c.ar:c.en;
-    const active=c.id===activeCat;
-    return `<button class="cat-pill${active?' active':''}" data-id="${c.id}" role="tab" aria-selected="${active}">${esc(label)}</button>`;
+/* ═══════════════════════════════════════════════════════
+   CATEGORIES
+═══════════════════════════════════════════════════════ */
+function renderCats() {
+  E.catTrack.innerHTML = CATS.map(c => {
+    const label  = lang === 'ar' ? c.ar : c.en;
+    const active = c.id === activeCat;
+    return `<button class="cat-pill${active ? ' active' : ''}" data-id="${c.id}" role="tab" aria-selected="${active}">${esc(label)}</button>`;
   }).join('');
-  el.catTrack.querySelectorAll('.cat-pill').forEach(btn=>{
-    btn.addEventListener('click',()=>{
-      activeCat=btn.dataset.id;
+
+  E.catTrack.querySelectorAll('.cat-pill').forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeCat = btn.dataset.id;
       renderCats();
       refreshGrid();
-      const bL=btn.offsetLeft, bW=btn.offsetWidth, sW=el.catTrack.parentElement.offsetWidth;
-      el.catTrack.parentElement.scrollTo({left:bL-(sW/2)+(bW/2),behavior:'smooth'});
+      const bL = btn.offsetLeft, bW = btn.offsetWidth;
+      const sW = E.catTrack.parentElement.offsetWidth;
+      E.catTrack.parentElement.scrollTo({ left: bL - (sW / 2) + (bW / 2), behavior: 'smooth' });
     });
   });
 }
 
-// ═══════════════════════════════════════════════════════════════════════════
-// DIET FILTERS
-// ═══════════════════════════════════════════════════════════════════════════
-function renderDiets(){
-  el.dietBar.innerHTML=D.diets.map(d=>{
-    const label=lang==='ar'?d.ar:d.en;
-    const on=activeDiets.includes(d.id);
-    return `<button class="dpill${on?' on':''}" data-d="${d.id}">${esc(label)}</button>`;
+/* ═══════════════════════════════════════════════════════
+   DIET FILTERS
+═══════════════════════════════════════════════════════ */
+function renderDiets() {
+  E.dietBar.innerHTML = DIETS.map(d => {
+    const label = lang === 'ar' ? d.ar : d.en;
+    const on    = activeDiets.includes(d.id);
+    return `<button class="dpill${on ? ' on' : ''}" data-d="${d.id}">${esc(label)}</button>`;
   }).join('');
-  el.dietBar.querySelectorAll('.dpill').forEach(btn=>{
-    btn.addEventListener('click',()=>{
-      const id=btn.dataset.d;
-      activeDiets=activeDiets.includes(id)?activeDiets.filter(x=>x!==id):[...activeDiets,id];
-      renderDiets(); refreshGrid();
+
+  E.dietBar.querySelectorAll('.dpill').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.d;
+      activeDiets = activeDiets.includes(id)
+        ? activeDiets.filter(x => x !== id)
+        : [...activeDiets, id];
+      renderDiets();
+      refreshGrid();
     });
   });
 }
 
-// ═══════════════════════════════════════════════════════════════════════════
-// MODAL
-// ═══════════════════════════════════════════════════════════════════════════
-function openModal(item){
-  const name=lang==='ar'?item.ar:item.en;
-  const altName=lang==='ar'?item.en:item.ar;
-  const desc=lang==='ar'?(item.descAr||item.descEn):item.descEn;
-  const isOos=item.outOfStock===true, isBake=item.freshBake===true;
-  const hasMilk=item.hasMilk||(item.diet||[]).some(d=>d.includes('dairy'));
-  const isVegan=(item.diet||[]).includes('vegan');
-  const showMilk=hasMilk&&!isVegan&&!isOos;
-  const cat=catLabel(item.cat);
-  const allergens=(item.diet||[]).length?[...new Set((item.diet||[]).map(d=>d.replace('contains-','').replace('-',' ')))].join(', '):t('none');
-  const tempDisplay=item.temp==='both'?t('both'):(t(item.temp)||'—');
+/* ═══════════════════════════════════════════════════════
+   ITEM MODAL
+═══════════════════════════════════════════════════════ */
+function openModal(item) {
+  const name    = lang === 'ar' ? item.ar   : item.en;
+  const altName = lang === 'ar' ? item.en   : item.ar;
+  const desc    = lang === 'ar' ? (item.descAr || item.descEn) : item.descEn;
+  const isOos   = item.outOfStock === true;
+  const isBake  = item.freshBake  === true;
+  const d       = item.diet || [];
+  const hasMilk = item.hasMilk || d.some(x => x.includes('dairy'));
+  const isVegan = d.includes('vegan');
+  const showMilk = hasMilk && !isVegan && !isOos;
+  const cat     = catLabel(item.cat);
+  const tempKey = item.temp || 'room';
+  const tempDisp = t(tempKey) || '—';
+  const allergens = d.length
+    ? [...new Set(d.map(x => x.replace('contains-', '').replace('-', ' ')))].join(', ')
+    : t('none');
 
-  el.modalImgWrap.innerHTML=`
-    <div class="modal-img-ph">☕</div>
-    <img src="${D.BASE}${item.img}" alt="${esc(name)}" decoding="async">
-    <div class="modal-img-grad"></div>
-    <button class="modal-close" id="mClose">✕</button>`;
-  const mi=el.modalImgWrap.querySelector('img'), mph=el.modalImgWrap.querySelector('.modal-img-ph');
-  mi.onload=()=>{ mi.classList.add('loaded'); mph.style.opacity='0'; };
-  mi.onerror=()=>{ mi.src=D.FB; mi.classList.add('loaded'); mph.style.opacity='0'; };
-  el.modalImgWrap.querySelector('#mClose').addEventListener('click',()=>el.itemModal.close());
+  /* Image wrap */
+  E.modalImgWrap.innerHTML = `
+    <div class="modal-ph">☕</div>
+    <img src="${IMG_BASE}${item.img}" alt="${esc(name)}" decoding="async">
+    <div class="modal-grad"></div>
+    <button class="modal-close" id="mClose" aria-label="Close">✕</button>`;
+  const mi  = E.modalImgWrap.querySelector('img');
+  const mph = E.modalImgWrap.querySelector('.modal-ph');
+  mi.onload  = () => { mi.classList.add('loaded'); mph.style.opacity = '0'; };
+  mi.onerror = () => { mi.src = FB_IMG; mi.classList.add('loaded'); mph.style.opacity = '0'; };
+  E.modalImgWrap.querySelector('#mClose').addEventListener('click', () => E.itemModal.close());
 
-  el.modalBody.innerHTML=`
-    ${isOos?`<div class="modal-oos-banner">${t('currentlyUnavailable')}</div>`:''}
-    ${isBake?`<div class="modal-bake-note"><span class="modal-bake-icon">🥐</span><span><strong>${t('freshBakeNote')}.</strong> ${t('freshBakeDetail')}</span></div>`:''}
-    <div class="modal-eyebrow">${esc(cat)}</div>
+  /* Body */
+  E.modalBody.innerHTML = `
+    ${isOos  ? `<div class="modal-oos">${t('unavail')}</div>` : ''}
+    ${isBake ? `<div class="modal-bake"><span class="modal-bake-ico">🥐</span><span><strong>${t('bakeNote')}.</strong> ${t('bakeDetail')}</span></div>` : ''}
+    <div class="modal-eye">${esc(cat)}</div>
     <div class="modal-name">${esc(name)}</div>
-    ${altName?`<div class="modal-name-ar">${esc(altName)}</div>`:''}
+    ${altName ? `<div class="modal-name-ar">${esc(altName)}</div>` : ''}
     <div class="modal-price">${item.price}<sup>QAR</sup></div>
     <div class="modal-rule"></div>
     <div class="modal-desc">${esc(desc)}</div>
     <div class="modal-meta">
-      <div class="mmeta"><div class="mmeta-l">${t('calories')}</div><div class="mmeta-v">${item.cal}</div></div>
-      <div class="mmeta"><div class="mmeta-l">${t('served')}</div><div class="mmeta-v">${tempDisplay}</div></div>
+      <div class="mmeta"><div class="mmeta-l">${t('cals')}</div><div class="mmeta-v">${item.cal}</div></div>
+      <div class="mmeta"><div class="mmeta-l">${t('served')}</div><div class="mmeta-v">${tempDisp}</div></div>
       <div class="mmeta"><div class="mmeta-l">${t('allergens')}</div><div class="mmeta-v" style="text-transform:capitalize">${allergens}</div></div>
       <div class="mmeta"><div class="mmeta-l">${t('category')}</div><div class="mmeta-v" style="text-transform:capitalize">${item.cat}</div></div>
     </div>
-    ${showMilk?`<div class="modal-milk-label">${t('milkPreference')}</div><div class="modal-milk-opts">${D.MILK.map((m,i)=>`<button class="milk-opt${i===0?' on':''}" data-m="${m}">${m}</button>`).join('')}</div>`:''}`;
+    ${showMilk ? `
+      <div class="milk-label">${t('milkPref')}</div>
+      <div class="milk-opts">${MILKS.map((m, i) => `<button class="milk-opt${i === 0 ? ' on' : ''}" data-m="${m}">${m}</button>`).join('')}</div>
+    ` : ''}`;
 
-  el.modalBody.querySelectorAll('.milk-opt').forEach(o=>{
-    o.addEventListener('click',()=>{ el.modalBody.querySelectorAll('.milk-opt').forEach(x=>x.classList.remove('on')); o.classList.add('on'); });
+  E.modalBody.querySelectorAll('.milk-opt').forEach(o => {
+    o.addEventListener('click', () => {
+      E.modalBody.querySelectorAll('.milk-opt').forEach(x => x.classList.remove('on'));
+      o.classList.add('on');
+    });
   });
 
-  const recos=D.items.filter(x=>x.id!==item.id&&x.cat===item.cat&&!x.outOfStock).slice(0,6);
-  if(recos.length){
-    el.modalRecos.innerHTML=`<div class="modal-recos">
-      <div class="modal-recos-label">${t('youMightLike')}</div>
-      <div class="modal-recos-list">${recos.map(r=>{
-        const rn=lang==='ar'?r.ar:r.en;
-        return `<div class="reco-card" data-id="${r.id}" tabindex="0" role="button">
-          <div class="reco-img-wrap"><img class="reco-img" src="${D.BASE}${r.img}" alt="${esc(rn)}" loading="lazy" onerror="this.src='${D.FB}'"></div>
-          <div class="reco-name">${esc(rn)}</div><div class="reco-price">${r.price} QAR</div>
-        </div>`;
-      }).join('')}</div></div>`;
-    el.modalRecos.querySelectorAll('.reco-card').forEach(c=>{
-      const open=()=>{ const it=D.items.find(x=>x.id===c.dataset.id); if(it){ el.itemModal.close(); setTimeout(()=>openModal(it),120); } };
-      c.addEventListener('click',open);
-      c.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); open(); } });
+  /* Recommendations */
+  const recos = ITEMS.filter(x => x.id !== item.id && x.cat === item.cat && !x.outOfStock).slice(0, 6);
+  if (recos.length) {
+    E.modalRecos.innerHTML = `
+      <div class="modal-recos">
+        <div class="recos-label">${t('youLike')}</div>
+        <div class="recos-list">
+          ${recos.map(r => {
+            const rn = lang === 'ar' ? r.ar : r.en;
+            return `<div class="reco-card" data-id="${r.id}" tabindex="0" role="button" aria-label="${esc(rn)}">
+              <div class="reco-img-wrap">
+                <img class="reco-img" src="${IMG_BASE}${r.img}" alt="${esc(rn)}" loading="lazy" onerror="this.src='${FB_IMG}'">
+              </div>
+              <div class="reco-name">${esc(rn)}</div>
+              <div class="reco-price">${r.price} QAR</div>
+            </div>`;
+          }).join('')}
+        </div>
+      </div>`;
+    E.modalRecos.querySelectorAll('.reco-card').forEach(c => {
+      const open = () => {
+        const it = ITEMS.find(x => x.id === c.dataset.id);
+        if (it) { E.itemModal.close(); setTimeout(() => openModal(it), 120); }
+      };
+      c.addEventListener('click', open);
+      c.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
     });
-  } else { el.modalRecos.innerHTML=''; }
+  } else {
+    E.modalRecos.innerHTML = '';
+  }
 
-  el.itemModal.showModal();
-  el.itemModal.querySelector('.modal-scroll').scrollTop=0;
+  E.itemModal.showModal();
+  E.itemModal.querySelector('.modal-scroll').scrollTop = 0;
 }
-el.itemModal.addEventListener('click',e=>{ if(e.target===el.itemModal) el.itemModal.close(); });
 
-// ═══════════════════════════════════════════════════════════════════════════
-// QR
-// ═══════════════════════════════════════════════════════════════════════════
-el.qrBtn.addEventListener('click',()=>{
-  el.qrOutput.innerHTML='';
-  if(typeof qrcode !== 'undefined'){
+E.itemModal.addEventListener('click', e => { if (e.target === E.itemModal) E.itemModal.close(); });
+
+/* ═══════════════════════════════════════════════════════
+   QR DIALOG
+═══════════════════════════════════════════════════════ */
+E.qrBtn.addEventListener('click', () => {
+  E.qrOutput.innerHTML = '';
+  if (typeof qrcode !== 'undefined') {
     const qr = qrcode(0, 'M');
     qr.addData(window.location.href);
     qr.make();
-    el.qrOutput.innerHTML = qr.createImgTag(6, 0);
+    E.qrOutput.innerHTML = qr.createImgTag(6, 0);
   }
-  el.qrDialog.showModal();
+  E.qrDialog.showModal();
 });
-el.qrClose.addEventListener('click',()=>el.qrDialog.close());
-el.qrDialog.addEventListener('click',e=>{ if(e.target===el.qrDialog) el.qrDialog.close(); });
+E.qrClose.addEventListener('click', () => E.qrDialog.close());
+E.qrDialog.addEventListener('click', e => { if (e.target === E.qrDialog) E.qrDialog.close(); });
 
-// ═══════════════════════════════════════════════════════════════════════════
-// ESC key
-// ═══════════════════════════════════════════════════════════════════════════
-document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ if(el.itemModal?.open) el.itemModal.close(); if(el.qrDialog?.open) el.qrDialog.close(); } });
-
-// ═══════════════════════════════════════════════════════════════════════════
-// SCROLL / BTT
-// ═══════════════════════════════════════════════════════════════════════════
-window.addEventListener('scroll',()=>{ if(el.btt) el.btt.classList.toggle('show',scrollY>500); },{passive:true});
-el.btt.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
-if(el.headerMark){ el.headerMark.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'})); }
-
-// ═══════════════════════════════════════════════════════════════════════════
-// LANG TOGGLE
-// ═══════════════════════════════════════════════════════════════════════════
-el.langBtn.addEventListener('click',()=>{
-  lang=lang==='en'?'ar':'en';
-  document.documentElement.lang=lang;
-  document.documentElement.dir=lang==='ar'?'rtl':'ltr';
-  updateUIText();
-});
-
-// ═══════════════════════════════════════════════════════════════════════════
-// SPLASH ENTER
-// ═══════════════════════════════════════════════════════════════════════════
-el.enterBtn.addEventListener('click',()=>{
-  el.splash.classList.add('out');
-  el.app.style.display='block';
-  requestAnimationFrame(()=>requestAnimationFrame(()=>{ el.app.classList.add('visible'); }));
-  setTimeout(()=>{ el.splash.remove(); },1200);
-});
-
-// ═══════════════════════════════════════════════════════════════════════════
-// OFFLINE DETECTION
-// ═══════════════════════════════════════════════════════════════════════════
-const offlineBanner = document.getElementById('offlineBanner');
-function updateOnlineStatus() {
-  if (navigator.onLine) {
-    offlineBanner.classList.remove('show');
-  } else {
-    offlineBanner.classList.add('show');
-    offlineBanner.textContent = t('offlineBanner');
+/* ═══════════════════════════════════════════════════════
+   ESC
+═══════════════════════════════════════════════════════ */
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    if (E.itemModal?.open) E.itemModal.close();
+    if (E.qrDialog?.open) E.qrDialog.close();
   }
+});
+
+/* ═══════════════════════════════════════════════════════
+   SCROLL / BTT
+═══════════════════════════════════════════════════════ */
+window.addEventListener('scroll', () => {
+  E.btt.classList.toggle('show', scrollY > 500);
+}, { passive: true });
+E.btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+E.headerMark.addEventListener('click',   () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+E.headerMark.addEventListener('keydown', e => { if (e.key === 'Enter') window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+/* ═══════════════════════════════════════════════════════
+   DARK MODE
+═══════════════════════════════════════════════════════ */
+(function initDark() {
+  const stored = localStorage.getItem('turkiana-dark');
+  if (stored === 'true' || (stored === null && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.body.classList.add('dark');
+  }
+})();
+
+E.darkBtn.addEventListener('click', () => {
+  const isDark = document.body.classList.toggle('dark');
+  localStorage.setItem('turkiana-dark', isDark);
+  document.querySelector('meta[name="theme-color"]').setAttribute('content', isDark ? '#1A1510' : '#B8962A');
+});
+
+/* ═══════════════════════════════════════════════════════
+   LANG TOGGLE
+═══════════════════════════════════════════════════════ */
+E.langBtn.addEventListener('click', () => {
+  lang = lang === 'en' ? 'ar' : 'en';
+  document.documentElement.lang = lang;
+  document.documentElement.dir  = lang === 'ar' ? 'rtl' : 'ltr';
+  updateAllText();
+});
+
+/* ═══════════════════════════════════════════════════════
+   UPDATE ALL UI TEXT  (called on lang change)
+═══════════════════════════════════════════════════════ */
+function updateAllText() {
+  /* Splash */
+  $('splashOver').textContent = t('splashOver');
+  $('splashTag').textContent  = t('splashTag');
+  $('enterTxt').textContent   = t('enterBtn');
+  /* Header */
+  E.searchD.placeholder  = t('searchPH');
+  E.searchM.placeholder  = t('mSearchPH');
+  $('installTxt').textContent = t('installTxt');
+  $('qrTxt').textContent  = t('qrTxt');
+  E.langBtn.textContent   = lang === 'en' ? 'AR' : 'EN';
+  /* Hero */
+  $('heroSub').textContent  = t('heroSub');
+  $('heroDesc').textContent = t('heroDesc');
+  /* QR */
+  $('qrTitle').textContent = t('qrTitle');
+  $('qrSub').textContent   = t('qrSub');
+  /* Toast */
+  $('toastSub').textContent = t('toastSub');
+  /* Footer */
+  $('footerHoursTitle').textContent = t('hoursTitle');
+  $('footerCopy').textContent       = t('copy');
+  $('hoursGrid').innerHTML = `
+    <div>${t('satWed')}</div><div>${t('hSatWed')}</div>
+    <div>${t('thuFri')}</div><div>${t('hThuFri')}</div>`;
+  /* Offline */
+  E.offlineBanner.textContent = t('offline');
+  /* Re-render dynamic UI */
+  renderCats();
+  renderDiets();
+  refreshGrid();
 }
-window.addEventListener('online', updateOnlineStatus);
+
+/* ═══════════════════════════════════════════════════════
+   OFFLINE DETECTION
+═══════════════════════════════════════════════════════ */
+function updateOnlineStatus() {
+  E.offlineBanner.classList.toggle('show', !navigator.onLine);
+}
+window.addEventListener('online',  updateOnlineStatus);
 window.addEventListener('offline', updateOnlineStatus);
 updateOnlineStatus();
 
-// ═══════════════════════════════════════════════════════════════════════════
-// A2HS
-// ═══════════════════════════════════════════════════════════════════════════
-let deferredPrompt;
-const installBtn = document.getElementById('installBtn');
-window.addEventListener('beforeinstallprompt', (e) => {
+/* ═══════════════════════════════════════════════════════
+   A2HS  — Install prompt
+═══════════════════════════════════════════════════════ */
+let deferredInstallPrompt = null;
+let toastShown = false;
+
+window.addEventListener('beforeinstallprompt', e => {
   e.preventDefault();
-  deferredPrompt = e;
-  installBtn.classList.add('show');
-  installBtn.querySelector('span').textContent = t('installBtn');
-});
-installBtn.addEventListener('click', async () => {
-  if (!deferredPrompt) return;
-  deferredPrompt.prompt();
-  const { outcome } = await deferredPrompt.userChoice;
-  if (outcome === 'accepted') {
-    installBtn.classList.remove('show');
+  deferredInstallPrompt = e;
+
+  /* Show header button */
+  E.installBtn.classList.remove('hidden');
+  E.installTxt.textContent = t('installTxt');
+
+  /* Show toast after 4 s (only once per session) */
+  if (!toastShown && !sessionStorage.getItem('installDismissed')) {
+    toastShown = true;
+    setTimeout(() => {
+      E.installToast.classList.add('show');
+    }, 4000);
   }
-  deferredPrompt = null;
 });
 
-// ═══════════════════════════════════════════════════════════════════════════
-// DARK MODE
-// ═══════════════════════════════════════════════════════════════════════════
-const darkToggle = document.getElementById('darkModeToggle');
-darkToggle.addEventListener('click', () => {
-  document.body.classList.toggle('dark-mode');
-  const isDark = document.body.classList.contains('dark-mode');
-  document.querySelector('meta[name="theme-color"]').setAttribute('content', isDark ? '#1A1510' : '#c9a96e');
-});
-
-// ═══════════════════════════════════════════════════════════════════════════
-// SERVICE WORKER REGISTRATION
-// ═══════════════════════════════════════════════════════════════════════════
-
-  if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/Turkiana-Cafe-Sweets/sw.js', { scope: '/Turkiana-Cafe-Sweets/' })
-    .then(reg => console.log('SW registered:', reg))
-    .catch(err => console.log('SW registration failed:', err));
+async function triggerInstall() {
+  if (!deferredInstallPrompt) return;
+  E.installToast.classList.remove('show');
+  deferredInstallPrompt.prompt();
+  const { outcome } = await deferredInstallPrompt.userChoice;
+  if (outcome === 'accepted') {
+    E.installBtn.classList.add('hidden');
+    deferredInstallPrompt = null;
+  }
 }
 
-// ═══════════════════════════════════════════════════════════════════════════
-// INIT
-// ═══════════════════════════════════════════════════════════════════════════
-renderCats();
-renderDiets();
-initRibbon();
-initQuotes();
-renderGrid(getFiltered());
-updateUIText();
+E.installBtn.addEventListener('click',   triggerInstall);
+E.toastInstall.addEventListener('click', triggerInstall);
+E.toastDismiss.addEventListener('click', () => {
+  E.installToast.classList.remove('show');
+  sessionStorage.setItem('installDismissed', '1');
+});
 
+/* Hide toast & header button once installed */
+window.addEventListener('appinstalled', () => {
+  E.installBtn.classList.add('hidden');
+  E.installToast.classList.remove('show');
+  deferredInstallPrompt = null;
+});
+
+/* ═══════════════════════════════════════════════════════
+   SPLASH  →  APP
+═══════════════════════════════════════════════════════ */
+E.enterBtn.addEventListener('click', () => {
+  E.splash.classList.add('out');
+  E.app.style.display = 'block';
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    E.app.classList.add('visible');
+  }));
+  setTimeout(() => E.splash.remove(), 1200);
+});
+
+/* ═══════════════════════════════════════════════════════
+   SERVICE WORKER REGISTRATION
+═══════════════════════════════════════════════════════ */
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+      .then(reg => {
+        /* Check for updates */
+        reg.addEventListener('updatefound', () => {
+          const newSW = reg.installing;
+          newSW.addEventListener('statechange', () => {
+            if (newSW.state === 'installed' && navigator.serviceWorker.controller) {
+              /* New content available — could show a banner here */
+              console.log('Turkiana: new version available');
+            }
+          });
+        });
+      })
+      .catch(err => console.warn('SW registration failed:', err));
+  });
+}
+
+/* ═══════════════════════════════════════════════════════
+   INIT
+═══════════════════════════════════════════════════════ */
+(function init() {
+  updateAllText();   /* sets all text and renders cats/diets/grid */
+  initRibbon();
+  initQuotes();
+  /* Footer hours (also set by updateAllText but ensuring it's populated) */
+  $('hoursGrid').innerHTML = `
+    <div>${t('satWed')}</div><div>${t('hSatWed')}</div>
+    <div>${t('thuFri')}</div><div>${t('hThuFri')}</div>`;
 })();
+
+})(); /* END IIFE */
 </script>
 </body>
 </html>
